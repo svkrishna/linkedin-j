@@ -370,8 +370,16 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      *
      * @param status
      */
-    public Future<?> updateStatus(String status);
+    public Future<?> updateCurrentStatus(String status);
 
+    /**
+     * Method description
+     *
+     *
+     * @param status
+     */
+    public Future<?> deleteCurrentStatus();
+    
     // Messaging API
 
     /**

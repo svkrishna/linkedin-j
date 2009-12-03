@@ -369,8 +369,16 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      *
      * @param status
      */
-    public void updateStatus(String status);
+    public void updateCurrentStatus(String status);
 
+    /**
+     * Method description
+     *
+     *
+     * @param status
+     */
+    public void deleteCurrentStatus();
+    
     // Messaging API
 
     /**
