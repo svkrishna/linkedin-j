@@ -83,10 +83,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsByEmail(String email) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsByEmail(final String email) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByEmail(email);
+            }
+        });
     }
 
     /**
@@ -99,10 +102,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByEmail(email, profileFields);
+            }
+        });
     }
 
     /**
@@ -114,10 +120,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsById(String id) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsById(final String id) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsById(id);
+            }
+        });
     }
 
     /**
@@ -130,10 +139,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsById(String id, Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsById(id, profileFields);
+            }
+        });
     }
 
     /**
@@ -145,10 +157,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsByUrl(String url) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsByUrl(final String url) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByUrl(url);
+            }
+        });
     }
 
     /**
@@ -161,10 +176,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByUrl(url, profileFields);
+            }
+        });
     }
 
     /**
@@ -175,9 +193,12 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsForCurrentUser();
+            }
+        });
     }
 
     /**
@@ -189,10 +210,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Connections> getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsForCurrentUser(profileFields);
+            }
+        });
     }
 
     /**
@@ -203,9 +227,12 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates();
+            }
+        });
     }
 
     /**
@@ -218,10 +245,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(int start, int count) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final int start, final int count) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(start, count);
+            }
+        });
     }
 
     /**
@@ -234,10 +264,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(Date startDate, Date endDate) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final Date startDate, final Date endDate) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(startDate, endDate);
+            }
+        });
     }
 
     /**
@@ -249,10 +282,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(updateTypes);
+            }
+        });
     }
 
     /**
@@ -266,10 +302,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(int start, int count, Set<NetworkUpdateType> updateTypes) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final int start, final int count, final Set<NetworkUpdateType> updateTypes) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(start, count, updateTypes);
+            }
+        });
     }
 
     /**
@@ -283,10 +322,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(Date startDate, Date endDate, Set<NetworkUpdateType> updateTypes) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final Date startDate, final Date endDate, final Set<NetworkUpdateType> updateTypes) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(startDate, endDate, updateTypes);
+            }
+        });
     }
 
     /**
@@ -302,11 +344,14 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(int count, int start, Date startDate, Date endDate,
-            Set<NetworkUpdateType> updateTypes) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Network> getNetworkUpdates(final int count, final int start, final Date startDate, final Date endDate,
+            final Set<NetworkUpdateType> updateTypes) {
+        return execute(new Callable<Network>() {
+            @Override
+            public Network call() throws Exception {
+                return client.getNetworkUpdates(count, start, startDate, endDate, updateTypes);
+            }
+        });
     }
 
     /**
@@ -318,10 +363,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Person> getProfileById(String id) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Person> getProfileById(final String id) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileById(id);
+            }
+        });
     }
 
     /**
@@ -334,10 +382,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Person> getProfileById(String id, Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Person> getProfileById(final String id, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileById(id, profileFields);
+            }
+        });
     }
 
     /**
@@ -349,10 +400,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Person> getProfileByUrl(String url) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Person> getProfileByUrl(final String url) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileByUrl(url);
+            }
+        });
     }
 
     /**
@@ -365,10 +419,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Person> getProfileByUrl(String url, Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Person> getProfileByUrl(final String url, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileByUrl(url, profileFields);
+            }
+        });
     }
 
     /**
@@ -379,9 +436,12 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileForCurrentUser() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileForCurrentUser();
+            }
+        });
     }
 
     /**
@@ -393,10 +453,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<Person> getProfileForCurrentUser(Set<ProfileField> profileFields) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<Person> getProfileForCurrentUser(final Set<ProfileField> profileFields) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileForCurrentUser(profileFields);
+            }
+        });
     }
 
     /**
@@ -407,9 +470,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param commentText
      */
     @Override
-    public void postComment(String networkUpdateId, String commentText) {
-
-        // TODO Auto-generated method stub
+    public Future<?> postComment(final String networkUpdateId, final String commentText) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.postComment(networkUpdateId, commentText);
+            }
+        });
     }
 
     /**
@@ -419,9 +486,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param updateText
      */
     @Override
-    public void postNetworkUpdate(String updateText) {
-
-        // TODO Auto-generated method stub
+    public Future<?> postNetworkUpdate(final String updateText) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.postNetworkUpdate(updateText);
+            }
+        });
     }
 
     /**
@@ -432,9 +503,12 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople();
+            }
+        });
     }
 
     /**
@@ -446,10 +520,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(Map<SearchParameter, String> searchParameters) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(searchParameters);
+            }
+        });
     }
 
     /**
@@ -462,10 +539,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(int start, int count) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final int start, final int count) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(start, count);
+            }
+        });
     }
 
     /**
@@ -479,10 +559,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(Map<SearchParameter, String> searchParameters, int start, int count) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(searchParameters, start, count);
+            }
+        });
     }
 
     /**
@@ -494,10 +577,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(SearchSortOrder sortOrder) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final SearchSortOrder sortOrder) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(sortOrder);
+            }
+        });
     }
 
     /**
@@ -510,10 +596,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final SearchSortOrder sortOrder) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(searchParameters, sortOrder);
+            }
+        });
     }
 
     /**
@@ -527,10 +616,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(int start, int count, SearchSortOrder sortOrder) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final int start, final int count, final SearchSortOrder sortOrder) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(start, count, sortOrder);
+            }
+        });
     }
 
     /**
@@ -545,11 +637,14 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @return
      */
     @Override
-    public Future<People> searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
-                                       SearchSortOrder sortOrder) {
-
-        // TODO Auto-generated method stub
-        return null;
+    public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count,
+                                       final SearchSortOrder sortOrder) {
+        return execute(new Callable<People>() {
+            @Override
+            public People call() throws Exception {
+                return client.searchPeople(searchParameters, start, count, sortOrder);
+            }
+        });
     }
 
     /**
@@ -561,9 +656,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param message
      */
     @Override
-    public void sendInvite(String recepientId, String subject, String message) {
-
-        // TODO Auto-generated method stub
+    public Future<?> sendInvite(final String recepientId, final String subject, final String message) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.sendInvite(recepientId, subject, message);
+            }
+        });
     }
 
     /**
@@ -576,9 +675,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param auth
      */
     @Override
-    public void sendInvite(String recepientId, String subject, String message, Authorization auth) {
-
-        // TODO Auto-generated method stub
+    public Future<?> sendInvite(final String recepientId, final String subject, final String message, final Authorization auth) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.sendInvite(recepientId, subject, message, auth);
+            }
+        });
     }
 
     /**
@@ -590,9 +693,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param message
      */
     @Override
-    public void sendMessage(List<String> recepientIds, String subject, String message) {
-
-        // TODO Auto-generated method stub
+    public Future<?> sendMessage(final List<String> recepientIds, final String subject, final String message) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.sendMessage(recepientIds, subject, message);
+            }
+        });
     }
 
     /**
@@ -602,9 +709,13 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param status
      */
     @Override
-    public void updateStatus(String status) {
-
-        // TODO Auto-generated method stub
+    public Future<?> updateStatus(final String status) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.updateStatus(status);
+            }
+        });
     }
 
     /**
@@ -615,9 +726,7 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public LinkedInAccessToken getAccessToken() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return client.getAccessToken();
     }
 
     /**
@@ -628,9 +737,7 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public LinkedInApiConsumer getApiConsumer() {
-
-        // TODO Auto-generated method stub
-        return null;
+        return client.getApiConsumer();
     }
 
     /**
@@ -641,8 +748,7 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public void setAccessToken(LinkedInAccessToken accessToken) {
-
-        // TODO Auto-generated method stub
+    	client.setAccessToken(accessToken);
     }
 
     /**
@@ -653,7 +759,6 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      */
     @Override
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
-
-        // TODO Auto-generated method stub
+    	client.setApiConsumer(apiConsumer);
     }
 }

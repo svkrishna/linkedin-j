@@ -349,7 +349,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      *
      * @param updateText
      */
-    public void postNetworkUpdate(String updateText);
+    public Future<?> postNetworkUpdate(String updateText);
 
     // Post Comment API
 
@@ -360,7 +360,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param networkUpdateId
      * @param commentText
      */
-    public void postComment(String networkUpdateId, String commentText);
+    public Future<?> postComment(String networkUpdateId, String commentText);
 
     // Status Update API
 
@@ -370,7 +370,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      *
      * @param status
      */
-    public void updateStatus(String status);
+    public Future<?> updateStatus(String status);
 
     // Messaging API
 
@@ -382,7 +382,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param subject
      * @param message
      */
-    public void sendMessage(List<String> recepientIds, String subject, String message);
+    public Future<?> sendMessage(List<String> recepientIds, String subject, String message);
 
     // Invitation API
 
@@ -394,7 +394,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param subject
      * @param message
      */
-    public void sendInvite(String recepientId, String subject, String message);
+    public Future<?> sendInvite(String recepientId, String subject, String message);
 
     /**
      * Method description
@@ -405,6 +405,6 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param message
      * @param auth
      */
-    public void sendInvite(String recepientId, String subject, String message, Authorization auth);
+    public Future<?> sendInvite(String recepientId, String subject, String message, Authorization auth);
 
 }
