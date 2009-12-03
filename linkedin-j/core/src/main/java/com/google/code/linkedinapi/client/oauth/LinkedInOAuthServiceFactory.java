@@ -3,8 +3,8 @@
  */
 package com.google.code.linkedinapi.client.oauth;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author nmukhtar
@@ -16,7 +16,7 @@ public class LinkedInOAuthServiceFactory {
 	private final Map<LinkedInApiConsumer, LinkedInOAuthService> servicesMap;
 
 	private LinkedInOAuthServiceFactory() {
-		servicesMap = new HashMap<LinkedInApiConsumer, LinkedInOAuthService>();
+		servicesMap = new ConcurrentHashMap<LinkedInApiConsumer, LinkedInOAuthService>();
 	}
 
 	public static synchronized LinkedInOAuthServiceFactory getInstance() {
@@ -28,8 +28,11 @@ public class LinkedInOAuthServiceFactory {
 	}
 
 	public LinkedInOAuthService createLinkedInOAuthService(String consumerKey, String consumerSecret) {
-		LinkedInApiConsumer apiConsumer = new LinkedInApiConsumer(consumerKey, consumerSecret);
+		return createLinkedInOAuthService(new LinkedInApiConsumer(consumerKey, consumerSecret));
 
+	}
+
+	public LinkedInOAuthService createLinkedInOAuthService(LinkedInApiConsumer apiConsumer) {
 		LinkedInOAuthService service = servicesMap.get(apiConsumer);
 		if (service == null) {
 			service = new LinkedInOAuthServiceImpl(apiConsumer);

@@ -3,8 +3,8 @@
  */
 package com.google.code.linkedinapi.client;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.code.linkedinapi.client.impl.AsyncLinkedInApiJaxbClient;
 import com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient;
@@ -16,7 +16,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
  *
  */
 public class LinkedInApiClientFactory {
-	private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap = new HashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
+	private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap = new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
 	private LinkedInApiConsumer apiConsumer;
 
 	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
