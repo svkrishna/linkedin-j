@@ -16,6 +16,9 @@
         <pathelement location="dev-lib/junit-4.5.jar"/>
         <pathelement location="dev-lib/trang.jar"/>
     </path>
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+		<classpath refid="linkedin-j.classpath"/>
+	</taskdef>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -98,4 +101,8 @@
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
+	<xjc target="src">
+	  <schema dir="src" includes="**/*.xsd" excludes="**/debug.xsd"/>
+	  <arg value="-nv" />
+	</xjc>
 </project>

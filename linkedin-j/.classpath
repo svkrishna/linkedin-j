@@ -13,5 +13,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="dev-lib/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="dev-lib/trang.jar"/>
+	<classpathentry kind="lib" path="dev-lib/jaxb-xjc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
