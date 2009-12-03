@@ -16,35 +16,113 @@ import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
  *
  */
 public class LinkedInApiClientFactory {
-	private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap = new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
-	private LinkedInApiConsumer apiConsumer;
 
-	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
-		this.apiConsumer = apiConsumer;
-	}
+    /** Field description */
+    private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap =
+        new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
 
-	public static synchronized LinkedInApiClientFactory newInstance(String consumerKey, String consumerSecret) {
-		LinkedInApiConsumer apiConsumer = new LinkedInApiConsumer(consumerKey, consumerSecret);
-		LinkedInApiClientFactory factory = factoriesMap.get(apiConsumer);
-		if (factory == null) {
-			factory = new LinkedInApiClientFactory(apiConsumer);
-			factoriesMap.put(apiConsumer, factory);
-		}
+    /** Field description */
+    private LinkedInApiConsumer apiConsumer;
 
-		return factory;
-	}
+    /**
+     * Constructs ...
+     *
+     *
+     * @param apiConsumer
+     */
+    private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
+        this.apiConsumer = apiConsumer;
+    }
 
-	public LinkedInApiClient createJaxbClient(String token, String tokenSecret) {
-		final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(), apiConsumer.getTokenSecret());
-		client.setAccessToken(new LinkedInAccessToken(token, tokenSecret));
+    /**
+     * Method description
+     *
+     *
+     * @param consumerKey
+     * @param consumerSecret
+     *
+     * @return
+     */
+    public static LinkedInApiClientFactory newInstance(String consumerKey, String consumerSecret) {
+        return newInstance(new LinkedInApiConsumer(consumerKey, consumerSecret));
+    }
 
-		return client;
-	}
+    /**
+     * Method description
+     *
+     *
+     * @param apiConsumer
+     *
+     * @return
+     */
+    public static synchronized LinkedInApiClientFactory newInstance(LinkedInApiConsumer apiConsumer) {
+        LinkedInApiClientFactory factory = factoriesMap.get(apiConsumer);
 
-	public AsyncLinkedInApiClient createAsyncJaxbClient(String token, String tokenSecret) {
-		final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(), apiConsumer.getTokenSecret());
-		client.setAccessToken(new LinkedInAccessToken(token, tokenSecret));
+        if (factory == null) {
+            factory = new LinkedInApiClientFactory(apiConsumer);
+            factoriesMap.put(apiConsumer, factory);
+        }
 
-		return new AsyncLinkedInApiJaxbClient(client);
-	}
+        return factory;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     *
+     * @return
+     */
+    public LinkedInApiClient createJaxbClient(LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(),
+                                             apiConsumer.getTokenSecret());
+
+        client.setAccessToken(accessToken);
+
+        return client;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     *
+     * @return
+     */
+    public AsyncLinkedInApiClient createAsyncJaxbClient(LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(),
+                                             apiConsumer.getTokenSecret());
+
+        client.setAccessToken(accessToken);
+
+        return new AsyncLinkedInApiJaxbClient(client);
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param token
+     * @param tokenSecret
+     *
+     * @return
+     */
+    public LinkedInApiClient createJaxbClient(String token, String tokenSecret) {
+        return createJaxbClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param token
+     * @param tokenSecret
+     *
+     * @return
+     */
+    public AsyncLinkedInApiClient createAsyncJaxbClient(String token, String tokenSecret) {
+        return createAsyncJaxbClient(new LinkedInAccessToken(token, tokenSecret));
+    }
 }
