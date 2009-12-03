@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
@@ -179,5 +180,22 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         }
 
         return sb.toString();
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param urlFormat
+     * @param namedParameters
+     *
+     * @return
+     */
+    protected String buildUrl(String urlFormat, Map<String, String> namedParameters) {
+    	String url = urlFormat;
+    	for (String key : namedParameters.keySet()) {
+    		url = url.replaceAll("{" + key + "}", namedParameters.get(key));			
+		}
+    	return url;
     }
 }

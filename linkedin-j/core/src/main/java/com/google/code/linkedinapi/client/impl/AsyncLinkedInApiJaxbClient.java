@@ -709,15 +709,31 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      * @param status
      */
     @Override
-    public Future<?> updateStatus(final String status) {
+    public Future<?> updateCurrentStatus(final String status) {
         return execute(new Runnable() {
             @Override
             public void run() {
-                client.updateStatus(status);
+                client.updateCurrentStatus(status);
             }
         });
     }
 
+    /**
+     * Method description
+     *
+     *
+     * @param status
+     */
+    @Override
+    public Future<?> deleteCurrentStatus() {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.deleteCurrentStatus();
+            }
+        });
+    }
+    
     /**
      * Method description
      *

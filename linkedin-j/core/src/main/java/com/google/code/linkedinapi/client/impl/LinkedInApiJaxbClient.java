@@ -574,11 +574,22 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @param status
      */
     @Override
-    public void updateStatus(String status) {
+    public void updateCurrentStatus(String status) {
 
         // TODO Auto-generated method stub
     }
 
+    /**
+     * Method description
+     *
+     *
+     */
+    @Override
+    public void deleteCurrentStatus() {
+
+        // TODO Auto-generated method stub
+    }
+    
     /**
      * Method description
      *
