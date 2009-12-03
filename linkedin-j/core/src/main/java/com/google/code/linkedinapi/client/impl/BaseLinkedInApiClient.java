@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
@@ -22,92 +23,147 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
  *
  */
 public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
-	private LinkedInApiConsumer apiConsumer;
-	private LinkedInAccessToken accessToken;
 
-	public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
-		this.apiConsumer = apiConsumer;
-	}
+    /** Field description */
+    private LinkedInAccessToken accessToken;
 
-	public LinkedInApiConsumer getApiConsumer() {
-		return apiConsumer;
-	}
+    /** Field description */
+    private LinkedInApiConsumer apiConsumer;
 
-	public void setAccessToken(LinkedInAccessToken accessToken) {
-		this.accessToken = accessToken;
-	}
+    /**
+     * Constructs ...
+     *
+     *
+     * @param consumerKey
+     * @param consumerSecret
+     */
+    protected BaseLinkedInApiClient(String consumerKey, String consumerSecret) {
+        apiConsumer = new LinkedInApiConsumer(consumerKey, consumerSecret);
+    }
 
-	public LinkedInAccessToken getAccessToken() {
-		return accessToken;
-	}
+    /**
+     * Method description
+     *
+     *
+     * @param apiConsumer
+     */
+    public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
+        this.apiConsumer = apiConsumer;
+    }
 
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public LinkedInApiConsumer getApiConsumer() {
+        return apiConsumer;
+    }
 
-	protected BaseLinkedInApiClient(String consumerKey, String consumerSecret) {
-		apiConsumer = new LinkedInApiConsumer(consumerKey, consumerSecret);
-	}
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     */
+    public void setAccessToken(LinkedInAccessToken accessToken) {
+        this.accessToken = accessToken;
+    }
 
-	/**
-	 *
-	 */
-	protected void callApiMethod(String apiUrl) {
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public LinkedInAccessToken getAccessToken() {
+        return accessToken;
+    }
 
-		try {
-			LinkedInOAuthService oAuthService = LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(), apiConsumer.getTokenSecret());
-			URL url = new URL(apiUrl);
-	        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+    /**
+     *
+     *
+     * @param apiUrl
+     *
+     * @return
+     */
+    protected String callApiMethod(String apiUrl) {
+        try {
+            LinkedInOAuthService oAuthService =
+                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(),
+                    apiConsumer.getTokenSecret());
+            URL               url     = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
-	        oAuthService.signRequestWithToken(request, accessToken);
+            oAuthService.signRequestWithToken(request, accessToken);
+            request.connect();
 
-	        request.connect();
-	        String responseBody = convertStreamToString(request.getInputStream());
+            String responseBody = convertStreamToString(request.getInputStream());
 
-	        System.out.println("Response: " + request.getResponseCode() + " "
-	                + request.getResponseMessage() + "\n\n" + responseBody);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+            System.out.println("Response: " + request.getResponseCode() + " " + request.getResponseMessage() + "\n\n"
+                               + responseBody);
 
-	/**
-	 *
-	 */
-	protected void callApiMethod(String apiUrl, String xmlContent, String contentType, String method) {
-		try {
-			LinkedInOAuthService oAuthService = LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(), apiConsumer.getTokenSecret());
+            return responseBody;
+        } catch (Exception e) {
+            throw new LinkedInApiClientException(e);
+        }
+    }
 
-			URL url = new URL(apiUrl);
-	        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+    /**
+     *
+     *
+     * @param apiUrl
+     * @param xmlContent
+     * @param contentType
+     * @param method
+     *
+     * @return
+     */
+    protected String callApiMethod(String apiUrl, String xmlContent, String contentType, String method) {
+        try {
+            LinkedInOAuthService oAuthService =
+                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(),
+                    apiConsumer.getTokenSecret());
+            URL               url     = new URL(apiUrl);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
-			request.setRequestMethod(method);
-			request.setDoOutput(true);
+            request.setRequestMethod(method);
+            request.setDoOutput(true);
+            oAuthService.signRequestWithToken(request, accessToken);
+            request.setRequestProperty("Content-Type", contentType);
 
-	        oAuthService.signRequestWithToken(request, accessToken);
+            PrintStream out = new PrintStream(request.getOutputStream());
 
-			request.setRequestProperty("Content-Type", contentType);
+            out.print(xmlContent);
+            out.flush();
+            out.close();
+            request.connect();
 
-			PrintStream out = new PrintStream(request.getOutputStream());
+            String responseBody = convertStreamToString(request.getInputStream());
 
-			out.print(xmlContent);
+            System.out.println("Response: " + request.getResponseCode() + " " + request.getResponseMessage() + "\n\n"
+                               + responseBody);
 
-			out.flush();
-			out.close();
+            return responseBody;
+        } catch (Exception e) {
+            throw new LinkedInApiClientException(e);
+        }
+    }
 
-	        request.connect();
-
-	        String responseBody = convertStreamToString(request.getInputStream());
-
-	        System.out.println("Response: " + request.getResponseCode() + " "
-	                + request.getResponseMessage() + "\n\n" + responseBody);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+    /**
+     * Method description
+     *
+     *
+     * @param is
+     *
+     * @return
+     */
     protected String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
+        StringBuilder  sb     = new StringBuilder();
+        String         line   = null;
 
-        String line = null;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
@@ -124,7 +180,4 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return sb.toString();
     }
-
-
-
 }

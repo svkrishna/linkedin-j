@@ -22,10 +22,18 @@ public interface LinkedInOAuthService {
      *
      *
      * @param requestToken
+     * @param pin
      *
      * @return
      */
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin);
 
+    /**
+     * Method description
+     *
+     *
+     * @param request
+     * @param accessToken
+     */
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken);
 }

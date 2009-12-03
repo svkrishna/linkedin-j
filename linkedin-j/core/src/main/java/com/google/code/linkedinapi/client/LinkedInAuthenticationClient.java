@@ -12,11 +12,35 @@ import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
  */
 public interface LinkedInAuthenticationClient {
 
-	public void setApiConsumer(LinkedInApiConsumer apiConsumer);
+    /**
+     * Method description
+     *
+     *
+     * @param apiConsumer
+     */
+    public void setApiConsumer(LinkedInApiConsumer apiConsumer);
 
-	public LinkedInApiConsumer getApiConsumer();
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public LinkedInApiConsumer getApiConsumer();
 
-	public void setAccessToken(LinkedInAccessToken accessToken);
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     */
+    public void setAccessToken(LinkedInAccessToken accessToken);
 
-	public LinkedInAccessToken getAccessToken();
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public LinkedInAccessToken getAccessToken();
 }

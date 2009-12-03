@@ -9,60 +9,68 @@ package com.google.code.linkedinapi.client.enumeration;
  */
 public enum EducationsField {
 
-	/**
-	 * a unique identifier for this member's education entry.
-	 */
-	ID("id"),
+    /**
+     * a unique identifier for this member's education entry.
+     */
+    ID("id"),
 
-	/**
-	 * the name of the school, as indicated by the member
-	 */
-	SCHOOL_NAME("school-name"),
+    /**
+     * the name of the school, as indicated by the member
+     */
+    SCHOOL_NAME("school-name"),
 
-	/**
-	 * the field of study at the school, as indicated by the member
-	 */
-	FIELD_OF_STUDY("field-of-study"),
+    /**
+     * the field of study at the school, as indicated by the member
+     */
+    FIELD_OF_STUDY("field-of-study"), DEGREE("degree"), ACTIVITIES("activities"),
 
-	DEGREE("degree"),
+    /**
+     * a structured object a year field indicating when the education began
+     */
+    START_DATE("start-date"),
 
-	ACTIVITIES("activities"),
+    /**
+     * a structured object with a year field indicating when the education ended.
+     */
+    END_DATE("end-date");
 
-	/**
-	 * a structured object a year field indicating when the education began
-	 */
-	START_DATE("start-date"),
+    /** Field description */
+    private String fieldName;
 
-	/**
-	 * a structured object with a year field indicating when the education ended.
-	 */
-	END_DATE("end-date");
+    /**
+     * Constructs ...
+     *
+     *
+     * @param name
+     */
+    EducationsField(String name) {
+        this.fieldName = name;
+    }
 
-	private String fieldName;
+    /**
+     * @return the name of the field
+     */
+    public String fieldName() {
+        return this.fieldName;
+    }
 
-	EducationsField(String name) {
-		this.fieldName = name;
-	}
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public String toString() {
+        return fieldName();
+    }
 
-	/**
-	 * @return the name of the field
-	 */
-	public String fieldName() {
-		return this.fieldName;
-	}
-
-	public String toString() {
-		return fieldName();
-	}
-
-	/**
-	 * @param name
-	 *            the name to check against
-	 *
-	 * @return true if this field has the specified name.
-	 */
-	public boolean isName(String name ) {
-		return toString().equals( name );
-	}
-
+    /**
+     * @param name
+     *            the name to check against
+     *
+     * @return true if this field has the specified name.
+     */
+    public boolean isName(String name) {
+        return toString().equals(name);
+    }
 }

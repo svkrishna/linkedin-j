@@ -7,42 +7,27 @@ package com.google.code.linkedinapi.client.enumeration;
  * @author nmukhtar
  *
  */
-public enum PositionsField {
+public enum SearchSortOrder {
 
     /**
-     * a unique identifier for this member's position.
+     * Orders the returns by number of connections each of the search returns has.
      */
-    ID("id"),
+    NUMBER_OF_CONNECTIONS("ctx"),
 
     /**
-     * the job title held at the position, as indicated by the member
+     * Orders the returns by number of ensorsers each of the search returns has.
      */
-    TITLE("title"),
+    NUMBER_OF_ENDORSERS("endorsers"),
 
     /**
-     * a summary of the member's position
+     * Orders the returns based on the ascending degree of separation within a member's network, with first degree connections first.
      */
-    SUMMARY("summary"),
+    DISTANCE("distance"),
 
     /**
-     * a structured object with month and year fields indicating when the position began
+     * Orders the returns based on relevance for the keywords provided.
      */
-    START_DATE("start-date"),
-
-    /**
-     * a structured object with month and year fields indicating when the position ended.
-     */
-    END_DATE("end-date"),
-
-    /**
-     * a "true" or "false" value, depending on whether it is marked current
-     */
-    IS_CURRENT("is-current"),
-
-    /**
-     * The name of the company the member works for
-     */
-    COMPANY_BANE("company/name");
+    RELEVANCE("relevance");
 
     /** Field description */
     private String fieldName;
@@ -53,7 +38,7 @@ public enum PositionsField {
      *
      * @param name
      */
-    PositionsField(String name) {
+    SearchSortOrder(String name) {
         this.fieldName = name;
     }
 
