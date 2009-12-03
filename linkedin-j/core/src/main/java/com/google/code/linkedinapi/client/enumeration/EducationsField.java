@@ -22,7 +22,17 @@ public enum EducationsField {
     /**
      * the field of study at the school, as indicated by the member
      */
-    FIELD_OF_STUDY("field-of-study"), DEGREE("degree"), ACTIVITIES("activities"),
+    FIELD_OF_STUDY("field-of-study"),
+
+    /**
+     * the degree of study obtained at the school, as indicated by the member
+     */
+    DEGREE("degree"),
+
+    /**
+     * the activities at the school, as indicated by the member
+     */
+    ACTIVITIES("activities"),
 
     /**
      * a structured object a year field indicating when the education began
