@@ -11,17 +11,26 @@ import java.util.Properties;
  *
  */
 public final class ApplicationConstants {
-    public static final String APP_CONSTANTS_FILE = "com/google/code/linkedinapi/client/constant/ApplicationConstants.properties";
 
+    /** Field description */
+    public static final String APP_CONSTANTS_FILE =
+        "com/google/code/linkedinapi/client/constant/ApplicationConstants.properties";
+
+    /** Field description */
     private static final Properties applicationConstants = new Properties();
 
     static {
-    	try {
-			applicationConstants.load(ApplicationConstants.class.getClassLoader().getResourceAsStream(APP_CONSTANTS_FILE));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            applicationConstants.load(
+                ApplicationConstants.class.getClassLoader().getResourceAsStream(APP_CONSTANTS_FILE));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-	private ApplicationConstants() {}
+    /**
+     * Constructs ...
+     *
+     */
+    private ApplicationConstants() {}
 }
