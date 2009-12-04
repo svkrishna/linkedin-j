@@ -7,17 +7,27 @@ package com.google.code.linkedinapi.client.enumeration;
  * @author nmukhtar
  *
  */
-public enum ProfileType {
+public enum HttpMethod {
 
     /**
-     * standard profile.
+     * HTTP Get Method
      */
-    STANDARD("standard"),
+    GET("GET"),
 
     /**
-     * public profile.
+     * HTTP Put Method
      */
-    PUBLIC("public");
+    PUT("PUT"),
+
+    /**
+     * HTTP Post Method
+     */
+    POST("POST"),
+
+    /**
+     * HTTP Delete Method
+     */
+    DELETE("DELETE");
 
     /** Field description */
     private String fieldName;
@@ -28,7 +38,7 @@ public enum ProfileType {
      *
      * @param name
      */
-    ProfileType(String name) {
+    HttpMethod(String name) {
         this.fieldName = name;
     }
 

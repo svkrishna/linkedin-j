@@ -6,6 +6,7 @@ package com.google.code.linkedinapi.client.impl;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,16 +17,22 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
+import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
+import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.UpdateComment;
+import com.google.code.linkedinapi.schema.ObjectFactory;
 
 /**
  * @author nmukhtar
@@ -35,6 +42,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /** Field description */
     private static final String JAXB_PACKAGE_NAME = "com.google.code.linkedinapi.schema";
+
+    /** Field description */
+    private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+
+    /** Field description */
+    private static final String XML_CONTENT_TYPE = "application/xml";
 
     /**
      * Constructs ...
@@ -57,9 +70,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByEmail(String email) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -73,9 +88,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -88,9 +105,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -104,9 +123,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -119,9 +140,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -135,9 +158,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -148,9 +173,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser() {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -163,9 +190,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -176,9 +205,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates() {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -192,9 +223,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(int start, int count) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -208,9 +241,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Date startDate, Date endDate) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -223,9 +258,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -240,9 +277,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(int start, int count, Set<NetworkUpdateType> updateTypes) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -257,9 +296,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Date startDate, Date endDate, Set<NetworkUpdateType> updateTypes) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -277,9 +318,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     @Override
     public Network getNetworkUpdates(int count, int start, Date startDate, Date endDate,
                                      Set<NetworkUpdateType> updateTypes) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -293,9 +336,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileById(String id, ProfileType profileType) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -310,9 +355,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -326,9 +373,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -343,9 +392,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -356,9 +407,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileForCurrentUser() {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -371,9 +424,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Person getProfileForCurrentUser(Set<ProfileField> profileFields) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -385,8 +440,14 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void postComment(String networkUpdateId, String commentText) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_COMMENT, namedParameters);
 
-        // TODO Auto-generated method stub
+    	UpdateComment comment = OBJECT_FACTORY.createUpdateComment();
+    	// TODO-NM: Populate comment
+
+        callApiMethod(apiUrl, marshallObject(comment), XML_CONTENT_TYPE, HttpMethod.POST);
     }
 
     /**
@@ -397,8 +458,14 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void postNetworkUpdate(String updateText) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_UPDATE, namedParameters);
 
-        // TODO Auto-generated method stub
+    	Activity update = OBJECT_FACTORY.createActivity();
+    	// TODO-NM: Populate activity
+
+        callApiMethod(apiUrl, marshallObject(update), XML_CONTENT_TYPE, HttpMethod.POST);
     }
 
     /**
@@ -409,9 +476,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople() {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -424,9 +493,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -440,9 +511,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(int start, int count) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -457,9 +530,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -472,9 +547,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(SearchSortOrder sortOrder) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -488,9 +565,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -505,9 +584,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public People searchPeople(int start, int count, SearchSortOrder sortOrder) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -524,9 +605,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
                                SearchSortOrder sortOrder) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        // TODO Auto-generated method stub
-        return null;
+        return unmarshallObject(callApiMethod(apiUrl));
     }
 
     /**
@@ -539,8 +622,14 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void sendInvite(String recepientId, String subject, String message) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEND_MESSAGE, namedParameters);
 
-        // TODO Auto-generated method stub
+    	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
+    	// TODO-NM: Populate invite
+
+        callApiMethod(apiUrl, marshallObject(invite), XML_CONTENT_TYPE, HttpMethod.POST);
     }
 
     /**
@@ -554,8 +643,13 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void sendInvite(String recepientId, String subject, String message, Authorization auth) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEND_MESSAGE, namedParameters);
 
-        // TODO Auto-generated method stub
+    	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
+    	// TODO-NM: Populate invite
+        callApiMethod(apiUrl, marshallObject(invite), XML_CONTENT_TYPE, HttpMethod.POST);
     }
 
     /**
@@ -568,8 +662,13 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void sendMessage(List<String> recepientIds, String subject, String message) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEND_MESSAGE, namedParameters);
 
-        // TODO Auto-generated method stub
+    	MailboxItem messageItem = OBJECT_FACTORY.createMailboxItem();
+    	// TODO-NM: Populate messageItem
+        callApiMethod(apiUrl, marshallObject(messageItem), XML_CONTENT_TYPE, HttpMethod.POST);
     }
 
     /**
@@ -579,9 +678,13 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @param status
      */
     @Override
-    public void updateCurrentStatus(String status) {
+    public void updateCurrentStatus(String statusText) {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
-        // TODO Auto-generated method stub
+    	Object status = OBJECT_FACTORY.createCurrentStatus(statusText);
+        callApiMethod(apiUrl, marshallObject(status), XML_CONTENT_TYPE, HttpMethod.PUT);
     }
 
     /**
@@ -591,8 +694,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public void deleteCurrentStatus() {
+    	Map<String, String> namedParameters = new HashMap<String, String>();
+    	// TODO-NM: Populate Parameters
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
-        // TODO Auto-generated method stub
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE);
     }
 
     /**

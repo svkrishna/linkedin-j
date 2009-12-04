@@ -13,6 +13,7 @@ import java.net.URL;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
@@ -120,7 +121,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected String callApiMethod(String apiUrl, String xmlContent, String contentType, String method) {
+    protected String callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(),
@@ -128,16 +129,22 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
-            request.setRequestMethod(method);
+            request.setRequestMethod(method.fieldName());
             request.setDoOutput(true);
             oAuthService.signRequestWithToken(request, accessToken);
-            request.setRequestProperty("Content-Type", contentType);
 
-            PrintStream out = new PrintStream(request.getOutputStream());
+            if (contentType != null) {
+                request.setRequestProperty("Content-Type", contentType);
+            }
 
-            out.print(xmlContent);
-            out.flush();
-            out.close();
+            if (xmlContent != null) {
+                PrintStream out = new PrintStream(request.getOutputStream());
+
+                out.print(xmlContent);
+                out.flush();
+                out.close();
+            }
+
             request.connect();
 
             String responseBody = convertStreamToString(request.getInputStream());
