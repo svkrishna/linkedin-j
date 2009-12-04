@@ -28,6 +28,22 @@ public final class ApplicationConstants {
         }
     }
 
+    /** Field description */
+    public static final String VALIDATE_XML =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.validateXml");
+
+    /** Field description */
+    public static final String OAUTH_VERSION =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.oauthVersion");
+
+    /** Field description */
+    public static final String CONTENT_ENCODING =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.encoding");
+
+    /** Field description */
+    public static final String CONTENT_TYPE_XML =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.contentTypeXml");
+
     /**
      * Constructs ...
      *

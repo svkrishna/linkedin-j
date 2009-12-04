@@ -25,9 +25,6 @@ public final class LinkedInApiUrls {
     private static final char API_URLS_PLACEHOLDER_END = '}';
 
     /** Field description */
-    private static final String API_URLS_ENCODING = "UTF-8";
-
-    /** Field description */
     private static final Properties linkedInApiUrls = new Properties();
 
     /** Field description */
@@ -130,7 +127,7 @@ public final class LinkedInApiUrls {
     			String placeHolder = placeHolderBuilder.toString();
     			if (namedParameters.containsKey(placeHolder)) {
     				// bind the parameter to the placeholder
-    				urlBuilder.append(encodeUrl(namedParameters.get(placeHolder), API_URLS_ENCODING));
+    				urlBuilder.append(encodeUrl(namedParameters.get(placeHolder), ApplicationConstants.CONTENT_ENCODING));
     			} else {
     				// we did not find a binding for the placeholder.
     				// append it as it is.

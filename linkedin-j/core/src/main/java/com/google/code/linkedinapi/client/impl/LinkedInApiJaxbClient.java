@@ -18,6 +18,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
@@ -46,9 +47,6 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /** Field description */
     private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
-
-    /** Field description */
-    private static final String XML_CONTENT_TYPE = "application/xml";
 
     /**
      * Constructs ...
@@ -448,7 +446,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	UpdateComment comment = OBJECT_FACTORY.createUpdateComment();
     	// TODO-NM: Populate comment
 
-        callApiMethod(apiUrl, marshallObject(comment), XML_CONTENT_TYPE, HttpMethod.POST);
+        callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     }
 
     /**
@@ -466,7 +464,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	Activity update = OBJECT_FACTORY.createActivity();
     	// TODO-NM: Populate activity
 
-        callApiMethod(apiUrl, marshallObject(update), XML_CONTENT_TYPE, HttpMethod.POST);
+        callApiMethod(apiUrl, marshallObject(update), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     }
 
     /**
@@ -630,7 +628,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate invite
 
-        callApiMethod(apiUrl, marshallObject(invite), XML_CONTENT_TYPE, HttpMethod.POST);
+        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     }
 
     /**
@@ -650,7 +648,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate invite
-        callApiMethod(apiUrl, marshallObject(invite), XML_CONTENT_TYPE, HttpMethod.POST);
+        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     }
 
     /**
@@ -669,7 +667,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	MailboxItem messageItem = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate messageItem
-        callApiMethod(apiUrl, marshallObject(messageItem), XML_CONTENT_TYPE, HttpMethod.POST);
+        callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     }
 
     /**
@@ -685,7 +683,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
     	Object status = OBJECT_FACTORY.createCurrentStatus(statusText);
-        callApiMethod(apiUrl, marshallObject(status), XML_CONTENT_TYPE, HttpMethod.PUT);
+        callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT);
     }
 
     /**
