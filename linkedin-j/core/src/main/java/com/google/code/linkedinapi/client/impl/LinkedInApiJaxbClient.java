@@ -5,6 +5,7 @@ package com.google.code.linkedinapi.client.impl;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +75,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -92,7 +93,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -109,7 +110,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -127,7 +128,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -144,7 +145,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -162,7 +163,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -177,7 +178,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -194,7 +195,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -209,7 +210,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -227,7 +228,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -245,7 +246,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -262,7 +263,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -281,7 +282,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -300,7 +301,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -322,7 +323,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -340,7 +341,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -359,7 +360,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -377,7 +378,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -396,7 +397,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -411,7 +412,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -428,7 +429,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -480,7 +481,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -497,7 +498,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -515,7 +516,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -534,7 +535,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -551,7 +552,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -569,7 +570,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -588,7 +589,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -609,7 +610,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate Parameters
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.SEARCH_PEOPLE, namedParameters);
 
-        return unmarshallObject(callApiMethod(apiUrl));
+        return readResponse(callApiMethod(apiUrl));
     }
 
     /**
@@ -699,6 +700,23 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
         callApiMethod(apiUrl, null, null, HttpMethod.DELETE);
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param response
+     * @param <T>
+     *
+     * @return
+     */
+    protected <T> T readResponse(LinkedInApiCallResponse response) {
+    	if (response.getStatusCode() == HttpURLConnection.HTTP_OK) {
+            return unmarshallObject(response.getResponseContent());
+    	} else {
+    		throw new LinkedInApiClientException(response.getResponseContent());
+    	}
     }
 
     /**

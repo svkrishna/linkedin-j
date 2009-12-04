@@ -89,7 +89,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected String callApiMethod(String apiUrl) {
+    protected LinkedInApiCallResponse callApiMethod(String apiUrl) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(),
@@ -100,12 +100,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             oAuthService.signRequestWithToken(request, accessToken);
             request.connect();
 
-            String responseBody = convertStreamToString(request.getInputStream());
-
-            System.out.println("Response: " + request.getResponseCode() + " " + request.getResponseMessage() + "\n\n"
-                               + responseBody);
-
-            return responseBody;
+            return new LinkedInApiCallResponse(request.getResponseCode(),
+                                               convertStreamToString(request.getInputStream()));
         } catch (Exception e) {
             throw new LinkedInApiClientException(e);
         }
@@ -121,7 +117,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected String callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method) {
+    protected LinkedInApiCallResponse callApiMethod(String apiUrl, String xmlContent, String contentType,
+            HttpMethod method) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getToken(),
@@ -147,12 +144,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
             request.connect();
 
-            String responseBody = convertStreamToString(request.getInputStream());
-
-            System.out.println("Response: " + request.getResponseCode() + " " + request.getResponseMessage() + "\n\n"
-                               + responseBody);
-
-            return responseBody;
+            return new LinkedInApiCallResponse(request.getResponseCode(),
+                                               convertStreamToString(request.getInputStream()));
         } catch (Exception e) {
             throw new LinkedInApiClientException(e);
         }
@@ -186,5 +179,76 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Class description
+     *
+     *
+     */
+    protected static class LinkedInApiCallResponse {
+
+        /** Field description */
+        private String responseContent;
+
+        /** Field description */
+        private String responseMessage;
+
+        /** Field description */
+        private int statusCode;
+
+        /**
+         * Constructs ...
+         *
+         *
+         * @param statusCode
+         * @param responseContent
+         */
+        public LinkedInApiCallResponse(int statusCode, String responseContent) {
+            this.statusCode      = statusCode;
+            this.responseContent = responseContent;
+        }
+
+        /**
+         * @return the statusCode
+         */
+        public int getStatusCode() {
+            return statusCode;
+        }
+
+        /**
+         * @param statusCode the statusCode to set
+         */
+        public void setStatusCode(int statusCode) {
+            this.statusCode = statusCode;
+        }
+
+        /**
+         * @return the responseContent
+         */
+        public String getResponseContent() {
+            return responseContent;
+        }
+
+        /**
+         * @param responseContent the responseContent to set
+         */
+        public void setResponseContent(String responseContent) {
+            this.responseContent = responseContent;
+        }
+
+        /**
+         * @return the responseMessage
+         */
+        public String getResponseMessage() {
+            return responseMessage;
+        }
+
+        /**
+         * @param responseMessage the responseMessage to set
+         */
+        public void setResponseMessage(String responseMessage) {
+            this.responseMessage = responseMessage;
+        }
     }
 }
