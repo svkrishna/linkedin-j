@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
 
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
+import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Authorization;
@@ -40,20 +41,22 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      *
      *
      * @param id
+     * @param profileType
      *
      * @return
      */
-    public Future<Person> getProfileById(String id);
+    public Future<Person> getProfileById(String id, ProfileType profileType);
 
     /**
      * Method description
      *
      *
      * @param url
+     * @param profileType
      *
      * @return
      */
-    public Future<Person> getProfileByUrl(String url);
+    public Future<Person> getProfileByUrl(String url, ProfileType profileType);
 
     /**
      * Method description
@@ -70,22 +73,24 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      *
      *
      * @param id
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
-    public Future<Person> getProfileById(String id, Set<ProfileField> profileFields);
+    public Future<Person> getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields);
 
     /**
      * Method description
      *
      *
      * @param url
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
-    public Future<Person> getProfileByUrl(String url, Set<ProfileField> profileFields);
+    public Future<Person> getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields);
 
     // Network Updates API. Return Network Update bean
 
@@ -379,7 +384,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param status
      */
     public Future<?> deleteCurrentStatus();
-    
+
     // Messaging API
 
     /**

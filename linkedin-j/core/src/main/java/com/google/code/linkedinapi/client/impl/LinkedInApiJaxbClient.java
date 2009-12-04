@@ -18,6 +18,7 @@ import javax.xml.bind.Unmarshaller;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
+import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Authorization;
@@ -286,11 +287,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      *
      *
      * @param id
+     * @param profileType
      *
      * @return
      */
     @Override
-    public Person getProfileById(String id) {
+    public Person getProfileById(String id, ProfileType profileType) {
 
         // TODO Auto-generated method stub
         return null;
@@ -301,12 +303,13 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      *
      *
      * @param id
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
     @Override
-    public Person getProfileById(String id, Set<ProfileField> profileFields) {
+    public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
 
         // TODO Auto-generated method stub
         return null;
@@ -317,11 +320,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      *
      *
      * @param url
+     * @param profileType
      *
      * @return
      */
     @Override
-    public Person getProfileByUrl(String url) {
+    public Person getProfileByUrl(String url, ProfileType profileType) {
 
         // TODO Auto-generated method stub
         return null;
@@ -332,12 +336,13 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      *
      *
      * @param url
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
     @Override
-    public Person getProfileByUrl(String url, Set<ProfileField> profileFields) {
+    public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
 
         // TODO Auto-generated method stub
         return null;
@@ -589,7 +594,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
         // TODO Auto-generated method stub
     }
-    
+
     /**
      * Method description
      *

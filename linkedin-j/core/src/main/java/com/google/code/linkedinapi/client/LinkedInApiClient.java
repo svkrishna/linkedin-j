@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
+import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Authorization;
@@ -39,20 +40,22 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      *
      *
      * @param id
+     * @param profileType
      *
      * @return
      */
-    public Person getProfileById(String id);
+    public Person getProfileById(String id, ProfileType profileType);
 
     /**
      * Method description
      *
      *
      * @param url
+     * @param profileType
      *
      * @return
      */
-    public Person getProfileByUrl(String url);
+    public Person getProfileByUrl(String url, ProfileType profileType);
 
     /**
      * Method description
@@ -69,22 +72,24 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      *
      *
      * @param id
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
-    public Person getProfileById(String id, Set<ProfileField> profileFields);
+    public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields);
 
     /**
      * Method description
      *
      *
      * @param url
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
-    public Person getProfileByUrl(String url, Set<ProfileField> profileFields);
+    public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields);
 
     // Network Updates API. Return Network Update bean
 
@@ -378,7 +383,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @param status
      */
     public void deleteCurrentStatus();
-    
+
     // Messaging API
 
     /**

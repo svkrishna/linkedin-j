@@ -16,6 +16,7 @@ import com.google.code.linkedinapi.client.AsyncLinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
+import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
@@ -359,15 +360,16 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      *
      *
      * @param id
+     * @param profileType
      *
      * @return
      */
     @Override
-    public Future<Person> getProfileById(final String id) {
+    public Future<Person> getProfileById(final String id, final ProfileType profileType) {
         return execute(new Callable<Person>() {
             @Override
             public Person call() throws Exception {
-                return client.getProfileById(id);
+                return client.getProfileById(id, profileType);
             }
         });
     }
@@ -377,16 +379,17 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      *
      *
      * @param id
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
     @Override
-    public Future<Person> getProfileById(final String id, final Set<ProfileField> profileFields) {
+    public Future<Person> getProfileById(final String id, final ProfileType profileType, final Set<ProfileField> profileFields) {
         return execute(new Callable<Person>() {
             @Override
             public Person call() throws Exception {
-                return client.getProfileById(id, profileFields);
+                return client.getProfileById(id, profileType, profileFields);
             }
         });
     }
@@ -396,15 +399,16 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      *
      *
      * @param url
+     * @param profileType
      *
      * @return
      */
     @Override
-    public Future<Person> getProfileByUrl(final String url) {
+    public Future<Person> getProfileByUrl(final String url, final ProfileType profileType) {
         return execute(new Callable<Person>() {
             @Override
             public Person call() throws Exception {
-                return client.getProfileByUrl(url);
+                return client.getProfileByUrl(url, profileType);
             }
         });
     }
@@ -414,16 +418,17 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      *
      *
      * @param url
+     * @param profileType
      * @param profileFields
      *
      * @return
      */
     @Override
-    public Future<Person> getProfileByUrl(final String url, final Set<ProfileField> profileFields) {
+    public Future<Person> getProfileByUrl(final String url, final ProfileType profileType, final Set<ProfileField> profileFields) {
         return execute(new Callable<Person>() {
             @Override
             public Person call() throws Exception {
-                return client.getProfileByUrl(url, profileFields);
+                return client.getProfileByUrl(url, profileType, profileFields);
             }
         });
     }
@@ -733,7 +738,7 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
             }
         });
     }
-    
+
     /**
      * Method description
      *
