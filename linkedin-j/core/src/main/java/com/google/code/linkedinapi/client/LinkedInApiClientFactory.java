@@ -3,10 +3,14 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.lang.reflect.Constructor;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import com.google.code.linkedinapi.client.impl.AsyncLinkedInApiJaxbClient;
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
+import com.google.code.linkedinapi.client.impl.AsyncLinkedInApiClientAdapter;
 import com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
@@ -20,18 +24,31 @@ public class LinkedInApiClientFactory {
     /** Field description */
     private static final Map<LinkedInApiConsumer, LinkedInApiClientFactory> factoriesMap =
         new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
+    
+    /** Field description */
+    private ExecutorService taskExecutor;
 
     /** Field description */
     private LinkedInApiConsumer apiConsumer;
 
+    /** Field description */
+    private Class<? extends LinkedInApiClient> defaultClientImpl;
+    
     /**
      * Constructs ...
      *
      *
      * @param apiConsumer
      */
-    private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
+    @SuppressWarnings("unchecked")
+	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
+        this.taskExecutor = Executors.newCachedThreadPool();
+        try {
+			defaultClientImpl = (Class<? extends LinkedInApiClient>) Class.forName(ApplicationConstants.CLIENT_DEFAULT_IMPL);
+		} catch (ClassNotFoundException e) {
+			defaultClientImpl = LinkedInApiJaxbClient.class; 
+		}
     }
 
     /**
@@ -74,9 +91,31 @@ public class LinkedInApiClientFactory {
      *
      * @return
      */
-    public LinkedInApiClient createJaxbClient(LinkedInAccessToken accessToken) {
-        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(),
-                                             apiConsumer.getTokenSecret());
+    public LinkedInApiClient createLinkedInApiClient(LinkedInAccessToken accessToken) {
+    	try {
+			Constructor<? extends LinkedInApiClient> constructor = defaultClientImpl.getConstructor(String.class, String.class);
+			
+			final LinkedInApiClient client = constructor.newInstance(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
+
+			client.setAccessToken(accessToken);
+
+	        return client;
+		} catch (Exception e) {
+			throw new LinkedInApiClientException(e);
+		}
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     *
+     * @return
+     */
+    public LinkedInApiClient createLinkedInApiJaxbClient(LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getConsumerKey(),
+                                             apiConsumer.getConsumerSecret());
 
         client.setAccessToken(accessToken);
 
@@ -91,13 +130,27 @@ public class LinkedInApiClientFactory {
      *
      * @return
      */
-    public AsyncLinkedInApiClient createAsyncJaxbClient(LinkedInAccessToken accessToken) {
-        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getToken(),
-                                             apiConsumer.getTokenSecret());
+    public AsyncLinkedInApiClient createAsyncLinkedInApiClient(LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = createLinkedInApiClient(accessToken);
+
+        return new AsyncLinkedInApiClientAdapter(client, taskExecutor);
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param accessToken
+     *
+     * @return
+     */
+    public AsyncLinkedInApiClient createAsyncLinkedInApiJaxbClient(LinkedInAccessToken accessToken) {
+        final LinkedInApiClient client = new LinkedInApiJaxbClient(apiConsumer.getConsumerKey(),
+                                             apiConsumer.getConsumerSecret());
 
         client.setAccessToken(accessToken);
 
-        return new AsyncLinkedInApiJaxbClient(client);
+        return new AsyncLinkedInApiClientAdapter(client, taskExecutor);
     }
 
     /**
@@ -109,8 +162,21 @@ public class LinkedInApiClientFactory {
      *
      * @return
      */
-    public LinkedInApiClient createJaxbClient(String token, String tokenSecret) {
-        return createJaxbClient(new LinkedInAccessToken(token, tokenSecret));
+    public LinkedInApiClient createLinkedInApiClient(String token, String tokenSecret) {
+        return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param token
+     * @param tokenSecret
+     *
+     * @return
+     */
+    public LinkedInApiClient createLinkedInApiJaxbClient(String token, String tokenSecret) {
+        return createLinkedInApiJaxbClient(new LinkedInAccessToken(token, tokenSecret));
     }
 
     /**
@@ -122,7 +188,20 @@ public class LinkedInApiClientFactory {
      *
      * @return
      */
-    public AsyncLinkedInApiClient createAsyncJaxbClient(String token, String tokenSecret) {
-        return createAsyncJaxbClient(new LinkedInAccessToken(token, tokenSecret));
+    public AsyncLinkedInApiClient createAsyncLinkedInApiClient(String token, String tokenSecret) {
+        return createAsyncLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param token
+     * @param tokenSecret
+     *
+     * @return
+     */
+    public AsyncLinkedInApiClient createAsyncLinkedInApiJaxbClient(String token, String tokenSecret) {
+        return createAsyncLinkedInApiJaxbClient(new LinkedInAccessToken(token, tokenSecret));
     }
 }

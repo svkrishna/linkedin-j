@@ -45,7 +45,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin) {
         try {
-            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getToken(), apiConsumer.getTokenSecret(),
+            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
                                          SignatureMethod.HMAC_SHA1);
             OAuthProvider provider = new DefaultOAuthProvider(consumer,
                                          LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
@@ -71,7 +71,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInRequestToken getOAuthRequestToken() {
         try {
-            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getToken(), apiConsumer.getTokenSecret(),
+            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
                                          SignatureMethod.HMAC_SHA1);
             OAuthProvider provider = new DefaultOAuthProvider(consumer,
                                          LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
@@ -97,7 +97,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
     	try {
-            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getToken(), apiConsumer.getTokenSecret(),
+            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
                     SignatureMethod.HMAC_SHA1);
         	consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
 

@@ -3,7 +3,7 @@
  */
 package com.google.code.linkedinapi.client.impl;
 
-import java.io.StringReader;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.util.Date;
@@ -31,10 +31,10 @@ import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
+import com.google.code.linkedinapi.schema.ObjectFactory;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.UpdateComment;
-import com.google.code.linkedinapi.schema.ObjectFactory;
 
 /**
  * @author nmukhtar
@@ -446,7 +446,10 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	UpdateComment comment = OBJECT_FACTORY.createUpdateComment();
     	// TODO-NM: Populate comment
 
-        callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -464,7 +467,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	Activity update = OBJECT_FACTORY.createActivity();
     	// TODO-NM: Populate activity
 
-        callApiMethod(apiUrl, marshallObject(update), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(update), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+        
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -628,7 +635,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate invite
 
-        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+        
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -648,7 +659,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate invite
-        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+        
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -667,7 +682,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	MailboxItem messageItem = OBJECT_FACTORY.createMailboxItem();
     	// TODO-NM: Populate messageItem
-        callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
+        
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -683,7 +702,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
     	Object status = OBJECT_FACTORY.createCurrentStatus(statusText);
-        callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT);
+        
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_NO_CONTENT) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    	}
     }
 
     /**
@@ -711,9 +734,14 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     protected <T> T readResponse(LinkedInApiCallResponse response) {
     	if (response.getStatusCode() == HttpURLConnection.HTTP_OK) {
-            return unmarshallObject(response.getResponseContent());
+    		InputStream is = response.getResponseContent();
+    		try {
+                return unmarshallObject(is);
+			} finally {
+				closeStream(is);
+			}
     	} else {
-    		throw new LinkedInApiClientException(response.getResponseContent());
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -727,12 +755,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @return
      */
     @SuppressWarnings("unchecked")
-    protected <T> T unmarshallObject(String xmlContent) {
+    protected <T> T unmarshallObject(InputStream xmlContent) {
         try {
             JAXBContext  jc = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
             Unmarshaller u  = jc.createUnmarshaller();
 
-            return (T) u.unmarshal(new StringReader(xmlContent));
+            return (T) u.unmarshal(xmlContent);
         } catch (JAXBException e) {
             throw new LinkedInApiClientException(e);
         }

@@ -44,6 +44,14 @@ public final class ApplicationConstants {
     public static final String CONTENT_TYPE_XML =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.contentTypeXml");
 
+    /** Field description */
+    public static final String CLIENT_DEFAULT_IMPL =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.defaultImpl");
+
+    /** Field description */
+    public static final String DEFAULT_OBJECT_FACTORY =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.jaxb.objectFactory");
+    
     /**
      * Constructs ...
      *

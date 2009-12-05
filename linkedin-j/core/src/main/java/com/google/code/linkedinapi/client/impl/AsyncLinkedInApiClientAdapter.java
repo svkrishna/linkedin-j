@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import com.google.code.linkedinapi.client.AsyncLinkedInApiClient;
@@ -31,7 +30,7 @@ import com.google.code.linkedinapi.schema.Person;
  * @author nmukhtar
  *
  */
-public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
+public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
 
     /** Field description */
     private LinkedInApiClient client;
@@ -45,9 +44,9 @@ public class AsyncLinkedInApiJaxbClient implements AsyncLinkedInApiClient {
      *
      * @param client
      */
-    public AsyncLinkedInApiJaxbClient(LinkedInApiClient client) {
+    public AsyncLinkedInApiClientAdapter(LinkedInApiClient client, ExecutorService taskExecutor) {
         this.client  = client;
-        taskExecutor = Executors.newCachedThreadPool();
+        this.taskExecutor = taskExecutor;
     }
 
     /**
