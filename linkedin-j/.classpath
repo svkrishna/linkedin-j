@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="dev-lib/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="dev-lib/trang.jar"/>
 	<classpathentry kind="lib" path="dev-lib/jaxb-xjc.jar"/>
+	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
