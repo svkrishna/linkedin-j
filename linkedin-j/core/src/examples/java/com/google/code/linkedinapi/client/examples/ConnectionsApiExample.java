@@ -16,6 +16,7 @@ import org.apache.commons.cli.ParseException;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Person;
 
 /**
  * @author nmukhtar
@@ -196,6 +197,10 @@ public class ConnectionsApiExample {
      * Print the result of API call.
      */
     private static void printResult(Connections connections) {
+    	System.out.println("Total:" + connections.getTotal());
+    	for (Person person : connections.getPerson()) {
+    		System.out.println(person.getFirstName() + ":" + person.getLastName());
+    	}
 		// TODO Auto-generated method stub
 	}
 }
