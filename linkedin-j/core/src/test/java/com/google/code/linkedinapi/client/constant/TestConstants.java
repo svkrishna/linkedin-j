@@ -18,6 +18,14 @@ public final class TestConstants {
     /** Field description */
     private static final Properties testConstants = new Properties();
 
+    static {
+        try {
+            testConstants.load(TestConstants.class.getClassLoader().getResourceAsStream(TEST_CONSTANTS_FILE));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /** Field description */
     public static final String LINKED_IN_TEST_CONSUMER_SECRET =
         testConstants.getProperty("com.google.code.linkedinapi.client.apiConsumerSecret");
@@ -89,14 +97,6 @@ public final class TestConstants {
     /** Field description */
     public static final String LINKED_IN_TEST_INVITE_RECEPIENT_IDS =
         testConstants.getProperty("com.google.code.linkedinapi.client.testInviteRecepientIds");
-
-    static {
-        try {
-            testConstants.load(TestConstants.class.getClassLoader().getResourceAsStream(TEST_CONSTANTS_FILE));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Constructs ...

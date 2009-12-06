@@ -27,6 +27,14 @@ public final class LinkedInApiUrls {
     /** Field description */
     private static final Properties linkedInApiUrls = new Properties();
 
+    static {
+        try {
+            linkedInApiUrls.load(LinkedInApiUrls.class.getClassLoader().getResourceAsStream(API_URLS_FILE));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /** Field description */
     public static final String GET_PROFILE_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileForCurrentUser");
@@ -91,14 +99,6 @@ public final class LinkedInApiUrls {
     /** Field description */
     public static final String GET_CONNECTIONS_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByUrl");
-
-    static {
-        try {
-            linkedInApiUrls.load(LinkedInApiUrls.class.getClassLoader().getResourceAsStream(API_URLS_FILE));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Constructs ...
