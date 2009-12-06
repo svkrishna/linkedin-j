@@ -96,8 +96,6 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
     	try {
-            OAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
-                    SignatureMethod.HMAC_SHA1);
         	consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
 
         	consumer.sign(request);
