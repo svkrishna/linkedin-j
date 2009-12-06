@@ -91,7 +91,6 @@ public class ProfileApiExample {
     		final String accessTokenValue = line.getOptionValue(ACCESS_TOKEN_OPTION);
     		final String tokenSecretValue = line.getOptionValue(ACCESS_TOKEN_SECRET_OPTION);
     		
-    		
     		final LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance(consumerKeyValue, consumerSecretValue);
     		final LinkedInApiClient client = factory.createLinkedInApiClient(accessTokenValue, tokenSecretValue);
     		

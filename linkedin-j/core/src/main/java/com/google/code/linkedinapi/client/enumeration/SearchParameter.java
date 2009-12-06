@@ -3,6 +3,9 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author nmukhtar
  *
@@ -63,9 +66,20 @@ public enum SearchParameter {
      * Valid values are in or out.
      */
     NETWORK("network");
+    
+    /**
+     * Field Description.
+     */
+	private static final Map<String, SearchParameter> stringToEnum = new HashMap<String, SearchParameter>();
 
+	static { // Initialize map from constant name to enum constant
+		for (SearchParameter op : values()) {
+			stringToEnum.put(op.toString(), op);
+		}
+	}
+    
     /** Field description */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * Constructs ...
@@ -90,17 +104,16 @@ public enum SearchParameter {
      *
      * @return
      */
+    @Override
     public String toString() {
         return fieldName();
     }
 
-    /**
-     * @param name
-     *            the name to check against
-     *
-     * @return true if this field has the specified name.
-     */
-    public boolean isName(String name) {
-        return toString().equals(name);
-    }
+	/**
+	 *
+	 * @return Returns SearchParameter for string, or null if string is invalid
+	 */
+	public static SearchParameter fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

@@ -3,12 +3,15 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author nmukhtar
  *
  */
 public enum SearchSortOrder {
-
+	
     /**
      * Orders the returns by number of connections each of the search returns has.
      */
@@ -28,9 +31,20 @@ public enum SearchSortOrder {
      * Orders the returns based on relevance for the keywords provided.
      */
     RELEVANCE("relevance");
+    
+    /**
+     * Field Description.
+     */
+	private static final Map<String, SearchSortOrder> stringToEnum = new HashMap<String, SearchSortOrder>();
 
+	static { // Initialize map from constant name to enum constant
+		for (SearchSortOrder op : values()) {
+			stringToEnum.put(op.toString(), op);
+		}
+	}
+	
     /** Field description */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * Constructs ...
@@ -55,17 +69,16 @@ public enum SearchSortOrder {
      *
      * @return
      */
+    @Override
     public String toString() {
         return fieldName();
     }
 
-    /**
-     * @param name
-     *            the name to check against
-     *
-     * @return true if this field has the specified name.
-     */
-    public boolean isName(String name) {
-        return toString().equals(name);
-    }
+	/**
+	 *
+	 * @return Returns SearchSortOrder for string, or null if string is invalid
+	 */
+	public static SearchSortOrder fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

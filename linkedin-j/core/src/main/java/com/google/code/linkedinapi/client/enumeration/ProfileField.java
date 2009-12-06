@@ -3,6 +3,9 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author nmukhtar
  *
@@ -153,9 +156,20 @@ public enum ProfileField {
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
      */
     PICTURE_URL("picture-url");
+    
+    /**
+     * Field Description.
+     */
+	private static final Map<String, ProfileField> stringToEnum = new HashMap<String, ProfileField>();
 
+	static { // Initialize map from constant name to enum constant
+		for (ProfileField op : values()) {
+			stringToEnum.put(op.toString(), op);
+		}
+	}
+    
     /** Field description */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * Constructs ...
@@ -180,17 +194,16 @@ public enum ProfileField {
      *
      * @return
      */
+    @Override
     public String toString() {
         return fieldName();
     }
 
-    /**
-     * @param name
-     *            the name to check against
-     *
-     * @return true if this field has the specified name.
-     */
-    public boolean isName(String name) {
-        return toString().equals(name);
-    }
+	/**
+	 *
+	 * @return Returns ProfileField for string, or null if string is invalid
+	 */
+	public static ProfileField fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

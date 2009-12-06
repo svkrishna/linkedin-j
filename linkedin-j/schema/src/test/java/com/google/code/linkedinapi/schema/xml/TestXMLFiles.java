@@ -18,6 +18,14 @@ public final class TestXMLFiles {
     /** Field description */
     private static final Properties testXmlFiles = new Properties();
 
+    static {
+        try {
+            testXmlFiles.load(TestXMLFiles.class.getClassLoader().getResourceAsStream(TEST_XML_FILES));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /** Field description */
     public static final String LINKED_IN_SCHEMA_UPDATE_STATUS_XML =
         testXmlFiles.getProperty("com.google.code.linkedinapi.schema.xml.updateCurrentStatus");
@@ -53,14 +61,6 @@ public final class TestXMLFiles {
     /** Field description */
     public static final String LINKED_IN_SCHEMA_CONNECTIONS_XML =
         testXmlFiles.getProperty("com.google.code.linkedinapi.schema.xml.connections");
-
-    static {
-        try {
-            testXmlFiles.load(TestXMLFiles.class.getClassLoader().getResourceAsStream(TEST_XML_FILES));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Constructs ...

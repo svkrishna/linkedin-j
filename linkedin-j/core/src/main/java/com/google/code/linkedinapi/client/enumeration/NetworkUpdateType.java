@@ -3,6 +3,9 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author nmukhtar
  *
@@ -58,9 +61,20 @@ public enum NetworkUpdateType {
      * A connection has updated their status.
      */
     STATUS_UPDATE("STAT");
+    
+    /**
+     * Field Description.
+     */
+	private static final Map<String, NetworkUpdateType> stringToEnum = new HashMap<String, NetworkUpdateType>();
 
+	static { // Initialize map from constant name to enum constant
+		for (NetworkUpdateType op : values()) {
+			stringToEnum.put(op.toString(), op);
+		}
+	}
+    
     /** Field description */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * Constructs ...
@@ -85,17 +99,16 @@ public enum NetworkUpdateType {
      *
      * @return
      */
+    @Override
     public String toString() {
         return fieldName();
     }
 
-    /**
-     * @param name
-     *            the name to check against
-     *
-     * @return true if this field has the specified name.
-     */
-    public boolean isName(String name) {
-        return toString().equals(name);
-    }
+	/**
+	 *
+	 * @return Returns NetworkUpdateType for string, or null if string is invalid
+	 */
+	public static NetworkUpdateType fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

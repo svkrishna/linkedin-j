@@ -3,6 +3,9 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author nmukhtar
  *
@@ -43,9 +46,20 @@ public enum PositionsField {
      * The name of the company the member works for
      */
     COMPANY_BANE("company/name");
+    
+    /**
+     * Field Description.
+     */
+	private static final Map<String, PositionsField> stringToEnum = new HashMap<String, PositionsField>();
 
+	static { // Initialize map from constant name to enum constant
+		for (PositionsField op : values()) {
+			stringToEnum.put(op.toString(), op);
+		}
+	}
+    
     /** Field description */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * Constructs ...
@@ -70,17 +84,16 @@ public enum PositionsField {
      *
      * @return
      */
+    @Override
     public String toString() {
         return fieldName();
     }
 
-    /**
-     * @param name
-     *            the name to check against
-     *
-     * @return true if this field has the specified name.
-     */
-    public boolean isName(String name) {
-        return toString().equals(name);
-    }
+	/**
+	 *
+	 * @return Returns PositionsField for string, or null if string is invalid
+	 */
+	public static PositionsField fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

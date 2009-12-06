@@ -21,14 +21,11 @@ import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
 
     /** Field description */
-    private final LinkedInApiConsumer apiConsumer;
-    
+    private final OAuthConsumer consumer;
+
     /** Field description */
     private final OAuthProvider provider;
 
-    /** Field description */
-    private final OAuthConsumer consumer;
-    
     /**
      * Constructs ...
      *
@@ -36,13 +33,10 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      * @param apiConsumer
      */
     LinkedInOAuthServiceImpl(LinkedInApiConsumer apiConsumer) {
-        this.apiConsumer = apiConsumer;
         consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
                 SignatureMethod.HMAC_SHA1);
-        provider = new DefaultOAuthProvider(consumer,
-                LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
-                LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL,
-                LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
+        provider = new DefaultOAuthProvider(consumer, LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
+                LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
     }
 
     /**
@@ -95,12 +89,11 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      */
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
-    	try {
-        	consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
-
-        	consumer.sign(request);
-		} catch (Exception e) {
+        try {
+            consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
+            consumer.sign(request);
+        } catch (Exception e) {
             throw new LinkedInOAuthServiceException(e);
-		}
+        }
     }
 }
