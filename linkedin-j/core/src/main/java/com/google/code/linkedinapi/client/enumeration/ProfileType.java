@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum ProfileType {
+public enum ProfileType implements FieldEnum {
 
     /**
      * standard profile.

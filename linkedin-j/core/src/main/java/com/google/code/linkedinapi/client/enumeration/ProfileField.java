@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum ProfileField {
+public enum ProfileField implements FieldEnum {
 
     /**
      * the member token for this member
@@ -181,9 +181,9 @@ public enum ProfileField {
         this.fieldName = name;
     }
 
-    /**
-     * @return the name of the field
-     */
+    /* (non-Javadoc)
+	 * @see com.google.code.linkedinapi.client.enumeration.FieldEnum#fieldName()
+	 */
     public String fieldName() {
         return this.fieldName;
     }
@@ -203,7 +203,7 @@ public enum ProfileField {
 	 *
 	 * @return Returns ProfileField for string, or null if string is invalid
 	 */
-	public static ProfileField fromString(String symbol) {
+	public static FieldEnum fromString(String symbol) {
 		return stringToEnum.get(symbol);
 	}
 }

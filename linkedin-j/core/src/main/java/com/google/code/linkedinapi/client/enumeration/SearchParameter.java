@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum SearchParameter {
+public enum SearchParameter implements FieldEnum {
 
     /**
      * Returns members who have keywords anywhere in their profile. Multiple words should be separated by a plus (+) sign. Boolean logic isn't supported in this parameter.

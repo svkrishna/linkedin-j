@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum PositionsField {
+public enum PositionsField implements FieldEnum {
 
     /**
      * a unique identifier for this member's position.

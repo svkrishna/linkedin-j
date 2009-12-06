@@ -10,9 +10,14 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
@@ -190,7 +195,59 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		}
     }
     
-
+    /**
+     * Method description
+     *
+     *
+     * @param enumSet
+     *
+     * @return
+     */
+    protected String getEnumSetAsString(Set<? extends FieldEnum> enumSet) {
+    	StringBuilder builder = new StringBuilder();
+		Iterator<? extends FieldEnum> iter = enumSet.iterator();
+		while (iter.hasNext()) {
+			FieldEnum fieldEnum = iter.next();
+			builder.append(fieldEnum.fieldName());
+			if (iter.hasNext()) {
+				builder.append(",");
+			}
+		}
+		return builder.toString();
+	}
+    
+    /**
+     * Method description
+     *
+     *
+     * @param params
+     *
+     * @return
+     */
+    protected Map<String, String> createEmptyParametersMap(String... params) {
+    	Map<String, String> parametersMap = new HashMap<String, String>();
+    	for (String param : params) {
+        	parametersMap.put(param, "");
+		}
+		return parametersMap;
+	}
+    
+    /**
+     * Method description
+     *
+     *
+     * @param params
+     *
+     * @return
+     */
+    protected Map<String, String> createEmptyParametersMap(Set<? extends FieldEnum> enumSet) {
+    	Map<String, String> parametersMap = new HashMap<String, String>();
+    	for (FieldEnum key : enumSet) {
+        	parametersMap.put(key.fieldName(), "");
+		}
+		return parametersMap;
+	}
+    
     /**
      * Class description
      *

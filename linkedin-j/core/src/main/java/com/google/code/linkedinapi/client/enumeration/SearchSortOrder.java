@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum SearchSortOrder {
+public enum SearchSortOrder implements FieldEnum {
 	
     /**
      * Orders the returns by number of connections each of the search returns has.

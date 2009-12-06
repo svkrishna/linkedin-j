@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum NetworkUpdateType {
+public enum NetworkUpdateType implements FieldEnum {
 
     /**
      * A connection has answered a question posed on LinkedIn Answers.

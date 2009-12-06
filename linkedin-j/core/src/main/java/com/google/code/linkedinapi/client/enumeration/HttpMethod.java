@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nmukhtar
  *
  */
-public enum HttpMethod {
+public enum HttpMethod implements FieldEnum {
 
     /**
      * HTTP Get Method

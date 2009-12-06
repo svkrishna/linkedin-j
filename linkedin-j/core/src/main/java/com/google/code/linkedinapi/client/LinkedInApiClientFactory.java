@@ -32,7 +32,7 @@ public class LinkedInApiClientFactory {
     private LinkedInApiConsumer apiConsumer;
 
     /** Field description */
-    private Class<? extends LinkedInApiClient> defaultClientImpl;
+    private Constructor<? extends LinkedInApiClient> defaultClientImpl;
     
     /**
      * Constructs ...
@@ -40,15 +40,9 @@ public class LinkedInApiClientFactory {
      *
      * @param apiConsumer
      */
-    @SuppressWarnings("unchecked")
 	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
         this.taskExecutor = Executors.newCachedThreadPool();
-        try {
-			defaultClientImpl = (Class<? extends LinkedInApiClient>) Class.forName(ApplicationConstants.CLIENT_DEFAULT_IMPL);
-		} catch (ClassNotFoundException e) {
-			defaultClientImpl = LinkedInApiJaxbClient.class; 
-		}
     }
 
     /**
@@ -91,11 +85,16 @@ public class LinkedInApiClientFactory {
      *
      * @return
      */
-    public LinkedInApiClient createLinkedInApiClient(LinkedInAccessToken accessToken) {
+    @SuppressWarnings("unchecked")
+	public LinkedInApiClient createLinkedInApiClient(LinkedInAccessToken accessToken) {
     	try {
-			Constructor<? extends LinkedInApiClient> constructor = defaultClientImpl.getConstructor(String.class, String.class);
+    		if (defaultClientImpl == null) {
+        		Class<? extends LinkedInApiClient> clazz = (Class<? extends LinkedInApiClient>) Class.forName(ApplicationConstants.CLIENT_DEFAULT_IMPL);
+        		
+        		defaultClientImpl = clazz.getConstructor(String.class, String.class);
+    		}
 			
-			final LinkedInApiClient client = constructor.newInstance(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
+			final LinkedInApiClient client = defaultClientImpl.newInstance(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
 
 			client.setAccessToken(accessToken);
 
