@@ -52,6 +52,10 @@ public final class ApplicationConstants {
     public static final String DEFAULT_OBJECT_FACTORY =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.jaxb.objectFactory");
     
+    /** Field description */
+    public static final String DEFAULT_RESULT_SIZE =
+    	applicationConstants.getProperty("com.google.code.linkedinapi.client.defaultResultSize");
+    
     /**
      * Constructs ...
      *

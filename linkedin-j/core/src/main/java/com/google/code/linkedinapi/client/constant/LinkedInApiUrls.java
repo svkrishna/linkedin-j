@@ -6,8 +6,13 @@ package com.google.code.linkedinapi.client.constant;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+
+import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 
 /**
  * @author nmukhtar
@@ -115,7 +120,8 @@ public final class LinkedInApiUrls {
      *
      * @return
      */
-    public static String buildUrl(String urlFormat, Map<String, String> namedParameters) {
+    @SuppressWarnings("unchecked")
+	public static String buildUrl(String urlFormat, Map<String, Object> namedParameters) {
     	StringBuilder urlBuilder = new StringBuilder();
     	StringBuilder placeHolderBuilder = new StringBuilder();
     	boolean placeHolderFlag = false;
@@ -126,8 +132,59 @@ public final class LinkedInApiUrls {
     		} else if (placeHolderFlag && urlFormat.charAt(i) == API_URLS_PLACEHOLDER_END) {
     			String placeHolder = placeHolderBuilder.toString();
     			if (namedParameters.containsKey(placeHolder)) {
-    				// bind the parameter to the placeholder
-    				urlBuilder.append(encodeUrl(namedParameters.get(placeHolder), ApplicationConstants.CONTENT_ENCODING));
+    				Object value = namedParameters.get(placeHolder);
+    				if (value instanceof Map) {
+    					// this is a query string map.
+    					Map<String, Object> parameterMap = (Map<String, Object>) value;
+    			    	StringBuilder builder = new StringBuilder();
+    			    	if (!parameterMap.isEmpty()) {
+    			        	builder.append("?");
+    			    		Iterator<String> iter = parameterMap.keySet().iterator();
+    			    		while (iter.hasNext()) {
+    			    			String name = iter.next();
+    			    			Object paramValue = parameterMap.get(name);
+    			    			if (paramValue instanceof Collection<?>) {
+    			    				Collection<Object> parameterValues = (Collection<Object>) paramValue;
+    			    				for (Object o : parameterValues) {
+        			    				builder.append(name);
+        			    				builder.append("=");
+        			    				builder.append(encodeUrl(o.toString(), ApplicationConstants.CONTENT_ENCODING));
+    			    				}
+    			    				    				
+    			    			} else {
+    			    				builder.append(name);
+    			    				builder.append("=");
+    			    				builder.append(encodeUrl(paramValue.toString(), ApplicationConstants.CONTENT_ENCODING));
+    			    			}
+    			    			if (iter.hasNext()) {
+    			    				builder.append("&");
+    			    			}
+    			    		}
+    			    	}
+    			    	urlBuilder.append(builder.toString());
+    				} else if (value instanceof Set) {
+    					// this is an enum set.
+    					Set<? extends FieldEnum> enumSet = (Set<? extends FieldEnum>) value;
+    			    	StringBuilder builder = new StringBuilder();
+    			    	if (!enumSet.isEmpty()) {
+    			        	builder.append(":");
+    			    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
+    			        	builder.append("(");
+    			    		while (iter.hasNext()) {
+    			    			FieldEnum fieldEnum = iter.next();
+    			    			builder.append(fieldEnum.fieldName());
+    			    			if (iter.hasNext()) {
+    			    				builder.append(",");
+    			    			}
+    			    		}
+    			        	builder.append(")");
+    			    	}
+        				// bind the parameter to the placeholder
+        				urlBuilder.append(builder.toString());
+    				} else {
+        				// bind the parameter to the placeholder
+        				urlBuilder.append(encodeUrl(value.toString(), ApplicationConstants.CONTENT_ENCODING));
+    				}
     			} else {
     				// we did not find a binding for the placeholder.
     				// append it as it is.
