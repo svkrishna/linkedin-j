@@ -444,8 +444,10 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
-    	Map<String, Object> namedParameters = initParametersMap("queryParameters");
-    	namedParameters.put("updateTypes", updateTypes);
+    	Map<String, Object> namedParameters = initParametersMap();
+    	Map<String, Object> queryParameters = initParametersMap();
+    	queryParameters.put("updateTypes", updateTypes);
+    	namedParameters.put("queryParameters", queryParameters);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -466,8 +468,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("start", String.valueOf(start));
     	queryParameters.put("count", String.valueOf(count));
+    	queryParameters.put("updateTypes", updateTypes);
     	namedParameters.put("queryParameters", queryParameters);
-    	namedParameters.put("updateTypes", updateTypes);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -488,8 +490,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("after", String.valueOf(startDate.getTime()));
     	queryParameters.put("before", String.valueOf(endDate.getTime()));
+    	queryParameters.put("updateTypes", updateTypes);
     	namedParameters.put("queryParameters", queryParameters);
-    	namedParameters.put("updateTypes", updateTypes);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -516,8 +518,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	queryParameters.put("count", String.valueOf(count));
     	queryParameters.put("after", String.valueOf(startDate.getTime()));
     	queryParameters.put("before", String.valueOf(endDate.getTime()));
+    	queryParameters.put("updateTypes", updateTypes);
     	namedParameters.put("queryParameters", queryParameters);
-    	namedParameters.put("updateTypes", updateTypes);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
