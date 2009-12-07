@@ -181,6 +181,13 @@ public final class LinkedInApiUrls {
     			    	}
         				// bind the parameter to the placeholder
         				urlBuilder.append(builder.toString());
+    				} else if (value instanceof FieldEnum) {
+    					// this is an enum set.
+    			    	StringBuilder builder = new StringBuilder();
+			        	builder.append(":");
+			        	builder.append(((FieldEnum) value).fieldName());
+        				// bind the parameter to the placeholder
+        				urlBuilder.append(builder.toString());
     				} else {
         				// bind the parameter to the placeholder
         				urlBuilder.append(encodeUrl(value.toString(), ApplicationConstants.CONTENT_ENCODING));

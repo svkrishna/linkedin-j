@@ -536,7 +536,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     public Person getProfileById(String id, ProfileType profileType) {
     	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	namedParameters.put("id", id);
-    	namedParameters.put("profileType", profileType.fieldName());
+    	namedParameters.put("profileType", profileType);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -556,7 +556,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
     	Map<String, Object> namedParameters = initParametersMap();
     	namedParameters.put("id", id);
-    	namedParameters.put("profileType", profileType.fieldName());
+    	namedParameters.put("profileType", profileType);
     	namedParameters.put("profileFields", profileFields);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_ID, namedParameters);
 
@@ -576,7 +576,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     public Person getProfileByUrl(String url, ProfileType profileType) {
     	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	namedParameters.put("url", url);
-    	namedParameters.put("profileType", profileType.fieldName());
+    	namedParameters.put("profileType", profileType);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -596,7 +596,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
     	Map<String, Object> namedParameters = initParametersMap();
     	namedParameters.put("url", url);
-    	namedParameters.put("profileType", profileType.fieldName());
+    	namedParameters.put("profileType", profileType);
     	namedParameters.put("profileFields", profileFields);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_PROFILE_BY_URL, namedParameters);
 

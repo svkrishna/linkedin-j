@@ -15,7 +15,7 @@ public enum ProfileType implements FieldEnum {
     /**
      * standard profile.
      */
-    STANDARD("standard"),
+    STANDARD("full"),
 
     /**
      * public profile.
