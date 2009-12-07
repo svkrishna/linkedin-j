@@ -71,7 +71,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByEmail(String email) {
-    	Map<String, Object> namedParameters = initParametersMap("queryParameters");
+    	Map<String, Object> namedParameters = initParametersMap("queryParameters", "profileFields");
     	namedParameters.put("email", email);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
 
@@ -107,7 +107,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id) {
-    	Map<String, Object> namedParameters = initParametersMap("queryParameters");
+    	Map<String, Object> namedParameters = initParametersMap("queryParameters", "profileFields");
     	namedParameters.put("id", id);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
 
@@ -143,7 +143,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url) {
-    	Map<String, Object> namedParameters = initParametersMap("queryParameters");
+    	Map<String, Object> namedParameters = initParametersMap("queryParameters", "profileFields");
     	namedParameters.put("url", url);
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
 
@@ -177,7 +177,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser() {
-    	Map<String, Object> namedParameters = initParametersMap("queryParameters");
+    	Map<String, Object> namedParameters = initParametersMap("queryParameters", "profileFields");
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -210,7 +210,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByEmail(String email, int start, int count) {
-    	Map<String, Object> namedParameters = initParametersMap();
+    	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("start", String.valueOf(start));
     	queryParameters.put("count", String.valueOf(count));
@@ -255,7 +255,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id, int start, int count) {
-    	Map<String, Object> namedParameters = initParametersMap();
+    	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	namedParameters.put("id", id);
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("start", String.valueOf(start));
@@ -301,7 +301,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url, int start, int count) {
-    	Map<String, Object> namedParameters = initParametersMap();
+    	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	namedParameters.put("url", url);
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("start", String.valueOf(start));
@@ -345,7 +345,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser(int start, int count) {
-    	Map<String, Object> namedParameters = initParametersMap();
+    	Map<String, Object> namedParameters = initParametersMap("profileFields");
     	Map<String, Object> queryParameters = initParametersMap();
     	queryParameters.put("start", String.valueOf(start));
     	queryParameters.put("count", String.valueOf(count));

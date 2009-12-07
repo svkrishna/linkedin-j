@@ -6,6 +6,7 @@ package com.google.code.linkedinapi.client;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByEmailString() {
 		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
 		Connections connections = client.getConnectionsByEmail(email);
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -63,7 +64,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByEmailStringSetOfProfileField() {
 		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
 		Connections connections = client.getConnectionsByEmail(email, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -74,7 +75,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByIdString() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
 		Connections connections = client.getConnectionsById(id);
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -85,7 +86,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByIdStringSetOfProfileField() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
 		Connections connections = client.getConnectionsById(id, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -96,7 +97,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByUrlString() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
 		Connections connections = client.getConnectionsByUrl(url);
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -107,7 +108,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetConnectionsByUrlStringSetOfProfileField() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
 		Connections connections = client.getConnectionsByUrl(url, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Connections should never be null.", connections);
 	}
@@ -199,7 +200,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetProfileByIdStringProfileType() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
 		Person profile = client.getProfileById(id, ProfileType.STANDARD);
 		assertNotNull("Profile should never be null.", profile);
 	}
@@ -210,7 +211,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetProfileByIdStringProfileTypeSetOfProfileField() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
 		Person profile = client.getProfileById(id, ProfileType.STANDARD, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Profile should never be null.", profile);
 	}
@@ -221,7 +222,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetProfileByUrlStringProfileType() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
 		Person profile = client.getProfileByUrl(url, ProfileType.STANDARD);
 		assertNotNull("Profile should never be null.", profile);
 	}
@@ -232,7 +233,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testGetProfileByUrlStringProfileTypeSetOfProfileField() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
 		Person profile = client.getProfileByUrl(url, ProfileType.STANDARD, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Profile should never be null.", profile);
 	}
@@ -262,8 +263,8 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	public void testPostComment() {
 		final String networkUpdateId = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_ID;
 		final String commentText = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_COMMENT;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Comment Text"), commentText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Comment Text"), commentText);
 		client.postComment(networkUpdateId, commentText);
 	}
 
@@ -273,7 +274,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testPostNetworkUpdate() {
 		final String networkUpdateText = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_TEXT;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Network Update Text"), networkUpdateText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update Text"), networkUpdateText);
 		client.postNetworkUpdate(networkUpdateText);
 	}
 
@@ -292,7 +293,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testSearchPeopleMapOfSearchParameterString() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
 		People people = client.searchPeople(getSearchParametersMap(searchParameters));
 		assertNotNull("People should never be null.", people);
 	}
@@ -312,7 +313,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringIntInt() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
 		People people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5);
 		assertNotNull("People should never be null.", people);
 	}
@@ -332,7 +333,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
 		People people = client.searchPeople(getSearchParametersMap(searchParameters), SearchSortOrder.NUMBER_OF_CONNECTIONS);
 		assertNotNull("People should never be null.", people);
 	}
@@ -352,7 +353,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringIntIntSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
 		People people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.NUMBER_OF_CONNECTIONS);
 		assertNotNull("People should never be null.", people);
 	}
@@ -365,9 +366,9 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 		final String inviteText = TestConstants.LINKED_IN_TEST_INVITE_TEXT;
 		final String inviteSubject = TestConstants.LINKED_IN_TEST_INVITE_SUBJECT;
 		final String inviteRecepient = TestConstants.LINKED_IN_TEST_INVITE_RECEPIENT_IDS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Invite Text"), inviteText);
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Invite Subject"), inviteSubject);
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Invite Recepient"), inviteRecepient);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Text"), inviteText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Subject"), inviteSubject);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Recepient"), inviteRecepient);
 		client.sendInvite(inviteRecepient, inviteSubject, inviteText);
 	}
 
@@ -387,9 +388,9 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 		final String messageText = TestConstants.LINKED_IN_TEST_MESSAGE_TEXT;
 		final String messageSubject = TestConstants.LINKED_IN_TEST_MESSAGE_SUBJECT;
 		final String messageRecepients = TestConstants.LINKED_IN_TEST_MESSAGE_RECEPIENT_IDS;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Message Text"), messageText);
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Message Subject"), messageSubject);
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Message Recepient"), messageRecepients);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Message Text"), messageText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Message Subject"), messageSubject);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Message Recepient"), messageRecepients);
 		client.sendMessage(getRecepientIdsList(messageRecepients), messageSubject, messageText);
 	}
 
@@ -399,7 +400,7 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testUpdateCurrentStatus() {
 		final String statusText = TestConstants.LINKED_IN_TEST_STATUS_TEXT;
-		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Status Text"), statusText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Status Text"), statusText);
 		client.updateCurrentStatus(statusText);
 	}
 
@@ -430,10 +431,17 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	/**
 	 * 
 	 */
-	private Map<SearchParameter, String> getSearchParametersMap(
-			String searchParameters) {
-		// TODO Auto-generated method stub
-		return null;
+	private Map<SearchParameter, String> getSearchParametersMap(String searchParameters) {
+		Map<SearchParameter, String> map = new EnumMap<SearchParameter, String>(SearchParameter.class);
+		String[] entries = searchParameters.split(",");
+		for (String entry : entries) {
+			String[] tuple = entry.split("=");
+			if (tuple.length == 2) {
+				map.put(SearchParameter.fromString(tuple[0]), tuple[1]);
+			}
+						
+		}
+		return map;
 	}
 
 	/**
@@ -441,5 +449,13 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 	 */
 	private List<String> getRecepientIdsList(String messageRecepients) {
 		return Arrays.asList(messageRecepients.split(","));
+	}
+	
+	/**
+	 * 
+	 */
+	private void assertNotNullOrEmpty(String message, String value) {
+		assertNotNull(message, value);
+		assertFalse(message, "".equals(value));
 	}
 }
