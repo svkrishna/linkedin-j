@@ -75,12 +75,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByEmail(final String email) {
@@ -93,13 +88,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields) {
@@ -112,12 +101,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id) {
@@ -130,13 +114,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields) {
@@ -149,12 +127,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url) {
@@ -167,13 +140,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields) {
@@ -186,10 +153,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser() {
@@ -202,12 +166,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields) {
@@ -220,12 +179,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByEmail(final String email, final int start, final int count) {
@@ -238,13 +192,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields, final int start, final int count) {
@@ -257,12 +205,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final int start, final int count) {
@@ -275,13 +218,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields, final int start, final int count) {
@@ -294,12 +231,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final int start, final int count) {
@@ -312,13 +244,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields, final int start, final int count) {
@@ -331,10 +257,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final int start, final int count) {
@@ -347,12 +270,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields, final int start, final int count) {
@@ -365,10 +283,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates() {
@@ -381,13 +296,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final int start, final int count) {
@@ -400,13 +309,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param startDate
-     * @param endDate
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final Date startDate, final Date endDate) {
@@ -419,12 +322,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param updateTypes
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes) {
@@ -437,13 +335,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param start
-     * @param count
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count) {
@@ -456,13 +348,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param startDate
-     * @param endDate
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final Date startDate, final Date endDate) {
@@ -475,15 +361,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param count
-     * @param start
-     * @param startDate
-     * @param endDate
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int count, final int start, final Date startDate,
@@ -497,13 +375,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileType
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileById(final String id, final ProfileType profileType) {
@@ -516,14 +388,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileById(final String id, final ProfileType profileType, final Set<ProfileField> profileFields) {
@@ -536,13 +401,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileType
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileByUrl(final String url, final ProfileType profileType) {
@@ -555,14 +414,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileByUrl(final String url, final ProfileType profileType, final Set<ProfileField> profileFields) {
@@ -575,10 +427,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileForCurrentUser() {
@@ -591,12 +440,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<Person> getProfileForCurrentUser(final Set<ProfileField> profileFields) {
@@ -609,11 +453,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param networkUpdateId
-     * @param commentText
+     * {@inheritDoc}
      */
     @Override
     public Future<?> postComment(final String networkUpdateId, final String commentText) {
@@ -626,10 +466,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param updateText
+     * {@inheritDoc}
      */
     @Override
     public Future<?> postNetworkUpdate(final String updateText) {
@@ -642,10 +479,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople() {
@@ -658,12 +492,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters) {
@@ -676,13 +505,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final int start, final int count) {
@@ -695,14 +518,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count) {
@@ -715,12 +531,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final SearchSortOrder sortOrder) {
@@ -733,13 +544,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final SearchSortOrder sortOrder) {
@@ -752,14 +557,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final int start, final int count, final SearchSortOrder sortOrder) {
@@ -772,15 +570,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count,
@@ -794,12 +584,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientId
-     * @param subject
-     * @param message
+     * {@inheritDoc}
      */
     @Override
     public Future<?> sendInvite(final String recepientId, final String subject, final String message) {
@@ -812,13 +597,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientId
-     * @param subject
-     * @param message
-     * @param auth
+     * {@inheritDoc}
      */
     @Override
     public Future<?> sendInvite(final String recepientId, final String subject, final String message, final Authorization auth) {
@@ -831,12 +610,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientIds
-     * @param subject
-     * @param message
+     * {@inheritDoc}
      */
     @Override
     public Future<?> sendMessage(final List<String> recepientIds, final String subject, final String message) {
@@ -849,10 +623,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param status
+     * {@inheritDoc}
      */
     @Override
     public Future<?> updateCurrentStatus(final String status) {
@@ -865,10 +636,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param status
+     * {@inheritDoc}
      */
     @Override
     public Future<?> deleteCurrentStatus() {
@@ -881,10 +649,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public LinkedInAccessToken getAccessToken() {
@@ -892,10 +657,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public LinkedInApiConsumer getApiConsumer() {
@@ -903,10 +665,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param accessToken
+     * {@inheritDoc}
      */
     @Override
     public void setAccessToken(LinkedInAccessToken accessToken) {
@@ -914,10 +673,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param apiConsumer
+     * {@inheritDoc}
      */
     @Override
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {

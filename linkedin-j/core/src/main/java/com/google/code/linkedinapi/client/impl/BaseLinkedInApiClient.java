@@ -45,40 +45,28 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param apiConsumer
+     * {@inheritDoc}
      */
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     public LinkedInApiConsumer getApiConsumer() {
         return apiConsumer;
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param accessToken
+     * {@inheritDoc}
      */
     public void setAccessToken(LinkedInAccessToken accessToken) {
         this.accessToken = accessToken;
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     public LinkedInAccessToken getAccessToken() {
         return accessToken;

@@ -61,13 +61,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         super(consumerKey, consumerSecret);
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param email
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByEmail(String email) {
@@ -79,13 +74,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
@@ -97,13 +86,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param id
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id) {
@@ -115,13 +99,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields) {
@@ -134,12 +112,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByUrl(String url) {
@@ -151,13 +124,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
@@ -170,10 +137,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsForCurrentUser() {
@@ -184,12 +148,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
@@ -200,13 +159,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param email
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByEmail(String email, int start, int count) {
@@ -223,13 +177,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param email
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
@@ -245,13 +193,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param id
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id, int start, int count) {
@@ -268,13 +211,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count) {
@@ -292,12 +229,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByUrl(String url, int start, int count) {
@@ -314,13 +246,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count) {
@@ -338,10 +264,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsForCurrentUser(int start, int count) {
@@ -357,12 +280,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count) {
@@ -379,10 +297,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates() {
@@ -393,13 +308,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(int start, int count) {
@@ -413,14 +322,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param startDate
-     * @param endDate
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(Date startDate, Date endDate) {
@@ -435,12 +338,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param updateTypes
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
@@ -454,13 +352,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param start
-     * @param count
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
@@ -476,13 +368,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param startDate
-     * @param endDate
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate) {
@@ -498,15 +384,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     * @param updateTypes
-     * @param count
-     * @param start
-     * @param startDate
-     * @param endDate
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
@@ -526,13 +404,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileType
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileById(String id, ProfileType profileType) {
@@ -545,14 +417,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param id
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
@@ -566,13 +431,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileType
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType) {
@@ -585,14 +444,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param url
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
@@ -606,10 +458,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileForCurrentUser() {
@@ -620,12 +469,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param profileFields
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public Person getProfileForCurrentUser(Set<ProfileField> profileFields) {
@@ -637,11 +481,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param networkUpdateId
-     * @param commentText
+     * {@inheritDoc}
      */
     @Override
     public void postComment(String networkUpdateId, String commentText) {
@@ -659,10 +499,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param updateText
+     * {@inheritDoc}
      */
     @Override
     public void postNetworkUpdate(String updateText) {
@@ -683,10 +520,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople() {
@@ -698,12 +532,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters) {
@@ -718,14 +547,8 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
-	/**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     *
-     * @return
+    /**
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(int start, int count) {
@@ -740,14 +563,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count) {
@@ -766,12 +582,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(SearchSortOrder sortOrder) {
@@ -785,13 +596,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
@@ -808,14 +613,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(int start, int count, SearchSortOrder sortOrder) {
@@ -831,15 +629,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
@@ -859,12 +649,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientId
-     * @param subject
-     * @param message
+     * {@inheritDoc}
      */
     @Override
     public void sendInvite(String recepientId, String subject, String message) {
@@ -884,13 +669,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientId
-     * @param subject
-     * @param message
-     * @param auth
+     * {@inheritDoc}
      */
     @Override
     public void sendInvite(String recepientId, String subject, String message, Authorization auth) {
@@ -909,12 +688,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param recepientIds
-     * @param subject
-     * @param message
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(List<String> recepientIds, String subject, String message) {
@@ -933,10 +707,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param status
+     * {@inheritDoc}
      */
     @Override
     public void updateCurrentStatus(String statusText) {
@@ -952,9 +723,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     }
 
     /**
-     * Method description
-     *
-     *
+     * {@inheritDoc}
      */
     @Override
     public void deleteCurrentStatus() {
