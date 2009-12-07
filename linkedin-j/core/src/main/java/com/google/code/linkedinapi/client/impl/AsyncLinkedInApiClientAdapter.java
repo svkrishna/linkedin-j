@@ -223,6 +223,151 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * Method description
      *
      *
+     * @param email
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsByEmail(final String email, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByEmail(email, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param email
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByEmail(email, profileFields, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param id
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsById(final String id, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsById(id, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param id
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsById(id, profileFields, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsByUrl(final String url, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByUrl(url, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsByUrl(url, profileFields, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsForCurrentUser(final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsForCurrentUser(start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields, final int start, final int count) {
+        return execute(new Callable<Connections>() {
+            @Override
+            public Connections call() throws Exception {
+                return client.getConnectionsForCurrentUser(profileFields, start, count);
+            }
+        });
+    }
+
+    /**
+     * Method description
+     *
+     *
      * @return
      */
     @Override
@@ -293,63 +438,60 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param start
      * @param count
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(final int start, final int count, final Set<NetworkUpdateType> updateTypes) {
+    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count) {
         return execute(new Callable<Network>() {
             @Override
             public Network call() throws Exception {
-                return client.getNetworkUpdates(start, count, updateTypes);
+                return client.getNetworkUpdates(updateTypes, start, count);
             }
         });
     }
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(final Date startDate, final Date endDate, final Set<NetworkUpdateType> updateTypes) {
+    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final Date startDate, final Date endDate) {
         return execute(new Callable<Network>() {
             @Override
             public Network call() throws Exception {
-                return client.getNetworkUpdates(startDate, endDate, updateTypes);
+                return client.getNetworkUpdates(updateTypes, startDate, endDate);
             }
         });
     }
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param count
      * @param start
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Future<Network> getNetworkUpdates(final int count, final int start, final Date startDate, final Date endDate,
-            final Set<NetworkUpdateType> updateTypes) {
+    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int count, final int start, final Date startDate,
+            final Date endDate) {
         return execute(new Callable<Network>() {
             @Override
             public Network call() throws Exception {
-                return client.getNetworkUpdates(count, start, startDate, endDate, updateTypes);
+                return client.getNetworkUpdates(updateTypes, count, start, startDate, endDate);
             }
         });
     }

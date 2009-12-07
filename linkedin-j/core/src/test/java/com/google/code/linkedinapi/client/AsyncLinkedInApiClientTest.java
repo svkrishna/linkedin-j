@@ -168,29 +168,29 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(int, int, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, int, int)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(1, 5, EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE));
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5);
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Date, java.util.Date, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, java.util.Date, java.util.Date)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesDateDateSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(getLastWeekDate(), getCurrentDate(), EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE));
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(int, int, java.util.Date, java.util.Date, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, int, int, java.util.Date, java.util.Date)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntDateDateSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(1, 5, getLastWeekDate(), getCurrentDate(), EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE));
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5, getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 

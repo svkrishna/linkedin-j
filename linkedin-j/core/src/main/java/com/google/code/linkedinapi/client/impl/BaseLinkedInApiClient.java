@@ -179,7 +179,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return sb.toString();
     }
-    
+
     /**
      * Method description
      *
@@ -194,7 +194,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 			e.printStackTrace();
 		}
     }
-    
+
     /**
      * Method description
      *
@@ -205,17 +205,22 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     protected String getEnumSetAsString(Set<? extends FieldEnum> enumSet) {
     	StringBuilder builder = new StringBuilder();
-		Iterator<? extends FieldEnum> iter = enumSet.iterator();
-		while (iter.hasNext()) {
-			FieldEnum fieldEnum = iter.next();
-			builder.append(fieldEnum.fieldName());
-			if (iter.hasNext()) {
-				builder.append(",");
-			}
-		}
+    	if (!enumSet.isEmpty()) {
+        	builder.append(":");
+    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
+        	builder.append("(");
+    		while (iter.hasNext()) {
+    			FieldEnum fieldEnum = iter.next();
+    			builder.append(fieldEnum.fieldName());
+    			if (iter.hasNext()) {
+    				builder.append(",");
+    			}
+    		}
+        	builder.append(")");
+    	}
 		return builder.toString();
 	}
-    
+
     /**
      * Method description
      *
@@ -231,7 +236,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		}
 		return parametersMap;
 	}
-    
+
     /**
      * Method description
      *
@@ -247,7 +252,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		}
 		return parametersMap;
 	}
-    
+
     /**
      * Class description
      *

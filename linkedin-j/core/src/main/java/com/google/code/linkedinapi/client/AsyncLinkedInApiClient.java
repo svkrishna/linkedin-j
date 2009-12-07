@@ -136,42 +136,39 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param start
      * @param count
-     * @param updateTypes
+     *
      *
      * @return
      */
-    public Future<Network> getNetworkUpdates(int start, int count, Set<NetworkUpdateType> updateTypes);
+    public Future<Network> getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count);
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
-    public Future<Network> getNetworkUpdates(Date startDate, Date endDate, Set<NetworkUpdateType> updateTypes);
+    public Future<Network> getNetworkUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate);
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param count
      * @param start
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
-    public Future<Network> getNetworkUpdates(int count, int start, Date startDate, Date endDate,
-                                     Set<NetworkUpdateType> updateTypes);
+    public Future<Network> getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
+                                     Date endDate);
 
     // Connections API
 
@@ -255,6 +252,89 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @return
      */
     public Future<Connections> getConnectionsByUrl(String url, Set<ProfileField> profileFields);
+
+    // Connections API with Paging
+
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsForCurrentUser(int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param id
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsById(String id, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param email
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsByEmail(String email, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsByUrl(String url, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param profileFields
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param id
+     * @param profileFields
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param email
+     * @param profileFields
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     * @param profileFields
+     *
+     * @return
+     */
+    public Future<Connections> getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count);
 
     // Search API
 

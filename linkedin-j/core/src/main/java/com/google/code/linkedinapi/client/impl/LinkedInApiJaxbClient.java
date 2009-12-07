@@ -201,6 +201,161 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         return readResponse(callApiMethod(apiUrl));
     }
 
+	/**
+     * Method description
+     *
+     *
+     * @param email
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsByEmail(String email, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("email", email);
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param email
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("email", email);
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	namedParameters.put("profileFields", getEnumSetAsString(profileFields));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+	/**
+     * Method description
+     *
+     *
+     * @param id
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsById(String id, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("id", id);
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param id
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("id", id);
+    	namedParameters.put("profileFields", getEnumSetAsString(profileFields));
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_ID, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("url", url);
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param url
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("url", url);
+    	namedParameters.put("profileFields", getEnumSetAsString(profileFields));
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_BY_URL, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @param profileFields
+     *
+     * @return
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count) {
+    	Map<String, String> namedParameters = createEmptyParametersMap();
+    	namedParameters.put("profileFields", getEnumSetAsString(profileFields));
+    	namedParameters.put("start", String.valueOf(start));
+    	namedParameters.put("count", String.valueOf(count));
+    	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER, namedParameters);
+
+        return readResponse(callApiMethod(apiUrl));
+    }
+
     /**
      * Method description
      *
@@ -210,7 +365,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     @Override
     public Network getNetworkUpdates() {
     	Map<String, String> namedParameters = createEmptyParametersMap("start", "count", "after", "before", "updateTypes");
-    	
+
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.NETWORK_UPDATES, namedParameters);
 
         return readResponse(callApiMethod(apiUrl));
@@ -273,16 +428,15 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param start
      * @param count
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Network getNetworkUpdates(int start, int count, Set<NetworkUpdateType> updateTypes) {
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
     	Map<String, String> namedParameters = createEmptyParametersMap("after", "before");
     	namedParameters.put("start", String.valueOf(start));
     	namedParameters.put("count", String.valueOf(count));
@@ -294,16 +448,15 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Network getNetworkUpdates(Date startDate, Date endDate, Set<NetworkUpdateType> updateTypes) {
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate) {
     	Map<String, String> namedParameters = createEmptyParametersMap("start", "count");
     	namedParameters.put("after", String.valueOf(startDate.getTime()));
     	namedParameters.put("before", String.valueOf(endDate.getTime()));
@@ -315,19 +468,18 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /**
      * Method description
-     *
-     *
+     * @param updateTypes
      * @param count
      * @param start
      * @param startDate
      * @param endDate
-     * @param updateTypes
+     *
      *
      * @return
      */
     @Override
-    public Network getNetworkUpdates(int count, int start, Date startDate, Date endDate,
-                                     Set<NetworkUpdateType> updateTypes) {
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
+                                     Date endDate) {
     	Map<String, String> namedParameters = createEmptyParametersMap();
     	namedParameters.put("start", String.valueOf(start));
     	namedParameters.put("count", String.valueOf(count));
@@ -468,7 +620,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -490,9 +642,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	update.setTimestamp(BigInteger.valueOf(System.currentTimeMillis()));
 
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(update), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-        
+
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -676,9 +828,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	// TODO-NM: Populate invite
 
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-        
+
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -701,9 +853,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	invite.setSubject(subject);
     	// TODO-NM: Populate invite
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-        
+
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -725,9 +877,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	messageItem.setSubject(subject);
     	// TODO-NM: Populate messageItem
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-        
+
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -744,9 +896,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     	Object status = OBJECT_FACTORY.createCurrentStatus(statusText);
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT);
-        
+
     	if (response.getStatusCode() != HttpURLConnection.HTTP_NO_CONTENT) {
-    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));    		
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
     	}
     }
 
@@ -760,7 +912,11 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	Map<String, String> namedParameters = Collections.emptyMap();
     	String apiUrl = LinkedInApiUrls.buildUrl(LinkedInApiUrls.POST_STATUS, namedParameters);
 
-        callApiMethod(apiUrl, null, null, HttpMethod.DELETE);
+    	LinkedInApiCallResponse response = callApiMethod(apiUrl, null, null, HttpMethod.DELETE);
+
+    	if (response.getStatusCode() != HttpURLConnection.HTTP_NO_CONTENT) {
+    		throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
+    	}
     }
 
     /**
@@ -827,7 +983,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
             throw new LinkedInApiClientException(e);
         }
     }
-    
+
     /**
      * Method description
      *
@@ -839,7 +995,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
         	Class<? extends ObjectFactory> clazz = (Class<? extends ObjectFactory>) Class.forName(ApplicationConstants.DEFAULT_OBJECT_FACTORY);
         	return clazz.newInstance();
 		} catch (Exception e) {
-			return new ObjectFactory(); 
+			return new ObjectFactory();
 		}
 	}
 }
