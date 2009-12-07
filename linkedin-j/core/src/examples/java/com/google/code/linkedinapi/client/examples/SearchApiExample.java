@@ -4,6 +4,8 @@
 package com.google.code.linkedinapi.client.examples;
 
 import java.text.MessageFormat;
+import java.util.EnumMap;
+import java.util.Map;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -15,7 +17,8 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
-import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.client.enumeration.SearchParameter;
+import com.google.code.linkedinapi.schema.People;
 
 /**
  * @author nmukhtar
@@ -44,19 +47,59 @@ public class SearchApiExample {
     private static final String ACCESS_TOKEN_SECRET_OPTION = "tokenSecret";
 
     /**
-     * ID
+     * keywords
      */
-    private static final String ID_OPTION = "id";
+    private static final String KEYWORDS_OPTION = "keywords";
     
     /**
-     * Email
+     * name
      */
-    private static final String EMAIL_OPTION = "email";
+    private static final String NAME_OPTION = "name";
     
     /**
-     * URL
+     * company
      */
-    private static final String URL_OPTION = "url";
+    private static final String COMPANY_OPTION = "company";
+    
+    /**
+     * is current company
+     */
+    private static final String CURRENT_COMPANY_OPTION = "current_company";
+    
+    /**
+     * title
+     */
+    private static final String TITLE_OPTION = "title";
+    
+    /**
+     * current-title
+     */
+    private static final String CURRENT_TITLE_OPTION = "current_title";
+    
+    /**
+     * industry-code
+     */
+    private static final String INDUSTRY_CODE_OPTION = "industry_code";
+    
+    /**
+     * search-location-type
+     */
+    private static final String SEARCH_LOCATION_TYPE_OPTION = "search_location_type";
+    
+    /**
+     * country-code
+     */
+    private static final String COUNTRY_CODE_OPTION = "country_code";
+    
+    /**
+     * postal-code
+     */
+    private static final String POSTAL_CODE_OPTION = "postal_code";
+    
+    /**
+     * network
+     */
+    private static final String NETWORK_OPTION = "network";
     
     /**
      * Name of the help command line option.
@@ -93,25 +136,16 @@ public class SearchApiExample {
     		final LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance(consumerKeyValue, consumerSecretValue);
     		final LinkedInApiClient client = factory.createLinkedInApiClient(accessTokenValue, tokenSecretValue);
     		
-    		if(line.hasOption(ID_OPTION)) {
-    			String idValue = line.getOptionValue(ID_OPTION);
-    			System.out.println("Fetching connections for user with id:" + idValue);
-    			Connections connections = client.getConnectionsById(idValue);
-    			printResult(connections);
-    		} else if (line.hasOption(EMAIL_OPTION)) {
-    			String emailValue = line.getOptionValue(EMAIL_OPTION);
-    			System.out.println("Fetching connections for user with email:" + emailValue);
-    			Connections connections = client.getConnectionsByEmail(emailValue);
-    			printResult(connections);
-    		} else if (line.hasOption(URL_OPTION)) {
-    			String urlValue = line.getOptionValue(URL_OPTION);
-    			System.out.println("Fetching connections for user with url:" + urlValue);
-    			Connections connections = client.getConnectionsByUrl(urlValue);
-    			printResult(connections);
+    		Map<SearchParameter, String> searchParameters = getSearchParameters(line);
+    		
+    		if(!searchParameters.isEmpty()) {
+    			System.out.println("Searching for users.");
+    			People people = client.searchPeople(searchParameters);
+    			printResult(people);
     		} else {
-    			System.out.println("Fetching connections for current user.");
-    			Connections connections = client.getConnectionsForCurrentUser();
-    			printResult(connections);
+    			System.out.println("Searching for users.");
+    			People people = client.searchPeople();
+    			printResult(people);
     		}
         } else {
             printHelp(options);
@@ -157,26 +191,60 @@ public class SearchApiExample {
         Option accessTokenSecret = OptionBuilder.create(ACCESS_TOKEN_SECRET_OPTION);
         opts.addOption(accessTokenSecret);
         
-        String idMsg = "ID of the user whose connections are to be fetched.";
-        OptionBuilder.withArgName("id");
+        OptionBuilder.withArgName("keywords");
         OptionBuilder.hasArg();
-        OptionBuilder.withDescription(idMsg);
-        Option id = OptionBuilder.create(ID_OPTION);
-        opts.addOption(id);
+        OptionBuilder.withDescription("keywords");
+        opts.addOption(OptionBuilder.create(KEYWORDS_OPTION));
         
-        String emailMsg = "Email of the user whose connections are to be fetched.";
-        OptionBuilder.withArgName("email");
+        OptionBuilder.withArgName("name");
         OptionBuilder.hasArg();
-        OptionBuilder.withDescription(emailMsg);
-        Option email = OptionBuilder.create(EMAIL_OPTION);
-        opts.addOption(email);
+        OptionBuilder.withDescription("name");
+        opts.addOption(OptionBuilder.create(NAME_OPTION));
         
-        String urlMsg = "Profile URL of the user whose connections are to be fetched.";
-        OptionBuilder.withArgName("url");
+        OptionBuilder.withArgName("company");
         OptionBuilder.hasArg();
-        OptionBuilder.withDescription(urlMsg);
-        Option url = OptionBuilder.create(URL_OPTION);
-        opts.addOption(url);
+        OptionBuilder.withDescription("company");
+        opts.addOption(OptionBuilder.create(COMPANY_OPTION));
+        
+        OptionBuilder.withArgName("current-company");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("current-company");
+        opts.addOption(OptionBuilder.create(CURRENT_COMPANY_OPTION));
+        
+        OptionBuilder.withArgName("title");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("title");
+        opts.addOption(OptionBuilder.create(TITLE_OPTION));
+        
+        OptionBuilder.withArgName("current-title");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("current-title");
+        opts.addOption(OptionBuilder.create(CURRENT_TITLE_OPTION));
+        
+        OptionBuilder.withArgName("industry-code");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("industry-code");
+        opts.addOption(OptionBuilder.create(INDUSTRY_CODE_OPTION));
+        
+        OptionBuilder.withArgName("search-location-type");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("search-location-type");
+        opts.addOption(OptionBuilder.create(SEARCH_LOCATION_TYPE_OPTION));
+        
+        OptionBuilder.withArgName("country-code");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("country-code");
+        opts.addOption(OptionBuilder.create(COUNTRY_CODE_OPTION));
+        
+        OptionBuilder.withArgName("postal-code");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("postal-code");
+        opts.addOption(OptionBuilder.create(POSTAL_CODE_OPTION));
+        
+        OptionBuilder.withArgName("network");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("network");
+        opts.addOption(OptionBuilder.create(NETWORK_OPTION));
         
         return opts;
     }
@@ -188,14 +256,67 @@ public class SearchApiExample {
         int width = 80;
         String syntax = SearchApiExample.class.getName() + " <options>";
         String header = MessageFormat.format("\nThe -{0}, -{1}, -{2} and -{3} options are required. All others are optional.", CONSUMER_KEY_OPTION, CONSUMER_SECRET_OPTION, ACCESS_TOKEN_OPTION, ACCESS_TOKEN_SECRET_OPTION);
-        String footer = MessageFormat.format("\nIf you do not specify any of -{0}, -{1} or -{2} options, the connections of current user are returned. You can only specify one of these options.", ID_OPTION, EMAIL_OPTION, URL_OPTION);
+        String footer = "\nIf you do not specify any of the other options, all the members of the user's network are returned.";
         new HelpFormatter().printHelp(width, syntax, header, options, footer, false);
     }
     
     /**
      * Print the result of API call.
      */
-    private static void printResult(Connections connections) {
+    private static void printResult(People people) {
 		// TODO Auto-generated method stub
+	}
+    
+    /**
+     *
+     */
+	private static Map<SearchParameter, String> getSearchParameters(CommandLine line) {
+		Map<SearchParameter, String> searchParameters = new EnumMap<SearchParameter, String>(SearchParameter.class);
+		
+		if (line.hasOption(KEYWORDS_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(KEYWORDS_OPTION.replaceAll("_", "-")), line.getOptionValue(KEYWORDS_OPTION));
+		}
+		
+		if (line.hasOption(NAME_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(NAME_OPTION.replaceAll("_", "-")), line.getOptionValue(NAME_OPTION));
+		}
+		
+		if (line.hasOption(COMPANY_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(COMPANY_OPTION.replaceAll("_", "-")), line.getOptionValue(COMPANY_OPTION));
+		}
+		
+		if (line.hasOption(CURRENT_COMPANY_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(CURRENT_COMPANY_OPTION.replaceAll("_", "-")), line.getOptionValue(CURRENT_COMPANY_OPTION));
+		}
+		
+		if (line.hasOption(TITLE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(TITLE_OPTION.replaceAll("_", "-")), line.getOptionValue(TITLE_OPTION));
+		}
+		
+		if (line.hasOption(CURRENT_TITLE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(CURRENT_TITLE_OPTION.replaceAll("_", "-")), line.getOptionValue(CURRENT_TITLE_OPTION));
+		}
+		
+		if (line.hasOption(INDUSTRY_CODE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(INDUSTRY_CODE_OPTION.replaceAll("_", "-")), line.getOptionValue(INDUSTRY_CODE_OPTION));
+		}
+		
+		if (line.hasOption(SEARCH_LOCATION_TYPE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(SEARCH_LOCATION_TYPE_OPTION.replaceAll("_", "-")), line.getOptionValue(SEARCH_LOCATION_TYPE_OPTION));
+		}
+		
+		if (line.hasOption(COUNTRY_CODE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(COUNTRY_CODE_OPTION.replaceAll("_", "-")), line.getOptionValue(COUNTRY_CODE_OPTION));
+		}
+		
+		if (line.hasOption(POSTAL_CODE_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(POSTAL_CODE_OPTION.replaceAll("_", "-")), line.getOptionValue(POSTAL_CODE_OPTION));
+		}
+		
+		if (line.hasOption(NETWORK_OPTION)) {
+			searchParameters.put(SearchParameter.fromString(NETWORK_OPTION.replaceAll("_", "-")), line.getOptionValue(NETWORK_OPTION));
+		}
+		
+		return searchParameters;
 	}
 }
