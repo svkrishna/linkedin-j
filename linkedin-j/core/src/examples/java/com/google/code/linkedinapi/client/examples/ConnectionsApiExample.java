@@ -197,10 +197,10 @@ public class ConnectionsApiExample {
      * Print the result of API call.
      */
     private static void printResult(Connections connections) {
+    	System.out.println("================================");
     	System.out.println("Total connections fetched:" + connections.getTotal());
     	for (Person person : connections.getPerson()) {
     		System.out.println(person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
     	}
-		// TODO Auto-generated method stub
 	}
 }

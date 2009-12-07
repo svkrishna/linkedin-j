@@ -212,13 +212,22 @@ public class AsyncApiExample {
      * Print the result of API call.
      */
     private static void printResult(Connections connections) {
-		// TODO Auto-generated method stub
+    	System.out.println("================================");
+    	System.out.println("Total connections fetched:" + connections.getTotal());
+    	for (Person person : connections.getPerson()) {
+    		System.out.println(person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
+    	}
 	}
 
     /**
      * Print the result of API call.
      */
-    private static void printResult(Person person) {
-		// TODO Auto-generated method stub
+    private static void printResult(Person profile) {
+    	System.out.println("================================");
+    	System.out.println("Name:" + profile.getFirstName() + " " + profile.getLastName());
+    	System.out.println("Headline:" + profile.getHeadline());
+    	System.out.println("Summary:" + profile.getSummary());
+    	System.out.println("Industry:" + profile.getIndustry());
+    	System.out.println("Picture:" + profile.getPictureUrl());
 	}
 }

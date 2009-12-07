@@ -197,6 +197,11 @@ public class ProfileApiExample {
      * Print the result of API call.
      */
     private static void printResult(Person profile) {
-		// TODO Auto-generated method stub
+    	System.out.println("================================");
+    	System.out.println("Name:" + profile.getFirstName() + " " + profile.getLastName());
+    	System.out.println("Headline:" + profile.getHeadline());
+    	System.out.println("Summary:" + profile.getSummary());
+    	System.out.println("Industry:" + profile.getIndustry());
+    	System.out.println("Picture:" + profile.getPictureUrl());
 	}
 }
