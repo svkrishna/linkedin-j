@@ -30,7 +30,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @return the profile for current user
      */
@@ -38,7 +38,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @param id the id
      * @param profileType the profile type
@@ -49,7 +49,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @param url the url
      * @param profileType the profile type
@@ -60,7 +60,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @param profileFields the profile fields
      * 
@@ -70,7 +70,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @param id the id
      * @param profileType the profile type
@@ -82,7 +82,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the profile by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1002}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
      * 
      * @param url the url
      * @param profileType the profile type
@@ -96,7 +96,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @return the network updates
      */
@@ -104,7 +104,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param start the start
      * @param count the count
@@ -115,7 +115,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param startDate the start date
      * @param endDate the end date
@@ -126,7 +126,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param updateTypes the update types
      * 
@@ -136,7 +136,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param updateTypes the update types
      * @param start the start
@@ -148,7 +148,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param updateTypes the update types
      * @param startDate the start date
@@ -160,7 +160,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the network updates.
-     * {@see http://developer.linkedin.com/docs/DOC-1006}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param updateTypes the update types
      * @param count the count
@@ -177,7 +177,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @return the connections for current user
      */
@@ -185,7 +185,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param id the id
      * 
@@ -195,7 +195,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by email.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param email the email
      * 
@@ -205,7 +205,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param url the url
      * 
@@ -215,7 +215,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param profileFields the profile fields
      * 
@@ -225,7 +225,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param id the id
      * @param profileFields the profile fields
@@ -236,7 +236,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by email.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param email the email
      * @param profileFields the profile fields
@@ -247,7 +247,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param url the url
      * @param profileFields the profile fields
@@ -260,7 +260,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param start the start
      * @param count the count
@@ -271,7 +271,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param id the id
      * @param start the start
@@ -283,7 +283,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by email.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param email the email
      * @param start the start
@@ -295,7 +295,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param url the url
      * @param start the start
@@ -307,7 +307,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections for current user.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param profileFields the profile fields
      * @param start the start
@@ -319,7 +319,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by id.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param id the id
      * @param profileFields the profile fields
@@ -332,7 +332,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by email.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param email the email
      * @param profileFields the profile fields
@@ -345,7 +345,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Gets the connections by url.
-     * {@see http://developer.linkedin.com/docs/DOC-1004}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
      * @param url the url
      * @param profileFields the profile fields
@@ -360,7 +360,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @return the people
      */
@@ -368,7 +368,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param searchParameters the search parameters
      * 
@@ -378,7 +378,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param start the start
      * @param count the count
@@ -389,7 +389,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param searchParameters the search parameters
      * @param start the start
@@ -401,7 +401,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param sortOrder the sort order
      * 
@@ -411,7 +411,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param searchParameters the search parameters
      * @param sortOrder the sort order
@@ -422,7 +422,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param start the start
      * @param count the count
@@ -434,7 +434,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Search people.
-     * {@see http://developer.linkedin.com/docs/DOC-1005}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
      * @param searchParameters the search parameters
      * @param start the start
@@ -450,7 +450,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Post network update.
-     * {@see http://developer.linkedin.com/docs/DOC-1009}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1009">http://developer.linkedin.com/docs/DOC-1009</a>
      * 
      * @param updateText the update text
      */
@@ -460,7 +460,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Post comment.
-     * {@see http://developer.linkedin.com/docs/DOC-1009}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
      * 
      * @param networkUpdateId the network update id
      * @param commentText the comment text
@@ -471,7 +471,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Update current status.
-     * {@see http://developer.linkedin.com/docs/DOC-1007}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1007">http://developer.linkedin.com/docs/DOC-1007</a>
      * 
      * @param status the status
      */
@@ -479,7 +479,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Delete current status.
-     * {@see http://developer.linkedin.com/docs/DOC-1007}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1007">http://developer.linkedin.com/docs/DOC-1007</a>
      */
     public void deleteCurrentStatus();
 
@@ -487,7 +487,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Send message.
-     * {@see http://developer.linkedin.com/docs/DOC-1044}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1044">http://developer.linkedin.com/docs/DOC-1044</a>
      * 
      * @param recepientIds the recepient ids
      * @param subject the subject
@@ -499,7 +499,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Send invite.
-     * {@see http://developer.linkedin.com/docs/DOC-1012}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1012">http://developer.linkedin.com/docs/DOC-1012</a>
      * 
      * @param recepientId the recepient id
      * @param subject the subject
@@ -509,7 +509,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
 
     /**
      * Send invite.
-     * {@see http://developer.linkedin.com/docs/DOC-1012}
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1012">http://developer.linkedin.com/docs/DOC-1012</a>
      * 
      * @param recepientId the recepient id
      * @param subject the subject
