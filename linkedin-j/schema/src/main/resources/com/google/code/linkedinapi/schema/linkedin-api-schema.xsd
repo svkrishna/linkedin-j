@@ -121,7 +121,16 @@
   <xs:element name="update-type">
 	<xs:simpleType>
 	  <xs:restriction base="xs:string">
-	    <xs:enumeration value="STAT"/>
+	    <xs:enumeration value="ANSW"/>
+		<xs:enumeration value="APPS"/>
+		<xs:enumeration value="CONN"/>
+		<xs:enumeration value="JOBS"/>  
+		<xs:enumeration value="JGRP"/>
+		<xs:enumeration value="PICT"/>
+		<xs:enumeration value="RECU"/>
+		<xs:enumeration value="PRFU"/>
+		<xs:enumeration value="QSTN"/>
+		<xs:enumeration value="STAT"/>
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>
@@ -165,7 +174,7 @@
           <xs:element ref="location"/>
           <xs:element ref="industry"/>
         </xs:sequence>
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:sequence minOccurs="0">
           <xs:element ref="connections"/>
           <xs:element ref="current-status"/>
           <xs:element ref="distance"/>
