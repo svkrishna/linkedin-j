@@ -24,7 +24,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInRequestToken;
 import com.google.code.linkedinapi.schema.Person;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class OAuthAuthenticationExample {

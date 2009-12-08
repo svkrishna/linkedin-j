@@ -27,7 +27,7 @@ import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {

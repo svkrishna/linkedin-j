@@ -21,7 +21,7 @@ import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.schema.People;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class SearchApiExample {

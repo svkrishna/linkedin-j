@@ -15,7 +15,7 @@ import java.util.Set;
 import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public final class LinkedInApiUrls {

@@ -16,7 +16,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class LinkedInApiClientFactory {

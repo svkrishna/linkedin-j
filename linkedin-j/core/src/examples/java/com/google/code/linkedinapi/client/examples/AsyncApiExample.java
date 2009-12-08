@@ -21,7 +21,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Person;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class AsyncApiExample {

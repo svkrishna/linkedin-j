@@ -14,7 +14,7 @@ import com.google.code.linkedinapi.client.constant.TestConstants;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public abstract class LinkedInApiClientTest extends TestCase {

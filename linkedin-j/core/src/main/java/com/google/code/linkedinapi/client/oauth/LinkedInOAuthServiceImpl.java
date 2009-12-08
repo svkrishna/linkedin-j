@@ -15,7 +15,7 @@ import oauth.signpost.signature.SignatureMethod;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 class LinkedInOAuthServiceImpl implements LinkedInOAuthService {

@@ -41,7 +41,7 @@ import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.UpdateComment;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {

@@ -22,7 +22,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public abstract class BaseLinkedInApiClient implements LinkedInApiClient {

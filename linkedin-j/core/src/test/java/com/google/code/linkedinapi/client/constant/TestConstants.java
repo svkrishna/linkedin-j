@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public final class TestConstants {

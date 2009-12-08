@@ -5,7 +5,7 @@ package com.google.code.linkedinapi.client.oauth;
 
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public class LinkedInOAuthServiceFactory {

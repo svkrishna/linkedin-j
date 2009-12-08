@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author nmukhtar
+ * @author Nabeel Mukhtar
  *
  */
 public enum ProfileType implements FieldEnum {
