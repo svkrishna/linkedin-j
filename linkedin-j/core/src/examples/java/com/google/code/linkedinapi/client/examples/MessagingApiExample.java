@@ -103,7 +103,7 @@ public class MessagingApiExample {
     			client.sendMessage(Arrays.asList(idValue.split(",")), subject, message);
         		System.out.println("Your message has been sent. Check the LinkedIn site for confirmation.");
     		} else {
-    			System.out.println("Sending message to current user,");
+    			System.out.println("Sending message to current user.");
     			client.sendMessage(Collections.singletonList("~"), subject, message);
         		System.out.println("Your message has been sent. Check the LinkedIn site for confirmation.");
     		}
