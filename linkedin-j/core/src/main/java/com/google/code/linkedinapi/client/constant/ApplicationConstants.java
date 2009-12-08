@@ -7,16 +7,17 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * The Class ApplicationConstants.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public final class ApplicationConstants {
 
-    /** Field description */
+    /** The Constant APP_CONSTANTS_FILE. */
     public static final String APP_CONSTANTS_FILE =
         "com/google/code/linkedinapi/client/constant/ApplicationConstants.properties";
 
-    /** Field description */
+    /** The Constant applicationConstants. */
     private static final Properties applicationConstants = new Properties();
 
     static {
@@ -28,37 +29,36 @@ public final class ApplicationConstants {
         }
     }
 
-    /** Field description */
+    /** The Constant VALIDATE_XML. */
     public static final String VALIDATE_XML =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.validateXml");
 
-    /** Field description */
+    /** The Constant OAUTH_VERSION. */
     public static final String OAUTH_VERSION =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.oauthVersion");
 
-    /** Field description */
+    /** The Constant CONTENT_ENCODING. */
     public static final String CONTENT_ENCODING =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.encoding");
 
-    /** Field description */
+    /** The Constant CONTENT_TYPE_XML. */
     public static final String CONTENT_TYPE_XML =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.contentTypeXml");
 
-    /** Field description */
+    /** The Constant CLIENT_DEFAULT_IMPL. */
     public static final String CLIENT_DEFAULT_IMPL =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.defaultImpl");
 
-    /** Field description */
+    /** The Constant DEFAULT_OBJECT_FACTORY. */
     public static final String DEFAULT_OBJECT_FACTORY =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.jaxb.objectFactory");
     
-    /** Field description */
+    /** The Constant DEFAULT_RESULT_SIZE. */
     public static final String DEFAULT_RESULT_SIZE =
     	applicationConstants.getProperty("com.google.code.linkedinapi.client.defaultResultSize");
     
     /**
-     * Constructs ...
-     *
+     * Instantiates a new application constants.
      */
     private ApplicationConstants() {}
 }

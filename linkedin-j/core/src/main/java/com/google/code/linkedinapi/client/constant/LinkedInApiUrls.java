@@ -15,21 +15,22 @@ import java.util.Set;
 import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 
 /**
+ * The Class LinkedInApiUrls.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public final class LinkedInApiUrls {
 
-    /** Field description */
+    /** The Constant API_URLS_FILE. */
     public static final String API_URLS_FILE = "com/google/code/linkedinapi/client/constant/LinkedInApiUrls.properties";
 
-    /** Field description */
+    /** The Constant API_URLS_PLACEHOLDER_START. */
     private static final char API_URLS_PLACEHOLDER_START = '{';
 
-    /** Field description */
+    /** The Constant API_URLS_PLACEHOLDER_END. */
     private static final char API_URLS_PLACEHOLDER_END = '}';
 
-    /** Field description */
+    /** The Constant linkedInApiUrls. */
     private static final Properties linkedInApiUrls = new Properties();
 
     static {
@@ -40,85 +41,83 @@ public final class LinkedInApiUrls {
         }
     }
 
-    /** Field description */
+    /** The Constant GET_PROFILE_FOR_CURRENT_USER. */
     public static final String GET_PROFILE_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileForCurrentUser");
 
-    /** Field description */
+    /** The Constant GET_PROFILE_BY_ID. */
     public static final String GET_PROFILE_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileById");
 
-    /** Field description */
+    /** The Constant GET_PROFILE_BY_URL. */
     public static final String GET_PROFILE_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getProfileByUrl");
 
-    /** Field description */
+    /** The Constant SEARCH_PEOPLE. */
     public static final String SEARCH_PEOPLE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchPeople");
 
-    /** Field description */
+    /** The Constant POST_UPDATE. */
     public static final String POST_UPDATE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postUpdate");
 
-    /** Field description */
+    /** The Constant POST_STATUS. */
     public static final String POST_STATUS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postStatus");
 
-    /** Field description */
+    /** The Constant POST_COMMENT. */
     public static final String POST_COMMENT =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postComment");
 
-    /** Field description */
+    /** The Constant SEND_MESSAGE. */
     public static final String SEND_MESSAGE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.sendMessage");
 
 
-    /** Field description */
+    /** The Constant LINKED_IN_OAUTH_REQUEST_TOKEN_URL. */
     public static final String LINKED_IN_OAUTH_REQUEST_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.requestToken");
 
-    /** Field description */
+    /** The Constant LINKED_IN_OAUTH_AUTHORIZE_URL. */
     public static final String LINKED_IN_OAUTH_AUTHORIZE_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.authorize");
 
-    /** Field description */
+    /** The Constant LINKED_IN_OAUTH_ACCESS_TOKEN_URL. */
     public static final String LINKED_IN_OAUTH_ACCESS_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.accessToken");
 
-    /** Field description */
+    /** The Constant NETWORK_UPDATES. */
     public static final String NETWORK_UPDATES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdates");
 
-    /** Field description */
+    /** The Constant GET_CONNECTIONS_FOR_CURRENT_USER. */
     public static final String GET_CONNECTIONS_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsForCurrentUser");
 
-    /** Field description */
+    /** The Constant GET_CONNECTIONS_BY_ID. */
     public static final String GET_CONNECTIONS_BY_ID =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsById");
 
-    /** Field description */
+    /** The Constant GET_CONNECTIONS_BY_EMAIL. */
     public static final String GET_CONNECTIONS_BY_EMAIL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByEmail");
 
-    /** Field description */
+    /** The Constant GET_CONNECTIONS_BY_URL. */
     public static final String GET_CONNECTIONS_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByUrl");
 
     /**
-     * Constructs ...
-     *
+     * Instantiates a new linked in api urls.
      */
     private LinkedInApiUrls() {}
 
     /**
-     * Method description
-     *
-     *
-     * @param urlFormat
-     * @param namedParameters
-     *
-     * @return
+     * Builds the url.
+     * 
+     * @param urlFormat the url format
+     * @param namedParameters the named parameters
+     * 
+     * @return the string
      */
     @SuppressWarnings("unchecked")
 	public static String buildUrl(String urlFormat, Map<String, Object> namedParameters) {
@@ -211,13 +210,12 @@ public final class LinkedInApiUrls {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param original
-     * @param encoding
-     *
-     * @return
+     * Encode url.
+     * 
+     * @param original the original
+     * @param encoding the encoding
+     * 
+     * @return the string
      */
     private static String encodeUrl(String original, String encoding) {
     	try {
