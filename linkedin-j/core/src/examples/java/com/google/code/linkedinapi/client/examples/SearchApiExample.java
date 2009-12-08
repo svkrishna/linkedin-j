@@ -19,6 +19,7 @@ import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.schema.People;
+import com.google.code.linkedinapi.schema.Person;
 
 /**
  * @author Nabeel Mukhtar
@@ -264,7 +265,11 @@ public class SearchApiExample {
      * Print the result of API call.
      */
     private static void printResult(People people) {
-		// TODO Auto-generated method stub
+    	System.out.println("================================");
+    	System.out.println("Total search result:" + people.getCount());
+    	for (Person person : people.getPerson()) {
+    		System.out.println(person.getId() + ":" + person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
+    	}
 	}
     
     /**

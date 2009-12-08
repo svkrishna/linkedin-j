@@ -200,7 +200,7 @@ public class ConnectionsApiExample {
     	System.out.println("================================");
     	System.out.println("Total connections fetched:" + connections.getTotal());
     	for (Person person : connections.getPerson()) {
-    		System.out.println(person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
+    		System.out.println(person.getId() + ":" + person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
     	}
 	}
 }
