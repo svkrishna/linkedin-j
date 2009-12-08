@@ -10,18 +10,18 @@ package com.google.code.linkedinapi.client.oauth;
  */
 public abstract class LinkedInOAuthToken {
 
-    /** Field description */
+    /** Access Token */
     private String token;
 
-    /** Field description */
+    /** Token Secret */
     private String tokenSecret;
 
     /**
      * Constructs ...
      *
      *
-     * @param token
-     * @param tokenSecret
+     * @param token token
+     * @param tokenSecret token secret
      */
     public LinkedInOAuthToken(String token, String tokenSecret) {
         this.token       = token;
@@ -29,45 +29,6 @@ public abstract class LinkedInOAuthToken {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
-     */
-    public String getToken() {
-        return token;
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param token
-     */
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @return
-     */
-    public String getTokenSecret() {
-        return tokenSecret;
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param tokenSecret
-     */
-    public void setTokenSecret(String tokenSecret) {
-        this.tokenSecret = tokenSecret;
-    }
-
     /**
      * Method description
      *
@@ -131,4 +92,32 @@ public abstract class LinkedInOAuthToken {
 
         return true;
     }
+
+	/**
+	 * @return the token
+	 */
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * @param token the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	/**
+	 * @return the tokenSecret
+	 */
+	public String getTokenSecret() {
+		return tokenSecret;
+	}
+
+	/**
+	 * @param tokenSecret the tokenSecret to set
+	 */
+	public void setTokenSecret(String tokenSecret) {
+		this.tokenSecret = tokenSecret;
+	}
 }
