@@ -31,11 +31,13 @@ import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.ObjectFactory;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.UpdateComment;
 
 /**
@@ -659,7 +661,19 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	invite.setBody(message);
     	invite.setSubject(subject);
-    	// TODO-NM: Populate invite
+    	invite.setRecipients(OBJECT_FACTORY.createRecipients());
+    	
+		Person person = OBJECT_FACTORY.createPerson();
+		person.setId(recepientId);
+		Recipient recepient = OBJECT_FACTORY.createRecipient();
+		recepient.setPerson(person);
+		invite.getRecipients().getRecipient().add(recepient);
+		invite.setItemContent(OBJECT_FACTORY.createItemContent());
+		
+		InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
+		request.setConnectType("friend");
+		
+		invite.getItemContent().setInvitationRequest(request);
 
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
 
@@ -679,7 +693,21 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	MailboxItem invite = OBJECT_FACTORY.createMailboxItem();
     	invite.setBody(message);
     	invite.setSubject(subject);
-    	// TODO-NM: Populate invite
+    	invite.setRecipients(OBJECT_FACTORY.createRecipients());
+    	
+		Person person = OBJECT_FACTORY.createPerson();
+		person.setId(recepientId);
+		Recipient recepient = OBJECT_FACTORY.createRecipient();
+		recepient.setPerson(person);
+		invite.getRecipients().getRecipient().add(recepient);
+		invite.setItemContent(OBJECT_FACTORY.createItemContent());
+		
+		InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
+		request.setConnectType("friend");
+		request.setAuthorization(auth);
+		
+		invite.getItemContent().setInvitationRequest(request);
+
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
 
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
@@ -698,7 +726,16 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     	MailboxItem messageItem = OBJECT_FACTORY.createMailboxItem();
     	messageItem.setBody(message);
     	messageItem.setSubject(subject);
-    	// TODO-NM: Populate messageItem
+    	messageItem.setRecipients(OBJECT_FACTORY.createRecipients());
+    	
+    	for (String recepientId : recepientIds) {
+    		Person person = OBJECT_FACTORY.createPerson();
+    		person.setPath("/people/" + recepientId);
+    		Recipient recepient = OBJECT_FACTORY.createRecipient();
+    		recepient.setPerson(person);
+    		messageItem.getRecipients().getRecipient().add(recepient);
+    	}
+    	
     	LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
 
     	if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
