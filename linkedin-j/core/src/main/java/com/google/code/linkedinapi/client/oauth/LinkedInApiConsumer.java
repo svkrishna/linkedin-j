@@ -22,40 +22,28 @@ public class LinkedInApiConsumer extends LinkedInOAuthToken {
     }
     
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@see LinkedInOAuthToken#getToken()}
      */
     public String getConsumerKey() {
         return getToken();
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param token
+     * {@see LinkedInOAuthToken#setToken()}
      */
     public void setConsumerKey(String consumerKey) {
         setToken(consumerKey);
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@see LinkedInOAuthToken#getTokenSecret()}
      */
     public String getConsumerSecret() {
         return getTokenSecret();
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param tokenSecret
+     * {@see LinkedInOAuthToken#setTokenSecret()}
      */
     public void setConsumerSecret(String consumerSecret) {
         setTokenSecret(consumerSecret);
