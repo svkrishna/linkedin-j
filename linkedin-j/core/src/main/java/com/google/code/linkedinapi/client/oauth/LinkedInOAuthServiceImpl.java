@@ -40,13 +40,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param requestToken
-     * @param pin
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin) {
@@ -62,10 +56,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * {@inheritDoc}
      */
     @Override
     public LinkedInRequestToken getOAuthRequestToken() {
@@ -83,9 +74,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     }
 
     /**
-     * Method description
-     *
-     *
+     * {@inheritDoc}
      */
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
