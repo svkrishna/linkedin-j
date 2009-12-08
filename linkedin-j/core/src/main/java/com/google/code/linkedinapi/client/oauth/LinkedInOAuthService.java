@@ -3,37 +3,34 @@ package com.google.code.linkedinapi.client.oauth;
 import java.net.HttpURLConnection;
 
 /**
- * Interface description
- *
- *
+ * The Interface LinkedInOAuthService.
+ * 
+ * @author Nabeel Mukhtar
  */
 public interface LinkedInOAuthService {
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Gets the o auth request token.
+     * 
+     * @return the o auth request token
      */
     public LinkedInRequestToken getOAuthRequestToken();
 
     /**
-     * Method description
-     *
-     *
-     * @param requestToken
-     * @param pin
-     *
-     * @return
+     * Gets the o auth access token.
+     * 
+     * @param requestToken the request token
+     * @param pin the pin
+     * 
+     * @return the o auth access token
      */
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin);
 
     /**
-     * Method description
-     *
-     *
-     * @param request
-     * @param accessToken
+     * Sign request with token.
+     * 
+     * @param request the request
+     * @param accessToken the access token
      */
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken);
 }

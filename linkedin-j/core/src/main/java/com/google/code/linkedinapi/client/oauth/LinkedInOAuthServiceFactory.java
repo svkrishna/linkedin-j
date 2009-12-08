@@ -5,25 +5,24 @@ package com.google.code.linkedinapi.client.oauth;
 
 
 /**
+ * A factory for creating LinkedInOAuthService objects.
+ * 
  * @author Nabeel Mukhtar
- *
  */
 public class LinkedInOAuthServiceFactory {
 
-    /** Field description */
+    /** The instance. */
     private static LinkedInOAuthServiceFactory instance;
 
     /**
-     * Constructs ...
-     *
+     * Instantiates a new linked in o auth service factory.
      */
     private LinkedInOAuthServiceFactory() {}
 
     /**
-     * Method description
-     *
-     *
-     * @return
+     * Gets the single instance of LinkedInOAuthServiceFactory.
+     * 
+     * @return single instance of LinkedInOAuthServiceFactory
      */
     public static synchronized LinkedInOAuthServiceFactory getInstance() {
         if (instance == null) {
@@ -34,25 +33,23 @@ public class LinkedInOAuthServiceFactory {
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param consumerKey
-     * @param consumerSecret
-     *
-     * @return
+     * Creates a new LinkedInOAuthService object.
+     * 
+     * @param consumerKey the consumer key
+     * @param consumerSecret the consumer secret
+     * 
+     * @return the linked in o auth service
      */
     public LinkedInOAuthService createLinkedInOAuthService(String consumerKey, String consumerSecret) {
         return createLinkedInOAuthService(new LinkedInApiConsumer(consumerKey, consumerSecret));
     }
 
     /**
-     * Method description
-     *
-     *
-     * @param apiConsumer
-     *
-     * @return
+     * Creates a new LinkedInOAuthService object.
+     * 
+     * @param apiConsumer the api consumer
+     * 
+     * @return the linked in o auth service
      */
     public LinkedInOAuthService createLinkedInOAuthService(LinkedInApiConsumer apiConsumer) {
         return new LinkedInOAuthServiceImpl(apiConsumer);
