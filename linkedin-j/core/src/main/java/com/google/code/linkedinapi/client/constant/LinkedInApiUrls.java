@@ -266,11 +266,7 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withFieldEnum(String name, FieldEnum value) {
-	    	StringBuilder builder = new StringBuilder();
-        	builder.append(":");
-        	builder.append(value.fieldName());
-    		
-    		fieldsMap.put(name, builder.toString());
+    		fieldsMap.put(name, ":" + value.fieldName());
     		
     		return this;
     	}
