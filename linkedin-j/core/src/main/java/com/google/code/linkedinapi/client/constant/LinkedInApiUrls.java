@@ -6,11 +6,13 @@ package com.google.code.linkedinapi.client.constant;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -162,7 +164,7 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withParameter(String name, String value) {
-    		parametersMap.put(name, Collections.singleton(value));
+    		parametersMap.put(name, Collections.singleton(encodeUrl(value)));
     		
     		return this;
     	}
@@ -176,7 +178,11 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withParameters(String name, Collection<String> values) {
-    		parametersMap.put(name, values);
+	    	List<String> encodedValues = new ArrayList<String>(values.size());
+	    	for (String value : values) {
+	    		encodedValues.add(encodeUrl(value));
+	    	}
+    		parametersMap.put(name, encodedValues);
     		
     		return this;
     	}
@@ -193,7 +199,7 @@ public final class LinkedInApiUrls {
 	    	Set<String> values = new HashSet<String>(enumSet.size());
 	    	
 	    	for (FieldEnum fieldEnum : enumSet) {
-	    		values.add(fieldEnum.fieldName());
+	    		values.add(encodeUrl(fieldEnum.fieldName()));
 	    	}
 	    	
     		parametersMap.put(name, values);
@@ -252,7 +258,7 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withField(String name, String value) {
-    		fieldsMap.put(name, encodeUrl(value, ApplicationConstants.CONTENT_ENCODING));
+    		fieldsMap.put(name, encodeUrl(value));
     		
     		return this;
     	}
@@ -325,25 +331,16 @@ public final class LinkedInApiUrls {
     			    		Iterator<String> iter = parametersMap.keySet().iterator();
     			    		while (iter.hasNext()) {
     			    			String name = iter.next();
-    			    			Object paramValue = parametersMap.get(name);
-    			    			if (paramValue instanceof Collection<?>) {
-    			    				Collection<String> parameterValues = (Collection<String>) paramValue;
-    			    				Iterator<String> iterParam = parameterValues.iterator();
-    			    				while (iterParam.hasNext()) {
-    			    					String value = iterParam.next();
-        			    				builder.append(name);
-        			    				builder.append("=");
-        			    				builder.append(encodeUrl(value, ApplicationConstants.CONTENT_ENCODING));
-        			    				if (iterParam.hasNext()) {
-            			    				builder.append("&");
-        			    				}
-    			    				}
-    			    				    				
-    			    			} else {
+			    				Collection<String> parameterValues = parametersMap.get(name);
+			    				Iterator<String> iterParam = parameterValues.iterator();
+			    				while (iterParam.hasNext()) {
     			    				builder.append(name);
     			    				builder.append("=");
-    			    				builder.append(encodeUrl(paramValue.toString(), ApplicationConstants.CONTENT_ENCODING));
-    			    			}
+    			    				builder.append(iterParam.next());
+    			    				if (iterParam.hasNext()) {
+        			    				builder.append("&");
+    			    				}
+			    				}
     			    			if (iter.hasNext()) {
     			    				builder.append("&");
     			    			}
@@ -376,9 +373,9 @@ public final class LinkedInApiUrls {
          * 
          * @return the string
          */
-        private static String encodeUrl(String original, String encoding) {
+        private static String encodeUrl(String original) {
         	try {
-    			return URLEncoder.encode(original, encoding);
+    			return URLEncoder.encode(original, ApplicationConstants.CONTENT_ENCODING);
     		} catch (UnsupportedEncodingException e) {
     			// should never be here..
     			return original;
