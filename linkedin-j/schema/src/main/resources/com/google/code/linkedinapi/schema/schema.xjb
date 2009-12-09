@@ -3,9 +3,57 @@
     schemaLocation="linkedin-api-schema.xsd" node="/xs:schema">
 	<globalBindings generateValueClass="false"/>
 	<bindings node="//xs:element[@name='content-type']/xs:simpleType">
-	    <typesafeEnumClass name="ProductType" />
+	    <typesafeEnumClass name="NetworkUpdateContentType" />
 		<bindings node="./xs:restriction/xs:enumeration[@value='linkedin-html']">
-		<typesafeEnumMember name="ONE"/>
+			<typesafeEnumMember name="LINKED_IN_HTML"/>
+		</bindings>
+	</bindings>
+	<bindings node="//xs:element[@name='connect-type']/xs:simpleType">
+	    <typesafeEnumClass name="InviteConnectType" />
+		<bindings node="./xs:restriction/xs:enumeration[@value='friend']">
+			<typesafeEnumMember name="FRIEND"/>
+		</bindings>
+	</bindings>
+	<bindings node="//xs:element[@name='update-type']/xs:simpleType">
+	    <typesafeEnumClass name="NetworkUpdateReturnType" />
+		<bindings node="./xs:restriction/xs:enumeration[@value='ANSW']">
+			<typesafeEnumMember name="ANSWER_UPDATE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='APPM']">
+			<typesafeEnumMember name="APPLICATION_CONNECTION_UPDATE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='APPS']">
+			<typesafeEnumMember name="APPLICATION_TO_MEMBER_UPDATE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='CONN']">
+			<typesafeEnumMember name="CONNECTION_ADDED_CONNECTIONS"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='NCON']">
+			<typesafeEnumMember name="NEW_CONNECTIONS"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='CCEM']">
+			<typesafeEnumMember name="CONTACT_JOINED"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='JOBP']">
+			<typesafeEnumMember name="JOB_POSTED"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='JGRP']">
+			<typesafeEnumMember name="CONNECTION_JOINED_GROUP"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='PICU']">
+			<typesafeEnumMember name="CONNECTION_UPDATED_PICTURE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='PREC']">
+			<typesafeEnumMember name="CONNECTION_RECOMMENDED"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='PROF']">
+			<typesafeEnumMember name="CONNECTION_UPDATED_PROFILE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='QSTN']">
+			<typesafeEnumMember name="QUESTION_UPDATE"/>
+		</bindings>
+		<bindings node="./xs:restriction/xs:enumeration[@value='STAT']">
+			<typesafeEnumMember name="STATUS_UPDATE"/>
 		</bindings>
 	</bindings>
 </bindings>
