@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -16,19 +19,11 @@ import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 
 /**
  * The Class LinkedInApiUrls.
- * 
- * @author Nabeel Mukhtar
  */
 public final class LinkedInApiUrls {
 
     /** The Constant API_URLS_FILE. */
     public static final String API_URLS_FILE = "com/google/code/linkedinapi/client/constant/LinkedInApiUrls.properties";
-
-    /** The Constant API_URLS_PLACEHOLDER_START. */
-    private static final char API_URLS_PLACEHOLDER_START = '{';
-
-    /** The Constant API_URLS_PLACEHOLDER_END. */
-    private static final char API_URLS_PLACEHOLDER_END = '}';
 
     /** The Constant linkedInApiUrls. */
     private static final Properties linkedInApiUrls = new Properties();
@@ -112,42 +107,240 @@ public final class LinkedInApiUrls {
     private LinkedInApiUrls() {}
 
     /**
-     * Builds the url.
-     * 
-     * @param urlFormat the url format
-     * @param namedParameters the named parameters
-     * 
-     * @return the string
+     * The Class LinkedInApiUrlBuilder.
      */
-    @SuppressWarnings("unchecked")
-	public static String buildUrl(String urlFormat, Map<String, Object> namedParameters) {
-    	StringBuilder urlBuilder = new StringBuilder();
-    	StringBuilder placeHolderBuilder = new StringBuilder();
-    	boolean placeHolderFlag = false;
-    	for (int i = 0; i < urlFormat.length(); i++) {
-    		if (urlFormat.charAt(i) == API_URLS_PLACEHOLDER_START) {
-    			placeHolderBuilder = new StringBuilder();
-    			placeHolderFlag = true;
-    		} else if (placeHolderFlag && urlFormat.charAt(i) == API_URLS_PLACEHOLDER_END) {
-    			String placeHolder = placeHolderBuilder.toString();
-    			if (namedParameters.containsKey(placeHolder)) {
-    				Object value = namedParameters.get(placeHolder);
-    				if (value instanceof Map) {
-    					// this is a query string map.
-    					Map<String, Object> parameterMap = (Map<String, Object>) value;
+    public static class LinkedInApiUrlBuilder {
+        
+        /** The Constant API_URLS_PLACEHOLDER_START. */
+        private static final char API_URLS_PLACEHOLDER_START = '{';
+
+        /** The Constant API_URLS_PLACEHOLDER_END. */
+        private static final char API_URLS_PLACEHOLDER_END = '}';
+        
+        /** The Constant QUERY_PARAMETERS_PLACEHOLDER. */
+        private static final String QUERY_PARAMETERS_PLACEHOLDER = "queryParameters";
+    	
+    	/** The url format. */
+	    private String urlFormat;
+    	
+	    /** The url type. */
+	    @SuppressWarnings("unused")
+		private String urlType;
+    	
+    	/** The parameters map. */
+	    private Map<String, Collection<String>> parametersMap = new HashMap<String, Collection<String>>();
+    	
+	    /** The fields map. */
+	    private Map<String, String> fieldsMap = new HashMap<String, String>();
+    	
+    	/**
+	     * Instantiates a new linked in api url builder.
+	     * 
+	     * @param urlFormat the url format
+	     */
+	    public LinkedInApiUrlBuilder(String urlFormat) {
+    		this.urlFormat = urlFormat;    		
+    	}
+    	
+    	/**
+	     * Instantiates a new linked in api url builder.
+	     * 
+	     * @param urlFormat the url format
+	     * @param urlType the url type
+	     */
+	    public LinkedInApiUrlBuilder(String urlFormat, String urlType) {
+    		this.urlFormat = urlFormat;
+    		this.urlType = urlType;
+    	}
+    	
+    	/**
+	     * With parameter.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withParameter(String name, String value) {
+    		parametersMap.put(name, Collections.singleton(value));
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * With parameters.
+	     * 
+	     * @param name the name
+	     * @param values the values
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withParameters(String name, Collection<String> values) {
+    		parametersMap.put(name, values);
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * With parameter enum set.
+	     * 
+	     * @param name the name
+	     * @param enumSet the enum set
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withParameterEnumSet(String name, Set<? extends FieldEnum> enumSet) {
+	    	Set<String> values = new HashSet<String>(enumSet.size());
+	    	
+	    	for (FieldEnum fieldEnum : enumSet) {
+	    		values.add(fieldEnum.fieldName());
+	    	}
+	    	
+    		parametersMap.put(name, values);
+    		
+    		return this;
+    	}
+	    
+    	/**
+	     * With parameter enum.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withParameterEnum(String name, FieldEnum value) {
+	    	withParameter(name, value.fieldName());
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * With parameter enum map.
+	     * 
+	     * @param enumMap the enum map
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withParameterEnumMap(Map<? extends FieldEnum, String> enumMap) {
+	    	for (FieldEnum parameter : enumMap.keySet()) {
+	    		withParameter(parameter.fieldName(), enumMap.get(parameter));
+	    	}
+    		
+    		return this;
+    	}
+	    
+    	/**
+	     * With empty field.
+	     * 
+	     * @param name the name
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withEmptyField(String name) {
+    		fieldsMap.put(name, "");
+    		
+    		return this;
+    	}
+	    
+    	/**
+	     * With field.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withField(String name, String value) {
+    		fieldsMap.put(name, encodeUrl(value, ApplicationConstants.CONTENT_ENCODING));
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * With field enum.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withFieldEnum(String name, FieldEnum value) {
+	    	StringBuilder builder = new StringBuilder();
+        	builder.append(":");
+        	builder.append(value.fieldName());
+    		
+    		fieldsMap.put(name, builder.toString());
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * With field enum set.
+	     * 
+	     * @param name the name
+	     * @param enumSet the enum set
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withFieldEnumSet(String name, Set<? extends FieldEnum> enumSet) {
+	    	StringBuilder builder = new StringBuilder();
+	    	if (!enumSet.isEmpty()) {
+	        	builder.append(":");
+	    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
+	        	builder.append("(");
+	    		while (iter.hasNext()) {
+	    			FieldEnum fieldEnum = iter.next();
+	    			builder.append(fieldEnum.fieldName());
+	    			if (iter.hasNext()) {
+	    				builder.append(",");
+	    			}
+	    		}
+	        	builder.append(")");
+	    	}
+    		
+    		fieldsMap.put(name, builder.toString());
+    		
+    		return this;
+    	}
+    	
+    	/**
+	     * Builds the url.
+	     * 
+	     * @return the string
+	     */
+	    @SuppressWarnings("unchecked")
+		public String buildUrl() {
+        	StringBuilder urlBuilder = new StringBuilder();
+        	StringBuilder placeHolderBuilder = new StringBuilder();
+        	boolean placeHolderFlag = false;
+        	for (int i = 0; i < urlFormat.length(); i++) {
+        		if (urlFormat.charAt(i) == API_URLS_PLACEHOLDER_START) {
+        			placeHolderBuilder = new StringBuilder();
+        			placeHolderFlag = true;
+        		} else if (placeHolderFlag && urlFormat.charAt(i) == API_URLS_PLACEHOLDER_END) {
+        			String placeHolder = placeHolderBuilder.toString();
+        			if (fieldsMap.containsKey(placeHolder)) {
+        				urlBuilder.append(fieldsMap.get(placeHolder));
+        			} else if (QUERY_PARAMETERS_PLACEHOLDER.equals(placeHolder)) {
     			    	StringBuilder builder = new StringBuilder();
-    			    	if (!parameterMap.isEmpty()) {
+    			    	if (!parametersMap.isEmpty()) {
     			        	builder.append("?");
-    			    		Iterator<String> iter = parameterMap.keySet().iterator();
+    			    		Iterator<String> iter = parametersMap.keySet().iterator();
     			    		while (iter.hasNext()) {
     			    			String name = iter.next();
-    			    			Object paramValue = parameterMap.get(name);
+    			    			Object paramValue = parametersMap.get(name);
     			    			if (paramValue instanceof Collection<?>) {
-    			    				Collection<Object> parameterValues = (Collection<Object>) paramValue;
-    			    				for (Object o : parameterValues) {
+    			    				Collection<String> parameterValues = (Collection<String>) paramValue;
+    			    				Iterator<String> iterParam = parameterValues.iterator();
+    			    				while (iterParam.hasNext()) {
+    			    					String value = iterParam.next();
         			    				builder.append(name);
         			    				builder.append("=");
-        			    				builder.append(encodeUrl(o.toString(), ApplicationConstants.CONTENT_ENCODING));
+        			    				builder.append(encodeUrl(value, ApplicationConstants.CONTENT_ENCODING));
+        			    				if (iterParam.hasNext()) {
+            			    				builder.append("&");
+        			    				}
     			    				}
     			    				    				
     			    			} else {
@@ -161,68 +354,39 @@ public final class LinkedInApiUrls {
     			    		}
     			    	}
     			    	urlBuilder.append(builder.toString());
-    				} else if (value instanceof Set) {
-    					// this is an enum set.
-    					Set<? extends FieldEnum> enumSet = (Set<? extends FieldEnum>) value;
-    			    	StringBuilder builder = new StringBuilder();
-    			    	if (!enumSet.isEmpty()) {
-    			        	builder.append(":");
-    			    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
-    			        	builder.append("(");
-    			    		while (iter.hasNext()) {
-    			    			FieldEnum fieldEnum = iter.next();
-    			    			builder.append(fieldEnum.fieldName());
-    			    			if (iter.hasNext()) {
-    			    				builder.append(",");
-    			    			}
-    			    		}
-    			        	builder.append(")");
-    			    	}
-        				// bind the parameter to the placeholder
-        				urlBuilder.append(builder.toString());
-    				} else if (value instanceof FieldEnum) {
-    					// this is an enum set.
-    			    	StringBuilder builder = new StringBuilder();
-			        	builder.append(":");
-			        	builder.append(((FieldEnum) value).fieldName());
-        				// bind the parameter to the placeholder
-        				urlBuilder.append(builder.toString());
-    				} else {
-        				// bind the parameter to the placeholder
-        				urlBuilder.append(encodeUrl(value.toString(), ApplicationConstants.CONTENT_ENCODING));
-    				}
-    			} else {
-    				// we did not find a binding for the placeholder.
-    				// append it as it is.
-    				urlBuilder.append(API_URLS_PLACEHOLDER_START);
-    				urlBuilder.append(placeHolder);
-    				urlBuilder.append(API_URLS_PLACEHOLDER_END);
-    			}
-    			placeHolderFlag = false;
-    		} else if (placeHolderFlag) {
-    			placeHolderBuilder.append(urlFormat.charAt(i));
-    		} else {
-    			urlBuilder.append(urlFormat.charAt(i));
-    		}
+        			} else {
+        				// we did not find a binding for the placeholder.
+        				// append it as it is.
+        				urlBuilder.append(API_URLS_PLACEHOLDER_START);
+        				urlBuilder.append(placeHolder);
+        				urlBuilder.append(API_URLS_PLACEHOLDER_END);
+        			}
+        			placeHolderFlag = false;
+        		} else if (placeHolderFlag) {
+        			placeHolderBuilder.append(urlFormat.charAt(i));
+        		} else {
+        			urlBuilder.append(urlFormat.charAt(i));
+        		}
+        	}
+
+        	return urlBuilder.toString();
     	}
-
-    	return urlBuilder.toString();
-    }
-
-    /**
-     * Encode url.
-     * 
-     * @param original the original
-     * @param encoding the encoding
-     * 
-     * @return the string
-     */
-    private static String encodeUrl(String original, String encoding) {
-    	try {
-			return URLEncoder.encode(original, encoding);
-		} catch (UnsupportedEncodingException e) {
-			// should never be here..
-			return original;
-		}
+    	
+        /**
+         * Encode url.
+         * 
+         * @param original the original
+         * @param encoding the encoding
+         * 
+         * @return the string
+         */
+        private static String encodeUrl(String original, String encoding) {
+        	try {
+    			return URLEncoder.encode(original, encoding);
+    		} catch (UnsupportedEncodingException e) {
+    			// should never be here..
+    			return original;
+    		}
+        }
     }
 }
