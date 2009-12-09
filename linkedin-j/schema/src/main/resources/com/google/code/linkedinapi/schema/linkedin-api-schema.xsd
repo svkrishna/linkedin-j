@@ -122,13 +122,16 @@
 	<xs:simpleType>
 	  <xs:restriction base="xs:string">
 	    <xs:enumeration value="ANSW"/>
+		<xs:enumeration value="APPM"/>
 		<xs:enumeration value="APPS"/>
 		<xs:enumeration value="CONN"/>
-		<xs:enumeration value="JOBS"/>  
+		<xs:enumeration value="NCON"/>
+		<xs:enumeration value="CCEM"/>
+		<xs:enumeration value="JOBP"/>  
 		<xs:enumeration value="JGRP"/>
-		<xs:enumeration value="PICT"/>
-		<xs:enumeration value="RECU"/>
-		<xs:enumeration value="PRFU"/>
+		<xs:enumeration value="PICU"/>
+		<xs:enumeration value="PREC"/>
+		<xs:enumeration value="PROF"/>
 		<xs:enumeration value="QSTN"/>
 		<xs:enumeration value="STAT"/>
 	  </xs:restriction>
