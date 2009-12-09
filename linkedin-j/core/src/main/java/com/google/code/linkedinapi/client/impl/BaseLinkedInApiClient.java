@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.zip.GZIPInputStream;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
@@ -50,6 +51,9 @@ import com.google.code.linkedinapi.schema.UpdateComment;
  */
 public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
+    /** Field description */
+    private static final String GZIP_ENCODING = "gzip";
+    
     /** Field description */
     private LinkedInAccessToken accessToken;
 
@@ -770,11 +774,19 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            
+            if (ApplicationConstants.COMPRESS_CONTENTS) {
+                request.setRequestProperty("Accept-Encoding", "gzip, deflate");
+            }
 
             oAuthService.signRequestWithToken(request, accessToken);
             request.connect();
-
-            return new LinkedInApiCallResponse(request.getResponseCode(), request.getInputStream());
+            
+            if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) { 
+                return new LinkedInApiCallResponse(request.getResponseCode(), new GZIPInputStream(request.getInputStream()));
+            } else {
+                return new LinkedInApiCallResponse(request.getResponseCode(), request.getInputStream());
+            }
         } catch (Exception e) {
             throw new LinkedInApiClientException(e);
         }

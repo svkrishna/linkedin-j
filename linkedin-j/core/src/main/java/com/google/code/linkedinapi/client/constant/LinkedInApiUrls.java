@@ -311,7 +311,6 @@ public final class LinkedInApiUrls {
 	     * 
 	     * @return the string
 	     */
-	    @SuppressWarnings("unchecked")
 		public String buildUrl() {
         	StringBuilder urlBuilder = new StringBuilder();
         	StringBuilder placeHolderBuilder = new StringBuilder();
