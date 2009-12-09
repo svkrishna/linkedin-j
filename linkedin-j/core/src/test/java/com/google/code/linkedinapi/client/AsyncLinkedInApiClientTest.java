@@ -25,7 +25,7 @@ import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 
 /**
- * @author akv
+ * @author Nabeel Mukhtar
  *
  */
 public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
