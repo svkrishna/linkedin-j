@@ -2,4 +2,12 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     schemaLocation="linkedin-api-schema.xsd" node="/xs:schema">
     <globalBindings generateValueClass="false"/>
+    <!--
+	<jxb:bindings node="//xs:element[@name='content-type']/xs:simpleType">
+	    <jxb:typesafeEnumClass name="ProductType" />
+		<jxb:bindings node="./xs:restriction/xs:enumeration[@value='linkedin-html']">
+	    	<jaxb:typesafeEnumMember name="ONE"/>
+		</jxb:bindings>
+	</jxb:bindings>
+	-->
 </bindings>
