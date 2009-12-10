@@ -21,11 +21,10 @@ import java.math.BigInteger;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{}status"/>
  *         &lt;element ref="{}timestamp"/>
- *         &lt;element ref="{}update-key"/>
- *         &lt;element ref="{}update-type"/>
- *         &lt;element ref="{}update-content"/>
- *         &lt;element ref="{}is-commentable"/>
+ *         &lt;element ref="{}error-code"/>
+ *         &lt;element ref="{}message"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,8 +33,28 @@ import java.math.BigInteger;
  * 
  * 
  */
-public interface Update {
+public interface Error {
 
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    BigInteger getStatus();
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    void setStatus(BigInteger value);
 
     /**
      * Gets the value of the timestamp property.
@@ -58,75 +77,43 @@ public interface Update {
     void setTimestamp(BigInteger value);
 
     /**
-     * Gets the value of the updateKey property.
+     * Gets the value of the errorCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    BigInteger getErrorCode();
+
+    /**
+     * Sets the value of the errorCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    void setErrorCode(BigInteger value);
+
+    /**
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getUpdateKey();
+    String getMessage();
 
     /**
-     * Sets the value of the updateKey property.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setUpdateKey(String value);
-
-    /**
-     * Gets the value of the updateType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NetworkUpdateReturnType }
-     *     
-     */
-    NetworkUpdateReturnType getUpdateType();
-
-    /**
-     * Sets the value of the updateType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NetworkUpdateReturnType }
-     *     
-     */
-    void setUpdateType(NetworkUpdateReturnType value);
-
-    /**
-     * Gets the value of the updateContent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link UpdateContent }
-     *     
-     */
-    UpdateContent getUpdateContent();
-
-    /**
-     * Sets the value of the updateContent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UpdateContent }
-     *     
-     */
-    void setUpdateContent(UpdateContent value);
-
-    /**
-     * Gets the value of the isCommentable property.
-     * 
-     */
-    boolean isIsCommentable();
-
-    /**
-     * Sets the value of the isCommentable property.
-     * 
-     */
-    void setIsCommentable(boolean value);
+    void setMessage(String value);
 
 }
