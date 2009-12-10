@@ -22,6 +22,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 
     /** Field description */
     private static final String JAXB_PACKAGE_NAME = "com.google.code.linkedinapi.schema";
+    
+    /** Field description */
+    private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+    
+    /** Field description */
+    private static JAXBContext JAXB_CONTEXT;
 
     /**
      * Constructs ...
@@ -46,25 +52,12 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     @SuppressWarnings("unchecked")
     protected <T> T unmarshallObject(InputStream xmlContent) {
         try {
-            JAXBContext  jc = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
-            Unmarshaller u  = jc.createUnmarshaller();
+            Unmarshaller u  = getJaxbContext().createUnmarshaller();
 
             return (T) u.unmarshal(xmlContent);
         } catch (JAXBException e) {
             throw new LinkedInApiClientException(e);
         }
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param urlFormat
-     *
-     * @return
-     */
-    protected LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
-        return new LinkedInApiUrlBuilder(urlFormat);
     }
 
     /**
@@ -78,8 +71,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     protected String marshallObject(Object element) {
         try {
             StringWriter writer = new StringWriter();
-            JAXBContext  jc     = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
-            Marshaller   m      = jc.createMarshaller();
+            Marshaller   m = getJaxbContext().createMarshaller();
 
             m.marshal(element, writer);
 
@@ -95,6 +87,38 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @return
      */
     protected ObjectFactory createObjectFactory() {
-    	return new ObjectFactory();
+    	return OBJECT_FACTORY;
     }
+    
+    /**
+     * Method description
+     *
+     *
+     * @param urlFormat
+     *
+     * @return
+     */
+    protected LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat) {
+        return new LinkedInApiUrlBuilder(urlFormat);
+    }
+
+    /**
+     * Method description
+     *
+     */
+	protected JAXBContext getJaxbContext() throws JAXBException {
+		if (JAXB_CONTEXT == null ) {
+			JAXB_CONTEXT = JAXBContext.newInstance(JAXB_PACKAGE_NAME);
+		}
+		return JAXB_CONTEXT;
+	}
+
+    /**
+     * Method description
+     *
+     */
+	protected void setJaxbContext(JAXBContext context) {
+		JAXB_CONTEXT = context;
+	}
+	
 }
