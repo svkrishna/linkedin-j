@@ -37,8 +37,10 @@ import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.InvitationRequest;
+import com.google.code.linkedinapi.schema.InviteConnectType;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
+import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
 import com.google.code.linkedinapi.schema.ObjectFactory;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -492,7 +494,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         update.setBody(updateText);
         update.setLocale(Locale.getDefault().toString());
-        update.setContentType("linkedin-html");
+        update.setContentType(NetworkUpdateContentType.LINKED_IN_HTML);
         update.setTimestamp(BigInteger.valueOf(System.currentTimeMillis()));
 
         LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(update),
@@ -627,7 +629,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
 
-        request.setConnectType("friend");
+        request.setConnectType(InviteConnectType.FRIEND);
         invite.getItemContent().setInvitationRequest(request);
 
         LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite),
@@ -663,7 +665,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
 
-        request.setConnectType("friend");
+        request.setConnectType(InviteConnectType.FRIEND);
         request.setAuthorization(auth);
         invite.getItemContent().setInvitationRequest(request);
 
@@ -775,6 +777,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
             
+            if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
+                request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
+            }
+            
+            if (ApplicationConstants.READ_TIMEOUT > -1) {
+            	request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+            }
+            
             if (ApplicationConstants.COMPRESS_CONTENTS) {
                 request.setRequestProperty("Accept-Encoding", "gzip, deflate");
             }
@@ -810,6 +820,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            
+            if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
+                request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
+            }
+            
+            if (ApplicationConstants.READ_TIMEOUT > -1) {
+            	request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+            }
 
             request.setRequestMethod(method.fieldName());
             request.setDoOutput(true);

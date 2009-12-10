@@ -52,6 +52,12 @@ public final class ApplicationConstants {
     /** The Constant CLIENT_DEFAULT_IMPL. */
     public static final String CLIENT_DEFAULT_IMPL = getProperty("com.google.code.linkedinapi.client.defaultImpl");
 
+    /** The Constant CONNECT_TIMEOUT. */
+    public static final int CONNECT_TIMEOUT = getIntProperty("com.google.code.linkedinapi.client.connectTimeout");
+    
+    /** The Constant READ_TIMEOUT. */
+    public static final int READ_TIMEOUT = getIntProperty("com.google.code.linkedinapi.client.readTimeout");
+    
     /**
      * Instantiates a new application constants.
      */
