@@ -26,7 +26,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
     /** Field description */
     private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
     
-    /** Field description */
+    /** Do not access directly. It may be null!!!. Use {@link #getJaxbContext()} */
     private static JAXBContext JAXB_CONTEXT;
 
     /**
