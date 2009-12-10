@@ -11,6 +11,19 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="content-type" type="xs:NCName"/>
+  <xs:element name="error">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="status"/>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="error-code"/>
+        <xs:element ref="message"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="status" type="xs:integer"/>
+  <xs:element name="error-code" type="xs:integer"/>
+  <xs:element name="message" type="xs:string"/>
   <xs:element name="mailbox-item">
     <xs:complexType>
       <xs:sequence>
@@ -300,6 +313,7 @@
   <xs:element name="body" type="xs:string"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="value" type="xs:NMTOKEN"/>
+  <xs:element name="timestamp" type="xs:integer"/>
   <xs:element name="current-status" type="xs:string"/>
   <xs:element name="connections">
     <xs:complexType>
@@ -309,7 +323,6 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="timestamp" type="xs:integer"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
