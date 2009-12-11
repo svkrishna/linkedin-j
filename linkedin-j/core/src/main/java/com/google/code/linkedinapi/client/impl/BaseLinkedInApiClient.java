@@ -2,13 +2,9 @@
  *
  */
 package com.google.code.linkedinapi.client.impl;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
@@ -36,6 +32,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.InviteConnectType;
 import com.google.code.linkedinapi.schema.MailboxItem;
@@ -55,15 +52,15 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /** Field description */
     private static final String GZIP_ENCODING = "gzip";
-    
+
+    /** Field description */
+    private final ObjectFactory OBJECT_FACTORY = createObjectFactory();
+
     /** Field description */
     private LinkedInAccessToken accessToken;
 
     /** Field description */
     private LinkedInApiConsumer apiConsumer;
-    
-    /** Field description */
-    private final ObjectFactory OBJECT_FACTORY = createObjectFactory();
 
     /**
      * Constructs ...
@@ -103,7 +100,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public LinkedInAccessToken getAccessToken() {
         return accessToken;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -319,9 +316,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Network getNetworkUpdates(int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
-        String                apiUrl  = builder.withParameter("start",
-                                            String.valueOf(start)).withParameter("count",
-                                                String.valueOf(count)).buildUrl();
+        String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).buildUrl();
 
         return readResponse(callApiMethod(apiUrl));
     }
@@ -357,8 +353,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
-                                            String.valueOf(count)).withFieldEnumSet("type",
-                                                updateTypes).buildUrl();
+                                            String.valueOf(count)).withFieldEnumSet("type", updateTypes).buildUrl();
 
         return readResponse(callApiMethod(apiUrl));
     }
@@ -384,12 +379,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
                                      Date endDate) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
-        String                apiUrl  =
-            builder.withParameter("start", String.valueOf(start)).withParameter("count",
-                                  String.valueOf(count)).withParameter("after",
-                                      String.valueOf(startDate.getTime())).withParameter("before",
-                                          String.valueOf(endDate.getTime())).withParameterEnumSet("type",
-                                              updateTypes).buildUrl();
+        String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).withParameter("after",
+                                                String.valueOf(startDate.getTime())).withParameter("before",
+                                                    String.valueOf(endDate.getTime())).withParameterEnumSet("type",
+                                                        updateTypes).buildUrl();
 
         return readResponse(callApiMethod(apiUrl));
     }
@@ -474,13 +468,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         UpdateComment         comment = OBJECT_FACTORY.createUpdateComment();
 
         comment.setComment(commentText);
-
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(comment),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-
-        if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_CREATED);
     }
 
     /**
@@ -495,14 +484,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         update.setBody(updateText);
         update.setLocale(Locale.getDefault().toString());
         update.setContentType(NetworkUpdateContentType.LINKED_IN_HTML);
-        update.setTimestamp(BigInteger.valueOf(System.currentTimeMillis()));
-
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(update),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-
-        if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        update.setTimestamp(System.currentTimeMillis());
+        callApiMethod(apiUrl, marshallObject(update), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_CREATED);
     }
 
     /**
@@ -631,13 +615,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         request.setConnectType(InviteConnectType.FRIEND);
         invite.getItemContent().setInvitationRequest(request);
-
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-
-        if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_CREATED);
     }
 
     /**
@@ -668,13 +647,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         request.setConnectType(InviteConnectType.FRIEND);
         request.setAuthorization(auth);
         invite.getItemContent().setInvitationRequest(request);
-
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(invite),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-
-        if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_CREATED);
     }
 
     /**
@@ -701,12 +675,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             messageItem.getRecipients().getRecipient().add(recepient);
         }
 
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(messageItem),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST);
-
-        if (response.getStatusCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_CREATED);
     }
 
     /**
@@ -714,15 +684,12 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void updateCurrentStatus(String statusText) {
-        LinkedInApiUrlBuilder   builder  = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
-        String                  apiUrl   = builder.buildUrl();
-        Object                  status   = OBJECT_FACTORY.createCurrentStatus(statusText);
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, marshallObject(status),
-                                               ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT);
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
+        String                apiUrl  = builder.buildUrl();
+        Object                status  = OBJECT_FACTORY.createCurrentStatus(statusText);
 
-        if (response.getStatusCode() != HttpURLConnection.HTTP_NO_CONTENT) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                      HttpURLConnection.HTTP_NO_CONTENT);
     }
 
     /**
@@ -730,35 +697,27 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void deleteCurrentStatus() {
-        LinkedInApiUrlBuilder   builder  = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
-        String                  apiUrl   = builder.buildUrl();
-        LinkedInApiCallResponse response = callApiMethod(apiUrl, null, null, HttpMethod.DELETE);
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
+        String                apiUrl  = builder.buildUrl();
 
-        if (response.getStatusCode() != HttpURLConnection.HTTP_NO_CONTENT) {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
-        }
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
     }
 
     /**
      * Method description
      *
      *
-     * @param response
+     *
+     * @param is
      * @param <T>
      *
      * @return
      */
-    protected <T> T readResponse(LinkedInApiCallResponse response) {
-        if (response.getStatusCode() == HttpURLConnection.HTTP_OK) {
-            InputStream is = response.getResponseContent();
-
-            try {
-                return unmarshallObject(is);
-            } finally {
-                closeStream(is);
-            }
-        } else {
-            throw new LinkedInApiClientException(convertStreamToString(response.getResponseContent()));
+    protected <T> T readResponse(InputStream is) {
+        try {
+            return unmarshallObject(is);
+        } finally {
+            closeStream(is);
         }
     }
 
@@ -769,35 +728,59 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected LinkedInApiCallResponse callApiMethod(String apiUrl) {
+    protected InputStream callApiMethod(String apiUrl) {
+        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK);
+    }
+
+    /**
+     *
+     *
+     * @param apiUrl
+     * @param expected
+     *
+     * @return
+     */
+    protected InputStream callApiMethod(String apiUrl, int expected) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
-            
+
             if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
                 request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
             }
-            
+
             if (ApplicationConstants.READ_TIMEOUT > -1) {
-            	request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+                request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
             }
-            
+
             if (ApplicationConstants.COMPRESS_CONTENTS) {
                 request.setRequestProperty("Accept-Encoding", "gzip, deflate");
             }
 
             oAuthService.signRequestWithToken(request, accessToken);
             request.connect();
-            
-            if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) { 
-                return new LinkedInApiCallResponse(request.getResponseCode(), new GZIPInputStream(request.getInputStream()));
+
+            if (request.getResponseCode() != expected) {
+                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
+                    Error error = readResponse(new GZIPInputStream(request.getErrorStream()));
+
+                    throw createLinkedInApiClientException(error);
+                } else {
+                    Error error = readResponse(request.getErrorStream());
+
+                    throw createLinkedInApiClientException(error);
+                }
             } else {
-                return new LinkedInApiCallResponse(request.getResponseCode(), request.getInputStream());
+                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
+                    return new GZIPInputStream(request.getInputStream());
+                } else {
+                    return request.getInputStream();
+                }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new LinkedInApiClientException(e);
         }
     }
@@ -809,26 +792,31 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @param xmlContent
      * @param contentType
      * @param method
+     * @param expected
      *
      * @return
      */
-    protected LinkedInApiCallResponse callApiMethod(String apiUrl, String xmlContent, String contentType,
-            HttpMethod method) {
+    protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
+            int expected) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
-            
+
             if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
                 request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
             }
-            
+
             if (ApplicationConstants.READ_TIMEOUT > -1) {
-            	request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+                request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
             }
 
+            if (ApplicationConstants.COMPRESS_CONTENTS) {
+                request.setRequestProperty("Accept-Encoding", "gzip, deflate");
+            }
+            
             request.setRequestMethod(method.fieldName());
             request.setDoOutput(true);
             oAuthService.signRequestWithToken(request, accessToken);
@@ -847,8 +835,24 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
             request.connect();
 
-            return new LinkedInApiCallResponse(request.getResponseCode(), request.getInputStream());
-        } catch (Exception e) {
+            if (request.getResponseCode() != expected) {
+                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
+                    Error error = readResponse(new GZIPInputStream(request.getErrorStream()));
+
+                    throw createLinkedInApiClientException(error);
+                } else {
+                    Error error = readResponse(request.getErrorStream());
+
+                    throw createLinkedInApiClientException(error);
+                }
+            } else {
+                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
+                    return new GZIPInputStream(request.getInputStream());
+                } else {
+                    return request.getInputStream();
+                }
+            }
+        } catch (IOException e) {
             throw new LinkedInApiClientException(e);
         }
     }
@@ -859,40 +863,27 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @param is
      *
-     * @return
      */
-    protected String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder  sb     = new StringBuilder();
-        String         line   = null;
-
+    protected void closeStream(InputStream is) {
         try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
+            is.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-        	closeStream(is);
         }
-
-        return sb.toString();
     }
-
+    
     /**
      * Method description
      *
-     *
-     * @param is
-     *
+     * @return
      */
-    protected void closeStream(InputStream is) {
-    	try {
-			is.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+	protected LinkedInApiClientException createLinkedInApiClientException(Error error) {
+		final String message = error.getMessage();
+		final String errorCode = error.getErrorCode();
+		final int statusCode = (error.getStatus() == null) ? 0 : error.getStatus().intValue();
+		final Date timestamp = (error.getTimestamp() == null) ? new Date() : new Date(error.getTimestamp());
+		return new LinkedInApiClientException(message, statusCode, errorCode, timestamp);
+	}
 
     /**
      * Method description
@@ -904,7 +895,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected abstract <T> T unmarshallObject(InputStream xmlContent);
-    
+
     /**
      * Method description
      *
@@ -914,7 +905,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected abstract String marshallObject(Object element);
-    
+
     /**
      * Method description
      *
@@ -924,82 +915,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected abstract LinkedInApiUrlBuilder createLinkedInApiUrlBuilder(String urlFormat);
-    
+
     /**
      * Method description
      *
      * @return
      */
     protected abstract ObjectFactory createObjectFactory();
-    	
-    /**
-     * Class description
-     *
-     *
-     */
-    protected static class LinkedInApiCallResponse {
-
-        /** Field description */
-        private InputStream responseContent;
-
-        /** Field description */
-        private String responseMessage;
-
-        /** Field description */
-        private int statusCode;
-
-        /**
-         * Constructs ...
-         *
-         *
-         * @param statusCode
-         * @param responseContent
-         */
-        public LinkedInApiCallResponse(int statusCode, InputStream responseContent) {
-            this.statusCode      = statusCode;
-            this.responseContent = responseContent;
-        }
-
-        /**
-         * @return the statusCode
-         */
-        public int getStatusCode() {
-            return statusCode;
-        }
-
-        /**
-         * @param statusCode the statusCode to set
-         */
-        public void setStatusCode(int statusCode) {
-            this.statusCode = statusCode;
-        }
-
-        /**
-         * @return the responseContent
-         */
-        public InputStream getResponseContent() {
-            return responseContent;
-        }
-
-        /**
-         * @param responseContent the responseContent to set
-         */
-        public void setResponseContent(InputStream responseContent) {
-            this.responseContent = responseContent;
-        }
-
-        /**
-         * @return the responseMessage
-         */
-        public String getResponseMessage() {
-            return responseMessage;
-        }
-
-        /**
-         * @param responseMessage the responseMessage to set
-         */
-        public void setResponseMessage(String responseMessage) {
-            this.responseMessage = responseMessage;
-        }
-    }
 }

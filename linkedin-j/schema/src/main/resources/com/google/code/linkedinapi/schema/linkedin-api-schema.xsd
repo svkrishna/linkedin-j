@@ -28,7 +28,7 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="status" type="xs:integer"/>
-  <xs:element name="error-code" type="xs:integer"/>
+  <xs:element name="error-code" type="xs:string"/>
   <xs:element name="message" type="xs:string"/>
   <xs:element name="mailbox-item">
     <xs:complexType>
