@@ -53,10 +53,10 @@
 			<typesafeEnumMember name="CONNECTION_UPDATED_PROFILE"/>
 		</bindings>
 		<bindings node="./xs:restriction/xs:enumeration[@value='QSTN']">
-			<typesafeEnumMember name="QUESTION_UPDATE"/>
+			<typesafeEnumMember name="QUESTION_UPDATED"/>
 		</bindings>
 		<bindings node="./xs:restriction/xs:enumeration[@value='STAT']">
-			<typesafeEnumMember name="STATUS_UPDATE"/>
+			<typesafeEnumMember name="STATUS_UPDATED"/>
 		</bindings>
 	</bindings>
 </bindings>
