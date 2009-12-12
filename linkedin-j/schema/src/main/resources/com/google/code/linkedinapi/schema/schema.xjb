@@ -1,62 +1,42 @@
 <bindings version="2.0" xmlns="http://java.sun.com/xml/ns/jaxb"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    extensionBindingPrefixes="xjc"
     schemaLocation="linkedin-api-schema.xsd" node="/xs:schema">
 	<globalBindings localScoping="toplevel" generateValueClass="false">
 		<javaType name="double" xmlType="xs:double"/>
 		<javaType name="long" xmlType="xs:integer"/>
+		<xjc:superInterface name="SchemaEntity"/>
+		<xjc:superClass name="BaseSchemaEntity"/>
 	</globalBindings>
+    <schemaBindings>
+      <package name="com.google.code.linkedinapi.schema" />
+    </schemaBindings>
 	<bindings node="//xs:element[@name='content-type']/xs:simpleType">
-	    <typesafeEnumClass name="NetworkUpdateContentType" />
-		<bindings node="./xs:restriction/xs:enumeration[@value='linkedin-html']">
-			<typesafeEnumMember name="LINKED_IN_HTML"/>
-		</bindings>
+		<typesafeEnumClass name="NetworkUpdateContentType">
+			<typesafeEnumMember name="LINKED_IN_HTML" value="linkedin-html"/>
+		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='connect-type']/xs:simpleType">
-	    <typesafeEnumClass name="InviteConnectType" />
-		<bindings node="./xs:restriction/xs:enumeration[@value='friend']">
-			<typesafeEnumMember name="FRIEND"/>
-		</bindings>
+		<typesafeEnumClass name="InviteConnectType" >
+			<typesafeEnumMember name="FRIEND" value="friend"/>
+		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='update-type']/xs:simpleType">
-	    <typesafeEnumClass name="NetworkUpdateReturnType" />
-		<bindings node="./xs:restriction/xs:enumeration[@value='ANSW']">
-			<typesafeEnumMember name="ANSWER_UPDATE"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='APPM']">
-			<typesafeEnumMember name="APPLICATION_CONNECTION_UPDATE"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='APPS']">
-			<typesafeEnumMember name="APPLICATION_TO_MEMBER_UPDATE"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='CONN']">
-			<typesafeEnumMember name="CONNECTION_ADDED_CONNECTIONS"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='NCON']">
-			<typesafeEnumMember name="NEW_CONNECTIONS"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='CCEM']">
-			<typesafeEnumMember name="CONTACT_JOINED"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='JOBP']">
-			<typesafeEnumMember name="JOB_POSTED"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='JGRP']">
-			<typesafeEnumMember name="CONNECTION_JOINED_GROUP"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='PICU']">
-			<typesafeEnumMember name="CONNECTION_UPDATED_PICTURE"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='PREC']">
-			<typesafeEnumMember name="CONNECTION_RECOMMENDED"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='PROF']">
-			<typesafeEnumMember name="CONNECTION_UPDATED_PROFILE"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='QSTN']">
-			<typesafeEnumMember name="QUESTION_UPDATED"/>
-		</bindings>
-		<bindings node="./xs:restriction/xs:enumeration[@value='STAT']">
-			<typesafeEnumMember name="STATUS_UPDATED"/>
-		</bindings>
+		<typesafeEnumClass name="NetworkUpdateReturnType">
+			<typesafeEnumMember name="ANSWER_UPDATE" value="ANSW"/>
+			<typesafeEnumMember name="APPLICATION_CONNECTION_UPDATE" value="APPM"/>
+			<typesafeEnumMember name="APPLICATION_TO_MEMBER_UPDATE" value="APPS"/>
+			<typesafeEnumMember name="CONNECTION_ADDED_CONNECTIONS" value="CONN"/>
+			<typesafeEnumMember name="NEW_CONNECTIONS" value="NCON"/>
+			<typesafeEnumMember name="CONTACT_JOINED" value="CCEM"/>
+			<typesafeEnumMember name="JOB_POSTED" value="JOBP"/>
+			<typesafeEnumMember name="CONNECTION_JOINED_GROUP" value="JGRP"/>
+			<typesafeEnumMember name="CONNECTION_UPDATED_PICTURE" value="PICU"/>
+			<typesafeEnumMember name="CONNECTION_RECOMMENDED" value="PREC"/>
+			<typesafeEnumMember name="CONNECTION_UPDATED_PROFILE" value="PROF"/>
+			<typesafeEnumMember name="QUESTION_UPDATED" value="QSTN"/>
+			<typesafeEnumMember name="STATUS_UPDATED" value="STAT"/>
+		</typesafeEnumClass>
 	</bindings>
 </bindings>
