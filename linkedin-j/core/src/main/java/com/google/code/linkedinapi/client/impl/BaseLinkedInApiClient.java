@@ -38,10 +38,10 @@ import com.google.code.linkedinapi.schema.InviteConnectType;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
-import com.google.code.linkedinapi.schema.ObjectFactory;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Recipient;
+import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.UpdateComment;
 
 /**
@@ -54,7 +54,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     private static final String GZIP_ENCODING = "gzip";
 
     /** Field description */
-    private final ObjectFactory OBJECT_FACTORY = createObjectFactory();
+    private final SchemaElementFactory<?> OBJECT_FACTORY = createObjectFactory();
 
     /** Field description */
     private LinkedInAccessToken accessToken;
@@ -921,5 +921,5 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected abstract ObjectFactory createObjectFactory();
+    protected abstract SchemaElementFactory<?> createObjectFactory();
 }
