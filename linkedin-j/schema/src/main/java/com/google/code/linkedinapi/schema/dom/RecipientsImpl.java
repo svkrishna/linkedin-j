@@ -4,6 +4,7 @@ package com.google.code.linkedinapi.schema.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Recipient;
@@ -25,14 +26,20 @@ public class RecipientsImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		List<Element> recipientElems = DomUtils.getChildElementsByLocalName(element, "recipient");
+		for (Element recepient : recipientElems) {
+			RecipientImpl recipientImpl = new RecipientImpl();
+			recipientImpl.init(recepient);
+			getRecipient().add(recipientImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("recipients");
+		for (Recipient recepient : getRecipient()) {
+			element.appendChild(((RecipientImpl) recepient).toXml(document));
+		}
+		return element;
 	}
-
 }

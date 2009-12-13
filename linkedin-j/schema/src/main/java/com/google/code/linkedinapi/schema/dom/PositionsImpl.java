@@ -4,6 +4,7 @@ package com.google.code.linkedinapi.schema.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Position;
@@ -34,14 +35,22 @@ public class PositionsImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		List<Element> positionElems = DomUtils.getChildElementsByLocalName(element, "position");
+		for (Element positionElem : positionElems) {
+			PositionImpl positionImpl = new PositionImpl();
+			positionImpl.init(positionElem);
+			getPosition().add(positionImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("positions");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		for (Position position : getPosition()) {
+			element.appendChild(((PositionImpl) position).toXml(document));
+		}
+		return element;
 	}
-
 }

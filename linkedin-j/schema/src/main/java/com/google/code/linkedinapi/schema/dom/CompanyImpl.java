@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Company;
@@ -40,14 +41,17 @@ public class CompanyImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setName(DomUtils.getElementValueFromNode(element, "name"));
+		setType(DomUtils.getElementValueFromNode(element, "type"));
+		setIndustry(DomUtils.getElementValueFromNode(element, "industry"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("company");
+		DomUtils.setElementValueToNode(element, "name", String.valueOf(getName()));
+		DomUtils.setElementValueToNode(element, "type", getType());
+		DomUtils.setElementValueToNode(element, "industry", getIndustry());
+		return element;
 	}
-
 }

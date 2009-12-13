@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Network;
@@ -33,14 +34,29 @@ public class NetworkImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		Element networkStatsElem = (Element) DomUtils.getChildNode(element, "network-stats");
+		if (networkStatsElem != null) {
+			NetworkStatsImpl networkStatsImpl = new NetworkStatsImpl();
+			networkStatsImpl.init(networkStatsElem);
+			setNetworkStats(networkStatsImpl);
+		}
+		Element updateElem = (Element) DomUtils.getChildNode(element, "updates");
+		if (updateElem != null) {
+			UpdatesImpl updateImpl = new UpdatesImpl();
+			updateImpl.init(updateElem);
+			setUpdates(updateImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("network");
+		if (getNetworkStats() != null) {
+			element.appendChild(((NetworkStatsImpl) getNetworkStats()).toXml(document));
+		}
+		if (getUpdates() != null) {
+			element.appendChild(((UpdatesImpl) getUpdates()).toXml(document));
+		}
+		return element;
 	}
-
 }

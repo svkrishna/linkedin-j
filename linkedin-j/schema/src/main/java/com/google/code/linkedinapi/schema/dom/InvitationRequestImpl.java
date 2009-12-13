@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Authorization;
@@ -33,14 +34,29 @@ public class InvitationRequestImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
+		Element authElem = (Element) DomUtils.getChildNode(element, "authorization");
+		if (authElem != null) {
+			AuthorizationImpl authImpl = new AuthorizationImpl();
+			authImpl.init(authElem);
+			setAuthorization(authImpl);
+		}
+		String connectTypeStr = DomUtils.getElementValueFromNode(element, "connect-type");
+		if (connectTypeStr != null) {
+			setConnectType(InviteConnectType.fromValue(connectTypeStr));
+		}
 		
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("invitation-request");
+		if (getConnectType() != null) {
+			DomUtils.setElementValueToNode(element, "connect-type", getConnectType().value());
+		}
+		
+		if (getAuthorization() != null) {
+			element.appendChild(((AuthorizationImpl) getAuthorization()).toXml(document));
+		}
+		return element;
 	}
-
 }

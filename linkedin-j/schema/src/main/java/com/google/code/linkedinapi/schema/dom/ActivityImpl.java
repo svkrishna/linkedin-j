@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Activity;
@@ -49,14 +50,23 @@ public class ActivityImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setLocale(element.getAttribute("locale"));
+		setTimestamp(DomUtils.getElementValueAsLongFromNode(element, "timestamp"));
+		String contentTypeStr = DomUtils.getElementValueFromNode(element, "content-type");
+		if (contentTypeStr != null) {
+			setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
+		}
+		setBody(DomUtils.getElementValueFromNode(element, "body"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("activity");
+		element.setAttribute("locale", getLocale());
+		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "content-type", getContentType().value());
+		DomUtils.setElementValueToNode(element, "body", getBody());
+		return element;
 	}
 
 }

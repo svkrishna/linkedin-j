@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.ItemContent;
@@ -51,14 +52,35 @@ public class MailboxItemImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		Element recepientsElem = (Element) DomUtils.getChildNode(element, "recipients");
+		if (recepientsElem != null) {
+			RecipientsImpl recipientsImpl = new RecipientsImpl();
+			recipientsImpl.init(recepientsElem);
+			setRecipients(recipientsImpl);
+		}
+		Element itemContentElem = (Element) DomUtils.getChildNode(element, "item-content");
+		if (itemContentElem != null) {
+			ItemContentImpl itemContentImpl = new ItemContentImpl();
+			itemContentImpl.init(itemContentElem);
+			setItemContent(itemContentImpl);
+		}
+		setSubject(DomUtils.getElementValueFromNode(element, "subject"));
+		setBody(DomUtils.getElementValueFromNode(element, "body"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("mailbox-item");
+		DomUtils.setElementValueToNode(element, "subject", getSubject());
+		DomUtils.setElementValueToNode(element, "body", getBody());
+		
+		if (getRecipients() != null) {
+			element.appendChild(((RecipientsImpl) getRecipients()).toXml(document));
+		}
+		if (getItemContent() != null) {
+			element.appendChild(((ItemContentImpl) getItemContent()).toXml(document));
+		}
+		return element;
 	}
 
 }

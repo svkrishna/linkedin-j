@@ -1,10 +1,14 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.List;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.Person;
 
 public class EducationsImpl
     extends BaseSchemaEntity
@@ -32,14 +36,22 @@ public class EducationsImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		List<Element> educations = DomUtils.getChildElementsByLocalName(element, "education");
+		for (Element education : educations) {
+			EducationImpl educationImpl = new EducationImpl();
+			educationImpl.init(education);
+			getEducation().add(educationImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("educations");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		for (Education education : getEducation()) {
+			element.appendChild(((EducationImpl) education).toXml(document));
+		}
+		return element;
 	}
-
 }

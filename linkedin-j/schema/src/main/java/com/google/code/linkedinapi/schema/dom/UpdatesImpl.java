@@ -4,6 +4,7 @@ package com.google.code.linkedinapi.schema.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Update;
@@ -34,14 +35,22 @@ public class UpdatesImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		List<Element> updateElems = DomUtils.getChildElementsByLocalName(element, "update");
+		for (Element updateElem : updateElems) {
+			UpdateImpl updateImpl = new UpdateImpl();
+			updateImpl.init(updateElem);
+			getUpdate().add(updateImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("updates");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		for (Update update : getUpdate()) {
+			element.appendChild(((UpdateImpl) update).toXml(document));
+		}
+		return element;
 	}
-
 }

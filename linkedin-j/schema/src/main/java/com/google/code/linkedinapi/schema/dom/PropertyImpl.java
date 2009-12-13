@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Property;
@@ -30,14 +31,16 @@ public class PropertyImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setKey(element.getAttribute("key"));
+		setValue(Long.parseLong(DomUtils.getElementValue(element)));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("property");
+		element.setAttribute("key", getKey());
+		DomUtils.setElementValue(element, String.valueOf(getValue()));
+		return element;
 	}
 
 }

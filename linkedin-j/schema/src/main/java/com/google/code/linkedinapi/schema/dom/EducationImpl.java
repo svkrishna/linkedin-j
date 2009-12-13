@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Education;
@@ -60,14 +61,35 @@ public class EducationImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setSchoolName(DomUtils.getElementValueFromNode(element, "school-name"));
+		setDegree(DomUtils.getElementValueFromNode(element, "degree"));
+		Element startDateElem = (Element) DomUtils.getChildNode(element, "start-date");
+		if (startDateElem != null) {
+			StartDateImpl startDate = new StartDateImpl();
+			startDate.init(startDateElem);
+			setStartDate(startDate);
+		}
+		Element endDateElem = (Element) DomUtils.getChildNode(element, "end-date");
+		if (endDateElem != null) {
+			EndDateImpl endDate = new EndDateImpl();
+			endDate.init(endDateElem);
+			setEndDate(endDate);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("education");
+		DomUtils.setElementValueToNode(element, "id", String.valueOf(getId()));
+		DomUtils.setElementValueToNode(element, "school-name", String.valueOf(getSchoolName()));
+		DomUtils.setElementValueToNode(element, "degree", String.valueOf(getDegree()));
+		if (getStartDate() != null) {
+			element.appendChild(((StartDateImpl) getStartDate()).toXml(document));
+		}
+		if (getEndDate() != null) {
+			element.appendChild(((EndDateImpl) getEndDate()).toXml(document));
+		}
+		return element;
 	}
-
 }

@@ -4,6 +4,7 @@ package com.google.code.linkedinapi.schema.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.People;
@@ -52,14 +53,26 @@ public class PeopleImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		setStart(Long.valueOf(element.getAttribute("start")));
+		setCount(Long.valueOf(element.getAttribute("count")));
+		List<Element> persons = DomUtils.getChildElementsByLocalName(element, "person");
+		for (Element person : persons) {
+			PersonImpl personImpl = new PersonImpl();
+			personImpl.init(person);
+			getPerson().add(personImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("people");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		element.setAttribute("start", String.valueOf(getStart()));
+		element.setAttribute("count", String.valueOf(getCount()));
+		for (Person person : getPerson()) {
+			element.appendChild(((PersonImpl) person).toXml(document));
+		}
+		return element;
 	}
-
 }

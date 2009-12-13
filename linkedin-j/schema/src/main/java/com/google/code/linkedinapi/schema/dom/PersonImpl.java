@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
@@ -201,14 +202,108 @@ public class PersonImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
+		setPath(element.getAttribute("path"));
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setFirstName(DomUtils.getElementValueFromNode(element, "first-name"));
+		setLastName(DomUtils.getElementValueFromNode(element, "last-name"));
+		setHeadline(DomUtils.getElementValueFromNode(element, "headline"));
+		setIndustry(DomUtils.getElementValueFromNode(element, "industry"));
+		setNumRecommenders(DomUtils.getElementValueAsLongFromNode(element, "num-recommenders"));
+		setDistance(DomUtils.getElementValueAsLongFromNode(element, "distance"));
+		setCurrentStatus(DomUtils.getElementValueFromNode(element, "current-status"));
+		setCurrentStatusTimestamp(DomUtils.getElementValueAsLongFromNode(element, "current-status-timestamp"));
+		setPictureUrl(DomUtils.getElementValueFromNode(element, "picture-url"));
+		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
 		
+		Element locationElem = (Element) DomUtils.getChildNode(element, "location");
+		if (locationElem != null) {
+			LocationImpl location = new LocationImpl();
+			location.init(locationElem);
+			setLocation(location);
+		}
+		Element connectionsElem = (Element) DomUtils.getChildNode(element, "connections");
+		if (connectionsElem != null) {
+			ConnectionsImpl connections = new ConnectionsImpl();
+			connections.init(connectionsElem);
+			setConnections(connections);
+		}
+		Element relationElem = (Element) DomUtils.getChildNode(element, "relation-to-viewer");
+		if (relationElem != null) {
+			RelationToViewerImpl relation = new RelationToViewerImpl();
+			relation.init(relationElem);
+			setRelationToViewer(relation);
+		}
+		Element positionElem = (Element) DomUtils.getChildNode(element, "positions");
+		if (positionElem != null) {
+			PositionsImpl position = new PositionsImpl();
+			position.init(positionElem);
+			setPositions(position);
+		}
+		Element educationsElem = (Element) DomUtils.getChildNode(element, "educations");
+		if (educationsElem != null) {
+			EducationsImpl educations = new EducationsImpl();
+			educations.init(educationsElem);
+			setEducations(educations);
+		}
+		Element memberUrlElem = (Element) DomUtils.getChildNode(element, "member-url-resources");
+		if (memberUrlElem != null) {
+			MemberUrlResourcesImpl memberUrl = new MemberUrlResourcesImpl();
+			memberUrl.init(memberUrlElem);
+			setMemberUrlResources(memberUrl);
+		}
+		Element apiRequestElem = (Element) DomUtils.getChildNode(element, "api-standard-profile-request");
+		if (apiRequestElem != null) {
+			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
+			apiRequest.init(apiRequestElem);
+			setApiStandardProfileRequest(apiRequest);
+		}
+		Element siteRequestElem = (Element) DomUtils.getChildNode(element, "site-standard-profile-request");
+		if (apiRequestElem != null) {
+			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
+			apiRequest.init(apiRequestElem);
+			setSiteStandardProfileRequest(apiRequest);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("person");
+		element.setAttribute("path", getPath());
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
+		DomUtils.setElementValueToNode(element, "last-name", getLastName());
+		DomUtils.setElementValueToNode(element, "headline", getHeadline());
+		DomUtils.setElementValueToNode(element, "industry", getIndustry());
+		DomUtils.setElementValueToNode(element, "num-recommenders", String.valueOf(getNumRecommenders()));
+		DomUtils.setElementValueToNode(element, "distance", String.valueOf(getDistance()));
+		DomUtils.setElementValueToNode(element, "current-status", getCurrentStatus());
+		DomUtils.setElementValueToNode(element, "current-status-timestamp", String.valueOf(getCurrentStatusTimestamp()));
+		DomUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
+		DomUtils.setElementValueToNode(element, "summary", getSummary());
+		if (getLocation() != null) {
+			element.appendChild(((LocationImpl) getLocation()).toXml(document));
+		}
+		if (getConnections() != null) {
+			element.appendChild(((ConnectionsImpl) getConnections()).toXml(document));
+		}
+		if (getRelationToViewer() != null) {
+			element.appendChild(((RelationToViewerImpl) getRelationToViewer()).toXml(document));
+		}
+		if (getPositions() != null) {
+			element.appendChild(((PositionsImpl) getPositions()).toXml(document));
+		}
+		if (getEducations() != null) {
+			element.appendChild(((EducationsImpl) getEducations()).toXml(document));
+		}
+		if (getMemberUrlResources() != null) {
+			element.appendChild(((MemberUrlResourcesImpl) getMemberUrlResources()).toXml(document));
+		}
+		if (getApiStandardProfileRequest() != null) {
+			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(document));
+		}
+		if (getSiteStandardProfileRequest() != null) {
+			element.appendChild(((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(document));
+		}
+		return element;
 	}
-
 }

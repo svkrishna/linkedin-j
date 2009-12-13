@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.UpdateComment;
@@ -22,14 +23,13 @@ public class UpdateCommentImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setComment(DomUtils.getElementValueFromNode(element, "comment"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("update-comment");
+		DomUtils.setElementValueToNode(element, "comment", getComment());
+		return element;
 	}
-
 }

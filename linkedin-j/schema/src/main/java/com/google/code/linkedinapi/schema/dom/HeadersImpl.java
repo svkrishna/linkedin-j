@@ -1,8 +1,12 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.List;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Headers;
 import com.google.code.linkedinapi.schema.HttpHeader;
 
@@ -32,14 +36,22 @@ public class HeadersImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		List<Element> headers = DomUtils.getChildElementsByLocalName(element, "http-header");
+		for (Element httpHeader : headers) {
+			HttpHeaderImpl httpHeaderImpl = new HttpHeaderImpl();
+			httpHeaderImpl.init(httpHeader);
+			getHttpHeader().add(httpHeaderImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("headers");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		for (HttpHeader httpHeader : getHttpHeader()) {
+			element.appendChild(((HttpHeaderImpl) httpHeader).toXml(document));
+		}
+		return element;
 	}
-
 }

@@ -4,6 +4,7 @@ package com.google.code.linkedinapi.schema.dom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.NetworkStats;
@@ -34,14 +35,22 @@ public class NetworkStatsImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTotal(Long.valueOf(element.getAttribute("total")));
+		List<Element> properties = DomUtils.getChildElementsByLocalName(element, "property");
+		for (Element property : properties) {
+			PropertyImpl personImpl = new PropertyImpl();
+			personImpl.init(property);
+			getProperty().add(personImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("network-stats");
+		element.setAttribute("total", String.valueOf(getTotal()));
+		for (Property property : getProperty()) {
+			element.appendChild(((PropertyImpl) property).toXml(document));
+		}
+		return element;
 	}
-
 }

@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
@@ -60,14 +61,30 @@ public class UpdateImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setTimestamp(DomUtils.getElementValueAsLongFromNode(element, "timestamp"));
+		setUpdateKey(DomUtils.getElementValueFromNode(element, "update-key"));
+		setUpdateType(NetworkUpdateReturnType.valueOf(DomUtils.getElementValueFromNode(element, "update-type")));
+		setIsCommentable(Boolean.parseBoolean(DomUtils.getElementValueFromNode(element, "is-commentable")));
+		Element contentElem = (Element) DomUtils.getChildNode(element, "update-content");
+		if (contentElem != null) {
+			UpdateContentImpl contentImpl = new UpdateContentImpl();
+			contentImpl.init(contentElem);
+			setUpdateContent(contentImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("update");
+		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "update-key", getUpdateKey());
+		DomUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
+		DomUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
+		
+		if (getUpdateContent() != null) {
+			element.appendChild(((UpdateContentImpl) getUpdateContent()).toXml(document));
+		}
+		return element;
 	}
 
 }

@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Company;
@@ -69,14 +70,47 @@ public class PositionImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setTitle(DomUtils.getElementValueFromNode(element, "title"));
+		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
+		setIsCurrent(Boolean.parseBoolean(DomUtils.getElementValueFromNode(element, "is-current")));
+		Element companyElem = (Element) DomUtils.getChildNode(element, "company");
+		if (companyElem != null) {
+			CompanyImpl companyImpl = new CompanyImpl();
+			companyImpl.init(companyElem);
+			setCompany(companyImpl);
+		}
+		Element startDateElem = (Element) DomUtils.getChildNode(element, "start-date");
+		if (startDateElem != null) {
+			StartDateImpl startDateImpl = new StartDateImpl();
+			startDateImpl.init(startDateElem);
+			setStartDate(startDateImpl);
+		}
+		Element endDateElem = (Element) DomUtils.getChildNode(element, "end-date");
+		if (endDateElem != null) {
+			EndDateImpl endDate = new EndDateImpl();
+			endDate.init(endDateElem);
+			setEndDate(endDate);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("position");
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "title", getTitle());
+		DomUtils.setElementValueToNode(element, "summary", getSummary());
+		DomUtils.setElementValueToNode(element, "is-current", String.valueOf(isIsCurrent()));
+		
+		if (getCompany() != null) {
+			element.appendChild(((CompanyImpl) getCompany()).toXml(document));
+		}
+		if (getStartDate() != null) {
+			element.appendChild(((StartDateImpl) getStartDate()).toXml(document));
+		}
+		if (getEndDate() != null) {
+			element.appendChild(((EndDateImpl) getEndDate()).toXml(document));
+		}
+		return element;
 	}
-
 }

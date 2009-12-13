@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Country;
@@ -32,14 +33,23 @@ public class LocationImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		Element countryElem = (Element) DomUtils.getChildNode(element, "country");
+		if (countryElem != null) {
+			CountryImpl countryImpl = new CountryImpl();
+			countryImpl.init(countryElem);
+			setCountry(countryImpl);
+		}
+		setName(DomUtils.getElementValueFromNode(element, "name"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("location");
+		DomUtils.setElementValueToNode(element, "name", getName());
+		
+		if (getCountry() != null) {
+			element.appendChild(((CountryImpl) getCountry()).toXml(document));
+		}
+		return element;
 	}
-
 }

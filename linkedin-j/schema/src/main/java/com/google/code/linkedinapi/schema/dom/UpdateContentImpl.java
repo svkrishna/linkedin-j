@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Person;
@@ -23,14 +24,20 @@ public class UpdateContentImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		Element personElem = (Element) DomUtils.getChildNode(element, "person");
+		if (personElem != null) {
+			PersonImpl personImpl = new PersonImpl();
+			personImpl.init(personElem);
+			setPerson(personImpl);
+		}
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("update-content");
+		if (getPerson() != null) {
+			element.appendChild(((PersonImpl) getPerson()).toXml(document));
+		}
+		return element;
 	}
-
 }

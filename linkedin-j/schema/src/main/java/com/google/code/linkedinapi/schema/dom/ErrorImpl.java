@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Error;
@@ -49,14 +50,19 @@ public class ErrorImpl
 
 	@Override
 	public void init(Element element) {
-		// TODO Auto-generated method stub
-		
+		setStatus(DomUtils.getElementValueAsLongFromNode(element, "status"));
+		setTimestamp(DomUtils.getElementValueAsLongFromNode(element, "timestamp"));
+		setErrorCode(DomUtils.getElementValueFromNode(element, "error-code"));
+		setMessage(DomUtils.getElementValueFromNode(element, "message"));
 	}
 
 	@Override
-	public Element toXml() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element toXml(Document document) {
+		Element element = document.createElement("error");
+		DomUtils.setElementValueToNode(element, "status", String.valueOf(getStatus()));
+		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "error-code", getErrorCode());
+		DomUtils.setElementValueToNode(element, "message", getMessage());
+		return element;
 	}
-
 }
