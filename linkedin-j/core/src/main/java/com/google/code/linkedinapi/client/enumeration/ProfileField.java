@@ -35,12 +35,17 @@ public enum ProfileField implements FieldEnum {
     /**
      * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
      */
-    LOCATION_NAME("location/name"),
+    LOCATION("location"),
+    
+    /**
+     * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
+     */
+//    LOCATION_NAME("location/name"),
 
     /**
      * country code for the LinkedIn member
      */
-    LOCATION_COUNTRY_CODE("location/country/code"),
+//    LOCATION_COUNTRY_CODE("location/country/code"),
 
     /**
      * the industry the LinkedIn member has indicated their profile belongs to
@@ -55,12 +60,17 @@ public enum ProfileField implements FieldEnum {
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    RELATION_TO_VIEWER_DISTANCE("relation-to-viewer/distance"),
+    RELATION_TO_VIEWER("relation-to-viewer"),
+    
+    /**
+     * the degree distance of the fetched profile from the member who fetched the profile
+     */
+//    RELATION_TO_VIEWER_DISTANCE("relation-to-viewer/distance"),
 
     /**
      * a total attribute will denote the number of connections that link the fetching member to the fetched. Contains brief connection/person objects indicating the connecting first degree members.
      */
-    RELATION_TO_VIEWER_CONNECTIONS("relation-to-viewer/connections"),
+//    RELATION_TO_VIEWER_CONNECTIONS("relation-to-viewer/connections"),
 
     /**
      * the member's current status, if set
@@ -120,37 +130,62 @@ public enum ProfileField implements FieldEnum {
     /**
      * The fully-qualified URL being shared
      */
-    MEMBER_URL_URL("member-url/url"),
+    MEMBER_URL("member-url"),
+    
+    /**
+     * The fully-qualified URL being shared
+     */
+//    MEMBER_URL_URL("member-url/url"),
 
     /**
      * The label given to the URL by the member
      */
-    MEMBER_URL_NAME("member-url/name"),
+//    MEMBER_URL_NAME("member-url/name"),
 
     /**
      * the URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
      */
-    SITE_STANDARD_PROFILE_REQUEST_URL("site-standard-profile-request/url"),
+    SITE_STANDARD_PROFILE_REQUEST("site-standard-profile-request"),
+    
+    /**
+     * the URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
+     */
+//    SITE_STANDARD_PROFILE_REQUEST_URL("site-standard-profile-request/url"),
 
     /**
      * The Public Profile URL for the member on the LinkedIn.com website. Returned only for Public Profile requests.
      */
-    SITE_PUBLIC_PROFILE_REQUEST_URL("site-public-profile-request/url"),
+    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request"),
+    
+    /**
+     * The Public Profile URL for the member on the LinkedIn.com website. Returned only for Public Profile requests.
+     */
+//    SITE_PUBLIC_PROFILE_REQUEST_URL("site-public-profile-request/url"),
 
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
-    API_PUBLIC_PROFILE_REQUEST_URL("api-public-profile-request/url"),
+    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request"),
+    
+    /**
+     * An URL representing the resource you would request for programmatic access to the member's public profile
+     */
+//    API_PUBLIC_PROFILE_REQUEST_URL("api-public-profile-request/url"),
 
     /**
      * An URL representing the resource you would request for programmatic access to the member's profile
      */
-    API_STANDARD_PROFILE_REQUEST_URL("api-standard-profile-request/url"),
+    API_STANDARD_PROFILE_REQUEST("api-standard-profile-request"),
+    
+    /**
+     * An URL representing the resource you would request for programmatic access to the member's profile
+     */
+//    API_STANDARD_PROFILE_REQUEST_URL("api-standard-profile-request/url"),
 
     /**
      * A collection of fields that can be re-used as HTTP headers to request an out of network profile programmatically
      */
-    API_STANDARD_PROFILE_REQUEST_HEADERS("api-standard-profile-request/headers"),
+//    API_STANDARD_PROFILE_REQUEST_HEADERS("api-standard-profile-request/headers"),
 
     /**
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
