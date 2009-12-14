@@ -12,7 +12,7 @@ import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RelationToViewer;
-import com.google.code.linkedinapi.schema.Url;
+import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 public class PersonImpl
     extends BaseSchemaEntity
@@ -36,7 +36,7 @@ public class PersonImpl
     protected EducationsImpl educations;
     protected MemberUrlResourcesImpl memberUrlResources;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
-    protected UrlImpl siteStandardProfileRequest;
+    protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
     protected String pictureUrl;
     protected String path;
 
@@ -176,12 +176,12 @@ public class PersonImpl
         this.apiStandardProfileRequest = ((ApiStandardProfileRequestImpl) value);
     }
 
-    public Url getSiteStandardProfileRequest() {
+    public SiteStandardProfileRequest getSiteStandardProfileRequest() {
         return siteStandardProfileRequest;
     }
 
-    public void setSiteStandardProfileRequest(Url value) {
-        this.siteStandardProfileRequest = ((UrlImpl) value);
+    public void setSiteStandardProfileRequest(SiteStandardProfileRequest value) {
+        this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
 
     public String getPictureUrl() {
@@ -258,9 +258,9 @@ public class PersonImpl
 			setApiStandardProfileRequest(apiRequest);
 		}
 		Element siteRequestElem = (Element) DomUtils.getChildNode(element, "site-standard-profile-request");
-		if (apiRequestElem != null) {
+		if (siteRequestElem != null) {
 			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
-			apiRequest.init(apiRequestElem);
+			apiRequest.init(siteRequestElem);
 			setSiteStandardProfileRequest(apiRequest);
 		}
 	}

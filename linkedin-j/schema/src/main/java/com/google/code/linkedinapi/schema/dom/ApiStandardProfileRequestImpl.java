@@ -8,10 +8,20 @@ import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Headers;
 
 public class ApiStandardProfileRequestImpl
-    extends UrlImpl
+	extends BaseSchemaEntity
     implements ApiStandardProfileRequest
 {
+
+    protected String url;
     protected HeadersImpl headers;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String value) {
+        this.url = value;
+    }
 
     public Headers getHeaders() {
         return headers;
@@ -23,7 +33,7 @@ public class ApiStandardProfileRequestImpl
     
 	@Override
 	public void init(Element element) {
-		super.init(element);
+		setUrl(DomUtils.getElementValueFromNode(element, "url"));
 		Element headersElem = (Element) DomUtils.getChildNode(element, "headers");
 		if (headersElem != null) {
 			HeadersImpl headerImpl = new HeadersImpl();
@@ -40,6 +50,4 @@ public class ApiStandardProfileRequestImpl
 		}
 		return element;
 	}
-    
-
 }

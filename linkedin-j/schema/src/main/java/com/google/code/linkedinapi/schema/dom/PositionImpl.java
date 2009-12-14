@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.StartDate;
 
@@ -17,6 +18,7 @@ public class PositionImpl
     protected String title;
     protected String summary;
     protected StartDateImpl startDate;
+    protected EndDateImpl endDate;
     protected boolean isCurrent;
     protected CompanyImpl company;
 
@@ -50,6 +52,14 @@ public class PositionImpl
 
     public void setStartDate(StartDate value) {
         this.startDate = ((StartDateImpl) value);
+    }
+
+    public EndDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(EndDate value) {
+        this.endDate = ((EndDateImpl) value);
     }
 
     public boolean isIsCurrent() {

@@ -7,11 +7,20 @@ import org.w3c.dom.Element;
 import com.google.code.linkedinapi.schema.MemberUrl;
 
 public class MemberUrlImpl
-    extends UrlImpl
+	extends BaseSchemaEntity
     implements MemberUrl
 {
 
+    protected String url;
     protected String name;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String value) {
+        this.url = value;
+    }
 
     public String getName() {
         return name;
@@ -23,8 +32,8 @@ public class MemberUrlImpl
 
 	@Override
 	public void init(Element element) {
-		super.init(element);
 		setName(DomUtils.getElementValueFromNode(element, "name"));
+		setUrl(DomUtils.getElementValueFromNode(element, "url"));
 	}
 
 	@Override

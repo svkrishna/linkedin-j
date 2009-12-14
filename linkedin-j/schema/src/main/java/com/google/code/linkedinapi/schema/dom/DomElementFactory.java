@@ -13,6 +13,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Country;
 import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.Headers;
 import com.google.code.linkedinapi.schema.HttpHeader;
@@ -36,399 +37,365 @@ import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.Recipients;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
+import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 import com.google.code.linkedinapi.schema.StartDate;
 import com.google.code.linkedinapi.schema.Update;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.UpdateContent;
 import com.google.code.linkedinapi.schema.Updates;
-import com.google.code.linkedinapi.schema.Url;
-import com.google.code.linkedinapi.schema.Year;
 
+/**
+ * A factory for creating DomElement objects.
+ */
 public class DomElementFactory implements SchemaElementFactory<Element> {
 	
+    /** The Constant _ContentType_QNAME. */
     private final static QName _ContentType_QNAME = new QName("", "content-type");
+    
+    /** The Constant _Headline_QNAME. */
     private final static QName _Headline_QNAME = new QName("", "headline");
+    
+    /** The Constant _Summary_QNAME. */
     private final static QName _Summary_QNAME = new QName("", "summary");
+    
+    /** The Constant _Body_QNAME. */
     private final static QName _Body_QNAME = new QName("", "body");
-    private final static QName _SiteStandardProfileRequest_QNAME = new QName("", "site-standard-profile-request");
+    
+    /** The Constant _Subject_QNAME. */
     private final static QName _Subject_QNAME = new QName("", "subject");
+    
+    /** The Constant _CurrentStatus_QNAME. */
     private final static QName _CurrentStatus_QNAME = new QName("", "current-status");
+    
+    /** The Constant _IsCommentable_QNAME. */
     private final static QName _IsCommentable_QNAME = new QName("", "is-commentable");
+    
+    /** The Constant _ErrorCode_QNAME. */
     private final static QName _ErrorCode_QNAME = new QName("", "error-code");
+    
+    /** The Constant _CurrentStatusTimestamp_QNAME. */
     private final static QName _CurrentStatusTimestamp_QNAME = new QName("", "current-status-timestamp");
+    
+    /** The Constant _Type_QNAME. */
     private final static QName _Type_QNAME = new QName("", "type");
+    
+    /** The Constant _NumRecommenders_QNAME. */
     private final static QName _NumRecommenders_QNAME = new QName("", "num-recommenders");
+    
+    /** The Constant _IsCurrent_QNAME. */
     private final static QName _IsCurrent_QNAME = new QName("", "is-current");
+    
+    /** The Constant _Timestamp_QNAME. */
     private final static QName _Timestamp_QNAME = new QName("", "timestamp");
+    
+    /** The Constant _Id_QNAME. */
     private final static QName _Id_QNAME = new QName("", "id");
+    
+    /** The Constant _ConnectType_QNAME. */
     private final static QName _ConnectType_QNAME = new QName("", "connect-type");
+    
+    /** The Constant _Distance_QNAME. */
     private final static QName _Distance_QNAME = new QName("", "distance");
+    
+    /** The Constant _Title_QNAME. */
     private final static QName _Title_QNAME = new QName("", "title");
+    
+    /** The Constant _Name_QNAME. */
     private final static QName _Name_QNAME = new QName("", "name");
+    
+    /** The Constant _Value_QNAME. */
     private final static QName _Value_QNAME = new QName("", "value");
+    
+    /** The Constant _Year_QNAME. */
     private final static QName _Year_QNAME = new QName("", "year");
+    
+    /** The Constant _LastName_QNAME. */
     private final static QName _LastName_QNAME = new QName("", "last-name");
+    
+    /** The Constant _Industry_QNAME. */
     private final static QName _Industry_QNAME = new QName("", "industry");
+    
+    /** The Constant _SchoolName_QNAME. */
     private final static QName _SchoolName_QNAME = new QName("", "school-name");
-    private final static QName _EndDate_QNAME = new QName("", "end-date");
+    
+    /** The Constant _UpdateType_QNAME. */
     private final static QName _UpdateType_QNAME = new QName("", "update-type");
+    
+    /** The Constant _Status_QNAME. */
     private final static QName _Status_QNAME = new QName("", "status");
+    
+    /** The Constant _Code_QNAME. */
     private final static QName _Code_QNAME = new QName("", "code");
+    
+    /** The Constant _Url_QNAME. */
     private final static QName _Url_QNAME = new QName("", "url");
+    
+    /** The Constant _UpdateKey_QNAME. */
     private final static QName _UpdateKey_QNAME = new QName("", "update-key");
+    
+    /** The Constant _Message_QNAME. */
     private final static QName _Message_QNAME = new QName("", "message");
+    
+    /** The Constant _Degree_QNAME. */
     private final static QName _Degree_QNAME = new QName("", "degree");
+    
+    /** The Constant _FirstName_QNAME. */
     private final static QName _FirstName_QNAME = new QName("", "first-name");
+    
+    /** The Constant _Month_QNAME. */
     private final static QName _Month_QNAME = new QName("", "month");
+    
+    /** The Constant _Comment_QNAME. */
     private final static QName _Comment_QNAME = new QName("", "comment");
+    
+    /** The Constant _PictureUrl_QNAME. */
     private final static QName _PictureUrl_QNAME = new QName("", "picture-url");
 	
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.google.code.linkedinapi.schema
-     * 
+     * Instantiates a new dom element factory.
      */
     public DomElementFactory() {
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createAuthorization()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createAuthorization()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createAuthorization()
+     */
     public Authorization createAuthorization() {
         return new AuthorizationImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCompany()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCompany()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createCompany()
+     */
     public Company createCompany() {
         return new CompanyImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipient()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipient()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createRecipient()
+     */
     public Recipient createRecipient() {
         return new RecipientImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPeople()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPeople()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createPeople()
+     */
     public People createPeople() {
         return new PeopleImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMailboxItem()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMailboxItem()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createMailboxItem()
+     */
     public MailboxItem createMailboxItem() {
         return new MailboxItemImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createActivity()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createActivity()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createActivity()
+     */
     public Activity createActivity() {
         return new ActivityImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPosition()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPosition()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createPosition()
+     */
     public Position createPosition() {
         return new PositionImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createYear()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createYear()
-	 */
-    public Year createYear() {
-        return new YearImpl();
-    }
-
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCountry()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCountry()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createCountry()
+     */
     public Country createCountry() {
         return new CountryImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrlResources()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrlResources()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createMemberUrlResources()
+     */
     public MemberUrlResources createMemberUrlResources() {
         return new MemberUrlResourcesImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createApiStandardProfileRequest()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createApiStandardProfileRequest()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createApiStandardProfileRequest()
+     */
     public ApiStandardProfileRequest createApiStandardProfileRequest() {
         return new ApiStandardProfileRequestImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createLocation()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createLocation()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createLocation()
+     */
     public Location createLocation() {
         return new LocationImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createInvitationRequest()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createInvitationRequest()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createInvitationRequest()
+     */
     public InvitationRequest createInvitationRequest() {
         return new InvitationRequestImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdate()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdate()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createUpdate()
+     */
     public Update createUpdate() {
         return new UpdateImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateContent()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateContent()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createUpdateContent()
+     */
     public UpdateContent createUpdateContent() {
         return new UpdateContentImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrl()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrl()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createMemberUrl()
+     */
     public MemberUrl createMemberUrl() {
         return new MemberUrlImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetwork()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetwork()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createNetwork()
+     */
     public Network createNetwork() {
         return new NetworkImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHeaders()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHeaders()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createHeaders()
+     */
     public Headers createHeaders() {
         return new HeadersImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPerson()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPerson()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createPerson()
+     */
     public Person createPerson() {
         return new PersonImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUrl()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUrl()
-	 */
-    public Url createUrl() {
-        return new UrlImpl();
-    }
-
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetworkStats()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetworkStats()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createNetworkStats()
+     */
     public NetworkStats createNetworkStats() {
         return new NetworkStatsImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createProperty()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createProperty()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createProperty()
+     */
     public Property createProperty() {
         return new PropertyImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPositions()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPositions()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createPositions()
+     */
     public Positions createPositions() {
         return new PositionsImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducation()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducation()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createEducation()
+     */
     public Education createEducation() {
         return new EducationImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateComment()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateComment()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createUpdateComment()
+     */
     public UpdateComment createUpdateComment() {
         return new UpdateCommentImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdates()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdates()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createUpdates()
+     */
     public Updates createUpdates() {
         return new UpdatesImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createError()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createError()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createError()
+     */
     public Error createError() {
         return new ErrorImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createConnections()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createConnections()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createConnections()
+     */
     public Connections createConnections() {
         return new ConnectionsImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createItemContent()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createItemContent()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createItemContent()
+     */
     public ItemContent createItemContent() {
         return new ItemContentImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipients()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipients()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createRecipients()
+     */
     public Recipients createRecipients() {
         return new RecipientsImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createStartDate()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createStartDate()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createStartDate()
+     */
     public StartDate createStartDate() {
         return new StartDateImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRelationToViewer()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRelationToViewer()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createRelationToViewer()
+     */
     public RelationToViewer createRelationToViewer() {
         return new RelationToViewerImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHttpHeader()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHttpHeader()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createHttpHeader()
+     */
     public HttpHeader createHttpHeader() {
         return new HttpHeaderImpl();
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducations()
-	 */
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducations()
-	 */
+     * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createEducations()
+     */
     public Educations createEducations() {
         return new EducationsImpl();
     }
+    
+	/* (non-Javadoc)
+	 * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createEndDate()
+	 */
+	@Override
+	public EndDate createEndDate() {
+		return new EndDateImpl();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createSiteStandardProfileRequest()
+	 */
+	@Override
+	public SiteStandardProfileRequest createSiteStandardProfileRequest() {
+		return new SiteStandardProfileRequestImpl();
+	}
     
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createContentType(com.google.code.linkedinapi.schema.NetworkUpdateContentType)
@@ -456,13 +423,6 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
 	 */
     public Element createBody(String value) {
         return createElement(_Body_QNAME, String.class, null, value);
-    }
-
-    /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createSiteStandardProfileRequest(com.google.code.linkedinapi.schema.Url)
-	 */
-    public Element createSiteStandardProfileRequest(Url value) {
-        return createElement(_SiteStandardProfileRequest_QNAME, UrlImpl.class, null, ((UrlImpl) value));
     }
 
     /* (non-Javadoc)
@@ -599,13 +559,6 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     }
 
     /* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEndDate(com.google.code.linkedinapi.schema.Year)
-	 */
-    public Element createEndDate(Year value) {
-        return createElement(_EndDate_QNAME, YearImpl.class, null, ((YearImpl) value));
-    }
-
-    /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateType(com.google.code.linkedinapi.schema.NetworkUpdateReturnType)
 	 */
     public Element createUpdateType(NetworkUpdateReturnType value) {
@@ -682,6 +635,16 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
         return createElement(_PictureUrl_QNAME, String.class, null, value);
     }
     
+    /**
+     * Creates a new DomElement object.
+     * 
+     * @param contentType_QNAME the content type_ qname
+     * @param class1 the class1
+     * @param object the object
+     * @param value the value
+     * 
+     * @return the element
+     */
     private Element createElement(QName contentType_QNAME,
 			Class<?> class1, Object object,
 			Object value) {

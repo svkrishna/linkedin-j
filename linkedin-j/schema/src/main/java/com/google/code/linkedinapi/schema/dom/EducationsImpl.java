@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -8,22 +9,20 @@ import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Educations;
-import com.google.code.linkedinapi.schema.Person;
 
 public class EducationsImpl
     extends BaseSchemaEntity
     implements Educations
 {
 
-    protected EducationImpl education;
+    protected List<Education> education;
     protected Long total;
 
-    public Education getEducation() {
-        return education;
-    }
-
-    public void setEducation(Education value) {
-        this.education = ((EducationImpl) value);
+    public List<Education> getEducation() {
+        if (education == null) {
+            education = new ArrayList<Education>();
+        }
+        return this.education;
     }
 
     public Long getTotal() {

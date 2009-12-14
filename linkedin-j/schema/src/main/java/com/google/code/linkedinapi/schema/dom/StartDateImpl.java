@@ -7,11 +7,20 @@ import org.w3c.dom.Element;
 import com.google.code.linkedinapi.schema.StartDate;
 
 public class StartDateImpl
-    extends YearImpl
+	extends BaseSchemaEntity
     implements StartDate
 {
 
+    protected Long year;
     protected Long month;
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long value) {
+        this.year = value;
+    }
 
     public Long getMonth() {
         return month;
@@ -23,7 +32,7 @@ public class StartDateImpl
     
 	@Override
 	public void init(Element element) {
-		super.init(element);
+		setYear(DomUtils.getElementValueAsLongFromNode(element, "year"));
 		setMonth(DomUtils.getElementValueAsLongFromNode(element, "month"));
 	}
 
@@ -31,6 +40,7 @@ public class StartDateImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("start-date");
 		DomUtils.setElementValueToNode(element, "month", String.valueOf(getMonth()));
+		DomUtils.setElementValueToNode(element, "year", String.valueOf(getYear()));
 		return element;
 	}
 }

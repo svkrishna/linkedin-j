@@ -1,12 +1,12 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Headers;
 import com.google.code.linkedinapi.schema.HttpHeader;
 
@@ -15,15 +15,14 @@ public class HeadersImpl
     implements Headers
 {
 
-    protected HttpHeaderImpl httpHeader;
+    protected List<HttpHeader> httpHeader;
     protected Long total;
 
-    public HttpHeader getHttpHeader() {
-        return httpHeader;
-    }
-
-    public void setHttpHeader(HttpHeader value) {
-        this.httpHeader = ((HttpHeaderImpl) value);
+    public List<HttpHeader> getHttpHeader() {
+        if (httpHeader == null) {
+            httpHeader = new ArrayList<HttpHeader>();
+        }
+        return this.httpHeader;
     }
 
     public Long getTotal() {

@@ -5,8 +5,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.Education;
+import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.StartDate;
-import com.google.code.linkedinapi.schema.Year;
 
 public class EducationImpl
     extends BaseSchemaEntity
@@ -17,7 +17,7 @@ public class EducationImpl
     protected String schoolName;
     protected String degree;
     protected StartDateImpl startDate;
-    protected YearImpl endDate;
+    protected EndDateImpl endDate;
 
     public String getId() {
         return id;
@@ -51,12 +51,12 @@ public class EducationImpl
         this.startDate = ((StartDateImpl) value);
     }
 
-    public Year getEndDate() {
+    public EndDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Year value) {
-        this.endDate = ((YearImpl) value);
+    public void setEndDate(EndDate value) {
+        this.endDate = ((EndDateImpl) value);
     }
 
 	@Override

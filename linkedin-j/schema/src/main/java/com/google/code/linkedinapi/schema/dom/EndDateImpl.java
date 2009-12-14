@@ -1,8 +1,12 @@
 
 package com.google.code.linkedinapi.schema.dom;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.EndDate;
 
 public class EndDateImpl
+	extends BaseSchemaEntity
     implements EndDate
 {
 
@@ -24,5 +28,18 @@ public class EndDateImpl
     public void setMonth(Long value) {
         this.month = value;
     }
+    
+	@Override
+	public void init(Element element) {
+		setYear(DomUtils.getElementValueAsLongFromNode(element, "year"));
+		setMonth(DomUtils.getElementValueAsLongFromNode(element, "month"));
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("end-date");
+		DomUtils.setElementValueToNode(element, "month", String.valueOf(getMonth()));
+		DomUtils.setElementValueToNode(element, "year", String.valueOf(getYear()));
+		return element;
+	}
 }
