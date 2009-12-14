@@ -7,7 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * @author akv
+ * @author Nabeel Mukhtar
  *
  */
 public abstract class BaseSchemaEntity {
