@@ -98,7 +98,14 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
      */
     protected String marshallObject(Object element) {
     	if (element instanceof Node) {
-    		return DomUtils.domToString((Node) element);    		
+    		return DomUtils.domToString((Node) element);
+    	} else if (element instanceof BaseSchemaEntity) {
+    		try {
+				Document document = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder().newDocument();
+				return DomUtils.domToString(((BaseSchemaEntity) element).toXml(document));
+			} catch (Exception e) {
+	    		throw new LinkedInApiClientException("Unkown element encountered:" + element, e);
+			}
     	} else {
     		throw new LinkedInApiClientException("Unkown element encountered:" + element);
     	}
