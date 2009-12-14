@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
@@ -18,6 +19,7 @@ import com.google.code.linkedinapi.schema.dom.ActivityImpl;
 import com.google.code.linkedinapi.schema.dom.BaseSchemaEntity;
 import com.google.code.linkedinapi.schema.dom.ConnectionsImpl;
 import com.google.code.linkedinapi.schema.dom.DomElementFactory;
+import com.google.code.linkedinapi.schema.dom.DomUtils;
 import com.google.code.linkedinapi.schema.dom.ErrorImpl;
 import com.google.code.linkedinapi.schema.dom.MailboxItemImpl;
 import com.google.code.linkedinapi.schema.dom.NetworkImpl;
@@ -95,18 +97,11 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
      * @return
      */
     protected String marshallObject(Object element) {
-//        try {
-//            StringWriter writer = new StringWriter();
-//            Marshaller   m = getJaxbContext().createMarshaller();
-//
-//            m.marshal(element, writer);
-//
-//            return writer.toString();
-//        } catch (JAXBException e) {
-//            throw new LinkedInApiClientException(e);
-//        }
-    	// TODO-NM: Implement this method.
-    	return null;
+    	if (element instanceof Node) {
+    		return DomUtils.domToString((Node) element);    		
+    	} else {
+    		throw new LinkedInApiClientException("Unkown element encountered:" + element);
+    	}
     }
 
     /**

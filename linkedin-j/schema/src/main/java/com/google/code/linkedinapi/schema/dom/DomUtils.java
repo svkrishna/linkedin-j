@@ -250,6 +250,19 @@ public class DomUtils {
     }
     
     /**
+     * Dom to string.
+     * 
+     * @param node the node
+     * 
+     * @return the string
+     */
+    public static String domToString(Node node) {
+    	StringBuilder builder = new StringBuilder();
+    	// TODO-NM: Implement this method..
+    	return builder.toString();
+    }
+    
+    /**
      * Checks if is null or empty.
      * 
      * @param string the string
