@@ -1,10 +1,14 @@
 package com.google.code.linkedinapi.schema.dom;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -257,12 +261,101 @@ public class DomUtils {
      * @return the string
      */
     public static String domToString(Node node) {
-    	StringBuilder builder = new StringBuilder();
-    	// TODO-NM: Implement this method..
-    	return builder.toString();
+    	StringWriter writer = new StringWriter();
+    	try {
+			writeNode(node, writer);
+		} catch (IOException e) {}
+    	return writer.toString();
     }
     
     /**
+     * 
+     */
+    public static void writeNode(Node node, Writer writer) throws IOException {
+    	if (node.getNodeType() == Node.DOCUMENT_NODE) {
+    		writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
+    		writeNode(((Document) node).getDocumentElement(), writer);
+    	} else if (node.getNodeType() == Node.ELEMENT_NODE) {
+    		writer.write("<");
+    		writer.write(node.getNodeName());
+    		if (node.hasAttributes()) {
+        		writer.write(" ");
+    			NamedNodeMap attributes = node.getAttributes();
+    		    for (int i = 0; i < attributes.getLength(); i++) {
+    		    	writer.write(attributes.item(i).getNodeName());
+    		    	writer.write("=\"");
+    		    	writer.write(escapeXml(attributes.item(i).getNodeValue(), true));
+    		    	writer.write("\"");
+
+    			 }
+    		}
+    		writer.write(">");
+    		
+    		if (node.hasChildNodes()) {
+    			NodeList children =  node.getChildNodes();
+    			for (int i = 0; i < children.getLength(); i++) {
+    				writeNode(children.item(i), writer);
+    			}
+    		}
+    		
+    		writer.write("</");
+    		writer.write(node.getNodeName());
+    		writer.write(">");
+    	} else if (node.getNodeType() == Node.CDATA_SECTION_NODE) {
+    		writer.write("<![CDATA[");
+    		writer.write(node.getNodeValue());
+    		writer.write("]]");
+    	} else if (node.getNodeType() == Node.TEXT_NODE) {
+    		writer.write(escapeXml(node.getNodeValue(), false));
+    	}
+	}
+
+    /**
+     * 
+     */
+	private static String escapeXml(String nodeValue, boolean escapeQuote) {
+		StringBuilder buffer = new StringBuilder();
+
+		for (int i = 0; i < nodeValue.length(); i++) {
+		    char c = nodeValue.charAt(i);
+
+		    switch (c) {
+
+		    case '<': {
+			    buffer.append("&lt;");
+			    break;
+		    }
+
+		    case '>': {
+			    buffer.append("&gt;");
+				break;
+		    }
+
+		    case '&': {
+			    buffer.append("&amp;");
+				break;
+		    }
+
+		    case '\"': {
+		    	if (escapeQuote) {
+				    buffer.append("&quot;");
+		    	} else {
+				    buffer.append("\"");
+		    	}
+				break;
+		    }
+
+		    default: {
+				buffer.append(c);
+				break;
+		    }
+		    }
+		}
+
+		return buffer.toString();
+	}
+
+	/**
      * Checks if is null or empty.
      * 
      * @param string the string
