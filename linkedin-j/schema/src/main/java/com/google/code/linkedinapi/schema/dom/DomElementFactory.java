@@ -1,7 +1,6 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
-import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -57,106 +56,106 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
 	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
 	
     /** The Constant _ContentType_QNAME. */
-    private final static QName _ContentType_QNAME = new QName("", "content-type");
+    private final static String _ContentType_QNAME = "content-type";
     
     /** The Constant _Headline_QNAME. */
-    private final static QName _Headline_QNAME = new QName("", "headline");
+    private final static String _Headline_QNAME = "headline";
     
     /** The Constant _Summary_QNAME. */
-    private final static QName _Summary_QNAME = new QName("", "summary");
+    private final static String _Summary_QNAME = "summary";
     
     /** The Constant _Body_QNAME. */
-    private final static QName _Body_QNAME = new QName("", "body");
+    private final static String _Body_QNAME = "body";
     
     /** The Constant _Subject_QNAME. */
-    private final static QName _Subject_QNAME = new QName("", "subject");
+    private final static String _Subject_QNAME = "subject";
     
     /** The Constant _CurrentStatus_QNAME. */
-    private final static QName _CurrentStatus_QNAME = new QName("", "current-status");
+    private final static String _CurrentStatus_QNAME = "current-status";
     
     /** The Constant _IsCommentable_QNAME. */
-    private final static QName _IsCommentable_QNAME = new QName("", "is-commentable");
+    private final static String _IsCommentable_QNAME = "is-commentable";
     
     /** The Constant _ErrorCode_QNAME. */
-    private final static QName _ErrorCode_QNAME = new QName("", "error-code");
+    private final static String _ErrorCode_QNAME = "error-code";
     
     /** The Constant _CurrentStatusTimestamp_QNAME. */
-    private final static QName _CurrentStatusTimestamp_QNAME = new QName("", "current-status-timestamp");
+    private final static String _CurrentStatusTimestamp_QNAME = "current-status-timestamp";
     
     /** The Constant _Type_QNAME. */
-    private final static QName _Type_QNAME = new QName("", "type");
+    private final static String _Type_QNAME = "type";
     
     /** The Constant _NumRecommenders_QNAME. */
-    private final static QName _NumRecommenders_QNAME = new QName("", "num-recommenders");
+    private final static String _NumRecommenders_QNAME = "num-recommenders";
     
     /** The Constant _IsCurrent_QNAME. */
-    private final static QName _IsCurrent_QNAME = new QName("", "is-current");
+    private final static String _IsCurrent_QNAME = "is-current";
     
     /** The Constant _Timestamp_QNAME. */
-    private final static QName _Timestamp_QNAME = new QName("", "timestamp");
+    private final static String _Timestamp_QNAME = "timestamp";
     
     /** The Constant _Id_QNAME. */
-    private final static QName _Id_QNAME = new QName("", "id");
+    private final static String _Id_QNAME = "id";
     
     /** The Constant _ConnectType_QNAME. */
-    private final static QName _ConnectType_QNAME = new QName("", "connect-type");
+    private final static String _ConnectType_QNAME = "connect-type";
     
     /** The Constant _Distance_QNAME. */
-    private final static QName _Distance_QNAME = new QName("", "distance");
+    private final static String _Distance_QNAME = "distance";
     
     /** The Constant _Title_QNAME. */
-    private final static QName _Title_QNAME = new QName("", "title");
+    private final static String _Title_QNAME = "title";
     
     /** The Constant _Name_QNAME. */
-    private final static QName _Name_QNAME = new QName("", "name");
+    private final static String _Name_QNAME = "name";
     
     /** The Constant _Value_QNAME. */
-    private final static QName _Value_QNAME = new QName("", "value");
+    private final static String _Value_QNAME = "value";
     
     /** The Constant _Year_QNAME. */
-    private final static QName _Year_QNAME = new QName("", "year");
+    private final static String _Year_QNAME = "year";
     
     /** The Constant _LastName_QNAME. */
-    private final static QName _LastName_QNAME = new QName("", "last-name");
+    private final static String _LastName_QNAME = "last-name";
     
     /** The Constant _Industry_QNAME. */
-    private final static QName _Industry_QNAME = new QName("", "industry");
+    private final static String _Industry_QNAME = "industry";
     
     /** The Constant _SchoolName_QNAME. */
-    private final static QName _SchoolName_QNAME = new QName("", "school-name");
+    private final static String _SchoolName_QNAME = "school-name";
     
     /** The Constant _UpdateType_QNAME. */
-    private final static QName _UpdateType_QNAME = new QName("", "update-type");
+    private final static String _UpdateType_QNAME = "update-type";
     
     /** The Constant _Status_QNAME. */
-    private final static QName _Status_QNAME = new QName("", "status");
+    private final static String _Status_QNAME = "status";
     
     /** The Constant _Code_QNAME. */
-    private final static QName _Code_QNAME = new QName("", "code");
+    private final static String _Code_QNAME = "code";
     
     /** The Constant _Url_QNAME. */
-    private final static QName _Url_QNAME = new QName("", "url");
+    private final static String _Url_QNAME = "url";
     
     /** The Constant _UpdateKey_QNAME. */
-    private final static QName _UpdateKey_QNAME = new QName("", "update-key");
+    private final static String _UpdateKey_QNAME = "update-key";
     
     /** The Constant _Message_QNAME. */
-    private final static QName _Message_QNAME = new QName("", "message");
+    private final static String _Message_QNAME = "message";
     
     /** The Constant _Degree_QNAME. */
-    private final static QName _Degree_QNAME = new QName("", "degree");
+    private final static String _Degree_QNAME = "degree";
     
     /** The Constant _FirstName_QNAME. */
-    private final static QName _FirstName_QNAME = new QName("", "first-name");
+    private final static String _FirstName_QNAME = "first-name";
     
     /** The Constant _Month_QNAME. */
-    private final static QName _Month_QNAME = new QName("", "month");
+    private final static String _Month_QNAME = "month";
     
     /** The Constant _Comment_QNAME. */
-    private final static QName _Comment_QNAME = new QName("", "comment");
+    private final static String _Comment_QNAME = "comment";
     
     /** The Constant _PictureUrl_QNAME. */
-    private final static QName _PictureUrl_QNAME = new QName("", "picture-url");
+    private final static String _PictureUrl_QNAME = "picture-url";
     
     private Document document;
 	
@@ -660,11 +659,9 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
      * 
      * @return the element
      */
-    private Element createElement(QName contentType_QNAME,
-			Class<?> class1, Object object,
-			Object value) {
+    private Element createElement(String contentType_QNAME, Class<?> class1, Object object, Object value) {
     	if (value != null) {
-    		Element element = (Element) DomUtils.createNodeForType(document, Node.ELEMENT_NODE, contentType_QNAME.getLocalPart());
+    		Element element = (Element) DomUtils.createNodeForType(document, Node.ELEMENT_NODE, contentType_QNAME);
     		DomUtils.setElementValue(element, value.toString());
     		return element;
     	} else {
