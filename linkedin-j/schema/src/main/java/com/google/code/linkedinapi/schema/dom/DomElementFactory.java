@@ -662,7 +662,15 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     private Element createElement(String contentType_QNAME, Class<?> class1, Object object, Object value) {
     	if (value != null) {
     		Element element = (Element) DomUtils.createNodeForType(document, Node.ELEMENT_NODE, contentType_QNAME);
-    		DomUtils.setElementValue(element, value.toString());
+    		if (class1.equals(InviteConnectType.class)) {
+        		DomUtils.setElementValue(element, ((InviteConnectType) value).value());
+    		} else if (class1.equals(NetworkUpdateReturnType.class)) {
+        		DomUtils.setElementValue(element, ((NetworkUpdateReturnType) value).value());
+    		} else if (class1.equals(NetworkUpdateContentType.class)) {
+        		DomUtils.setElementValue(element, ((NetworkUpdateContentType) value).value());
+    		} else {
+        		DomUtils.setElementValue(element, String.valueOf(value));
+    		}
     		return element;
     	} else {
     		return null;
