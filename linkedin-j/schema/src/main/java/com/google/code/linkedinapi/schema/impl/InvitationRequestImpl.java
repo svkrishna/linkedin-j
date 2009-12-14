@@ -17,7 +17,6 @@ import com.google.code.linkedinapi.schema.InviteConnectType;
 })
 @XmlRootElement(name = "invitation-request")
 public class InvitationRequestImpl
-    extends BaseSchemaEntity
     implements InvitationRequest
 {
 

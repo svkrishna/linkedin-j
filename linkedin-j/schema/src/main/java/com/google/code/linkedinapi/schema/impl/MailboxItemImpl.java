@@ -19,7 +19,6 @@ import com.google.code.linkedinapi.schema.Recipients;
 })
 @XmlRootElement(name = "mailbox-item")
 public class MailboxItemImpl
-    extends BaseSchemaEntity
     implements MailboxItem
 {
 

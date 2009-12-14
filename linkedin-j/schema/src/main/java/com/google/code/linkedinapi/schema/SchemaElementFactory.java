@@ -1,247 +1,418 @@
 package com.google.code.linkedinapi.schema;
 
+import javax.xml.bind.JAXBElement;
+
 public interface SchemaElementFactory<T> {
 
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createAuthorization()
-	 */
-	public Authorization createAuthorization();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCompany()
-	 */
-	public Company createCompany();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipient()
-	 */
-	public Recipient createRecipient();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPeople()
-	 */
-	public People createPeople();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMailboxItem()
-	 */
-	public MailboxItem createMailboxItem();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createActivity()
-	 */
-	public Activity createActivity();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPosition()
-	 */
-	public Position createPosition();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createYear()
-	 */
-	public Year createYear();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCountry()
-	 */
-	public Country createCountry();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrlResources()
-	 */
-	public MemberUrlResources createMemberUrlResources();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createApiStandardProfileRequest()
-	 */
-	public ApiStandardProfileRequest createApiStandardProfileRequest();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createLocation()
-	 */
-	public Location createLocation();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createInvitationRequest()
-	 */
-	public InvitationRequest createInvitationRequest();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdate()
-	 */
-	public Update createUpdate();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateContent()
-	 */
-	public UpdateContent createUpdateContent();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMemberUrl()
-	 */
-	public MemberUrl createMemberUrl();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetwork()
-	 */
-	public Network createNetwork();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHeaders()
-	 */
-	public Headers createHeaders();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPerson()
-	 */
-	public Person createPerson();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUrl()
-	 */
-	public Url createUrl();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNetworkStats()
-	 */
-	public NetworkStats createNetworkStats();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createProperty()
-	 */
-	public Property createProperty();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPositions()
-	 */
-	public Positions createPositions();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducation()
-	 */
-	public Education createEducation();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateComment()
-	 */
-	public UpdateComment createUpdateComment();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdates()
-	 */
-	public Updates createUpdates();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createError()
-	 */
-	public Error createError();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createConnections()
-	 */
-	public Connections createConnections();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createItemContent()
+	/**
+	 * Create an instance of {@link ItemContent }
+	 * 
 	 */
 	public ItemContent createItemContent();
 
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRecipients()
+	/**
+	 * Create an instance of {@link Company }
+	 * 
+	 */
+	public Company createCompany();
+
+	/**
+	 * Create an instance of {@link People }
+	 * 
+	 */
+	public People createPeople();
+
+	/**
+	 * Create an instance of {@link MailboxItem }
+	 * 
+	 */
+	public MailboxItem createMailboxItem();
+
+	/**
+	 * Create an instance of {@link Positions }
+	 * 
+	 */
+	public Positions createPositions();
+
+	/**
+	 * Create an instance of {@link Location }
+	 * 
+	 */
+	public Location createLocation();
+
+	/**
+	 * Create an instance of {@link Recipients }
+	 * 
 	 */
 	public Recipients createRecipients();
 
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createStartDate()
+	/**
+	 * Create an instance of {@link Position }
+	 * 
 	 */
-	public StartDate createStartDate();
+	public Position createPosition();
 
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createRelationToViewer()
+	/**
+	 * Create an instance of {@link Person }
+	 * 
 	 */
-	public RelationToViewer createRelationToViewer();
+	public Person createPerson();
 
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHttpHeader()
-	 */
-	public HttpHeader createHttpHeader();
-
-	/* (non-Javadoc)
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createEducations()
+	/**
+	 * Create an instance of {@link Educations }
+	 * 
 	 */
 	public Educations createEducations();
 
-	public T createContentType(NetworkUpdateContentType value);
+	/**
+	 * Create an instance of {@link NetworkStats }
+	 * 
+	 */
+	public NetworkStats createNetworkStats();
 
+	/**
+	 * Create an instance of {@link Error }
+	 * 
+	 */
+	public Error createError();
+
+	/**
+	 * Create an instance of {@link Update }
+	 * 
+	 */
+	public Update createUpdate();
+
+	/**
+	 * Create an instance of {@link MemberUrlResources }
+	 * 
+	 */
+	public MemberUrlResources createMemberUrlResources();
+
+	/**
+	 * Create an instance of {@link Network }
+	 * 
+	 */
+	public Network createNetwork();
+
+	/**
+	 * Create an instance of {@link Property }
+	 * 
+	 */
+	public Property createProperty();
+
+	/**
+	 * Create an instance of {@link EndDate }
+	 * 
+	 */
+	public EndDate createEndDate();
+
+	/**
+	 * Create an instance of {@link ApiStandardProfileRequest }
+	 * 
+	 */
+	public ApiStandardProfileRequest createApiStandardProfileRequest();
+
+	/**
+	 * Create an instance of {@link UpdateComment }
+	 * 
+	 */
+	public UpdateComment createUpdateComment();
+
+	/**
+	 * Create an instance of {@link SiteStandardProfileRequest }
+	 * 
+	 */
+	public SiteStandardProfileRequest createSiteStandardProfileRequest();
+
+	/**
+	 * Create an instance of {@link StartDate }
+	 * 
+	 */
+	public StartDate createStartDate();
+
+	/**
+	 * Create an instance of {@link HttpHeader }
+	 * 
+	 */
+	public HttpHeader createHttpHeader();
+
+	/**
+	 * Create an instance of {@link MemberUrl }
+	 * 
+	 */
+	public MemberUrl createMemberUrl();
+
+	/**
+	 * Create an instance of {@link Connections }
+	 * 
+	 */
+	public Connections createConnections();
+
+	/**
+	 * Create an instance of {@link Activity }
+	 * 
+	 */
+	public Activity createActivity();
+
+	/**
+	 * Create an instance of {@link Updates }
+	 * 
+	 */
+	public Updates createUpdates();
+
+	/**
+	 * Create an instance of {@link Recipient }
+	 * 
+	 */
+	public Recipient createRecipient();
+
+	/**
+	 * Create an instance of {@link UpdateContent }
+	 * 
+	 */
+	public UpdateContent createUpdateContent();
+
+	/**
+	 * Create an instance of {@link Education }
+	 * 
+	 */
+	public Education createEducation();
+
+	/**
+	 * Create an instance of {@link InvitationRequest }
+	 * 
+	 */
+	public InvitationRequest createInvitationRequest();
+
+	/**
+	 * Create an instance of {@link Authorization }
+	 * 
+	 */
+	public Authorization createAuthorization();
+
+	/**
+	 * Create an instance of {@link Country }
+	 * 
+	 */
+	public Country createCountry();
+
+	/**
+	 * Create an instance of {@link Headers }
+	 * 
+	 */
+	public Headers createHeaders();
+
+	/**
+	 * Create an instance of {@link RelationToViewer }
+	 * 
+	 */
+	public RelationToViewer createRelationToViewer();
+
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link NetworkUpdateContentType }{@code >}}
+	 * 
+	 */
+	public T createContentType(
+			NetworkUpdateContentType value);
+
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createHeadline(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createSummary(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createBody(String value);
 
-	public T createSiteStandardProfileRequest(Url value);
-
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createSubject(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createCurrentStatus(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
+	 * 
+	 */
 	public T createIsCommentable(Boolean value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createErrorCode(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createCurrentStatusTimestamp(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createType(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createNumRecommenders(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
+	 * 
+	 */
 	public T createIsCurrent(Boolean value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createTimestamp(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createId(String value);
 
-	public T createConnectType(InviteConnectType value);
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link InviteConnectType }{@code >}}
+	 * 
+	 */
+	public T createConnectType(
+			InviteConnectType value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createDistance(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createTitle(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createName(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createValue(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createYear(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createLastName(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createIndustry(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createSchoolName(String value);
 
-	public T createEndDate(Year value);
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link NetworkUpdateReturnType }{@code >}}
+	 * 
+	 */
+	public T createUpdateType(
+			NetworkUpdateReturnType value);
 
-	public T createUpdateType(NetworkUpdateReturnType value);
-
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createStatus(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createCode(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createUrl(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createUpdateKey(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createMessage(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createDegree(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createFirstName(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+	 * 
+	 */
 	public T createMonth(Long value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createComment(String value);
 
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+	 * 
+	 */
 	public T createPictureUrl(String value);
 
 }

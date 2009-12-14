@@ -5,11 +5,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.StartDate;
 
@@ -19,24 +19,25 @@ import com.google.code.linkedinapi.schema.StartDate;
     "title",
     "summary",
     "startDate",
+    "endDate",
     "isCurrent",
     "company"
 })
 @XmlRootElement(name = "position")
 public class PositionImpl
-    extends BaseSchemaEntity
     implements Position
 {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
     @XmlElement(required = true)
     protected String title;
     protected String summary;
     @XmlElement(name = "start-date", type = StartDateImpl.class)
     protected StartDateImpl startDate;
+    @XmlElement(name = "end-date", type = EndDateImpl.class)
+    protected EndDateImpl endDate;
     @XmlElement(name = "is-current")
     protected boolean isCurrent;
     @XmlElement(required = true, type = CompanyImpl.class)
@@ -72,6 +73,14 @@ public class PositionImpl
 
     public void setStartDate(StartDate value) {
         this.startDate = ((StartDateImpl) value);
+    }
+
+    public EndDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(EndDate value) {
+        this.endDate = ((EndDateImpl) value);
     }
 
     public boolean isIsCurrent() {

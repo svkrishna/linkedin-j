@@ -17,7 +17,6 @@ import com.google.code.linkedinapi.schema.Updates;
 })
 @XmlRootElement(name = "network")
 public class NetworkImpl
-    extends BaseSchemaEntity
     implements Network
 {
 

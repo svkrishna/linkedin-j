@@ -14,7 +14,6 @@ import com.google.code.linkedinapi.schema.Country;
 })
 @XmlRootElement(name = "country")
 public class CountryImpl
-    extends BaseSchemaEntity
     implements Country
 {
 

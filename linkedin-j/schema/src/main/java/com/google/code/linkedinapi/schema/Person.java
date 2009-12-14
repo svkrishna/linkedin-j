@@ -401,20 +401,20 @@ public interface Person
      * 
      * @return
      *     possible object is
-     *     {@link Url }
+     *     {@link SiteStandardProfileRequest }
      *     
      */
-    Url getSiteStandardProfileRequest();
+    SiteStandardProfileRequest getSiteStandardProfileRequest();
 
     /**
      * Sets the value of the siteStandardProfileRequest property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Url }
+     *     {@link SiteStandardProfileRequest }
      *     
      */
-    void setSiteStandardProfileRequest(Url value);
+    void setSiteStandardProfileRequest(SiteStandardProfileRequest value);
 
     /**
      * Gets the value of the pictureUrl property.

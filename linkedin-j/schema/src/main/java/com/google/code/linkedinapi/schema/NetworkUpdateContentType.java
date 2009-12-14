@@ -3,7 +3,6 @@ package com.google.code.linkedinapi.schema;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
-import javax.xml.bind.annotation.XmlType;
 
 
 /**
@@ -20,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "")
 @XmlEnum
 public enum NetworkUpdateContentType {
 
@@ -42,7 +40,7 @@ public enum NetworkUpdateContentType {
                 return c;
             }
         }
-        throw new IllegalArgumentException(v);
+        throw new IllegalArgumentException(v.toString());
     }
 
 }

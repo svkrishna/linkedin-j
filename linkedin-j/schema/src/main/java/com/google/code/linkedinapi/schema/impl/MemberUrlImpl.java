@@ -10,16 +10,26 @@ import com.google.code.linkedinapi.schema.MemberUrl;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "url",
     "name"
 })
 @XmlRootElement(name = "member-url")
 public class MemberUrlImpl
-    extends UrlImpl
     implements MemberUrl
 {
 
     @XmlElement(required = true)
+    protected String url;
+    @XmlElement(required = true)
     protected String name;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String value) {
+        this.url = value;
+    }
 
     public String getName() {
         return name;

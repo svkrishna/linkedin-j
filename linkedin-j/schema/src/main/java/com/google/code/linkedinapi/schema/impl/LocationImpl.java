@@ -16,7 +16,6 @@ import com.google.code.linkedinapi.schema.Location;
 })
 @XmlRootElement(name = "location")
 public class LocationImpl
-    extends BaseSchemaEntity
     implements Location
 {
 

@@ -5,13 +5,12 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Education;
+import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.StartDate;
-import com.google.code.linkedinapi.schema.Year;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -23,13 +22,11 @@ import com.google.code.linkedinapi.schema.Year;
 })
 @XmlRootElement(name = "education")
 public class EducationImpl
-    extends BaseSchemaEntity
     implements Education
 {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
     @XmlElement(name = "school-name", required = true)
     protected String schoolName;
@@ -37,8 +34,8 @@ public class EducationImpl
     protected String degree;
     @XmlElement(name = "start-date", required = true, type = StartDateImpl.class)
     protected StartDateImpl startDate;
-    @XmlElement(name = "end-date", required = true, type = YearImpl.class)
-    protected YearImpl endDate;
+    @XmlElement(name = "end-date", required = true, type = EndDateImpl.class)
+    protected EndDateImpl endDate;
 
     public String getId() {
         return id;
@@ -72,12 +69,12 @@ public class EducationImpl
         this.startDate = ((StartDateImpl) value);
     }
 
-    public Year getEndDate() {
+    public EndDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Year value) {
-        this.endDate = ((YearImpl) value);
+    public void setEndDate(EndDate value) {
+        this.endDate = ((EndDateImpl) value);
     }
 
 }

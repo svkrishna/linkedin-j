@@ -15,7 +15,6 @@ import com.google.code.linkedinapi.schema.MemberUrlResources;
 })
 @XmlRootElement(name = "member-url-resources")
 public class MemberUrlResourcesImpl
-    extends BaseSchemaEntity
     implements MemberUrlResources
 {
 

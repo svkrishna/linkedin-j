@@ -14,7 +14,6 @@ import com.google.code.linkedinapi.schema.UpdateComment;
 })
 @XmlRootElement(name = "update-comment")
 public class UpdateCommentImpl
-    extends BaseSchemaEntity
     implements UpdateComment
 {
 

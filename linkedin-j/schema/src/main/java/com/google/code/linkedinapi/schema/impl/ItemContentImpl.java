@@ -15,7 +15,6 @@ import com.google.code.linkedinapi.schema.ItemContent;
 })
 @XmlRootElement(name = "item-content")
 public class ItemContentImpl
-    extends BaseSchemaEntity
     implements ItemContent
 {
 

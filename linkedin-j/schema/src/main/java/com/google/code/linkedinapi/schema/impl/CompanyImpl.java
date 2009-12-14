@@ -16,7 +16,6 @@ import com.google.code.linkedinapi.schema.Company;
 })
 @XmlRootElement(name = "company")
 public class CompanyImpl
-    extends BaseSchemaEntity
     implements Company
 {
 

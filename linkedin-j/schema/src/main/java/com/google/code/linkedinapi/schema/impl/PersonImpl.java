@@ -6,10 +6,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Educations;
@@ -18,8 +18,7 @@ import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RelationToViewer;
-import com.google.code.linkedinapi.schema.Url;
-import org.w3._2001.xmlschema.Adapter1;
+import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -45,12 +44,10 @@ import org.w3._2001.xmlschema.Adapter1;
 })
 @XmlRootElement(name = "person")
 public class PersonImpl
-    extends BaseSchemaEntity
     implements Person
 {
 
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
     @XmlElement(name = "first-name")
     protected String firstName;
@@ -66,15 +63,12 @@ public class PersonImpl
     protected String currentStatus;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "integer")
     protected Long distance;
     @XmlElement(name = "current-status-timestamp", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "integer")
     protected Long currentStatusTimestamp;
     @XmlElement(name = "num-recommenders", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "integer")
     protected Long numRecommenders;
     @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
     protected RelationToViewerImpl relationToViewer;
@@ -87,13 +81,11 @@ public class PersonImpl
     protected MemberUrlResourcesImpl memberUrlResources;
     @XmlElement(name = "api-standard-profile-request", type = ApiStandardProfileRequestImpl.class)
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
-    @XmlElement(name = "site-standard-profile-request", type = UrlImpl.class)
-    protected UrlImpl siteStandardProfileRequest;
+    @XmlElement(name = "site-standard-profile-request", type = SiteStandardProfileRequestImpl.class)
+    protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
     @XmlElement(name = "picture-url")
-    @XmlSchemaType(name = "anyURI")
     protected String pictureUrl;
     @XmlAttribute
-    @XmlSchemaType(name = "anySimpleType")
     protected String path;
 
     public String getId() {
@@ -232,12 +224,12 @@ public class PersonImpl
         this.apiStandardProfileRequest = ((ApiStandardProfileRequestImpl) value);
     }
 
-    public Url getSiteStandardProfileRequest() {
+    public SiteStandardProfileRequest getSiteStandardProfileRequest() {
         return siteStandardProfileRequest;
     }
 
-    public void setSiteStandardProfileRequest(Url value) {
-        this.siteStandardProfileRequest = ((UrlImpl) value);
+    public void setSiteStandardProfileRequest(SiteStandardProfileRequest value) {
+        this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
 
     public String getPictureUrl() {

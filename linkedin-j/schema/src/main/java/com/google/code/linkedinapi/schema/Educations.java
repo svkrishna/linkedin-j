@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema;
 
+import java.util.List;
 
 
 /**
@@ -13,7 +14,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}education"/>
+ *         &lt;element ref="{}education" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
@@ -31,22 +32,26 @@ public interface Educations
     /**
      * Gets the value of the education property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Education }
-     *     
-     */
-    Education getEducation();
-
-    /**
-     * Sets the value of the education property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the education property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Education }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getEducation().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Education }
+     * 
+     * 
      */
-    void setEducation(Education value);
+    List<Education> getEducation();
 
     /**
      * Gets the value of the total property.

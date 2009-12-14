@@ -17,6 +17,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}title"/>
  *         &lt;element ref="{}summary" minOccurs="0"/>
  *         &lt;element ref="{}start-date" minOccurs="0"/>
+ *         &lt;element ref="{}end-date" minOccurs="0"/>
  *         &lt;element ref="{}is-current"/>
  *         &lt;element ref="{}company"/>
  *       &lt;/sequence>
@@ -111,6 +112,26 @@ public interface Position
      *     
      */
     void setStartDate(StartDate value);
+
+    /**
+     * Gets the value of the endDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EndDate }
+     *     
+     */
+    EndDate getEndDate();
+
+    /**
+     * Sets the value of the endDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EndDate }
+     *     
+     */
+    void setEndDate(EndDate value);
 
     /**
      * Gets the value of the isCurrent property.

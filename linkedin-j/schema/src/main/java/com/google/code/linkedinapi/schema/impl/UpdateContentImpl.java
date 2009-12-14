@@ -15,7 +15,6 @@ import com.google.code.linkedinapi.schema.UpdateContent;
 })
 @XmlRootElement(name = "update-content")
 public class UpdateContentImpl
-    extends BaseSchemaEntity
     implements UpdateContent
 {
 

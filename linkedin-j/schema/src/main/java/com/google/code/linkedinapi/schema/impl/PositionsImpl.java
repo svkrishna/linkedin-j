@@ -8,12 +8,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Positions;
-import org.w3._2001.xmlschema.Adapter1;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -21,7 +20,6 @@ import org.w3._2001.xmlschema.Adapter1;
 })
 @XmlRootElement(name = "positions")
 public class PositionsImpl
-    extends BaseSchemaEntity
     implements Positions
 {
 
@@ -29,7 +27,6 @@ public class PositionsImpl
     protected List<Position> position;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
-    @XmlSchemaType(name = "integer")
     protected Long total;
 
     public List<Position> getPosition() {

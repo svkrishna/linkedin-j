@@ -15,7 +15,6 @@ import com.google.code.linkedinapi.schema.Recipient;
 })
 @XmlRootElement(name = "recipient")
 public class RecipientImpl
-    extends BaseSchemaEntity
     implements Recipient
 {
 

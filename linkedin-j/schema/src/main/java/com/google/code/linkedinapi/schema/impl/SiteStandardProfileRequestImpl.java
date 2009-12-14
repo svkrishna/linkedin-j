@@ -6,22 +6,22 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Headers;
+import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "url",
     "headers"
 })
-@XmlRootElement(name = "api-standard-profile-request")
-public class ApiStandardProfileRequestImpl
-    implements ApiStandardProfileRequest
+@XmlRootElement(name = "site-standard-profile-request")
+public class SiteStandardProfileRequestImpl
+    implements SiteStandardProfileRequest
 {
 
     @XmlElement(required = true)
     protected String url;
-    @XmlElement(required = true, type = HeadersImpl.class)
+    @XmlElement(type = HeadersImpl.class)
     protected HeadersImpl headers;
 
     public String getUrl() {

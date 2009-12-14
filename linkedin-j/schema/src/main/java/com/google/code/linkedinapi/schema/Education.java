@@ -116,19 +116,19 @@ public interface Education
      * 
      * @return
      *     possible object is
-     *     {@link Year }
+     *     {@link EndDate }
      *     
      */
-    Year getEndDate();
+    EndDate getEndDate();
 
     /**
      * Sets the value of the endDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Year }
+     *     {@link EndDate }
      *     
      */
-    void setEndDate(Year value);
+    void setEndDate(EndDate value);
 
 }
