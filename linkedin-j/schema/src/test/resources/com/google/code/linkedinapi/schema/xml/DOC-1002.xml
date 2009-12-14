@@ -19,7 +19,7 @@
 	<current-status-timestamp>1259737200000</current-status-timestamp>
 	<connections total="55" />
 	<summary>All connections.</summary>
-	<positions total="1">
+	<positions total="2">
 		<position>
 			<id>1234A</id>
 			<title>Software Architect</title>
@@ -35,8 +35,27 @@
 				<industry>Information Technology</industry>
 			</company>
 		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
 	</positions>
-	<educations total="1">
+	<educations total="2">
 		<education>
 			<id>7890N</id>
 			<school-name>N.E.D. University</school-name>
@@ -46,6 +65,17 @@
 			</start-date>
 			<end-date>
 				<year>2000</year>
+			</end-date>
+		</education>
+		<education>
+			<id>8921N</id>
+			<school-name>FAST NU</school-name>
+			<degree>MS Computer Science</degree>
+			<start-date>
+				<year>1991</year>
+			</start-date>
+			<end-date>
+				<year>1994</year>
 			</end-date>
 		</education>
 	</educations>

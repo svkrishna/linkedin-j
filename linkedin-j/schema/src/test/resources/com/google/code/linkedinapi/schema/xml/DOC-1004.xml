@@ -97,6 +97,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=52208388&amp;authToken=hXL4&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
   </person>
   <person>
@@ -122,6 +128,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=20318112&amp;authToken=vLpn&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
     <picture-url>http://media.linkedin.com/mpr/mpr/shrink_80_80/p/1/000/01d/301/277364e.jpg</picture-url>
   </person>
@@ -148,6 +160,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=21372740&amp;authToken=zT9j&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
   </person>
   <person>
@@ -173,6 +191,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=24074089&amp;authToken=caAU&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
     <picture-url>http://media.linkedin.com/mpr/mpr/shrink_80_80/p/2/000/02b/22e/07ad4e1.jpg</picture-url>
   </person>
@@ -199,6 +223,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=21583966&amp;authToken=4uk2&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
   </person>
   <person>
@@ -224,6 +254,12 @@
     </api-standard-profile-request>
     <site-standard-profile-request>
       <url>http://www.linkedin.com/profile?viewProfile=&amp;key=11714757&amp;authToken=q3y9&amp;authType=name</url>
+      <headers total="1">
+        <http-header>
+          <name>x-li-auth-token</name>
+          <value>name:hXL4</value>
+        </http-header>
+      </headers>
     </site-standard-profile-request>
     <picture-url>http://media.linkedin.com/mpr/mpr/shrink_80_80/p/2/000/01c/185/39bc4ea.jpg</picture-url>
   </person>

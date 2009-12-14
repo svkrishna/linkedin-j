@@ -7,7 +7,7 @@
 		<javaType name="double" xmlType="xs:double"/>
 		<javaType name="long" xmlType="xs:integer"/>
 		<xjc:superInterface name="SchemaEntity"/>
-		<xjc:superClass name="BaseSchemaEntity"/>
+		<!-- <xjc:superClass name="BaseSchemaEntity"/> -->
 	</globalBindings>
     <schemaBindings>
       <package name="com.google.code.linkedinapi.schema" />

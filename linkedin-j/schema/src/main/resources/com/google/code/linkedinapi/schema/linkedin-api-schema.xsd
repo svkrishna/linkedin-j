@@ -256,6 +256,7 @@
         <xs:element ref="title"/>
         <xs:element minOccurs="0" ref="summary"/>
         <xs:element minOccurs="0" ref="start-date"/>
+        <xs:element minOccurs="0" ref="end-date"/>
         <xs:element ref="is-current"/>
         <xs:element ref="company"/>
       </xs:sequence>
@@ -276,7 +277,7 @@
   <xs:element name="educations">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="education"/>
+        <xs:element maxOccurs="unbounded" ref="education"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -294,7 +295,6 @@
   </xs:element>
   <xs:element name="school-name" type="xs:string"/>
   <xs:element name="degree" type="xs:string"/>
-  <xs:element name="end-date" type="year"/>
   <xs:element name="member-url-resources">
     <xs:complexType>
       <xs:sequence>
@@ -304,30 +304,67 @@
   </xs:element>
   <xs:element name="member-url">
     <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="url">
-          <xs:sequence>
-            <xs:element ref="name"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element ref="name"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="api-standard-profile-request">
     <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="url">
-          <xs:sequence>
-            <xs:element ref="headers"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element ref="headers"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="site-standard-profile-request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element minOccurs="0" ref="headers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
+  <xs:element name="body" type="xs:string"/>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="value" type="xs:NMTOKEN"/>
+  <xs:element name="timestamp" type="xs:integer"/>
+  <xs:element name="current-status" type="xs:string"/>
+  <xs:element name="connections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="person"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="industry" type="xs:string"/>
+  <xs:element name="distance" type="xs:integer"/>
+  <xs:element name="summary" type="xs:string"/>
+  <xs:element name="start-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="end-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="url" type="xs:anyURI"/>
   <xs:element name="headers">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="http-header"/>
+        <xs:element maxOccurs="unbounded" ref="http-header"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -340,47 +377,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="site-standard-profile-request" type="url"/>
-  <xs:element name="picture-url" type="xs:anyURI"/>
-  <xs:element name="body" type="xs:string"/>
-  <xs:element name="name" type="xs:string"/>
-  <xs:element name="value" type="xs:NMTOKEN"/>
-  <xs:element name="current-status" type="xs:string"/>
-  <xs:element name="connections">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="person"/>
-      </xs:sequence>
-      <xs:attribute name="total" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="timestamp" type="xs:integer"/>
-  <xs:element name="id" type="xs:NMTOKEN"/>
-  <xs:element name="industry" type="xs:string"/>
-  <xs:element name="distance" type="xs:integer"/>
-  <xs:element name="summary" type="xs:string"/>
-  <xs:element name="start-date">
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="year">
-          <xs:sequence>
-            <xs:element minOccurs="0" ref="month"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="month" type="xs:integer"/>
-  <xs:complexType name="year">
-    <xs:sequence>
-      <xs:element ref="year"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:element name="year" type="xs:integer"/>
-  <xs:complexType name="url">
-    <xs:sequence>
-      <xs:element ref="url"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="url" type="xs:anyURI"/>
+  <xs:element name="month" type="xs:integer"/>
 </xs:schema>
