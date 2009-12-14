@@ -34,7 +34,7 @@ public class ConnectionsImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> persons = DomUtils.getChildElementsByLocalName(element, "person");
 		for (Element person : persons) {
 			PersonImpl personImpl = new PersonImpl();
@@ -46,7 +46,7 @@ public class ConnectionsImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("connections");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Person person : getPerson()) {
 			element.appendChild(((PersonImpl) person).toXml(document));
 		}

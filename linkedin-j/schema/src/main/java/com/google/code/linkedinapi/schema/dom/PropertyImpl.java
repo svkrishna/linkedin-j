@@ -39,7 +39,7 @@ public class PropertyImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("property");
 		element.setAttribute("key", getKey());
-		DomUtils.setElementValue(element, String.valueOf(getValue()));
+		DomUtils.setElementValue(element, getValue());
 		return element;
 	}
 

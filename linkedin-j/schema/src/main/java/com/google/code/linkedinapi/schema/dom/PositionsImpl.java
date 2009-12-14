@@ -35,7 +35,7 @@ public class PositionsImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> positionElems = DomUtils.getChildElementsByLocalName(element, "position");
 		for (Element positionElem : positionElems) {
 			PositionImpl positionImpl = new PositionImpl();
@@ -47,7 +47,7 @@ public class PositionsImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("positions");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Position position : getPosition()) {
 			element.appendChild(((PositionImpl) position).toXml(document));
 		}

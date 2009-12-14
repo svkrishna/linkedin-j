@@ -81,9 +81,9 @@ public class EducationImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("education");
-		DomUtils.setElementValueToNode(element, "id", String.valueOf(getId()));
-		DomUtils.setElementValueToNode(element, "school-name", String.valueOf(getSchoolName()));
-		DomUtils.setElementValueToNode(element, "degree", String.valueOf(getDegree()));
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "school-name", getSchoolName());
+		DomUtils.setElementValueToNode(element, "degree", getDegree());
 		if (getStartDate() != null) {
 			element.appendChild(((StartDateImpl) getStartDate()).toXml(document));
 		}

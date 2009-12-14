@@ -63,7 +63,7 @@ public class UpdateImpl
 	public void init(Element element) {
 		setTimestamp(DomUtils.getElementValueAsLongFromNode(element, "timestamp"));
 		setUpdateKey(DomUtils.getElementValueFromNode(element, "update-key"));
-		setUpdateType(NetworkUpdateReturnType.valueOf(DomUtils.getElementValueFromNode(element, "update-type")));
+		setUpdateType(NetworkUpdateReturnType.fromValue(DomUtils.getElementValueFromNode(element, "update-type")));
 		setIsCommentable(Boolean.parseBoolean(DomUtils.getElementValueFromNode(element, "is-commentable")));
 		Element contentElem = (Element) DomUtils.getChildElementByName(element, "update-content");
 		if (contentElem != null) {
@@ -76,7 +76,7 @@ public class UpdateImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("update");
-		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		DomUtils.setElementValueToNode(element, "update-key", getUpdateKey());
 		DomUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
 		DomUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));

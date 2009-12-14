@@ -63,7 +63,7 @@ public class ActivityImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("activity");
 		element.setAttribute("locale", getLocale());
-		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		DomUtils.setElementValueToNode(element, "content-type", getContentType().value());
 		DomUtils.setElementValueToNode(element, "body", getBody());
 		return element;

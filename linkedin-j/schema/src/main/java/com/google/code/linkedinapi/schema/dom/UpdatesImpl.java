@@ -35,7 +35,7 @@ public class UpdatesImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> updateElems = DomUtils.getChildElementsByLocalName(element, "update");
 		for (Element updateElem : updateElems) {
 			UpdateImpl updateImpl = new UpdateImpl();
@@ -47,7 +47,7 @@ public class UpdatesImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("updates");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Update update : getUpdate()) {
 			element.appendChild(((UpdateImpl) update).toXml(document));
 		}

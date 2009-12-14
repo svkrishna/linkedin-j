@@ -49,7 +49,7 @@ public class CompanyImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("company");
-		DomUtils.setElementValueToNode(element, "name", String.valueOf(getName()));
+		DomUtils.setElementValueToNode(element, "name", getName());
 		DomUtils.setElementValueToNode(element, "type", getType());
 		DomUtils.setElementValueToNode(element, "industry", getIndustry());
 		return element;

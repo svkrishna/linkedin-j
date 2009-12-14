@@ -35,7 +35,7 @@ public class EducationsImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> educations = DomUtils.getChildElementsByLocalName(element, "education");
 		for (Element education : educations) {
 			EducationImpl educationImpl = new EducationImpl();
@@ -47,7 +47,7 @@ public class EducationsImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("educations");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Education education : getEducation()) {
 			element.appendChild(((EducationImpl) education).toXml(document));
 		}

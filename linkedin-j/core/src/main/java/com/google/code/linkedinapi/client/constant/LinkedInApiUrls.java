@@ -293,7 +293,7 @@ public final class LinkedInApiUrls {
 	        	builder.append("(");
 	    		while (iter.hasNext()) {
 	    			FieldEnum fieldEnum = iter.next();
-	    			builder.append(fieldEnum.fieldName());
+	    			builder.append(encodeUrl(fieldEnum.fieldName()));
 	    			if (iter.hasNext()) {
 	    				builder.append(",");
 	    			}

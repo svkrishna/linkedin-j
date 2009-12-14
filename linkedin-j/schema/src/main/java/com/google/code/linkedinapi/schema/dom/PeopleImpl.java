@@ -53,9 +53,9 @@ public class PeopleImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
-		setStart(Long.valueOf(element.getAttribute("start")));
-		setCount(Long.valueOf(element.getAttribute("count")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
+		setStart(DomUtils.getAttributeValueAsLongFromNode(element, "start"));
+		setCount(DomUtils.getAttributeValueAsLongFromNode(element, "count"));
 		List<Element> persons = DomUtils.getChildElementsByLocalName(element, "person");
 		for (Element person : persons) {
 			PersonImpl personImpl = new PersonImpl();
@@ -67,9 +67,9 @@ public class PeopleImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("people");
-		element.setAttribute("total", String.valueOf(getTotal()));
-		element.setAttribute("start", String.valueOf(getStart()));
-		element.setAttribute("count", String.valueOf(getCount()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
+		DomUtils.setAttributeValueToNode(element, "start", getStart());
+		DomUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Person person : getPerson()) {
 			element.appendChild(((PersonImpl) person).toXml(document));
 		}

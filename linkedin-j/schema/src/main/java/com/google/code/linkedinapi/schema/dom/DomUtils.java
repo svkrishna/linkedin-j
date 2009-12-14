@@ -9,6 +9,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
+ * The Class DomUtils.
+ * 
  * @author    Nabeel Mukhtar
  * @created   June 27, 2001
  * @version   1.0
@@ -16,48 +18,72 @@ import org.w3c.dom.NodeList;
 public class DomUtils {
 
     /**
-     * Sets the ElementValueToNode attribute of the XMLUtils class
-     *
-     * @param node          The new ElementValueToNode value
-     * @param elementName   The new ElementValueToNode value
-     * @param elementValue  The new ElementValueToNode value
+     * Sets the element value to node.
+     * 
+     * @param node the node
+     * @param elementName the element name
+     * @param elementValue the element value
      */
-    public static void setElementValueToNode(Node node, String elementName, String elementValue) {
-        NodeList nodeList = node.getChildNodes();
+    public static void setElementValueToNode(Element node, String elementName, Object elementValue) {
+    	if (elementValue != null) {
+            NodeList nodeList = node.getChildNodes();
 
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node child = nodeList.item(i);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node child = nodeList.item(i);
 
-            if (child.getNodeName().equals(elementName)) {
-                child.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, elementValue));
+                if (child.getNodeName().equals(elementName)) {
+                    child.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, String.valueOf(elementValue)));
 
-                return;
+                    return;
+                }
             }
-        }
 
-        Node element = createNodeForType(node.getOwnerDocument(), Node.ELEMENT_NODE, elementName);
+            Node element = createNodeForType(node.getOwnerDocument(), Node.ELEMENT_NODE, elementName);
 
-        element.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, elementValue));
-        node.appendChild(element);
+            element.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, String.valueOf(elementValue)));
+            node.appendChild(element);
+    	}
     }
 
     /**
-     * Sets the ElementValueToNode attribute of the XMLUtils class
-     *
-     * @param node          The new ElementValueToNode value
-     * @param elementName   The new ElementValueToNode value
-     * @param elementValue  The new ElementValueToNode value
+     * Sets the element value.
+     * 
+     * @param node the node
+     * @param elementValue the element value
      */
-    public static void setElementValue(Element node, String elementValue) {
-    	node.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, elementValue));
+    public static void setElementValue(Element node, Object elementValue) {
+    	if (elementValue != null) {
+        	node.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, String.valueOf(elementValue)));
+    	}
     }
     
-    public static List<Element> getChildElementsByLocalName(Node node, String localName) {
+    /**
+     * Sets the attribute value to node.
+     * 
+     * @param node the node
+     * @param attributeName the attribute name
+     * @param attributeValue the attribute value
+     */
+    public static void setAttributeValueToNode(Element node, String attributeName, Object attributeValue) {
+    	if (attributeValue != null) {
+        	node.setAttribute(attributeName, String.valueOf(attributeValue));
+    	}
+    }
+    
+    /**
+     * Gets the child elements by local name.
+     * 
+     * @param node the node
+     * @param localName the local name
+     * 
+     * @return the child elements by local name
+     */
+    public static List<Element> getChildElementsByLocalName(Element node, String localName) {
         NodeList nodeList = node.getChildNodes();
         ArrayList<Element>   nodes    = new ArrayList<Element>();
 
         for (int i = 0; i < nodeList.getLength(); i++) {
-            if (localName.equals(nodeList.item(i).getLocalName()) && nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+            if (localName.equals(nodeList.item(i).getNodeName()) && nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 nodes.add((Element) nodeList.item(i));
             }
         }
@@ -66,10 +92,11 @@ public class DomUtils {
     }
     
     /**
-     * Gets the ElementValue attribute of the XMLUtils class
-     *
-     * @param element  Description of Parameter
-     * @return         The ElementValue value
+     * Gets the element value.
+     * 
+     * @param element the element
+     * 
+     * @return the element value
      */
     public static String getElementValue(Element element) {
         String nodeValue = null;
@@ -82,13 +109,14 @@ public class DomUtils {
     }
 
     /**
-     * Gets the ValueFromNode attribute of the DBInterfaceImpl object
-     *
-     * @param node       Description of Parameter
-     * @param valueName  Description of Parameter
-     * @return           The ValueFromNode value
+     * Gets the element value from node.
+     * 
+     * @param node the node
+     * @param valueName the value name
+     * 
+     * @return the element value from node
      */
-    public static String getElementValueFromNode(Node node, String valueName) {
+    public static String getElementValueFromNode(Element node, String valueName) {
         NodeList children = node.getChildNodes();
 
         for (int i = 0; i < children.getLength(); i++) {
@@ -104,7 +132,15 @@ public class DomUtils {
         return null;
     }
 
-    public static Long getElementValueAsLongFromNode(Node node, String valueName) {
+    /**
+     * Gets the element value as long from node.
+     * 
+     * @param node the node
+     * @param valueName the value name
+     * 
+     * @return the element value as long from node
+     */
+    public static Long getElementValueAsLongFromNode(Element node, String valueName) {
         NodeList children = node.getChildNodes();
 
         for (int i = 0; i < children.getLength(); i++) {
@@ -125,15 +161,45 @@ public class DomUtils {
         return null;
     }
     
+
     /**
-     * This method returns a Child Node associated with a Node.
-     *
-     * @param parent          - parent node
-     * @param childName  - name of child node.
-     * @return           - child node specified by name
-     * @see
+     * Gets the attribute value from node.
+     * 
+     * @param node the node
+     * @param attributeName the attribute name
+     * 
+     * @return the attribute value from node
      */
-    public static Element getChildElementByName(Node parent, String childName) {
+    public static String getAttributeValueFromNode(Element node, String attributeName) {
+        return node.getAttribute(attributeName);
+    }
+
+    /**
+     * Gets the attribute value as long from node.
+     * 
+     * @param node the node
+     * @param attributeName the attribute name
+     * 
+     * @return the attribute value as long from node
+     */
+    public static Long getAttributeValueAsLongFromNode(Element node, String attributeName) {
+    	String attribute = node.getAttribute(attributeName);
+    	if (isNullOrEmpty(attribute)) {
+    		return null;
+    	} else {
+    		return Long.valueOf(attribute);
+    	}
+    }
+    
+    /**
+     * Gets the child element by name.
+     * 
+     * @param parent the parent
+     * @param childName the child name
+     * 
+     * @return the child element by name
+     */
+    public static Element getChildElementByName(Element parent, String childName) {
         NodeList children = parent.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
         	Node     node   = children.item(i);
@@ -147,12 +213,13 @@ public class DomUtils {
     }
 
     /**
-     * Description of the Method
-     *
-     * @param document  Description of Parameter
-     * @param type      Description of Parameter
-     * @param nodeName  Description of Parameter
-     * @return          Description of the Returned Value
+     * Creates the node for type.
+     * 
+     * @param document the document
+     * @param type the type
+     * @param nodeName the node name
+     * 
+     * @return the node
      */
     public static Node createNodeForType(Document document, short type, String nodeName) {
         switch (type) {
@@ -180,5 +247,16 @@ public class DomUtils {
             return null;
         }
         }
+    }
+    
+    /**
+     * Checks if is null or empty.
+     * 
+     * @param string the string
+     * 
+     * @return true, if is null or empty
+     */
+    private static boolean isNullOrEmpty(String string) {
+    	return (string == null || string.isEmpty());
     }
 }

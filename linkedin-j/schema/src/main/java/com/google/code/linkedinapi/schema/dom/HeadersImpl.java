@@ -35,7 +35,7 @@ public class HeadersImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> headers = DomUtils.getChildElementsByLocalName(element, "http-header");
 		for (Element httpHeader : headers) {
 			HttpHeaderImpl httpHeaderImpl = new HttpHeaderImpl();
@@ -47,7 +47,7 @@ public class HeadersImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("headers");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (HttpHeader httpHeader : getHttpHeader()) {
 			element.appendChild(((HttpHeaderImpl) httpHeader).toXml(document));
 		}

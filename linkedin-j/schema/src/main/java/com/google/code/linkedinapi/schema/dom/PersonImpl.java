@@ -274,10 +274,10 @@ public class PersonImpl
 		DomUtils.setElementValueToNode(element, "last-name", getLastName());
 		DomUtils.setElementValueToNode(element, "headline", getHeadline());
 		DomUtils.setElementValueToNode(element, "industry", getIndustry());
-		DomUtils.setElementValueToNode(element, "num-recommenders", String.valueOf(getNumRecommenders()));
-		DomUtils.setElementValueToNode(element, "distance", String.valueOf(getDistance()));
+		DomUtils.setElementValueToNode(element, "num-recommenders", getNumRecommenders());
+		DomUtils.setElementValueToNode(element, "distance", getDistance());
 		DomUtils.setElementValueToNode(element, "current-status", getCurrentStatus());
-		DomUtils.setElementValueToNode(element, "current-status-timestamp", String.valueOf(getCurrentStatusTimestamp()));
+		DomUtils.setElementValueToNode(element, "current-status-timestamp", getCurrentStatusTimestamp());
 		DomUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
 		DomUtils.setElementValueToNode(element, "summary", getSummary());
 		if (getLocation() != null) {

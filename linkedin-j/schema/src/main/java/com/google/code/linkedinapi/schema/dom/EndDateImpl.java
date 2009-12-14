@@ -38,8 +38,8 @@ public class EndDateImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("end-date");
-		DomUtils.setElementValueToNode(element, "month", String.valueOf(getMonth()));
-		DomUtils.setElementValueToNode(element, "year", String.valueOf(getYear()));
+		DomUtils.setElementValueToNode(element, "month", getMonth());
+		DomUtils.setElementValueToNode(element, "year", getYear());
 		return element;
 	}
 }

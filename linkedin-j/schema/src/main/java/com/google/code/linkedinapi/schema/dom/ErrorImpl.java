@@ -59,8 +59,8 @@ public class ErrorImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("error");
-		DomUtils.setElementValueToNode(element, "status", String.valueOf(getStatus()));
-		DomUtils.setElementValueToNode(element, "timestamp", String.valueOf(getTimestamp()));
+		DomUtils.setElementValueToNode(element, "status", getStatus());
+		DomUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		DomUtils.setElementValueToNode(element, "error-code", getErrorCode());
 		DomUtils.setElementValueToNode(element, "message", getMessage());
 		return element;

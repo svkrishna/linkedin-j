@@ -29,7 +29,7 @@ public class RelationToViewerImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("relation-to-viewer");
-		DomUtils.setElementValueToNode(element, "distance", String.valueOf(getDistance()));
+		DomUtils.setElementValueToNode(element, "distance", getDistance());
 		return element;
 	}
 }

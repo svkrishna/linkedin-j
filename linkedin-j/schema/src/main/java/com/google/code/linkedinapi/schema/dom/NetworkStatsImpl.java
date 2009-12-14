@@ -35,7 +35,7 @@ public class NetworkStatsImpl
 
 	@Override
 	public void init(Element element) {
-		setTotal(Long.valueOf(element.getAttribute("total")));
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
 		List<Element> properties = DomUtils.getChildElementsByLocalName(element, "property");
 		for (Element property : properties) {
 			PropertyImpl personImpl = new PropertyImpl();
@@ -47,7 +47,7 @@ public class NetworkStatsImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("network-stats");
-		element.setAttribute("total", String.valueOf(getTotal()));
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Property property : getProperty()) {
 			element.appendChild(((PropertyImpl) property).toXml(document));
 		}

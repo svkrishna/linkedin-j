@@ -39,8 +39,8 @@ public class StartDateImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("start-date");
-		DomUtils.setElementValueToNode(element, "month", String.valueOf(getMonth()));
-		DomUtils.setElementValueToNode(element, "year", String.valueOf(getYear()));
+		DomUtils.setElementValueToNode(element, "month", getMonth());
+		DomUtils.setElementValueToNode(element, "year", getYear());
 		return element;
 	}
 }

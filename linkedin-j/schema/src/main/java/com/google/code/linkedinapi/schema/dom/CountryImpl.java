@@ -28,7 +28,7 @@ public class CountryImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("country");
-		DomUtils.setElementValueToNode(element, "code", String.valueOf(getCode()));
+		DomUtils.setElementValueToNode(element, "code", getCode());
 		return element;
 	}
 }
