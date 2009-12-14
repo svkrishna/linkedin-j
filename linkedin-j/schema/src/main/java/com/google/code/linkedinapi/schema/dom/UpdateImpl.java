@@ -65,7 +65,7 @@ public class UpdateImpl
 		setUpdateKey(DomUtils.getElementValueFromNode(element, "update-key"));
 		setUpdateType(NetworkUpdateReturnType.valueOf(DomUtils.getElementValueFromNode(element, "update-type")));
 		setIsCommentable(Boolean.parseBoolean(DomUtils.getElementValueFromNode(element, "is-commentable")));
-		Element contentElem = (Element) DomUtils.getChildNode(element, "update-content");
+		Element contentElem = (Element) DomUtils.getChildElementByName(element, "update-content");
 		if (contentElem != null) {
 			UpdateContentImpl contentImpl = new UpdateContentImpl();
 			contentImpl.init(contentElem);

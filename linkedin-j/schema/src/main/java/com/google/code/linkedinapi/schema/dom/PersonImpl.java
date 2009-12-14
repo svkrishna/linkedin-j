@@ -215,49 +215,49 @@ public class PersonImpl
 		setPictureUrl(DomUtils.getElementValueFromNode(element, "picture-url"));
 		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
 		
-		Element locationElem = (Element) DomUtils.getChildNode(element, "location");
+		Element locationElem = (Element) DomUtils.getChildElementByName(element, "location");
 		if (locationElem != null) {
 			LocationImpl location = new LocationImpl();
 			location.init(locationElem);
 			setLocation(location);
 		}
-		Element connectionsElem = (Element) DomUtils.getChildNode(element, "connections");
+		Element connectionsElem = (Element) DomUtils.getChildElementByName(element, "connections");
 		if (connectionsElem != null) {
 			ConnectionsImpl connections = new ConnectionsImpl();
 			connections.init(connectionsElem);
 			setConnections(connections);
 		}
-		Element relationElem = (Element) DomUtils.getChildNode(element, "relation-to-viewer");
+		Element relationElem = (Element) DomUtils.getChildElementByName(element, "relation-to-viewer");
 		if (relationElem != null) {
 			RelationToViewerImpl relation = new RelationToViewerImpl();
 			relation.init(relationElem);
 			setRelationToViewer(relation);
 		}
-		Element positionElem = (Element) DomUtils.getChildNode(element, "positions");
+		Element positionElem = (Element) DomUtils.getChildElementByName(element, "positions");
 		if (positionElem != null) {
 			PositionsImpl position = new PositionsImpl();
 			position.init(positionElem);
 			setPositions(position);
 		}
-		Element educationsElem = (Element) DomUtils.getChildNode(element, "educations");
+		Element educationsElem = (Element) DomUtils.getChildElementByName(element, "educations");
 		if (educationsElem != null) {
 			EducationsImpl educations = new EducationsImpl();
 			educations.init(educationsElem);
 			setEducations(educations);
 		}
-		Element memberUrlElem = (Element) DomUtils.getChildNode(element, "member-url-resources");
+		Element memberUrlElem = (Element) DomUtils.getChildElementByName(element, "member-url-resources");
 		if (memberUrlElem != null) {
 			MemberUrlResourcesImpl memberUrl = new MemberUrlResourcesImpl();
 			memberUrl.init(memberUrlElem);
 			setMemberUrlResources(memberUrl);
 		}
-		Element apiRequestElem = (Element) DomUtils.getChildNode(element, "api-standard-profile-request");
+		Element apiRequestElem = (Element) DomUtils.getChildElementByName(element, "api-standard-profile-request");
 		if (apiRequestElem != null) {
 			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
 			apiRequest.init(apiRequestElem);
 			setApiStandardProfileRequest(apiRequest);
 		}
-		Element siteRequestElem = (Element) DomUtils.getChildNode(element, "site-standard-profile-request");
+		Element siteRequestElem = (Element) DomUtils.getChildElementByName(element, "site-standard-profile-request");
 		if (siteRequestElem != null) {
 			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
 			apiRequest.init(siteRequestElem);

@@ -2,8 +2,13 @@
 package com.google.code.linkedinapi.schema.dom;
 
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
@@ -48,6 +53,8 @@ import com.google.code.linkedinapi.schema.Updates;
  * A factory for creating DomElement objects.
  */
 public class DomElementFactory implements SchemaElementFactory<Element> {
+	
+	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
 	
     /** The Constant _ContentType_QNAME. */
     private final static QName _ContentType_QNAME = new QName("", "content-type");
@@ -150,11 +157,19 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     
     /** The Constant _PictureUrl_QNAME. */
     private final static QName _PictureUrl_QNAME = new QName("", "picture-url");
+    
+    private Document document;
 	
     /**
      * Instantiates a new dom element factory.
      */
     public DomElementFactory() {
+    	try {
+			DocumentBuilder docBuilder = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder();
+			document = docBuilder.newDocument(); 
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
     }
 
     /* (non-Javadoc)
@@ -648,7 +663,12 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     private Element createElement(QName contentType_QNAME,
 			Class<?> class1, Object object,
 			Object value) {
-		// TODO Auto-generated method stub
-		return null;
+    	if (value != null) {
+    		Element element = (Element) DomUtils.createNodeForType(document, Node.ELEMENT_NODE, contentType_QNAME.getLocalPart());
+    		DomUtils.setElementValue(element, value.toString());
+    		return element;
+    	} else {
+    		return null;
+    	}
 	}
 }

@@ -33,7 +33,7 @@ public class LocationImpl
 
 	@Override
 	public void init(Element element) {
-		Element countryElem = (Element) DomUtils.getChildNode(element, "country");
+		Element countryElem = (Element) DomUtils.getChildElementByName(element, "country");
 		if (countryElem != null) {
 			CountryImpl countryImpl = new CountryImpl();
 			countryImpl.init(countryElem);

@@ -52,13 +52,13 @@ public class MailboxItemImpl
 
 	@Override
 	public void init(Element element) {
-		Element recepientsElem = (Element) DomUtils.getChildNode(element, "recipients");
+		Element recepientsElem = (Element) DomUtils.getChildElementByName(element, "recipients");
 		if (recepientsElem != null) {
 			RecipientsImpl recipientsImpl = new RecipientsImpl();
 			recipientsImpl.init(recepientsElem);
 			setRecipients(recipientsImpl);
 		}
-		Element itemContentElem = (Element) DomUtils.getChildNode(element, "item-content");
+		Element itemContentElem = (Element) DomUtils.getChildElementByName(element, "item-content");
 		if (itemContentElem != null) {
 			ItemContentImpl itemContentImpl = new ItemContentImpl();
 			itemContentImpl.init(itemContentElem);

@@ -24,7 +24,7 @@ public class MemberUrlResourcesImpl
 
 	@Override
 	public void init(Element element) {
-		Element memberUrlElem = (Element) DomUtils.getChildNode(element, "member-url");
+		Element memberUrlElem = (Element) DomUtils.getChildElementByName(element, "member-url");
 		if (memberUrlElem != null) {
 			MemberUrlImpl memberUrlImpl = new MemberUrlImpl();
 			memberUrlImpl.init(memberUrlElem);

@@ -24,7 +24,7 @@ public class ItemContentImpl
 
 	@Override
 	public void init(Element element) {
-		Element requestElem = (Element) DomUtils.getChildNode(element, "invitation-request");
+		Element requestElem = (Element) DomUtils.getChildElementByName(element, "invitation-request");
 		if (requestElem != null) {
 			InvitationRequestImpl requestImpl = new InvitationRequestImpl();
 			requestImpl.init(requestElem);

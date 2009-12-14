@@ -34,7 +34,7 @@ public class ApiStandardProfileRequestImpl
 	@Override
 	public void init(Element element) {
 		setUrl(DomUtils.getElementValueFromNode(element, "url"));
-		Element headersElem = (Element) DomUtils.getChildNode(element, "headers");
+		Element headersElem = (Element) DomUtils.getChildElementByName(element, "headers");
 		if (headersElem != null) {
 			HeadersImpl headerImpl = new HeadersImpl();
 			headerImpl.init(headersElem);

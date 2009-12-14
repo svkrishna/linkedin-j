@@ -52,99 +52,6 @@ public class DomUtils {
     	node.appendChild(createNodeForType(node.getOwnerDocument(), Node.TEXT_NODE, elementValue));
     }
     
-    /**
-     * Gets the ChildElements attribute of the XMLUtils object
-     *
-     * @param parent  Description of Parameter
-     * @return        The ChildElements value
-     */
-    public static List<Element> getChildElements(Node parent) {
-        ArrayList<Element>   children = new ArrayList<Element>();
-        NodeList list     = parent.getChildNodes();
-
-        for (int i = 0; i < list.getLength(); i++) {
-            if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                children.add((Element) list.item(i));
-            }
-        }
-
-        return children;
-    }
-
-    /**
-     * Gets the NodeByName attribute of the XMLUtils class
-     *
-     * @param nodeList  Description of Parameter
-     * @param nodeName  Description of Parameter
-     * @return          The NodeByName value
-     */
-    public static Node getNodeByName(NodeList nodeList, String nodeName) {
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            if (nodeList.item(i).getNodeName().equals(nodeName)) {
-                return nodeList.item(i);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Gets the nodeByLocalName attribute of the XMLUtils class
-     *
-     * @param nodeList  Description of Parameter
-     * @param nodeName  Description of Parameter
-     * @return          The nodeByLocalName value
-     */
-    public static Node getNodeByLocalName(NodeList nodeList, String nodeName) {
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            if (nodeName.equals(nodeList.item(i).getLocalName())) {
-                return nodeList.item(i);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Gets the ChildrenByTagName attribute of the XMLUtils class
-     *
-     * @param node     Description of Parameter
-     * @param tagName  Description of Parameter
-     * @return         The ChildrenByTagName value
-     */
-    public static List<Node> getChildrenByTagName(Node node, String tagName) {
-        NodeList nodeList = node.getChildNodes();
-        ArrayList<Node>   nodes    = new ArrayList<Node>();
-
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            if (nodeList.item(i).getNodeName().equals(tagName)) {
-                nodes.add(nodeList.item(i));
-            }
-        }
-
-        return nodes;
-    }
-
-    /**
-     * Gets the childrenByLocalName attribute of the XMLUtils class
-     *
-     * @param node       Description of Parameter
-     * @param localName  Description of Parameter
-     * @return           The childrenByLocalName value
-     */
-    public static List<Node> getChildrenByLocalName(Node node, String localName) {
-        NodeList nodeList = node.getChildNodes();
-        ArrayList<Node>   nodes    = new ArrayList<Node>();
-
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            if (localName.equals(nodeList.item(i).getLocalName())) {
-                nodes.add(nodeList.item(i));
-            }
-        }
-
-        return nodes;
-    }
-
     public static List<Element> getChildElementsByLocalName(Node node, String localName) {
         NodeList nodeList = node.getChildNodes();
         ArrayList<Element>   nodes    = new ArrayList<Element>();
@@ -219,57 +126,20 @@ public class DomUtils {
     }
     
     /**
-     * Gets the nodeValue attribute of the XMLUtils class
-     *
-     * @param node  Description of Parameter
-     * @return      The nodeValue value
-     */
-    public static String getNodeValue(Node node) {
-        if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
-            return node.getNodeValue();
-        } else if (node.getNodeType() == Node.ELEMENT_NODE) {
-            return (node.hasChildNodes())
-                   ? node.getFirstChild().getNodeValue()
-                   : "";
-        }
-
-        return "";
-    }
-
-    /**
-     * Gets the AncestorByName attribute of the XMLUtils class
-     *
-     * @param node          Description of Parameter
-     * @param ancestorName  Description of Parameter
-     * @return              The AncestorByName value
-     */
-    public static Node getAncestorByName(Node node, String ancestorName) {
-        Node ancestorNode = node.getParentNode();
-
-        while ((ancestorNode != null) && (ancestorNode.getNodeName().equals(ancestorName) == false)) {
-            ancestorNode = ancestorNode.getParentNode();
-        }
-
-        return ancestorNode;
-    }
-
-    /**
      * This method returns a Child Node associated with a Node.
      *
-     * @param n          - parent node
+     * @param parent          - parent node
      * @param childName  - name of child node.
      * @return           - child node specified by name
      * @see
      */
-    public static Node getChildNode(Node n, String childName) {
-        NodeList children = n.getChildNodes();
-        Node     node   = null;
-
+    public static Element getChildElementByName(Node parent, String childName) {
+        NodeList children = parent.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
-            node = children.item(i);
+        	Node     node   = children.item(i);
 
-            if (node.getNodeName().equals(childName)) {
-                return node;
+            if (node.getNodeName().equals(childName) && node.getNodeType() == Node.ELEMENT_NODE) {
+                return (Element) node;
             }
         }
 

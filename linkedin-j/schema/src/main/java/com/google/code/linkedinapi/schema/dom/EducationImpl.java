@@ -64,13 +64,13 @@ public class EducationImpl
 		setId(DomUtils.getElementValueFromNode(element, "id"));
 		setSchoolName(DomUtils.getElementValueFromNode(element, "school-name"));
 		setDegree(DomUtils.getElementValueFromNode(element, "degree"));
-		Element startDateElem = (Element) DomUtils.getChildNode(element, "start-date");
+		Element startDateElem = (Element) DomUtils.getChildElementByName(element, "start-date");
 		if (startDateElem != null) {
 			StartDateImpl startDate = new StartDateImpl();
 			startDate.init(startDateElem);
 			setStartDate(startDate);
 		}
-		Element endDateElem = (Element) DomUtils.getChildNode(element, "end-date");
+		Element endDateElem = (Element) DomUtils.getChildElementByName(element, "end-date");
 		if (endDateElem != null) {
 			EndDateImpl endDate = new EndDateImpl();
 			endDate.init(endDateElem);

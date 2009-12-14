@@ -34,13 +34,13 @@ public class NetworkImpl
 
 	@Override
 	public void init(Element element) {
-		Element networkStatsElem = (Element) DomUtils.getChildNode(element, "network-stats");
+		Element networkStatsElem = (Element) DomUtils.getChildElementByName(element, "network-stats");
 		if (networkStatsElem != null) {
 			NetworkStatsImpl networkStatsImpl = new NetworkStatsImpl();
 			networkStatsImpl.init(networkStatsElem);
 			setNetworkStats(networkStatsImpl);
 		}
-		Element updateElem = (Element) DomUtils.getChildNode(element, "updates");
+		Element updateElem = (Element) DomUtils.getChildElementByName(element, "updates");
 		if (updateElem != null) {
 			UpdatesImpl updateImpl = new UpdatesImpl();
 			updateImpl.init(updateElem);

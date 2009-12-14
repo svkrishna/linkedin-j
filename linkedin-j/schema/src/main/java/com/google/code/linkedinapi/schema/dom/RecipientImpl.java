@@ -24,7 +24,7 @@ public class RecipientImpl
 
 	@Override
 	public void init(Element element) {
-		Element personElem = (Element) DomUtils.getChildNode(element, "person");
+		Element personElem = (Element) DomUtils.getChildElementByName(element, "person");
 		if (personElem != null) {
 			PersonImpl personImpl = new PersonImpl();
 			personImpl.init(personElem);

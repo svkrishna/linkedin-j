@@ -34,7 +34,7 @@ public class InvitationRequestImpl
 
 	@Override
 	public void init(Element element) {
-		Element authElem = (Element) DomUtils.getChildNode(element, "authorization");
+		Element authElem = (Element) DomUtils.getChildElementByName(element, "authorization");
 		if (authElem != null) {
 			AuthorizationImpl authImpl = new AuthorizationImpl();
 			authImpl.init(authElem);

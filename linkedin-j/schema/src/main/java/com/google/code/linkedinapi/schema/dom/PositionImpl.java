@@ -84,19 +84,19 @@ public class PositionImpl
 		setTitle(DomUtils.getElementValueFromNode(element, "title"));
 		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
 		setIsCurrent(Boolean.parseBoolean(DomUtils.getElementValueFromNode(element, "is-current")));
-		Element companyElem = (Element) DomUtils.getChildNode(element, "company");
+		Element companyElem = (Element) DomUtils.getChildElementByName(element, "company");
 		if (companyElem != null) {
 			CompanyImpl companyImpl = new CompanyImpl();
 			companyImpl.init(companyElem);
 			setCompany(companyImpl);
 		}
-		Element startDateElem = (Element) DomUtils.getChildNode(element, "start-date");
+		Element startDateElem = (Element) DomUtils.getChildElementByName(element, "start-date");
 		if (startDateElem != null) {
 			StartDateImpl startDateImpl = new StartDateImpl();
 			startDateImpl.init(startDateElem);
 			setStartDate(startDateImpl);
 		}
-		Element endDateElem = (Element) DomUtils.getChildNode(element, "end-date");
+		Element endDateElem = (Element) DomUtils.getChildElementByName(element, "end-date");
 		if (endDateElem != null) {
 			EndDateImpl endDate = new EndDateImpl();
 			endDate.init(endDateElem);
