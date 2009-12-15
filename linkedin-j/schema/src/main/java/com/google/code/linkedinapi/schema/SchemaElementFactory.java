@@ -424,4 +424,29 @@ public interface SchemaElementFactory<T> {
 	 * 
 	 */
 	public T createPictureUrl(String value);
+	
+	/**
+	 * Create an instance of {@link T }{@code <}{@link String }{@code >}}
+	 * 
+	 */
+    public T createHonors(String value);
+
+	/**
+	 * Create an instance of {@link T }{@code <}{@link String }{@code >}}
+	 * 
+	 */
+    public T createInterests(String value);
+
+	/**
+	 * Create an instance of {@link T }{@code <}{@link String }{@code >}}
+	 * 
+	 */
+    public T createSpecialties(String value);
+
+	/**
+	 * Create an instance of {@link T }{@code <}{@link String }{@code >}}
+	 * 
+	 */
+    public T createAssociations(String value);
+		
 }

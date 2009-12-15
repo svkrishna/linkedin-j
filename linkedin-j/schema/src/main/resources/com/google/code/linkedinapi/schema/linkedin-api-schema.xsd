@@ -199,7 +199,13 @@
           <xs:element ref="num-recommenders"/>
           <xs:element ref="relation-to-viewer"/>
         </xs:sequence>
-        <xs:element minOccurs="0" ref="summary"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="summary"/>
+          <xs:element ref="interests"/>
+          <xs:element ref="associations"/>
+          <xs:element ref="honors"/>
+          <xs:element ref="specialties"/>
+        </xs:sequence>
         <xs:element minOccurs="0" ref="positions"/>
         <xs:sequence minOccurs="0">
           <xs:element ref="educations"/>
@@ -242,6 +248,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="interests" type="xs:string"/>
+  <xs:element name="associations" type="xs:string"/>
+  <xs:element name="honors" type="xs:string"/>
+  <xs:element name="specialties" type="xs:string"/>
   <xs:element name="positions">
     <xs:complexType>
       <xs:sequence>

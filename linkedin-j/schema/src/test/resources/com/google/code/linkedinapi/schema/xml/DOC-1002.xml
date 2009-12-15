@@ -19,6 +19,10 @@
 	<current-status-timestamp>1259737200000</current-status-timestamp>
 	<connections total="55" />
 	<summary>All connections.</summary>
+  <interests>AOP, Open Source frameworks, Design Patterns</interests>
+  <associations></associations>
+  <honors>Guest speaker for the software conference.</honors>
+  <specialties>Specialities for guest speaker for the software conference.</specialties>
 	<positions total="2">
 		<position>
 			<id>1234A</id>

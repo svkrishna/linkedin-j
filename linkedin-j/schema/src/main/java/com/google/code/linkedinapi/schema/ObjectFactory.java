@@ -66,6 +66,8 @@ public class ObjectFactory {
     private final static QName _Headline_QNAME = new QName("", "headline");
     private final static QName _Summary_QNAME = new QName("", "summary");
     private final static QName _Body_QNAME = new QName("", "body");
+    private final static QName _Honors_QNAME = new QName("", "honors");
+    private final static QName _Interests_QNAME = new QName("", "interests");
     private final static QName _Subject_QNAME = new QName("", "subject");
     private final static QName _CurrentStatus_QNAME = new QName("", "current-status");
     private final static QName _IsCommentable_QNAME = new QName("", "is-commentable");
@@ -79,6 +81,7 @@ public class ObjectFactory {
     private final static QName _ConnectType_QNAME = new QName("", "connect-type");
     private final static QName _Distance_QNAME = new QName("", "distance");
     private final static QName _Title_QNAME = new QName("", "title");
+    private final static QName _Specialties_QNAME = new QName("", "specialties");
     private final static QName _Name_QNAME = new QName("", "name");
     private final static QName _Value_QNAME = new QName("", "value");
     private final static QName _Year_QNAME = new QName("", "year");
@@ -93,6 +96,7 @@ public class ObjectFactory {
     private final static QName _Message_QNAME = new QName("", "message");
     private final static QName _Degree_QNAME = new QName("", "degree");
     private final static QName _FirstName_QNAME = new QName("", "first-name");
+    private final static QName _Associations_QNAME = new QName("", "associations");
     private final static QName _Month_QNAME = new QName("", "month");
     private final static QName _SequenceNumber_QNAME = new QName("", "sequence-number");
     private final static QName _Comment_QNAME = new QName("", "comment");
@@ -106,6 +110,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateComments }
+     * 
+     */
+    public UpdateComments createUpdateComments() {
+        return new UpdateCommentsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Error }
+     * 
+     */
+    public Error createError() {
+        return new ErrorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Updates }
+     * 
+     */
+    public Updates createUpdates() {
+        return new UpdatesImpl();
+    }
+
+    /**
      * Create an instance of {@link People }
      * 
      */
@@ -114,51 +142,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Person }
+     * Create an instance of {@link Position }
      * 
      */
-    public Person createPerson() {
-        return new PersonImpl();
+    public Position createPosition() {
+        return new PositionImpl();
     }
 
     /**
-     * Create an instance of {@link MemberUrl }
+     * Create an instance of {@link NetworkStats }
      * 
      */
-    public MemberUrl createMemberUrl() {
-        return new MemberUrlImpl();
+    public NetworkStats createNetworkStats() {
+        return new NetworkStatsImpl();
     }
 
     /**
-     * Create an instance of {@link Network }
+     * Create an instance of {@link Connections }
      * 
      */
-    public Network createNetwork() {
-        return new NetworkImpl();
+    public Connections createConnections() {
+        return new ConnectionsImpl();
     }
 
     /**
-     * Create an instance of {@link StartDate }
+     * Create an instance of {@link Educations }
      * 
      */
-    public StartDate createStartDate() {
-        return new StartDateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Positions }
-     * 
-     */
-    public Positions createPositions() {
-        return new PositionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link EndDate }
-     * 
-     */
-    public EndDate createEndDate() {
-        return new EndDateImpl();
+    public Educations createEducations() {
+        return new EducationsImpl();
     }
 
     /**
@@ -170,6 +182,118 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Education }
+     * 
+     */
+    public Education createEducation() {
+        return new EducationImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recipient }
+     * 
+     */
+    public Recipient createRecipient() {
+        return new RecipientImpl();
+    }
+
+    /**
+     * Create an instance of {@link Location }
+     * 
+     */
+    public Location createLocation() {
+        return new LocationImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberUrlResources }
+     * 
+     */
+    public MemberUrlResources createMemberUrlResources() {
+        return new MemberUrlResourcesImpl();
+    }
+
+    /**
+     * Create an instance of {@link RelationToViewer }
+     * 
+     */
+    public RelationToViewer createRelationToViewer() {
+        return new RelationToViewerImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateContent }
+     * 
+     */
+    public UpdateContent createUpdateContent() {
+        return new UpdateContentImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberUrl }
+     * 
+     */
+    public MemberUrl createMemberUrl() {
+        return new MemberUrlImpl();
+    }
+
+    /**
+     * Create an instance of {@link SiteStandardProfileRequest }
+     * 
+     */
+    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
+        return new SiteStandardProfileRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link InvitationRequest }
+     * 
+     */
+    public InvitationRequest createInvitationRequest() {
+        return new InvitationRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link Update }
+     * 
+     */
+    public Update createUpdate() {
+        return new UpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link StartDate }
+     * 
+     */
+    public StartDate createStartDate() {
+        return new StartDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateComment }
+     * 
+     */
+    public UpdateComment createUpdateComment() {
+        return new UpdateCommentImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recipients }
+     * 
+     */
+    public Recipients createRecipients() {
+        return new RecipientsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Positions }
+     * 
+     */
+    public Positions createPositions() {
+        return new PositionsImpl();
+    }
+
+    /**
      * Create an instance of {@link Authorization }
      * 
      */
@@ -178,11 +302,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Headers }
+     * Create an instance of {@link Property }
      * 
      */
-    public Headers createHeaders() {
-        return new HeadersImpl();
+    public Property createProperty() {
+        return new PropertyImpl();
+    }
+
+    /**
+     * Create an instance of {@link Network }
+     * 
+     */
+    public Network createNetwork() {
+        return new NetworkImpl();
+    }
+
+    /**
+     * Create an instance of {@link EndDate }
+     * 
+     */
+    public EndDate createEndDate() {
+        return new EndDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link MailboxItem }
+     * 
+     */
+    public MailboxItem createMailboxItem() {
+        return new MailboxItemImpl();
     }
 
     /**
@@ -191,6 +339,14 @@ public class ObjectFactory {
      */
     public Company createCompany() {
         return new CompanyImpl();
+    }
+
+    /**
+     * Create an instance of {@link ItemContent }
+     * 
+     */
+    public ItemContent createItemContent() {
+        return new ItemContentImpl();
     }
 
     /**
@@ -210,43 +366,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Recipient }
+     * Create an instance of {@link Headers }
      * 
      */
-    public Recipient createRecipient() {
-        return new RecipientImpl();
-    }
-
-    /**
-     * Create an instance of {@link InvitationRequest }
-     * 
-     */
-    public InvitationRequest createInvitationRequest() {
-        return new InvitationRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComments }
-     * 
-     */
-    public UpdateComments createUpdateComments() {
-        return new UpdateCommentsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Update }
-     * 
-     */
-    public Update createUpdate() {
-        return new UpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link MemberUrlResources }
-     * 
-     */
-    public MemberUrlResources createMemberUrlResources() {
-        return new MemberUrlResourcesImpl();
+    public Headers createHeaders() {
+        return new HeadersImpl();
     }
 
     /**
@@ -258,131 +382,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UpdateContent }
+     * Create an instance of {@link Person }
      * 
      */
-    public UpdateContent createUpdateContent() {
-        return new UpdateContentImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComment }
-     * 
-     */
-    public UpdateComment createUpdateComment() {
-        return new UpdateCommentImpl();
-    }
-
-    /**
-     * Create an instance of {@link MailboxItem }
-     * 
-     */
-    public MailboxItem createMailboxItem() {
-        return new MailboxItemImpl();
-    }
-
-    /**
-     * Create an instance of {@link SiteStandardProfileRequest }
-     * 
-     */
-    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
-        return new SiteStandardProfileRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link Position }
-     * 
-     */
-    public Position createPosition() {
-        return new PositionImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recipients }
-     * 
-     */
-    public Recipients createRecipients() {
-        return new RecipientsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Education }
-     * 
-     */
-    public Education createEducation() {
-        return new EducationImpl();
-    }
-
-    /**
-     * Create an instance of {@link Location }
-     * 
-     */
-    public Location createLocation() {
-        return new LocationImpl();
-    }
-
-    /**
-     * Create an instance of {@link ItemContent }
-     * 
-     */
-    public ItemContent createItemContent() {
-        return new ItemContentImpl();
-    }
-
-    /**
-     * Create an instance of {@link Educations }
-     * 
-     */
-    public Educations createEducations() {
-        return new EducationsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Error }
-     * 
-     */
-    public Error createError() {
-        return new ErrorImpl();
-    }
-
-    /**
-     * Create an instance of {@link NetworkStats }
-     * 
-     */
-    public NetworkStats createNetworkStats() {
-        return new NetworkStatsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Property }
-     * 
-     */
-    public Property createProperty() {
-        return new PropertyImpl();
-    }
-
-    /**
-     * Create an instance of {@link RelationToViewer }
-     * 
-     */
-    public RelationToViewer createRelationToViewer() {
-        return new RelationToViewerImpl();
-    }
-
-    /**
-     * Create an instance of {@link Updates }
-     * 
-     */
-    public Updates createUpdates() {
-        return new UpdatesImpl();
-    }
-
-    /**
-     * Create an instance of {@link Connections }
-     * 
-     */
-    public Connections createConnections() {
-        return new ConnectionsImpl();
+    public Person createPerson() {
+        return new PersonImpl();
     }
 
     /**
@@ -419,6 +423,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "body")
     public JAXBElement<String> createBody(String value) {
         return new JAXBElement<String>(_Body_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "honors")
+    public JAXBElement<String> createHonors(String value) {
+        return new JAXBElement<String>(_Honors_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "interests")
+    public JAXBElement<String> createInterests(String value) {
+        return new JAXBElement<String>(_Interests_QNAME, String.class, null, value);
     }
 
     /**
@@ -541,6 +563,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "title")
     public JAXBElement<String> createTitle(String value) {
         return new JAXBElement<String>(_Title_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "specialties")
+    public JAXBElement<String> createSpecialties(String value) {
+        return new JAXBElement<String>(_Specialties_QNAME, String.class, null, value);
     }
 
     /**
@@ -670,6 +701,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "first-name")
     public JAXBElement<String> createFirstName(String value) {
         return new JAXBElement<String>(_FirstName_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "associations")
+    public JAXBElement<String> createAssociations(String value) {
+        return new JAXBElement<String>(_Associations_QNAME, String.class, null, value);
     }
 
     /**

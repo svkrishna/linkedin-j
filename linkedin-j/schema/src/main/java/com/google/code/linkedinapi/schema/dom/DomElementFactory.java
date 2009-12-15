@@ -161,6 +161,19 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     /** The Constant _PictureUrl_QNAME. */
     private final static String _PictureUrl_QNAME = "picture-url";
     
+    /** The Constant _Honors_QNAME. */
+    private final static String _Honors_QNAME = "honors";
+
+    /** The Constant _Interests_QNAME. */
+    private final static String _Interests_QNAME = "interests";
+
+    /** The Constant _Specialties_QNAME. */
+    private final static String _Specialties_QNAME = "specialties";
+
+    /** The Constant _Associations_QNAME. */
+    private final static String _Associations_QNAME = "associations";
+    
+    
     private Document document;
 	
     /**
@@ -664,6 +677,23 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     public Element createPictureUrl(String value) {
         return createElement(_PictureUrl_QNAME, String.class, null, value);
     }
+    
+    public Element createHonors(String value) {
+        return createElement(_Honors_QNAME, String.class, null, value);
+    }
+
+    public Element createInterests(String value) {
+        return createElement(_Interests_QNAME, String.class, null, value);
+    }
+
+    public Element createSpecialties(String value) {
+        return createElement(_Specialties_QNAME, String.class, null, value);
+    }
+
+    public Element createAssociations(String value) {
+        return createElement(_Associations_QNAME, String.class, null, value);
+    }
+	    
     
     /**
      * Creates a new DomElement object.

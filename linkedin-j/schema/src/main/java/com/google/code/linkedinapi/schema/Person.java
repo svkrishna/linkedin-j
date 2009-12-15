@@ -31,7 +31,13 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}num-recommenders"/>
  *           &lt;element ref="{}relation-to-viewer"/>
  *         &lt;/sequence>
- *         &lt;element ref="{}summary" minOccurs="0"/>
+ *         &lt;sequence minOccurs="0">
+ *           &lt;element ref="{}summary"/>
+ *           &lt;element ref="{}interests"/>
+ *           &lt;element ref="{}associations"/>
+ *           &lt;element ref="{}honors"/>
+ *           &lt;element ref="{}specialties"/>
+ *         &lt;/sequence>
  *         &lt;element ref="{}positions" minOccurs="0"/>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}educations"/>
@@ -315,6 +321,86 @@ public interface Person
      *     
      */
     void setSummary(String value);
+
+    /**
+     * Gets the value of the interests property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getInterests();
+
+    /**
+     * Sets the value of the interests property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setInterests(String value);
+
+    /**
+     * Gets the value of the associations property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getAssociations();
+
+    /**
+     * Sets the value of the associations property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setAssociations(String value);
+
+    /**
+     * Gets the value of the honors property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getHonors();
+
+    /**
+     * Sets the value of the honors property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setHonors(String value);
+
+    /**
+     * Gets the value of the specialties property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getSpecialties();
+
+    /**
+     * Sets the value of the specialties property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setSpecialties(String value);
 
     /**
      * Gets the value of the positions property.

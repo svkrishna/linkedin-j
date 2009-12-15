@@ -35,6 +35,10 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "numRecommenders",
     "relationToViewer",
     "summary",
+    "interests",
+    "associations",
+    "honors",
+    "specialties",
     "positions",
     "educations",
     "memberUrlResources",
@@ -73,6 +77,10 @@ public class PersonImpl
     @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
+    protected String interests;
+    protected String associations;
+    protected String honors;
+    protected String specialties;
     @XmlElement(type = PositionsImpl.class)
     protected PositionsImpl positions;
     @XmlElement(type = EducationsImpl.class)
@@ -190,6 +198,38 @@ public class PersonImpl
 
     public void setSummary(String value) {
         this.summary = value;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String value) {
+        this.interests = value;
+    }
+
+    public String getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(String value) {
+        this.associations = value;
+    }
+
+    public String getHonors() {
+        return honors;
+    }
+
+    public void setHonors(String value) {
+        this.honors = value;
+    }
+
+    public String getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(String value) {
+        this.specialties = value;
     }
 
     public Positions getPositions() {

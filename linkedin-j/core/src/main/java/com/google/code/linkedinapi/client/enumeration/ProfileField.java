@@ -130,7 +130,7 @@ public enum ProfileField implements FieldEnum {
     /**
      * The fully-qualified URL being shared
      */
-    MEMBER_URL("member-url"),
+//    MEMBER_URL("member-url"),
     
     /**
      * The fully-qualified URL being shared
@@ -155,7 +155,7 @@ public enum ProfileField implements FieldEnum {
     /**
      * The Public Profile URL for the member on the LinkedIn.com website. Returned only for Public Profile requests.
      */
-    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request"),
+//    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request"),
     
     /**
      * The Public Profile URL for the member on the LinkedIn.com website. Returned only for Public Profile requests.
@@ -165,7 +165,7 @@ public enum ProfileField implements FieldEnum {
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
-    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request"),
+//    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request"),
     
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
