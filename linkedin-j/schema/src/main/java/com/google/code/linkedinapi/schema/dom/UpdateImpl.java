@@ -6,10 +6,11 @@ import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
+import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.UpdateContent;
 
 public class UpdateImpl
-    extends BaseSchemaEntity
+	extends BaseSchemaEntity
     implements Update
 {
 
@@ -18,6 +19,7 @@ public class UpdateImpl
     protected NetworkUpdateReturnType updateType;
     protected UpdateContentImpl updateContent;
     protected boolean isCommentable;
+    protected UpdateCommentsImpl updateComments;
 
     public Long getTimestamp() {
         return timestamp;
@@ -59,6 +61,14 @@ public class UpdateImpl
         this.isCommentable = value;
     }
 
+    public UpdateComments getUpdateComments() {
+        return updateComments;
+    }
+
+    public void setUpdateComments(UpdateComments value) {
+        this.updateComments = ((UpdateCommentsImpl) value);
+    }
+
 	@Override
 	public void init(Element element) {
 		setTimestamp(DomUtils.getElementValueAsLongFromNode(element, "timestamp"));
@@ -70,6 +80,13 @@ public class UpdateImpl
 			UpdateContentImpl contentImpl = new UpdateContentImpl();
 			contentImpl.init(contentElem);
 			setUpdateContent(contentImpl);
+		}
+
+		Element commentElem = (Element) DomUtils.getChildElementByName(element, "update-comments");
+		if (commentElem != null) {
+			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
+			commentImpl.init(contentElem);
+			setUpdateComments(commentImpl);
 		}
 	}
 
@@ -84,7 +101,9 @@ public class UpdateImpl
 		if (getUpdateContent() != null) {
 			element.appendChild(((UpdateContentImpl) getUpdateContent()).toXml(document));
 		}
+		if (getUpdateComments() != null) {
+			element.appendChild(((UpdateCommentsImpl) getUpdateComments()).toXml(document));
+		}
 		return element;
 	}
-
 }
