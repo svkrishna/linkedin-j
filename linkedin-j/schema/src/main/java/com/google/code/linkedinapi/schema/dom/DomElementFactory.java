@@ -45,6 +45,7 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 import com.google.code.linkedinapi.schema.StartDate;
 import com.google.code.linkedinapi.schema.Update;
 import com.google.code.linkedinapi.schema.UpdateComment;
+import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.UpdateContent;
 import com.google.code.linkedinapi.schema.Updates;
 
@@ -151,6 +152,9 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
     /** The Constant _Month_QNAME. */
     private final static String _Month_QNAME = "month";
     
+    /** The Constant _SequenceNumber_QNAME. */
+    private final static String _SequenceNumber_QNAME = "sequence-number";    
+    
     /** The Constant _Comment_QNAME. */
     private final static String _Comment_QNAME = "comment";
     
@@ -253,6 +257,14 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
      */
     public InvitationRequest createInvitationRequest() {
         return new InvitationRequestImpl();
+    }
+    
+    /**
+     * Create an instance of {@link UpdateComments }
+     * 
+     */
+    public UpdateComments createUpdateComments() {
+        return new UpdateCommentsImpl();
     }
 
     /* (non-Javadoc)
@@ -633,6 +645,10 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
 	 */
     public Element createMonth(Long value) {
         return createElement(_Month_QNAME, Long.class, null, value);
+    }
+    
+    public Element createSequenceNumber(Long value) {
+        return createElement(_SequenceNumber_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
