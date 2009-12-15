@@ -112,6 +112,52 @@
         </person>
       </update-content>
       <is-commentable>true</is-commentable>
+		<update-comments total="2">
+			<update-comment>
+			  <sequence-number>0</sequence-number>
+			  <comment>You've got me thinking about trout.</comment>
+			  <person>
+				<id>dsfsf</id>
+				<first-name>Gertrude</first-name>
+				<last-name>Stein</last-name>
+				<headline>Author</headline>
+				<api-standard-profile-request>
+				  <url>http://api.linkedin.com/v1/people/dsfsf:full</url>
+				  <headers total="1">
+					<http-header>
+					  <name>x-li-auth-token</name>
+					  <value>name:dsfsf</value>
+					</http-header>
+				  </headers>
+				</api-standard-profile-request>
+				<site-standard-profile-request>
+				  <url>http://www.linkedin.com/profile?viewProfile=&amp;key=dsfsf&amp;authToken=dsfsf&amp;authType=name</url>
+				</site-standard-profile-request>
+			  </person>
+			</update-comment>
+			<update-comment>
+			  <sequence-number>1</sequence-number>
+			  <comment>You've got me nervous.</comment>
+			  <person>
+				<id>abcd123</id>
+				<first-name>Nabeel</first-name>
+				<last-name>Siddiqui</last-name>
+				<headline>Software Developer</headline>
+				<api-standard-profile-request>
+				  <url>http://api.linkedin.com/v1/people/abcd123:full</url>
+				  <headers total="1">
+					<http-header>
+					  <name>x-li-auth-token</name>
+					  <value>name:dsfsf</value>
+					</http-header>
+				  </headers>
+				</api-standard-profile-request>
+				<site-standard-profile-request>
+				  <url>http://www.linkedin.com/profile?viewProfile=&amp;key=dsfsf&amp;authToken=dsfsf&amp;authType=name</url>
+				</site-standard-profile-request>
+			  </person>
+			</update-comment>
+		</update-comments>
     </update>
     <update>
       <timestamp>1259175566008</timestamp>

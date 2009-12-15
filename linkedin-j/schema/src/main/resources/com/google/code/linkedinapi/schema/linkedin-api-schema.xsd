@@ -127,6 +127,7 @@
         <xs:element ref="update-type"/>
         <xs:element ref="update-content"/>
         <xs:element ref="is-commentable"/>
+        <xs:element minOccurs="0" ref="update-comments"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -159,6 +160,14 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="is-commentable" type="xs:boolean"/>
+  <xs:element name="update-comments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="update-comment"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="people">
     <xs:complexType>
       <xs:sequence>
@@ -169,14 +178,6 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="update-comment">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="comment"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="comment" type="xs:string"/>
   <xs:element name="person">
     <xs:complexType>
       <xs:sequence>
@@ -332,6 +333,17 @@
   <xs:element name="value" type="xs:NMTOKEN"/>
   <xs:element name="timestamp" type="xs:integer"/>
   <xs:element name="current-status" type="xs:string"/>
+  <xs:element name="update-comment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="sequence-number"/>
+        <xs:element ref="comment"/>
+        <xs:element minOccurs="0" ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sequence-number" type="xs:integer"/>
+  <xs:element name="comment" type="xs:string"/>
   <xs:element name="connections">
     <xs:complexType>
       <xs:sequence>

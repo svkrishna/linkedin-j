@@ -18,6 +18,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}update-type"/>
  *         &lt;element ref="{}update-content"/>
  *         &lt;element ref="{}is-commentable"/>
+ *         &lt;element ref="{}update-comments" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -122,5 +123,25 @@ public interface Update
      * 
      */
     void setIsCommentable(boolean value);
+
+    /**
+     * Gets the value of the updateComments property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UpdateComments }
+     *     
+     */
+    UpdateComments getUpdateComments();
+
+    /**
+     * Sets the value of the updateComments property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UpdateComments }
+     *     
+     */
+    void setUpdateComments(UpdateComments value);
 
 }

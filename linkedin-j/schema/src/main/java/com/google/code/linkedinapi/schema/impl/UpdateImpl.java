@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
+import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.UpdateContent;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -18,7 +19,8 @@ import com.google.code.linkedinapi.schema.UpdateContent;
     "updateKey",
     "updateType",
     "updateContent",
-    "isCommentable"
+    "isCommentable",
+    "updateComments"
 })
 @XmlRootElement(name = "update")
 public class UpdateImpl
@@ -36,6 +38,8 @@ public class UpdateImpl
     protected UpdateContentImpl updateContent;
     @XmlElement(name = "is-commentable")
     protected boolean isCommentable;
+    @XmlElement(name = "update-comments", type = UpdateCommentsImpl.class)
+    protected UpdateCommentsImpl updateComments;
 
     public Long getTimestamp() {
         return timestamp;
@@ -75,6 +79,14 @@ public class UpdateImpl
 
     public void setIsCommentable(boolean value) {
         this.isCommentable = value;
+    }
+
+    public UpdateComments getUpdateComments() {
+        return updateComments;
+    }
+
+    public void setUpdateComments(UpdateComments value) {
+        this.updateComments = ((UpdateCommentsImpl) value);
     }
 
 }
