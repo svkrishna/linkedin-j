@@ -32,6 +32,10 @@ public class PersonImpl
     protected Long numRecommenders;
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
+    protected String interests;
+    protected String associations;
+    protected String honors;
+    protected String specialties;
     protected PositionsImpl positions;
     protected EducationsImpl educations;
     protected MemberUrlResourcesImpl memberUrlResources;
@@ -144,6 +148,38 @@ public class PersonImpl
         this.summary = value;
     }
 
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String value) {
+        this.interests = value;
+    }
+
+    public String getAssociations() {
+        return associations;
+    }
+
+    public void setAssociations(String value) {
+        this.associations = value;
+    }
+
+    public String getHonors() {
+        return honors;
+    }
+
+    public void setHonors(String value) {
+        this.honors = value;
+    }
+
+    public String getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(String value) {
+        this.specialties = value;
+    }
+
     public Positions getPositions() {
         return positions;
     }
@@ -214,6 +250,10 @@ public class PersonImpl
 		setCurrentStatusTimestamp(DomUtils.getElementValueAsLongFromNode(element, "current-status-timestamp"));
 		setPictureUrl(DomUtils.getElementValueFromNode(element, "picture-url"));
 		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
+		setInterests(DomUtils.getElementValueFromNode(element, "interests"));
+		setAssociations(DomUtils.getElementValueFromNode(element, "associations"));
+		setHonors(DomUtils.getElementValueFromNode(element, "honors"));
+		setSpecialties(DomUtils.getElementValueFromNode(element, "specialties"));
 		
 		Element locationElem = (Element) DomUtils.getChildElementByName(element, "location");
 		if (locationElem != null) {
@@ -280,6 +320,10 @@ public class PersonImpl
 		DomUtils.setElementValueToNode(element, "current-status-timestamp", getCurrentStatusTimestamp());
 		DomUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
 		DomUtils.setElementValueToNode(element, "summary", getSummary());
+		DomUtils.setElementValueToNode(element, "interests", getInterests());
+		DomUtils.setElementValueToNode(element, "associations", getAssociations());
+		DomUtils.setElementValueToNode(element, "honors", getHonors());
+		DomUtils.setElementValueToNode(element, "specialties", getSpecialties());
 		if (getLocation() != null) {
 			element.appendChild(((LocationImpl) getLocation()).toXml(document));
 		}
