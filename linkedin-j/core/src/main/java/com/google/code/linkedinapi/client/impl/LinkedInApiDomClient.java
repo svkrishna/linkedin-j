@@ -14,7 +14,15 @@ import org.w3c.dom.Node;
 
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
+import com.google.code.linkedinapi.schema.Activity;
+import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Error;
+import com.google.code.linkedinapi.schema.MailboxItem;
+import com.google.code.linkedinapi.schema.Network;
+import com.google.code.linkedinapi.schema.People;
+import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
+import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.dom.ActivityImpl;
 import com.google.code.linkedinapi.schema.dom.BaseSchemaEntity;
 import com.google.code.linkedinapi.schema.dom.ConnectionsImpl;
@@ -40,17 +48,17 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
 	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
 	
     /** Field description */
-	private static final Map<String, Class<?>> DOM_CLASSES_MAP = new HashMap<String, Class<?>>();
+	private static final Map<Class<?>, Class<?>> DOM_CLASSES_MAP = new HashMap<Class<?>, Class<?>>();
 	
 	static {
-		DOM_CLASSES_MAP.put("person", PersonImpl.class);
-		DOM_CLASSES_MAP.put("network", NetworkImpl.class);
-		DOM_CLASSES_MAP.put("people", PeopleImpl.class);
-		DOM_CLASSES_MAP.put("connections", ConnectionsImpl.class);
-		DOM_CLASSES_MAP.put("error", ErrorImpl.class);
-		DOM_CLASSES_MAP.put("mailbox-item", MailboxItemImpl.class);
-		DOM_CLASSES_MAP.put("update-comment", UpdateCommentImpl.class);
-		DOM_CLASSES_MAP.put("activity", ActivityImpl.class);
+		DOM_CLASSES_MAP.put(Person.class, PersonImpl.class);
+		DOM_CLASSES_MAP.put(Network.class, NetworkImpl.class);
+		DOM_CLASSES_MAP.put(People.class, PeopleImpl.class);
+		DOM_CLASSES_MAP.put(Connections.class, ConnectionsImpl.class);
+		DOM_CLASSES_MAP.put(Error.class, ErrorImpl.class);
+		DOM_CLASSES_MAP.put(MailboxItem.class, MailboxItemImpl.class);
+		DOM_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
+		DOM_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
 	}
 	
     /**
@@ -78,7 +86,7 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
         try {
         	Document document = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder().parse(xmlContent);
         	
-        	BaseSchemaEntity entity = getSchemaEntityByName(document.getDocumentElement().getNodeName());
+        	BaseSchemaEntity entity = getSchemaEntityByClass(clazz);
         	
         	entity.init(document.getDocumentElement());
 
@@ -136,16 +144,16 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
      * Method description
      *
      */
-    private BaseSchemaEntity getSchemaEntityByName(String localName) {
-    	if (DOM_CLASSES_MAP.containsKey(localName)) {
-    		Class<?> clazz = DOM_CLASSES_MAP.get(localName);
+    private BaseSchemaEntity getSchemaEntityByClass(Class<?> clazz) {
+    	if (DOM_CLASSES_MAP.containsKey(clazz)) {
+    		Class<?> implClass = DOM_CLASSES_MAP.get(clazz);
     		try {
-				return (BaseSchemaEntity) clazz.newInstance();
+				return (BaseSchemaEntity) implClass.newInstance();
 			} catch (Exception e) {
-	    		throw new LinkedInApiClientException("Could not instantiate class: " + clazz.getName(), e);
+	    		throw new LinkedInApiClientException("Could not instantiate class: " + implClass.getName(), e);
 			}
     	} else {
-    		throw new LinkedInApiClientException("Unknown tag encountered in response: " + localName);
+    		throw new LinkedInApiClientException("Unknown class encountered in response: " + clazz.getName());
     	}
 	}
 }
