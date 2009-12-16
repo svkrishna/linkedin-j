@@ -74,7 +74,7 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
      * @return
      */
     @SuppressWarnings("unchecked")
-	protected <T> T unmarshallObject(InputStream xmlContent) {
+    protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
         	Document document = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder().parse(xmlContent);
         	

@@ -52,7 +52,7 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
      * @return
      */
     @SuppressWarnings("unchecked")
-    protected <T> T unmarshallObject(InputStream xmlContent) {
+    protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
             Unmarshaller u  = getJaxbContext().createUnmarshaller();
 

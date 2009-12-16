@@ -109,7 +109,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("email", email).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -121,7 +121,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -132,7 +132,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("id", id).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField("url", url).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -178,7 +178,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -189,7 +189,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -202,7 +202,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             email).withParameter("start", String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -216,7 +216,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                                 String.valueOf(start)).withParameter("count",
                                                     String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -229,7 +229,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             id).withParameter("start", String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -243,7 +243,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                                 String.valueOf(start)).withParameter("count",
                                                     String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             url).withParameter("start", String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -270,7 +270,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                                 String.valueOf(start)).withParameter("count",
                                                     String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -283,7 +283,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -296,7 +296,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Connections.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -307,7 +307,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -319,7 +319,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -332,7 +332,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             String.valueOf(startDate.getTime())).withParameter("before",
                                                 String.valueOf(endDate.getTime())).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -343,7 +343,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameterEnumSet("type", updateTypes).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).withFieldEnumSet("type", updateTypes).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -369,7 +369,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                                 String.valueOf(endDate.getTime())).withParameterEnumSet("type",
                                                     updateTypes).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -385,7 +385,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                                     String.valueOf(endDate.getTime())).withParameterEnumSet("type",
                                                         updateTypes).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Network.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -397,7 +397,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
                                             id).withFieldEnum("profileType", profileType).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -409,7 +409,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField("id", id).withFieldEnum("profileType",
                                             profileType).withFieldEnumSet("profileFields", profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url",
                                             url).withFieldEnum("profileType", profileType).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -433,7 +433,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField("url", url).withFieldEnum("profileType",
                                             profileType).withFieldEnumSet("profileFields", profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -444,7 +444,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER);
         String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -455,7 +455,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(Person.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -497,7 +497,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -508,7 +508,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameterEnumMap(searchParameters).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -520,7 +520,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -533,7 +533,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -544,7 +544,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameterEnum("sortCriteria", sortOrder).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -556,7 +556,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  =
             builder.withParameterEnumMap(searchParameters).withParameterEnum("sortCriteria", sortOrder).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -569,7 +569,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                             String.valueOf(count)).withParameterEnum("sortCriteria",
                                                 sortOrder).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -585,7 +585,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                              String.valueOf(start)).withParameter("count",
                                                  String.valueOf(count)).buildUrl();
 
-        return readResponse(callApiMethod(apiUrl));
+        return readResponse(People.class, callApiMethod(apiUrl));
     }
 
     /**
@@ -713,9 +713,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected <T> T readResponse(InputStream is) {
+    protected <T> T readResponse(Class<T> clazz, InputStream is) {
         try {
-            return unmarshallObject(is);
+            return unmarshallObject(clazz, is);
         } finally {
             closeStream(is);
         }
@@ -765,11 +765,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
             if (request.getResponseCode() != expected) {
                 if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    Error error = readResponse(new GZIPInputStream(request.getErrorStream()));
+                    Error error = readResponse(Error.class, new GZIPInputStream(request.getErrorStream()));
 
                     throw createLinkedInApiClientException(error);
                 } else {
-                    Error error = readResponse(request.getErrorStream());
+                    Error error = readResponse(Error.class, request.getErrorStream());
 
                     throw createLinkedInApiClientException(error);
                 }
@@ -837,11 +837,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
             if (request.getResponseCode() != expected) {
                 if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    Error error = readResponse(new GZIPInputStream(request.getErrorStream()));
+                    Error error = readResponse(Error.class, new GZIPInputStream(request.getErrorStream()));
 
                     throw createLinkedInApiClientException(error);
                 } else {
-                    Error error = readResponse(request.getErrorStream());
+                    Error error = readResponse(Error.class, request.getErrorStream());
 
                     throw createLinkedInApiClientException(error);
                 }
@@ -894,7 +894,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected abstract <T> T unmarshallObject(InputStream xmlContent);
+    protected abstract <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent);
 
     /**
      * Method description
