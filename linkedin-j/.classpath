@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="schema/src/main/java"/>
-	<classpathentry kind="src" path="schema/src/test/resources"/>
-	<classpathentry kind="src" path="core/src/examples/java"/>
-	<classpathentry kind="src" path="core/src/test/resources"/>
-	<classpathentry kind="src" path="core/src/main/resources"/>
-	<classpathentry kind="src" path="core/src/test/java"/>
 	<classpathentry kind="src" path="schema/src/main/resources"/>
 	<classpathentry kind="src" path="core/src/main/java"/>
+	<classpathentry kind="src" path="core/src/main/resources"/>
 	<classpathentry kind="src" path="schema/src/test/java"/>
+	<classpathentry kind="src" path="schema/src/test/resources"/>
+	<classpathentry kind="src" path="core/src/test/java"/>
+	<classpathentry kind="src" path="core/src/test/resources"/>
+	<classpathentry kind="src" path="core/src/examples/java"/>
 	<classpathentry kind="lib" path="lib/signpost-core-1.1-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="dev-lib/junit-4.5.jar"/>
