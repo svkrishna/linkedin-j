@@ -108,8 +108,8 @@ public class AsyncApiExample {
         		} else if (line.hasOption(EMAIL_OPTION)) {
         			String emailValue = line.getOptionValue(EMAIL_OPTION);
         			System.out.println("Fetching connections for user with email:" + emailValue);
-        			Future<Connections> connections = client.getConnectionsByEmail(emailValue);
-        			printResult(connections.get());
+//        			Future<Connections> connections = client.getConnectionsByEmail(emailValue);
+//        			printResult(connections.get());
         		} else if (line.hasOption(URL_OPTION)) {
         			String urlValue = line.getOptionValue(URL_OPTION);
         			System.out.println("Fetching profile and connections for user with url:" + urlValue);

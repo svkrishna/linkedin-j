@@ -102,8 +102,8 @@ public class ConnectionsApiExample {
     		} else if (line.hasOption(EMAIL_OPTION)) {
     			String emailValue = line.getOptionValue(EMAIL_OPTION);
     			System.out.println("Fetching connections for user with email:" + emailValue);
-    			Connections connections = client.getConnectionsByEmail(emailValue);
-    			printResult(connections);
+//    			Connections connections = client.getConnectionsByEmail(emailValue);
+//    			printResult(connections);
     		} else if (line.hasOption(URL_OPTION)) {
     			String urlValue = line.getOptionValue(URL_OPTION);
     			System.out.println("Fetching connections for user with url:" + urlValue);
