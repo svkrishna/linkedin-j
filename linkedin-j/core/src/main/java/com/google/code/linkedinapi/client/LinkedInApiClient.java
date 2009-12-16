@@ -201,7 +201,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Connections getConnectionsByEmail(String email);
+//    public Connections getConnectionsByEmail(String email);
 
     /**
      * Gets the connections by url.
@@ -243,7 +243,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields);
+//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields);
 
     /**
      * Gets the connections by url.
@@ -291,7 +291,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Connections getConnectionsByEmail(String email, int start, int count);
+//    public Connections getConnectionsByEmail(String email, int start, int count);
 
     /**
      * Gets the connections by url.
@@ -341,7 +341,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
+//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
 
     /**
      * Gets the connections by url.

@@ -77,28 +77,28 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public Future<Connections> getConnectionsByEmail(final String email) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByEmail(email);
-            }
-        });
-    }
+//    @Override
+//    public Future<Connections> getConnectionsByEmail(final String email) {
+//        return execute(new Callable<Connections>() {
+//            @Override
+//            public Connections call() throws Exception {
+//                return client.getConnectionsByEmail(email);
+//            }
+//        });
+//    }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByEmail(email, profileFields);
-            }
-        });
-    }
+//    @Override
+//    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields) {
+//        return execute(new Callable<Connections>() {
+//            @Override
+//            public Connections call() throws Exception {
+//                return client.getConnectionsByEmail(email, profileFields);
+//            }
+//        });
+//    }
 
     /**
      * {@inheritDoc}
@@ -181,28 +181,28 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public Future<Connections> getConnectionsByEmail(final String email, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByEmail(email, start, count);
-            }
-        });
-    }
+//    @Override
+//    public Future<Connections> getConnectionsByEmail(final String email, final int start, final int count) {
+//        return execute(new Callable<Connections>() {
+//            @Override
+//            public Connections call() throws Exception {
+//                return client.getConnectionsByEmail(email, start, count);
+//            }
+//        });
+//    }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByEmail(email, profileFields, start, count);
-            }
-        });
-    }
+//    @Override
+//    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields, final int start, final int count) {
+//        return execute(new Callable<Connections>() {
+//            @Override
+//            public Connections call() throws Exception {
+//                return client.getConnectionsByEmail(email, profileFields, start, count);
+//            }
+//        });
+//    }
 
     /**
      * {@inheritDoc}

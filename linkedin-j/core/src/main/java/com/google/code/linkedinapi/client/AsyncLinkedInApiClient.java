@@ -202,7 +202,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Future<Connections> getConnectionsByEmail(String email);
+//    public Future<Connections> getConnectionsByEmail(String email);
 
     /**
      * Gets the connections by url.
@@ -244,7 +244,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields);
+//    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields);
 
     /**
      * Gets the connections by url.
@@ -292,7 +292,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Future<Connections> getConnectionsByEmail(String email, int start, int count);
+//    public Future<Connections> getConnectionsByEmail(String email, int start, int count);
 
     /**
      * Gets the connections by url.
@@ -342,7 +342,7 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by email
      */
-    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
+//    public Future<Connections> getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
 
     /**
      * Gets the connections by url.

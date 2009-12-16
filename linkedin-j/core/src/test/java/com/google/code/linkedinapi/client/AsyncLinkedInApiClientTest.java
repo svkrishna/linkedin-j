@@ -54,8 +54,8 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	public void testGetConnectionsByEmailString() {
 		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
 		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
-		Future<Connections> connections = client.getConnectionsByEmail(email);
-		assertNotNull("Connections should never be null.", connections);
+//		Future<Connections> connections = client.getConnectionsByEmail(email);
+//		assertNotNull("Connections should never be null.", connections);
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	public void testGetConnectionsByEmailStringSetOfProfileField() {
 		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
 		assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
-		Future<Connections> connections = client.getConnectionsByEmail(email, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
-		assertNotNull("Connections should never be null.", connections);
+//		Future<Connections> connections = client.getConnectionsByEmail(email, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+//		assertNotNull("Connections should never be null.", connections);
 	}
 
 	/**

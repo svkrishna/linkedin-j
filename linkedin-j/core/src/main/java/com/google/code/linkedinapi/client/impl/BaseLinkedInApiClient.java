@@ -104,7 +104,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
+//    @Override
     public Connections getConnectionsByEmail(String email) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("email", email).buildUrl();
@@ -115,7 +115,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
+//    @Override
     public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
         String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
@@ -195,7 +195,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
+//    @Override
     public Connections getConnectionsByEmail(String email, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("email",
@@ -208,7 +208,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
+//    @Override
     public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
         String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
