@@ -100,13 +100,13 @@
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="AsyncApiExample">
         <java classname="com.google.code.linkedinapi.client.examples.AsyncApiExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="ConnectionsApiExample">
         <java classname="com.google.code.linkedinapi.client.examples.ConnectionsApiExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
@@ -128,43 +128,43 @@
     </target>
     <target name="MessagingApiExample">
         <java classname="com.google.code.linkedinapi.client.examples.MessagingApiExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -subject  &quot;Test from command line&quot; -message &quot;Test from command line message&quot;  -id EDgfANrAzD"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="OAuthAuthenticationExample">
         <java classname="com.google.code.linkedinapi.client.examples.OAuthAuthenticationExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="PostCommentExample">
         <java classname="com.google.code.linkedinapi.client.examples.PostCommentExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -postId STAT-48356646-1-*1 -comment &quot;This is a test network update from linkedin-j API client.Wohoo.&quot;"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="PostNetworkUpdateExample">
         <java classname="com.google.code.linkedinapi.client.examples.PostNetworkUpdateExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -update &quot;This is a test network update from linkedin-j API client.&quot;"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="PostStatusExample">
         <java classname="com.google.code.linkedinapi.client.examples.PostStatusExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -status &quot;This is a test status update from linkedin-j API client.&quot;"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="ProfileApiExample">
         <java classname="com.google.code.linkedinapi.client.examples.ProfileApiExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token a2e551c2-56d0-4042-918f-087b39e6f42f -tokenSecret 49772a11-416a-44f4-aa04-8528f574102d&#13;&#10;-url http://www.linkedin.com/in/monisiqbal"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
     <target name="SearchApiExample">
         <java classname="com.google.code.linkedinapi.client.examples.SearchApiExample" failonerror="true" fork="yes">
-            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token a2e551c2-56d0-4042-918f-087b39e6f42f -tokenSecret 49772a11-416a-44f4-aa04-8528f574102d&#13;&#10;-name Nabeel"/>
+            <arg line="-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdfxxxx  -token 4edce3d0-76a8-40d0-9e4c-0af2504dxxxx -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc44xxxx"/>
             <classpath refid="linkedin-j.classpath"/>
         </java>
     </target>
