@@ -43,9 +43,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      * {@inheritDoc}
      */
     @Override
-    public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin) {
+    public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String oauthVerifier) {
         try {
-            provider.retrieveAccessToken(pin);
+            provider.retrieveAccessToken(oauthVerifier);
 
             LinkedInAccessToken accessToken = new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
 
@@ -73,6 +73,24 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LinkedInRequestToken getOAuthRequestToken(String callBackUrl) {
+        try {
+            String               authorizationUrl = provider.retrieveRequestToken(callBackUrl);
+            LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
+                                                        consumer.getTokenSecret());
+
+            requestToken.setAuthorizationUrl(authorizationUrl);
+
+            return requestToken;
+        } catch (Exception e) {
+            throw new LinkedInOAuthServiceException(e);
+        }
+    }
+    
     /**
      * {@inheritDoc}
      */

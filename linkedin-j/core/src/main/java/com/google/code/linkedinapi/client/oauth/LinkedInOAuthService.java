@@ -17,14 +17,21 @@ public interface LinkedInOAuthService {
     public LinkedInRequestToken getOAuthRequestToken();
 
     /**
+     * Gets the o auth request token.
+     * 
+     * @return the o auth request token
+     */
+    public LinkedInRequestToken getOAuthRequestToken(String callBackUrl);
+    
+    /**
      * Gets the o auth access token.
      * 
      * @param requestToken the request token
-     * @param pin the pin
+     * @param oauthVerifier the oauthVerifier
      * 
      * @return the o auth access token
      */
-    public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String pin);
+    public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String oauthVerifier);
 
     /**
      * Sign request with token.
