@@ -19,6 +19,8 @@ public interface LinkedInOAuthService {
     /**
      * Gets the o auth request token.
      * 
+     * @param callBackUrl the callback url.
+     * 
      * @return the o auth request token
      */
     public LinkedInRequestToken getOAuthRequestToken(String callBackUrl);
