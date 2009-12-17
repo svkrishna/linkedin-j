@@ -45,6 +45,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String oauthVerifier) {
         try {
+        	consumer.setTokenWithSecret(requestToken.getToken(), requestToken.getTokenSecret());
             provider.retrieveAccessToken(oauthVerifier);
 
             LinkedInAccessToken accessToken = new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
