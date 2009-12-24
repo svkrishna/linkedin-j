@@ -15,7 +15,11 @@ public class UpdatesImpl
     implements Updates
 {
 
-    protected List<Update> update;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6353261321228473792L;
+	protected List<Update> update;
     protected Long total;
 
     public List<Update> getUpdate() {

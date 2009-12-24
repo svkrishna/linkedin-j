@@ -10,7 +10,11 @@ public class EndDateImpl
     implements EndDate
 {
 
-    protected Long year;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8815338299095045227L;
+	protected Long year;
     protected Long month;
 
     public Long getYear() {

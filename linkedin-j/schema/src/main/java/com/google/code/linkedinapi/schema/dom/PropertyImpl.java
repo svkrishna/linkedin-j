@@ -10,7 +10,11 @@ public class PropertyImpl
     implements Property
 {
 
-    protected Long value;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7943634136391956316L;
+	protected Long value;
     protected String key;
 
     public Long getValue() {

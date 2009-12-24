@@ -12,7 +12,11 @@ public class SiteStandardProfileRequestImpl
     implements SiteStandardProfileRequest
 {
 
-    protected String url;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1502818715963152421L;
+	protected String url;
     protected HeadersImpl headers;
 
     public String getUrl() {

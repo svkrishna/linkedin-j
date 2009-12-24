@@ -11,7 +11,11 @@ public class ErrorImpl
     implements Error
 {
 
-    protected Long status;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7306088000916275288L;
+	protected Long status;
     protected Long timestamp;
     protected String errorCode;
     protected String message;

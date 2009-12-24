@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,9 +18,10 @@ import com.google.code.linkedinapi.schema.InviteConnectType;
 })
 @XmlRootElement(name = "invitation-request")
 public class InvitationRequestImpl
-    implements InvitationRequest
+    implements Serializable, InvitationRequest
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "connect-type", required = true)
     protected InviteConnectType connectType;
     @XmlElement(required = true, type = AuthorizationImpl.class)

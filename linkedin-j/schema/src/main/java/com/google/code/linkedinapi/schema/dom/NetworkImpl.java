@@ -13,7 +13,11 @@ public class NetworkImpl
     implements Network
 {
 
-    protected NetworkStatsImpl networkStats;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6143437997201279562L;
+	protected NetworkStatsImpl networkStats;
     protected UpdatesImpl updates;
 
     public NetworkStats getNetworkStats() {

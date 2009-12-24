@@ -12,7 +12,11 @@ public class UpdateContentImpl
     implements UpdateContent
 {
 
-    protected PersonImpl person;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8557807037014197165L;
+	protected PersonImpl person;
 
     public Person getPerson() {
         return person;

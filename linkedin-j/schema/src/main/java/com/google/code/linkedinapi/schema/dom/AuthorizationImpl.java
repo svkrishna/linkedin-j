@@ -11,7 +11,11 @@ public class AuthorizationImpl
     implements Authorization
 {
 
-    protected String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3758281729858290229L;
+	protected String name;
     protected String value;
 
     public String getName() {

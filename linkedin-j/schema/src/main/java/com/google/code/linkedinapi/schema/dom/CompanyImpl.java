@@ -11,7 +11,11 @@ public class CompanyImpl
     implements Company
 {
 
-    protected String type;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6951793253375914262L;
+	protected String type;
     protected String name;
     protected String industry;
 

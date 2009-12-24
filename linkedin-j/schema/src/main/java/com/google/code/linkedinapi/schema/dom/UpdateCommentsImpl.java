@@ -15,7 +15,11 @@ public class UpdateCommentsImpl
     implements UpdateComments
 {
 
-    protected List<UpdateComment> updateComment;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6923754393295869466L;
+	protected List<UpdateComment> updateComment;
     protected Long total;
 
     public List<UpdateComment> getUpdateComment() {

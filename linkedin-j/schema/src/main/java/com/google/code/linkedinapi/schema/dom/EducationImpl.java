@@ -13,7 +13,11 @@ public class EducationImpl
     implements Education
 {
 
-    protected String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -379013425062157845L;
+	protected String id;
     protected String schoolName;
     protected String degree;
     protected StartDateImpl startDate;

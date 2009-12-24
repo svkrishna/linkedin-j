@@ -14,7 +14,11 @@ public class ConnectionsImpl
     extends BaseSchemaEntity
     implements Connections
 {
-    protected List<Person> person;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8957482129134944707L;
+	protected List<Person> person;
     protected Long total;
 
     public List<Person> getPerson() {

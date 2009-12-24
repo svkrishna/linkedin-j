@@ -15,7 +15,11 @@ public class HeadersImpl
     implements Headers
 {
 
-    protected List<HttpHeader> httpHeader;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2641335452688934142L;
+	protected List<HttpHeader> httpHeader;
     protected Long total;
 
     public List<HttpHeader> getHttpHeader() {

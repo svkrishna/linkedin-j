@@ -12,7 +12,11 @@ public class ItemContentImpl
     implements ItemContent
 {
 
-    protected InvitationRequestImpl invitationRequest;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7058461180502985977L;
+	protected InvitationRequestImpl invitationRequest;
 
     public InvitationRequest getInvitationRequest() {
         return invitationRequest;

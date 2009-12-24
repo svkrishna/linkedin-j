@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -22,9 +23,10 @@ import com.google.code.linkedinapi.schema.StartDate;
 })
 @XmlRootElement(name = "education")
 public class EducationImpl
-    implements Education
+    implements Serializable, Education
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;

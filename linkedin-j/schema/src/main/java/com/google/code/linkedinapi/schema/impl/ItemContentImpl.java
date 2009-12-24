@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -15,9 +16,10 @@ import com.google.code.linkedinapi.schema.ItemContent;
 })
 @XmlRootElement(name = "item-content")
 public class ItemContentImpl
-    implements ItemContent
+    implements Serializable, ItemContent
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "invitation-request", required = true, type = InvitationRequestImpl.class)
     protected InvitationRequestImpl invitationRequest;
 

@@ -14,7 +14,11 @@ public class UpdateImpl
     implements Update
 {
 
-    protected Long timestamp;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 298287987891947325L;
+	protected Long timestamp;
     protected String updateKey;
     protected NetworkUpdateReturnType updateType;
     protected UpdateContentImpl updateContent;

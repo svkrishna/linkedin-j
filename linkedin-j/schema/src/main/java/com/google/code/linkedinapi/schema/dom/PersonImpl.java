@@ -19,7 +19,11 @@ public class PersonImpl
     implements Person
 {
 
-    protected String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1783387499401345056L;
+	protected String id;
     protected String firstName;
     protected String lastName;
     protected String headline;

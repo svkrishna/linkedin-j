@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,9 +21,10 @@ import com.google.code.linkedinapi.schema.Updates;
 })
 @XmlRootElement(name = "updates")
 public class UpdatesImpl
-    implements Updates
+    implements Serializable, Updates
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true, type = UpdateImpl.class)
     protected List<Update> update;
     @XmlAttribute(required = true)

@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,9 +18,10 @@ import com.google.code.linkedinapi.schema.Property;
 })
 @XmlRootElement(name = "property")
 public class PropertyImpl
-    implements Property
+    implements Serializable, Property
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlValue
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long value;

@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,9 +21,10 @@ import com.google.code.linkedinapi.schema.Property;
 })
 @XmlRootElement(name = "network-stats")
 public class NetworkStatsImpl
-    implements NetworkStats
+    implements Serializable, NetworkStats
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true, type = PropertyImpl.class)
     protected List<Property> property;
     @XmlAttribute(required = true)

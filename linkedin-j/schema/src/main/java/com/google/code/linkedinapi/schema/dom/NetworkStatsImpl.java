@@ -15,7 +15,11 @@ public class NetworkStatsImpl
     implements NetworkStats
 {
 
-    protected List<Property> property;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5888495492447011822L;
+	protected List<Property> property;
     protected Long total;
 
     public List<Property> getProperty() {

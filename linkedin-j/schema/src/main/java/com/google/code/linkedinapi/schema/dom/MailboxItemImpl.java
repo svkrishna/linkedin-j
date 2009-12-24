@@ -13,7 +13,11 @@ public class MailboxItemImpl
     implements MailboxItem
 {
 
-    protected RecipientsImpl recipients;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8720504708417425242L;
+	protected RecipientsImpl recipients;
     protected String subject;
     protected String body;
     protected ItemContentImpl itemContent;

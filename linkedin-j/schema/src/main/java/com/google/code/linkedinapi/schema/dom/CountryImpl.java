@@ -10,7 +10,11 @@ public class CountryImpl
     extends BaseSchemaEntity
     implements Country
 {
-    protected String code;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3791971546760035359L;
+	protected String code;
 
     public String getCode() {
         return code;

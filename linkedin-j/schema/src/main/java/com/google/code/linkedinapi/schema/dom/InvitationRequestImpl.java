@@ -13,7 +13,11 @@ public class InvitationRequestImpl
     implements InvitationRequest
 {
 
-    protected InviteConnectType connectType;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4777671180159209124L;
+	protected InviteConnectType connectType;
     protected AuthorizationImpl authorization;
 
     public InviteConnectType getConnectType() {

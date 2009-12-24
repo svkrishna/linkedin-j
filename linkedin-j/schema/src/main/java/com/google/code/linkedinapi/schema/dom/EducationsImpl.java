@@ -15,7 +15,11 @@ public class EducationsImpl
     implements Educations
 {
 
-    protected List<Education> education;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2213150259938479083L;
+	protected List<Education> education;
     protected Long total;
 
     public List<Education> getEducation() {

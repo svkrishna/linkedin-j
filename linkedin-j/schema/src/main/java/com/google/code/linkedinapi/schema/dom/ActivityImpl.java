@@ -11,7 +11,11 @@ public class ActivityImpl
     implements Activity
 {
 
-    protected Long timestamp;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2002088204138306557L;
+	protected Long timestamp;
     protected NetworkUpdateContentType contentType;
     protected String body;
     protected String locale;

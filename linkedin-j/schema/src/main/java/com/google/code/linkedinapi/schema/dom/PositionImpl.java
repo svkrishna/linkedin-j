@@ -14,7 +14,11 @@ public class PositionImpl
     implements Position
 {
 
-    protected String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4485115686667474338L;
+	protected String id;
     protected String title;
     protected String summary;
     protected StartDateImpl startDate;

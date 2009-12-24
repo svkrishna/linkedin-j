@@ -12,7 +12,11 @@ public class LocationImpl
     implements Location
 {
 
-    protected String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8469907482652062050L;
+	protected String name;
     protected CountryImpl country;
 
     public String getName() {

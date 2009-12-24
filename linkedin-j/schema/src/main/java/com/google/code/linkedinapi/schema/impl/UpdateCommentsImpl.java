@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,9 +21,10 @@ import com.google.code.linkedinapi.schema.UpdateComments;
 })
 @XmlRootElement(name = "update-comments")
 public class UpdateCommentsImpl
-    implements UpdateComments
+    implements Serializable, UpdateComments
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "update-comment", required = true, type = UpdateCommentImpl.class)
     protected List<UpdateComment> updateComment;
     @XmlAttribute(required = true)

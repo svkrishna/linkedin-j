@@ -11,7 +11,11 @@ public class MemberUrlImpl
     implements MemberUrl
 {
 
-    protected String url;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2382692750939419298L;
+	protected String url;
     protected String name;
 
     public String getUrl() {

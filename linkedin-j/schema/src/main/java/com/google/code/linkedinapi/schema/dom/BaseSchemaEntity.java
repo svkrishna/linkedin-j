@@ -3,6 +3,8 @@
  */
 package com.google.code.linkedinapi.schema.dom;
 
+import java.io.Serializable;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -11,7 +13,7 @@ import org.w3c.dom.Element;
  * 
  * @author Nabeel Mukhtar
  */
-public abstract class BaseSchemaEntity {
+public abstract class BaseSchemaEntity implements Serializable {
 	
 	/**
 	 * To xml.

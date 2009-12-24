@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,9 +15,10 @@ import com.google.code.linkedinapi.schema.Country;
 })
 @XmlRootElement(name = "country")
 public class CountryImpl
-    implements Country
+    implements Serializable, Country
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
     protected String code;
 

@@ -12,7 +12,11 @@ public class MemberUrlResourcesImpl
     implements MemberUrlResources
 {
 
-    protected MemberUrlImpl memberUrl;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4293798758625787079L;
+	protected MemberUrlImpl memberUrl;
 
     public MemberUrl getMemberUrl() {
         return memberUrl;

@@ -15,7 +15,11 @@ public class RecipientsImpl
     implements Recipients
 {
 
-    protected List<Recipient> recipient;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5874984453850790428L;
+	protected List<Recipient> recipient;
 
     public List<Recipient> getRecipient() {
         if (recipient == null) {

@@ -12,7 +12,11 @@ public class ApiStandardProfileRequestImpl
     implements ApiStandardProfileRequest
 {
 
-    protected String url;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8959695220558645456L;
+	protected String url;
     protected HeadersImpl headers;
 
     public String getUrl() {

@@ -10,7 +10,11 @@ public class HttpHeaderImpl
     extends BaseSchemaEntity
     implements HttpHeader
 {
-    protected String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8392710882497445323L;
+	protected String name;
     protected String value;
 
     public String getName() {

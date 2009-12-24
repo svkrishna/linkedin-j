@@ -12,7 +12,11 @@ public class UpdateCommentImpl
     implements UpdateComment
 {
 
-    protected Long sequenceNumber;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8511084386767332742L;
+	protected Long sequenceNumber;
     protected String comment;
     protected PersonImpl person;
 

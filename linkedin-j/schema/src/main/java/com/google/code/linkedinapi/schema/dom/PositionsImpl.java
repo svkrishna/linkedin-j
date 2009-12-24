@@ -15,7 +15,11 @@ public class PositionsImpl
     implements Positions
 {
 
-    protected List<Position> position;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1542568431460107248L;
+	protected List<Position> position;
     protected Long total;
 
     public List<Position> getPosition() {

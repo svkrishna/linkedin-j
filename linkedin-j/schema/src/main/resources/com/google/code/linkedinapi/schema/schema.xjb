@@ -8,6 +8,7 @@
 		<javaType name="long" xmlType="xs:integer"/>
 		<xjc:superInterface name="SchemaEntity"/>
 		<!-- <xjc:superClass name="BaseSchemaEntity"/> -->
+		<xjc:serializable uid="2461660169443089969"/>
 	</globalBindings>
     <schemaBindings>
       <package name="com.google.code.linkedinapi.schema" />

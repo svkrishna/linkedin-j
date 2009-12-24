@@ -12,7 +12,11 @@ public class RecipientImpl
     implements Recipient
 {
 
-    protected PersonImpl person;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4532326761923396639L;
+	protected PersonImpl person;
 
     public Person getPerson() {
         return person;

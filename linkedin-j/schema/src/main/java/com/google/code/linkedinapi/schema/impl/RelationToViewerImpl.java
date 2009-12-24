@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -16,9 +17,10 @@ import com.google.code.linkedinapi.schema.RelationToViewer;
 })
 @XmlRootElement(name = "relation-to-viewer")
 public class RelationToViewerImpl
-    implements RelationToViewer
+    implements Serializable, RelationToViewer
 {
 
+    private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long distance;

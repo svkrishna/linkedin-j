@@ -11,7 +11,11 @@ public class StartDateImpl
     implements StartDate
 {
 
-    protected Long year;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3332888832061238011L;
+	protected Long year;
     protected Long month;
 
     public Long getYear() {

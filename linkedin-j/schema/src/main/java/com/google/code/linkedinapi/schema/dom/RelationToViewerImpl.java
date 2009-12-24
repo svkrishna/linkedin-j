@@ -11,7 +11,11 @@ public class RelationToViewerImpl
     implements RelationToViewer
 {
 
-    protected Long distance;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5385043041125747824L;
+	protected Long distance;
 
     public Long getDistance() {
         return distance;

@@ -15,7 +15,11 @@ public class PeopleImpl
     implements People
 {
 
-    protected List<Person> person;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2040264547587096712L;
+	protected List<Person> person;
     protected Long count;
     protected Long start;
     protected Long total;
