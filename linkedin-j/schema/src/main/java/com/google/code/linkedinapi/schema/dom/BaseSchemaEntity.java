@@ -16,6 +16,11 @@ import org.w3c.dom.Element;
 public abstract class BaseSchemaEntity implements Serializable {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4249791194912997698L;
+
+	/**
 	 * To xml.
 	 * 
 	 * @param document the document

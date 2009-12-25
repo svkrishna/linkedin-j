@@ -42,6 +42,7 @@ public class ApiStandardProfileRequestImpl
 		if (headersElem != null) {
 			HeadersImpl headerImpl = new HeadersImpl();
 			headerImpl.init(headersElem);
+			setHeaders(headerImpl);
 		}
 	}
 
