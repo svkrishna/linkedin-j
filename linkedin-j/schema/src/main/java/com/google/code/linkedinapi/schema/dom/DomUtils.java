@@ -363,6 +363,6 @@ public class DomUtils {
      * @return true, if is null or empty
      */
     private static boolean isNullOrEmpty(String string) {
-    	return (string == null || string.isEmpty());
+    	return (string == null || string.length() == 0);
     }
 }
