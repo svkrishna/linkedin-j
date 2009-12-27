@@ -186,5 +186,80 @@
       </update-content>
       <is-commentable>true</is-commentable>
     </update>
+    <update>
+      <timestamp>1261807719514</timestamp>
+      <update-type>PREC</update-type>
+      <update-content>
+        <person>
+          <id>EDgfANrAzD</id>
+          <first-name>Nabeel</first-name>
+          <last-name>Siddiqui</last-name>
+          <headline>Software Engineer at Creative Chaos</headline>
+          <api-standard-profile-request>
+            <url>http://api.linkedin.com/v1/people/EDgfANrAzD:full</url>
+            <headers total="1">
+              <http-header>
+                <name>x-li-auth-token</name>
+                <value>name:Epxm</value>
+              </http-header>
+            </headers>
+          </api-standard-profile-request>
+          <site-standard-profile-request>
+            <url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*</url>
+          </site-standard-profile-request>
+          <recommendations-given total="2">
+            <recommendation>
+              <id>15384198</id>
+              <recommendation-type>COL</recommendation-type>
+              <recommendation-snippet>I recommend your work for testing..</recommendation-snippet>
+              <recommendee>
+                <id>3LyiBVeJz0</id>
+                <first-name>Api</first-name>
+                <last-name>Test</last-name>
+                <headline>Software Developer at Api Test Company</headline>
+                <api-standard-profile-request>
+                  <url>http://api.linkedin.com/v1/people/3LyiBVeJz0:full</url>
+                  <headers total="1">
+                    <http-header>
+                      <name>x-li-auth-token</name>
+                      <value>name:KMAi</value>
+                    </http-header>
+                  </headers>
+                </api-standard-profile-request>
+                <site-standard-profile-request>
+                  <url>http://www.linkedin.com/profile?viewProfile=&amp;key=60723313&amp;authToken=KMAi&amp;authType=name&amp;trk=api*a101220*</url>
+                </site-standard-profile-request>
+              </recommendee>
+              <web-url>http://www.linkedin.com/profile?viewRecs=&amp;key=48356646</web-url>
+            </recommendation>
+            <recommendation>
+              <id>15384198</id>
+              <recommendation-type>COL</recommendation-type>
+              <recommendation-snippet>I recommend your work for testing again..</recommendation-snippet>
+              <recommendee>
+                <id>3LyiBVeJz02</id>
+                <first-name>Api1</first-name>
+                <last-name>Test1</last-name>
+                <headline>Software Developer at Api Test Company</headline>
+                <api-standard-profile-request>
+                  <url>http://api.linkedin.com/v1/people/3LyiBVeJz0:full</url>
+                  <headers total="1">
+                    <http-header>
+                      <name>x-li-auth-token</name>
+                      <value>name:KMAi</value>
+                    </http-header>
+                  </headers>
+                </api-standard-profile-request>
+                <site-standard-profile-request>
+                  <url>http://www.linkedin.com/profile?viewProfile=&amp;key=60723313&amp;authToken=KMAi&amp;authType=name&amp;trk=api*a101220*</url>
+                </site-standard-profile-request>
+              </recommendee>
+              <web-url>http://www.linkedin.com/profile?viewRecs=&amp;key=48356646</web-url>
+            </recommendation>
+          </recommendations-given>
+        </person>
+      </update-content>
+      <is-commentable>false</is-commentable>
+    </update>
   </updates>
 </network>
