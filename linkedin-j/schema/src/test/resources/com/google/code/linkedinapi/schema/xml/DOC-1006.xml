@@ -4,7 +4,7 @@
     <property key="degree-1-count">16</property>
     <property key="degree-2-count">769</property>
   </network-stats>
-  <updates total="5">
+  <updates total="5" start="0" count="10">
     <update>
       <timestamp>1259696392892</timestamp>
       <update-key>STAT-11714757-9-*1</update-key>
@@ -260,6 +260,42 @@
         </person>
       </update-content>
       <is-commentable>false</is-commentable>
+    </update>
+    <update>
+      <timestamp>1260683860359</timestamp>
+      <update-key>APPM-2870966-406d4d2f*3c884*34baa*39909*3abe2f9e1d276-1705</update-key>
+      <update-type>APPM</update-type>
+      <update-content>
+        <person>
+          <id>NBA1289</id>
+          <first-name>Ryan</first-name>
+          <last-name>Sudd</last-name>
+          <headline>You have got yorr headlines.</headline>
+          <api-standard-profile-request>
+            <url>http://api.linkedin.com/v1/people/***********:full</url>
+            <headers total="1">
+              <http-header>
+                <name>x-li-auth-token</name>
+                <value>name:nmag</value>
+              </http-header>
+            </headers>
+          </api-standard-profile-request>
+          <site-standard-profile-request>
+            <url>http://www.linkedin.com/profile?viewProfile*************</url>
+          </site-standard-profile-request>
+          <person-activities count="2">
+            <activity>
+              <body>This is the activity body.</body>
+              <app-id>1704SS</app-id>
+            </activity>
+            <activity>
+              <body>This is the activity body afain.</body>
+              <app-id>170SJ</app-id>
+            </activity>
+          </person-activities>
+        </person>
+      </update-content>
+      <is-commentable>true</is-commentable>
     </update>
   </updates>
 </network>
