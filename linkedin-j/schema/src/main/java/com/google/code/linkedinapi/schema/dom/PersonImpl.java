@@ -338,6 +338,25 @@ public class PersonImpl
 			apiRequest.init(siteRequestElem);
 			setSiteStandardProfileRequest(apiRequest);
 		}
+		Element recommendationsElem = (Element) DomUtils.getChildElementByName(element, "recommendations-given");
+		if (recommendationsElem != null) {
+			RecommendationsGivenImpl recommendation = new RecommendationsGivenImpl();
+			recommendation.init(recommendationsElem);
+			setRecommendationsGiven(recommendation);
+		}
+		Element memberGroupsElem = (Element) DomUtils.getChildElementByName(element, "member-groups");
+		if (memberGroupsElem != null) {
+			MemberGroupsImpl memberGroups = new MemberGroupsImpl();
+			memberGroups.init(memberGroupsElem);
+			setMemberGroups(memberGroups);
+		}
+
+		Element activitiesElem = (Element) DomUtils.getChildElementByName(element, "person-activities");
+		if (activitiesElem != null) {
+			PersonActivitiesImpl activities = new PersonActivitiesImpl();
+			activities.init(activitiesElem);
+			setPersonActivities(activities);
+		}
 	}
 
 	@Override
@@ -383,6 +402,16 @@ public class PersonImpl
 		if (getSiteStandardProfileRequest() != null) {
 			element.appendChild(((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(document));
 		}
+		if (getRecommendationsGiven() != null) {
+			element.appendChild(((RecommendationsGivenImpl) getRecommendationsGiven()).toXml(document));
+		}
+		if (getMemberGroups() != null) {
+			element.appendChild(((MemberGroupsImpl) getMemberGroups()).toXml(document));
+		}
+		if (getPersonActivities() != null) {
+			element.appendChild(((PersonActivitiesImpl) getPersonActivities()).toXml(document));
+		}
+		
 		return element;
 	}
 }
