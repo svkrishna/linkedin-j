@@ -1,6 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.Recommendation;
 import com.google.code.linkedinapi.schema.Recommendee;
 
@@ -55,5 +58,32 @@ public class RecommendationImpl
     public void setWebUrl(String value) {
         this.webUrl = value;
     }
+    
+	@Override
+	public void init(Element element) {
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setRecommendationType(DomUtils.getElementValueFromNode(element, "recommendation-type"));
+		setRecommendationSnippet(DomUtils.getElementValueFromNode(element, "recommendation-snippet"));
+		setWebUrl(DomUtils.getElementValueFromNode(element, "web-url"));
+		
+		Element recommendeeElem = (Element) DomUtils.getChildElementByName(element, "recommendee");
+		if (recommendeeElem != null) {
+			RecommendeeImpl recommendee = new RecommendeeImpl();
+			recommendee.init(recommendeeElem);
+			setRecommendee(recommendee);
+		}
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("recommendation");
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "recommendation-type", getRecommendationType());
+		DomUtils.setElementValueToNode(element, "recommendation-snippet", getRecommendationSnippet());
+		DomUtils.setElementValueToNode(element, "web-url", getWebUrl());
+		if (getRecommendee() != null) {
+			element.appendChild(((RecommendeeImpl) getRecommendee()).toXml(document));
+		}
+		return element;
+	}
 }
