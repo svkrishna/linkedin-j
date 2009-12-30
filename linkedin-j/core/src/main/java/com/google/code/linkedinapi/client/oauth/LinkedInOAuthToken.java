@@ -3,13 +3,20 @@
  */
 package com.google.code.linkedinapi.client.oauth;
 
+import java.io.Serializable;
+
 /**
  * Class description
  *
  *
  */
-public abstract class LinkedInOAuthToken {
-
+public abstract class LinkedInOAuthToken implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4249791194912997698L;
+	
     /** Access Token */
     private String token;
 
