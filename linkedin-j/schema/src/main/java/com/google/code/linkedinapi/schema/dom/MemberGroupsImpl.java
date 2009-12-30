@@ -3,7 +3,10 @@ package com.google.code.linkedinapi.schema.dom;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.code.linkedinapi.schema.Adapter1;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.MemberGroup;
 import com.google.code.linkedinapi.schema.MemberGroups;
 
@@ -30,5 +33,25 @@ public class MemberGroupsImpl
     public void setTotal(Long value) {
         this.total = value;
     }
+    
+	@Override
+	public void init(Element element) {
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
+		List<Element> memberGroups = DomUtils.getChildElementsByLocalName(element, "member-group");
+		for (Element education : memberGroups) {
+			MemberGroupImpl memberGroupImpl = new MemberGroupImpl();
+			memberGroupImpl.init(education);
+			getMemberGroup().add(memberGroupImpl);
+		}
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("member-groups");
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
+		for (MemberGroup memberGroup : getMemberGroup()) {
+			element.appendChild(((MemberGroupImpl) memberGroup).toXml(document));
+		}
+		return element;
+	}
 }
