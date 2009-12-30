@@ -1,6 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Recommendee;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
@@ -65,5 +68,41 @@ public class RecommendeeImpl
     public void setSiteStandardProfileRequest(SiteStandardProfileRequest value) {
         this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
+    
+	@Override
+	public void init(Element element) {
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setFirstName(DomUtils.getElementValueFromNode(element, "first-name"));
+		setLastName(DomUtils.getElementValueFromNode(element, "last-name"));
+		setHeadline(DomUtils.getElementValueFromNode(element, "headline"));
+		
+		Element apiRequestElem = (Element) DomUtils.getChildElementByName(element, "api-standard-profile-request");
+		if (apiRequestElem != null) {
+			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
+			apiRequest.init(apiRequestElem);
+			setApiStandardProfileRequest(apiRequest);
+		}
+		Element siteRequestElem = (Element) DomUtils.getChildElementByName(element, "site-standard-profile-request");
+		if (siteRequestElem != null) {
+			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
+			apiRequest.init(siteRequestElem);
+			setSiteStandardProfileRequest(apiRequest);
+		}
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("person");
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
+		DomUtils.setElementValueToNode(element, "last-name", getLastName());
+		DomUtils.setElementValueToNode(element, "headline", getHeadline());
+		if (getApiStandardProfileRequest() != null) {
+			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(document));
+		}
+		if (getSiteStandardProfileRequest() != null) {
+			element.appendChild(((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(document));
+		}
+		return element;
+	}
 }
