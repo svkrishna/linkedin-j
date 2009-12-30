@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-  <xs:element name="activity">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="timestamp"/>
-        <xs:element ref="content-type"/>
-        <xs:element ref="body"/>
-      </xs:sequence>
-      <xs:attribute name="locale" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="error">
     <xs:complexType>
       <xs:sequence>
@@ -103,6 +92,8 @@
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="update"/>
       </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
@@ -122,8 +113,60 @@
   <xs:element name="update-type" type="xs:NCName"/>
   <xs:element name="update-content">
     <xs:complexType>
-      <xs:sequence>
+      <xs:choice>
         <xs:element ref="person"/>
+        <xs:element ref="question"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="title"/>
+        <xs:element ref="author"/>
+        <xs:element ref="question-categories"/>
+        <xs:choice>
+          <xs:element ref="web-url"/>
+          <xs:element ref="answers"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question-categories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="question-category"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question-category">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="code">
+          <xs:sequence>
+            <xs:element ref="name"/>
+          </xs:sequence>
+          <xs:attribute name="key" use="required" type="xs:integer"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="answers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="answer"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="answer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="web-url"/>
+        <xs:element ref="author"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -163,9 +206,9 @@
           <xs:element ref="connections"/>
           <xs:element ref="current-status"/>
           <xs:element ref="distance"/>
+          <xs:element ref="relation-to-viewer"/>
           <xs:element ref="current-status-timestamp"/>
           <xs:element ref="num-recommenders"/>
-          <xs:element ref="relation-to-viewer"/>
         </xs:choice>
         <xs:sequence minOccurs="0">
           <xs:element ref="summary"/>
@@ -184,6 +227,8 @@
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
         <xs:choice minOccurs="0">
+          <xs:element ref="member-groups"/>
+          <xs:element ref="person-activities"/>
           <xs:element ref="picture-url"/>
           <xs:element ref="recommendations-given"/>
         </xs:choice>
@@ -199,23 +244,9 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="country">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="code"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="code" type="xs:NCName"/>
+  <xs:element name="country" type="code"/>
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="num-recommenders" type="xs:integer"/>
-  <xs:element name="relation-to-viewer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="distance"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="interests" type="xs:string"/>
   <xs:element name="associations">
     <xs:complexType/>
@@ -243,7 +274,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="title" type="xs:string"/>
   <xs:element name="is-current" type="xs:boolean"/>
   <xs:element name="company">
     <xs:complexType>
@@ -285,10 +315,39 @@
   </xs:element>
   <xs:element name="member-url">
     <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="url">
+          <xs:sequence>
+            <xs:element ref="name"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="member-groups">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element ref="url"/>
-        <xs:element ref="name"/>
+        <xs:element maxOccurs="unbounded" ref="member-group"/>
       </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="member-group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+        <xs:element ref="site-group-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-group-request" type="url"/>
+  <xs:element name="person-activities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="activity"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="picture-url" type="xs:anyURI"/>
@@ -325,7 +384,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="body" type="xs:string"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="value" type="xs:NMTOKEN"/>
@@ -347,15 +405,60 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="person"/>
       </xs:sequence>
+      <xs:attribute name="count" type="xs:integer"/>
+      <xs:attribute name="start" type="xs:integer"/>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="activity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="timestamp"/>
+          <xs:element ref="content-type"/>
+        </xs:sequence>
+        <xs:element ref="body"/>
+        <xs:element minOccurs="0" ref="app-id"/>
+      </xs:sequence>
+      <xs:attribute name="locale" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="content-type" type="xs:NCName"/>
+  <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="code">
+    <xs:sequence>
+      <xs:element ref="code"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="code" type="xs:NCName"/>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="first-name" type="xs:string"/>
   <xs:element name="last-name" type="xs:string"/>
   <xs:element name="headline" type="xs:string"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
+  <xs:element name="relation-to-viewer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="distance"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="summary" type="xs:string"/>
   <xs:element name="start-date">
     <xs:complexType>
@@ -373,21 +476,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:complexType name="url">
+    <xs:sequence>
+      <xs:element ref="url"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="url" type="xs:anyURI"/>
   <xs:element name="api-standard-profile-request">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="url"/>
-        <xs:element ref="headers"/>
-      </xs:sequence>
+      <xs:complexContent>
+        <xs:extension base="url">
+          <xs:sequence>
+            <xs:element ref="headers"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
   <xs:element name="site-standard-profile-request">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="url"/>
-        <xs:element minOccurs="0" ref="headers"/>
-      </xs:sequence>
+      <xs:complexContent>
+        <xs:extension base="url">
+          <xs:sequence>
+            <xs:element minOccurs="0" ref="headers"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
     </xs:complexType>
   </xs:element>
   <xs:element name="year" type="xs:integer"/>

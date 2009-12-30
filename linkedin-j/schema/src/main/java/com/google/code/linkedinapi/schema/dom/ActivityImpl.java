@@ -19,7 +19,8 @@ public class ActivityImpl
     protected NetworkUpdateContentType contentType;
     protected String body;
     protected String locale;
-
+    protected String appId;
+    
     public Long getTimestamp() {
         return timestamp;
     }
@@ -51,7 +52,15 @@ public class ActivityImpl
     public void setLocale(String value) {
         this.locale = value;
     }
+    
+    public String getAppId() {
+        return appId;
+    }
 
+    public void setAppId(String value) {
+        this.appId = value;
+    }
+    
 	@Override
 	public void init(Element element) {
 		setLocale(element.getAttribute("locale"));
@@ -61,6 +70,7 @@ public class ActivityImpl
 			setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
 		}
 		setBody(DomUtils.getElementValueFromNode(element, "body"));
+		setAppId(DomUtils.getElementValueFromNode(element, "app-id"));
 	}
 
 	@Override
@@ -70,6 +80,7 @@ public class ActivityImpl
 		DomUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		DomUtils.setElementValueToNode(element, "content-type", getContentType().value());
 		DomUtils.setElementValueToNode(element, "body", getBody());
+		DomUtils.setElementValueToNode(element, "app-id", getAppId());
 		return element;
 	}
 

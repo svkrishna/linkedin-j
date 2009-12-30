@@ -16,6 +16,8 @@ import java.util.List;
  *       &lt;sequence>
  *         &lt;element ref="{}update" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="start" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,6 +54,46 @@ public interface Updates
      * 
      */
     List<Update> getUpdate();
+
+    /**
+     * Gets the value of the count property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getCount();
+
+    /**
+     * Sets the value of the count property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setCount(Long value);
+
+    /**
+     * Gets the value of the start property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getStart();
+
+    /**
+     * Sets the value of the start property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setStart(Long value);
 
     /**
      * Gets the value of the total property.

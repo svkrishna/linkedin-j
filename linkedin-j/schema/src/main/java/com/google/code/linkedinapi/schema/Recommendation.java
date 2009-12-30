@@ -13,12 +13,12 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}timestamp" minOccurs="0"/>
- *         &lt;element ref="{}content-type" minOccurs="0"/>
- *         &lt;element ref="{}body"/>
- *         &lt;element ref="{}app-id" minOccurs="0"/>
+ *         &lt;element ref="{}id"/>
+ *         &lt;element ref="{}recommendation-type"/>
+ *         &lt;element ref="{}recommendation-snippet"/>
+ *         &lt;element ref="{}recommendee"/>
+ *         &lt;element ref="{}web-url"/>
  *       &lt;/sequence>
- *       &lt;attribute name="locale" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -26,109 +26,109 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Activity
+public interface Recommendation
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the timestamp property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    Long getTimestamp();
+    String getId();
 
     /**
-     * Sets the value of the timestamp property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setTimestamp(Long value);
+    void setId(String value);
 
     /**
-     * Gets the value of the contentType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NetworkUpdateContentType }
-     *     
-     */
-    NetworkUpdateContentType getContentType();
-
-    /**
-     * Sets the value of the contentType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NetworkUpdateContentType }
-     *     
-     */
-    void setContentType(NetworkUpdateContentType value);
-
-    /**
-     * Gets the value of the body property.
+     * Gets the value of the recommendationType property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getBody();
+    String getRecommendationType();
 
     /**
-     * Sets the value of the body property.
+     * Sets the value of the recommendationType property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setBody(String value);
+    void setRecommendationType(String value);
 
     /**
-     * Gets the value of the appId property.
+     * Gets the value of the recommendationSnippet property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getAppId();
+    String getRecommendationSnippet();
 
     /**
-     * Sets the value of the appId property.
+     * Sets the value of the recommendationSnippet property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setAppId(String value);
+    void setRecommendationSnippet(String value);
 
     /**
-     * Gets the value of the locale property.
+     * Gets the value of the recommendee property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Recommendee }
+     *     
+     */
+    Recommendee getRecommendee();
+
+    /**
+     * Sets the value of the recommendee property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Recommendee }
+     *     
+     */
+    void setRecommendee(Recommendee value);
+
+    /**
+     * Gets the value of the webUrl property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getLocale();
+    String getWebUrl();
 
     /**
-     * Sets the value of the locale property.
+     * Sets the value of the webUrl property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setLocale(String value);
+    void setWebUrl(String value);
 
 }

@@ -15,9 +15,12 @@ import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.Location;
+import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.Positions;
+import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
@@ -45,7 +48,10 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "memberUrlResources",
     "apiStandardProfileRequest",
     "siteStandardProfileRequest",
-    "pictureUrl"
+    "pictureUrl",
+    "recommendationsGiven",
+    "memberGroups",
+    "personActivities"
 })
 @XmlRootElement(name = "person")
 public class PersonImpl
@@ -95,6 +101,12 @@ public class PersonImpl
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
     @XmlElement(name = "picture-url")
     protected String pictureUrl;
+    @XmlElement(name = "recommendations-given", type = RecommendationsGivenImpl.class)
+    protected RecommendationsGivenImpl recommendationsGiven;
+    @XmlElement(name = "member-groups", type = MemberGroupsImpl.class)
+    protected MemberGroupsImpl memberGroups;
+    @XmlElement(name = "person-activities", type = PersonActivitiesImpl.class)
+    protected PersonActivitiesImpl personActivities;
     @XmlAttribute
     protected String path;
 
@@ -280,6 +292,30 @@ public class PersonImpl
 
     public void setPictureUrl(String value) {
         this.pictureUrl = value;
+    }
+
+    public RecommendationsGiven getRecommendationsGiven() {
+        return recommendationsGiven;
+    }
+
+    public void setRecommendationsGiven(RecommendationsGiven value) {
+        this.recommendationsGiven = ((RecommendationsGivenImpl) value);
+    }
+
+    public MemberGroups getMemberGroups() {
+        return memberGroups;
+    }
+
+    public void setMemberGroups(MemberGroups value) {
+        this.memberGroups = ((MemberGroupsImpl) value);
+    }
+
+    public PersonActivities getPersonActivities() {
+        return personActivities;
+    }
+
+    public void setPersonActivities(PersonActivities value) {
+        this.personActivities = ((PersonActivitiesImpl) value);
     }
 
     public String getPath() {

@@ -12,36 +12,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Update;
-import com.google.code.linkedinapi.schema.Updates;
+import com.google.code.linkedinapi.schema.Answer;
+import com.google.code.linkedinapi.schema.Answers;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "update"
+    "answer"
 })
-@XmlRootElement(name = "updates")
-public class UpdatesImpl
-    implements Serializable, Updates
+@XmlRootElement(name = "answers")
+public class AnswersImpl
+    implements Serializable, Answers
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = UpdateImpl.class)
-    protected List<Update> update;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long count;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long start;
+    @XmlElement(required = true, type = AnswerImpl.class)
+    protected List<Answer> answer;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long total;
+    protected Long count;
 
-    public List<Update> getUpdate() {
-        if (update == null) {
-            update = new ArrayList<Update>();
+    public List<Answer> getAnswer() {
+        if (answer == null) {
+            answer = new ArrayList<Answer>();
         }
-        return this.update;
+        return this.answer;
     }
 
     public Long getCount() {
@@ -50,22 +44,6 @@ public class UpdatesImpl
 
     public void setCount(Long value) {
         this.count = value;
-    }
-
-    public Long getStart() {
-        return start;
-    }
-
-    public void setStart(Long value) {
-        this.start = value;
-    }
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long value) {
-        this.total = value;
     }
 
 }

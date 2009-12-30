@@ -12,52 +12,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Update;
-import com.google.code.linkedinapi.schema.Updates;
+import com.google.code.linkedinapi.schema.Recommendation;
+import com.google.code.linkedinapi.schema.RecommendationsGiven;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "update"
+    "recommendation"
 })
-@XmlRootElement(name = "updates")
-public class UpdatesImpl
-    implements Serializable, Updates
+@XmlRootElement(name = "recommendations-given")
+public class RecommendationsGivenImpl
+    implements Serializable, RecommendationsGiven
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = UpdateImpl.class)
-    protected List<Update> update;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long count;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long start;
+    @XmlElement(required = true, type = RecommendationImpl.class)
+    protected List<Recommendation> recommendation;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Update> getUpdate() {
-        if (update == null) {
-            update = new ArrayList<Update>();
+    public List<Recommendation> getRecommendation() {
+        if (recommendation == null) {
+            recommendation = new ArrayList<Recommendation>();
         }
-        return this.update;
-    }
-
-    public Long getCount() {
-        return count;
-    }
-
-    public void setCount(Long value) {
-        this.count = value;
-    }
-
-    public Long getStart() {
-        return start;
-    }
-
-    public void setStart(Long value) {
-        this.start = value;
+        return this.recommendation;
     }
 
     public Long getTotal() {

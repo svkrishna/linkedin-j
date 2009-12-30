@@ -8,9 +8,12 @@ import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.Location;
+import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.Positions;
+import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
@@ -45,6 +48,10 @@ public class PersonImpl
     protected MemberUrlResourcesImpl memberUrlResources;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
+    protected RecommendationsGivenImpl recommendationsGiven;
+    protected MemberGroupsImpl memberGroups;
+    protected PersonActivitiesImpl personActivities;
+    
     protected String pictureUrl;
     protected String path;
 
@@ -223,7 +230,31 @@ public class PersonImpl
     public void setSiteStandardProfileRequest(SiteStandardProfileRequest value) {
         this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
+    
+    public RecommendationsGiven getRecommendationsGiven() {
+        return recommendationsGiven;
+    }
 
+    public void setRecommendationsGiven(RecommendationsGiven value) {
+        this.recommendationsGiven = ((RecommendationsGivenImpl) value);
+    }
+
+    public MemberGroups getMemberGroups() {
+        return memberGroups;
+    }
+
+    public void setMemberGroups(MemberGroups value) {
+        this.memberGroups = ((MemberGroupsImpl) value);
+    }
+
+    public PersonActivities getPersonActivities() {
+        return personActivities;
+    }
+
+    public void setPersonActivities(PersonActivities value) {
+        this.personActivities = ((PersonActivitiesImpl) value);
+    }
+    
     public String getPictureUrl() {
         return pictureUrl;
     }

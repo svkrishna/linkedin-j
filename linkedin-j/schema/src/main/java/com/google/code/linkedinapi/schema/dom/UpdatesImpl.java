@@ -21,6 +21,9 @@ public class UpdatesImpl
 	private static final long serialVersionUID = -6353261321228473792L;
 	protected List<Update> update;
     protected Long total;
+    protected Long count;
+    protected Long start;
+    
 
     public List<Update> getUpdate() {
         if (update == null) {
@@ -36,10 +39,28 @@ public class UpdatesImpl
     public void setTotal(Long value) {
         this.total = value;
     }
+    
+    public Long getCount() {
+        return count;
+    }
 
+    public void setCount(Long value) {
+        this.count = value;
+    }
+
+    public Long getStart() {
+        return start;
+    }
+
+    public void setStart(Long value) {
+        this.start = value;
+    }
+    
 	@Override
 	public void init(Element element) {
 		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
+		setStart(DomUtils.getAttributeValueAsLongFromNode(element, "start"));
+		setCount(DomUtils.getAttributeValueAsLongFromNode(element, "count"));
 		List<Element> updateElems = DomUtils.getChildElementsByLocalName(element, "update");
 		for (Element updateElem : updateElems) {
 			UpdateImpl updateImpl = new UpdateImpl();
@@ -52,6 +73,8 @@ public class UpdatesImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("updates");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
+		DomUtils.setAttributeValueToNode(element, "start", getStart());
+		DomUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Update update : getUpdate()) {
 			element.appendChild(((UpdateImpl) update).toXml(document));
 		}

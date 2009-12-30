@@ -48,6 +48,9 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}site-standard-profile-request"/>
  *         &lt;/sequence>
  *         &lt;element ref="{}picture-url" minOccurs="0"/>
+ *         &lt;element ref="{}recommendations-given" minOccurs="0"/>
+ *         &lt;element ref="{}member-groups" minOccurs="0"/>
+ *         &lt;element ref="{}person-activities" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="path" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *     &lt;/restriction>
@@ -521,6 +524,66 @@ public interface Person
      *     
      */
     void setPictureUrl(String value);
+
+    /**
+     * Gets the value of the recommendationsGiven property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecommendationsGiven }
+     *     
+     */
+    RecommendationsGiven getRecommendationsGiven();
+
+    /**
+     * Sets the value of the recommendationsGiven property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RecommendationsGiven }
+     *     
+     */
+    void setRecommendationsGiven(RecommendationsGiven value);
+
+    /**
+     * Gets the value of the memberGroups property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MemberGroups }
+     *     
+     */
+    MemberGroups getMemberGroups();
+
+    /**
+     * Sets the value of the memberGroups property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MemberGroups }
+     *     
+     */
+    void setMemberGroups(MemberGroups value);
+
+    /**
+     * Gets the value of the personActivities property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PersonActivities }
+     *     
+     */
+    PersonActivities getPersonActivities();
+
+    /**
+     * Sets the value of the personActivities property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PersonActivities }
+     *     
+     */
+    void setPersonActivities(PersonActivities value);
 
     /**
      * Gets the value of the path property.

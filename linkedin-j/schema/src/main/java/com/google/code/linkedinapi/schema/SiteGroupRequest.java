@@ -13,8 +13,8 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}person" minOccurs="0"/>
- *         &lt;element ref="{}question" minOccurs="0"/>
+ *         &lt;element ref="{}url"/>
+ *         &lt;element ref="{}headers" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -23,49 +23,49 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface UpdateContent
+public interface SiteGroupRequest
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the person property.
+     * Gets the value of the url property.
      * 
      * @return
      *     possible object is
-     *     {@link Person }
+     *     {@link String }
      *     
      */
-    Person getPerson();
+    String getUrl();
 
     /**
-     * Sets the value of the person property.
+     * Sets the value of the url property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Person }
+     *     {@link String }
      *     
      */
-    void setPerson(Person value);
+    void setUrl(String value);
 
     /**
-     * Gets the value of the question property.
+     * Gets the value of the headers property.
      * 
      * @return
      *     possible object is
-     *     {@link Question }
+     *     {@link Headers }
      *     
      */
-    Question getQuestion();
+    Headers getHeaders();
 
     /**
-     * Sets the value of the question property.
+     * Sets the value of the headers property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Question }
+     *     {@link Headers }
      *     
      */
-    void setQuestion(Question value);
+    void setHeaders(Headers value);
 
 }

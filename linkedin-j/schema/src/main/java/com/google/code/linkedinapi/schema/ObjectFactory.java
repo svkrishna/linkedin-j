@@ -8,7 +8,10 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.namespace.QName;
 import com.google.code.linkedinapi.schema.impl.ActivityImpl;
+import com.google.code.linkedinapi.schema.impl.AnswerImpl;
+import com.google.code.linkedinapi.schema.impl.AnswersImpl;
 import com.google.code.linkedinapi.schema.impl.ApiStandardProfileRequestImpl;
+import com.google.code.linkedinapi.schema.impl.AuthorImpl;
 import com.google.code.linkedinapi.schema.impl.AuthorizationImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyImpl;
 import com.google.code.linkedinapi.schema.impl.ConnectionsImpl;
@@ -23,18 +26,28 @@ import com.google.code.linkedinapi.schema.impl.InvitationRequestImpl;
 import com.google.code.linkedinapi.schema.impl.ItemContentImpl;
 import com.google.code.linkedinapi.schema.impl.LocationImpl;
 import com.google.code.linkedinapi.schema.impl.MailboxItemImpl;
+import com.google.code.linkedinapi.schema.impl.MemberGroupImpl;
+import com.google.code.linkedinapi.schema.impl.MemberGroupsImpl;
 import com.google.code.linkedinapi.schema.impl.MemberUrlImpl;
 import com.google.code.linkedinapi.schema.impl.MemberUrlResourcesImpl;
 import com.google.code.linkedinapi.schema.impl.NetworkImpl;
 import com.google.code.linkedinapi.schema.impl.NetworkStatsImpl;
 import com.google.code.linkedinapi.schema.impl.PeopleImpl;
+import com.google.code.linkedinapi.schema.impl.PersonActivitiesImpl;
 import com.google.code.linkedinapi.schema.impl.PersonImpl;
 import com.google.code.linkedinapi.schema.impl.PositionImpl;
 import com.google.code.linkedinapi.schema.impl.PositionsImpl;
 import com.google.code.linkedinapi.schema.impl.PropertyImpl;
+import com.google.code.linkedinapi.schema.impl.QuestionCategoriesImpl;
+import com.google.code.linkedinapi.schema.impl.QuestionCategoryImpl;
+import com.google.code.linkedinapi.schema.impl.QuestionImpl;
 import com.google.code.linkedinapi.schema.impl.RecipientImpl;
 import com.google.code.linkedinapi.schema.impl.RecipientsImpl;
+import com.google.code.linkedinapi.schema.impl.RecommendationImpl;
+import com.google.code.linkedinapi.schema.impl.RecommendationsGivenImpl;
+import com.google.code.linkedinapi.schema.impl.RecommendeeImpl;
 import com.google.code.linkedinapi.schema.impl.RelationToViewerImpl;
+import com.google.code.linkedinapi.schema.impl.SiteGroupRequestImpl;
 import com.google.code.linkedinapi.schema.impl.SiteStandardProfileRequestImpl;
 import com.google.code.linkedinapi.schema.impl.StartDateImpl;
 import com.google.code.linkedinapi.schema.impl.UpdateCommentImpl;
@@ -63,6 +76,7 @@ public class ObjectFactory {
 
     private final static Void _useJAXBProperties = null;
     private final static QName _ContentType_QNAME = new QName("", "content-type");
+    private final static QName _RecommendationType_QNAME = new QName("", "recommendation-type");
     private final static QName _Headline_QNAME = new QName("", "headline");
     private final static QName _Summary_QNAME = new QName("", "summary");
     private final static QName _Body_QNAME = new QName("", "body");
@@ -84,7 +98,10 @@ public class ObjectFactory {
     private final static QName _Specialties_QNAME = new QName("", "specialties");
     private final static QName _Name_QNAME = new QName("", "name");
     private final static QName _Value_QNAME = new QName("", "value");
+    private final static QName _WebUrl_QNAME = new QName("", "web-url");
+    private final static QName _RecommendationSnippet_QNAME = new QName("", "recommendation-snippet");
     private final static QName _Year_QNAME = new QName("", "year");
+    private final static QName _AppId_QNAME = new QName("", "app-id");
     private final static QName _LastName_QNAME = new QName("", "last-name");
     private final static QName _Industry_QNAME = new QName("", "industry");
     private final static QName _SchoolName_QNAME = new QName("", "school-name");
@@ -110,43 +127,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Location }
+     * Create an instance of {@link RecommendationsGiven }
      * 
      */
-    public Location createLocation() {
-        return new LocationImpl();
+    public RecommendationsGiven createRecommendationsGiven() {
+        return new RecommendationsGivenImpl();
     }
 
     /**
-     * Create an instance of {@link Activity }
+     * Create an instance of {@link Question }
      * 
      */
-    public Activity createActivity() {
-        return new ActivityImpl();
+    public Question createQuestion() {
+        return new QuestionImpl();
     }
 
     /**
-     * Create an instance of {@link MemberUrl }
+     * Create an instance of {@link Person }
      * 
      */
-    public MemberUrl createMemberUrl() {
-        return new MemberUrlImpl();
+    public Person createPerson() {
+        return new PersonImpl();
     }
 
     /**
-     * Create an instance of {@link HttpHeader }
+     * Create an instance of {@link Author }
      * 
      */
-    public HttpHeader createHttpHeader() {
-        return new HttpHeaderImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComments }
-     * 
-     */
-    public UpdateComments createUpdateComments() {
-        return new UpdateCommentsImpl();
+    public Author createAuthor() {
+        return new AuthorImpl();
     }
 
     /**
@@ -158,19 +167,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Network }
+     * Create an instance of {@link Headers }
      * 
      */
-    public Network createNetwork() {
-        return new NetworkImpl();
-    }
-
-    /**
-     * Create an instance of {@link Property }
-     * 
-     */
-    public Property createProperty() {
-        return new PropertyImpl();
+    public Headers createHeaders() {
+        return new HeadersImpl();
     }
 
     /**
@@ -182,6 +183,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link MailboxItem }
+     * 
+     */
+    public MailboxItem createMailboxItem() {
+        return new MailboxItemImpl();
+    }
+
+    /**
      * Create an instance of {@link Error }
      * 
      */
@@ -190,59 +199,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link StartDate }
+     * Create an instance of {@link UpdateComments }
      * 
      */
-    public StartDate createStartDate() {
-        return new StartDateImpl();
+    public UpdateComments createUpdateComments() {
+        return new UpdateCommentsImpl();
     }
 
     /**
-     * Create an instance of {@link Headers }
+     * Create an instance of {@link Activity }
      * 
      */
-    public Headers createHeaders() {
-        return new HeadersImpl();
+    public Activity createActivity() {
+        return new ActivityImpl();
     }
 
     /**
-     * Create an instance of {@link RelationToViewer }
+     * Create an instance of {@link People }
      * 
      */
-    public RelationToViewer createRelationToViewer() {
-        return new RelationToViewerImpl();
+    public People createPeople() {
+        return new PeopleImpl();
     }
 
     /**
-     * Create an instance of {@link Recipients }
+     * Create an instance of {@link Location }
      * 
      */
-    public Recipients createRecipients() {
-        return new RecipientsImpl();
+    public Location createLocation() {
+        return new LocationImpl();
     }
 
     /**
-     * Create an instance of {@link InvitationRequest }
+     * Create an instance of {@link HttpHeader }
      * 
      */
-    public InvitationRequest createInvitationRequest() {
-        return new InvitationRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link Update }
-     * 
-     */
-    public Update createUpdate() {
-        return new UpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link SiteStandardProfileRequest }
-     * 
-     */
-    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
-        return new SiteStandardProfileRequestImpl();
+    public HttpHeader createHttpHeader() {
+        return new HttpHeaderImpl();
     }
 
     /**
@@ -254,19 +247,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Country }
+     * Create an instance of {@link InvitationRequest }
      * 
      */
-    public Country createCountry() {
-        return new CountryImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComment }
-     * 
-     */
-    public UpdateComment createUpdateComment() {
-        return new UpdateCommentImpl();
+    public InvitationRequest createInvitationRequest() {
+        return new InvitationRequestImpl();
     }
 
     /**
@@ -286,19 +271,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Educations }
+     * Create an instance of {@link Recommendee }
      * 
      */
-    public Educations createEducations() {
-        return new EducationsImpl();
+    public Recommendee createRecommendee() {
+        return new RecommendeeImpl();
     }
 
     /**
-     * Create an instance of {@link ItemContent }
+     * Create an instance of {@link Recommendation }
      * 
      */
-    public ItemContent createItemContent() {
-        return new ItemContentImpl();
+    public Recommendation createRecommendation() {
+        return new RecommendationImpl();
     }
 
     /**
@@ -310,27 +295,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Person }
+     * Create an instance of {@link Network }
      * 
      */
-    public Person createPerson() {
-        return new PersonImpl();
+    public Network createNetwork() {
+        return new NetworkImpl();
     }
 
     /**
-     * Create an instance of {@link MemberUrlResources }
+     * Create an instance of {@link ApiStandardProfileRequest }
      * 
      */
-    public MemberUrlResources createMemberUrlResources() {
-        return new MemberUrlResourcesImpl();
+    public ApiStandardProfileRequest createApiStandardProfileRequest() {
+        return new ApiStandardProfileRequestImpl();
     }
 
     /**
-     * Create an instance of {@link MailboxItem }
+     * Create an instance of {@link QuestionCategory }
      * 
      */
-    public MailboxItem createMailboxItem() {
-        return new MailboxItemImpl();
+    public QuestionCategory createQuestionCategory() {
+        return new QuestionCategoryImpl();
+    }
+
+    /**
+     * Create an instance of {@link Update }
+     * 
+     */
+    public Update createUpdate() {
+        return new UpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link StartDate }
+     * 
+     */
+    public StartDate createStartDate() {
+        return new StartDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link Positions }
+     * 
+     */
+    public Positions createPositions() {
+        return new PositionsImpl();
     }
 
     /**
@@ -350,6 +359,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link QuestionCategories }
+     * 
+     */
+    public QuestionCategories createQuestionCategories() {
+        return new QuestionCategoriesImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberGroup }
+     * 
+     */
+    public MemberGroup createMemberGroup() {
+        return new MemberGroupImpl();
+    }
+
+    /**
+     * Create an instance of {@link Property }
+     * 
+     */
+    public Property createProperty() {
+        return new PropertyImpl();
+    }
+
+    /**
      * Create an instance of {@link Recipient }
      * 
      */
@@ -358,11 +391,91 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Positions }
+     * Create an instance of {@link RelationToViewer }
      * 
      */
-    public Positions createPositions() {
-        return new PositionsImpl();
+    public RelationToViewer createRelationToViewer() {
+        return new RelationToViewerImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberUrlResources }
+     * 
+     */
+    public MemberUrlResources createMemberUrlResources() {
+        return new MemberUrlResourcesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Answers }
+     * 
+     */
+    public Answers createAnswers() {
+        return new AnswersImpl();
+    }
+
+    /**
+     * Create an instance of {@link Educations }
+     * 
+     */
+    public Educations createEducations() {
+        return new EducationsImpl();
+    }
+
+    /**
+     * Create an instance of {@link SiteStandardProfileRequest }
+     * 
+     */
+    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
+        return new SiteStandardProfileRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link PersonActivities }
+     * 
+     */
+    public PersonActivities createPersonActivities() {
+        return new PersonActivitiesImpl();
+    }
+
+    /**
+     * Create an instance of {@link SiteGroupRequest }
+     * 
+     */
+    public SiteGroupRequest createSiteGroupRequest() {
+        return new SiteGroupRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link ItemContent }
+     * 
+     */
+    public ItemContent createItemContent() {
+        return new ItemContentImpl();
+    }
+
+    /**
+     * Create an instance of {@link Country }
+     * 
+     */
+    public Country createCountry() {
+        return new CountryImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recipients }
+     * 
+     */
+    public Recipients createRecipients() {
+        return new RecipientsImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateComment }
+     * 
+     */
+    public UpdateComment createUpdateComment() {
+        return new UpdateCommentImpl();
     }
 
     /**
@@ -374,19 +487,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ApiStandardProfileRequest }
+     * Create an instance of {@link MemberUrl }
      * 
      */
-    public ApiStandardProfileRequest createApiStandardProfileRequest() {
-        return new ApiStandardProfileRequestImpl();
+    public MemberUrl createMemberUrl() {
+        return new MemberUrlImpl();
     }
 
     /**
-     * Create an instance of {@link People }
+     * Create an instance of {@link Answer }
      * 
      */
-    public People createPeople() {
-        return new PeopleImpl();
+    public Answer createAnswer() {
+        return new AnswerImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberGroups }
+     * 
+     */
+    public MemberGroups createMemberGroups() {
+        return new MemberGroupsImpl();
     }
 
     /**
@@ -396,6 +517,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "content-type")
     public JAXBElement<NetworkUpdateContentType> createContentType(NetworkUpdateContentType value) {
         return new JAXBElement<NetworkUpdateContentType>(_ContentType_QNAME, NetworkUpdateContentType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "recommendation-type")
+    public JAXBElement<String> createRecommendationType(String value) {
+        return new JAXBElement<String>(_RecommendationType_QNAME, String.class, null, value);
     }
 
     /**
@@ -594,6 +724,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "web-url")
+    public JAXBElement<String> createWebUrl(String value) {
+        return new JAXBElement<String>(_WebUrl_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "recommendation-snippet")
+    public JAXBElement<String> createRecommendationSnippet(String value) {
+        return new JAXBElement<String>(_RecommendationSnippet_QNAME, String.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
      * 
      */
@@ -601,6 +749,16 @@ public class ObjectFactory {
     @XmlJavaTypeAdapter(Adapter1 .class)
     public JAXBElement<Long> createYear(Long value) {
         return new JAXBElement<Long>(_Year_QNAME, Long.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "app-id")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    public JAXBElement<String> createAppId(String value) {
+        return new JAXBElement<String>(_AppId_QNAME, String.class, null, value);
     }
 
     /**

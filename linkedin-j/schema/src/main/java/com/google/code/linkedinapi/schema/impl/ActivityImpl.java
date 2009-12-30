@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Adapter1;
@@ -17,7 +18,8 @@ import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
 @XmlType(name = "", propOrder = {
     "timestamp",
     "contentType",
-    "body"
+    "body",
+    "appId"
 })
 @XmlRootElement(name = "activity")
 public class ActivityImpl
@@ -25,13 +27,16 @@ public class ActivityImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = String.class)
+    @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long timestamp;
-    @XmlElement(name = "content-type", required = true)
+    @XmlElement(name = "content-type")
     protected NetworkUpdateContentType contentType;
     @XmlElement(required = true)
     protected String body;
+    @XmlElement(name = "app-id")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String appId;
     @XmlAttribute(required = true)
     protected String locale;
 
@@ -57,6 +62,14 @@ public class ActivityImpl
 
     public void setBody(String value) {
         this.body = value;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String value) {
+        this.appId = value;
     }
 
     public String getLocale() {

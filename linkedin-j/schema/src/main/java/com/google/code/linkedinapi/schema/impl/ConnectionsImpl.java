@@ -27,6 +27,12 @@ public class ConnectionsImpl
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(type = PersonImpl.class)
     protected List<Person> person;
+    @XmlAttribute
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long count;
+    @XmlAttribute
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long start;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
@@ -36,6 +42,22 @@ public class ConnectionsImpl
             person = new ArrayList<Person>();
         }
         return this.person;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long value) {
+        this.count = value;
+    }
+
+    public Long getStart() {
+        return start;
+    }
+
+    public void setStart(Long value) {
+        this.start = value;
     }
 
     public Long getTotal() {

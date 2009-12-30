@@ -12,52 +12,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Update;
-import com.google.code.linkedinapi.schema.Updates;
+import com.google.code.linkedinapi.schema.MemberGroup;
+import com.google.code.linkedinapi.schema.MemberGroups;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "update"
+    "memberGroup"
 })
-@XmlRootElement(name = "updates")
-public class UpdatesImpl
-    implements Serializable, Updates
+@XmlRootElement(name = "member-groups")
+public class MemberGroupsImpl
+    implements Serializable, MemberGroups
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = UpdateImpl.class)
-    protected List<Update> update;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long count;
-    @XmlAttribute
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long start;
+    @XmlElement(name = "member-group", required = true, type = MemberGroupImpl.class)
+    protected List<MemberGroup> memberGroup;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Update> getUpdate() {
-        if (update == null) {
-            update = new ArrayList<Update>();
+    public List<MemberGroup> getMemberGroup() {
+        if (memberGroup == null) {
+            memberGroup = new ArrayList<MemberGroup>();
         }
-        return this.update;
-    }
-
-    public Long getCount() {
-        return count;
-    }
-
-    public void setCount(Long value) {
-        this.count = value;
-    }
-
-    public Long getStart() {
-        return start;
-    }
-
-    public void setStart(Long value) {
-        this.start = value;
+        return this.memberGroup;
     }
 
     public Long getTotal() {

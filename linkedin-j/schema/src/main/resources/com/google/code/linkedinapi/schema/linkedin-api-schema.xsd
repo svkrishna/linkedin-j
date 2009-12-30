@@ -3,9 +3,10 @@
   <xs:element name="activity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="timestamp"/>
-        <xs:element ref="content-type"/>
+        <xs:element minOccurs="0" ref="timestamp"/>
+        <xs:element minOccurs="0" ref="content-type"/>
         <xs:element ref="body"/>
+		<xs:element minOccurs="0" ref="app-id"/>
       </xs:sequence>
       <xs:attribute name="locale" use="required" type="xs:string"/>
     </xs:complexType>
@@ -17,6 +18,7 @@
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>
+  <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="error">
     <xs:complexType>
       <xs:sequence>
@@ -117,6 +119,8 @@
         <xs:element maxOccurs="unbounded" ref="update"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
+      <xs:attribute name="count" type="xs:integer"/>
+      <xs:attribute name="start" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="update">
@@ -155,7 +159,56 @@
   <xs:element name="update-content">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="person"/>
+        <xs:element minOccurs="0" ref="person"/>
+        <xs:element minOccurs="0" ref="question"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="title"/>
+        <xs:element ref="author"/>
+        <xs:element ref="question-categories"/>
+        <xs:choice>
+          <xs:element ref="web-url"/>
+          <xs:element ref="answers"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question-categories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="question-category"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="question-category">
+    <xs:complexType>
+	  <xs:sequence>
+		<xs:element ref="code"/>
+		<xs:element ref="name"/>
+	  </xs:sequence>
+	  <xs:attribute name="key" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="answers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="answer"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="answer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="web-url"/>
+        <xs:element ref="author"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -217,6 +270,8 @@
         </xs:sequence>
         <xs:element minOccurs="0" ref="picture-url"/>
         <xs:element minOccurs="0" ref="recommendations-given"/>
+        <xs:element minOccurs="0" ref="member-groups"/>
+        <xs:element minOccurs="0" ref="person-activities"/>
       </xs:sequence>
       <xs:attribute name="path"/>
     </xs:complexType>
@@ -322,6 +377,39 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="member-groups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="member-group"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="member-group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+        <xs:element ref="site-group-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-group-request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element minOccurs="0" ref="headers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="person-activities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="activity"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="api-standard-profile-request">
     <xs:complexType>
       <xs:sequence>
@@ -395,6 +483,8 @@
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="person"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
+      <xs:attribute name="count" type="xs:integer"/>
+      <xs:attribute name="start" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="id" type="xs:NMTOKEN"/>
@@ -431,6 +521,19 @@
       <xs:sequence>
         <xs:element ref="name"/>
         <xs:element ref="value"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
