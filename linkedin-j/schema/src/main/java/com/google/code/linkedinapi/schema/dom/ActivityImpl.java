@@ -76,7 +76,7 @@ public class ActivityImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("activity");
-		element.setAttribute("locale", getLocale());
+		DomUtils.setAttributeValueToNode(element, "locale", getLocale());
 		DomUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		DomUtils.setElementValueToNode(element, "content-type", getContentType().value());
 		DomUtils.setElementValueToNode(element, "body", getBody());
