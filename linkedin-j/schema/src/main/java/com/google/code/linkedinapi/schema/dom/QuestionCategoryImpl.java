@@ -1,7 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
-import com.google.code.linkedinapi.schema.Adapter1;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.QuestionCategory;
 
 public class QuestionCategoryImpl
@@ -37,5 +39,20 @@ public class QuestionCategoryImpl
     public void setKey(Long value) {
         this.key = value;
     }
+    
+	@Override
+	public void init(Element element) {
+		setKey(DomUtils.getAttributeValueAsLongFromNode(element, "key"));
+		setCode(DomUtils.getElementValueFromNode(element, "code"));
+		setName(DomUtils.getElementValueFromNode(element, "name"));
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("question-category");
+		DomUtils.setAttributeValueToNode(element, "key", getKey());
+		DomUtils.setElementValueToNode(element, "code", getCode());
+		DomUtils.setElementValueToNode(element, "name", getName());
+		return element;
+	}
 }
