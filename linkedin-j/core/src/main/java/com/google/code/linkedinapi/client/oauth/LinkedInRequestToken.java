@@ -10,7 +10,11 @@ package com.google.code.linkedinapi.client.oauth;
  */
 public class LinkedInRequestToken extends LinkedInOAuthToken {
 
-    /** Field description */
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1427085882101705465L;
+	/** Field description */
     private String authorizationUrl;
 
     /**
