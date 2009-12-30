@@ -362,7 +362,7 @@ public class PersonImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("person");
-		element.setAttribute("path", getPath());
+		DomUtils.setAttributeValueToNode(element, "path", getPath());
 		DomUtils.setElementValueToNode(element, "id", getId());
 		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
 		DomUtils.setElementValueToNode(element, "last-name", getLastName());
