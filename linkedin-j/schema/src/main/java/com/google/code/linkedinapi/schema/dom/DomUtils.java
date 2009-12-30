@@ -16,7 +16,6 @@ import org.w3c.dom.NodeList;
  * The Class DomUtils.
  * 
  * @author    Nabeel Mukhtar
- * @created   June 27, 2001
  * @version   1.0
  */
 public class DomUtils {
