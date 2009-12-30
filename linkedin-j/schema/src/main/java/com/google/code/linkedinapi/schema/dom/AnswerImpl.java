@@ -1,6 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.Answer;
 import com.google.code.linkedinapi.schema.Author;
 
@@ -37,5 +40,28 @@ public class AnswerImpl
     public void setAuthor(Author value) {
         this.author = ((AuthorImpl) value);
     }
+    
+	@Override
+	public void init(Element element) {
+		setId(DomUtils.getElementValueFromNode(element, "id"));
+		setWebUrl(DomUtils.getElementValueFromNode(element, "web-url"));
+		
+		Element authorElem = (Element) DomUtils.getChildElementByName(element, "author");
+		if (authorElem != null) {
+			AuthorImpl author = new AuthorImpl();
+			author.init(authorElem);
+			setAuthor(author);
+		}
+	}
 
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("answer");
+		DomUtils.setElementValueToNode(element, "id", getId());
+		DomUtils.setElementValueToNode(element, "web-url", getWebUrl());
+		if (getAuthor() != null) {
+			element.appendChild(((AuthorImpl) getAuthor()).toXml(document));
+		}
+		return element;
+	}
 }
