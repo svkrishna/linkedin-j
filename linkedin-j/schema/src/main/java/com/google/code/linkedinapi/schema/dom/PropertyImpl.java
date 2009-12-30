@@ -42,7 +42,7 @@ public class PropertyImpl
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("property");
-		element.setAttribute("key", getKey());
+		DomUtils.setAttributeValueToNode(element, "key", getKey());
 		DomUtils.setElementValue(element, getValue());
 		return element;
 	}
