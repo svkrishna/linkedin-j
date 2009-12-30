@@ -3,7 +3,10 @@ package com.google.code.linkedinapi.schema.dom;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.code.linkedinapi.schema.Adapter1;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.google.code.linkedinapi.schema.Recommendation;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 
@@ -31,4 +34,24 @@ public class RecommendationsGivenImpl
         this.total = value;
     }
 
+	@Override
+	public void init(Element element) {
+		setTotal(DomUtils.getAttributeValueAsLongFromNode(element, "total"));
+		List<Element> recommendations = DomUtils.getChildElementsByLocalName(element, "recommendation");
+		for (Element recommendation : recommendations) {
+			RecommendationImpl recommendationImpl = new RecommendationImpl();
+			recommendationImpl.init(recommendation);
+			getRecommendation().add(recommendationImpl);
+		}
+	}
+
+	@Override
+	public Element toXml(Document document) {
+		Element element = document.createElement("recommendations-given");
+		DomUtils.setAttributeValueToNode(element, "total", getTotal());
+		for (Recommendation recommendation : getRecommendation()) {
+			element.appendChild(((RecommendationImpl) recommendation).toXml(document));
+		}
+		return element;
+	}
 }
