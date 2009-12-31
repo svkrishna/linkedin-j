@@ -22,6 +22,7 @@ import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
+import com.google.code.linkedinapi.schema.SchemaEntity;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.dom.ActivityImpl;
 import com.google.code.linkedinapi.schema.dom.BaseSchemaEntity;
@@ -48,7 +49,7 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
 	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
 	
     /** Field description */
-	private static final Map<Class<?>, Class<?>> DOM_CLASSES_MAP = new HashMap<Class<?>, Class<?>>();
+	private static final Map<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>> DOM_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>>();
 	
 	static {
 		DOM_CLASSES_MAP.put(Person.class, PersonImpl.class);
@@ -146,9 +147,9 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
      */
     private BaseSchemaEntity getSchemaEntityByClass(Class<?> clazz) {
     	if (DOM_CLASSES_MAP.containsKey(clazz)) {
-    		Class<?> implClass = DOM_CLASSES_MAP.get(clazz);
+    		Class<? extends BaseSchemaEntity> implClass = DOM_CLASSES_MAP.get(clazz);
     		try {
-				return (BaseSchemaEntity) implClass.newInstance();
+				return implClass.newInstance();
 			} catch (Exception e) {
 	    		throw new LinkedInApiClientException("Could not instantiate class: " + implClass.getName(), e);
 			}
