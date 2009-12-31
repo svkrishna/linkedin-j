@@ -2,6 +2,8 @@
  *
  */
 package com.google.code.linkedinapi.client.impl;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -764,21 +766,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             request.connect();
 
             if (request.getResponseCode() != expected) {
-                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    Error error = readResponse(Error.class, new GZIPInputStream(request.getErrorStream()));
+                Error error = readResponse(Error.class, getWrappedInputStream(request.getErrorStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
 
-                    throw createLinkedInApiClientException(error);
-                } else {
-                    Error error = readResponse(Error.class, request.getErrorStream());
-
-                    throw createLinkedInApiClientException(error);
-                }
+                throw createLinkedInApiClientException(error);
             } else {
-                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    return new GZIPInputStream(request.getInputStream());
-                } else {
-                    return request.getInputStream();
-                }
+            	return getWrappedInputStream(request.getInputStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
             }
         } catch (IOException e) {
             throw new LinkedInApiClientException(e);
@@ -826,7 +818,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             }
 
             if (xmlContent != null) {
-                PrintStream out = new PrintStream(request.getOutputStream());
+                PrintStream out = new PrintStream(new BufferedOutputStream(request.getOutputStream()));
 
                 out.print(xmlContent);
                 out.flush();
@@ -836,21 +828,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             request.connect();
 
             if (request.getResponseCode() != expected) {
-                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    Error error = readResponse(Error.class, new GZIPInputStream(request.getErrorStream()));
+                Error error = readResponse(Error.class, getWrappedInputStream(request.getErrorStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
 
-                    throw createLinkedInApiClientException(error);
-                } else {
-                    Error error = readResponse(Error.class, request.getErrorStream());
-
-                    throw createLinkedInApiClientException(error);
-                }
+                throw createLinkedInApiClientException(error);
             } else {
-                if (GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())) {
-                    return new GZIPInputStream(request.getInputStream());
-                } else {
-                    return request.getInputStream();
-                }
+            	return getWrappedInputStream(request.getInputStream(), GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding()));
             }
         } catch (IOException e) {
             throw new LinkedInApiClientException(e);
@@ -885,6 +867,20 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		return new LinkedInApiClientException(message, statusCode, errorCode, timestamp);
 	}
 
+    /**
+     * Method description
+     *
+     * @return
+     * @throws IOException 
+     */
+	protected InputStream getWrappedInputStream(InputStream is, boolean gzip) throws IOException {
+		if (gzip) {
+			return new BufferedInputStream(new GZIPInputStream(is));
+		} else {
+			return new BufferedInputStream(is);
+		}
+	}
+	
     /**
      * Method description
      *
