@@ -25,6 +25,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
  * @author Nabeel Mukhtar
@@ -370,6 +371,19 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
             @Override
             public Network call() throws Exception {
                 return client.getNetworkUpdates(updateTypes, count, start, startDate, endDate);
+            }
+        });
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Future<UpdateComments> getNetworkUpdateComments(final String networkUpdateId) {
+        return execute(new Callable<UpdateComments>() {
+            @Override
+            public UpdateComments call() throws Exception {
+                return client.getNetworkUpdateComments(networkUpdateId);
             }
         });
     }

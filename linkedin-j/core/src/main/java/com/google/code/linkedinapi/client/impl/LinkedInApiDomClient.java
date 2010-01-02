@@ -24,6 +24,7 @@ import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.SchemaEntity;
 import com.google.code.linkedinapi.schema.UpdateComment;
+import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.dom.ActivityImpl;
 import com.google.code.linkedinapi.schema.dom.BaseSchemaEntity;
 import com.google.code.linkedinapi.schema.dom.ConnectionsImpl;
@@ -35,6 +36,7 @@ import com.google.code.linkedinapi.schema.dom.NetworkImpl;
 import com.google.code.linkedinapi.schema.dom.PeopleImpl;
 import com.google.code.linkedinapi.schema.dom.PersonImpl;
 import com.google.code.linkedinapi.schema.dom.UpdateCommentImpl;
+import com.google.code.linkedinapi.schema.dom.UpdateCommentsImpl;
 
 /**
  * @author Nabeel Mukhtar
@@ -60,6 +62,7 @@ public class LinkedInApiDomClient extends BaseLinkedInApiClient {
 		DOM_CLASSES_MAP.put(MailboxItem.class, MailboxItemImpl.class);
 		DOM_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
 		DOM_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
+		DOM_CLASSES_MAP.put(UpdateComments.class, UpdateCommentsImpl.class);
 	}
 	
     /**

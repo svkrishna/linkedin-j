@@ -3,6 +3,8 @@
  */
 package com.google.code.linkedinapi.client.examples;
 
+import java.util.EnumSet;
+
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
@@ -13,6 +15,10 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
+import com.google.code.linkedinapi.schema.Network;
+import com.google.code.linkedinapi.schema.Update;
+import com.google.code.linkedinapi.schema.UpdateComment;
 
 /**
  * @author Nabeel Mukhtar
@@ -85,6 +91,9 @@ public class PostNetworkUpdateExample {
         		client.postNetworkUpdate(updateText);
         		System.out.println("Your update has been posted. Check the LinkedIn site for confirmation.");
     		}
+    		System.out.println("Fetching your network updates of type:" + NetworkUpdateType.STATUS_UPDATE);
+    		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE));
+    		printResult(network);
         } else {
             printHelp(options);
         }
@@ -148,4 +157,17 @@ public class PostNetworkUpdateExample {
         String header = "\nAll options are required.";
         new HelpFormatter().printHelp(width, syntax, header, options, null, false);
     }
+
+	private static void printResult(Network network) {
+    	System.out.println("================================");
+		System.out.println("Total updates fetched:" + network.getUpdates().getTotal());
+		for (Update update : network.getUpdates().getUpdate()) {
+			System.out.println("-------------------------------");
+			System.out.println(update.getUpdateKey() + ":" + update.getUpdateContent().getPerson().getFirstName() + " " + update.getUpdateContent().getPerson().getLastName() + "->" + update.getUpdateContent().getPerson().getCurrentStatus());
+			System.out.println("Total comments fetched:" + update.getUpdateComments().getTotal());
+			for (UpdateComment comment : update.getUpdateComments().getUpdateComment()) {
+				System.out.println(comment.getPerson().getFirstName() + " " + comment.getPerson().getLastName() + "->" + comment.getComment());				
+			}
+		}
+	}
 }

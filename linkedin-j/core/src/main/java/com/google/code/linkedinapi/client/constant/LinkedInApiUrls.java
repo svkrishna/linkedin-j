@@ -86,7 +86,11 @@ public final class LinkedInApiUrls {
     /** The Constant NETWORK_UPDATES. */
     public static final String NETWORK_UPDATES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdates");
-
+    
+    /** The Constant NETWORK_UPDATE_COMMENTS. */
+    public static final String NETWORK_UPDATE_COMMENTS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateComments");
+    
     /** The Constant GET_CONNECTIONS_FOR_CURRENT_USER. */
     public static final String GET_CONNECTIONS_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsForCurrentUser");

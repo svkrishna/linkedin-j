@@ -18,6 +18,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
  * The Interface LinkedInApiClient. It acts as a facade for the whole LinkedIn API.
@@ -172,6 +173,16 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
                                      Date endDate);
+
+    /**
+     * Gets the network update comments.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
+     * 
+     * @param networkUpdateId the network update id
+     * 
+     * @return the network update comments
+     */
+    public UpdateComments getNetworkUpdateComments(String networkUpdateId);
 
     // Connections API
 

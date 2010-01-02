@@ -19,6 +19,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
  * The Interface AsyncLinkedInApiClient. This interface can be used for asynchronous invocation of API methods.
@@ -173,6 +174,16 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public Future<Network> getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
                                      Date endDate);
+
+    /**
+     * Gets the network update comments.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
+     * 
+     * @param networkUpdateId the network update id
+     * 
+     * @return the network update comments
+     */
+    public Future<UpdateComments> getNetworkUpdateComments(String networkUpdateId);
 
     // Connections API
 

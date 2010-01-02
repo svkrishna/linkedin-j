@@ -45,6 +45,7 @@ import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.UpdateComment;
+import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
  * @author Nabeel Mukhtar
@@ -389,7 +390,18 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(Network.class, callApiMethod(apiUrl));
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UpdateComments getNetworkUpdateComments(String networkUpdateId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_COMMENTS);
+        String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
+        
+        return readResponse(UpdateComments.class, callApiMethod(apiUrl));
+    }
+    
     /**
      * {@inheritDoc}
      */

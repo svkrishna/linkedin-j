@@ -23,6 +23,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
  * @author Nabeel Mukhtar
@@ -193,7 +194,18 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5, getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
-
+	
+	/**
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdateComments(java.lang.String)}.
+	 */
+	@Test
+	public void testGetNetworkUpdateCommentsString() {
+		final String networkUpdateId = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_ID;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
+		UpdateComments updateComments = client.getNetworkUpdateComments(networkUpdateId);
+		assertNotNull("Network Update Comments should never be null.", updateComments);
+	}
+	
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
 	 */
