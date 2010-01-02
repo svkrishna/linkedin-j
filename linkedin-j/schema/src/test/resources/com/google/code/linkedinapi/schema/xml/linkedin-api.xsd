@@ -392,7 +392,10 @@
   <xs:element name="update-comment">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="sequence-number"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="id"/>
+          <xs:element ref="sequence-number"/>
+        </xs:sequence>
         <xs:element ref="comment"/>
         <xs:sequence minOccurs="0">
           <xs:element ref="person"/>
