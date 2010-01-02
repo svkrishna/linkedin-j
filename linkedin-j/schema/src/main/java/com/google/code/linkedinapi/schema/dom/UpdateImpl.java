@@ -89,7 +89,7 @@ public class UpdateImpl
 		Element commentElem = (Element) DomUtils.getChildElementByName(element, "update-comments");
 		if (commentElem != null) {
 			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
-			commentImpl.init(contentElem);
+			commentImpl.init(commentElem);
 			setUpdateComments(commentImpl);
 		}
 	}
