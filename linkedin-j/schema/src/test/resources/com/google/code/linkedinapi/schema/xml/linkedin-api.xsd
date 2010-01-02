@@ -394,7 +394,10 @@
       <xs:sequence>
         <xs:element minOccurs="0" ref="sequence-number"/>
         <xs:element ref="comment"/>
-        <xs:element minOccurs="0" ref="person"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="person"/>
+          <xs:element ref="timestamp"/>
+        </xs:sequence>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
