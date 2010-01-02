@@ -114,6 +114,7 @@
       <is-commentable>true</is-commentable>
 		<update-comments total="2">
 			<update-comment>
+			  <id>9885487</id>
 			  <sequence-number>0</sequence-number>
 			  <comment>You've got me thinking about trout.</comment>
 			  <person>
@@ -137,6 +138,7 @@
 			  <timestamp>1261056585000</timestamp>
 			</update-comment>
 			<update-comment>
+			  <id>9885457</id>
 			  <sequence-number>1</sequence-number>
 			  <comment>You've got me nervous.</comment>
 			  <person>
