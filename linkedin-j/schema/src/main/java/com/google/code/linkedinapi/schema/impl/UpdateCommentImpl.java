@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Person;
@@ -14,9 +15,11 @@ import com.google.code.linkedinapi.schema.UpdateComment;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
     "sequenceNumber",
     "comment",
-    "person"
+    "person",
+    "timestamp"
 })
 @XmlRootElement(name = "update-comment")
 public class UpdateCommentImpl
@@ -24,6 +27,8 @@ public class UpdateCommentImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
     @XmlElement(name = "sequence-number", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long sequenceNumber;
@@ -31,6 +36,17 @@ public class UpdateCommentImpl
     protected String comment;
     @XmlElement(type = PersonImpl.class)
     protected PersonImpl person;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long timestamp;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String value) {
+        this.id = value;
+    }
 
     public Long getSequenceNumber() {
         return sequenceNumber;
@@ -54,6 +70,14 @@ public class UpdateCommentImpl
 
     public void setPerson(Person value) {
         this.person = ((PersonImpl) value);
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long value) {
+        this.timestamp = value;
     }
 
 }

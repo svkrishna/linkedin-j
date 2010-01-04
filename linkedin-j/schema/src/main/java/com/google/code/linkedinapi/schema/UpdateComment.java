@@ -13,9 +13,15 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}sequence-number" minOccurs="0"/>
+ *         &lt;sequence minOccurs="0">
+ *           &lt;element ref="{}id"/>
+ *           &lt;element ref="{}sequence-number"/>
+ *         &lt;/sequence>
  *         &lt;element ref="{}comment"/>
- *         &lt;element ref="{}person" minOccurs="0"/>
+ *         &lt;sequence minOccurs="0">
+ *           &lt;element ref="{}person"/>
+ *           &lt;element ref="{}timestamp"/>
+ *         &lt;/sequence>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,6 +34,26 @@ public interface UpdateComment
     extends SchemaEntity
 {
 
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getId();
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setId(String value);
 
     /**
      * Gets the value of the sequenceNumber property.
@@ -88,5 +114,25 @@ public interface UpdateComment
      *     
      */
     void setPerson(Person value);
+
+    /**
+     * Gets the value of the timestamp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getTimestamp();
+
+    /**
+     * Sets the value of the timestamp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setTimestamp(Long value);
 
 }
