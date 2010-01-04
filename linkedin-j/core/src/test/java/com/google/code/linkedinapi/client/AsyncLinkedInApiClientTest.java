@@ -3,13 +3,7 @@
  */
 package com.google.code.linkedinapi.client;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.EnumMap;
 import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Future;
 
 import org.junit.Test;
@@ -18,7 +12,6 @@ import com.google.code.linkedinapi.client.constant.TestConstants;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
-import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
@@ -423,44 +416,5 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testDeleteCurrentStatus() {
 		client.deleteCurrentStatus();
-	}
-	
-	/**
-	 * 
-	 */
-	private Date getCurrentDate() {
-		return new Date();
-	}
-
-	/**
-	 * 
-	 */
-	private Date getLastWeekDate() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, -7);
-		return calendar.getTime();
-	}
-
-	/**
-	 * 
-	 */
-	private Map<SearchParameter, String> getSearchParametersMap(String searchParameters) {
-		Map<SearchParameter, String> map = new EnumMap<SearchParameter, String>(SearchParameter.class);
-		String[] entries = searchParameters.split(",");
-		for (String entry : entries) {
-			String[] tuple = entry.split("=");
-			if (tuple.length == 2) {
-				map.put(SearchParameter.fromString(tuple[0]), tuple[1]);
-			}
-						
-		}
-		return map;
-	}
-
-	/**
-	 * 
-	 */
-	private List<String> getRecepientIdsList(String messageRecepients) {
-		return Arrays.asList(messageRecepients.split(","));
 	}
 }
