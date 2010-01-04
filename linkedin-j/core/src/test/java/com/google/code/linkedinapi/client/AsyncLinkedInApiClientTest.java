@@ -6,6 +6,7 @@ package com.google.code.linkedinapi.client;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -443,10 +444,17 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	/**
 	 * 
 	 */
-	private Map<SearchParameter, String> getSearchParametersMap(
-			String searchParameters) {
-		// TODO Auto-generated method stub
-		return null;
+	private Map<SearchParameter, String> getSearchParametersMap(String searchParameters) {
+		Map<SearchParameter, String> map = new EnumMap<SearchParameter, String>(SearchParameter.class);
+		String[] entries = searchParameters.split(",");
+		for (String entry : entries) {
+			String[] tuple = entry.split("=");
+			if (tuple.length == 2) {
+				map.put(SearchParameter.fromString(tuple[0]), tuple[1]);
+			}
+						
+		}
+		return map;
 	}
 
 	/**
