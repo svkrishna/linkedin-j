@@ -115,10 +115,35 @@
     <xs:complexType>
       <xs:choice>
         <xs:element ref="person"/>
+        <xs:element ref="job"/>
         <xs:element ref="question"/>
       </xs:choice>
     </xs:complexType>
   </xs:element>
+  <xs:element name="job">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="position"/>
+        <xs:element ref="company"/>
+        <xs:element ref="job-poster"/>
+        <xs:element ref="site-job-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job-poster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-job-request" type="url"/>
   <xs:element name="question">
     <xs:complexType>
       <xs:sequence>
@@ -261,30 +286,6 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="position">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="title"/>
-        <xs:element minOccurs="0" ref="summary"/>
-        <xs:element minOccurs="0" ref="start-date"/>
-        <xs:element minOccurs="0" ref="end-date"/>
-        <xs:element ref="is-current"/>
-        <xs:element ref="company"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="is-current" type="xs:boolean"/>
-  <xs:element name="company">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="type"/>
-        <xs:element ref="name"/>
-        <xs:element minOccurs="0" ref="industry"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="type" type="xs:string"/>
   <xs:element name="educations">
     <xs:complexType>
       <xs:sequence>
@@ -432,6 +433,63 @@
   <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="position">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="id"/>
+        <xs:element ref="title"/>
+        <xs:element minOccurs="0" ref="summary"/>
+        <xs:element minOccurs="0" ref="start-date"/>
+        <xs:element minOccurs="0" ref="end-date"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="is-current"/>
+          <xs:element ref="company"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-current" type="xs:boolean"/>
+  <xs:element name="company">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="type"/>
+        <xs:element ref="name"/>
+        <xs:element minOccurs="0" ref="industry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="type" type="xs:string"/>
+  <xs:element name="first-name" type="xs:string"/>
+  <xs:element name="last-name" type="xs:string"/>
+  <xs:element name="headline" type="xs:string"/>
+  <xs:element name="api-standard-profile-request">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="url">
+          <xs:sequence>
+            <xs:element ref="headers"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-standard-profile-request">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="url">
+          <xs:sequence>
+            <xs:element minOccurs="0" ref="headers"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="url">
+    <xs:sequence>
+      <xs:element ref="url"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="url" type="xs:anyURI"/>
   <xs:element name="title" type="xs:string"/>
   <xs:element name="author">
     <xs:complexType>
@@ -453,9 +511,6 @@
   </xs:complexType>
   <xs:element name="code" type="xs:NCName"/>
   <xs:element name="web-url" type="xs:anyURI"/>
-  <xs:element name="first-name" type="xs:string"/>
-  <xs:element name="last-name" type="xs:string"/>
-  <xs:element name="headline" type="xs:string"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
   <xs:element name="relation-to-viewer">
@@ -482,36 +537,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="url">
-    <xs:sequence>
-      <xs:element ref="url"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="url" type="xs:anyURI"/>
-  <xs:element name="api-standard-profile-request">
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="url">
-          <xs:sequence>
-            <xs:element ref="headers"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="site-standard-profile-request">
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="url">
-          <xs:sequence>
-            <xs:element minOccurs="0" ref="headers"/>
-          </xs:sequence>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="year" type="xs:integer"/>
-  <xs:element name="month" type="xs:integer"/>
   <xs:element name="headers">
     <xs:complexType>
       <xs:sequence>
@@ -528,4 +553,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="year" type="xs:integer"/>
+  <xs:element name="month" type="xs:integer"/>
 </xs:schema>
