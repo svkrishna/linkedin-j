@@ -21,10 +21,7 @@ import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
 
     /** Field description */
-    private final OAuthConsumer consumer;
-
-    /** Field description */
-    private final OAuthProvider provider;
+    private final LinkedInApiConsumer apiConsumer;
 
     /**
      * Constructs ...
@@ -33,10 +30,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      * @param apiConsumer
      */
     LinkedInOAuthServiceImpl(LinkedInApiConsumer apiConsumer) {
-        consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
-                SignatureMethod.HMAC_SHA1);
-        provider = new DefaultOAuthProvider(consumer, LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
-                LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
+    	this.apiConsumer = apiConsumer;
     }
 
     /**
@@ -45,12 +39,13 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String oauthVerifier) {
         try {
+        	final OAuthConsumer consumer = getOAuthConsumer();
+        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	
         	consumer.setTokenWithSecret(requestToken.getToken(), requestToken.getTokenSecret());
             provider.retrieveAccessToken(oauthVerifier);
 
-            LinkedInAccessToken accessToken = new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
-
-            return accessToken;
+            return new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
         } catch (Exception e) {
             throw new LinkedInOAuthServiceException(e);
         }
@@ -62,6 +57,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInRequestToken getOAuthRequestToken() {
         try {
+        	final OAuthConsumer consumer = getOAuthConsumer();
+        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	
             String               authorizationUrl = provider.retrieveRequestToken(OAuth.OUT_OF_BAND);
             LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
                                                         consumer.getTokenSecret());
@@ -80,6 +78,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public LinkedInRequestToken getOAuthRequestToken(String callBackUrl) {
         try {
+        	final OAuthConsumer consumer = getOAuthConsumer();
+        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	
             String               authorizationUrl = provider.retrieveRequestToken(callBackUrl);
             LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
                                                         consumer.getTokenSecret());
@@ -98,10 +99,27 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
         try {
+        	final OAuthConsumer consumer = getOAuthConsumer();
             consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
             consumer.sign(request);
         } catch (Exception e) {
             throw new LinkedInOAuthServiceException(e);
         }
     }
+    
+    /** 
+     *
+     */
+    protected OAuthProvider getOAuthProvider(OAuthConsumer consumer) {
+		return new DefaultOAuthProvider(consumer, LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
+		        LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
+	}
+
+    /** 
+    *
+    */
+	protected OAuthConsumer getOAuthConsumer() {
+		return new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret(),
+		        SignatureMethod.HMAC_SHA1);
+	}
 }
