@@ -538,5 +538,42 @@
       </update-content>
       <is-commentable>false</is-commentable>
     </update>
+	<update>
+	  <timestamp>1262645073369</timestamp>
+	  <update-type>JOBP</update-type>
+	  <update-content>
+	    <job>
+	      <id>8162505</id>
+	      <position>
+	        <title>Editor</title>
+	      </position>
+	      <company>
+	        <name>Irving Books</name>
+	      </company>
+	      <job-poster>
+	        <id>D4PrjjQMm1</id>
+	        <first-name>John</first-name>
+	        <last-name>Irving</last-name>
+	        <headline>Author</headline>
+	        <api-standard-profile-request>
+	          <url>http://api.linkedin.com/v1/people/D4PrjjQMm1:full</url>
+	          <headers total="1">
+	            <http-header>
+	              <name>x-li-auth-token</name>
+	              <value>name:So2N</value>
+	            </http-header>
+	          </headers>
+	        </api-standard-profile-request>
+	        <site-standard-profile-request>
+	          <url>http://www.linkedin.com/profile?viewProfile=&amp;key=32214&amp;authToken=So2N&amp;authType=name&amp;trk=api*a100117*</url>
+	        </site-standard-profile-request>
+	      </job-poster>
+	      <site-job-request>
+	        <url>http://www.linkedin.com/jobs?viewJob=&amp;jobId=8162505</url>
+	      </site-job-request>
+	    </job>
+	  </update-content>
+	  <is-commentable>false</is-commentable>
+	</update>    
   </updates>
 </network>

@@ -40,4 +40,12 @@
 			<typesafeEnumMember name="STATUS_UPDATED" value="STAT"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='recommendation-type']/xs:simpleType">
+		<typesafeEnumClass name="RecommendationType">
+			<typesafeEnumMember name="COLLEAGUE" value="COL"/>
+			<typesafeEnumMember name="BUSINESS_PARTNER" value="BSP"/>
+			<typesafeEnumMember name="SERVICE_PROVIDER" value="SPR"/>
+			<typesafeEnumMember name="STUDENT" value="STU"/>
+		</typesafeEnumClass>
+	</bindings>
 </bindings>
