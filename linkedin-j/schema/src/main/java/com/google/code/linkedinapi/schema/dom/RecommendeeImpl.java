@@ -92,7 +92,7 @@ public class RecommendeeImpl
 
 	@Override
 	public Element toXml(Document document) {
-		Element element = document.createElement("person");
+		Element element = document.createElement("recommendee");
 		DomUtils.setElementValueToNode(element, "id", getId());
 		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
 		DomUtils.setElementValueToNode(element, "last-name", getLastName());
