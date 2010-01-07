@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Recommendation;
+import com.google.code.linkedinapi.schema.RecommendationType;
 import com.google.code.linkedinapi.schema.Recommendee;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -30,7 +31,7 @@ public class RecommendationImpl
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;
     @XmlElement(name = "recommendation-type", required = true)
-    protected String recommendationType;
+    protected RecommendationType recommendationType;
     @XmlElement(name = "recommendation-snippet", required = true)
     protected String recommendationSnippet;
     @XmlElement(required = true, type = RecommendeeImpl.class)
@@ -46,11 +47,11 @@ public class RecommendationImpl
         this.id = value;
     }
 
-    public String getRecommendationType() {
+    public RecommendationType getRecommendationType() {
         return recommendationType;
     }
 
-    public void setRecommendationType(String value) {
+    public void setRecommendationType(RecommendationType value) {
         this.recommendationType = value;
     }
 

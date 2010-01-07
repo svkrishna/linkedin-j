@@ -66,11 +66,11 @@ public class PositionImpl
         this.endDate = ((EndDateImpl) value);
     }
 
-    public boolean isIsCurrent() {
+    public Boolean isIsCurrent() {
         return isCurrent;
     }
 
-    public void setIsCurrent(boolean value) {
+    public void setIsCurrent(Boolean value) {
         this.isCurrent = value;
     }
 

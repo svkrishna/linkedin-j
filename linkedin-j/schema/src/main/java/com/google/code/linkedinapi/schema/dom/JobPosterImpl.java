@@ -5,13 +5,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Author;
-import com.google.code.linkedinapi.schema.RelationToViewer;
+import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
-public class AuthorImpl
+public class JobPosterImpl
 	extends BaseSchemaEntity
-    implements Author
+    implements JobPoster
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -19,7 +18,6 @@ public class AuthorImpl
     protected String firstName;
     protected String lastName;
     protected String headline;
-    protected RelationToViewerImpl relationToViewer;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
 
@@ -55,14 +53,6 @@ public class AuthorImpl
         this.headline = value;
     }
 
-    public RelationToViewer getRelationToViewer() {
-        return relationToViewer;
-    }
-
-    public void setRelationToViewer(RelationToViewer value) {
-        this.relationToViewer = ((RelationToViewerImpl) value);
-    }
-
     public ApiStandardProfileRequest getApiStandardProfileRequest() {
         return apiStandardProfileRequest;
     }
@@ -78,7 +68,7 @@ public class AuthorImpl
     public void setSiteStandardProfileRequest(SiteStandardProfileRequest value) {
         this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
-    
+
 	@Override
 	public void init(Element element) {
 		setId(DomUtils.getElementValueFromNode(element, "id"));
@@ -86,12 +76,6 @@ public class AuthorImpl
 		setLastName(DomUtils.getElementValueFromNode(element, "last-name"));
 		setHeadline(DomUtils.getElementValueFromNode(element, "headline"));
 		
-		Element relationElem = (Element) DomUtils.getChildElementByName(element, "relation-to-viewer");
-		if (relationElem != null) {
-			RelationToViewerImpl relation = new RelationToViewerImpl();
-			relation.init(relationElem);
-			setRelationToViewer(relation);
-		}
 		Element apiRequestElem = (Element) DomUtils.getChildElementByName(element, "api-standard-profile-request");
 		if (apiRequestElem != null) {
 			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
@@ -108,14 +92,11 @@ public class AuthorImpl
 
 	@Override
 	public Element toXml(Document document) {
-		Element element = document.createElement("author");
+		Element element = document.createElement("job-poster");
 		DomUtils.setElementValueToNode(element, "id", getId());
 		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
 		DomUtils.setElementValueToNode(element, "last-name", getLastName());
 		DomUtils.setElementValueToNode(element, "headline", getHeadline());
-		if (getRelationToViewer() != null) {
-			element.appendChild(((RelationToViewerImpl) getRelationToViewer()).toXml(document));
-		}
 		if (getApiStandardProfileRequest() != null) {
 			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(document));
 		}

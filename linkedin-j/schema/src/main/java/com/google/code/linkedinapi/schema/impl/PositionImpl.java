@@ -30,7 +30,6 @@ public class PositionImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;
     @XmlElement(required = true)
@@ -41,8 +40,8 @@ public class PositionImpl
     @XmlElement(name = "end-date", type = EndDateImpl.class)
     protected EndDateImpl endDate;
     @XmlElement(name = "is-current")
-    protected boolean isCurrent;
-    @XmlElement(required = true, type = CompanyImpl.class)
+    protected Boolean isCurrent;
+    @XmlElement(type = CompanyImpl.class)
     protected CompanyImpl company;
 
     public String getId() {
@@ -85,11 +84,11 @@ public class PositionImpl
         this.endDate = ((EndDateImpl) value);
     }
 
-    public boolean isIsCurrent() {
+    public Boolean isIsCurrent() {
         return isCurrent;
     }
 
-    public void setIsCurrent(boolean value) {
+    public void setIsCurrent(Boolean value) {
         this.isCurrent = value;
     }
 

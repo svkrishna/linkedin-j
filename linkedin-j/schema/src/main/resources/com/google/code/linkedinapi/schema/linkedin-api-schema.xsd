@@ -158,9 +158,33 @@
 
   <xs:element name="update-content">
     <xs:complexType>
+      <xs:choice>
+        <xs:element ref="person"/>
+        <xs:element ref="job"/>
+        <xs:element ref="question"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="person"/>
-        <xs:element minOccurs="0" ref="question"/>
+        <xs:element ref="id"/>
+        <xs:element ref="position"/>
+        <xs:element ref="company"/>
+        <xs:element ref="job-poster"/>
+        <xs:element ref="site-job-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job-poster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -319,13 +343,15 @@
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
+        <xs:element minOccurs="0" ref="id"/>
         <xs:element ref="title"/>
         <xs:element minOccurs="0" ref="summary"/>
         <xs:element minOccurs="0" ref="start-date"/>
         <xs:element minOccurs="0" ref="end-date"/>
-        <xs:element ref="is-current"/>
-        <xs:element ref="company"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="is-current"/>
+          <xs:element ref="company"/>
+        </xs:sequence>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -402,6 +428,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="site-job-request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element minOccurs="0" ref="headers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="person-activities">
     <xs:complexType>
       <xs:sequence>
@@ -446,7 +480,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendation-type" type="xs:string"/>
+  <xs:element name="recommendation-type">
+	<xs:simpleType>
+	  <xs:restriction base="xs:string">
+	    <xs:enumeration value="COL"/>
+		<xs:enumeration value="BSP"/>
+		<xs:enumeration value="SPR"/>
+		<xs:enumeration value="STU"/>
+	  </xs:restriction>
+	</xs:simpleType>
+  </xs:element>
   <xs:element name="recommendation-snippet" type="xs:string"/>
   <xs:element name="recommendee">
     <xs:complexType>
