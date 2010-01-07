@@ -164,9 +164,11 @@ public class PostNetworkUpdateExample {
 		for (Update update : network.getUpdates().getUpdate()) {
 			System.out.println("-------------------------------");
 			System.out.println(update.getUpdateKey() + ":" + update.getUpdateContent().getPerson().getFirstName() + " " + update.getUpdateContent().getPerson().getLastName() + "->" + update.getUpdateContent().getPerson().getCurrentStatus());
-			System.out.println("Total comments fetched:" + update.getUpdateComments().getTotal());
-			for (UpdateComment comment : update.getUpdateComments().getUpdateComment()) {
-				System.out.println(comment.getPerson().getFirstName() + " " + comment.getPerson().getLastName() + "->" + comment.getComment());				
+			if (update.getUpdateComments() != null) {
+				System.out.println("Total comments fetched:" + update.getUpdateComments().getTotal());
+				for (UpdateComment comment : update.getUpdateComments().getUpdateComment()) {
+					System.out.println(comment.getPerson().getFirstName() + " " + comment.getPerson().getLastName() + "->" + comment.getComment());				
+				}
 			}
 		}
 	}
