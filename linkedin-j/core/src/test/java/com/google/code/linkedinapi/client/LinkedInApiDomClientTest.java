@@ -184,7 +184,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntDateDateSetOfNetworkUpdateType() {
-		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5, getLastWeekDate(), getCurrentDate());
+		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 5, 1, getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 	

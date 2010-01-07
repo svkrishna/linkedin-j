@@ -164,14 +164,13 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
      * 
      * @param updateTypes the update types
-     * @param count the count
      * @param start the start
+     * @param count the count
      * @param startDate the start date
      * @param endDate the end date
-     * 
      * @return the network updates
      */
-    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
                                      Date endDate);
 
     /**

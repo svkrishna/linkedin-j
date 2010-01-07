@@ -365,12 +365,12 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int count, final int start, final Date startDate,
+    public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count, final Date startDate,
             final Date endDate) {
         return execute(new Callable<Network>() {
             @Override
             public Network call() throws Exception {
-                return client.getNetworkUpdates(updateTypes, count, start, startDate, endDate);
+                return client.getNetworkUpdates(updateTypes, start, count, startDate, endDate);
             }
         });
     }

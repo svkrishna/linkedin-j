@@ -356,7 +356,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
-                                            String.valueOf(count)).withFieldEnumSet("type", updateTypes).buildUrl();
+                                            String.valueOf(count)).withParameterEnumSet("type", updateTypes).buildUrl();
 
         return readResponse(Network.class, callApiMethod(apiUrl));
     }
@@ -379,7 +379,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int count, int start, Date startDate,
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
                                      Date endDate) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
