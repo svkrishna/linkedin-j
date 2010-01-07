@@ -13,15 +13,12 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}id" minOccurs="0"/>
- *         &lt;element ref="{}title"/>
- *         &lt;element ref="{}summary" minOccurs="0"/>
- *         &lt;element ref="{}start-date" minOccurs="0"/>
- *         &lt;element ref="{}end-date" minOccurs="0"/>
- *         &lt;sequence minOccurs="0">
- *           &lt;element ref="{}is-current"/>
- *           &lt;element ref="{}company"/>
- *         &lt;/sequence>
+ *         &lt;element ref="{}id"/>
+ *         &lt;element ref="{}first-name"/>
+ *         &lt;element ref="{}last-name"/>
+ *         &lt;element ref="{}headline"/>
+ *         &lt;element ref="{}api-standard-profile-request"/>
+ *         &lt;element ref="{}site-standard-profile-request"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +27,7 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Position
+public interface JobPoster
     extends SchemaEntity
 {
 
@@ -56,123 +53,103 @@ public interface Position
     void setId(String value);
 
     /**
-     * Gets the value of the title property.
+     * Gets the value of the firstName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getTitle();
+    String getFirstName();
 
     /**
-     * Sets the value of the title property.
+     * Sets the value of the firstName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setTitle(String value);
+    void setFirstName(String value);
 
     /**
-     * Gets the value of the summary property.
+     * Gets the value of the lastName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getSummary();
+    String getLastName();
 
     /**
-     * Sets the value of the summary property.
+     * Sets the value of the lastName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setSummary(String value);
+    void setLastName(String value);
 
     /**
-     * Gets the value of the startDate property.
+     * Gets the value of the headline property.
      * 
      * @return
      *     possible object is
-     *     {@link StartDate }
+     *     {@link String }
      *     
      */
-    StartDate getStartDate();
+    String getHeadline();
 
     /**
-     * Sets the value of the startDate property.
+     * Sets the value of the headline property.
      * 
      * @param value
      *     allowed object is
-     *     {@link StartDate }
+     *     {@link String }
      *     
      */
-    void setStartDate(StartDate value);
+    void setHeadline(String value);
 
     /**
-     * Gets the value of the endDate property.
+     * Gets the value of the apiStandardProfileRequest property.
      * 
      * @return
      *     possible object is
-     *     {@link EndDate }
+     *     {@link ApiStandardProfileRequest }
      *     
      */
-    EndDate getEndDate();
+    ApiStandardProfileRequest getApiStandardProfileRequest();
 
     /**
-     * Sets the value of the endDate property.
+     * Sets the value of the apiStandardProfileRequest property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EndDate }
+     *     {@link ApiStandardProfileRequest }
      *     
      */
-    void setEndDate(EndDate value);
+    void setApiStandardProfileRequest(ApiStandardProfileRequest value);
 
     /**
-     * Gets the value of the isCurrent property.
+     * Gets the value of the siteStandardProfileRequest property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link SiteStandardProfileRequest }
      *     
      */
-    Boolean isIsCurrent();
+    SiteStandardProfileRequest getSiteStandardProfileRequest();
 
     /**
-     * Sets the value of the isCurrent property.
+     * Sets the value of the siteStandardProfileRequest property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link SiteStandardProfileRequest }
      *     
      */
-    void setIsCurrent(Boolean value);
-
-    /**
-     * Gets the value of the company property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Company }
-     *     
-     */
-    Company getCompany();
-
-    /**
-     * Sets the value of the company property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Company }
-     *     
-     */
-    void setCompany(Company value);
+    void setSiteStandardProfileRequest(SiteStandardProfileRequest value);
 
 }

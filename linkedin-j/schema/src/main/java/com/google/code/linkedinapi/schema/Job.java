@@ -14,10 +14,10 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}id"/>
- *         &lt;element ref="{}recommendation-type"/>
- *         &lt;element ref="{}recommendation-snippet"/>
- *         &lt;element ref="{}recommendee"/>
- *         &lt;element ref="{}web-url"/>
+ *         &lt;element ref="{}position"/>
+ *         &lt;element ref="{}company"/>
+ *         &lt;element ref="{}job-poster"/>
+ *         &lt;element ref="{}site-job-request"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,7 +26,7 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Recommendation
+public interface Job
     extends SchemaEntity
 {
 
@@ -52,83 +52,83 @@ public interface Recommendation
     void setId(String value);
 
     /**
-     * Gets the value of the recommendationType property.
+     * Gets the value of the position property.
      * 
      * @return
      *     possible object is
-     *     {@link RecommendationType }
+     *     {@link Position }
      *     
      */
-    RecommendationType getRecommendationType();
+    Position getPosition();
 
     /**
-     * Sets the value of the recommendationType property.
+     * Sets the value of the position property.
      * 
      * @param value
      *     allowed object is
-     *     {@link RecommendationType }
+     *     {@link Position }
      *     
      */
-    void setRecommendationType(RecommendationType value);
+    void setPosition(Position value);
 
     /**
-     * Gets the value of the recommendationSnippet property.
+     * Gets the value of the company property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Company }
      *     
      */
-    String getRecommendationSnippet();
+    Company getCompany();
 
     /**
-     * Sets the value of the recommendationSnippet property.
+     * Sets the value of the company property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Company }
      *     
      */
-    void setRecommendationSnippet(String value);
+    void setCompany(Company value);
 
     /**
-     * Gets the value of the recommendee property.
+     * Gets the value of the jobPoster property.
      * 
      * @return
      *     possible object is
-     *     {@link Recommendee }
+     *     {@link JobPoster }
      *     
      */
-    Recommendee getRecommendee();
+    JobPoster getJobPoster();
 
     /**
-     * Sets the value of the recommendee property.
+     * Sets the value of the jobPoster property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Recommendee }
+     *     {@link JobPoster }
      *     
      */
-    void setRecommendee(Recommendee value);
+    void setJobPoster(JobPoster value);
 
     /**
-     * Gets the value of the webUrl property.
+     * Gets the value of the siteJobRequest property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link SiteJobRequest }
      *     
      */
-    String getWebUrl();
+    SiteJobRequest getSiteJobRequest();
 
     /**
-     * Sets the value of the webUrl property.
+     * Sets the value of the siteJobRequest property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link SiteJobRequest }
      *     
      */
-    void setWebUrl(String value);
+    void setSiteJobRequest(SiteJobRequest value);
 
 }

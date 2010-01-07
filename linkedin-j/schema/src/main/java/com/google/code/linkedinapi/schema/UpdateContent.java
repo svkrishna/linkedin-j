@@ -12,10 +12,11 @@ package com.google.code.linkedinapi.schema;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{}person" minOccurs="0"/>
- *         &lt;element ref="{}question" minOccurs="0"/>
- *       &lt;/sequence>
+ *       &lt;choice>
+ *         &lt;element ref="{}person"/>
+ *         &lt;element ref="{}job"/>
+ *         &lt;element ref="{}question"/>
+ *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -47,6 +48,26 @@ public interface UpdateContent
      *     
      */
     void setPerson(Person value);
+
+    /**
+     * Gets the value of the job property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Job }
+     *     
+     */
+    Job getJob();
+
+    /**
+     * Sets the value of the job property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Job }
+     *     
+     */
+    void setJob(Job value);
 
     /**
      * Gets the value of the question property.
