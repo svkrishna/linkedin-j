@@ -9,11 +9,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
+import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
@@ -533,6 +535,10 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
     /**
      * Send invite.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1012">http://developer.linkedin.com/docs/DOC-1012</a>
+     * <p>
+     * To call this method one needs an auth header parameter. This can be obtained by getting {@link ApiStandardProfileRequest#getHeaders()} from {@link Person#getApiStandardProfileRequest()}
+     * and then getting the value of header with name {@link ApplicationConstants#AUTH_HEADER_NAME}. 
+     * </p> 
      * 
      * @param recepientId the recepient id
      * @param subject the subject
