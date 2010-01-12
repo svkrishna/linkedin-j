@@ -95,9 +95,24 @@ public final class TestConstants {
         testConstants.getProperty("com.google.code.linkedinapi.client.testInviteSubject");
 
     /** Field description */
-    public static final String LINKED_IN_TEST_INVITE_RECEPIENT_IDS =
-        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteRecepientIds");
+    public static final String LINKED_IN_TEST_INVITE_RECEPIENT_ID =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteRecepientId");
 
+    /** Field description */
+    public static final String LINKED_IN_TEST_INVITE_FIRST_NAME =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteFirstName");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_INVITE_LAST_NAME =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteLastName");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_INVITE_EMAIL =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteEmail");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_INVITE_AUTH_HEADER =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testInviteAuthHeader");
     /**
      * Constructs ...
      *

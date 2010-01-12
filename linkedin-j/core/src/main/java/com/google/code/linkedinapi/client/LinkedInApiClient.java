@@ -13,7 +13,6 @@ import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
-import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
@@ -511,11 +510,13 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * Send invite.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1012">http://developer.linkedin.com/docs/DOC-1012</a>
      * 
-     * @param recepientId the recepient id
+     * @param email the email
+     * @param firstName the first name
+     * @param lastName the last name
      * @param subject the subject
      * @param message the message
      */
-    public void sendInvite(String recepientId, String subject, String message);
+    public void sendInviteByEmail(String email, String firstName, String lastName, String subject, String message);
 
     /**
      * Send invite.
@@ -524,7 +525,7 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @param recepientId the recepient id
      * @param subject the subject
      * @param message the message
-     * @param auth the auth
+     * @param authHeader the auth header
      */
-    public void sendInvite(String recepientId, String subject, String message, Authorization auth);
+    public void sendInviteById(String recepientId, String subject, String message, String authHeader);
 }

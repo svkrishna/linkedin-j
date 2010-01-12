@@ -20,7 +20,6 @@ import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
-import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
@@ -601,11 +600,11 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<?> sendInvite(final String recepientId, final String subject, final String message) {
+    public Future<?> sendInviteByEmail(final String email, final String firstName, final String lastName, final String subject, final String message) {
         return execute(new Runnable() {
             @Override
             public void run() {
-                client.sendInvite(recepientId, subject, message);
+                client.sendInviteByEmail(email, firstName, lastName, subject, message);
             }
         });
     }
@@ -614,11 +613,11 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<?> sendInvite(final String recepientId, final String subject, final String message, final Authorization auth) {
+    public Future<?> sendInviteById(final String recepientId, final String subject, final String message, final String authHeader) {
         return execute(new Runnable() {
             @Override
             public void run() {
-                client.sendInvite(recepientId, subject, message, auth);
+                client.sendInviteById(recepientId, subject, message, authHeader);
             }
         });
     }

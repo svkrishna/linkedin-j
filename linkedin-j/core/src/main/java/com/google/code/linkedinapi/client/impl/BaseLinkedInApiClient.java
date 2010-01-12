@@ -156,7 +156,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Connections getConnectionsByUrl(String url) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
-        String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url).buildUrl();
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url, true).buildUrl();
 
         return readResponse(Connections.class, callApiMethod(apiUrl));
     }
@@ -167,7 +167,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
-        String                apiUrl  = builder.withField("url", url).withFieldEnumSet("profileFields",
+        String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
 
         return readResponse(Connections.class, callApiMethod(apiUrl));
@@ -256,7 +256,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Connections getConnectionsByUrl(String url, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url",
-                                            url).withParameter("start", String.valueOf(start)).withParameter("count",
+                                            url, true).withParameter("start", String.valueOf(start)).withParameter("count",
                                                 String.valueOf(count)).buildUrl();
 
         return readResponse(Connections.class, callApiMethod(apiUrl));
@@ -268,7 +268,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
-        String                apiUrl  = builder.withField("url", url).withFieldEnumSet("profileFields",
+        String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).withParameter("start",
                                                 String.valueOf(start)).withParameter("count",
                                                     String.valueOf(count)).buildUrl();
@@ -433,7 +433,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Person getProfileByUrl(String url, ProfileType profileType) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url",
-                                            url).withFieldEnum("profileType", profileType).buildUrl();
+                                            url, true).withFieldEnum("profileType", profileType).buildUrl();
 
         return readResponse(Person.class, callApiMethod(apiUrl));
     }
@@ -444,7 +444,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_URL);
-        String                apiUrl  = builder.withField("url", url).withFieldEnum("profileType",
+        String                apiUrl  = builder.withField("url", url, true).withFieldEnum("profileType",
                                             profileType).withFieldEnumSet("profileFields", profileFields).buildUrl();
 
         return readResponse(Person.class, callApiMethod(apiUrl));
@@ -606,7 +606,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public void sendInvite(String recepientId, String subject, String message) {
+    public void sendInviteByEmail(String email, String firstName, String lastName, String subject, String message) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl  = builder.buildUrl();
         MailboxItem           invite  = OBJECT_FACTORY.createMailboxItem();
@@ -617,7 +617,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         Person person = OBJECT_FACTORY.createPerson();
 
-        person.setId(recepientId);
+        person.setPath(createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_INVITE_EMAIL_PERSON_PATH).withField("email", email).buildUrl());
+        person.setFirstName(firstName);
+        person.setLastName(lastName);
 
         Recipient recepient = OBJECT_FACTORY.createRecipient();
 
@@ -637,7 +639,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public void sendInvite(String recepientId, String subject, String message, Authorization auth) {
+    public void sendInviteById(String recepientId, String subject, String message, String authHeader) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl  = builder.buildUrl();
         MailboxItem           invite  = OBJECT_FACTORY.createMailboxItem();
@@ -648,7 +650,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         Person person = OBJECT_FACTORY.createPerson();
 
-        person.setId(recepientId);
+        person.setPath(createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_INVITE_ID_PERSON_PATH).withField("id", recepientId).buildUrl());
 
         Recipient recepient = OBJECT_FACTORY.createRecipient();
 
@@ -659,7 +661,15 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
 
         request.setConnectType(InviteConnectType.FRIEND);
-        request.setAuthorization(auth);
+        if (authHeader != null) {
+            String[] authTuple = authHeader.split(":");
+            if (authTuple.length == 2) {
+                Authorization authorization = OBJECT_FACTORY.createAuthorization();
+                authorization.setName(authTuple[0]);
+                authorization.setValue(authTuple[1]);
+                request.setAuthorization(authorization);
+            }
+        }
         invite.getItemContent().setInvitationRequest(request);
         callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
                       HttpURLConnection.HTTP_CREATED);
@@ -680,8 +690,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         for (String recepientId : recepientIds) {
             Person person = OBJECT_FACTORY.createPerson();
-
-            person.setPath("/people/" + recepientId);
+            
+            person.setPath(createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE_PERSON_PATH).withField("id", recepientId).buildUrl());
 
             Recipient recepient = OBJECT_FACTORY.createRecipient();
 

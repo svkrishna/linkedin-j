@@ -365,25 +365,37 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInvite(java.lang.String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInviteByEmail(java.lang.String, String, String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSendInviteStringStringString() {
+	public void testSendInviteByEmailStringStringString() {
 		final String inviteText = TestConstants.LINKED_IN_TEST_INVITE_TEXT;
 		final String inviteSubject = TestConstants.LINKED_IN_TEST_INVITE_SUBJECT;
-		final String inviteRecepient = TestConstants.LINKED_IN_TEST_INVITE_RECEPIENT_IDS;
+		final String inviteRecepient = TestConstants.LINKED_IN_TEST_INVITE_EMAIL;
+		final String firstName = TestConstants.LINKED_IN_TEST_INVITE_FIRST_NAME;
+		final String lastName = TestConstants.LINKED_IN_TEST_INVITE_LAST_NAME;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "First Name"), firstName);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Last Name"), lastName);
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Text"), inviteText);
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Subject"), inviteSubject);
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Recepient"), inviteRecepient);
-		client.sendInvite(inviteRecepient, inviteSubject, inviteText);
+		client.sendInviteByEmail(inviteRecepient, firstName, lastName, inviteSubject, inviteText);
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInvite(java.lang.String, java.lang.String, java.lang.String, com.google.code.linkedinapi.schema.Authorization)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInviteById(java.lang.String, String, String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
-	public void testSendInviteStringStringStringAuthorization() {
-		fail("Not yet implemented");
+	public void testSendInviteByIdStringStringString() {
+		final String inviteText = TestConstants.LINKED_IN_TEST_INVITE_TEXT;
+		final String inviteSubject = TestConstants.LINKED_IN_TEST_INVITE_SUBJECT;
+		final String inviteRecepient = TestConstants.LINKED_IN_TEST_INVITE_RECEPIENT_ID;
+		final String authHeader = TestConstants.LINKED_IN_TEST_INVITE_AUTH_HEADER;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Text"), inviteText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Subject"), inviteSubject);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Invite Recepient"), inviteRecepient);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Auth Header"), authHeader);
+		client.sendInviteById(inviteRecepient, inviteSubject, inviteText, authHeader);
 	}
 
 	/**

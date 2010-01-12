@@ -107,6 +107,18 @@ public final class LinkedInApiUrls {
     public static final String GET_CONNECTIONS_BY_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsByUrl");
 
+    /** The Constant SEND_MESSAGE_PERSON_PATH. */
+    public static final String SEND_MESSAGE_PERSON_PATH =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.messagePersonPath");
+
+    /** The Constant SEND_INVITE_ID_PERSON_PATH. */
+    public static final String SEND_INVITE_ID_PERSON_PATH =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.inviteIdPersonPath");
+
+    /** The Constant SEND_INVITE_EMAIL_PERSON_PATH. */
+    public static final String SEND_INVITE_EMAIL_PERSON_PATH =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.inviteEmailPersonPath");
+    
     /**
      * Instantiates a new linked in api urls.
      */
@@ -262,11 +274,29 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withField(String name, String value) {
-    		fieldsMap.put(name, encodeUrl(value));
+	    	withField(name, value, false);
     		
     		return this;
     	}
-    	
+	    
+    	/**
+	     * With field.
+	     * 
+	     * @param name the name
+	     * @param value the value
+	     * 
+	     * @return the linked in api url builder
+	     */
+	    public LinkedInApiUrlBuilder withField(String name, String value, boolean escape) {
+	    	if (escape) {
+	    		fieldsMap.put(name, encodeUrl(value));
+	    	} else {
+	    		fieldsMap.put(name, value);
+	    	}
+    		
+    		return this;
+    	}
+	    
     	/**
 	     * With field enum.
 	     * 
@@ -297,7 +327,7 @@ public final class LinkedInApiUrls {
 	        	builder.append("(");
 	    		while (iter.hasNext()) {
 	    			FieldEnum fieldEnum = iter.next();
-	    			builder.append(encodeUrl(fieldEnum.fieldName()));
+	    			builder.append(fieldEnum.fieldName());
 	    			if (iter.hasNext()) {
 	    				builder.append(",");
 	    			}

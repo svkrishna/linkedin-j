@@ -58,6 +58,9 @@ public final class ApplicationConstants {
     /** The Constant READ_TIMEOUT. */
     public static final int READ_TIMEOUT = getIntProperty("com.google.code.linkedinapi.client.readTimeout");
     
+    /** The Constant AUTH_HEADER_NAME. */
+    public static final String AUTH_HEADER_NAME = getProperty("com.google.code.linkedinapi.client.authHeaderName");
+    
     /**
      * Instantiates a new application constants.
      */
