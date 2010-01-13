@@ -102,7 +102,7 @@ public class ProfileApiExample {
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
     			System.out.println("Fetching profile for user with id:" + idValue);
-    			Person profile = client.getProfileById(idValue, profileType);
+    			Person profile = client.getProfileById(idValue);
     			printResult(profile);
     		} else if (line.hasOption(URL_OPTION)) {
     			String urlValue = line.getOptionValue(URL_OPTION);

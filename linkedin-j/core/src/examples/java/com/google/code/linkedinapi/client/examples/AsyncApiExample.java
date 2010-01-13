@@ -100,7 +100,7 @@ public class AsyncApiExample {
         		if(line.hasOption(ID_OPTION)) {
         			String idValue = line.getOptionValue(ID_OPTION);
         			System.out.println("Fetching profile and connections for user with id:" + idValue);
-        			Future<Person> profile = client.getProfileById(idValue, ProfileType.STANDARD);
+        			Future<Person> profile = client.getProfileById(idValue);
         			Future<Connections> connections = client.getConnectionsById(idValue);
         			System.out.println("Done calling asynchronously. Now waiting for the result.");
         			printResult(profile.get());

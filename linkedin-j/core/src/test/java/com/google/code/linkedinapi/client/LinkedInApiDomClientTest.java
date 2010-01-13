@@ -203,10 +203,10 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
 	 */
 	@Test
-	public void testGetProfileByIdStringProfileType() {
+	public void testGetProfileByIdString() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
-		Person profile = client.getProfileById(id, ProfileType.STANDARD);
+		Person profile = client.getProfileById(id);
 		assertNotNull("Profile should never be null.", profile);
 	}
 
@@ -214,10 +214,10 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType, java.util.Set)}.
 	 */
 	@Test
-	public void testGetProfileByIdStringProfileTypeSetOfProfileField() {
+	public void testGetProfileByIdStringSetOfProfileField() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
-		Person profile = client.getProfileById(id, ProfileType.STANDARD, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Person profile = client.getProfileById(id, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 		assertNotNull("Profile should never be null.", profile);
 	}
 

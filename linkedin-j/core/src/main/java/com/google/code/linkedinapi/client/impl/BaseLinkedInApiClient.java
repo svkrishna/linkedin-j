@@ -407,25 +407,41 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileById(String id, ProfileType profileType) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_ID);
-        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
-                                            id).withFieldEnum("profileType", profileType).buildUrl();
-
-        return readResponse(Person.class, callApiMethod(apiUrl));
+    	return getProfileById(id);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
+    public Person getProfileById(String id) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_ID);
-        String                apiUrl  = builder.withField("id", id).withFieldEnum("profileType",
-                                            profileType).withFieldEnumSet("profileFields", profileFields).buildUrl();
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+                                            id).withFieldEnum("profileType", ProfileType.STANDARD).buildUrl();
 
         return readResponse(Person.class, callApiMethod(apiUrl));
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
+    	return getProfileById(id, profileFields);
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Person getProfileById(String id, Set<ProfileField> profileFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_ID);
+        String                apiUrl  = builder.withField("id", id).withFieldEnum("profileType",
+                                            ProfileType.STANDARD).withFieldEnumSet("profileFields", profileFields).buildUrl();
+
+        return readResponse(Person.class, callApiMethod(apiUrl));
+    }
+    
     /**
      * {@inheritDoc}
      */

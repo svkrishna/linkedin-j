@@ -47,9 +47,22 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param profileType the profile type
      * 
      * @return the profile by id
+     * @deprecated Use {@link #getProfileById(String)}
      */
+    @Deprecated
     public Future<Person> getProfileById(String id, ProfileType profileType);
 
+    /**
+     * Gets the profile by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
+     * 
+     * @param id the id
+     * @param profileType the profile type
+     * 
+     * @return the profile by id
+     */
+    public Future<Person> getProfileById(String id);
+    
     /**
      * Gets the profile by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
@@ -80,9 +93,23 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * @param profileFields the profile fields
      * 
      * @return the profile by id
+     * @deprecated Use {@link #getProfileById(String, Set)}
      */
+    @Deprecated
     public Future<Person> getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields);
 
+    /**
+     * Gets the profile by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
+     * 
+     * @param id the id
+     * @param profileType the profile type
+     * @param profileFields the profile fields
+     * 
+     * @return the profile by id
+     */
+    public Future<Person> getProfileById(String id, Set<ProfileField> profileFields);
+    
     /**
      * Gets the profile by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>

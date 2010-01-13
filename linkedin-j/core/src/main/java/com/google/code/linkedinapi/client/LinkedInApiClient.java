@@ -46,9 +46,21 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @param profileType the profile type
      * 
      * @return the profile by id
+     * @deprecated Use {@link #getProfileById(String)}
      */
+    @Deprecated
     public Person getProfileById(String id, ProfileType profileType);
 
+    /**
+     * Gets the profile by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
+     * 
+     * @param id the id
+     * 
+     * @return the profile by id
+     */
+    public Person getProfileById(String id);
+    
     /**
      * Gets the profile by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
@@ -79,9 +91,22 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @param profileFields the profile fields
      * 
      * @return the profile by id
+     * @deprecated Use {@link #getProfileById(String, Set)}
      */
+    @Deprecated
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields);
 
+    /**
+     * Gets the profile by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
+     * 
+     * @param id the id
+     * @param profileFields the profile fields
+     * 
+     * @return the profile by id
+     */
+    public Person getProfileById(String id, Set<ProfileField> profileFields);
+    
     /**
      * Gets the profile by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>

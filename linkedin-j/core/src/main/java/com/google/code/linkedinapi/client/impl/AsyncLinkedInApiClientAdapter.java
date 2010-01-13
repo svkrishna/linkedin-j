@@ -393,7 +393,8 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     @Override
     public Future<Person> getProfileById(final String id, final ProfileType profileType) {
         return execute(new Callable<Person>() {
-            @Override
+            @SuppressWarnings("deprecation")
+			@Override
             public Person call() throws Exception {
                 return client.getProfileById(id, profileType);
             }
@@ -404,15 +405,42 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<Person> getProfileById(final String id, final ProfileType profileType, final Set<ProfileField> profileFields) {
+    public Future<Person> getProfileById(final String id) {
         return execute(new Callable<Person>() {
             @Override
+            public Person call() throws Exception {
+                return client.getProfileById(id);
+            }
+        });
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Future<Person> getProfileById(final String id, final ProfileType profileType, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Person>() {
+            @SuppressWarnings("deprecation")
+			@Override
             public Person call() throws Exception {
                 return client.getProfileById(id, profileType, profileFields);
             }
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Future<Person> getProfileById(final String id, final Set<ProfileField> profileFields) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileById(id, profileFields);
+            }
+        });
+    }
+    
     /**
      * {@inheritDoc}
      */
