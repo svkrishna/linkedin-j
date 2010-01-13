@@ -20,6 +20,7 @@ import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
+import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
@@ -467,6 +468,19 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Future<Person> getProfileByApiRequest(final ApiStandardProfileRequest apiRequest) {
+        return execute(new Callable<Person>() {
+            @Override
+            public Person call() throws Exception {
+                return client.getProfileByApiRequest(apiRequest);
+            }
+        });
+    }
+    
     /**
      * {@inheritDoc}
      */

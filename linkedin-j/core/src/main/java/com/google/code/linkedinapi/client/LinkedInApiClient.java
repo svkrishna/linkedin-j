@@ -119,6 +119,16 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields);
 
+    /**
+     * Gets the profile by API request.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1002">http://developer.linkedin.com/docs/DOC-1002</a>
+     * 
+     * @param apiRequest the api request
+     * 
+     * @return the profile by api request
+     */
+    public Person getProfileByApiRequest(ApiStandardProfileRequest apiRequest);
+    
     // Network Updates API. Return Network Update bean
 
     /**
