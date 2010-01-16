@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -107,34 +108,35 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         return accessToken;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+//    /**
+//     * {@inheritDoc}
+//     */
 //    @Override
-    public Connections getConnectionsByEmail(String email) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-        String                apiUrl  = builder.withEmptyField("profileFields").withField("email", email).buildUrl();
+//    public Connections getConnectionsByEmail(String email) {
+//        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
+//        String                apiUrl  = builder.withEmptyField("profileFields").withField("email", email).buildUrl();
+//
+//        return readResponse(Connections.class, callApiMethod(apiUrl));
+//    }
 
-        return readResponse(Connections.class, callApiMethod(apiUrl));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+//    /**
+//     * {@inheritDoc}
+//     */
 //    @Override
-    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-        String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
-                                            profileFields).buildUrl();
-
-        return readResponse(Connections.class, callApiMethod(apiUrl));
-    }
+//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
+//        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
+//        String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
+//                                            profileFields).buildUrl();
+//
+//        return readResponse(Connections.class, callApiMethod(apiUrl));
+//    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id) {
+    	assertNotNullOrEmpty("id", id);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("id", id).buildUrl();
 
@@ -146,6 +148,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields) {
+    	assertNotNullOrEmpty("id", id);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
@@ -158,6 +162,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url) {
+    	assertNotNullOrEmpty("url", url);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url, true).buildUrl();
 
@@ -169,6 +174,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
+    	assertNotNullOrEmpty("url", url);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
@@ -192,6 +199,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).buildUrl();
 
@@ -202,34 +210,37 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
 //    @Override
-    public Connections getConnectionsByEmail(String email, int start, int count) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-        String                apiUrl  = builder.withEmptyField("profileFields").withField("email",
-                                            email).withParameter("start", String.valueOf(start)).withParameter("count",
-                                                String.valueOf(count)).buildUrl();
-
-        return readResponse(Connections.class, callApiMethod(apiUrl));
-    }
+//    public Connections getConnectionsByEmail(String email, int start, int count) {
+//        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
+//        String                apiUrl  = builder.withEmptyField("profileFields").withField("email",
+//                                            email).withParameter("start", String.valueOf(start)).withParameter("count",
+//                                                String.valueOf(count)).buildUrl();
+//
+//        return readResponse(Connections.class, callApiMethod(apiUrl));
+//    }
 
     /**
      * {@inheritDoc}
      */
 //    @Override
-    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-        String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
-                                            profileFields).withParameter("start",
-                                                String.valueOf(start)).withParameter("count",
-                                                    String.valueOf(count)).buildUrl();
-
-        return readResponse(Connections.class, callApiMethod(apiUrl));
-    }
+//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
+//        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
+//        String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
+//                                            profileFields).withParameter("start",
+//                                                String.valueOf(start)).withParameter("count",
+//                                                    String.valueOf(count)).buildUrl();
+//
+//        return readResponse(Connections.class, callApiMethod(apiUrl));
+//    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public Connections getConnectionsById(String id, int start, int count) {
+    	assertNotNullOrEmpty("id", id);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
                                             id).withParameter("start", String.valueOf(start)).withParameter("count",
@@ -243,6 +254,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count) {
+    	assertNotNullOrEmpty("id", id);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
                                             profileFields).withParameter("start",
@@ -257,6 +272,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url, int start, int count) {
+    	assertNotNullOrEmpty("url", url);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url",
                                             url, true).withParameter("start", String.valueOf(start)).withParameter("count",
@@ -270,6 +288,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count) {
+    	assertNotNullOrEmpty("url", url);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).withParameter("start",
@@ -284,6 +306,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser(int start, int count) {
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withEmptyField("profileFields").withParameter("start",
                                             String.valueOf(start)).withParameter("count",
@@ -297,6 +321,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count) {
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).withParameter("start",
                                             String.valueOf(start)).withParameter("count",
@@ -321,6 +348,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(int start, int count) {
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).buildUrl();
@@ -333,6 +362,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Date startDate, Date endDate) {
+    	assertNotNull("start date", startDate);
+    	assertNotNull("end date", endDate);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("after",
                                             String.valueOf(startDate.getTime())).withParameter("before",
@@ -346,6 +377,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
+    	assertNotNull("update types", updateTypes);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameterEnumSet("type", updateTypes).buildUrl();
 
@@ -357,6 +389,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
+    	assertNotNull("update types", updateTypes);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).withParameterEnumSet("type", updateTypes).buildUrl();
@@ -369,6 +404,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate) {
+    	assertNotNull("update types", updateTypes);
+    	assertNotNull("start date", startDate);
+    	assertNotNull("end date", endDate);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("after",
                                             String.valueOf(startDate.getTime())).withParameter("before",
@@ -384,6 +422,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
                                      Date endDate) {
+    	assertNotNull("update types", updateTypes);
+    	assertNotNull("start date", startDate);
+    	assertNotNull("end date", endDate);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).withParameter("after",
@@ -399,6 +442,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public UpdateComments getNetworkUpdateComments(String networkUpdateId) {
+    	assertNotNullOrEmpty("network update id", networkUpdateId);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_COMMENTS);
         String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
         
@@ -418,6 +462,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileById(String id) {
+    	assertNotNullOrEmpty("id", id);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_ID);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
                                             id).withFieldEnum("profileType", ProfileType.STANDARD).buildUrl();
@@ -438,6 +483,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileById(String id, Set<ProfileField> profileFields) {
+    	assertNotNullOrEmpty("id", id);
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_ID);
         String                apiUrl  = builder.withField("id", id).withFieldEnum("profileType",
                                             ProfileType.STANDARD).withFieldEnumSet("profileFields", profileFields).buildUrl();
@@ -450,6 +497,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType) {
+    	assertNotNullOrEmpty("url", url);
+    	assertNotNull("profile type", profileType);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_URL);
         String                apiUrl  = builder.withEmptyField("profileFields").withField("url",
                                             url, true).withFieldEnum("profileType", profileType).buildUrl();
@@ -462,6 +511,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
+    	assertNotNullOrEmpty("url", url);
+    	assertNotNull("profile fields", profileFields);
+    	assertNotNull("profile type", profileType);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_BY_URL);
         String                apiUrl  = builder.withField("url", url, true).withFieldEnum("profileType",
                                             profileType).withFieldEnumSet("profileFields", profileFields).buildUrl();
@@ -485,6 +537,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileForCurrentUser(Set<ProfileField> profileFields) {
+    	assertNotNull("profile fields", profileFields);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_PROFILE_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).buildUrl();
 
@@ -496,6 +549,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public Person getProfileByApiRequest(ApiStandardProfileRequest apiRequest) {
+    	assertNotNull("api request", apiRequest);
     	if (apiRequest.getHeaders() != null) {
             return readResponse(Person.class, callApiMethod(apiRequest.getUrl(), apiRequest.getHeaders().getHttpHeader()));
     	} else {
@@ -508,6 +562,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void postComment(String networkUpdateId, String commentText) {
+    	assertNotNullOrEmpty("network update id", networkUpdateId);
+    	assertNotNullOrEmpty("comment", commentText);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_COMMENT);
         String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
         UpdateComment         comment = OBJECT_FACTORY.createUpdateComment();
@@ -522,6 +578,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void postNetworkUpdate(String updateText) {
+    	assertNotNullOrEmpty("network update", updateText);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_UPDATE);
         String                apiUrl  = builder.buildUrl();
         Activity              update  = OBJECT_FACTORY.createActivity();
@@ -550,6 +607,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters) {
+    	assertNotNull("search parameters", searchParameters);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameterEnumMap(searchParameters).buildUrl();
 
@@ -561,6 +619,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(int start, int count) {
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
+    	
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).buildUrl();
@@ -573,6 +634,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count) {
+    	assertNotNull("search parameters", searchParameters);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameterEnumMap(searchParameters).withParameter("start",
                                             String.valueOf(start)).withParameter("count",
@@ -586,6 +650,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(SearchSortOrder sortOrder) {
+    	assertNotNull("sort order", sortOrder);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameterEnum("sortCriteria", sortOrder).buildUrl();
 
@@ -597,6 +662,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
+    	assertNotNull("search parameters", searchParameters);
+    	assertNotNull("sort order", sortOrder);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
             builder.withParameterEnumMap(searchParameters).withParameterEnum("sortCriteria", sortOrder).buildUrl();
@@ -609,6 +676,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public People searchPeople(int start, int count, SearchSortOrder sortOrder) {
+    	assertNotNull("sort order", sortOrder);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
                                             String.valueOf(count)).withParameterEnum("sortCriteria",
@@ -623,6 +693,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
                                SearchSortOrder sortOrder) {
+    	assertNotNull("search parameters", searchParameters);
+    	assertPositiveNumber("start", start);
+    	assertPositiveNumber("count", count);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
             builder.withParameterEnumMap(searchParameters).withParameterEnum("sortCriteria",
@@ -638,6 +711,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void sendInviteByEmail(String email, String firstName, String lastName, String subject, String message) {
+    	assertNotNullOrEmpty("email", email);
+    	assertNotNullOrEmpty("firstName", firstName);
+    	assertNotNullOrEmpty("lastName", lastName);
+    	assertNotNullOrEmpty("subject", subject);
+    	assertNotNullOrEmpty("message", message);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl  = builder.buildUrl();
         MailboxItem           invite  = OBJECT_FACTORY.createMailboxItem();
@@ -671,6 +749,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void sendInviteById(String recepientId, String subject, String message, String authHeader) {
+    	assertNotNullOrEmpty("recepient id", recepientId);
+    	assertNotNullOrEmpty("subject", subject);
+    	assertNotNullOrEmpty("message", message);
+    	assertNotNullOrEmpty("auth header", authHeader);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl  = builder.buildUrl();
         MailboxItem           invite  = OBJECT_FACTORY.createMailboxItem();
@@ -711,8 +793,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void sendInviteToPerson(Person recepient, String subject, String message) {
+    	assertNotNull("recepient", recepient);
+    	assertNotNull("recepient api request", recepient.getApiStandardProfileRequest());
     	String authHeader = null; 
-    	if (recepient.getApiStandardProfileRequest() != null) {
+    	if (recepient.getApiStandardProfileRequest().getHeaders() != null) {
     		for (HttpHeader header : recepient.getApiStandardProfileRequest().getHeaders().getHttpHeader()) {
     			if (ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
     				authHeader = header.getValue();
@@ -729,6 +813,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void sendMessage(List<String> recepientIds, String subject, String message) {
+    	assertNotNullOrEmpty("recepient ids", recepientIds);
+    	assertNotNullOrEmpty("subject", subject);
+    	assertNotNullOrEmpty("message", message);
+    	
         LinkedInApiUrlBuilder builder     = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl      = builder.buildUrl();
         MailboxItem           messageItem = OBJECT_FACTORY.createMailboxItem();
@@ -757,12 +845,16 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void updateCurrentStatus(String statusText) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
-        String                apiUrl  = builder.buildUrl();
-        Object                status  = OBJECT_FACTORY.createCurrentStatus(statusText);
+    	if (isNullOrEmpty(statusText)) {
+    		deleteCurrentStatus();
+    	} else {
+            LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
+            String                apiUrl  = builder.buildUrl();
+            Object                status  = OBJECT_FACTORY.createCurrentStatus(statusText);
 
-        callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                      HttpURLConnection.HTTP_NO_CONTENT);
+            callApiMethod(apiUrl, marshallObject(status), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                          HttpURLConnection.HTTP_NO_CONTENT);
+    	}
     }
 
     /**
@@ -969,6 +1061,49 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		}
 	}
 	
+    /**
+     * Get property as long.
+     */
+	protected boolean isNullOrEmpty(String s) {
+        return ((s == null) || s.length() == 0);
+    }
+    
+    /**
+     * 
+     */
+    protected void assertNotNullOrEmpty(String name, String value) {
+    	if (isNullOrEmpty(value)) {
+    		throw new IllegalArgumentException(name + " cannot be null or empty.");    		
+    	}
+    }
+	
+    /**
+     * 
+     */
+    protected void assertNotNullOrEmpty(String name, Collection<?> value) {
+    	if ((value == null) || value.isEmpty()) {
+    		throw new IllegalArgumentException(name + " cannot be null or empty.");    		
+    	}
+    }
+    
+    /**
+     * 
+     */
+    protected void assertPositiveNumber(String name, int value) {
+    	if (value < 0) {
+    		throw new IllegalArgumentException(name + " cannot be less than zero.");    		
+    	}
+    }
+    
+    /**
+     * 
+     */
+    protected void assertNotNull(String name, Object value) {
+    	if (value == null) {
+    		throw new IllegalArgumentException(name + " cannot be null.");    		
+    	}
+    }
+    
     /**
      * Method description
      *

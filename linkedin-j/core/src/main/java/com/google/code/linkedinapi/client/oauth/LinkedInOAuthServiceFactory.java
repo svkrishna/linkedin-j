@@ -52,6 +52,22 @@ public class LinkedInOAuthServiceFactory {
      * @return the linked in o auth service
      */
     public LinkedInOAuthService createLinkedInOAuthService(LinkedInApiConsumer apiConsumer) {
+    	validateConsumerKey(apiConsumer);
         return new LinkedInOAuthServiceImpl(apiConsumer);
     }
+    
+    /**
+     * 
+     */
+	private void validateConsumerKey(LinkedInApiConsumer apiConsumer) {
+		if (apiConsumer == null) {
+    		throw new IllegalArgumentException("api consumer cannot be null.");
+    	}
+    	if (apiConsumer.getConsumerKey() == null || apiConsumer.getConsumerKey().length() == 0) {
+    		throw new IllegalArgumentException("consumer key cannot be null or empty.");
+    	}
+    	if (apiConsumer.getConsumerSecret() == null || apiConsumer.getConsumerSecret().length() == 0) {
+    		throw new IllegalArgumentException("consumer secret cannot be null or empty.");
+    	}
+	}
 }
