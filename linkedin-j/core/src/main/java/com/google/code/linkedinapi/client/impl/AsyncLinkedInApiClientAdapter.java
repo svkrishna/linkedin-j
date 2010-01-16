@@ -655,6 +655,19 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
+    public Future<?> sendInviteToPerson(final Person recepient, final String subject, final String message) {
+        return execute(new Runnable() {
+            @Override
+            public void run() {
+                client.sendInviteToPerson(recepient, subject, message);
+            }
+        });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Future<?> sendInviteById(final String recepientId, final String subject, final String message, final String authHeader) {
         return execute(new Runnable() {
             @Override
@@ -663,7 +676,7 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
             }
         });
     }
-
+    
     /**
      * {@inheritDoc}
      */

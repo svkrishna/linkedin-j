@@ -710,6 +710,24 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
+    public void sendInviteToPerson(Person recepient, String subject, String message) {
+    	String authHeader = null; 
+    	if (recepient.getApiStandardProfileRequest() != null) {
+    		for (HttpHeader header : recepient.getApiStandardProfileRequest().getHeaders().getHttpHeader()) {
+    			if (ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
+    				authHeader = header.getValue();
+    				break;
+    			}
+    		}
+    	}
+    	
+    	sendInviteById(recepient.getId(), subject, message, authHeader);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void sendMessage(List<String> recepientIds, String subject, String message) {
         LinkedInApiUrlBuilder builder     = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEND_MESSAGE);
         String                apiUrl      = builder.buildUrl();

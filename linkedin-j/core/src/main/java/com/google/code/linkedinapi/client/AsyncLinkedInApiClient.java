@@ -586,4 +586,19 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public Future<?> sendInviteById(String recepientId, String subject, String message, String authHeader);
 
+    /**
+     * Send invite.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1012">http://developer.linkedin.com/docs/DOC-1012</a>
+     * <p>
+     * To call this method one needs an auth header parameter. This can be obtained by getting {@link ApiStandardProfileRequest#getHeaders()} from {@link Person#getApiStandardProfileRequest()}
+     * and then getting the value of header with name {@link ApplicationConstants#AUTH_HEADER_NAME}. 
+     * </p> 
+     * 
+     * @param recepient the recepient
+     * @param subject the subject
+     * @param message the message
+     * 
+     * @return the future<?>
+     */
+    public Future<?> sendInviteToPerson(Person recepient, String subject, String message);
 }
