@@ -774,14 +774,12 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
 
         request.setConnectType(InviteConnectType.FRIEND);
-        if (authHeader != null) {
-            String[] authTuple = authHeader.split(":");
-            if (authTuple.length == 2) {
-                Authorization authorization = OBJECT_FACTORY.createAuthorization();
-                authorization.setName(authTuple[0]);
-                authorization.setValue(authTuple[1]);
-                request.setAuthorization(authorization);
-            }
+        String[] authTuple = authHeader.split(":");
+        if (authTuple.length == 2) {
+            Authorization authorization = OBJECT_FACTORY.createAuthorization();
+            authorization.setName(authTuple[0]);
+            authorization.setValue(authTuple[1]);
+            request.setAuthorization(authorization);
         }
         invite.getItemContent().setInvitationRequest(request);
         callApiMethod(apiUrl, marshallObject(invite), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
