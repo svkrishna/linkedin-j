@@ -42,27 +42,27 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 		client = null;
 	}
 
-	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String)}.
-	 */
-	@Test
-	public void testGetConnectionsByEmailString() {
-		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
-		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
+//	/**
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String)}.
+//	 */
+//	@Test
+//	public void testGetConnectionsByEmailString() {
+//		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
+//		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
 //		Future<Connections> connections = client.getConnectionsByEmail(email);
 //		assertNotNull("Connections should never be null.", connections);
-	}
+//	}
 
-	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String, java.util.Set)}.
-	 */
-	@Test
-	public void testGetConnectionsByEmailStringSetOfProfileField() {
-		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
-		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
+//	/**
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String, java.util.Set)}.
+//	 */
+//	@Test
+//	public void testGetConnectionsByEmailStringSetOfProfileField() {
+//		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
+//		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
 //		Future<Connections> connections = client.getConnectionsByEmail(email, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
 //		assertNotNull("Connections should never be null.", connections);
-	}
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsById(java.lang.String)}.
