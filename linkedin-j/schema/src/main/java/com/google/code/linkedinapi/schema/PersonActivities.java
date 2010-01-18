@@ -30,18 +30,18 @@ public interface PersonActivities
 
 
     /**
-     * Gets the value of the activity property.
+     * Gets the value of the activityList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the activity property.
+     * This is why there is not a <CODE>set</CODE> method for the activityList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getActivity().add(newItem);
+     *    getActivityList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface PersonActivities
      * 
      * 
      */
-    List<Activity> getActivity();
+    List<Activity> getActivityList();
 
     /**
      * Gets the value of the count property.

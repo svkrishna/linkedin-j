@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Person;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "person"
+    "personList"
 })
 @XmlRootElement(name = "connections")
 public class ConnectionsImpl
@@ -25,8 +25,8 @@ public class ConnectionsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(type = PersonImpl.class)
-    protected List<Person> person;
+    @XmlElement(name = "person", type = PersonImpl.class)
+    protected List<Person> personList;
     @XmlAttribute
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long count;
@@ -37,11 +37,11 @@ public class ConnectionsImpl
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Person> getPerson() {
-        if (person == null) {
-            person = new ArrayList<Person>();
+    public List<Person> getPersonList() {
+        if (personList == null) {
+            personList = new ArrayList<Person>();
         }
-        return this.person;
+        return this.personList;
     }
 
     public Long getCount() {

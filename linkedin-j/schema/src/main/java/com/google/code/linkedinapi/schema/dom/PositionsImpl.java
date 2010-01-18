@@ -22,7 +22,7 @@ public class PositionsImpl
 	protected List<Position> position;
     protected Long total;
 
-    public List<Position> getPosition() {
+    public List<Position> getPositionList() {
         if (position == null) {
             position = new ArrayList<Position>();
         }
@@ -44,7 +44,7 @@ public class PositionsImpl
 		for (Element positionElem : positionElems) {
 			PositionImpl positionImpl = new PositionImpl();
 			positionImpl.init(positionElem);
-			getPosition().add(positionImpl);
+			getPositionList().add(positionImpl);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class PositionsImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("positions");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (Position position : getPosition()) {
+		for (Position position : getPositionList()) {
 			element.appendChild(((PositionImpl) position).toXml(document));
 		}
 		return element;

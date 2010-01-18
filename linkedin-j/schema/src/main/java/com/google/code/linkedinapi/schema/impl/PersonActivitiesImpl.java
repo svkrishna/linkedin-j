@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.PersonActivities;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "activity"
+    "activityList"
 })
 @XmlRootElement(name = "person-activities")
 public class PersonActivitiesImpl
@@ -25,17 +25,17 @@ public class PersonActivitiesImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = ActivityImpl.class)
-    protected List<Activity> activity;
+    @XmlElement(name = "activity", required = true, type = ActivityImpl.class)
+    protected List<Activity> activityList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long count;
 
-    public List<Activity> getActivity() {
-        if (activity == null) {
-            activity = new ArrayList<Activity>();
+    public List<Activity> getActivityList() {
+        if (activityList == null) {
+            activityList = new ArrayList<Activity>();
         }
-        return this.activity;
+        return this.activityList;
     }
 
     public Long getCount() {

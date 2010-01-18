@@ -30,18 +30,18 @@ public interface RecommendationsGiven
 
 
     /**
-     * Gets the value of the recommendation property.
+     * Gets the value of the recommendationList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the recommendation property.
+     * This is why there is not a <CODE>set</CODE> method for the recommendationList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getRecommendation().add(newItem);
+     *    getRecommendationList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface RecommendationsGiven
      * 
      * 
      */
-    List<Recommendation> getRecommendation();
+    List<Recommendation> getRecommendationList();
 
     /**
      * Gets the value of the total property.

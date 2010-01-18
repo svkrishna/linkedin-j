@@ -30,18 +30,18 @@ public interface Positions
 
 
     /**
-     * Gets the value of the position property.
+     * Gets the value of the positionList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the position property.
+     * This is why there is not a <CODE>set</CODE> method for the positionList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPosition().add(newItem);
+     *    getPositionList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface Positions
      * 
      * 
      */
-    List<Position> getPosition();
+    List<Position> getPositionList();
 
     /**
      * Gets the value of the total property.

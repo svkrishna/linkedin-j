@@ -48,4 +48,46 @@
 			<typesafeEnumMember name="STUDENT" value="STU"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
+		<property name="updateList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='recipients']/xs:complexType/xs:sequence/xs:element[@ref='recipient']">
+		<property name="recipientList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='network-stats']/xs:complexType/xs:sequence/xs:element[@ref='property']">
+		<property name="propertyList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='question-categories']/xs:complexType/xs:sequence/xs:element[@ref='question-category']">
+		<property name="questionCategoryList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='answers']/xs:complexType/xs:sequence/xs:element[@ref='answer']">
+		<property name="answerList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='update-comments']/xs:complexType/xs:sequence/xs:element[@ref='update-comment']">
+		<property name="updateCommentList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='people']/xs:complexType/xs:sequence/xs:element[@ref='person']">
+		<property name="personList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='positions']/xs:complexType/xs:sequence/xs:element[@ref='position']">
+		<property name="positionList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='educations']/xs:complexType/xs:sequence/xs:element[@ref='education']">
+		<property name="educationList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='member-groups']/xs:complexType/xs:sequence/xs:element[@ref='member-group']">
+		<property name="memberGroupList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='person-activities']/xs:complexType/xs:sequence/xs:element[@ref='activity']">
+		<property name="activityList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='recommendations-given']/xs:complexType/xs:sequence/xs:element[@ref='recommendation']">
+		<property name="recommendationList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='connections']/xs:complexType/xs:sequence/xs:element[@ref='person']">
+		<property name="personList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='headers']/xs:complexType/xs:sequence/xs:element[@ref='http-header']">
+		<property name="httpHeaderList"/>
+	</bindings>
 </bindings>

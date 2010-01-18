@@ -214,7 +214,7 @@ public class AsyncApiExample {
     private static void printResult(Connections connections) {
     	System.out.println("================================");
     	System.out.println("Total connections fetched:" + connections.getTotal());
-    	for (Person person : connections.getPerson()) {
+    	for (Person person : connections.getPersonList()) {
     		System.out.println(person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
     	}
 	}

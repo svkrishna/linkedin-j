@@ -30,18 +30,18 @@ public interface Educations
 
 
     /**
-     * Gets the value of the education property.
+     * Gets the value of the educationList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the education property.
+     * This is why there is not a <CODE>set</CODE> method for the educationList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getEducation().add(newItem);
+     *    getEducationList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface Educations
      * 
      * 
      */
-    List<Education> getEducation();
+    List<Education> getEducationList();
 
     /**
      * Gets the value of the total property.

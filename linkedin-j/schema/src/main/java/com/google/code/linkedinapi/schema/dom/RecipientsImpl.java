@@ -21,7 +21,7 @@ public class RecipientsImpl
 	private static final long serialVersionUID = 5874984453850790428L;
 	protected List<Recipient> recipient;
 
-    public List<Recipient> getRecipient() {
+    public List<Recipient> getRecipientList() {
         if (recipient == null) {
             recipient = new ArrayList<Recipient>();
         }
@@ -34,14 +34,14 @@ public class RecipientsImpl
 		for (Element recepient : recipientElems) {
 			RecipientImpl recipientImpl = new RecipientImpl();
 			recipientImpl.init(recepient);
-			getRecipient().add(recipientImpl);
+			getRecipientList().add(recipientImpl);
 		}
 	}
 
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("recipients");
-		for (Recipient recepient : getRecipient()) {
+		for (Recipient recepient : getRecipientList()) {
 			element.appendChild(((RecipientImpl) recepient).toXml(document));
 		}
 		return element;

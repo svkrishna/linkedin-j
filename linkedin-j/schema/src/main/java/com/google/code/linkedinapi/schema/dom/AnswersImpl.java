@@ -19,7 +19,7 @@ public class AnswersImpl
     protected List<Answer> answer;
     protected Long count;
 
-    public List<Answer> getAnswer() {
+    public List<Answer> getAnswerList() {
         if (answer == null) {
             answer = new ArrayList<Answer>();
         }
@@ -41,7 +41,7 @@ public class AnswersImpl
 		for (Element answer : answers) {
 			AnswerImpl answerImpl = new AnswerImpl();
 			answerImpl.init(answer);
-			getAnswer().add(answerImpl);
+			getAnswerList().add(answerImpl);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class AnswersImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("answers");
 		DomUtils.setAttributeValueToNode(element, "count", getCount());
-		for (Answer answer : getAnswer()) {
+		for (Answer answer : getAnswerList()) {
 			element.appendChild(((AnswerImpl) answer).toXml(document));
 		}
 		return element;

@@ -30,18 +30,18 @@ public interface UpdateComments
 
 
     /**
-     * Gets the value of the updateComment property.
+     * Gets the value of the updateCommentList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the updateComment property.
+     * This is why there is not a <CODE>set</CODE> method for the updateCommentList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getUpdateComment().add(newItem);
+     *    getUpdateCommentList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface UpdateComments
      * 
      * 
      */
-    List<UpdateComment> getUpdateComment();
+    List<UpdateComment> getUpdateCommentList();
 
     /**
      * Gets the value of the total property.

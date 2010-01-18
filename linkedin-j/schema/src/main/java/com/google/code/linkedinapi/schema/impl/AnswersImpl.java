@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Answers;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "answer"
+    "answerList"
 })
 @XmlRootElement(name = "answers")
 public class AnswersImpl
@@ -25,17 +25,17 @@ public class AnswersImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = AnswerImpl.class)
-    protected List<Answer> answer;
+    @XmlElement(name = "answer", required = true, type = AnswerImpl.class)
+    protected List<Answer> answerList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long count;
 
-    public List<Answer> getAnswer() {
-        if (answer == null) {
-            answer = new ArrayList<Answer>();
+    public List<Answer> getAnswerList() {
+        if (answerList == null) {
+            answerList = new ArrayList<Answer>();
         }
-        return this.answer;
+        return this.answerList;
     }
 
     public Long getCount() {

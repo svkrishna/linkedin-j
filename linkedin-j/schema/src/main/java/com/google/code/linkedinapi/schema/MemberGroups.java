@@ -30,18 +30,18 @@ public interface MemberGroups
 
 
     /**
-     * Gets the value of the memberGroup property.
+     * Gets the value of the memberGroupList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the memberGroup property.
+     * This is why there is not a <CODE>set</CODE> method for the memberGroupList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getMemberGroup().add(newItem);
+     *    getMemberGroupList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface MemberGroups
      * 
      * 
      */
-    List<MemberGroup> getMemberGroup();
+    List<MemberGroup> getMemberGroupList();
 
     /**
      * Gets the value of the total property.

@@ -22,7 +22,7 @@ public class UpdateCommentsImpl
 	protected List<UpdateComment> updateComment;
     protected Long total;
 
-    public List<UpdateComment> getUpdateComment() {
+    public List<UpdateComment> getUpdateCommentList() {
         if (updateComment == null) {
             updateComment = new ArrayList<UpdateComment>();
         }
@@ -44,7 +44,7 @@ public class UpdateCommentsImpl
 		for (Element updateComment : updateComments) {
 			UpdateCommentImpl updateCommentImpl = new UpdateCommentImpl();
 			updateCommentImpl.init(updateComment);
-			getUpdateComment().add(updateCommentImpl);
+			getUpdateCommentList().add(updateCommentImpl);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class UpdateCommentsImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("update-comments");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (UpdateComment updateComment : getUpdateComment()) {
+		for (UpdateComment updateComment : getUpdateCommentList()) {
 			element.appendChild(((UpdateCommentImpl) updateComment).toXml(document));
 		}
 		return element;

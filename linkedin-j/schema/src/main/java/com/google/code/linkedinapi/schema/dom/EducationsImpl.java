@@ -22,7 +22,7 @@ public class EducationsImpl
 	protected List<Education> education;
     protected Long total;
 
-    public List<Education> getEducation() {
+    public List<Education> getEducationList() {
         if (education == null) {
             education = new ArrayList<Education>();
         }
@@ -44,7 +44,7 @@ public class EducationsImpl
 		for (Element education : educations) {
 			EducationImpl educationImpl = new EducationImpl();
 			educationImpl.init(education);
-			getEducation().add(educationImpl);
+			getEducationList().add(educationImpl);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class EducationsImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("educations");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (Education education : getEducation()) {
+		for (Education education : getEducationList()) {
 			element.appendChild(((EducationImpl) education).toXml(document));
 		}
 		return element;

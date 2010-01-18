@@ -30,18 +30,18 @@ public interface Headers
 
 
     /**
-     * Gets the value of the httpHeader property.
+     * Gets the value of the httpHeaderList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the httpHeader property.
+     * This is why there is not a <CODE>set</CODE> method for the httpHeaderList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getHttpHeader().add(newItem);
+     *    getHttpHeaderList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface Headers
      * 
      * 
      */
-    List<HttpHeader> getHttpHeader();
+    List<HttpHeader> getHttpHeaderList();
 
     /**
      * Gets the value of the total property.

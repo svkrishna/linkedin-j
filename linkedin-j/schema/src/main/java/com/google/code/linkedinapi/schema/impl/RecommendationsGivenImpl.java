@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.RecommendationsGiven;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "recommendation"
+    "recommendationList"
 })
 @XmlRootElement(name = "recommendations-given")
 public class RecommendationsGivenImpl
@@ -25,17 +25,17 @@ public class RecommendationsGivenImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = RecommendationImpl.class)
-    protected List<Recommendation> recommendation;
+    @XmlElement(name = "recommendation", required = true, type = RecommendationImpl.class)
+    protected List<Recommendation> recommendationList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Recommendation> getRecommendation() {
-        if (recommendation == null) {
-            recommendation = new ArrayList<Recommendation>();
+    public List<Recommendation> getRecommendationList() {
+        if (recommendationList == null) {
+            recommendationList = new ArrayList<Recommendation>();
         }
-        return this.recommendation;
+        return this.recommendationList;
     }
 
     public Long getTotal() {

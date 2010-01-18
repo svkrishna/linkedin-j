@@ -29,18 +29,18 @@ public interface Recipients
 
 
     /**
-     * Gets the value of the recipient property.
+     * Gets the value of the recipientList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the recipient property.
+     * This is why there is not a <CODE>set</CODE> method for the recipientList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getRecipient().add(newItem);
+     *    getRecipientList().add(newItem);
      * </pre>
      * 
      * 
@@ -50,6 +50,6 @@ public interface Recipients
      * 
      * 
      */
-    List<Recipient> getRecipient();
+    List<Recipient> getRecipientList();
 
 }

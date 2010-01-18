@@ -22,7 +22,7 @@ public class NetworkStatsImpl
 	protected List<Property> property;
     protected Long total;
 
-    public List<Property> getProperty() {
+    public List<Property> getPropertyList() {
         if (property == null) {
             property = new ArrayList<Property>();
         }
@@ -44,7 +44,7 @@ public class NetworkStatsImpl
 		for (Element property : properties) {
 			PropertyImpl personImpl = new PropertyImpl();
 			personImpl.init(property);
-			getProperty().add(personImpl);
+			getPropertyList().add(personImpl);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class NetworkStatsImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("network-stats");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (Property property : getProperty()) {
+		for (Property property : getPropertyList()) {
 			element.appendChild(((PropertyImpl) property).toXml(document));
 		}
 		return element;

@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Positions;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "position"
+    "positionList"
 })
 @XmlRootElement(name = "positions")
 public class PositionsImpl
@@ -25,17 +25,17 @@ public class PositionsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = PositionImpl.class)
-    protected List<Position> position;
+    @XmlElement(name = "position", required = true, type = PositionImpl.class)
+    protected List<Position> positionList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Position> getPosition() {
-        if (position == null) {
-            position = new ArrayList<Position>();
+    public List<Position> getPositionList() {
+        if (positionList == null) {
+            positionList = new ArrayList<Position>();
         }
-        return this.position;
+        return this.positionList;
     }
 
     public Long getTotal() {

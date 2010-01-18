@@ -24,7 +24,7 @@ public class PeopleImpl
     protected Long start;
     protected Long total;
 
-    public List<Person> getPerson() {
+    public List<Person> getPersonList() {
         if (person == null) {
             person = new ArrayList<Person>();
         }
@@ -64,7 +64,7 @@ public class PeopleImpl
 		for (Element person : persons) {
 			PersonImpl personImpl = new PersonImpl();
 			personImpl.init(person);
-			getPerson().add(personImpl);
+			getPersonList().add(personImpl);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class PeopleImpl
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		DomUtils.setAttributeValueToNode(element, "start", getStart());
 		DomUtils.setAttributeValueToNode(element, "count", getCount());
-		for (Person person : getPerson()) {
+		for (Person person : getPersonList()) {
 			element.appendChild(((PersonImpl) person).toXml(document));
 		}
 		return element;

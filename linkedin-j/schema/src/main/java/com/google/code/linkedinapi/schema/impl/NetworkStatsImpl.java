@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Property;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "property"
+    "propertyList"
 })
 @XmlRootElement(name = "network-stats")
 public class NetworkStatsImpl
@@ -25,17 +25,17 @@ public class NetworkStatsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = PropertyImpl.class)
-    protected List<Property> property;
+    @XmlElement(name = "property", required = true, type = PropertyImpl.class)
+    protected List<Property> propertyList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Property> getProperty() {
-        if (property == null) {
-            property = new ArrayList<Property>();
+    public List<Property> getPropertyList() {
+        if (propertyList == null) {
+            propertyList = new ArrayList<Property>();
         }
-        return this.property;
+        return this.propertyList;
     }
 
     public Long getTotal() {

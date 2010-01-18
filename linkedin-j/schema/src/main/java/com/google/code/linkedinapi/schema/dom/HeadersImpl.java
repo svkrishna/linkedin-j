@@ -22,7 +22,7 @@ public class HeadersImpl
 	protected List<HttpHeader> httpHeader;
     protected Long total;
 
-    public List<HttpHeader> getHttpHeader() {
+    public List<HttpHeader> getHttpHeaderList() {
         if (httpHeader == null) {
             httpHeader = new ArrayList<HttpHeader>();
         }
@@ -44,7 +44,7 @@ public class HeadersImpl
 		for (Element httpHeader : headers) {
 			HttpHeaderImpl httpHeaderImpl = new HttpHeaderImpl();
 			httpHeaderImpl.init(httpHeader);
-			getHttpHeader().add(httpHeaderImpl);
+			getHttpHeaderList().add(httpHeaderImpl);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class HeadersImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("headers");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (HttpHeader httpHeader : getHttpHeader()) {
+		for (HttpHeader httpHeader : getHttpHeaderList()) {
 			element.appendChild(((HttpHeaderImpl) httpHeader).toXml(document));
 		}
 		return element;

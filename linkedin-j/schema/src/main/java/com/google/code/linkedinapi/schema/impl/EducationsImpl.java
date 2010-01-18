@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Educations;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "education"
+    "educationList"
 })
 @XmlRootElement(name = "educations")
 public class EducationsImpl
@@ -25,17 +25,17 @@ public class EducationsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = EducationImpl.class)
-    protected List<Education> education;
+    @XmlElement(name = "education", required = true, type = EducationImpl.class)
+    protected List<Education> educationList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Education> getEducation() {
-        if (education == null) {
-            education = new ArrayList<Education>();
+    public List<Education> getEducationList() {
+        if (educationList == null) {
+            educationList = new ArrayList<Education>();
         }
-        return this.education;
+        return this.educationList;
     }
 
     public Long getTotal() {

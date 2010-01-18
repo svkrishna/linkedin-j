@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.UpdateComments;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "updateComment"
+    "updateCommentList"
 })
 @XmlRootElement(name = "update-comments")
 public class UpdateCommentsImpl
@@ -26,16 +26,16 @@ public class UpdateCommentsImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "update-comment", required = true, type = UpdateCommentImpl.class)
-    protected List<UpdateComment> updateComment;
+    protected List<UpdateComment> updateCommentList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<UpdateComment> getUpdateComment() {
-        if (updateComment == null) {
-            updateComment = new ArrayList<UpdateComment>();
+    public List<UpdateComment> getUpdateCommentList() {
+        if (updateCommentList == null) {
+            updateCommentList = new ArrayList<UpdateComment>();
         }
-        return this.updateComment;
+        return this.updateCommentList;
     }
 
     public Long getTotal() {

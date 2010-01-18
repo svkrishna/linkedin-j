@@ -267,7 +267,7 @@ public class SearchApiExample {
     private static void printResult(People people) {
     	System.out.println("================================");
     	System.out.println("Total search result:" + people.getCount());
-    	for (Person person : people.getPerson()) {
+    	for (Person person : people.getPersonList()) {
     		System.out.println(person.getId() + ":" + person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
     	}
 	}

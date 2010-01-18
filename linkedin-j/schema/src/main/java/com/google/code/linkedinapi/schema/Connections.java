@@ -32,18 +32,18 @@ public interface Connections
 
 
     /**
-     * Gets the value of the person property.
+     * Gets the value of the personList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the person property.
+     * This is why there is not a <CODE>set</CODE> method for the personList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPerson().add(newItem);
+     *    getPersonList().add(newItem);
      * </pre>
      * 
      * 
@@ -53,7 +53,7 @@ public interface Connections
      * 
      * 
      */
-    List<Person> getPerson();
+    List<Person> getPersonList();
 
     /**
      * Gets the value of the count property.

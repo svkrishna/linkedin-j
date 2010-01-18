@@ -17,7 +17,7 @@ import com.google.code.linkedinapi.schema.Updates;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "update"
+    "updateList"
 })
 @XmlRootElement(name = "updates")
 public class UpdatesImpl
@@ -25,8 +25,8 @@ public class UpdatesImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = UpdateImpl.class)
-    protected List<Update> update;
+    @XmlElement(name = "update", required = true, type = UpdateImpl.class)
+    protected List<Update> updateList;
     @XmlAttribute
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long count;
@@ -37,11 +37,11 @@ public class UpdatesImpl
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Update> getUpdate() {
-        if (update == null) {
-            update = new ArrayList<Update>();
+    public List<Update> getUpdateList() {
+        if (updateList == null) {
+            updateList = new ArrayList<Update>();
         }
-        return this.update;
+        return this.updateList;
     }
 
     public Long getCount() {

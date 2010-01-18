@@ -30,18 +30,18 @@ public interface Answers
 
 
     /**
-     * Gets the value of the answer property.
+     * Gets the value of the answerList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the answer property.
+     * This is why there is not a <CODE>set</CODE> method for the answerList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAnswer().add(newItem);
+     *    getAnswerList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface Answers
      * 
      * 
      */
-    List<Answer> getAnswer();
+    List<Answer> getAnswerList();
 
     /**
      * Gets the value of the count property.

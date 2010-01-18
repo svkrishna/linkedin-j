@@ -25,7 +25,7 @@ public class UpdatesImpl
     protected Long start;
     
 
-    public List<Update> getUpdate() {
+    public List<Update> getUpdateList() {
         if (update == null) {
             update = new ArrayList<Update>();
         }
@@ -65,7 +65,7 @@ public class UpdatesImpl
 		for (Element updateElem : updateElems) {
 			UpdateImpl updateImpl = new UpdateImpl();
 			updateImpl.init(updateElem);
-			getUpdate().add(updateImpl);
+			getUpdateList().add(updateImpl);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class UpdatesImpl
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
 		DomUtils.setAttributeValueToNode(element, "start", getStart());
 		DomUtils.setAttributeValueToNode(element, "count", getCount());
-		for (Update update : getUpdate()) {
+		for (Update update : getUpdateList()) {
 			element.appendChild(((UpdateImpl) update).toXml(document));
 		}
 		return element;

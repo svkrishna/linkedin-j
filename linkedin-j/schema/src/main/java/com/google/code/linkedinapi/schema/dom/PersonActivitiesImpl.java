@@ -19,7 +19,7 @@ public class PersonActivitiesImpl
     protected List<Activity> activity;
     protected Long count;
 
-    public List<Activity> getActivity() {
+    public List<Activity> getActivityList() {
         if (activity == null) {
             activity = new ArrayList<Activity>();
         }
@@ -41,7 +41,7 @@ public class PersonActivitiesImpl
 		for (Element education : activities) {
 			ActivityImpl activityImpl = new ActivityImpl();
 			activityImpl.init(education);
-			getActivity().add(activityImpl);
+			getActivityList().add(activityImpl);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class PersonActivitiesImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("person-activities");
 		DomUtils.setAttributeValueToNode(element, "count", getCount());
-		for (Activity activity : getActivity()) {
+		for (Activity activity : getActivityList()) {
 			element.appendChild(((ActivityImpl) activity).toXml(document));
 		}
 		return element;

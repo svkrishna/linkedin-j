@@ -19,7 +19,7 @@ public class QuestionCategoriesImpl
     protected List<QuestionCategory> questionCategory;
     protected Long total;
 
-    public List<QuestionCategory> getQuestionCategory() {
+    public List<QuestionCategory> getQuestionCategoryList() {
         if (questionCategory == null) {
             questionCategory = new ArrayList<QuestionCategory>();
         }
@@ -41,7 +41,7 @@ public class QuestionCategoriesImpl
 		for (Element education : categories) {
 			QuestionCategoryImpl categoryImpl = new QuestionCategoryImpl();
 			categoryImpl.init(education);
-			getQuestionCategory().add(categoryImpl);
+			getQuestionCategoryList().add(categoryImpl);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class QuestionCategoriesImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("question-categories");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (QuestionCategory category : getQuestionCategory()) {
+		for (QuestionCategory category : getQuestionCategoryList()) {
 			element.appendChild(((QuestionCategoryImpl) category).toXml(document));
 		}
 		return element;

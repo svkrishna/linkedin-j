@@ -452,7 +452,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Person getProfileById(String id, ProfileType profileType) {
     	return getProfileById(id);
     }
@@ -473,7 +472,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
     	return getProfileById(id, profileFields);
     }
@@ -551,7 +549,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Person getProfileByApiRequest(ApiStandardProfileRequest apiRequest) {
     	assertNotNull("api request", apiRequest);
     	if (apiRequest.getHeaders() != null) {
-            return readResponse(Person.class, callApiMethod(apiRequest.getUrl(), apiRequest.getHeaders().getHttpHeader()));
+            return readResponse(Person.class, callApiMethod(apiRequest.getUrl(), apiRequest.getHeaders().getHttpHeaderList()));
     	} else {
     		return readResponse(Person.class, callApiMethod(apiRequest.getUrl()));
     	}
@@ -733,7 +731,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Recipient recepient = OBJECT_FACTORY.createRecipient();
 
         recepient.setPerson(person);
-        invite.getRecipients().getRecipient().add(recepient);
+        invite.getRecipients().getRecipientList().add(recepient);
         invite.setItemContent(OBJECT_FACTORY.createItemContent());
 
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
@@ -768,7 +766,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Recipient recepient = OBJECT_FACTORY.createRecipient();
 
         recepient.setPerson(person);
-        invite.getRecipients().getRecipient().add(recepient);
+        invite.getRecipients().getRecipientList().add(recepient);
         invite.setItemContent(OBJECT_FACTORY.createItemContent());
 
         InvitationRequest request = OBJECT_FACTORY.createInvitationRequest();
@@ -795,7 +793,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     	assertNotNull("recepient api request", recepient.getApiStandardProfileRequest());
     	String authHeader = null; 
     	if (recepient.getApiStandardProfileRequest().getHeaders() != null) {
-    		for (HttpHeader header : recepient.getApiStandardProfileRequest().getHeaders().getHttpHeader()) {
+    		for (HttpHeader header : recepient.getApiStandardProfileRequest().getHeaders().getHttpHeaderList()) {
     			if (ApplicationConstants.AUTH_HEADER_NAME.equals(header.getName())) {
     				authHeader = header.getValue();
     				break;
@@ -831,7 +829,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             Recipient recepient = OBJECT_FACTORY.createRecipient();
 
             recepient.setPerson(person);
-            messageItem.getRecipients().getRecipient().add(recepient);
+            messageItem.getRecipients().getRecipientList().add(recepient);
         }
 
         callApiMethod(apiUrl, marshallObject(messageItem), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,

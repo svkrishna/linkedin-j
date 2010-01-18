@@ -19,7 +19,7 @@ public class RecommendationsGivenImpl
     protected List<Recommendation> recommendation;
     protected Long total;
 
-    public List<Recommendation> getRecommendation() {
+    public List<Recommendation> getRecommendationList() {
         if (recommendation == null) {
             recommendation = new ArrayList<Recommendation>();
         }
@@ -41,7 +41,7 @@ public class RecommendationsGivenImpl
 		for (Element recommendation : recommendations) {
 			RecommendationImpl recommendationImpl = new RecommendationImpl();
 			recommendationImpl.init(recommendation);
-			getRecommendation().add(recommendationImpl);
+			getRecommendationList().add(recommendationImpl);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class RecommendationsGivenImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("recommendations-given");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (Recommendation recommendation : getRecommendation()) {
+		for (Recommendation recommendation : getRecommendationList()) {
 			element.appendChild(((RecommendationImpl) recommendation).toXml(document));
 		}
 		return element;

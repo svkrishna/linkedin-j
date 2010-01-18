@@ -14,7 +14,7 @@ import com.google.code.linkedinapi.schema.Recipients;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "recipient"
+    "recipientList"
 })
 @XmlRootElement(name = "recipients")
 public class RecipientsImpl
@@ -22,14 +22,14 @@ public class RecipientsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true, type = RecipientImpl.class)
-    protected List<Recipient> recipient;
+    @XmlElement(name = "recipient", required = true, type = RecipientImpl.class)
+    protected List<Recipient> recipientList;
 
-    public List<Recipient> getRecipient() {
-        if (recipient == null) {
-            recipient = new ArrayList<Recipient>();
+    public List<Recipient> getRecipientList() {
+        if (recipientList == null) {
+            recipientList = new ArrayList<Recipient>();
         }
-        return this.recipient;
+        return this.recipientList;
     }
 
 }

@@ -30,18 +30,18 @@ public interface NetworkStats
 
 
     /**
-     * Gets the value of the property property.
+     * Gets the value of the propertyList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the property property.
+     * This is why there is not a <CODE>set</CODE> method for the propertyList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getProperty().add(newItem);
+     *    getPropertyList().add(newItem);
      * </pre>
      * 
      * 
@@ -51,7 +51,7 @@ public interface NetworkStats
      * 
      * 
      */
-    List<Property> getProperty();
+    List<Property> getPropertyList();
 
     /**
      * Gets the value of the total property.

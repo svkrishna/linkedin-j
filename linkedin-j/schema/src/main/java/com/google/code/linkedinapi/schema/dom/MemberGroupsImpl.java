@@ -19,7 +19,7 @@ public class MemberGroupsImpl
     protected List<MemberGroup> memberGroup;
     protected Long total;
 
-    public List<MemberGroup> getMemberGroup() {
+    public List<MemberGroup> getMemberGroupList() {
         if (memberGroup == null) {
             memberGroup = new ArrayList<MemberGroup>();
         }
@@ -41,7 +41,7 @@ public class MemberGroupsImpl
 		for (Element education : memberGroups) {
 			MemberGroupImpl memberGroupImpl = new MemberGroupImpl();
 			memberGroupImpl.init(education);
-			getMemberGroup().add(memberGroupImpl);
+			getMemberGroupList().add(memberGroupImpl);
 		}
 	}
 
@@ -49,7 +49,7 @@ public class MemberGroupsImpl
 	public Element toXml(Document document) {
 		Element element = document.createElement("member-groups");
 		DomUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (MemberGroup memberGroup : getMemberGroup()) {
+		for (MemberGroup memberGroup : getMemberGroupList()) {
 			element.appendChild(((MemberGroupImpl) memberGroup).toXml(document));
 		}
 		return element;
