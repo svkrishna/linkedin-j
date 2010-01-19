@@ -19,13 +19,13 @@ public class RecipientsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 5874984453850790428L;
-	protected List<Recipient> recipient;
+	protected List<Recipient> recipientList;
 
     public List<Recipient> getRecipientList() {
-        if (recipient == null) {
-            recipient = new ArrayList<Recipient>();
+        if (recipientList == null) {
+            recipientList = new ArrayList<Recipient>();
         }
-        return this.recipient;
+        return this.recipientList;
     }
 
 	@Override

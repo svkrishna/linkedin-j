@@ -19,14 +19,14 @@ public class HeadersImpl
 	 * 
 	 */
 	private static final long serialVersionUID = -2641335452688934142L;
-	protected List<HttpHeader> httpHeader;
+	protected List<HttpHeader> httpHeaderList;
     protected Long total;
 
     public List<HttpHeader> getHttpHeaderList() {
-        if (httpHeader == null) {
-            httpHeader = new ArrayList<HttpHeader>();
+        if (httpHeaderList == null) {
+            httpHeaderList = new ArrayList<HttpHeader>();
         }
-        return this.httpHeader;
+        return this.httpHeaderList;
     }
 
     public Long getTotal() {

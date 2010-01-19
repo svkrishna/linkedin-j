@@ -19,16 +19,16 @@ public class PeopleImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 2040264547587096712L;
-	protected List<Person> person;
+	protected List<Person> personList;
     protected Long count;
     protected Long start;
     protected Long total;
 
     public List<Person> getPersonList() {
-        if (person == null) {
-            person = new ArrayList<Person>();
+        if (personList == null) {
+            personList = new ArrayList<Person>();
         }
-        return this.person;
+        return this.personList;
     }
 
     public Long getCount() {

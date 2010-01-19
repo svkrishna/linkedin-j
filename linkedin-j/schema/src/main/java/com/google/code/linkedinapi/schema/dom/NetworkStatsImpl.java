@@ -19,14 +19,14 @@ public class NetworkStatsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 5888495492447011822L;
-	protected List<Property> property;
+	protected List<Property> propertyList;
     protected Long total;
 
     public List<Property> getPropertyList() {
-        if (property == null) {
-            property = new ArrayList<Property>();
+        if (propertyList == null) {
+            propertyList = new ArrayList<Property>();
         }
-        return this.property;
+        return this.propertyList;
     }
 
     public Long getTotal() {

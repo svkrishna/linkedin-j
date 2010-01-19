@@ -19,17 +19,17 @@ public class UpdatesImpl
 	 * 
 	 */
 	private static final long serialVersionUID = -6353261321228473792L;
-	protected List<Update> update;
+	protected List<Update> updateList;
     protected Long total;
     protected Long count;
     protected Long start;
     
 
     public List<Update> getUpdateList() {
-        if (update == null) {
-            update = new ArrayList<Update>();
+        if (updateList == null) {
+            updateList = new ArrayList<Update>();
         }
-        return this.update;
+        return this.updateList;
     }
 
     public Long getTotal() {

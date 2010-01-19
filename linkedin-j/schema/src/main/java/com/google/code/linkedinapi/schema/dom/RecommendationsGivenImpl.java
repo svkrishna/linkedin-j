@@ -16,14 +16,14 @@ public class RecommendationsGivenImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<Recommendation> recommendation;
+    protected List<Recommendation> recommendationList;
     protected Long total;
 
     public List<Recommendation> getRecommendationList() {
-        if (recommendation == null) {
-            recommendation = new ArrayList<Recommendation>();
+        if (recommendationList == null) {
+            recommendationList = new ArrayList<Recommendation>();
         }
-        return this.recommendation;
+        return this.recommendationList;
     }
 
     public Long getTotal() {

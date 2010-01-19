@@ -19,14 +19,14 @@ public class EducationsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 2213150259938479083L;
-	protected List<Education> education;
+	protected List<Education> educationList;
     protected Long total;
 
     public List<Education> getEducationList() {
-        if (education == null) {
-            education = new ArrayList<Education>();
+        if (educationList == null) {
+            educationList = new ArrayList<Education>();
         }
-        return this.education;
+        return this.educationList;
     }
 
     public Long getTotal() {

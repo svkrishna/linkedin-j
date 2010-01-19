@@ -16,14 +16,14 @@ public class QuestionCategoriesImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<QuestionCategory> questionCategory;
+    protected List<QuestionCategory> questionCategoryList;
     protected Long total;
 
     public List<QuestionCategory> getQuestionCategoryList() {
-        if (questionCategory == null) {
-            questionCategory = new ArrayList<QuestionCategory>();
+        if (questionCategoryList == null) {
+            questionCategoryList = new ArrayList<QuestionCategory>();
         }
-        return this.questionCategory;
+        return this.questionCategoryList;
     }
 
     public Long getTotal() {

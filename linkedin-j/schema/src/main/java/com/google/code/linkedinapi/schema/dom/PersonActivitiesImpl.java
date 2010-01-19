@@ -16,14 +16,14 @@ public class PersonActivitiesImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<Activity> activity;
+    protected List<Activity> activityList;
     protected Long count;
 
     public List<Activity> getActivityList() {
-        if (activity == null) {
-            activity = new ArrayList<Activity>();
+        if (activityList == null) {
+            activityList = new ArrayList<Activity>();
         }
-        return this.activity;
+        return this.activityList;
     }
 
     public Long getCount() {

@@ -18,16 +18,16 @@ public class ConnectionsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 8957482129134944707L;
-	protected List<Person> person;
+	protected List<Person> personList;
     protected Long count;
     protected Long start;
     protected Long total;
 
     public List<Person> getPersonList() {
-        if (person == null) {
-            person = new ArrayList<Person>();
+        if (personList == null) {
+            personList = new ArrayList<Person>();
         }
-        return this.person;
+        return this.personList;
     }
 
     public Long getTotal() {

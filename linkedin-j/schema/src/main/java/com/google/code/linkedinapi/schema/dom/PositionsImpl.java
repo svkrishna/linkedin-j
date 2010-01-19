@@ -19,14 +19,14 @@ public class PositionsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 1542568431460107248L;
-	protected List<Position> position;
+	protected List<Position> positionList;
     protected Long total;
 
     public List<Position> getPositionList() {
-        if (position == null) {
-            position = new ArrayList<Position>();
+        if (positionList == null) {
+            positionList = new ArrayList<Position>();
         }
-        return this.position;
+        return this.positionList;
     }
 
     public Long getTotal() {

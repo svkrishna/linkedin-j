@@ -19,14 +19,14 @@ public class UpdateCommentsImpl
 	 * 
 	 */
 	private static final long serialVersionUID = -6923754393295869466L;
-	protected List<UpdateComment> updateComment;
+	protected List<UpdateComment> updateCommentList;
     protected Long total;
 
     public List<UpdateComment> getUpdateCommentList() {
-        if (updateComment == null) {
-            updateComment = new ArrayList<UpdateComment>();
+        if (updateCommentList == null) {
+            updateCommentList = new ArrayList<UpdateComment>();
         }
-        return this.updateComment;
+        return this.updateCommentList;
     }
 
     public Long getTotal() {

@@ -16,14 +16,14 @@ public class MemberGroupsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<MemberGroup> memberGroup;
+    protected List<MemberGroup> memberGroupList;
     protected Long total;
 
     public List<MemberGroup> getMemberGroupList() {
-        if (memberGroup == null) {
-            memberGroup = new ArrayList<MemberGroup>();
+        if (memberGroupList == null) {
+            memberGroupList = new ArrayList<MemberGroup>();
         }
-        return this.memberGroup;
+        return this.memberGroupList;
     }
 
     public Long getTotal() {
