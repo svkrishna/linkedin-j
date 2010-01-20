@@ -38,6 +38,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      */
     @Override
     public LinkedInAccessToken getOAuthAccessToken(LinkedInRequestToken requestToken, String oauthVerifier) {
+    	if (requestToken == null) {
+    		throw new IllegalArgumentException("request token cannot be null.");
+    	}
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
         	final OAuthProvider provider = getOAuthProvider(consumer);
@@ -98,6 +101,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      */
     @Override
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken) {
+    	if (accessToken == null) {
+    		throw new IllegalArgumentException("access token cannot be null.");
+    	}
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
             consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
