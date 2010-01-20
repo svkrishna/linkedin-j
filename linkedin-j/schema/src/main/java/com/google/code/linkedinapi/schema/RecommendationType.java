@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlEnumValue;
  *     &lt;enumeration value="BSP"/>
  *     &lt;enumeration value="SPR"/>
  *     &lt;enumeration value="STU"/>
+ *     &lt;enumeration value="EDU"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -32,7 +33,9 @@ public enum RecommendationType {
     @XmlEnumValue("SPR")
     SERVICE_PROVIDER("SPR"),
     @XmlEnumValue("STU")
-    STUDENT("STU");
+    STUDENT("STU"),
+    @XmlEnumValue("EDU")
+    EDUCATION("EDU");
     private final String value;
 
     RecommendationType(String v) {
