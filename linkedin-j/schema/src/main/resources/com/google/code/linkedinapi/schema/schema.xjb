@@ -46,6 +46,7 @@
 			<typesafeEnumMember name="BUSINESS_PARTNER" value="BSP"/>
 			<typesafeEnumMember name="SERVICE_PROVIDER" value="SPR"/>
 			<typesafeEnumMember name="STUDENT" value="STU"/>
+			<typesafeEnumMember name="EDUCATION" value="EDU"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
