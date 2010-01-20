@@ -12,12 +12,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Recommendation;
 import com.google.code.linkedinapi.schema.RecommendationType;
 import com.google.code.linkedinapi.schema.Recommendee;
+import com.google.code.linkedinapi.schema.Recommender;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "id",
     "recommendationType",
     "recommendationSnippet",
+    "recommender",
     "recommendee",
     "webUrl"
 })
@@ -34,9 +36,11 @@ public class RecommendationImpl
     protected RecommendationType recommendationType;
     @XmlElement(name = "recommendation-snippet", required = true)
     protected String recommendationSnippet;
-    @XmlElement(required = true, type = RecommendeeImpl.class)
+    @XmlElement(type = RecommenderImpl.class)
+    protected RecommenderImpl recommender;
+    @XmlElement(type = RecommendeeImpl.class)
     protected RecommendeeImpl recommendee;
-    @XmlElement(name = "web-url", required = true)
+    @XmlElement(name = "web-url")
     protected String webUrl;
 
     public String getId() {
@@ -61,6 +65,14 @@ public class RecommendationImpl
 
     public void setRecommendationSnippet(String value) {
         this.recommendationSnippet = value;
+    }
+
+    public Recommender getRecommender() {
+        return recommender;
+    }
+
+    public void setRecommender(Recommender value) {
+        this.recommender = ((RecommenderImpl) value);
     }
 
     public Recommendee getRecommendee() {

@@ -14,6 +14,7 @@ import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
+import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
@@ -49,6 +50,7 @@ public class PersonImpl
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
     protected RecommendationsGivenImpl recommendationsGiven;
+    protected RecommendationsReceivedImpl recommendationsReceived;
     protected MemberGroupsImpl memberGroups;
     protected PersonActivitiesImpl personActivities;
     
@@ -238,6 +240,14 @@ public class PersonImpl
     public void setRecommendationsGiven(RecommendationsGiven value) {
         this.recommendationsGiven = ((RecommendationsGivenImpl) value);
     }
+    
+    public RecommendationsReceived getRecommendationsReceived() {
+        return recommendationsReceived;
+    }
+
+    public void setRecommendationsReceived(RecommendationsReceived value) {
+        this.recommendationsReceived = ((RecommendationsReceivedImpl) value);
+    }
 
     public MemberGroups getMemberGroups() {
         return memberGroups;
@@ -338,11 +348,17 @@ public class PersonImpl
 			apiRequest.init(siteRequestElem);
 			setSiteStandardProfileRequest(apiRequest);
 		}
-		Element recommendationsElem = (Element) DomUtils.getChildElementByName(element, "recommendations-given");
-		if (recommendationsElem != null) {
+		Element recommendationsGivenElem = (Element) DomUtils.getChildElementByName(element, "recommendations-given");
+		if (recommendationsGivenElem != null) {
 			RecommendationsGivenImpl recommendation = new RecommendationsGivenImpl();
-			recommendation.init(recommendationsElem);
+			recommendation.init(recommendationsGivenElem);
 			setRecommendationsGiven(recommendation);
+		}
+		Element recommendationsReceivedElem = (Element) DomUtils.getChildElementByName(element, "recommendations-received");
+		if (recommendationsReceivedElem != null) {
+			RecommendationsReceivedImpl recommendation = new RecommendationsReceivedImpl();
+			recommendation.init(recommendationsReceivedElem);
+			setRecommendationsReceived(recommendation);
 		}
 		Element memberGroupsElem = (Element) DomUtils.getChildElementByName(element, "member-groups");
 		if (memberGroupsElem != null) {
@@ -404,6 +420,9 @@ public class PersonImpl
 		}
 		if (getRecommendationsGiven() != null) {
 			element.appendChild(((RecommendationsGivenImpl) getRecommendationsGiven()).toXml(document));
+		}
+		if (getRecommendationsReceived() != null) {
+			element.appendChild(((RecommendationsReceivedImpl) getRecommendationsReceived()).toXml(document));
 		}
 		if (getMemberGroups() != null) {
 			element.appendChild(((MemberGroupsImpl) getMemberGroups()).toXml(document));

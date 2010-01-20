@@ -14,13 +14,11 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}id"/>
- *         &lt;element ref="{}recommendation-type"/>
- *         &lt;element ref="{}recommendation-snippet"/>
- *         &lt;choice>
- *           &lt;element ref="{}recommender"/>
- *           &lt;element ref="{}recommendee"/>
- *         &lt;/choice>
- *         &lt;element ref="{}web-url" minOccurs="0"/>
+ *         &lt;element ref="{}first-name"/>
+ *         &lt;element ref="{}last-name"/>
+ *         &lt;element ref="{}headline"/>
+ *         &lt;element ref="{}api-standard-profile-request"/>
+ *         &lt;element ref="{}site-standard-profile-request"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,7 +27,7 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Recommendation
+public interface Recommender
     extends SchemaEntity
 {
 
@@ -55,103 +53,103 @@ public interface Recommendation
     void setId(String value);
 
     /**
-     * Gets the value of the recommendationType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RecommendationType }
-     *     
-     */
-    RecommendationType getRecommendationType();
-
-    /**
-     * Sets the value of the recommendationType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RecommendationType }
-     *     
-     */
-    void setRecommendationType(RecommendationType value);
-
-    /**
-     * Gets the value of the recommendationSnippet property.
+     * Gets the value of the firstName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getRecommendationSnippet();
+    String getFirstName();
 
     /**
-     * Sets the value of the recommendationSnippet property.
+     * Sets the value of the firstName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setRecommendationSnippet(String value);
+    void setFirstName(String value);
 
     /**
-     * Gets the value of the recommender property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Recommender }
-     *     
-     */
-    Recommender getRecommender();
-
-    /**
-     * Sets the value of the recommender property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Recommender }
-     *     
-     */
-    void setRecommender(Recommender value);
-
-    /**
-     * Gets the value of the recommendee property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Recommendee }
-     *     
-     */
-    Recommendee getRecommendee();
-
-    /**
-     * Sets the value of the recommendee property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Recommendee }
-     *     
-     */
-    void setRecommendee(Recommendee value);
-
-    /**
-     * Gets the value of the webUrl property.
+     * Gets the value of the lastName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getWebUrl();
+    String getLastName();
 
     /**
-     * Sets the value of the webUrl property.
+     * Sets the value of the lastName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setWebUrl(String value);
+    void setLastName(String value);
+
+    /**
+     * Gets the value of the headline property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getHeadline();
+
+    /**
+     * Sets the value of the headline property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setHeadline(String value);
+
+    /**
+     * Gets the value of the apiStandardProfileRequest property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ApiStandardProfileRequest }
+     *     
+     */
+    ApiStandardProfileRequest getApiStandardProfileRequest();
+
+    /**
+     * Sets the value of the apiStandardProfileRequest property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ApiStandardProfileRequest }
+     *     
+     */
+    void setApiStandardProfileRequest(ApiStandardProfileRequest value);
+
+    /**
+     * Gets the value of the siteStandardProfileRequest property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SiteStandardProfileRequest }
+     *     
+     */
+    SiteStandardProfileRequest getSiteStandardProfileRequest();
+
+    /**
+     * Sets the value of the siteStandardProfileRequest property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SiteStandardProfileRequest }
+     *     
+     */
+    void setSiteStandardProfileRequest(SiteStandardProfileRequest value);
 
 }

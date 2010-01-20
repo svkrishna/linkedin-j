@@ -21,6 +21,7 @@ import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
+import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
@@ -50,6 +51,7 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "siteStandardProfileRequest",
     "pictureUrl",
     "recommendationsGiven",
+    "recommendationsReceived",
     "memberGroups",
     "personActivities"
 })
@@ -103,6 +105,8 @@ public class PersonImpl
     protected String pictureUrl;
     @XmlElement(name = "recommendations-given", type = RecommendationsGivenImpl.class)
     protected RecommendationsGivenImpl recommendationsGiven;
+    @XmlElement(name = "recommendations-received", type = RecommendationsReceivedImpl.class)
+    protected RecommendationsReceivedImpl recommendationsReceived;
     @XmlElement(name = "member-groups", type = MemberGroupsImpl.class)
     protected MemberGroupsImpl memberGroups;
     @XmlElement(name = "person-activities", type = PersonActivitiesImpl.class)
@@ -300,6 +304,14 @@ public class PersonImpl
 
     public void setRecommendationsGiven(RecommendationsGiven value) {
         this.recommendationsGiven = ((RecommendationsGivenImpl) value);
+    }
+
+    public RecommendationsReceived getRecommendationsReceived() {
+        return recommendationsReceived;
+    }
+
+    public void setRecommendationsReceived(RecommendationsReceived value) {
+        this.recommendationsReceived = ((RecommendationsReceivedImpl) value);
     }
 
     public MemberGroups getMemberGroups() {

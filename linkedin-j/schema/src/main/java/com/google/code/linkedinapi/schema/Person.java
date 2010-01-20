@@ -49,6 +49,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;/sequence>
  *         &lt;element ref="{}picture-url" minOccurs="0"/>
  *         &lt;element ref="{}recommendations-given" minOccurs="0"/>
+ *         &lt;element ref="{}recommendations-received" minOccurs="0"/>
  *         &lt;element ref="{}member-groups" minOccurs="0"/>
  *         &lt;element ref="{}person-activities" minOccurs="0"/>
  *       &lt;/sequence>
@@ -544,6 +545,26 @@ public interface Person
      *     
      */
     void setRecommendationsGiven(RecommendationsGiven value);
+
+    /**
+     * Gets the value of the recommendationsReceived property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecommendationsReceived }
+     *     
+     */
+    RecommendationsReceived getRecommendationsReceived();
+
+    /**
+     * Sets the value of the recommendationsReceived property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RecommendationsReceived }
+     *     
+     */
+    void setRecommendationsReceived(RecommendationsReceived value);
 
     /**
      * Gets the value of the memberGroups property.

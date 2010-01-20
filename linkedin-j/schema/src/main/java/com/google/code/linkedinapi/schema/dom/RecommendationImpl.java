@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 import com.google.code.linkedinapi.schema.Recommendation;
 import com.google.code.linkedinapi.schema.RecommendationType;
 import com.google.code.linkedinapi.schema.Recommendee;
+import com.google.code.linkedinapi.schema.Recommender;
 
 public class RecommendationImpl
 	extends BaseSchemaEntity
@@ -18,6 +19,7 @@ public class RecommendationImpl
     protected RecommendationType recommendationType;
     protected String recommendationSnippet;
     protected RecommendeeImpl recommendee;
+    protected RecommenderImpl recommender;
     protected String webUrl;
 
     public String getId() {
@@ -52,6 +54,14 @@ public class RecommendationImpl
         this.recommendee = ((RecommendeeImpl) value);
     }
 
+    public Recommender getRecommender() {
+        return recommender;
+    }
+
+    public void setRecommender(Recommender value) {
+        this.recommender = ((RecommenderImpl) value);
+    }
+    
     public String getWebUrl() {
         return webUrl;
     }
@@ -73,6 +83,12 @@ public class RecommendationImpl
 			recommendee.init(recommendeeElem);
 			setRecommendee(recommendee);
 		}
+		Element recommenderElem = (Element) DomUtils.getChildElementByName(element, "recommender");
+		if (recommenderElem != null) {
+			RecommenderImpl recommender = new RecommenderImpl();
+			recommender.init(recommenderElem);
+			setRecommender(recommender);
+		}
 	}
 
 	@Override
@@ -84,6 +100,9 @@ public class RecommendationImpl
 		DomUtils.setElementValueToNode(element, "web-url", getWebUrl());
 		if (getRecommendee() != null) {
 			element.appendChild(((RecommendeeImpl) getRecommendee()).toXml(document));
+		}
+		if (getRecommender() != null) {
+			element.appendChild(((RecommenderImpl) getRecommender()).toXml(document));
 		}
 		return element;
 	}
