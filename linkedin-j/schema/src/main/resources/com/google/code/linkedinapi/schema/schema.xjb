@@ -84,6 +84,9 @@
 	<bindings node="//xs:element[@name='recommendations-given']/xs:complexType/xs:sequence/xs:element[@ref='recommendation']">
 		<property name="recommendationList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='recommendations-received']/xs:complexType/xs:sequence/xs:element[@ref='recommendation']">
+		<property name="recommendationList"/>
+	</bindings>
 	<bindings node="//xs:element[@name='connections']/xs:complexType/xs:sequence/xs:element[@ref='person']">
 		<property name="personList"/>
 	</bindings>

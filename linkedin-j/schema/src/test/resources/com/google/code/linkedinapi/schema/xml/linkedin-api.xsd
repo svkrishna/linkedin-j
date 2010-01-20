@@ -256,6 +256,7 @@
           <xs:element ref="person-activities"/>
           <xs:element ref="picture-url"/>
           <xs:element ref="recommendations-given"/>
+          <xs:element ref="recommendations-received"/>
         </xs:choice>
       </xs:sequence>
       <xs:attribute name="path"/>
@@ -360,29 +361,12 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendation">
+  <xs:element name="recommendations-received">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="recommendation-type"/>
-        <xs:element ref="recommendation-snippet"/>
-        <xs:element ref="recommendee"/>
-        <xs:element ref="web-url"/>
+        <xs:element maxOccurs="unbounded" ref="recommendation"/>
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="recommendation-type" type="xs:NCName"/>
-  <xs:element name="recommendation-snippet" type="xs:string"/>
-  <xs:element name="recommendee">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="first-name"/>
-        <xs:element ref="last-name"/>
-        <xs:element ref="headline"/>
-        <xs:element ref="api-standard-profile-request"/>
-        <xs:element ref="site-standard-profile-request"/>
-      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="body" type="xs:string"/>
@@ -534,6 +518,48 @@
       <xs:sequence>
         <xs:element ref="year"/>
         <xs:element minOccurs="0" ref="month"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recommendation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="recommendation-type"/>
+        <xs:element ref="recommendation-snippet"/>
+        <xs:choice>
+          <xs:element ref="recommender"/>
+          <xs:sequence>
+            <xs:element ref="recommendee"/>
+            <xs:element ref="web-url"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recommendation-type" type="xs:NCName"/>
+  <xs:element name="recommendation-snippet" type="xs:string"/>
+  <xs:element name="recommender">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recommendee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

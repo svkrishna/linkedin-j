@@ -594,7 +594,7 @@
 						</headers>
 				   </api-standard-profile-request>
 				   <site-standard-profile-request>
-						<url>http://www.linkedin.com/profile?viewProfile=&key=15046343&authToken=Rjz4&authType=name&trk=api*a101194*</url>
+						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=15046343&amp;authToken=Rjz4&amp;authType=name&amp;trk=api*a101194*</url>
 				   </site-standard-profile-request>
 				   <recommendations-received total="2">
 						<recommendation>
@@ -616,7 +616,7 @@
 									   </headers>
 								  </api-standard-profile-request>
 								  <site-standard-profile-request>
-									   <url>http://www.linkedin.com/profile?viewProfile=&key=15078251&authToken=Lr4Z&authType=name&trk=api*a101194*</url>
+									   <url>http://www.linkedin.com/profile?viewProfile=&amp;key=15078251&amp;authToken=Lr4Z&amp;authType=name&amp;trk=api*a101194*</url>
 								  </site-standard-profile-request>
 							 </recommender>
 						</recommendation>
@@ -639,7 +639,7 @@
 									   </headers>
 								  </api-standard-profile-request>
 								  <site-standard-profile-request>
-									   <url>http://www.linkedin.com/profile?viewProfile=&key=15078251&authToken=Lr4Z&authType=name&trk=api*a101194*</url>
+									   <url>http://www.linkedin.com/profile?viewProfile=&amp;key=15078251&amp;authToken=Lr4Z&amp;authType=name&amp;trk=api*a101194*</url>
 								  </site-standard-profile-request>
 							 </recommender>
 						</recommendation>
