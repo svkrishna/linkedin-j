@@ -499,6 +499,7 @@
 		<xs:enumeration value="BSP"/>
 		<xs:enumeration value="SPR"/>
 		<xs:enumeration value="STU"/>
+		<xs:enumeration value="EDU"/>
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>
