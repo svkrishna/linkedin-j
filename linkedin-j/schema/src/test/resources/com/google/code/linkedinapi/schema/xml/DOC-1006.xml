@@ -574,6 +574,79 @@
 	    </job>
 	  </update-content>
 	  <is-commentable>false</is-commentable>
-	</update>    
+	</update>
+	<update>
+		 <timestamp>1263888931857</timestamp>
+		 <update-type>PREC</update-type>
+		 <update-content>
+			  <person>
+				   <id>rzQhtV12-J</id>
+				   <first-name>Samantha</first-name>
+				   <last-name>Shipley</last-name>
+				   <headline>Marketing Director at HealthcareOne</headline>
+				   <api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/rzQhtV12-J:full</url>
+						<headers total="1">
+							 <http-header>
+								  <name>x-li-auth-token</name>
+								  <value>name:Rjz4</value>
+							 </http-header>
+						</headers>
+				   </api-standard-profile-request>
+				   <site-standard-profile-request>
+						<url>http://www.linkedin.com/profile?viewProfile=&key=15046343&authToken=Rjz4&authType=name&trk=api*a101194*</url>
+				   </site-standard-profile-request>
+				   <recommendations-received total="2">
+						<recommendation>
+							 <id>15868533</id>
+							 <recommendation-type>EDU</recommendation-type>
+							 <recommendation-snippet>I had the opportunity to work with Samantha on many projects throughout our time together at Norther...</recommendation-snippet>
+							 <recommender>
+								  <id>XMXI_2H1_5</id>
+								  <first-name>Barbara</first-name>
+								  <last-name>Zalewski</last-name>
+								  <headline>Financial/Marketing Assistant</headline>
+								  <api-standard-profile-request>
+									   <url>http://api.linkedin.com/v1/people/XMXI_2H1_5:full</url>
+									   <headers total="1">
+											<http-header>
+												 <name>x-li-auth-token</name>
+												 <value>name:Lr4Z</value>
+											</http-header>
+									   </headers>
+								  </api-standard-profile-request>
+								  <site-standard-profile-request>
+									   <url>http://www.linkedin.com/profile?viewProfile=&key=15078251&authToken=Lr4Z&authType=name&trk=api*a101194*</url>
+								  </site-standard-profile-request>
+							 </recommender>
+						</recommendation>
+						<recommendation>
+							 <id>15868534</id>
+							 <recommendation-type>COL</recommendation-type>
+							 <recommendation-snippet>I had the opportunity to work with Samantha on many projects throughout our time together at Norther...</recommendation-snippet>
+							 <recommender>
+								  <id>XMXI_2H1_4</id>
+								  <first-name>Nabeel</first-name>
+								  <last-name>Siddiqui</last-name>
+								  <headline>Financial/Marketing Assistant</headline>
+								  <api-standard-profile-request>
+									   <url>http://api.linkedin.com/v1/people/XMXI_2H1_5:full</url>
+									   <headers total="1">
+											<http-header>
+												 <name>x-li-auth-token</name>
+												 <value>name:Lr4Z</value>
+											</http-header>
+									   </headers>
+								  </api-standard-profile-request>
+								  <site-standard-profile-request>
+									   <url>http://www.linkedin.com/profile?viewProfile=&key=15078251&authToken=Lr4Z&authType=name&trk=api*a101194*</url>
+								  </site-standard-profile-request>
+							 </recommender>
+						</recommendation>
+				   </recommendations-received>
+			  </person>
+		 </update-content>
+		 <is-commentable>false</is-commentable>
+	</update>	      
   </updates>
 </network>
