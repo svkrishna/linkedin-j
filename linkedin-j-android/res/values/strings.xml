@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Welcome to the LinkedIn API Android Client. Select Login from the Options Menu to login to LinkedIn.</string>
+    <string name="app_name">LinkedIn API Android Client</string>
+<string name="login_menu">Login</string>
+<string name="logoff_menu">Logoff</string>
+<string name="profile_menu">Profile</string>
+<string name="connections_menu">Connections</string>
+<string name="updates_menu">Updates</string>
+<string name="search_menu">Search</string>
+<string name="profile_tab">Profile</string>
+<string name="education_tab">Education</string>
+<string name="experience_tab">Experience</string>
+<string name="invite_tab">Invite</string>
+</resources>

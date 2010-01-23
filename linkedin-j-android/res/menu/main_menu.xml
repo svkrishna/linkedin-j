@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:enabled="true" android:id="@+id/profile" android:title="@string/profile_menu" android:visible="true"></item>
+
+<item android:enabled="true" android:id="@+id/connections" android:title="@string/connections_menu" android:visible="true"></item>
+
+<item android:enabled="true" android:id="@+id/updates" android:title="@string/updates_menu" android:visible="true"></item>
+<item android:enabled="true" android:id="@+id/search" android:title="@string/search_menu" android:visible="true"></item><item android:enabled="true" android:visible="true" android:id="@+id/login" android:title="@string/login_menu"></item>
+</menu>
