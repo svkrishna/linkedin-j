@@ -48,6 +48,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      * @param requestHeaders the request headers
      */
     public void setRequestHeaders(Map<String, String> requestHeaders) {
+    	if (requestHeaders == null) {
+    		throw new IllegalArgumentException("request headers cannot be null.");
+    	}
         this.requestHeaders = requestHeaders;
     }
 
