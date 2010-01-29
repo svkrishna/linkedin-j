@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -982,7 +983,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected InputStream callApiMethod(String apiUrl) {
-        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, requestHeaders);
+    	final List<HttpHeader> httpHeaders = Collections.emptyList();
+        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, httpHeaders);
     }
 
     /**
@@ -994,11 +996,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected InputStream callApiMethod(String apiUrl, List<HttpHeader> httpHeaders) {
-        for (HttpHeader httpHeader : httpHeaders) {
-            addRequestHeader(httpHeader.getName(), httpHeader.getValue());
-        }
-
-        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, requestHeaders);
+        return callApiMethod(apiUrl, HttpURLConnection.HTTP_OK, httpHeaders);
     }
 
     /**
@@ -1010,7 +1008,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      *
      * @return
      */
-    protected InputStream callApiMethod(String apiUrl, int expected, Map<String, String> httpHeaders) {
+    protected InputStream callApiMethod(String apiUrl, int expected, List<HttpHeader> httpHeaders) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
@@ -1026,10 +1024,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                 request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
             }
 
-            for (String headerName : httpHeaders.keySet()) {
-                request.setRequestProperty(headerName, httpHeaders.get(headerName));
+            for (String headerName : requestHeaders.keySet()) {
+                request.setRequestProperty(headerName, requestHeaders.get(headerName));
             }
-
+            
+            for (HttpHeader header : httpHeaders) {
+                request.setRequestProperty(header.getName(), header.getValue());
+            }
+            
             oAuthService.signRequestWithToken(request, accessToken);
             request.connect();
 
@@ -1061,23 +1063,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
             int expected) {
-        return callApiMethod(apiUrl, xmlContent, contentType, method, expected, requestHeaders);
-    }
-
-    /**
-     *
-     *
-     * @param apiUrl
-     * @param xmlContent
-     * @param contentType
-     * @param method
-     * @param expected
-     * @param httpHeaders
-     *
-     * @return
-     */
-    protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
-            int expected, Map<String, String> httpHeaders) {
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
@@ -1093,8 +1078,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                 request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
             }
 
-            for (String headerName : httpHeaders.keySet()) {
-                request.setRequestProperty(headerName, httpHeaders.get(headerName));
+            for (String headerName : requestHeaders.keySet()) {
+                request.setRequestProperty(headerName, requestHeaders.get(headerName));
             }
 
             request.setRequestMethod(method.fieldName());
