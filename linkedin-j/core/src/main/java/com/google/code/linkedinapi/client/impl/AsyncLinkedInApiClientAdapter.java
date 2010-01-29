@@ -719,4 +719,41 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
     	client.setApiConsumer(apiConsumer);
     }
+    
+    /**
+     * Sets the request headers.
+     *
+     * @param requestHeaders the request headers
+     */
+    public void setRequestHeaders(Map<String, String> requestHeaders) {
+    	client.setRequestHeaders(requestHeaders);
+    }
+
+    /**
+     * Gets the request headers.
+     *
+     * @return the request headers
+     */
+    public Map<String, String> getRequestHeaders() {
+        return client.getRequestHeaders();
+    }
+
+    /**
+     * Adds the request header.
+     *
+     * @param headerName the header name
+     * @param headerValue the header value
+     */
+    public void addRequestHeader(String headerName, String headerValue) {
+        client.addRequestHeader(headerName, headerValue);
+    }
+
+    /**
+     * Removes the request header.
+     *
+     * @param headerName the header name
+     */
+    public void removeRequestHeader(String headerName) {
+        client.removeRequestHeader(headerName);
+    }
 }

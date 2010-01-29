@@ -44,10 +44,6 @@ public final class ApplicationConstants {
     /** The Constant CONTENT_ENCODING. */
     public static final String CONTENT_ENCODING = getProperty("com.google.code.linkedinapi.client.encoding");
 
-    /** The Constant COMPRESS_CONTENTS. */
-    public static final boolean COMPRESS_CONTENTS =
-        getBooleanProperty("com.google.code.linkedinapi.client.compressContent");
-
     /** The Constant CLIENT_DEFAULT_IMPL. */
     public static final String CLIENT_DEFAULT_IMPL = getProperty("com.google.code.linkedinapi.client.defaultImpl");
 

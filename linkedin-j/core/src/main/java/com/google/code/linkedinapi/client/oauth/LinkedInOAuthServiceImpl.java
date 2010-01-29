@@ -4,6 +4,8 @@
 package com.google.code.linkedinapi.client.oauth;
 
 import java.net.HttpURLConnection;
+import java.util.HashMap;
+import java.util.Map;
 
 import oauth.signpost.OAuth;
 import oauth.signpost.OAuthConsumer;
@@ -11,6 +13,7 @@ import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthProvider;
 
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 
 /**
@@ -22,6 +25,12 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     /** Field description */
     private final LinkedInApiConsumer apiConsumer;
 
+    /** Field description */
+    private Map<String, String> requestHeaders;
+    
+    /** Field description */
+    private static final String OAUTH_VERSION_1_0_a = "1.0a";
+    
     /**
      * Constructs ...
      *
@@ -29,9 +38,47 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      * @param apiConsumer
      */
     LinkedInOAuthServiceImpl(LinkedInApiConsumer apiConsumer) {
+    	requestHeaders = new HashMap<String, String>();
     	this.apiConsumer = apiConsumer;
     }
+    
+    /**
+     * Sets the request headers.
+     *
+     * @param requestHeaders the request headers
+     */
+    public void setRequestHeaders(Map<String, String> requestHeaders) {
+        this.requestHeaders = requestHeaders;
+    }
 
+    /**
+     * Gets the request headers.
+     *
+     * @return the request headers
+     */
+    public Map<String, String> getRequestHeaders() {
+        return requestHeaders;
+    }
+
+    /**
+     * Adds the request header.
+     *
+     * @param headerName the header name
+     * @param headerValue the header value
+     */
+    public void addRequestHeader(String headerName, String headerValue) {
+        requestHeaders.put(headerName, headerValue);
+    }
+
+    /**
+     * Removes the request header.
+     *
+     * @param headerName the header name
+     */
+    public void removeRequestHeader(String headerName) {
+        requestHeaders.remove(headerName);
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -119,7 +166,11 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     	DefaultOAuthProvider provider = new DefaultOAuthProvider(LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
 		        LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
     	
-    	provider.setOAuth10a(true);
+    	provider.setOAuth10a(OAUTH_VERSION_1_0_a.equals(ApplicationConstants.OAUTH_VERSION));
+    	
+        for (String headerName : requestHeaders.keySet()) {
+        	provider.setRequestHeader(headerName, requestHeaders.get(headerName));
+        }
     	
     	return provider;
 	}

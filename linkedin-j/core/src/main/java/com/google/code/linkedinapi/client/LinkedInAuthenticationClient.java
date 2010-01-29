@@ -10,7 +10,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
  * @author Nabeel Mukhtar
  *
  */
-public interface LinkedInAuthenticationClient {
+public interface LinkedInAuthenticationClient extends LinkedInCommunicationClient {
 
     /**
      * Method description
