@@ -59,7 +59,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 //	public void testGetConnectionsByEmailStringSetOfProfileField() {
 //		final String email = TestConstants.LINKED_IN_TEST_EMAIL;
 //		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Email"), email);
-//		Connections connections = client.getConnectionsByEmail(email, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+//		Connections connections = client.getConnectionsByEmail(email, EnumSet.allOf(ProfileField.class));
 //		assertNotNull("Connections should never be null.", connections);
 //	}
 
@@ -81,7 +81,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testGetConnectionsByIdStringSetOfProfileField() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
-		Connections connections = client.getConnectionsById(id, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Connections connections = client.getConnectionsById(id, EnumSet.allOf(ProfileField.class));
 		assertNotNull("Connections should never be null.", connections);
 	}
 
@@ -103,7 +103,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testGetConnectionsByUrlStringSetOfProfileField() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
-		Connections connections = client.getConnectionsByUrl(url, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Connections connections = client.getConnectionsByUrl(url, EnumSet.allOf(ProfileField.class));
 		assertNotNull("Connections should never be null.", connections);
 	}
 
@@ -121,7 +121,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetConnectionsForCurrentUserSetOfProfileField() {
-		Connections connections = client.getConnectionsForCurrentUser(EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Connections connections = client.getConnectionsForCurrentUser(EnumSet.allOf(ProfileField.class));
 		assertNotNull("Connections should never be null.", connections);
 	}
 
@@ -217,7 +217,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testGetProfileByIdStringSetOfProfileField() {
 		final String id = TestConstants.LINKED_IN_TEST_ID;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "ID"), id);
-		Person profile = client.getProfileById(id, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Person profile = client.getProfileById(id, EnumSet.allOf(ProfileField.class));
 		assertNotNull("Profile should never be null.", profile);
 	}
 
@@ -239,7 +239,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testGetProfileByUrlStringProfileTypeSetOfProfileField() {
 		final String url = TestConstants.LINKED_IN_TEST_URL;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "URL"), url);
-		Person profile = client.getProfileByUrl(url, ProfileType.STANDARD, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Person profile = client.getProfileByUrl(url, ProfileType.STANDARD, EnumSet.allOf(ProfileField.class));
 		assertNotNull("Profile should never be null.", profile);
 	}
 
@@ -257,7 +257,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetProfileForCurrentUserSetOfProfileField() {
-		Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE));
+		Person profile = client.getProfileForCurrentUser(EnumSet.allOf(ProfileField.class));
 		assertNotNull("Profile should never be null.", profile);
 	}
 

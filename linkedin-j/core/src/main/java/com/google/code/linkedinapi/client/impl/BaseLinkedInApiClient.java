@@ -69,6 +69,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /** Field description */
     private LinkedInApiConsumer apiConsumer;
 
+    /** Field description */
+    protected static final Set<ProfileField> CONNECTION_FIELDS = ProfileField.valuesForConnections();
+    
     /**
      * Constructs ...
      *
@@ -150,6 +153,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields) {
     	assertNotNullOrEmpty("id", id);
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
@@ -176,6 +180,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
     	assertNotNullOrEmpty("url", url);
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).buildUrl();
@@ -200,6 +205,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).buildUrl();
 
@@ -258,6 +264,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     	assertPositiveNumber("start", start);
     	assertPositiveNumber("count", count);
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
         String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
                                             profileFields).withParameter("start",
@@ -292,6 +299,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     	assertPositiveNumber("start", start);
     	assertPositiveNumber("count", count);
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
         String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
                                             profileFields).withParameter("start",
@@ -324,6 +332,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     	assertPositiveNumber("start", start);
     	assertPositiveNumber("count", count);
     	assertNotNull("profile fields", profileFields);
+    	profileFields.retainAll(CONNECTION_FIELDS);
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
         String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).withParameter("start",
                                             String.valueOf(start)).withParameter("count",

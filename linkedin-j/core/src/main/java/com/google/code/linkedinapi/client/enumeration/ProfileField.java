@@ -4,7 +4,9 @@
 package com.google.code.linkedinapi.client.enumeration;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Nabeel Mukhtar
@@ -15,27 +17,27 @@ public enum ProfileField implements FieldEnum {
     /**
      * the member token for this member
      */
-    ID("id"),
+    ID("id", true),
 
     /**
      * the member's first name
      */
-    FIRST_NAME("first-name"),
+    FIRST_NAME("first-name", true),
 
     /**
      * the member's last name
      */
-    LAST_NAME("last-name"),
+    LAST_NAME("last-name", true),
 
     /**
      * the member's headline (often "Job Title at Company")
      */
-    HEADLINE("headline"),
+    HEADLINE("headline", true),
 
     /**
      * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
      */
-    LOCATION("location"),
+    LOCATION("location", true),
     
     /**
      * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
@@ -50,17 +52,17 @@ public enum ProfileField implements FieldEnum {
     /**
      * the industry the LinkedIn member has indicated their profile belongs to
      */
-    INDUSTRY("industry"),
+    INDUSTRY("industry", true),
 
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    DISTANCE("distance"),
+    DISTANCE("distance", false),
 
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
-    RELATION_TO_VIEWER("relation-to-viewer"),
+    RELATION_TO_VIEWER("relation-to-viewer", false),
     
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
@@ -75,57 +77,57 @@ public enum ProfileField implements FieldEnum {
     /**
      * the member's current status, if set
      */
-    CURRENT_STATUS("current-status"),
+    CURRENT_STATUS("current-status", true),
 
     /**
      * the timestamp, in milliseconds, when the member's status was last set
      */
-    CURRENT_STATUS_TIMESTAMP("current-status-timestamp"),
+    CURRENT_STATUS_TIMESTAMP("current-status-timestamp", true),
 
     /**
      * an empty collection, indicating the # of connections the member has with a total attribute.
      */
-    CONNECTIONS("connections"),
+    CONNECTIONS("connections", false),
 
     /**
      * A long-form text area where the member describes their professional profile
      */
-    SUMMARY("summary"),
+    SUMMARY("summary", false),
 
     /**
      * A short-form text area where the member enumerates their specialties.
      */
-    SPECIALTIES("specialties"),
+    SPECIALTIES("specialties", false),
 
     /**
      * A short-form text area describing how the member approaches proposals
      */
-    PROPOSAL_COMMENTS("proposal-comments"),
+    PROPOSAL_COMMENTS("proposal-comments", false),
 
     /**
      * A short-form text area enumerating the Associations a member has
      */
-    ASSOCIATIONS("associations"),
+    ASSOCIATIONS("associations", false),
 
     /**
      * A short-form text area describing what Honors the member may have
      */
-    HONORS("honors"),
+    HONORS("honors", false),
 
     /**
      * A collection of positions a member has had, the total indicated by a total attribute
      */
-    POSITIONS("positions"),
+    POSITIONS("positions", true),
 
     /**
      * A collection of education institutions a member has attended, the total indicated by a total attribute
      */
-    EDUCATIONS("educations"),
+    EDUCATIONS("educations", true),
 
     /**
      * A collection of URLs the member has chosen to share on their LinkedIn profile
      */
-    MEMBER_URL_RESOURCES("member-url-resources"),
+    MEMBER_URL_RESOURCES("member-url-resources", true),
 
     /**
      * The fully-qualified URL being shared
@@ -145,7 +147,7 @@ public enum ProfileField implements FieldEnum {
     /**
      * the URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
      */
-    SITE_STANDARD_PROFILE_REQUEST("site-standard-profile-request"),
+    SITE_STANDARD_PROFILE_REQUEST("site-standard-profile-request", true),
     
     /**
      * the URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
@@ -175,7 +177,7 @@ public enum ProfileField implements FieldEnum {
     /**
      * An URL representing the resource you would request for programmatic access to the member's profile
      */
-    API_STANDARD_PROFILE_REQUEST("api-standard-profile-request"),
+    API_STANDARD_PROFILE_REQUEST("api-standard-profile-request", true),
     
     /**
      * An URL representing the resource you would request for programmatic access to the member's profile
@@ -190,22 +192,22 @@ public enum ProfileField implements FieldEnum {
     /**
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
      */
-    PICTURE_URL("picture-url"),
+    PICTURE_URL("picture-url", true),
     
     /**
      * A collection of positions a member currently holds, limited to three and indicated by a total attribute
      */
-    THREE_CURRENT_POSITIONS("three-current-positions"),
+    THREE_CURRENT_POSITIONS("three-current-positions", true),
     
     /**
      * A collection of positions a member formerly held, limited to the three most recent and indicated by a total attribute
      */
-    THREE_PAST_POSITIONS("three-past-positions"),
+    THREE_PAST_POSITIONS("three-past-positions", true),
     
     /**
      * 	A URL to the member's public profile, if enabled.
      */
-    PUBLIC_PROFILE_URL("public-profile-url");
+    PUBLIC_PROFILE_URL("public-profile-url", true);
     
     /**
      * Field Description.
@@ -221,14 +223,18 @@ public enum ProfileField implements FieldEnum {
     /** Field description */
     private final String fieldName;
 
+    /** Field description */
+    private final boolean availableForConnections;
+    
     /**
      * Constructs ...
      *
      *
      * @param name
      */
-    ProfileField(String name) {
+    ProfileField(String name, boolean availableForConnections) {
         this.fieldName = name;
+        this.availableForConnections = availableForConnections;
     }
 
     /* (non-Javadoc)
@@ -238,6 +244,13 @@ public enum ProfileField implements FieldEnum {
         return this.fieldName;
     }
 
+    /** 
+	 * 
+	 */
+    public boolean isAvailableForConnections() {
+        return this.availableForConnections;
+    }
+    
     /**
      * Method description
      *
@@ -255,5 +268,19 @@ public enum ProfileField implements FieldEnum {
 	 */
 	public static FieldEnum fromString(String symbol) {
 		return stringToEnum.get(symbol);
+	}
+	
+	/**
+	 *
+	 * @return Returns ProfileFields available for connections.
+	 */
+	public static Set<ProfileField> valuesForConnections() {
+		final Set<ProfileField> valuesForConnections = new HashSet<ProfileField>();
+		for (ProfileField field : values()) {
+			if (field.isAvailableForConnections()) {
+				valuesForConnections.add(field);
+			}
+		}
+		return valuesForConnections;
 	}
 }
