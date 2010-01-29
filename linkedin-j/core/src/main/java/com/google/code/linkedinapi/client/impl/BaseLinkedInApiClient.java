@@ -92,37 +92,28 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     }
 
     /**
-     * Sets the request headers.
-     *
-     * @param requestHeaders the request headers
+     * {@inheritDoc}
      */
     public void setRequestHeaders(Map<String, String> requestHeaders) {
         this.requestHeaders = requestHeaders;
     }
 
     /**
-     * Gets the request headers.
-     *
-     * @return the request headers
+     * {@inheritDoc}
      */
     public Map<String, String> getRequestHeaders() {
         return requestHeaders;
     }
 
     /**
-     * Adds the request header.
-     *
-     * @param headerName the header name
-     * @param headerValue the header value
+     * {@inheritDoc}
      */
     public void addRequestHeader(String headerName, String headerValue) {
         requestHeaders.put(headerName, headerValue);
     }
 
     /**
-     * Removes the request header.
-     *
-     * @param headerName the header name
+     * {@inheritDoc}
      */
     public void removeRequestHeader(String headerName) {
         requestHeaders.remove(headerName);
@@ -130,8 +121,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param apiConsumer
      */
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
@@ -139,8 +128,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     public LinkedInApiConsumer getApiConsumer() {
         return apiConsumer;
@@ -148,8 +135,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param accessToken
      */
     public void setAccessToken(LinkedInAccessToken accessToken) {
         this.accessToken = accessToken;
@@ -157,8 +142,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     public LinkedInAccessToken getAccessToken() {
         return accessToken;
@@ -188,10 +171,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsById(String id) {
@@ -205,11 +184,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields) {
@@ -226,10 +200,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsByUrl(String url) {
@@ -243,11 +213,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields) {
@@ -264,8 +229,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsForCurrentUser() {
@@ -277,10 +240,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields) {
@@ -295,14 +254,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param start
-     * @param count
-     *
-     * @return
      */
-
 //  @Override
 //  public Connections getConnectionsByEmail(String email, int start, int count) {
 //      LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
@@ -346,13 +298,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param profileFields
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count) {
@@ -373,12 +318,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsByUrl(String url, int start, int count) {
@@ -396,13 +335,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     * @param profileFields
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count) {
@@ -423,11 +355,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsForCurrentUser(int start, int count) {
@@ -444,12 +371,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param profileFields
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count) {
@@ -468,8 +389,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates() {
@@ -481,11 +400,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(int start, int count) {
@@ -501,11 +415,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param startDate
-     * @param endDate
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(Date startDate, Date endDate) {
@@ -522,10 +431,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param updateTypes
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes) {
@@ -539,12 +444,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param updateTypes
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
@@ -561,12 +460,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param updateTypes
-     * @param startDate
-     * @param endDate
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate) {
@@ -585,14 +478,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param updateTypes
-     * @param start
-     * @param count
-     * @param startDate
-     * @param endDate
-     *
-     * @return
      */
     @Override
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
@@ -615,10 +500,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param networkUpdateId
-     *
-     * @return
      */
     @Override
     public UpdateComments getNetworkUpdateComments(String networkUpdateId) {
@@ -632,11 +513,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param profileType
-     *
-     * @return
      */
     public Person getProfileById(String id, ProfileType profileType) {
         return getProfileById(id);
@@ -644,10 +520,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     *
-     * @return
      */
     @Override
     public Person getProfileById(String id) {
@@ -662,12 +534,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
      */
     public Person getProfileById(String id, ProfileType profileType, Set<ProfileField> profileFields) {
         return getProfileById(id, profileFields);
@@ -675,11 +541,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param id
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Person getProfileById(String id, Set<ProfileField> profileFields) {
@@ -696,11 +557,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     * @param profileType
-     *
-     * @return
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType) {
@@ -716,12 +572,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param url
-     * @param profileType
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Person getProfileByUrl(String url, ProfileType profileType, Set<ProfileField> profileFields) {
@@ -738,8 +588,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     @Override
     public Person getProfileForCurrentUser() {
@@ -751,10 +599,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param profileFields
-     *
-     * @return
      */
     @Override
     public Person getProfileForCurrentUser(Set<ProfileField> profileFields) {
@@ -768,10 +612,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param apiRequest
-     *
-     * @return
      */
     @Override
     public Person getProfileByApiRequest(ApiStandardProfileRequest apiRequest) {
@@ -787,9 +627,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param networkUpdateId
-     * @param commentText
      */
     @Override
     public void postComment(String networkUpdateId, String commentText) {
@@ -807,8 +644,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param updateText
      */
     @Override
     public void postNetworkUpdate(String updateText) {
@@ -828,8 +663,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @return
      */
     @Override
     public People searchPeople() {
@@ -841,10 +674,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param searchParameters
-     *
-     * @return
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters) {
@@ -858,11 +687,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public People searchPeople(int start, int count) {
@@ -878,12 +702,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     *
-     * @return
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count) {
@@ -901,10 +719,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param sortOrder
-     *
-     * @return
      */
     @Override
     public People searchPeople(SearchSortOrder sortOrder) {
@@ -918,11 +732,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param searchParameters
-     * @param sortOrder
-     *
-     * @return
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
@@ -938,12 +747,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
      */
     @Override
     public People searchPeople(int start, int count, SearchSortOrder sortOrder) {
@@ -961,13 +764,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param searchParameters
-     * @param start
-     * @param count
-     * @param sortOrder
-     *
-     * @return
      */
     @Override
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
@@ -988,12 +784,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param email
-     * @param firstName
-     * @param lastName
-     * @param subject
-     * @param message
      */
     @Override
     public void sendInviteByEmail(String email, String firstName, String lastName, String subject, String message) {
@@ -1034,11 +824,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param recepientId
-     * @param subject
-     * @param message
-     * @param authHeader
      */
     @Override
     public void sendInviteById(String recepientId, String subject, String message, String authHeader) {
@@ -1087,10 +872,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param recepient
-     * @param subject
-     * @param message
      */
     @Override
     public void sendInviteToPerson(Person recepient, String subject, String message) {
@@ -1114,10 +895,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param recepientIds
-     * @param subject
-     * @param message
      */
     @Override
     public void sendMessage(List<String> recepientIds, String subject, String message) {
@@ -1151,8 +928,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
-     *
-     * @param statusText
      */
     @Override
     public void updateCurrentStatus(String statusText) {
