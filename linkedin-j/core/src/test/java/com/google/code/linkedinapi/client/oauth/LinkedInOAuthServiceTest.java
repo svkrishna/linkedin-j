@@ -42,8 +42,8 @@ public class LinkedInOAuthServiceTest extends TestCase {
 	 */
 	@Before
 	public void setUp() throws Exception {
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Key"), TestConstants.LINKED_IN_TEST_CONSUMER_KEY);
-    	assertNotNull(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Secret"), TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Key"), TestConstants.LINKED_IN_TEST_CONSUMER_KEY);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Consumer Secret"), TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
 		LinkedInOAuthServiceFactory factory = LinkedInOAuthServiceFactory.getInstance();
 		service = factory.createLinkedInOAuthService(TestConstants.LINKED_IN_TEST_CONSUMER_KEY,
                 TestConstants.LINKED_IN_TEST_CONSUMER_SECRET);
@@ -88,5 +88,13 @@ public class LinkedInOAuthServiceTest extends TestCase {
 	@Test
 	public void testSignRequestWithToken() {
 		fail("Not yet implemented");
+	}
+
+	/**
+	 * 
+	 */
+	protected void assertNotNullOrEmpty(String message, String value) {
+		assertNotNull(message, value);
+		assertFalse(message, "".equals(value));
 	}
 }
