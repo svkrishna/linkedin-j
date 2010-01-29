@@ -42,7 +42,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     	}
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
-        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	final OAuthProvider provider = getOAuthProvider();
         	
         	consumer.setTokenWithSecret(requestToken.getToken(), requestToken.getTokenSecret());
             provider.retrieveAccessToken(consumer, oauthVerifier);
@@ -60,7 +60,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     public LinkedInRequestToken getOAuthRequestToken() {
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
-        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	final OAuthProvider provider = getOAuthProvider();
         	
             String               authorizationUrl = provider.retrieveRequestToken(consumer, OAuth.OUT_OF_BAND);
             LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
@@ -81,7 +81,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     public LinkedInRequestToken getOAuthRequestToken(String callBackUrl) {
         try {
         	final OAuthConsumer consumer = getOAuthConsumer();
-        	final OAuthProvider provider = getOAuthProvider(consumer);
+        	final OAuthProvider provider = getOAuthProvider();
         	
             String               authorizationUrl = provider.retrieveRequestToken(consumer, callBackUrl);
             LinkedInRequestToken requestToken     = new LinkedInRequestToken(consumer.getToken(),
@@ -115,7 +115,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     /** 
      *
      */
-    protected OAuthProvider getOAuthProvider(OAuthConsumer consumer) {
+    protected OAuthProvider getOAuthProvider() {
     	DefaultOAuthProvider provider = new DefaultOAuthProvider(LinkedInApiUrls.LINKED_IN_OAUTH_REQUEST_TOKEN_URL,
 		        LinkedInApiUrls.LINKED_IN_OAUTH_ACCESS_TOKEN_URL, LinkedInApiUrls.LINKED_IN_OAUTH_AUTHORIZE_URL);
     	
