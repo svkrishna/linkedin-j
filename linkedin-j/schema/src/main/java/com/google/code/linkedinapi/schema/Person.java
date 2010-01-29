@@ -33,6 +33,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;/sequence>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}summary"/>
+ *           &lt;element ref="{}public-profile-url"/>
  *           &lt;element ref="{}interests"/>
  *           &lt;element ref="{}associations"/>
  *           &lt;element ref="{}honors"/>
@@ -325,6 +326,26 @@ public interface Person
      *     
      */
     void setSummary(String value);
+
+    /**
+     * Gets the value of the publicProfileUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getPublicProfileUrl();
+
+    /**
+     * Sets the value of the publicProfileUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setPublicProfileUrl(String value);
 
     /**
      * Gets the value of the interests property.

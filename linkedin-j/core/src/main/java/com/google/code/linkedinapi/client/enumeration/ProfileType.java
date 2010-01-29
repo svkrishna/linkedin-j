@@ -29,7 +29,7 @@ public enum ProfileType implements FieldEnum {
 
 	static { // Initialize map from constant name to enum constant
 		for (ProfileType op : values()) {
-			stringToEnum.put(op.toString(), op);
+			stringToEnum.put(op.fieldName(), op);
 		}
 	}
 

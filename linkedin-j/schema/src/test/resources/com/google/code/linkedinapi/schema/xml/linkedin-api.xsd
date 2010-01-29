@@ -237,6 +237,7 @@
         </xs:choice>
         <xs:sequence minOccurs="0">
           <xs:element ref="summary"/>
+          <xs:element ref="public-profile-url"/>
           <xs:element ref="interests"/>
           <xs:element ref="associations"/>
           <xs:element ref="honors"/>
@@ -273,6 +274,7 @@
   <xs:element name="country" type="code"/>
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="num-recommenders" type="xs:integer"/>
+  <xs:element name="public-profile-url" type="xs:anyURI"/>
   <xs:element name="interests" type="xs:string"/>
   <xs:element name="associations">
     <xs:complexType/>

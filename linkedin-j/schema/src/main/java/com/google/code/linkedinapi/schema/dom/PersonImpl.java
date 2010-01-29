@@ -40,6 +40,7 @@ public class PersonImpl
     protected Long numRecommenders;
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
+    protected String publicProfileUrl;
     protected String interests;
     protected String associations;
     protected String honors;
@@ -159,6 +160,14 @@ public class PersonImpl
 
     public void setSummary(String value) {
         this.summary = value;
+    }
+    
+    public String getPublicProfileUrl() {
+        return publicProfileUrl;
+    }
+
+    public void setPublicProfileUrl(String value) {
+        this.publicProfileUrl = value;
     }
 
     public String getInterests() {
@@ -295,6 +304,7 @@ public class PersonImpl
 		setCurrentStatusTimestamp(DomUtils.getElementValueAsLongFromNode(element, "current-status-timestamp"));
 		setPictureUrl(DomUtils.getElementValueFromNode(element, "picture-url"));
 		setSummary(DomUtils.getElementValueFromNode(element, "summary"));
+		setPublicProfileUrl(DomUtils.getElementValueFromNode(element, "public-profile-url"));
 		setInterests(DomUtils.getElementValueFromNode(element, "interests"));
 		setAssociations(DomUtils.getElementValueFromNode(element, "associations"));
 		setHonors(DomUtils.getElementValueFromNode(element, "honors"));
@@ -390,6 +400,7 @@ public class PersonImpl
 		DomUtils.setElementValueToNode(element, "current-status-timestamp", getCurrentStatusTimestamp());
 		DomUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
 		DomUtils.setElementValueToNode(element, "summary", getSummary());
+		DomUtils.setElementValueToNode(element, "public-profile-url", getPublicProfileUrl());
 		DomUtils.setElementValueToNode(element, "interests", getInterests());
 		DomUtils.setElementValueToNode(element, "associations", getAssociations());
 		DomUtils.setElementValueToNode(element, "honors", getHonors());

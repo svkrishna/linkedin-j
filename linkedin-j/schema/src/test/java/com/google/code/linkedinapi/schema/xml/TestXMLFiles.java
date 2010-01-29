@@ -13,14 +13,14 @@ import java.util.Properties;
 public final class TestXMLFiles {
 
     /** Field description */
-    public static final String TEST_XML_FILES = "com/google/code/linkedinapi/schema/xml/TestXMLFiles.properties";
+    public static final String TEST_XML_FILES = "TestXMLFiles.properties";
 
     /** Field description */
     private static final Properties testXmlFiles = new Properties();
 
     static {
         try {
-            testXmlFiles.load(TestXMLFiles.class.getClassLoader().getResourceAsStream(TEST_XML_FILES));
+            testXmlFiles.load(TestXMLFiles.class.getResourceAsStream(TEST_XML_FILES));
         } catch (IOException e) {
             e.printStackTrace();
         }

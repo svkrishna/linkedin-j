@@ -14,8 +14,7 @@ import java.util.Properties;
 public final class ApplicationConstants {
 
     /** The Constant APP_CONSTANTS_FILE. */
-    public static final String APP_CONSTANTS_FILE =
-        "com/google/code/linkedinapi/client/constant/ApplicationConstants.properties";
+    public static final String APP_CONSTANTS_FILE = "ApplicationConstants.properties";
 
     /** The Constant applicationConstants. */
     private static final Properties applicationConstants = new Properties();
@@ -23,7 +22,7 @@ public final class ApplicationConstants {
     static {
         try {
             applicationConstants.load(
-                ApplicationConstants.class.getClassLoader().getResourceAsStream(APP_CONSTANTS_FILE));
+                ApplicationConstants.class.getResourceAsStream(APP_CONSTANTS_FILE));
         } catch (IOException e) {
             e.printStackTrace();
         }

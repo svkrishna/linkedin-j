@@ -54,7 +54,7 @@ public enum EducationsField implements FieldEnum {
 
 	static { // Initialize map from constant name to enum constant
 		for (EducationsField op : values()) {
-			stringToEnum.put(op.toString(), op);
+			stringToEnum.put(op.fieldName(), op);
 		}
 	}
     

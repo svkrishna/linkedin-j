@@ -190,7 +190,22 @@ public enum ProfileField implements FieldEnum {
     /**
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
      */
-    PICTURE_URL("picture-url");
+    PICTURE_URL("picture-url"),
+    
+    /**
+     * A collection of positions a member currently holds, limited to three and indicated by a total attribute
+     */
+    THREE_CURRENT_POSITIONS("three-current-positions"),
+    
+    /**
+     * A collection of positions a member formerly held, limited to the three most recent and indicated by a total attribute
+     */
+    THREE_PAST_POSITIONS("three-past-positions"),
+    
+    /**
+     * 	A URL to the member's public profile, if enabled.
+     */
+    PUBLIC_PROFILE_URL("public-profile-url");
     
     /**
      * Field Description.
@@ -199,7 +214,7 @@ public enum ProfileField implements FieldEnum {
 
 	static { // Initialize map from constant name to enum constant
 		for (ProfileField op : values()) {
-			stringToEnum.put(op.toString(), op);
+			stringToEnum.put(op.fieldName(), op);
 		}
 	}
     

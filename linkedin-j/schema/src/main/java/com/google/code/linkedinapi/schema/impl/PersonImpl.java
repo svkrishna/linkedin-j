@@ -40,6 +40,7 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "numRecommenders",
     "relationToViewer",
     "summary",
+    "publicProfileUrl",
     "interests",
     "associations",
     "honors",
@@ -87,6 +88,8 @@ public class PersonImpl
     @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
+    @XmlElement(name = "public-profile-url")
+    protected String publicProfileUrl;
     protected String interests;
     protected String associations;
     protected String honors;
@@ -216,6 +219,14 @@ public class PersonImpl
 
     public void setSummary(String value) {
         this.summary = value;
+    }
+
+    public String getPublicProfileUrl() {
+        return publicProfileUrl;
+    }
+
+    public void setPublicProfileUrl(String value) {
+        this.publicProfileUrl = value;
     }
 
     public String getInterests() {

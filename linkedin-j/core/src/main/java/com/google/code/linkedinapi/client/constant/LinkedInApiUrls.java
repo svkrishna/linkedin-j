@@ -25,14 +25,14 @@ import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 public final class LinkedInApiUrls {
 
     /** The Constant API_URLS_FILE. */
-    public static final String API_URLS_FILE = "com/google/code/linkedinapi/client/constant/LinkedInApiUrls.properties";
+    public static final String API_URLS_FILE = "LinkedInApiUrls.properties";
 
     /** The Constant linkedInApiUrls. */
     private static final Properties linkedInApiUrls = new Properties();
 
     static {
         try {
-            linkedInApiUrls.load(LinkedInApiUrls.class.getClassLoader().getResourceAsStream(API_URLS_FILE));
+            linkedInApiUrls.load(LinkedInApiUrls.class.getResourceAsStream(API_URLS_FILE));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -39,7 +39,7 @@ public enum HttpMethod implements FieldEnum {
 
 	static { // Initialize map from constant name to enum constant
 		for (HttpMethod op : values()) {
-			stringToEnum.put(op.toString(), op);
+			stringToEnum.put(op.fieldName(), op);
 		}
 	}
     

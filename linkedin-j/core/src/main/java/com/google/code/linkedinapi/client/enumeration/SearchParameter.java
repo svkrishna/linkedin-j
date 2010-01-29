@@ -74,7 +74,7 @@ public enum SearchParameter implements FieldEnum {
 
 	static { // Initialize map from constant name to enum constant
 		for (SearchParameter op : values()) {
-			stringToEnum.put(op.toString(), op);
+			stringToEnum.put(op.fieldName(), op);
 		}
 	}
     

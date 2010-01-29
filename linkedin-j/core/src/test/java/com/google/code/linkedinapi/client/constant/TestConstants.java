@@ -12,15 +12,14 @@ import java.util.Properties;
 public final class TestConstants {
 
     /** Field description */
-    public static final String TEST_CONSTANTS_FILE =
-        "com/google/code/linkedinapi/client/constant/TestConstants.properties";
+    public static final String TEST_CONSTANTS_FILE = "TestConstants.properties";
 
     /** Field description */
     private static final Properties testConstants = new Properties();
 
     static {
         try {
-            testConstants.load(TestConstants.class.getClassLoader().getResourceAsStream(TEST_CONSTANTS_FILE));
+            testConstants.load(TestConstants.class.getResourceAsStream(TEST_CONSTANTS_FILE));
         } catch (IOException e) {
             e.printStackTrace();
         }
