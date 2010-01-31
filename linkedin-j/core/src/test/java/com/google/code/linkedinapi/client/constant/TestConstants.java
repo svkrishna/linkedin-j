@@ -112,6 +112,23 @@ public final class TestConstants {
     /** Field description */
     public static final String LINKED_IN_TEST_INVITE_AUTH_HEADER =
         testConstants.getProperty("com.google.code.linkedinapi.client.testInviteAuthHeader");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_USER_NAME =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testUsername");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_PASSWORD =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testPassword");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_API_URL =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testApiUrl");
+
+    /** Field description */
+    public static final String LINKED_IN_TEST_CALLBACK_URL =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testCallbackUrl");
+
     /**
      * Constructs ...
      *

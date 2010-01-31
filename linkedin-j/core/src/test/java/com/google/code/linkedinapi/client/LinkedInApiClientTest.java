@@ -117,7 +117,7 @@ public abstract class LinkedInApiClientTest extends TestCase {
 	/**
 	 * 
 	 */
-	protected void assertNotNullOrEmpty(String message, String value) {
+	protected static void assertNotNullOrEmpty(String message, String value) {
 		assertNotNull(message, value);
 		assertFalse(message, "".equals(value));
 	}
