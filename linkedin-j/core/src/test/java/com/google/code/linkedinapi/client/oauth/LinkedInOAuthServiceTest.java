@@ -42,7 +42,10 @@ public class LinkedInOAuthServiceTest extends TestCase {
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file."; 
 
 	/** Field description */
-	protected static final Pattern OAUTH_VERIFIER_PATTERN = Pattern.compile("<div class=\"access-code\">(\\d+)</div>");
+	protected static final Pattern OAUTH_VERIFIER_PATTERN = Pattern.compile("(.*)<div class=\"access-code\">(\\d+)</div>(.*)", Pattern.MULTILINE);
+	
+	/** Field description */
+	protected static final Pattern CSRF_TOKEN_PATTERN = Pattern.compile("(.*)<input type=\"hidden\" name=\"csrfToken\" value=\"ajax\\:(\\d+)\" id=\"csrfToken-oauthAuthorizeForm\">(.*)", Pattern.MULTILINE);
 	
 	/** Field description */
 	protected static final String LOGIN_URL = "https://api.linkedin.com/uas/oauth/authorize/submit";
@@ -179,6 +182,7 @@ public class LinkedInOAuthServiceTest extends TestCase {
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Username"), TestConstants.LINKED_IN_TEST_USER_NAME);
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Password"), TestConstants.LINKED_IN_TEST_PASSWORD);
 		try {
+			Map<String, String> parametersMap = getParametersMap(requestToken, TestConstants.LINKED_IN_TEST_USER_NAME, TestConstants.LINKED_IN_TEST_PASSWORD);
 	        URL               url     = new URL(requestToken.getAuthorizationUrl());
 	        HttpURLConnection request = (HttpURLConnection) url.openConnection();
             request.connect();
@@ -187,6 +191,15 @@ public class LinkedInOAuthServiceTest extends TestCase {
             	fail(convertStreamToString(request.getErrorStream()));
             }
             
+            String tokenPage = convertStreamToString(request.getInputStream());
+            
+            Matcher m = CSRF_TOKEN_PATTERN.matcher(tokenPage);
+            
+            if (m.matches()) {
+        		parametersMap.put("csrfToken", "ajax:" + m.group(2));
+            }
+            
+            
             url     = new URL(LOGIN_URL);
             request = (HttpURLConnection) url.openConnection();
             request.setDoOutput(true);
@@ -194,7 +207,7 @@ public class LinkedInOAuthServiceTest extends TestCase {
             // set post parameters
             PrintStream out = new PrintStream(new BufferedOutputStream(request.getOutputStream()));
 
-            out.print(getParametersString(getParametersMap(requestToken, TestConstants.LINKED_IN_TEST_USER_NAME, TestConstants.LINKED_IN_TEST_PASSWORD)));
+            out.print(getParametersString(parametersMap));
             out.flush();
             out.close();
             
@@ -205,10 +218,10 @@ public class LinkedInOAuthServiceTest extends TestCase {
             
             String verifierPage = convertStreamToString(request.getInputStream());
             
-            Matcher m = OAUTH_VERIFIER_PATTERN.matcher(verifierPage);
+            m = OAUTH_VERIFIER_PATTERN.matcher(verifierPage);
             
             if (m.matches()) {
-            	return m.group(1);
+            	return m.group(2);
             }
         } catch (IOException e) {
         	e.printStackTrace();
@@ -248,7 +261,6 @@ public class LinkedInOAuthServiceTest extends TestCase {
 		parametersMap.put("agree", "true");
 		parametersMap.put("oauth_token", requestToken.getToken());
 		parametersMap.put("appId", "");
-		parametersMap.put("csrfToken", "ajax:7250675721587270097");
 		parametersMap.put("sourceAlias", "uas-oauth-authorize");
 		return parametersMap;
 	}
