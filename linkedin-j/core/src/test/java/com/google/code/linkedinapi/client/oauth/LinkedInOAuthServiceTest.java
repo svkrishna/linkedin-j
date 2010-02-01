@@ -3,12 +3,20 @@
  */
 package com.google.code.linkedinapi.client.oauth;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import junit.framework.TestCase;
 
@@ -18,6 +26,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.TestConstants;
 
 /**
@@ -32,6 +41,12 @@ public class LinkedInOAuthServiceTest extends TestCase {
 	/** Field description */
 	protected static final String RESOURCE_MISSING_MESSAGE = "Please define a test %s in TestConstants.properties file."; 
 
+	/** Field description */
+	protected static final Pattern OAUTH_VERIFIER_PATTERN = Pattern.compile("<div class=\"access-code\">(\\d+)</div>");
+	
+	/** Field description */
+	protected static final String LOGIN_URL = "https://api.linkedin.com/uas/oauth/authorize/submit";
+	
     /**
      * @throws java.lang.Exception
      */
@@ -74,7 +89,8 @@ public class LinkedInOAuthServiceTest extends TestCase {
 		assertNotNullOrEmpty("Token Key should not be null or empty.", requestToken.getToken());
 		assertNotNullOrEmpty("Token Secret should not be null or empty.", requestToken.getTokenSecret());
 		assertNotNullOrEmpty("Authorization url should not be null or empty.", requestToken.getAuthorizationUrl());
-		String oauthVerifier = simulateWebLoginAndGetOauthVerifier(requestToken.getAuthorizationUrl());
+		String oauthVerifier = simulateWebLoginAndGetOauthVerifier(requestToken);
+		assertNotNullOrEmpty("OAuth Verifier should not be null or empty.", oauthVerifier);
 		LinkedInAccessToken accessToken = service.getOAuthAccessToken(requestToken, oauthVerifier);
 		assertNotNull("Access token should not be null.", accessToken);
 		assertNotNullOrEmpty("Access Token Key should not be null or empty.", accessToken.getToken());
@@ -159,13 +175,84 @@ public class LinkedInOAuthServiceTest extends TestCase {
         return sb.toString();
     }
 	
-	private static String simulateWebLoginAndGetOauthVerifier(String authorizationUrl) {
+	private static String simulateWebLoginAndGetOauthVerifier(LinkedInRequestToken requestToken) {
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Username"), TestConstants.LINKED_IN_TEST_USER_NAME);
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Password"), TestConstants.LINKED_IN_TEST_PASSWORD);
-		// TODO Auto-generated method stub
-		return null;
+		try {
+	        URL               url     = new URL(requestToken.getAuthorizationUrl());
+	        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request.connect();
+
+            if (request.getResponseCode() != 200) {
+            	fail(convertStreamToString(request.getErrorStream()));
+            }
+            
+            url     = new URL(LOGIN_URL);
+            request = (HttpURLConnection) url.openConnection();
+            request.setDoOutput(true);
+            request.setRequestMethod("POST");
+            // set post parameters
+            PrintStream out = new PrintStream(new BufferedOutputStream(request.getOutputStream()));
+
+            out.print(getParametersString(getParametersMap(requestToken, TestConstants.LINKED_IN_TEST_USER_NAME, TestConstants.LINKED_IN_TEST_PASSWORD)));
+            out.flush();
+            out.close();
+            
+            request.connect();
+            if (request.getResponseCode() != 200) {
+            	fail(convertStreamToString(request.getErrorStream()));
+            }
+            
+            String verifierPage = convertStreamToString(request.getInputStream());
+            
+            Matcher m = OAUTH_VERIFIER_PATTERN.matcher(verifierPage);
+            
+            if (m.matches()) {
+            	return m.group(1);
+            }
+        } catch (IOException e) {
+        	e.printStackTrace();
+        	fail(e.getMessage());
+        }
+        
+        return null;
 	}
 	
+	private static String getParametersString(Map<String, String> parametersMap) {
+		StringBuilder builder = new StringBuilder();
+		Iterator<String> iter = parametersMap.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = iter.next();
+			builder.append(key);
+			builder.append("=");
+			try {
+				builder.append(URLEncoder.encode(parametersMap.get(key), ApplicationConstants.CONTENT_ENCODING));
+			} catch (Exception e) {
+				builder.append(parametersMap.get(key));
+			}
+			if (iter.hasNext()) {
+				builder.append("&");
+			}
+		}
+		return builder.toString();
+	}
+
+	private static Map<String, String> getParametersMap(LinkedInRequestToken requestToken, String userName, String password) {
+		Map<String, String> parametersMap = new HashMap<String, String>();
+		parametersMap.put("email", userName);
+		parametersMap.put("password", password);
+		parametersMap.put("duration", "24");
+		parametersMap.put("authorize", "Grant Access");
+		parametersMap.put("extra", "");
+		parametersMap.put("access", "-3");
+		parametersMap.put("agree", "true");
+		parametersMap.put("oauth_token", requestToken.getToken());
+		parametersMap.put("appId", "");
+		parametersMap.put("csrfToken", "ajax:7250675721587270097");
+		parametersMap.put("sourceAlias", "uas-oauth-authorize");
+		return parametersMap;
+	}
+
 	/**
 	 * @param accessToken
 	 */
