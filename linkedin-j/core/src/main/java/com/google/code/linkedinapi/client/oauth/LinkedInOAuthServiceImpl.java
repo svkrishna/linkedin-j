@@ -12,6 +12,8 @@ import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthConsumer;
 import oauth.signpost.basic.DefaultOAuthProvider;
+import oauth.signpost.signature.AuthorizationHeaderSigningStrategy;
+import oauth.signpost.signature.HmacSha1MessageSigner;
 
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
@@ -182,6 +184,9 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     *
     */
 	protected OAuthConsumer getOAuthConsumer() {
-		return new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
+		DefaultOAuthConsumer consumer = new DefaultOAuthConsumer(apiConsumer.getConsumerKey(), apiConsumer.getConsumerSecret());
+		consumer.setMessageSigner(new HmacSha1MessageSigner());
+		consumer.setSigningStrategy(new AuthorizationHeaderSigningStrategy());
+		return consumer;
 	}
 }
