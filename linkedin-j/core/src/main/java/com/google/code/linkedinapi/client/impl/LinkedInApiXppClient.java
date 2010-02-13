@@ -12,6 +12,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
+import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Connections;
@@ -84,7 +85,12 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
     protected <T> T unmarshallObject(Class<T> clazz, InputStream xmlContent) {
         try {
         	XmlPullParser parser = XmlPullParserFactory.newInstance().newPullParser();
+        	parser.setInput(xmlContent, ApplicationConstants.CONTENT_ENCODING);
         	
+        	if (parser.getEventType() == XmlPullParser.START_DOCUMENT) {
+        		parser.nextTag();
+        	}
+
         	BaseSchemaEntity entity = getSchemaEntityByClass(clazz);
         	
         	entity.init(parser);
