@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Network;
@@ -38,30 +40,33 @@ public class NetworkImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element networkStatsElem = (Element) XppUtils.getChildElementByName(parser, "network-stats");
-		if (networkStatsElem != null) {
-			NetworkStatsImpl networkStatsImpl = new NetworkStatsImpl();
-			networkStatsImpl.init(networkStatsElem);
-			setNetworkStats(networkStatsImpl);
-		}
-		Element updateElem = (Element) XppUtils.getChildElementByName(parser, "updates");
-		if (updateElem != null) {
-			UpdatesImpl updateImpl = new UpdatesImpl();
-			updateImpl.init(updateElem);
-			setUpdates(updateImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("network-stats")) {
+    			NetworkStatsImpl networkStatsImpl = new NetworkStatsImpl();
+    			networkStatsImpl.init(parser);
+    			setNetworkStats(networkStatsImpl);
+        	} else if (name.equals("updates")) {
+    			UpdatesImpl updateImpl = new UpdatesImpl();
+    			updateImpl.init(parser);
+    			setUpdates(updateImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("network");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "network");
 		if (getNetworkStats() != null) {
-			element.appendChild(((NetworkStatsImpl) getNetworkStats()).toXml(serializer));
+			((NetworkStatsImpl) getNetworkStats()).toXml(element);
 		}
 		if (getUpdates() != null) {
-			element.appendChild(((UpdatesImpl) getUpdates()).toXml(serializer));
+			((UpdatesImpl) getUpdates()).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "network");
 	}
 }

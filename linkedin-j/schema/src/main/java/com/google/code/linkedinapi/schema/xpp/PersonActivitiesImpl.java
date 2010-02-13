@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Activity;
@@ -36,23 +37,28 @@ public class PersonActivitiesImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setCount(XppUtils.getAttributeValueAsLongFromNode(parser, "count"));
-		List<Element> activities = XppUtils.getChildElementsByLocalName(parser, "activity");
-		for (Element education : activities) {
-			ActivityImpl activityImpl = new ActivityImpl();
-			activityImpl.init(education);
-			getActivityList().add(activityImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("activity")) {
+    			ActivityImpl activityImpl = new ActivityImpl();
+    			activityImpl.init(parser);
+    			getActivityList().add(activityImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("person-activities");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "person-activities");
 		XppUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Activity activity : getActivityList()) {
-			element.appendChild(((ActivityImpl) activity).toXml(serializer));
+			((ActivityImpl) activity).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "person-activities");
 	}
 }

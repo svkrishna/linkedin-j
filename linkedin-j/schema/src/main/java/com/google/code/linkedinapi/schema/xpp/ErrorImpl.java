@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Error;
@@ -54,20 +56,31 @@ public class ErrorImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setStatus(XppUtils.getElementValueAsLongFromNode(parser, "status"));
-		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser, "timestamp"));
-		setErrorCode(XppUtils.getElementValueFromNode(parser, "error-code"));
-		setMessage(XppUtils.getElementValueFromNode(parser, "message"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("status")) {
+        		setStatus(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("error-code")) {
+        		setErrorCode(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("message")) {
+        		setMessage(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("error");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "error");
 		XppUtils.setElementValueToNode(element, "status", getStatus());
 		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		XppUtils.setElementValueToNode(element, "error-code", getErrorCode());
 		XppUtils.setElementValueToNode(element, "message", getMessage());
-		return element;
+		serializer.endTag(null, "error");
 	}
 }

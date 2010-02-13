@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Activity;
@@ -63,26 +65,35 @@ public class ActivityImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setLocale(parser.getAttribute("locale"));
-		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser, "timestamp"));
-		String contentTypeStr = XppUtils.getElementValueFromNode(parser, "content-type");
-		if (contentTypeStr != null) {
-			setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
-		}
-		setBody(XppUtils.getElementValueFromNode(parser, "body"));
-		setAppId(XppUtils.getElementValueFromNode(parser, "app-id"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+		setLocale(XppUtils.getAttributeValueFromNode(parser, "locale"));
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("content-type")) {
+        		String contentTypeStr = XppUtils.getElementValueFromNode(parser);
+        		if (contentTypeStr != null) {
+        			setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
+        		}
+        	} else if (name.equals("body")) {
+        		setBody(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("app-id")) {
+        		setAppId(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("activity");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "activity");
 		XppUtils.setAttributeValueToNode(element, "locale", getLocale());
 		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		XppUtils.setElementValueToNode(element, "content-type", getContentType().value());
 		XppUtils.setElementValueToNode(element, "body", getBody());
 		XppUtils.setElementValueToNode(element, "app-id", getAppId());
-		return element;
+		element.endTag(null, "");
 	}
-
 }

@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.NetworkStats;
@@ -39,23 +40,28 @@ public class NetworkStatsImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> properties = XppUtils.getChildElementsByLocalName(parser, "property");
-		for (Element property : properties) {
-			PropertyImpl personImpl = new PropertyImpl();
-			personImpl.init(property);
-			getPropertyList().add(personImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("property")) {
+    			PropertyImpl personImpl = new PropertyImpl();
+    			personImpl.init(parser);
+    			getPropertyList().add(personImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("network-stats");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "network-stats");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Property property : getPropertyList()) {
-			element.appendChild(((PropertyImpl) property).toXml(serializer));
+			((PropertyImpl) property).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "network-stats");
 	}
 }

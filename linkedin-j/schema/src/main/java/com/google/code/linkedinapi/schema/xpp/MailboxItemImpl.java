@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ItemContent;
@@ -56,36 +58,41 @@ public class MailboxItemImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element recepientsElem = (Element) XppUtils.getChildElementByName(parser, "recipients");
-		if (recepientsElem != null) {
-			RecipientsImpl recipientsImpl = new RecipientsImpl();
-			recipientsImpl.init(recepientsElem);
-			setRecipients(recipientsImpl);
-		}
-		Element itemContentElem = (Element) XppUtils.getChildElementByName(parser, "item-content");
-		if (itemContentElem != null) {
-			ItemContentImpl itemContentImpl = new ItemContentImpl();
-			itemContentImpl.init(itemContentElem);
-			setItemContent(itemContentImpl);
-		}
-		setSubject(XppUtils.getElementValueFromNode(parser, "subject"));
-		setBody(XppUtils.getElementValueFromNode(parser, "body"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("recipients")) {
+    			RecipientsImpl recipientsImpl = new RecipientsImpl();
+    			recipientsImpl.init(parser);
+    			setRecipients(recipientsImpl);
+        	} else if (name.equals("item-content")) {
+    			ItemContentImpl itemContentImpl = new ItemContentImpl();
+    			itemContentImpl.init(parser);
+    			setItemContent(itemContentImpl);
+        	} else if (name.equals("subject")) {
+        		setSubject(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("body")) {
+        		setBody(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("mailbox-item");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "mailbox-item");
 		XppUtils.setElementValueToNode(element, "subject", getSubject());
 		XppUtils.setElementValueToNode(element, "body", getBody());
 		
 		if (getRecipients() != null) {
-			element.appendChild(((RecipientsImpl) getRecipients()).toXml(serializer));
+			((RecipientsImpl) getRecipients()).toXml(serializer);
 		}
 		if (getItemContent() != null) {
-			element.appendChild(((ItemContentImpl) getItemContent()).toXml(serializer));
+			((ItemContentImpl) getItemContent()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "mailbox-item");
 	}
 
 }

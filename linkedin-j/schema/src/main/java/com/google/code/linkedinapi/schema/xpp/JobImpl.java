@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
@@ -64,51 +66,50 @@ public class JobImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		
-		Element positionElem = (Element) XppUtils.getChildElementByName(parser, "position");
-		if (positionElem != null) {
-			PositionImpl position = new PositionImpl();
-			position.init(positionElem);
-			setPosition(position);
-		}
-		Element companyElem = (Element) XppUtils.getChildElementByName(parser, "company");
-		if (companyElem != null) {
-			CompanyImpl company = new CompanyImpl();
-			company.init(companyElem);
-			setCompany(company);
-		}
-		Element jobPosterElem = (Element) XppUtils.getChildElementByName(parser, "job-poster");
-		if (jobPosterElem != null) {
-			JobPosterImpl jobPoster = new JobPosterImpl();
-			jobPoster.init(jobPosterElem);
-			setJobPoster(jobPoster);
-		}
-		Element siteRequestElem = (Element) XppUtils.getChildElementByName(parser, "site-job-request");
-		if (siteRequestElem != null) {
-			SiteJobRequestImpl apiRequest = new SiteJobRequestImpl();
-			apiRequest.init(siteRequestElem);
-			setSiteJobRequest(apiRequest);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("position")) {
+    			PositionImpl position = new PositionImpl();
+    			position.init(parser);
+    			setPosition(position);
+        	} else if (name.equals("company")) {
+    			CompanyImpl company = new CompanyImpl();
+    			company.init(parser);
+    			setCompany(company);
+        	} else if (name.equals("job-poster")) {
+    			JobPosterImpl jobPoster = new JobPosterImpl();
+    			jobPoster.init(parser);
+    			setJobPoster(jobPoster);
+        	} else if (name.equals("site-job-request")) {
+    			SiteJobRequestImpl apiRequest = new SiteJobRequestImpl();
+    			apiRequest.init(parser);
+    			setSiteJobRequest(apiRequest);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("job");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "job");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		if (getPosition() != null) {
-			element.appendChild(((PositionImpl) getPosition()).toXml(serializer));
+			((PositionImpl) getPosition()).toXml(serializer);
 		}
 		if (getCompany() != null) {
-			element.appendChild(((CompanyImpl) getCompany()).toXml(serializer));
+			((CompanyImpl) getCompany()).toXml(serializer);
 		}
 		if (getJobPoster() != null) {
-			element.appendChild(((JobPosterImpl) getJobPoster()).toXml(serializer));
+			((JobPosterImpl) getJobPoster()).toXml(serializer);
 		}
 		if (getSiteJobRequest() != null) {
-			element.appendChild(((SiteJobRequestImpl) getSiteJobRequest()).toXml(serializer));
+			((SiteJobRequestImpl) getSiteJobRequest()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "job");
 	}
 }

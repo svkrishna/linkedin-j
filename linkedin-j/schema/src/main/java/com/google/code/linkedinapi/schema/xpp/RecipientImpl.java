@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Person;
@@ -28,21 +30,26 @@ public class RecipientImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element personElem = (Element) XppUtils.getChildElementByName(parser, "person");
-		if (personElem != null) {
-			PersonImpl personImpl = new PersonImpl();
-			personImpl.init(personElem);
-			setPerson(personImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("person")) {
+    			PersonImpl personImpl = new PersonImpl();
+    			personImpl.init(parser);
+    			setPerson(personImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("recipient");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "recipient");
 		if (getPerson() != null) {
-			element.appendChild(((PersonImpl) getPerson()).toXml(serializer));
+			((PersonImpl) getPerson()).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "recipient");
 	}
 }

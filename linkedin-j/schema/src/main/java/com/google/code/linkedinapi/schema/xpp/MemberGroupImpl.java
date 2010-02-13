@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.MemberGroup;
@@ -43,26 +45,32 @@ public class MemberGroupImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setName(XppUtils.getElementValueFromNode(parser, "name"));
-		
-		Element siteGroupElem = (Element) XppUtils.getChildElementByName(parser, "site-group-request");
-		if (siteGroupElem != null) {
-			SiteGroupRequestImpl siteGroup = new SiteGroupRequestImpl();
-			siteGroup.init(siteGroupElem);
-			setSiteGroupRequest(siteGroup);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("site-group-request")) {
+    			SiteGroupRequestImpl siteGroup = new SiteGroupRequestImpl();
+    			siteGroup.init(parser);
+    			setSiteGroupRequest(siteGroup);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("member-group");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "member-group");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "name", getName());
 		if (getSiteGroupRequest() != null) {
-			element.appendChild(((SiteGroupRequestImpl) getSiteGroupRequest()).toXml(serializer));
+			((SiteGroupRequestImpl) getSiteGroupRequest()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "member-group");
 	}
 }

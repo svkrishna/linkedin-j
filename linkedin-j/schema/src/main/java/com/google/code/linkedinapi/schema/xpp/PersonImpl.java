@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
@@ -292,103 +294,100 @@ public class PersonImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setPath(parser.getAttribute("path"));
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setFirstName(XppUtils.getElementValueFromNode(parser, "first-name"));
-		setLastName(XppUtils.getElementValueFromNode(parser, "last-name"));
-		setHeadline(XppUtils.getElementValueFromNode(parser, "headline"));
-		setIndustry(XppUtils.getElementValueFromNode(parser, "industry"));
-		setNumRecommenders(XppUtils.getElementValueAsLongFromNode(parser, "num-recommenders"));
-		setDistance(XppUtils.getElementValueAsLongFromNode(parser, "distance"));
-		setCurrentStatus(XppUtils.getElementValueFromNode(parser, "current-status"));
-		setCurrentStatusTimestamp(XppUtils.getElementValueAsLongFromNode(parser, "current-status-timestamp"));
-		setPictureUrl(XppUtils.getElementValueFromNode(parser, "picture-url"));
-		setSummary(XppUtils.getElementValueFromNode(parser, "summary"));
-		setPublicProfileUrl(XppUtils.getElementValueFromNode(parser, "public-profile-url"));
-		setInterests(XppUtils.getElementValueFromNode(parser, "interests"));
-		setAssociations(XppUtils.getElementValueFromNode(parser, "associations"));
-		setHonors(XppUtils.getElementValueFromNode(parser, "honors"));
-		setSpecialties(XppUtils.getElementValueFromNode(parser, "specialties"));
-		
-		Element locationElem = (Element) XppUtils.getChildElementByName(parser, "location");
-		if (locationElem != null) {
-			LocationImpl location = new LocationImpl();
-			location.init(locationElem);
-			setLocation(location);
-		}
-		Element connectionsElem = (Element) XppUtils.getChildElementByName(parser, "connections");
-		if (connectionsElem != null) {
-			ConnectionsImpl connections = new ConnectionsImpl();
-			connections.init(connectionsElem);
-			setConnections(connections);
-		}
-		Element relationElem = (Element) XppUtils.getChildElementByName(parser, "relation-to-viewer");
-		if (relationElem != null) {
-			RelationToViewerImpl relation = new RelationToViewerImpl();
-			relation.init(relationElem);
-			setRelationToViewer(relation);
-		}
-		Element positionElem = (Element) XppUtils.getChildElementByName(parser, "positions");
-		if (positionElem != null) {
-			PositionsImpl position = new PositionsImpl();
-			position.init(positionElem);
-			setPositions(position);
-		}
-		Element educationsElem = (Element) XppUtils.getChildElementByName(parser, "educations");
-		if (educationsElem != null) {
-			EducationsImpl educations = new EducationsImpl();
-			educations.init(educationsElem);
-			setEducations(educations);
-		}
-		Element memberUrlElem = (Element) XppUtils.getChildElementByName(parser, "member-url-resources");
-		if (memberUrlElem != null) {
-			MemberUrlResourcesImpl memberUrl = new MemberUrlResourcesImpl();
-			memberUrl.init(memberUrlElem);
-			setMemberUrlResources(memberUrl);
-		}
-		Element apiRequestElem = (Element) XppUtils.getChildElementByName(parser, "api-standard-profile-request");
-		if (apiRequestElem != null) {
-			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
-			apiRequest.init(apiRequestElem);
-			setApiStandardProfileRequest(apiRequest);
-		}
-		Element siteRequestElem = (Element) XppUtils.getChildElementByName(parser, "site-standard-profile-request");
-		if (siteRequestElem != null) {
-			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
-			apiRequest.init(siteRequestElem);
-			setSiteStandardProfileRequest(apiRequest);
-		}
-		Element recommendationsGivenElem = (Element) XppUtils.getChildElementByName(parser, "recommendations-given");
-		if (recommendationsGivenElem != null) {
-			RecommendationsGivenImpl recommendation = new RecommendationsGivenImpl();
-			recommendation.init(recommendationsGivenElem);
-			setRecommendationsGiven(recommendation);
-		}
-		Element recommendationsReceivedElem = (Element) XppUtils.getChildElementByName(parser, "recommendations-received");
-		if (recommendationsReceivedElem != null) {
-			RecommendationsReceivedImpl recommendation = new RecommendationsReceivedImpl();
-			recommendation.init(recommendationsReceivedElem);
-			setRecommendationsReceived(recommendation);
-		}
-		Element memberGroupsElem = (Element) XppUtils.getChildElementByName(parser, "member-groups");
-		if (memberGroupsElem != null) {
-			MemberGroupsImpl memberGroups = new MemberGroupsImpl();
-			memberGroups.init(memberGroupsElem);
-			setMemberGroups(memberGroups);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+		setPath(XppUtils.getAttributeValueFromNode(parser, path));
 
-		Element activitiesElem = (Element) XppUtils.getChildElementByName(parser, "person-activities");
-		if (activitiesElem != null) {
-			PersonActivitiesImpl activities = new PersonActivitiesImpl();
-			activities.init(activitiesElem);
-			setPersonActivities(activities);
-		}
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("first-name")) {
+        		setFirstName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("last-name")) {
+        		setLastName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("headline")) {
+        		setHeadline(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("industry")) {
+        		setIndustry(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("num-recommenders")) {
+        		setNumRecommenders(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("distance")) {
+        		setDistance(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("current-status")) {
+        		setCurrentStatus(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("current-status-timestamp")) {
+        		setCurrentStatusTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("picture-url")) {
+        		setPictureUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("summary")) {
+        		setSummary(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("public-profile-url")) {
+        		setPublicProfileUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("interests")) {
+        		setInterests(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("associations")) {
+        		setAssociations(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("honors")) {
+        		setHonors(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("specialties")) { 
+        		setSpecialties(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("location")) { 
+    			LocationImpl location = new LocationImpl();
+    			location.init(parser);
+    			setLocation(location);
+        	} else if (name.equals("connections")) { 
+    			ConnectionsImpl connections = new ConnectionsImpl();
+    			connections.init(parser);
+    			setConnections(connections);
+        	} else if (name.equals("relation-to-viewer")) { 
+    			RelationToViewerImpl relation = new RelationToViewerImpl();
+    			relation.init(parser);
+    			setRelationToViewer(relation);
+        	} else if (name.equals("positions")) { 
+    			PositionsImpl position = new PositionsImpl();
+    			position.init(parser);
+    			setPositions(position);
+        	} else if (name.equals("educations")) { 
+    			EducationsImpl educations = new EducationsImpl();
+    			educations.init(parser);
+    			setEducations(educations);
+        	} else if (name.equals("member-url-resources")) {
+    			MemberUrlResourcesImpl memberUrl = new MemberUrlResourcesImpl();
+    			memberUrl.init(parser);
+    			setMemberUrlResources(memberUrl);
+        	} else if (name.equals("api-standard-profile-request")) {
+    			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setApiStandardProfileRequest(apiRequest);
+        	} else if (name.equals("site-standard-profile-request")) {
+    			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setSiteStandardProfileRequest(apiRequest);
+        	} else if (name.equals("recommendations-given")) {
+    			RecommendationsGivenImpl recommendation = new RecommendationsGivenImpl();
+    			recommendation.init(parser);
+    			setRecommendationsGiven(recommendation);
+        	} else if (name.equals("recommendations-received")) {
+    			RecommendationsReceivedImpl recommendation = new RecommendationsReceivedImpl();
+    			recommendation.init(parser);
+    			setRecommendationsReceived(recommendation);
+        	} else if (name.equals("member-groups")) {
+    			MemberGroupsImpl memberGroups = new MemberGroupsImpl();
+    			memberGroups.init(parser);
+    			setMemberGroups(memberGroups);
+        	} else if (name.equals("person-activities")) {
+    			PersonActivitiesImpl activities = new PersonActivitiesImpl();
+    			activities.init(parser);
+    			setPersonActivities(activities);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("person");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "person");
 		XppUtils.setAttributeValueToNode(element, "path", getPath());
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "first-name", getFirstName());
@@ -407,42 +406,42 @@ public class PersonImpl
 		XppUtils.setElementValueToNode(element, "honors", getHonors());
 		XppUtils.setElementValueToNode(element, "specialties", getSpecialties());
 		if (getLocation() != null) {
-			element.appendChild(((LocationImpl) getLocation()).toXml(serializer));
+			((LocationImpl) getLocation()).toXml(serializer);
 		}
 		if (getConnections() != null) {
-			element.appendChild(((ConnectionsImpl) getConnections()).toXml(serializer));
+			((ConnectionsImpl) getConnections()).toXml(serializer);
 		}
 		if (getRelationToViewer() != null) {
-			element.appendChild(((RelationToViewerImpl) getRelationToViewer()).toXml(serializer));
+			((RelationToViewerImpl) getRelationToViewer()).toXml(serializer);
 		}
 		if (getPositions() != null) {
-			element.appendChild(((PositionsImpl) getPositions()).toXml(serializer));
+			((PositionsImpl) getPositions()).toXml(serializer);
 		}
 		if (getEducations() != null) {
-			element.appendChild(((EducationsImpl) getEducations()).toXml(serializer));
+			((EducationsImpl) getEducations()).toXml(serializer);
 		}
 		if (getMemberUrlResources() != null) {
-			element.appendChild(((MemberUrlResourcesImpl) getMemberUrlResources()).toXml(serializer));
+			((MemberUrlResourcesImpl) getMemberUrlResources()).toXml(serializer);
 		}
 		if (getApiStandardProfileRequest() != null) {
-			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer));
+			((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
 		}
 		if (getSiteStandardProfileRequest() != null) {
-			element.appendChild(((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer));
+			((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer);
 		}
 		if (getRecommendationsGiven() != null) {
-			element.appendChild(((RecommendationsGivenImpl) getRecommendationsGiven()).toXml(serializer));
+			((RecommendationsGivenImpl) getRecommendationsGiven()).toXml(serializer);
 		}
 		if (getRecommendationsReceived() != null) {
-			element.appendChild(((RecommendationsReceivedImpl) getRecommendationsReceived()).toXml(serializer));
+			((RecommendationsReceivedImpl) getRecommendationsReceived()).toXml(serializer);
 		}
 		if (getMemberGroups() != null) {
-			element.appendChild(((MemberGroupsImpl) getMemberGroups()).toXml(serializer));
+			((MemberGroupsImpl) getMemberGroups()).toXml(serializer);
 		}
 		if (getPersonActivities() != null) {
-			element.appendChild(((PersonActivitiesImpl) getPersonActivities()).toXml(serializer));
+			((PersonActivitiesImpl) getPersonActivities()).toXml(serializer);
 		}
 		
-		return element;
+		serializer.endTag(null, "person");
 	}
 }

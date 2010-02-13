@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Update;
@@ -58,27 +59,32 @@ public class UpdatesImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
 		setStart(XppUtils.getAttributeValueAsLongFromNode(parser, "start"));
 		setCount(XppUtils.getAttributeValueAsLongFromNode(parser, "count"));
-		List<Element> updateElems = XppUtils.getChildElementsByLocalName(parser, "update");
-		for (Element updateElem : updateElems) {
-			UpdateImpl updateImpl = new UpdateImpl();
-			updateImpl.init(updateElem);
-			getUpdateList().add(updateImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("update")) {
+    			UpdateImpl updateImpl = new UpdateImpl();
+    			updateImpl.init(parser);
+    			getUpdateList().add(updateImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("updates");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "updates");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		XppUtils.setAttributeValueToNode(element, "start", getStart());
 		XppUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Update update : getUpdateList()) {
-			element.appendChild(((UpdateImpl) update).toXml(serializer));
+			((UpdateImpl) update).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "updates");
 	}
 }

@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Connections;
@@ -56,27 +57,32 @@ public class ConnectionsImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
 		setStart(XppUtils.getAttributeValueAsLongFromNode(parser, "start"));
 		setCount(XppUtils.getAttributeValueAsLongFromNode(parser, "count"));
-		List<Element> persons = XppUtils.getChildElementsByLocalName(parser, "person");
-		for (Element person : persons) {
-			PersonImpl personImpl = new PersonImpl();
-			personImpl.init(person);
-			getPersonList().add(personImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("person")) {
+    			PersonImpl personImpl = new PersonImpl();
+    			personImpl.init(parser);
+    			getPersonList().add(personImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("connections");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "connections");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		XppUtils.setAttributeValueToNode(element, "start", getStart());
 		XppUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Person person : getPersonList()) {
-			element.appendChild(((PersonImpl) person).toXml(serializer));
+			((PersonImpl) person).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "connections");
 	}
 }

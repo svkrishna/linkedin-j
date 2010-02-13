@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Authorization;
@@ -38,30 +40,35 @@ public class InvitationRequestImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element authElem = (Element) XppUtils.getChildElementByName(parser, "authorization");
-		if (authElem != null) {
-			AuthorizationImpl authImpl = new AuthorizationImpl();
-			authImpl.init(authElem);
-			setAuthorization(authImpl);
-		}
-		String connectTypeStr = XppUtils.getElementValueFromNode(parser, "connect-type");
-		if (connectTypeStr != null) {
-			setConnectType(InviteConnectType.fromValue(connectTypeStr));
-		}
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("authorization")) {
+    			AuthorizationImpl authImpl = new AuthorizationImpl();
+    			authImpl.init(parser);
+    			setAuthorization(authImpl);
+        	} else if (name.equals("connect-type")) {
+        		String connectTypeStr = XppUtils.getElementValueFromNode(parser);
+        		if (connectTypeStr != null) {
+        			setConnectType(InviteConnectType.fromValue(connectTypeStr));
+        		}
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("invitation-request");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "invitation-request");
 		if (getConnectType() != null) {
 			XppUtils.setElementValueToNode(element, "connect-type", getConnectType().value());
 		}
 		
 		if (getAuthorization() != null) {
-			element.appendChild(((AuthorizationImpl) getAuthorization()).toXml(serializer));
+			((AuthorizationImpl) getAuthorization()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "invitation-request");
 	}
 }

@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
@@ -75,40 +77,46 @@ public class UpdateImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser, "timestamp"));
-		setUpdateKey(XppUtils.getElementValueFromNode(parser, "update-key"));
-		setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser, "update-type")));
-		setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser, "is-commentable")));
-		Element contentElem = (Element) XppUtils.getChildElementByName(parser, "update-content");
-		if (contentElem != null) {
-			UpdateContentImpl contentImpl = new UpdateContentImpl();
-			contentImpl.init(contentElem);
-			setUpdateContent(contentImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 
-		Element commentElem = (Element) XppUtils.getChildElementByName(parser, "update-comments");
-		if (commentElem != null) {
-			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
-			commentImpl.init(commentElem);
-			setUpdateComments(commentImpl);
-		}
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("update-key")) {
+        		setUpdateKey(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("update-type")) {
+        		setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-commentable")) {
+        		setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("update-content")) {
+    			UpdateContentImpl contentImpl = new UpdateContentImpl();
+    			contentImpl.init(parser);
+    			setUpdateContent(contentImpl);
+        	} else if (name.equals("update-comments")) {
+    			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
+    			commentImpl.init(parser);
+    			setUpdateComments(commentImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("update");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "update");
 		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		XppUtils.setElementValueToNode(element, "update-key", getUpdateKey());
 		XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
 		XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
 		
 		if (getUpdateContent() != null) {
-			element.appendChild(((UpdateContentImpl) getUpdateContent()).toXml(serializer));
+			((UpdateContentImpl) getUpdateContent()).toXml(serializer);
 		}
 		if (getUpdateComments() != null) {
-			element.appendChild(((UpdateCommentsImpl) getUpdateComments()).toXml(serializer));
+			((UpdateCommentsImpl) getUpdateComments()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "update");
 	}
 }

@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.UpdateComment;
@@ -39,23 +40,28 @@ public class UpdateCommentsImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> updateComments = XppUtils.getChildElementsByLocalName(parser, "update-comment");
-		for (Element updateComment : updateComments) {
-			UpdateCommentImpl updateCommentImpl = new UpdateCommentImpl();
-			updateCommentImpl.init(updateComment);
-			getUpdateCommentList().add(updateCommentImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("update-comment")) {
+    			UpdateCommentImpl updateCommentImpl = new UpdateCommentImpl();
+    			updateCommentImpl.init(parser);
+    			getUpdateCommentList().add(updateCommentImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("update-comments");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "update-comments");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (UpdateComment updateComment : getUpdateCommentList()) {
-			element.appendChild(((UpdateCommentImpl) updateComment).toXml(serializer));
+			((UpdateCommentImpl) updateComment).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "update-comments");
 	}
 }

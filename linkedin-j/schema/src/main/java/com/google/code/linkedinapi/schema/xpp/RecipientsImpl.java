@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Recipient;
@@ -30,21 +31,26 @@ public class RecipientsImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		List<Element> recipientElems = XppUtils.getChildElementsByLocalName(parser, "recipient");
-		for (Element recepient : recipientElems) {
-			RecipientImpl recipientImpl = new RecipientImpl();
-			recipientImpl.init(recepient);
-			getRecipientList().add(recipientImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("recipient")) {
+    			RecipientImpl recipientImpl = new RecipientImpl();
+    			recipientImpl.init(parser);
+    			getRecipientList().add(recipientImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("recipients");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "recipients");
 		for (Recipient recepient : getRecipientList()) {
-			element.appendChild(((RecipientImpl) recepient).toXml(serializer));
+			((RecipientImpl) recepient).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "recipients");
 	}
 }

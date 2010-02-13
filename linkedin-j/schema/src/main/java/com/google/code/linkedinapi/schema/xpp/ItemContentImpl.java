@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.InvitationRequest;
@@ -28,22 +30,26 @@ public class ItemContentImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element requestElem = (Element) XppUtils.getChildElementByName(parser, "invitation-request");
-		if (requestElem != null) {
-			InvitationRequestImpl requestImpl = new InvitationRequestImpl();
-			requestImpl.init(requestElem);
-			setInvitationRequest(requestImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("invitation-request")) {
+    			InvitationRequestImpl requestImpl = new InvitationRequestImpl();
+    			requestImpl.init(parser);
+    			setInvitationRequest(requestImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("item-content");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "item-content");
 		if (getInvitationRequest() != null) {
-			element.appendChild(((InvitationRequestImpl) getInvitationRequest()).toXml(serializer));
+			((InvitationRequestImpl) getInvitationRequest()).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "item-content");
 	}
-
 }

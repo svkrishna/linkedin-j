@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Property;
@@ -35,17 +37,17 @@ public class PropertyImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setKey(parser.getAttribute("key"));
-		setValue(Long.parseLong(XppUtils.getElementValue(parser)));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+		setKey(parser.getAttributeValue(null, "key"));
+		setValue(Long.parseLong(parser.nextText()));
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("property");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "property");
 		XppUtils.setAttributeValueToNode(element, "key", getKey());
 		XppUtils.setElementValue(element, getValue());
-		return element;
+		serializer.endTag(null, "property");
 	}
 
 }

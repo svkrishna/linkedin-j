@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Headers;
@@ -39,23 +40,28 @@ public class HeadersImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> headers = XppUtils.getChildElementsByLocalName(parser, "http-header");
-		for (Element httpHeader : headers) {
-			HttpHeaderImpl httpHeaderImpl = new HttpHeaderImpl();
-			httpHeaderImpl.init(httpHeader);
-			getHttpHeaderList().add(httpHeaderImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("http-header")) {
+    			HttpHeaderImpl httpHeaderImpl = new HttpHeaderImpl();
+    			httpHeaderImpl.init(parser);
+    			getHttpHeaderList().add(httpHeaderImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("headers");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "headers");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (HttpHeader httpHeader : getHttpHeaderList()) {
-			element.appendChild(((HttpHeaderImpl) httpHeader).toXml(serializer));
+			((HttpHeaderImpl) httpHeader).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "headers");
 	}
 }

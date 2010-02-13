@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Headers;
@@ -34,22 +36,28 @@ public class SiteGroupRequestImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setUrl(XppUtils.getElementValueFromNode(parser, "url"));
-		Element headersElem = (Element) XppUtils.getChildElementByName(parser, "headers");
-		if (headersElem != null) {
-			HeadersImpl headerImpl = new HeadersImpl();
-			headerImpl.init(headersElem);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("url")) {
+        		setUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("headers")) {
+    			HeadersImpl headerImpl = new HeadersImpl();
+    			headerImpl.init(parser);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("site-group-request");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "site-group-request");
 		XppUtils.setElementValueToNode(element, "url", getUrl());
 		if (getHeaders() != null) {
-			element.appendChild(((HeadersImpl) getHeaders()).toXml(serializer));
+			((HeadersImpl) getHeaders()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "site-group-request");
 	}
 }

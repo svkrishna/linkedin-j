@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
@@ -84,48 +86,53 @@ public class PositionImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setTitle(XppUtils.getElementValueFromNode(parser, "title"));
-		setSummary(XppUtils.getElementValueFromNode(parser, "summary"));
-		setIsCurrent(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser, "is-current")));
-		Element companyElem = (Element) XppUtils.getChildElementByName(parser, "company");
-		if (companyElem != null) {
-			CompanyImpl companyImpl = new CompanyImpl();
-			companyImpl.init(companyElem);
-			setCompany(companyImpl);
-		}
-		Element startDateElem = (Element) XppUtils.getChildElementByName(parser, "start-date");
-		if (startDateElem != null) {
-			StartDateImpl startDateImpl = new StartDateImpl();
-			startDateImpl.init(startDateElem);
-			setStartDate(startDateImpl);
-		}
-		Element endDateElem = (Element) XppUtils.getChildElementByName(parser, "end-date");
-		if (endDateElem != null) {
-			EndDateImpl endDate = new EndDateImpl();
-			endDate.init(endDateElem);
-			setEndDate(endDate);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("title")) {
+        		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("summary")) {
+        		setSummary(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("is-current")) {
+        		setIsCurrent(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("company")) {
+    			CompanyImpl companyImpl = new CompanyImpl();
+    			companyImpl.init(parser);
+    			setCompany(companyImpl);
+        	} else if (name.equals("start-date")) {
+    			StartDateImpl startDateImpl = new StartDateImpl();
+    			startDateImpl.init(parser);
+    			setStartDate(startDateImpl);
+        	} else if (name.equals("end-date")) {
+    			EndDateImpl endDate = new EndDateImpl();
+    			endDate.init(parser);
+    			setEndDate(endDate);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("position");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "position");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "title", getTitle());
 		XppUtils.setElementValueToNode(element, "summary", getSummary());
 		XppUtils.setElementValueToNode(element, "is-current", String.valueOf(isIsCurrent()));
 		
 		if (getCompany() != null) {
-			element.appendChild(((CompanyImpl) getCompany()).toXml(serializer));
+			((CompanyImpl) getCompany()).toXml(serializer);
 		}
 		if (getStartDate() != null) {
-			element.appendChild(((StartDateImpl) getStartDate()).toXml(serializer));
+			((StartDateImpl) getStartDate()).toXml(serializer);
 		}
 		if (getEndDate() != null) {
-			element.appendChild(((EndDateImpl) getEndDate()).toXml(serializer));
+			((EndDateImpl) getEndDate()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "position");
 	}
 }

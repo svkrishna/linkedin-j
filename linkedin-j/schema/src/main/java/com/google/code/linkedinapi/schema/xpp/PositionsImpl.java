@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Position;
@@ -39,23 +40,28 @@ public class PositionsImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> positionElems = XppUtils.getChildElementsByLocalName(parser, "position");
-		for (Element positionElem : positionElems) {
-			PositionImpl positionImpl = new PositionImpl();
-			positionImpl.init(positionElem);
-			getPositionList().add(positionImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("position")) {
+    			PositionImpl positionImpl = new PositionImpl();
+    			positionImpl.init(parser);
+    			getPositionList().add(positionImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("positions");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "positions");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Position position : getPositionList()) {
-			element.appendChild(((PositionImpl) position).toXml(serializer));
+			((PositionImpl) position).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "positions");
 	}
 }

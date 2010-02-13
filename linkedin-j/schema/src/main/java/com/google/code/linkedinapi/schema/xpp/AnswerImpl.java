@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Answer;
@@ -43,26 +45,32 @@ public class AnswerImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setWebUrl(XppUtils.getElementValueFromNode(parser, "web-url"));
-		
-		Element authorElem = (Element) XppUtils.getChildElementByName(parser, "author");
-		if (authorElem != null) {
-			AuthorImpl author = new AuthorImpl();
-			author.init(authorElem);
-			setAuthor(author);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("web-url")) {
+        		setWebUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("author")) {
+    			AuthorImpl author = new AuthorImpl();
+    			author.init(parser);
+    			setAuthor(author);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("answer");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "answer");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "web-url", getWebUrl());
 		if (getAuthor() != null) {
-			element.appendChild(((AuthorImpl) getAuthor()).toXml(serializer));
+			((AuthorImpl) getAuthor()).toXml(serializer);
 		}
-		return element;
+		element.endTag(null, "answer");;
 	}
 }

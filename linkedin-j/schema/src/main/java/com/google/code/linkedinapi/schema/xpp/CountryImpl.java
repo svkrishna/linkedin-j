@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Country;
@@ -26,14 +28,22 @@ public class CountryImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setCode(XppUtils.getElementValueFromNode(parser, "code"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("code")) {
+        		setCode(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("country");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "country");
 		XppUtils.setElementValueToNode(element, "code", getCode());
-		return element;
+		serializer.endTag(null, "country");
 	}
 }

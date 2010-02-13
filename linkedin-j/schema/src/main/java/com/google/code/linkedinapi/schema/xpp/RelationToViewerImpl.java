@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.RelationToViewer;
@@ -27,14 +29,20 @@ public class RelationToViewerImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setDistance(XppUtils.getElementValueAsLongFromNode(parser, "distance"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("distance")) {
+        		setDistance(XppUtils.getElementValueAsLongFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("relation-to-viewer");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "relation-to-viewer");
 		XppUtils.setElementValueToNode(element, "distance", getDistance());
-		return element;
+		serializer.endTag(null, "relation-to-viewer");
 	}
 }

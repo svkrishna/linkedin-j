@@ -1,12 +1,13 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Recommendation;
@@ -37,23 +38,28 @@ public class RecommendationsReceivedImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> recommendations = XppUtils.getChildElementsByLocalName(parser, "recommendation");
-		for (Element recommendation : recommendations) {
-			RecommendationImpl recommendationImpl = new RecommendationImpl();
-			recommendationImpl.init(recommendation);
-			getRecommendationList().add(recommendationImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("recommendation")) {
+    			RecommendationImpl recommendationImpl = new RecommendationImpl();
+    			recommendationImpl.init(parser);
+    			getRecommendationList().add(recommendationImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("recommendations-received");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "recommendations-received");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (Recommendation recommendation : getRecommendationList()) {
-			element.appendChild(((RecommendationImpl) recommendation).toXml(serializer));
+			((RecommendationImpl) recommendation).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "recommendations-received");
 	}
 }

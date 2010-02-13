@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
@@ -45,18 +47,28 @@ public class CompanyImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setName(XppUtils.getElementValueFromNode(parser, "name"));
-		setType(XppUtils.getElementValueFromNode(parser, "type"));
-		setIndustry(XppUtils.getElementValueFromNode(parser, "industry"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("type")) {
+        		setType(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("type")) {
+        		setIndustry(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("company");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "company");
 		XppUtils.setElementValueToNode(element, "name", getName());
 		XppUtils.setElementValueToNode(element, "type", getType());
 		XppUtils.setElementValueToNode(element, "industry", getIndustry());
-		return element;
+		serializer.endTag(null, "company");
 	}
 }

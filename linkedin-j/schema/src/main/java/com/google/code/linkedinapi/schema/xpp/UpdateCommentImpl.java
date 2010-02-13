@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Person;
@@ -64,29 +66,37 @@ public class UpdateCommentImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setSequenceNumber(XppUtils.getElementValueAsLongFromNode(parser, "sequence-number"));
-		setComment(XppUtils.getElementValueFromNode(parser, "comment"));
-		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser, "timestamp"));
-		Element personElem = XppUtils.getChildElementByName(parser, "person");
-		if (personElem != null) {
-			PersonImpl person = new PersonImpl();
-			person.init(personElem);
-			setPerson(person);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("sequence-number")) {
+        		setSequenceNumber(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("comment")) {
+        		setComment(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("person")) {
+    			PersonImpl person = new PersonImpl();
+    			person.init(parser);
+    			setPerson(person);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("update-comment");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "update-comment");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "comment", getComment());
 		XppUtils.setElementValueToNode(element, "sequence-number", getSequenceNumber());
 		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		if (getPerson() != null) {
-			element.appendChild(((PersonImpl) getPerson()).toXml(serializer));
+			((PersonImpl) getPerson()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "update-comment");
 	}
 }

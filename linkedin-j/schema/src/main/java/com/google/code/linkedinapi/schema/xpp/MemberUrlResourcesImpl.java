@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.MemberUrl;
@@ -28,22 +30,26 @@ public class MemberUrlResourcesImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		Element memberUrlElem = (Element) XppUtils.getChildElementByName(parser, "member-url");
-		if (memberUrlElem != null) {
-			MemberUrlImpl memberUrlImpl = new MemberUrlImpl();
-			memberUrlImpl.init(memberUrlElem);
-			setMemberUrl(memberUrlImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("member-url")) {
+    			MemberUrlImpl memberUrlImpl = new MemberUrlImpl();
+    			memberUrlImpl.init(parser);
+    			setMemberUrl(memberUrlImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("member-url-resources");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "member-url-resources");
 		if (getMemberUrl() != null) {
-			element.appendChild(((MemberUrlImpl) getMemberUrl()).toXml(serializer));
+			((MemberUrlImpl) getMemberUrl()).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "member-url-resources");
 	}
-
 }

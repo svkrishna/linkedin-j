@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Job;
@@ -48,39 +50,40 @@ public class UpdateContentImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		Element personElem = (Element) XppUtils.getChildElementByName(parser, "person");
-		if (personElem != null) {
-			PersonImpl personImpl = new PersonImpl();
-			personImpl.init(personElem);
-			setPerson(personImpl);
-		}
-		Element jobElem = (Element) XppUtils.getChildElementByName(parser, "job");
-		if (jobElem != null) {
-			JobImpl jobImpl = new JobImpl();
-			jobImpl.init(jobElem);
-			setJob(jobImpl);
-		}
-		Element questionElem = (Element) XppUtils.getChildElementByName(parser, "question");
-		if (questionElem != null) {
-			QuestionImpl questionImpl = new QuestionImpl();
-			questionImpl.init(questionElem);
-			setQuestion(questionImpl);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("person")) {
+    			PersonImpl personImpl = new PersonImpl();
+    			personImpl.init(parser);
+    			setPerson(personImpl);
+        	} else if (name.equals("job")) {
+    			JobImpl jobImpl = new JobImpl();
+    			jobImpl.init(parser);
+    			setJob(jobImpl);
+        	} else if (name.equals("question")) {
+    			QuestionImpl questionImpl = new QuestionImpl();
+    			questionImpl.init(parser);
+    			setQuestion(questionImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("update-content");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "update-content");
 		if (getPerson() != null) {
-			element.appendChild(((PersonImpl) getPerson()).toXml(serializer));
+			((PersonImpl) getPerson()).toXml(element);
 		}
 		if (getJob() != null) {
-			element.appendChild(((JobImpl) getJob()).toXml(serializer));
+			((JobImpl) getJob()).toXml(element);
 		}
 		if (getQuestion() != null) {
-			element.appendChild(((QuestionImpl) getQuestion()).toXml(serializer));
+			((QuestionImpl) getQuestion()).toXml(element);
 		}
-		return element;
+		serializer.endTag(null, "update-content");
 	}
 }

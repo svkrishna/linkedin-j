@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Recommendation;
@@ -72,39 +74,45 @@ public class RecommendationImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setRecommendationType(RecommendationType.fromValue(XppUtils.getElementValueFromNode(parser, "recommendation-type")));
-		setRecommendationSnippet(XppUtils.getElementValueFromNode(parser, "recommendation-snippet"));
-		setWebUrl(XppUtils.getElementValueFromNode(parser, "web-url"));
-		
-		Element recommendeeElem = (Element) XppUtils.getChildElementByName(parser, "recommendee");
-		if (recommendeeElem != null) {
-			RecommendeeImpl recommendee = new RecommendeeImpl();
-			recommendee.init(recommendeeElem);
-			setRecommendee(recommendee);
-		}
-		Element recommenderElem = (Element) XppUtils.getChildElementByName(parser, "recommender");
-		if (recommenderElem != null) {
-			RecommenderImpl recommender = new RecommenderImpl();
-			recommender.init(recommenderElem);
-			setRecommender(recommender);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("recommendation-type")) {
+        		setRecommendationType(RecommendationType.fromValue(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("recommendation-snippet")) {
+        		setRecommendationSnippet(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("web-url")) {
+        		setWebUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("recommendee")) {
+    			RecommendeeImpl recommendee = new RecommendeeImpl();
+    			recommendee.init(parser);
+    			setRecommendee(recommendee);
+        	} else if (name.equals("recommender")) {
+    			RecommenderImpl recommender = new RecommenderImpl();
+    			recommender.init(parser);
+    			setRecommender(recommender);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("recommendation");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "recommendation");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "recommendation-type", getRecommendationType().value());
 		XppUtils.setElementValueToNode(element, "recommendation-snippet", getRecommendationSnippet());
 		XppUtils.setElementValueToNode(element, "web-url", getWebUrl());
 		if (getRecommendee() != null) {
-			element.appendChild(((RecommendeeImpl) getRecommendee()).toXml(serializer));
+			((RecommendeeImpl) getRecommendee()).toXml(serializer);
 		}
 		if (getRecommender() != null) {
-			element.appendChild(((RecommenderImpl) getRecommender()).toXml(serializer));
+			((RecommenderImpl) getRecommender()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "recommendation");
 	}
 }

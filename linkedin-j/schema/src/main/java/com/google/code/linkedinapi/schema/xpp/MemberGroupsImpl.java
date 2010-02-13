@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.MemberGroup;
@@ -36,23 +37,28 @@ public class MemberGroupsImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
-		List<Element> memberGroups = XppUtils.getChildElementsByLocalName(parser, "member-group");
-		for (Element education : memberGroups) {
-			MemberGroupImpl memberGroupImpl = new MemberGroupImpl();
-			memberGroupImpl.init(education);
-			getMemberGroupList().add(memberGroupImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("member-group")) {
+    			MemberGroupImpl memberGroupImpl = new MemberGroupImpl();
+    			memberGroupImpl.init(parser);
+    			getMemberGroupList().add(memberGroupImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("member-groups");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "member-groups");
 		XppUtils.setAttributeValueToNode(element, "total", getTotal());
 		for (MemberGroup memberGroup : getMemberGroupList()) {
-			element.appendChild(((MemberGroupImpl) memberGroup).toXml(serializer));
+			((MemberGroupImpl) memberGroup).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "member-groups");
 	}
 }

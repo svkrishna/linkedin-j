@@ -3,11 +3,10 @@
  */
 package com.google.code.linkedinapi.client.impl;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
@@ -28,7 +27,6 @@ import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.xpp.ActivityImpl;
 import com.google.code.linkedinapi.schema.xpp.BaseSchemaEntity;
 import com.google.code.linkedinapi.schema.xpp.ConnectionsImpl;
-import com.google.code.linkedinapi.schema.xpp.XppUtils;
 import com.google.code.linkedinapi.schema.xpp.ErrorImpl;
 import com.google.code.linkedinapi.schema.xpp.MailboxItemImpl;
 import com.google.code.linkedinapi.schema.xpp.NetworkImpl;
@@ -45,7 +43,7 @@ import com.google.code.linkedinapi.schema.xpp.XppElementFactory;
 public class LinkedInApiXppClient extends BaseLinkedInApiClient {
 
     /** Field description */
-    private static final SchemaElementFactory<Element> OBJECT_FACTORY = new XppElementFactory();
+    private static final SchemaElementFactory<String> OBJECT_FACTORY = new XppElementFactory();
     
     /** Field description */
 	private static final Map<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>> DOM_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>>();
@@ -106,12 +104,13 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
      * @return
      */
     protected String marshallObject(Object element) {
-    	if (element instanceof Node) {
-    		return XppUtils.domToString((Node) element);
-    	} else if (element instanceof BaseSchemaEntity) {
+    	if (element instanceof BaseSchemaEntity) {
     		try {
+    			StringWriter writer = new StringWriter();
 				XmlSerializer serializer = XmlPullParserFactory.newInstance().newSerializer();
-				return ((BaseSchemaEntity) element).toXml(serializer);
+				serializer.setOutput(writer);
+				((BaseSchemaEntity) element).toXml(serializer);
+				return writer.toString();
 			} catch (Exception e) {
 	    		throw new LinkedInApiClientException("Unkown element encountered:" + element, e);
 			}

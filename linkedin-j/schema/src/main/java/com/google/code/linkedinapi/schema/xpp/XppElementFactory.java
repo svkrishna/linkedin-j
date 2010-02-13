@@ -1,14 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import java.io.StringWriter;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import org.xmlpull.v1.XmlPullParserFactory;
+import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Authorization;
@@ -52,9 +50,9 @@ import com.google.code.linkedinapi.schema.Updates;
 /**
  * A factory for creating DomElement objects.
  */
-public class XppElementFactory implements SchemaElementFactory<Element> {
+public class XppElementFactory implements SchemaElementFactory<String> {
 	
-	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
+	private static XmlPullParserFactory XML_SERIALIZER_FACTORY;
 	
     /** The Constant _ContentType_QNAME. */
     private final static String _ContentType_QNAME = "content-type";
@@ -173,21 +171,15 @@ public class XppElementFactory implements SchemaElementFactory<Element> {
     /** The Constant _Associations_QNAME. */
     private final static String _Associations_QNAME = "associations";
     
-    
-    private Document document;
-	
-    /**
-     * Instantiates a new dom element factory.
-     */
-    public XppElementFactory() {
+    static {
     	try {
-			DocumentBuilder docBuilder = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder();
-			document = docBuilder.newDocument(); 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
+        	XML_SERIALIZER_FACTORY = XmlPullParserFactory.newInstance();    	
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
-
+    
+    
     /* (non-Javadoc)
      * @see com.google.code.linkedinapi.schema.SchemaElementFactory#createAuthorization()
      */
@@ -439,258 +431,258 @@ public class XppElementFactory implements SchemaElementFactory<Element> {
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createContentType(com.google.code.linkedinapi.schema.NetworkUpdateContentType)
 	 */
-    public Element createContentType(NetworkUpdateContentType value) {
+    public String createContentType(NetworkUpdateContentType value) {
         return createElement(_ContentType_QNAME, NetworkUpdateContentType.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createHeadline(java.lang.String)
 	 */
-    public Element createHeadline(String value) {
+    public String createHeadline(String value) {
         return createElement(_Headline_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createSummary(java.lang.String)
 	 */
-    public Element createSummary(String value) {
+    public String createSummary(String value) {
         return createElement(_Summary_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createBody(java.lang.String)
 	 */
-    public Element createBody(String value) {
+    public String createBody(String value) {
         return createElement(_Body_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createSubject(java.lang.String)
 	 */
-    public Element createSubject(String value) {
+    public String createSubject(String value) {
         return createElement(_Subject_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCurrentStatus(java.lang.String)
 	 */
-    public Element createCurrentStatus(String value) {
+    public String createCurrentStatus(String value) {
         return createElement(_CurrentStatus_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createIsCommentable(java.lang.Boolean)
 	 */
-    public Element createIsCommentable(Boolean value) {
+    public String createIsCommentable(Boolean value) {
         return createElement(_IsCommentable_QNAME, Boolean.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createErrorCode(java.lang.String)
 	 */
-    public Element createErrorCode(String value) {
+    public String createErrorCode(String value) {
         return createElement(_ErrorCode_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCurrentStatusTimestamp(java.lang.Long)
 	 */
-    public Element createCurrentStatusTimestamp(Long value) {
+    public String createCurrentStatusTimestamp(Long value) {
         return createElement(_CurrentStatusTimestamp_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createType(java.lang.String)
 	 */
-    public Element createType(String value) {
+    public String createType(String value) {
         return createElement(_Type_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createNumRecommenders(java.lang.Long)
 	 */
-    public Element createNumRecommenders(Long value) {
+    public String createNumRecommenders(Long value) {
         return createElement(_NumRecommenders_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createIsCurrent(java.lang.Boolean)
 	 */
-    public Element createIsCurrent(Boolean value) {
+    public String createIsCurrent(Boolean value) {
         return createElement(_IsCurrent_QNAME, Boolean.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createTimestamp(java.lang.Long)
 	 */
-    public Element createTimestamp(Long value) {
+    public String createTimestamp(Long value) {
         return createElement(_Timestamp_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createId(java.lang.String)
 	 */
-    public Element createId(String value) {
+    public String createId(String value) {
         return createElement(_Id_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createConnectType(com.google.code.linkedinapi.schema.InviteConnectType)
 	 */
-    public Element createConnectType(InviteConnectType value) {
+    public String createConnectType(InviteConnectType value) {
         return createElement(_ConnectType_QNAME, InviteConnectType.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createDistance(java.lang.Long)
 	 */
-    public Element createDistance(Long value) {
+    public String createDistance(Long value) {
         return createElement(_Distance_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createTitle(java.lang.String)
 	 */
-    public Element createTitle(String value) {
+    public String createTitle(String value) {
         return createElement(_Title_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createName(java.lang.String)
 	 */
-    public Element createName(String value) {
+    public String createName(String value) {
         return createElement(_Name_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createValue(java.lang.String)
 	 */
-    public Element createValue(String value) {
+    public String createValue(String value) {
         return createElement(_Value_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createYear(java.lang.Long)
 	 */
-    public Element createYear(Long value) {
+    public String createYear(Long value) {
         return createElement(_Year_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createLastName(java.lang.String)
 	 */
-    public Element createLastName(String value) {
+    public String createLastName(String value) {
         return createElement(_LastName_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createIndustry(java.lang.String)
 	 */
-    public Element createIndustry(String value) {
+    public String createIndustry(String value) {
         return createElement(_Industry_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createSchoolName(java.lang.String)
 	 */
-    public Element createSchoolName(String value) {
+    public String createSchoolName(String value) {
         return createElement(_SchoolName_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateType(com.google.code.linkedinapi.schema.NetworkUpdateReturnType)
 	 */
-    public Element createUpdateType(NetworkUpdateReturnType value) {
+    public String createUpdateType(NetworkUpdateReturnType value) {
         return createElement(_UpdateType_QNAME, NetworkUpdateReturnType.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createStatus(java.lang.Long)
 	 */
-    public Element createStatus(Long value) {
+    public String createStatus(Long value) {
         return createElement(_Status_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createCode(java.lang.String)
 	 */
-    public Element createCode(String value) {
+    public String createCode(String value) {
         return createElement(_Code_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUrl(java.lang.String)
 	 */
-    public Element createUrl(String value) {
+    public String createUrl(String value) {
         return createElement(_Url_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createUpdateKey(java.lang.String)
 	 */
-    public Element createUpdateKey(String value) {
+    public String createUpdateKey(String value) {
         return createElement(_UpdateKey_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMessage(java.lang.String)
 	 */
-    public Element createMessage(String value) {
+    public String createMessage(String value) {
         return createElement(_Message_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createDegree(java.lang.String)
 	 */
-    public Element createDegree(String value) {
+    public String createDegree(String value) {
         return createElement(_Degree_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createFirstName(java.lang.String)
 	 */
-    public Element createFirstName(String value) {
+    public String createFirstName(String value) {
         return createElement(_FirstName_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createMonth(java.lang.Long)
 	 */
-    public Element createMonth(Long value) {
+    public String createMonth(Long value) {
         return createElement(_Month_QNAME, Long.class, null, value);
     }
     
-    public Element createSequenceNumber(Long value) {
+    public String createSequenceNumber(Long value) {
         return createElement(_SequenceNumber_QNAME, Long.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createComment(java.lang.String)
 	 */
-    public Element createComment(String value) {
+    public String createComment(String value) {
         return createElement(_Comment_QNAME, String.class, null, value);
     }
 
     /* (non-Javadoc)
 	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createPictureUrl(java.lang.String)
 	 */
-    public Element createPictureUrl(String value) {
+    public String createPictureUrl(String value) {
         return createElement(_PictureUrl_QNAME, String.class, null, value);
     }
     
-    public Element createHonors(String value) {
+    public String createHonors(String value) {
         return createElement(_Honors_QNAME, String.class, null, value);
     }
 
-    public Element createInterests(String value) {
+    public String createInterests(String value) {
         return createElement(_Interests_QNAME, String.class, null, value);
     }
 
-    public Element createSpecialties(String value) {
+    public String createSpecialties(String value) {
         return createElement(_Specialties_QNAME, String.class, null, value);
     }
 
-    public Element createAssociations(String value) {
+    public String createAssociations(String value) {
         return createElement(_Associations_QNAME, String.class, null, value);
     }
 	    
@@ -705,19 +697,26 @@ public class XppElementFactory implements SchemaElementFactory<Element> {
      * 
      * @return the element
      */
-    private Element createElement(String contentType_QNAME, Class<?> class1, Object object, Object value) {
+    private String createElement(String contentType_QNAME, Class<?> class1, Object object, Object value) {
     	if (value != null) {
-    		Element element = (Element) XppUtils.createNodeForType(document, Node.ELEMENT_NODE, contentType_QNAME);
-    		if (class1.equals(InviteConnectType.class)) {
-        		XppUtils.setElementValue(element, ((InviteConnectType) value).value());
-    		} else if (class1.equals(NetworkUpdateReturnType.class)) {
-        		XppUtils.setElementValue(element, ((NetworkUpdateReturnType) value).value());
-    		} else if (class1.equals(NetworkUpdateContentType.class)) {
-        		XppUtils.setElementValue(element, ((NetworkUpdateContentType) value).value());
-    		} else {
-        		XppUtils.setElementValue(element, String.valueOf(value));
-    		}
-    		return element;
+    		StringWriter writer = new StringWriter();
+    		try {
+        		XmlSerializer serializer = XML_SERIALIZER_FACTORY.newSerializer();
+        		serializer.setOutput(writer);
+        		serializer = serializer.startTag(null, contentType_QNAME);
+        		if (class1.equals(InviteConnectType.class)) {
+            		XppUtils.setElementValue(serializer, ((InviteConnectType) value).value());
+        		} else if (class1.equals(NetworkUpdateReturnType.class)) {
+            		XppUtils.setElementValue(serializer, ((NetworkUpdateReturnType) value).value());
+        		} else if (class1.equals(NetworkUpdateContentType.class)) {
+            		XppUtils.setElementValue(serializer, ((NetworkUpdateContentType) value).value());
+        		} else {
+            		XppUtils.setElementValue(serializer, String.valueOf(value));
+        		}
+			} catch (Exception e) {
+				throw new LinkedInApiClientException("Error while creating xml content.", e);
+			}
+    		return writer.toString();
     	} else {
     		return null;
     	}

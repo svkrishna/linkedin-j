@@ -1,11 +1,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Answer;
@@ -36,23 +37,28 @@ public class AnswersImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setCount(XppUtils.getAttributeValueAsLongFromNode(parser, "count"));
-		List<Element> answers = XppUtils.getChildElementsByLocalName(parser, "answer");
-		for (Element answer : answers) {
-			AnswerImpl answerImpl = new AnswerImpl();
-			answerImpl.init(answer);
-			getAnswerList().add(answerImpl);
-		}
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("answer")) {
+    			AnswerImpl answerImpl = new AnswerImpl();
+    			answerImpl.init(parser);
+    			getAnswerList().add(answerImpl);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("answers");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "answers");
 		XppUtils.setAttributeValueToNode(element, "count", getCount());
 		for (Answer answer : getAnswerList()) {
-			element.appendChild(((AnswerImpl) answer).toXml(serializer));
+			((AnswerImpl) answer).toXml(serializer);
 		}
-		return element;
+		element.endTag(null, "answers");
 	}
 }

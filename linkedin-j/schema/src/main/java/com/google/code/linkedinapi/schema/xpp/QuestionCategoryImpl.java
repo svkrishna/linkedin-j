@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.QuestionCategory;
@@ -42,18 +44,27 @@ public class QuestionCategoryImpl
     }
     
 	@Override
-	public void init(XmlPullParser parser) {
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
 		setKey(XppUtils.getAttributeValueAsLongFromNode(parser, "key"));
-		setCode(XppUtils.getElementValueFromNode(parser, "code"));
-		setName(XppUtils.getElementValueFromNode(parser, "name"));
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("code")) {
+        		setCode(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("question-category");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "question-category");
 		XppUtils.setAttributeValueToNode(element, "key", getKey());
 		XppUtils.setElementValueToNode(element, "code", getCode());
 		XppUtils.setElementValueToNode(element, "name", getName());
-		return element;
+		serializer.endTag(null, "question-category");
 	}
 }

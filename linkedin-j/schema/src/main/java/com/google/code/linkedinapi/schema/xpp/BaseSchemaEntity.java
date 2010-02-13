@@ -3,9 +3,11 @@
  */
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 /**
@@ -24,17 +26,18 @@ public abstract class BaseSchemaEntity implements Serializable {
 	 * To xml.
 	 * 
 	 * @param serializer the document
-	 * 
-	 * @return the element
+	 * @throws IOException TODO
 	 */
-	public abstract String toXml(XmlSerializer serializer);
+	public abstract void toXml(XmlSerializer serializer) throws IOException;
 	
 	/**
 	 * Inits the.
 	 * 
 	 * @param parser the element
+	 * @throws IOException TODO
+	 * @throws XmlPullParserException TODO
 	 */
-	public abstract void init(XmlPullParser parser);
+	public abstract void init(XmlPullParser parser) throws IOException, XmlPullParserException;
 	
 	
 }

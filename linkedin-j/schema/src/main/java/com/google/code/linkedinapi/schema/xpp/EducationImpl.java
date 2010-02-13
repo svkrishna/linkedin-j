@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Education;
@@ -65,36 +67,42 @@ public class EducationImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setSchoolName(XppUtils.getElementValueFromNode(parser, "school-name"));
-		setDegree(XppUtils.getElementValueFromNode(parser, "degree"));
-		Element startDateElem = (Element) XppUtils.getChildElementByName(parser, "start-date");
-		if (startDateElem != null) {
-			StartDateImpl startDate = new StartDateImpl();
-			startDate.init(startDateElem);
-			setStartDate(startDate);
-		}
-		Element endDateElem = (Element) XppUtils.getChildElementByName(parser, "end-date");
-		if (endDateElem != null) {
-			EndDateImpl endDate = new EndDateImpl();
-			endDate.init(endDateElem);
-			setEndDate(endDate);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("school-name")) {
+        		setSchoolName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("degree")) {
+        		setDegree(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("start-date")) {
+    			StartDateImpl startDate = new StartDateImpl();
+    			startDate.init(parser);
+    			setStartDate(startDate);
+        	} else if (name.equals("end-date")) {
+    			EndDateImpl endDate = new EndDateImpl();
+    			endDate.init(parser);
+    			setEndDate(endDate);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("education");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "education");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "school-name", getSchoolName());
 		XppUtils.setElementValueToNode(element, "degree", getDegree());
 		if (getStartDate() != null) {
-			element.appendChild(((StartDateImpl) getStartDate()).toXml(serializer));
+			((StartDateImpl) getStartDate()).toXml(serializer);
 		}
 		if (getEndDate() != null) {
-			element.appendChild(((EndDateImpl) getEndDate()).toXml(serializer));
+			((EndDateImpl) getEndDate()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "education");
 	}
 }

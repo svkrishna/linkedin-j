@@ -1,10 +1,11 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
 import java.io.Serializable;
 
-import org.w3c.dom.Element;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
@@ -73,39 +74,45 @@ public class RecommenderImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setId(XppUtils.getElementValueFromNode(parser, "id"));
-		setFirstName(XppUtils.getElementValueFromNode(parser, "first-name"));
-		setLastName(XppUtils.getElementValueFromNode(parser, "last-name"));
-		setHeadline(XppUtils.getElementValueFromNode(parser, "headline"));
-		
-		Element apiRequestElem = (Element) XppUtils.getChildElementByName(parser, "api-standard-profile-request");
-		if (apiRequestElem != null) {
-			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
-			apiRequest.init(apiRequestElem);
-			setApiStandardProfileRequest(apiRequest);
-		}
-		Element siteRequestElem = (Element) XppUtils.getChildElementByName(parser, "site-standard-profile-request");
-		if (siteRequestElem != null) {
-			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
-			apiRequest.init(siteRequestElem);
-			setSiteStandardProfileRequest(apiRequest);
-		}
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("first-name")) {
+        		setFirstName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("last-name")) {
+        		setLastName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("headline")) {
+        		setHeadline(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("api-standard-profile-request")) {
+    			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setApiStandardProfileRequest(apiRequest);
+        	} else if (name.equals("site-standard-profile-request")) {
+    			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setSiteStandardProfileRequest(apiRequest);
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("recommender");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "recommender");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "first-name", getFirstName());
 		XppUtils.setElementValueToNode(element, "last-name", getLastName());
 		XppUtils.setElementValueToNode(element, "headline", getHeadline());
 		if (getApiStandardProfileRequest() != null) {
-			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer));
+			((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
 		}
 		if (getSiteStandardProfileRequest() != null) {
-			element.appendChild(((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer));
+			((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer);
 		}
-		return element;
+		serializer.endTag(null, "recommender");
 	}
 }

@@ -1,8 +1,10 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import org.w3c.dom.Element;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Authorization;
@@ -36,16 +38,25 @@ public class AuthorizationImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) {
-		setName(XppUtils.getElementValueFromNode(parser, "name"));
-		setValue(XppUtils.getElementValueFromNode(parser, "value"));
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("value")) {
+        		setValue(XppUtils.getElementValueFromNode(parser));
+        	}
+        }
 	}
 
 	@Override
-	public String toXml(XmlSerializer serializer) {
-		Element element = serializer.createElement("authorization");
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "authorization");
 		XppUtils.setElementValueToNode(element, "name", getName());
 		XppUtils.setElementValueToNode(element, "value", getValue());
-		return element;
+		serializer.endTag(null, "authorization");
 	}
 }
