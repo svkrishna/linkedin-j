@@ -31,7 +31,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		client = factory.createAsyncLinkedInApiJaxbClient(accessToken);
+		client = factory.createAsyncLinkedInApiClient(accessToken);
 	}
 
 	/**

@@ -12,6 +12,7 @@ import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
+import com.google.code.linkedinapi.client.impl.LinkedInApiXppClient;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
@@ -30,7 +31,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	 */
 	public void setUp() throws Exception {
 		super.setUp();
-		client = factory.createLinkedInApiDomClient(accessToken);
+		client = factory.createLinkedInApiClient(LinkedInApiXppClient.class, accessToken);
 	}
 
 	/**
