@@ -94,6 +94,6 @@ public class ActivityImpl
 		XppUtils.setElementValueToNode(element, "content-type", getContentType().value());
 		XppUtils.setElementValueToNode(element, "body", getBody());
 		XppUtils.setElementValueToNode(element, "app-id", getAppId());
-		element.endTag(null, "");
+		element.endTag(null, "activity");
 	}
 }
