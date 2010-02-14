@@ -110,7 +110,9 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
      * @return
      */
     protected String marshallObject(Object element) {
-    	if (element instanceof BaseSchemaEntity) {
+    	if (element instanceof String) {
+    		return (String) element;
+    	} else if (element instanceof BaseSchemaEntity) {
     		try {
     			StringWriter writer = new StringWriter();
 				XmlSerializer serializer = XmlPullParserFactory.newInstance().newSerializer();
