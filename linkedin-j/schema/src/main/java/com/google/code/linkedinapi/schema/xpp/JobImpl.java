@@ -90,7 +90,11 @@ public class JobImpl
     			SiteJobRequestImpl apiRequest = new SiteJobRequestImpl();
     			apiRequest.init(parser);
     			setSiteJobRequest(apiRequest);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

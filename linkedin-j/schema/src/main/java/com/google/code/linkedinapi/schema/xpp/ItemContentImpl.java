@@ -40,7 +40,11 @@ public class ItemContentImpl
     			InvitationRequestImpl requestImpl = new InvitationRequestImpl();
     			requestImpl.init(parser);
     			setInvitationRequest(requestImpl);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

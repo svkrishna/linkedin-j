@@ -60,6 +60,78 @@
 			</company>
 		</position>
 	</positions>
+	<three-current-positions total="2">
+		<position>
+			<id>1234A</id>
+			<title>Software Architect</title>
+			<summary>I was a software architect.</summary>
+			<start-date>
+				<year>2002</year>
+				<month>12</month>
+			</start-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software House</type>
+				<name>E-dev Technologies</name>
+				<industry>Information Technology</industry>
+			</company>
+		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
+	</three-current-positions>
+	<three-past-positions total="2">
+		<position>
+			<id>1234A</id>
+			<title>Software Architect</title>
+			<summary>I was a software architect.</summary>
+			<start-date>
+				<year>2002</year>
+				<month>12</month>
+			</start-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software House</type>
+				<name>E-dev Technologies</name>
+				<industry>Information Technology</industry>
+			</company>
+		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
+	</three-past-positions>
 	<educations total="2">
 		<education>
 			<id>7890N</id>

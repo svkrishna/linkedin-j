@@ -68,7 +68,11 @@ public class UpdateContentImpl
     			QuestionImpl questionImpl = new QuestionImpl();
     			questionImpl.init(parser);
     			setQuestion(questionImpl);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

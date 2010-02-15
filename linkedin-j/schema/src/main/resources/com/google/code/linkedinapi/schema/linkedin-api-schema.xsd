@@ -285,6 +285,8 @@
           <xs:element ref="specialties"/>
         </xs:sequence>
         <xs:element minOccurs="0" ref="positions"/>
+		<xs:element minOccurs="0" ref="three-current-positions"/>
+	    <xs:element minOccurs="0" ref="three-past-positions"/>
         <xs:sequence minOccurs="0">
           <xs:element ref="educations"/>
           <xs:element ref="member-url-resources"/>
@@ -336,6 +338,22 @@
   <xs:element name="honors" type="xs:string"/>
   <xs:element name="specialties" type="xs:string"/>
   <xs:element name="positions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="position"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="three-current-positions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="position"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="three-past-positions">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="position"/>

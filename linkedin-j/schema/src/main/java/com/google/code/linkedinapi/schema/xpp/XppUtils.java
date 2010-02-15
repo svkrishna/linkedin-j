@@ -114,6 +114,19 @@ public class XppUtils {
     	}
     }
     
+    public static void skipSubTree(XmlPullParser parser) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+        int level = 1;
+        while (level > 0) {
+            int eventType = parser.next();
+            if (eventType == XmlPullParser.END_TAG) {
+                --level;
+            } else if (eventType == XmlPullParser.START_TAG) {
+                ++level;
+            }
+        }
+    }
+    
 	/**
      * Checks if is null or empty.
      * 

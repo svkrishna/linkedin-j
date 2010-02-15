@@ -51,7 +51,11 @@ public class EducationsImpl
     			EducationImpl educationImpl = new EducationImpl();
     			educationImpl.init(parser);
     			getEducationList().add(educationImpl);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

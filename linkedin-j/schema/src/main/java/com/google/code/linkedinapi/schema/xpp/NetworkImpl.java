@@ -54,7 +54,11 @@ public class NetworkImpl
     			UpdatesImpl updateImpl = new UpdatesImpl();
     			updateImpl.init(parser);
     			setUpdates(updateImpl);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

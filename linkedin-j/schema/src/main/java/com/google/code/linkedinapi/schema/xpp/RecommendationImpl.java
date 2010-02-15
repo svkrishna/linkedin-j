@@ -96,7 +96,11 @@ public class RecommendationImpl
     			RecommenderImpl recommender = new RecommenderImpl();
     			recommender.init(parser);
     			setRecommender(recommender);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

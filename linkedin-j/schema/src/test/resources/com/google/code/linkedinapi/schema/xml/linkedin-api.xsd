@@ -245,6 +245,8 @@
         </xs:sequence>
         <xs:element minOccurs="0" ref="positions"/>
         <xs:sequence minOccurs="0">
+          <xs:element ref="three-current-positions"/>
+          <xs:element ref="three-past-positions"/>
           <xs:element ref="educations"/>
           <xs:element ref="member-url-resources"/>
         </xs:sequence>
@@ -282,6 +284,22 @@
   <xs:element name="honors" type="xs:string"/>
   <xs:element name="specialties" type="xs:string"/>
   <xs:element name="positions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="position"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="three-current-positions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="position"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="three-past-positions">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="position"/>
@@ -419,6 +437,27 @@
   <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="code">
+    <xs:sequence>
+      <xs:element ref="code"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="code" type="xs:NCName"/>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
@@ -476,27 +515,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="url" type="xs:anyURI"/>
-  <xs:element name="title" type="xs:string"/>
-  <xs:element name="author">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="first-name"/>
-        <xs:element ref="last-name"/>
-        <xs:element ref="headline"/>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
-        <xs:element ref="api-standard-profile-request"/>
-        <xs:element ref="site-standard-profile-request"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:complexType name="code">
-    <xs:sequence>
-      <xs:element ref="code"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="code" type="xs:NCName"/>
-  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
   <xs:element name="relation-to-viewer">

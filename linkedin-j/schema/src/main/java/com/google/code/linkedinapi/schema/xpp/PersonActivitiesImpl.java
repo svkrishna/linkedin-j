@@ -48,7 +48,11 @@ public class PersonActivitiesImpl
     			ActivityImpl activityImpl = new ActivityImpl();
     			activityImpl.init(parser);
     			getActivityList().add(activityImpl);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

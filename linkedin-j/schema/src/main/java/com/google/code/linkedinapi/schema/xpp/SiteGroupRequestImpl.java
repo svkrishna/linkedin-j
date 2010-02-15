@@ -47,7 +47,11 @@ public class SiteGroupRequestImpl
         	} else if (name.equals("headers")) {
     			HeadersImpl headerImpl = new HeadersImpl();
     			headerImpl.init(parser);
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 

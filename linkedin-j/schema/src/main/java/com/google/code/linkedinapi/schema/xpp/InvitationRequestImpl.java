@@ -55,7 +55,11 @@ public class InvitationRequestImpl
         		if (connectTypeStr != null) {
         			setConnectType(InviteConnectType.fromValue(connectTypeStr));
         		}
-        	}
+            } else {
+                // Consume something we don't understand.
+            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
         }
 	}
 
