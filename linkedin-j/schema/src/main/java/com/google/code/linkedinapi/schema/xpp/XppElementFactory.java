@@ -713,6 +713,7 @@ public class XppElementFactory implements SchemaElementFactory<String> {
         		} else {
             		XppUtils.setElementValue(serializer, String.valueOf(value));
         		}
+        		serializer.endTag(null, contentType_QNAME);
 			} catch (Exception e) {
 				throw new LinkedInApiClientException("Error while creating xml content.", e);
 			}
