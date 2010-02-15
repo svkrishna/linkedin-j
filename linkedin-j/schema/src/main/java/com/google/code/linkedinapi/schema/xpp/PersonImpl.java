@@ -20,6 +20,8 @@ import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
+import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
+import com.google.code.linkedinapi.schema.ThreePastPositions;
 
 public class PersonImpl
     extends BaseSchemaEntity
@@ -49,6 +51,8 @@ public class PersonImpl
     protected String honors;
     protected String specialties;
     protected PositionsImpl positions;
+    protected ThreeCurrentPositionsImpl threeCurrentPositions;
+    protected ThreePastPositionsImpl threePastPositions;
     protected EducationsImpl educations;
     protected MemberUrlResourcesImpl memberUrlResources;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
@@ -212,7 +216,23 @@ public class PersonImpl
     public void setPositions(Positions value) {
         this.positions = ((PositionsImpl) value);
     }
+    
+    public ThreeCurrentPositions getThreeCurrentPositions() {
+        return threeCurrentPositions;
+    }
 
+    public void setThreeCurrentPositions(ThreeCurrentPositions value) {
+        this.threeCurrentPositions = ((ThreeCurrentPositionsImpl) value);
+    }
+
+    public ThreePastPositions getThreePastPositions() {
+        return threePastPositions;
+    }
+
+    public void setThreePastPositions(ThreePastPositions value) {
+        this.threePastPositions = ((ThreePastPositionsImpl) value);
+    }
+    
     public Educations getEducations() {
         return educations;
     }
@@ -349,6 +369,14 @@ public class PersonImpl
     			PositionsImpl position = new PositionsImpl();
     			position.init(parser);
     			setPositions(position);
+        	} else if (name.equals("three-current-positions")) { 
+        		ThreeCurrentPositionsImpl position = new ThreeCurrentPositionsImpl();
+    			position.init(parser);
+    			setThreeCurrentPositions(position);
+        	} else if (name.equals("three-past-positions")) { 
+        		ThreePastPositionsImpl position = new ThreePastPositionsImpl();
+    			position.init(parser);
+    			setThreePastPositions(position);
         	} else if (name.equals("educations")) { 
     			EducationsImpl educations = new EducationsImpl();
     			educations.init(parser);
@@ -420,6 +448,12 @@ public class PersonImpl
 		}
 		if (getPositions() != null) {
 			((PositionsImpl) getPositions()).toXml(serializer);
+		}
+		if (getThreeCurrentPositions() != null) {
+			((ThreeCurrentPositionsImpl) getThreeCurrentPositions()).toXml(serializer);
+		}
+		if (getThreePastPositions() != null) {
+			((ThreePastPositionsImpl) getThreePastPositions()).toXml(serializer);
 		}
 		if (getEducations() != null) {
 			((EducationsImpl) getEducations()).toXml(serializer);

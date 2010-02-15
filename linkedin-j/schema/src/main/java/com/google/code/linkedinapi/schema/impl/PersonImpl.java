@@ -24,6 +24,8 @@ import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
+import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
+import com.google.code.linkedinapi.schema.ThreePastPositions;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -46,6 +48,8 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "honors",
     "specialties",
     "positions",
+    "threeCurrentPositions",
+    "threePastPositions",
     "educations",
     "memberUrlResources",
     "apiStandardProfileRequest",
@@ -96,6 +100,10 @@ public class PersonImpl
     protected String specialties;
     @XmlElement(type = PositionsImpl.class)
     protected PositionsImpl positions;
+    @XmlElement(name = "three-current-positions", type = ThreeCurrentPositionsImpl.class)
+    protected ThreeCurrentPositionsImpl threeCurrentPositions;
+    @XmlElement(name = "three-past-positions", type = ThreePastPositionsImpl.class)
+    protected ThreePastPositionsImpl threePastPositions;
     @XmlElement(type = EducationsImpl.class)
     protected EducationsImpl educations;
     @XmlElement(name = "member-url-resources", type = MemberUrlResourcesImpl.class)
@@ -267,6 +275,22 @@ public class PersonImpl
 
     public void setPositions(Positions value) {
         this.positions = ((PositionsImpl) value);
+    }
+
+    public ThreeCurrentPositions getThreeCurrentPositions() {
+        return threeCurrentPositions;
+    }
+
+    public void setThreeCurrentPositions(ThreeCurrentPositions value) {
+        this.threeCurrentPositions = ((ThreeCurrentPositionsImpl) value);
+    }
+
+    public ThreePastPositions getThreePastPositions() {
+        return threePastPositions;
+    }
+
+    public void setThreePastPositions(ThreePastPositions value) {
+        this.threePastPositions = ((ThreePastPositionsImpl) value);
     }
 
     public Educations getEducations() {

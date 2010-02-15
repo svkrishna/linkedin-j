@@ -17,6 +17,8 @@ import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
+import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
+import com.google.code.linkedinapi.schema.ThreePastPositions;
 
 public class PersonImpl
     extends BaseSchemaEntity
@@ -45,6 +47,8 @@ public class PersonImpl
     protected String associations;
     protected String honors;
     protected String specialties;
+    protected ThreeCurrentPositionsImpl threeCurrentPositions;
+    protected ThreePastPositionsImpl threePastPositions;
     protected PositionsImpl positions;
     protected EducationsImpl educations;
     protected MemberUrlResourcesImpl memberUrlResources;
@@ -210,6 +214,22 @@ public class PersonImpl
         this.positions = ((PositionsImpl) value);
     }
 
+    public ThreeCurrentPositions getThreeCurrentPositions() {
+        return threeCurrentPositions;
+    }
+
+    public void setThreeCurrentPositions(ThreeCurrentPositions value) {
+        this.threeCurrentPositions = ((ThreeCurrentPositionsImpl) value);
+    }
+
+    public ThreePastPositions getThreePastPositions() {
+        return threePastPositions;
+    }
+
+    public void setThreePastPositions(ThreePastPositions value) {
+        this.threePastPositions = ((ThreePastPositionsImpl) value);
+    }
+    
     public Educations getEducations() {
         return educations;
     }
@@ -334,6 +354,18 @@ public class PersonImpl
 			position.init(positionElem);
 			setPositions(position);
 		}
+		Element currentPositionElem = (Element) DomUtils.getChildElementByName(element, "three-current-positions");
+		if (currentPositionElem != null) {
+			ThreeCurrentPositionsImpl position = new ThreeCurrentPositionsImpl();
+			position.init(currentPositionElem);
+			setThreeCurrentPositions(position);
+		}
+		Element pastPositionElem = (Element) DomUtils.getChildElementByName(element, "three-past-positions");
+		if (pastPositionElem != null) {
+			ThreePastPositionsImpl position = new ThreePastPositionsImpl();
+			position.init(pastPositionElem);
+			setThreePastPositions(position);
+		}
 		Element educationsElem = (Element) DomUtils.getChildElementByName(element, "educations");
 		if (educationsElem != null) {
 			EducationsImpl educations = new EducationsImpl();
@@ -416,6 +448,12 @@ public class PersonImpl
 		}
 		if (getPositions() != null) {
 			element.appendChild(((PositionsImpl) getPositions()).toXml(document));
+		}
+		if (getThreeCurrentPositions() != null) {
+			element.appendChild(((ThreeCurrentPositionsImpl) getThreeCurrentPositions()).toXml(document));
+		}
+		if (getThreePastPositions() != null) {
+			element.appendChild(((ThreePastPositionsImpl) getThreePastPositions()).toXml(document));
 		}
 		if (getEducations() != null) {
 			element.appendChild(((EducationsImpl) getEducations()).toXml(document));

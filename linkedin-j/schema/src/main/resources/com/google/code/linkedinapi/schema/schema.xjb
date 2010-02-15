@@ -73,6 +73,12 @@
 	<bindings node="//xs:element[@name='positions']/xs:complexType/xs:sequence/xs:element[@ref='position']">
 		<property name="positionList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='three-current-positions']/xs:complexType/xs:sequence/xs:element[@ref='position']">
+		<property name="positionList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='three-past-positions']/xs:complexType/xs:sequence/xs:element[@ref='position']">
+		<property name="positionList"/>
+	</bindings>
 	<bindings node="//xs:element[@name='educations']/xs:complexType/xs:sequence/xs:element[@ref='education']">
 		<property name="educationList"/>
 	</bindings>

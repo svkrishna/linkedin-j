@@ -40,6 +40,8 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}specialties"/>
  *         &lt;/sequence>
  *         &lt;element ref="{}positions" minOccurs="0"/>
+ *         &lt;element ref="{}three-current-positions" minOccurs="0"/>
+ *         &lt;element ref="{}three-past-positions" minOccurs="0"/>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}educations"/>
  *           &lt;element ref="{}member-url-resources"/>
@@ -446,6 +448,46 @@ public interface Person
      *     
      */
     void setPositions(Positions value);
+
+    /**
+     * Gets the value of the threeCurrentPositions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ThreeCurrentPositions }
+     *     
+     */
+    ThreeCurrentPositions getThreeCurrentPositions();
+
+    /**
+     * Sets the value of the threeCurrentPositions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ThreeCurrentPositions }
+     *     
+     */
+    void setThreeCurrentPositions(ThreeCurrentPositions value);
+
+    /**
+     * Gets the value of the threePastPositions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ThreePastPositions }
+     *     
+     */
+    ThreePastPositions getThreePastPositions();
+
+    /**
+     * Sets the value of the threePastPositions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ThreePastPositions }
+     *     
+     */
+    void setThreePastPositions(ThreePastPositions value);
 
     /**
      * Gets the value of the educations property.
