@@ -77,10 +77,10 @@ public class XppUtils {
      */
     public static Long getElementValueAsLongFromNode(XmlPullParser node) throws IOException, XmlPullParserException {
     	String value = node.nextText();
-    	if (value != null) {
-            return Long.valueOf(value);
-    	} else {
+    	if (isNullOrEmpty(value)) {
     		return null;
+    	} else {
+            return Long.valueOf(value);
     	}
     }
     
