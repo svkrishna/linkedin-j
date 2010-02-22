@@ -411,7 +411,7 @@ public class PersonImpl
     			setPersonActivities(activities);
             } else {
                 // Consume something we don't understand.
-            	System.err.println(getClass().getName() + ":Found tag that we don't recognize: " + name);
+            	LOG.warning("Found tag that we don't recognize: " + name);
             	XppUtils.skipSubTree(parser);
             }
         }

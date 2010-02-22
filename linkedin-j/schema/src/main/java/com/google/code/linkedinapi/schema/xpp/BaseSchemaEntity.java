@@ -5,6 +5,7 @@ package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -17,6 +18,8 @@ import org.xmlpull.v1.XmlSerializer;
  */
 public abstract class BaseSchemaEntity implements Serializable {
 	
+    protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
+
 	/**
 	 * 
 	 */
