@@ -26,7 +26,7 @@ public class LinkedInApiClientFactory {
         new ConcurrentHashMap<LinkedInApiConsumer, LinkedInApiClientFactory>();
     
     /** The task executor. */
-    private ExecutorService taskExecutor;
+    private ExecutorService taskExecutor = Executors.newCachedThreadPool();
 
     /** The api consumer. */
     private LinkedInApiConsumer apiConsumer;
@@ -41,8 +41,16 @@ public class LinkedInApiClientFactory {
      */
 	private LinkedInApiClientFactory(LinkedInApiConsumer apiConsumer) {
         this.apiConsumer = apiConsumer;
-        this.taskExecutor = Executors.newCachedThreadPool();
     }
+	
+    /**
+     * Sets the task executor to be used for asynchronous API calls. 
+     * 
+     * @param taskExecutor the task executor
+     */
+	public void setTaskExecutor(ExecutorService taskExecutor) {
+        this.taskExecutor = taskExecutor;
+	}
 
     /**
      * New instance.
