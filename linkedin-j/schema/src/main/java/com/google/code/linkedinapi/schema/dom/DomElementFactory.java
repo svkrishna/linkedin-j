@@ -1,6 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -55,6 +58,9 @@ import com.google.code.linkedinapi.schema.Updates;
 public class DomElementFactory implements SchemaElementFactory<Element> {
 	
 	private final static DocumentBuilderFactory DOCUMENT_BUILDER_FACTORY = DocumentBuilderFactory.newInstance();
+	
+    /** The static logger. */
+    private static final Logger LOG = Logger.getLogger(DomElementFactory.class.getCanonicalName());
 	
     /** The Constant _ContentType_QNAME. */
     private final static String _ContentType_QNAME = "content-type";
@@ -184,7 +190,7 @@ public class DomElementFactory implements SchemaElementFactory<Element> {
 			DocumentBuilder docBuilder = DOCUMENT_BUILDER_FACTORY.newDocumentBuilder();
 			document = docBuilder.newDocument(); 
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "An error occurred while creating document.", e);	
 		}
     }
 

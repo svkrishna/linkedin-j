@@ -5,6 +5,8 @@ package com.google.code.linkedinapi.client.constant;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Class ApplicationConstants.
@@ -16,6 +18,9 @@ public final class ApplicationConstants {
     /** The Constant APP_CONSTANTS_FILE. */
     public static final String APP_CONSTANTS_FILE = "ApplicationConstants.properties";
 
+    /** The static logger. */
+    private static final Logger LOG = Logger.getLogger(ApplicationConstants.class.getCanonicalName());
+    
     /** The Constant applicationConstants. */
     private static final Properties applicationConstants = new Properties();
 
@@ -24,7 +29,7 @@ public final class ApplicationConstants {
             applicationConstants.load(
                 ApplicationConstants.class.getResourceAsStream(APP_CONSTANTS_FILE));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.log(Level.SEVERE, "An error occurred while loading properties.", e);
         }
     }
 

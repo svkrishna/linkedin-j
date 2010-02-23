@@ -2,6 +2,8 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
@@ -53,6 +55,9 @@ import com.google.code.linkedinapi.schema.Updates;
 public class XppElementFactory implements SchemaElementFactory<String> {
 	
 	private static XmlPullParserFactory XML_SERIALIZER_FACTORY;
+	
+    /** The static logger. */
+    private static final Logger LOG = Logger.getLogger(XppElementFactory.class.getCanonicalName());
 	
     /** The Constant _ContentType_QNAME. */
     private final static String _ContentType_QNAME = "content-type";
@@ -175,7 +180,7 @@ public class XppElementFactory implements SchemaElementFactory<String> {
     	try {
         	XML_SERIALIZER_FACTORY = XmlPullParserFactory.newInstance();    	
     	} catch (Exception e) {
-    		e.printStackTrace();
+    		LOG.log(Level.SEVERE, "An error occurred while creating pull parser factory.", e);
     	}
     }
     

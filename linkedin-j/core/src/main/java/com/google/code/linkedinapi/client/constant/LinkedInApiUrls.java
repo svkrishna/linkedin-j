@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 
@@ -27,6 +29,9 @@ public final class LinkedInApiUrls {
     /** The Constant API_URLS_FILE. */
     public static final String API_URLS_FILE = "LinkedInApiUrls.properties";
 
+    /** The static logger. */
+    private static final Logger LOG = Logger.getLogger(LinkedInApiUrls.class.getCanonicalName());
+    
     /** The Constant linkedInApiUrls. */
     private static final Properties linkedInApiUrls = new Properties();
 
@@ -34,7 +39,7 @@ public final class LinkedInApiUrls {
         try {
             linkedInApiUrls.load(LinkedInApiUrls.class.getResourceAsStream(API_URLS_FILE));
         } catch (IOException e) {
-            e.printStackTrace();
+        	LOG.log(Level.SEVERE, "An error occurred while loading urls.", e);
         }
     }
 

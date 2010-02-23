@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
@@ -68,6 +70,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     /** Field description */
     private final SchemaElementFactory<?> OBJECT_FACTORY = createObjectFactory();
 
+    /** The static logger. */
+    protected final Logger LOG = Logger.getLogger(getClass().getCanonicalName());
+    
     /** Field description */
     private LinkedInAccessToken accessToken;
 
@@ -1126,7 +1131,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         try {
             is.close();
         } catch (IOException e) {
-            e.printStackTrace();
+        	LOG.log(Level.SEVERE, "An error occurred while closing stream.", e);	
         }
     }
 
