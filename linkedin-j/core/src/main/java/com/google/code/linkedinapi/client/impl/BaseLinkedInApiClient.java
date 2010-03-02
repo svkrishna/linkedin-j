@@ -1139,6 +1139,23 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * Method description
      *
      *
+     * @param connection
+     *
+     */
+    protected void closeConnection(HttpURLConnection connection) {
+        try {
+        	if (connection != null) {
+        		connection.disconnect();
+        	}
+        } catch (Exception e) {
+        	LOG.log(Level.SEVERE, "An error occurred while disconnecting connection.", e);	
+        }
+    }
+    
+    /**
+     * Method description
+     *
+     *
      * @param error
      * @return
      */
