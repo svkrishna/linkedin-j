@@ -1200,12 +1200,13 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected InputStream callApiMethod(String apiUrl, int expected, List<HttpHeader> httpHeaders) {
+    	HttpURLConnection request = null;
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
-            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request = (HttpURLConnection) url.openConnection();
 
             if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
                 request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
@@ -1238,6 +1239,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             }
         } catch (IOException e) {
             throw new LinkedInApiClientException(e);
+        } finally {
+        	closeConnection(request);
         }
     }
 
@@ -1254,12 +1257,13 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
             int expected) {
+    	HttpURLConnection request = null;
         try {
             LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
-            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+            request = (HttpURLConnection) url.openConnection();
 
             if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
                 request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
@@ -1303,6 +1307,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             }
         } catch (IOException e) {
             throw new LinkedInApiClientException(e);
+        } finally {
+        	closeConnection(request);
         }
     }
 
