@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Authorization;
@@ -720,7 +719,7 @@ public class XppElementFactory implements SchemaElementFactory<String> {
         		}
         		serializer.endTag(null, contentType_QNAME);
 			} catch (Exception e) {
-				throw new LinkedInApiClientException("Error while creating xml content.", e);
+				LOG.log(Level.SEVERE, "An error occurred while creating xml content.", e);	
 			}
     		return writer.toString();
     	} else {

@@ -13,11 +13,12 @@
     <path id="linkedin-j.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/signpost-core-1.1-SNAPSHOT.jar"/>
+        <pathelement location="lib/commons-codec-1.3.jar"/>
+        <pathelement location="dev-lib/kxml2-2.3.0.jar"/>
         <pathelement location="dev-lib/junit-4.5.jar"/>
         <pathelement location="dev-lib/trang.jar"/>
         <pathelement location="dev-lib/jaxb-xjc.jar"/>
         <pathelement location="lib/commons-cli-1.2.jar"/>
-        <pathelement location="lib/commons-codec-1.3.jar"/>
     </path>
 	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
 		<classpath refid="linkedin-j.classpath"/>
