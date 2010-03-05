@@ -8,6 +8,7 @@ import java.util.EnumSet;
 import org.junit.Test;
 
 import com.google.code.linkedinapi.client.constant.TestConstants;
+import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -125,7 +126,18 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 		Connections connections = client.getConnectionsForCurrentUser(EnumSet.allOf(ProfileField.class));
 		assertNotNull("Connections should never be null.", connections);
 	}
-
+	
+	/**
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsForCurrentUser(Set, int, int, Date, ConnectionModificationType)}.
+	 */
+	@Test
+	public void testGetConnectionsForCurrentUserSetIntIntDateConnectionModificationType() {
+		Connections connections = client.getConnectionsForCurrentUser(getLastWeekDate(), ConnectionModificationType.ALL);
+		assertNotNull("Connections should never be null.", connections);
+		connections = client.getConnectionsForCurrentUser(EnumSet.allOf(ProfileField.class), 1, 5, getLastWeekDate(), ConnectionModificationType.UPDATED);
+		assertNotNull("Connections should never be null.", connections);
+	}
+	
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates()}.
 	 */

@@ -27,6 +27,7 @@ import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
+import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
@@ -153,28 +154,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         return accessToken;
     }
 
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public Connections getConnectionsByEmail(String email) {
-//      LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-//      String                apiUrl  = builder.withEmptyField("profileFields").withField("email", email).buildUrl();
-//
-//      return readResponse(Connections.class, callApiMethod(apiUrl));
-//  }
-//  /**
-//   * {@inheritDoc}
-//   */
-//  @Override
-//  public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields) {
-//      LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-//      String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
-//                                          profileFields).buildUrl();
-//
-//      return readResponse(Connections.class, callApiMethod(apiUrl));
-//  }
-
     /**
      * {@inheritDoc}
      */
@@ -257,33 +236,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(Connections.class, callApiMethod(apiUrl));
     }
-
-    /**
-     * {@inheritDoc}
-     */
-//  @Override
-//  public Connections getConnectionsByEmail(String email, int start, int count) {
-//      LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-//      String                apiUrl  = builder.withEmptyField("profileFields").withField("email",
-//                                          email).withParameter("start", String.valueOf(start)).withParameter("count",
-//                                              String.valueOf(count)).buildUrl();
-//
-//      return readResponse(Connections.class, callApiMethod(apiUrl));
-//  }
-
-    /**
-     * {@inheritDoc}
-     */
-//  @Override
-//  public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count) {
-//      LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_EMAIL);
-//      String                apiUrl  = builder.withField("email", email).withFieldEnumSet("profileFields",
-//                                          profileFields).withParameter("start",
-//                                              String.valueOf(start)).withParameter("count",
-//                                                  String.valueOf(count)).buildUrl();
-//
-//      return readResponse(Connections.class, callApiMethod(apiUrl));
-//  }
 
     /**
      * {@inheritDoc}
@@ -392,7 +344,241 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(Connections.class, callApiMethod(apiUrl));
     }
+    
+    // nabeel
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsById(String id, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("id", id);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
 
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id", id).withParameter("modified-since",
+                String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsById(String id, Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("id", id);
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
+        String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
+                                            profileFields).withParameter("modified-since",
+                                                    String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("url", url);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url, true).withParameter("modified-since",
+                String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("url", url);
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
+        String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
+                                            profileFields).withParameter("modified-since",
+                                                    String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+    	
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameter("modified-since",
+                String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).withParameter("modified-since",
+                String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsById(String id, int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("id", id);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+                                            id).withParameter("start", String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).withParameter("modified-since",
+                                                        String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("id", id);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_ID);
+        String                apiUrl  = builder.withField("id", id).withFieldEnumSet("profileFields",
+                                            profileFields).withParameter("start",
+                                                String.valueOf(start)).withParameter("count",
+                                                    String.valueOf(count)).withParameter("modified-since",
+                                                            String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("url", url);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("url", url,
+                                            true).withParameter("start", String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).withParameter("modified-since",
+                                                        String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertNotNullOrEmpty("url", url);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_BY_URL);
+        String                apiUrl  = builder.withField("url", url, true).withFieldEnumSet("profileFields",
+                                            profileFields).withParameter("start",
+                                                String.valueOf(start)).withParameter("count",
+                                                    String.valueOf(count)).withParameter("modified-since",
+                                                            String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).withParameter("modified-since",
+                                                        String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType) {
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("profile fields", profileFields);
+        assertNotNull("modification date", modificationDate);
+        assertNotNull("modification type", modificationType);
+        
+        profileFields.retainAll(CONNECTION_FIELDS);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_CONNECTIONS_FOR_CURRENT_USER);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", profileFields).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).withParameter("modified-since",
+                                                        String.valueOf(modificationDate.getTime())).withParameterEnum("modification", modificationType).buildUrl();
+
+        return readResponse(Connections.class, callApiMethod(apiUrl));
+    }
+    
     /**
      * {@inheritDoc}
      */

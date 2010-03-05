@@ -185,7 +185,9 @@ public final class LinkedInApiUrls {
 	     * @return the linked in api url builder
 	     */
 	    public LinkedInApiUrlBuilder withParameter(String name, String value) {
-    		parametersMap.put(name, Collections.singleton(encodeUrl(value)));
+	    	if (value != null && value.length() > 0) {
+	    		parametersMap.put(name, Collections.singleton(encodeUrl(value)));
+	    	}
     		
     		return this;
     	}

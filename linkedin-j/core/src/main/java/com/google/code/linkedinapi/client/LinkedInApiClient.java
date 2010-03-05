@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
+import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -213,16 +214,6 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
     public Connections getConnectionsById(String id);
 
     /**
-     * Gets the connections by email.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
-     * 
-     * @param email the email
-     * 
-     * @return the connections by email
-     */
-//    public Connections getConnectionsByEmail(String email);
-
-    /**
      * Gets the connections by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
@@ -252,17 +243,6 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @return the connections by id
      */
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields);
-
-    /**
-     * Gets the connections by email.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
-     * 
-     * @param email the email
-     * @param profileFields the profile fields
-     * 
-     * @return the connections by email
-     */
-//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields);
 
     /**
      * Gets the connections by url.
@@ -299,18 +279,6 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @return the connections by id
      */
     public Connections getConnectionsById(String id, int start, int count);
-
-    /**
-     * Gets the connections by email.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
-     * 
-     * @param email the email
-     * @param start the start
-     * @param count the count
-     * 
-     * @return the connections by email
-     */
-//    public Connections getConnectionsByEmail(String email, int start, int count);
 
     /**
      * Gets the connections by url.
@@ -350,17 +318,139 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
     public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count);
 
     /**
-     * Gets the connections by email.
+     * Gets the connections by url.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
      * 
-     * @param email the email
+     * @param url the url
      * @param profileFields the profile fields
      * @param start the start
      * @param count the count
      * 
-     * @return the connections by email
+     * @return the connections by url
      */
-//    public Connections getConnectionsByEmail(String email, Set<ProfileField> profileFields, int start, int count);
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count);
+    
+    /**
+     * Gets the connections for current user.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @return the connections for current user
+     */
+    public Connections getConnectionsForCurrentUser(Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param id the id
+     * 
+     * @return the connections by id
+     */
+    public Connections getConnectionsById(String id, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by url.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param url the url
+     * 
+     * @return the connections by url
+     */
+    public Connections getConnectionsByUrl(String url, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections for current user.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param profileFields the profile fields
+     * 
+     * @return the connections for current user
+     */
+    public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param id the id
+     * @param profileFields the profile fields
+     * 
+     * @return the connections by id
+     */
+    public Connections getConnectionsById(String id, Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by url.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param url the url
+     * @param profileFields the profile fields
+     * 
+     * @return the connections by url
+     */
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, Date modificationDate, ConnectionModificationType modificationType);
+
+    // Connections API with Paging
+
+    /**
+     * Gets the connections for current user.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the connections for current user
+     */
+    public Connections getConnectionsForCurrentUser(int start, int count, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param id the id
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the connections by id
+     */
+    public Connections getConnectionsById(String id, int start, int count, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by url.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param url the url
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the connections by url
+     */
+    public Connections getConnectionsByUrl(String url, int start, int count, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections for current user.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param profileFields the profile fields
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the connections for current user
+     */
+    public Connections getConnectionsForCurrentUser(Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType);
+
+    /**
+     * Gets the connections by id.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1004">http://developer.linkedin.com/docs/DOC-1004</a>
+     * 
+     * @param id the id
+     * @param profileFields the profile fields
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the connections by id
+     */
+    public Connections getConnectionsById(String id, Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType);
 
     /**
      * Gets the connections by url.
@@ -373,8 +463,8 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * 
      * @return the connections by url
      */
-    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count);
-
+    public Connections getConnectionsByUrl(String url, Set<ProfileField> profileFields, int start, int count, Date modificationDate, ConnectionModificationType modificationType);
+    
     // Search API
 
     /**
