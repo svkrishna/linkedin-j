@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>linkedin-j</groupId>
   <artifactId>linkedin-j</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <dependencies>
   	<dependency>
   		<groupId>oauth.signpost</groupId>
   		<artifactId>signpost-core</artifactId>
-  		<version>1.2</version>
+  		<version>1.2.1</version>
   	</dependency>
     <dependency>
       <groupId>commons-codec</groupId>
