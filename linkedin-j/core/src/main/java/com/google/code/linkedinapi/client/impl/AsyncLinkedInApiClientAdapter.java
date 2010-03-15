@@ -7,11 +7,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 import com.google.code.linkedinapi.client.AsyncLinkedInApiClient;
+import com.google.code.linkedinapi.client.AsyncResponseHandler;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
@@ -25,6 +25,7 @@ import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.SchemaEntity;
 import com.google.code.linkedinapi.schema.UpdateComments;
 
 /**
@@ -34,10 +35,9 @@ import com.google.code.linkedinapi.schema.UpdateComments;
 public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
 
     /** Field description */
-    private LinkedInApiClient client;
-
+    private AsyncHandlerLinkedInApiClientAdapter client;
+    
     /** Field description */
-    private ExecutorService taskExecutor;
 
     /**
      * Constructs ...
@@ -46,72 +46,18 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * @param client
      */
     public AsyncLinkedInApiClientAdapter(LinkedInApiClient client, ExecutorService taskExecutor) {
-        this.client  = client;
-        this.taskExecutor = taskExecutor;
+        this.client  = new AsyncHandlerLinkedInApiClientAdapter(client, taskExecutor);
     }
-
-    /**
-     * Method description
-     *
-     *
-     * @param task
-     *
-     * @return
-     */
-    protected Future<?> execute(Runnable task) {
-        return taskExecutor.submit(task);
-    }
-
-    /**
-     * Method description
-     *
-     *
-     * @param task
-     * @param <T>
-     *
-     * @return
-     */
-    protected <T> Future<T> execute(Callable<T> task) {
-        return taskExecutor.submit(task);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-//    @Override
-//    public Future<Connections> getConnectionsByEmail(final String email) {
-//        return execute(new Callable<Connections>() {
-//            @Override
-//            public Connections call() throws Exception {
-//                return client.getConnectionsByEmail(email);
-//            }
-//        });
-//    }
-
-    /**
-     * {@inheritDoc}
-     */
-//    @Override
-//    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields) {
-//        return execute(new Callable<Connections>() {
-//            @Override
-//            public Connections call() throws Exception {
-//                return client.getConnectionsByEmail(email, profileFields);
-//            }
-//        });
-//    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsById(id);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(id, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -119,12 +65,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsById(id, profileFields);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(id, profileFields, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -132,12 +76,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByUrl(url);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsByUrl(url, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -145,12 +87,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByUrl(url, profileFields);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsByUrl(url, profileFields, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -158,12 +98,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser() {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsForCurrentUser();
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsForCurrentUser(handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -171,51 +109,21 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsForCurrentUser(profileFields);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsForCurrentUser(profileFields, handler);
+    	
+    	return handler.getFuture();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-//    @Override
-//    public Future<Connections> getConnectionsByEmail(final String email, final int start, final int count) {
-//        return execute(new Callable<Connections>() {
-//            @Override
-//            public Connections call() throws Exception {
-//                return client.getConnectionsByEmail(email, start, count);
-//            }
-//        });
-//    }
-
-    /**
-     * {@inheritDoc}
-     */
-//    @Override
-//    public Future<Connections> getConnectionsByEmail(final String email, final Set<ProfileField> profileFields, final int start, final int count) {
-//        return execute(new Callable<Connections>() {
-//            @Override
-//            public Connections call() throws Exception {
-//                return client.getConnectionsByEmail(email, profileFields, start, count);
-//            }
-//        });
-//    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsById(id, start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(id, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -223,12 +131,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsById(final String id, final Set<ProfileField> profileFields, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsById(id, profileFields, start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(id, profileFields, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -236,12 +142,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByUrl(url, start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(url, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -249,12 +153,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsByUrl(final String url, final Set<ProfileField> profileFields, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsByUrl(url, profileFields, start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsById(url, profileFields, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -262,12 +164,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsForCurrentUser(start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsForCurrentUser(start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -275,12 +175,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Connections> getConnectionsForCurrentUser(final Set<ProfileField> profileFields, final int start, final int count) {
-        return execute(new Callable<Connections>() {
-            @Override
-            public Connections call() throws Exception {
-                return client.getConnectionsForCurrentUser(profileFields, start, count);
-            }
-        });
+    	final NullResponseHandler<Connections> handler = new NullResponseHandler<Connections>();
+    	client.getConnectionsForCurrentUser(profileFields, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -288,12 +186,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates() {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates();
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -301,12 +197,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates(final int start, final int count) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(start, count);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -314,12 +208,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates(final Date startDate, final Date endDate) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(startDate, endDate);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(startDate, endDate, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -327,12 +219,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(updateTypes);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(updateTypes, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -340,12 +230,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(updateTypes, start, count);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(updateTypes, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -353,12 +241,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final Date startDate, final Date endDate) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(updateTypes, startDate, endDate);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(updateTypes, startDate, endDate, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -367,12 +253,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     @Override
     public Future<Network> getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count, final Date startDate,
             final Date endDate) {
-        return execute(new Callable<Network>() {
-            @Override
-            public Network call() throws Exception {
-                return client.getNetworkUpdates(updateTypes, start, count, startDate, endDate);
-            }
-        });
+    	final NullResponseHandler<Network> handler = new NullResponseHandler<Network>();
+    	client.getNetworkUpdates(updateTypes, start, count, startDate, endDate, handler);
+    	
+    	return handler.getFuture();
     }
     
     /**
@@ -380,12 +264,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<UpdateComments> getNetworkUpdateComments(final String networkUpdateId) {
-        return execute(new Callable<UpdateComments>() {
-            @Override
-            public UpdateComments call() throws Exception {
-                return client.getNetworkUpdateComments(networkUpdateId);
-            }
-        });
+    	final NullResponseHandler<UpdateComments> handler = new NullResponseHandler<UpdateComments>();
+    	client.getNetworkUpdateComments(networkUpdateId, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -393,12 +275,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileById(final String id) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileById(id);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileById(id, handler);
+    	
+    	return handler.getFuture();
     }
     
     /**
@@ -406,12 +286,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileById(final String id, final Set<ProfileField> profileFields) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileById(id, profileFields);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileById(id, profileFields, handler);
+    	
+    	return handler.getFuture();
     }
     
     /**
@@ -419,12 +297,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileByUrl(final String url, final ProfileType profileType) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileByUrl(url, profileType);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileByUrl(url, profileType, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -432,12 +308,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileByUrl(final String url, final ProfileType profileType, final Set<ProfileField> profileFields) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileByUrl(url, profileType, profileFields);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileByUrl(url, profileType, profileFields, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -445,12 +319,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileByApiRequest(final ApiStandardProfileRequest apiRequest) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileByApiRequest(apiRequest);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileByApiRequest(apiRequest, handler);
+    	
+    	return handler.getFuture();
     }
     
     /**
@@ -458,12 +330,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileForCurrentUser() {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileForCurrentUser();
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileForCurrentUser(handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -471,38 +341,34 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<Person> getProfileForCurrentUser(final Set<ProfileField> profileFields) {
-        return execute(new Callable<Person>() {
-            @Override
-            public Person call() throws Exception {
-                return client.getProfileForCurrentUser(profileFields);
-            }
-        });
+    	final NullResponseHandler<Person> handler = new NullResponseHandler<Person>();
+    	client.getProfileForCurrentUser(profileFields, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> postComment(final String networkUpdateId, final String commentText) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.postComment(networkUpdateId, commentText);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.postComment(networkUpdateId, commentText, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> postNetworkUpdate(final String updateText) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.postNetworkUpdate(updateText);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.postNetworkUpdate(updateText, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -510,12 +376,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople() {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople();
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -523,12 +387,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(searchParameters);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(searchParameters, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -536,12 +398,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final int start, final int count) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(start, count);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -549,12 +409,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(searchParameters, start, count);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(searchParameters, start, count, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -562,12 +420,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final SearchSortOrder sortOrder) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(sortOrder);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(sortOrder, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -575,12 +431,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final SearchSortOrder sortOrder) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(searchParameters, sortOrder);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(searchParameters, sortOrder, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -588,12 +442,10 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     @Override
     public Future<People> searchPeople(final int start, final int count, final SearchSortOrder sortOrder) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(start, count, sortOrder);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(start, count, sortOrder, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -602,90 +454,82 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count,
                                        final SearchSortOrder sortOrder) {
-        return execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(searchParameters, start, count, sortOrder);
-            }
-        });
+    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
+    	client.searchPeople(searchParameters, start, count, sortOrder, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> sendInviteByEmail(final String email, final String firstName, final String lastName, final String subject, final String message) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.sendInviteByEmail(email, firstName, lastName, subject, message);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.sendInviteByEmail(email, firstName, lastName, subject, message, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> sendInviteToPerson(final Person recepient, final String subject, final String message) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.sendInviteToPerson(recepient, subject, message);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.sendInviteToPerson(recepient, subject, message, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> sendInviteById(final String recepientId, final String subject, final String message, final String authHeader) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.sendInviteById(recepientId, subject, message, authHeader);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.sendInviteById(recepientId, subject, message, authHeader, handler);
+    	
+    	return handler.getFuture();
     }
     
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> sendMessage(final List<String> recepientIds, final String subject, final String message) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.sendMessage(recepientIds, subject, message);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.sendMessage(recepientIds, subject, message, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> updateCurrentStatus(final String status) {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.updateCurrentStatus(status);
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.updateCurrentStatus(status, handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Future<?> deleteCurrentStatus() {
-        return execute(new Runnable() {
-            @Override
-            public void run() {
-                client.deleteCurrentStatus();
-            }
-        });
+    	final NullResponseHandler handler = new NullResponseHandler();
+    	client.deleteCurrentStatus(handler);
+    	
+    	return handler.getFuture();
     }
 
     /**
@@ -755,5 +599,12 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      */
     public void removeRequestHeader(String headerName) {
         client.removeRequestHeader(headerName);
+    }
+    
+    private static class NullResponseHandler<T extends SchemaEntity> extends AsyncResponseHandler<T> {
+		@Override
+		public void handleResponse(T response) {
+			// No-Op
+		} 
     }
 }
