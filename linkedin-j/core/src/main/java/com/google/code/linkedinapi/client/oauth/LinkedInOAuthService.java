@@ -2,12 +2,14 @@ package com.google.code.linkedinapi.client.oauth;
 
 import java.net.HttpURLConnection;
 
+import com.google.code.linkedinapi.client.LinkedInCommunicationClient;
+
 /**
  * The Interface LinkedInOAuthService.
  * 
  * @author Nabeel Mukhtar
  */
-public interface LinkedInOAuthService {
+public interface LinkedInOAuthService extends LinkedInCommunicationClient {
 
     /**
      * Gets the o auth request token.
