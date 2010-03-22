@@ -19,6 +19,7 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "firstName",
     "lastName",
     "headline",
+    "pictureUrl",
     "apiStandardProfileRequest",
     "siteStandardProfileRequest"
 })
@@ -37,6 +38,8 @@ public class RecommendeeImpl
     protected String lastName;
     @XmlElement(required = true)
     protected String headline;
+    @XmlElement(name = "picture-url", required = true)
+    protected String pictureUrl;
     @XmlElement(name = "api-standard-profile-request", required = true, type = ApiStandardProfileRequestImpl.class)
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     @XmlElement(name = "site-standard-profile-request", required = true, type = SiteStandardProfileRequestImpl.class)
@@ -72,6 +75,14 @@ public class RecommendeeImpl
 
     public void setHeadline(String value) {
         this.headline = value;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String value) {
+        this.pictureUrl = value;
     }
 
     public ApiStandardProfileRequest getApiStandardProfileRequest() {

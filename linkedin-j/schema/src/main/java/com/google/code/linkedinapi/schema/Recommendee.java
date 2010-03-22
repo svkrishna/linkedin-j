@@ -17,6 +17,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}first-name"/>
  *         &lt;element ref="{}last-name"/>
  *         &lt;element ref="{}headline"/>
+ *         &lt;element ref="{}picture-url"/>
  *         &lt;element ref="{}api-standard-profile-request"/>
  *         &lt;element ref="{}site-standard-profile-request"/>
  *       &lt;/sequence>
@@ -111,6 +112,26 @@ public interface Recommendee
      *     
      */
     void setHeadline(String value);
+
+    /**
+     * Gets the value of the pictureUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getPictureUrl();
+
+    /**
+     * Sets the value of the pictureUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setPictureUrl(String value);
 
     /**
      * Gets the value of the apiStandardProfileRequest property.

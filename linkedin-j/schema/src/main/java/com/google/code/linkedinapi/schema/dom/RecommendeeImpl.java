@@ -18,6 +18,7 @@ public class RecommendeeImpl
     protected String firstName;
     protected String lastName;
     protected String headline;
+    protected String pictureUrl;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
 
@@ -52,7 +53,15 @@ public class RecommendeeImpl
     public void setHeadline(String value) {
         this.headline = value;
     }
+    
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
 
+    public void setPictureUrl(String value) {
+        this.pictureUrl = value;
+    }
+    
     public ApiStandardProfileRequest getApiStandardProfileRequest() {
         return apiStandardProfileRequest;
     }
@@ -75,6 +84,7 @@ public class RecommendeeImpl
 		setFirstName(DomUtils.getElementValueFromNode(element, "first-name"));
 		setLastName(DomUtils.getElementValueFromNode(element, "last-name"));
 		setHeadline(DomUtils.getElementValueFromNode(element, "headline"));
+		setPictureUrl(DomUtils.getElementValueFromNode(element, "picture-url"));
 		
 		Element apiRequestElem = (Element) DomUtils.getChildElementByName(element, "api-standard-profile-request");
 		if (apiRequestElem != null) {
@@ -97,6 +107,7 @@ public class RecommendeeImpl
 		DomUtils.setElementValueToNode(element, "first-name", getFirstName());
 		DomUtils.setElementValueToNode(element, "last-name", getLastName());
 		DomUtils.setElementValueToNode(element, "headline", getHeadline());
+		DomUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
 		if (getApiStandardProfileRequest() != null) {
 			element.appendChild(((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(document));
 		}
