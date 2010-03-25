@@ -13,6 +13,11 @@ import java.util.Map;
 public enum SearchSortOrder implements FieldEnum {
 	
     /**
+     * Orders the returns by number of connections each of the search returns has.
+     */
+    NUMBER_OF_CONNECTIONS("ctx"),
+
+    /**
      * Orders the returns by number of ensorsers each of the search returns has.
      */
     NUMBER_OF_RECOMMENDERS("recommenders"),
