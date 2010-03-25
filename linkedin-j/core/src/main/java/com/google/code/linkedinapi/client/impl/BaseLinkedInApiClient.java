@@ -917,7 +917,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("sort order", sortOrder);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
-        String                apiUrl  = builder.withParameterEnum("sortCriteria", sortOrder).buildUrl();
+        String                apiUrl  = builder.withParameterEnum("sort", sortOrder).buildUrl();
 
         return readResponse(People.class, callApiMethod(apiUrl));
     }
@@ -932,7 +932,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
-            builder.withParameterEnumMap(searchParameters).withParameterEnum("sortCriteria", sortOrder).buildUrl();
+            builder.withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
 
         return readResponse(People.class, callApiMethod(apiUrl));
     }
@@ -948,7 +948,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
-                                            String.valueOf(count)).withParameterEnum("sortCriteria",
+                                            String.valueOf(count)).withParameterEnum("sort",
                                                 sortOrder).buildUrl();
 
         return readResponse(People.class, callApiMethod(apiUrl));
@@ -966,7 +966,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
-            builder.withParameterEnumMap(searchParameters).withParameterEnum("sortCriteria",
+            builder.withParameterEnumMap(searchParameters).withParameterEnum("sort",
                                          sortOrder).withParameter("start",
                                              String.valueOf(start)).withParameter("count",
                                                  String.valueOf(count)).buildUrl();
