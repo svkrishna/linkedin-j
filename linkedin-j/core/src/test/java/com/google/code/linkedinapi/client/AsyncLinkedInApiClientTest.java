@@ -329,7 +329,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testSearchPeopleSearchSortOrder() {
-		Future<People> people = client.searchPeople(SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		Future<People> people = client.searchPeople(SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -340,7 +340,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	public void testSearchPeopleMapOfSearchParameterStringSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
-		Future<People> people = client.searchPeople(getSearchParametersMap(searchParameters), SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		Future<People> people = client.searchPeople(getSearchParametersMap(searchParameters), SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -349,7 +349,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testSearchPeopleIntIntSearchSortOrder() {
-		Future<People> people = client.searchPeople(1, 5, SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		Future<People> people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -360,7 +360,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	public void testSearchPeopleMapOfSearchParameterStringIntIntSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
-		Future<People> people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		Future<People> people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 

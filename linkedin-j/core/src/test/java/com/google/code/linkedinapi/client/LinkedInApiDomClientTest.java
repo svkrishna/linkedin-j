@@ -341,7 +341,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testSearchPeopleSearchSortOrder() {
-		People people = client.searchPeople(SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		People people = client.searchPeople(SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -352,7 +352,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testSearchPeopleMapOfSearchParameterStringSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
-		People people = client.searchPeople(getSearchParametersMap(searchParameters), SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		People people = client.searchPeople(getSearchParametersMap(searchParameters), SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -361,7 +361,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testSearchPeopleIntIntSearchSortOrder() {
-		People people = client.searchPeople(1, 5, SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		People people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
@@ -372,7 +372,7 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	public void testSearchPeopleMapOfSearchParameterStringIntIntSearchSortOrder() {
 		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
-		People people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.NUMBER_OF_CONNECTIONS);
+		People people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
 
