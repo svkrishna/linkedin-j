@@ -718,6 +718,7 @@ public class XppElementFactory implements SchemaElementFactory<String> {
             		XppUtils.setElementValue(serializer, String.valueOf(value));
         		}
         		serializer.endTag(null, contentType_QNAME);
+        		serializer.flush();
 			} catch (Exception e) {
 				LOG.log(Level.SEVERE, "An error occurred while creating xml content.", e);	
 			}
