@@ -544,6 +544,7 @@
         <xs:element ref="first-name"/>
         <xs:element ref="last-name"/>
         <xs:element ref="headline"/>
+        <xs:element ref="picture-url"/>
         <xs:element ref="api-standard-profile-request"/>
         <xs:element ref="site-standard-profile-request"/>
       </xs:sequence>

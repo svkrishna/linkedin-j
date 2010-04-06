@@ -22,6 +22,7 @@ public class RecommenderImpl
     protected String firstName;
     protected String lastName;
     protected String headline;
+    protected String pictureUrl;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
 
@@ -56,7 +57,15 @@ public class RecommenderImpl
     public void setHeadline(String value) {
         this.headline = value;
     }
+    
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
 
+    public void setPictureUrl(String value) {
+        this.pictureUrl = value;
+    }
+    
     public ApiStandardProfileRequest getApiStandardProfileRequest() {
         return apiStandardProfileRequest;
     }
@@ -88,6 +97,8 @@ public class RecommenderImpl
         		setLastName(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("headline")) {
         		setHeadline(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("picture-url")) {
+        		setPictureUrl(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("api-standard-profile-request")) {
     			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
     			apiRequest.init(parser);
@@ -111,6 +122,7 @@ public class RecommenderImpl
 		XppUtils.setElementValueToNode(element, "first-name", getFirstName());
 		XppUtils.setElementValueToNode(element, "last-name", getLastName());
 		XppUtils.setElementValueToNode(element, "headline", getHeadline());
+		XppUtils.setElementValueToNode(element, "picture-url", getPictureUrl());
 		if (getApiStandardProfileRequest() != null) {
 			((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
 		}
