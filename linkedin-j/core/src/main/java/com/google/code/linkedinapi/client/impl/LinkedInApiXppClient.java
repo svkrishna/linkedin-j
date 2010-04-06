@@ -118,6 +118,7 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
 				XmlSerializer serializer = XmlPullParserFactory.newInstance().newSerializer();
 				serializer.setOutput(writer);
 				((BaseSchemaEntity) element).toXml(serializer);
+				serializer.flush();
 				return writer.toString();
 			} catch (Exception e) {
 	    		throw new LinkedInApiClientException("Unkown element encountered:" + element, e);
