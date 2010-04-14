@@ -1,0 +1,160 @@
+java -jar trang.jar *.xml linkedin-api.xsd
+xjc -p com.google.code.linkedinapi.schema linkedin-api.xsd
+xjc -p com.google.code.linkedinapi.schema -extension -no-header -b schema.xjb linkedin-api-schema.xsd
+
+"C:\Program Files\Microsoft SDKs\Windows\v6.0A\Bin\xsd" linkedin-api-schema.xsd /c
+
+asynchronous api.
+Use String.format.
+some xmls are missing like invitation api.
+
+
+1. Complete Api Methods
+2. Look into jaxb and mapping.
+X 3. Write a properties file for test as well with these constants do not commit it to svn.
+4. Look at Builder pattern in effective java Google Project Hosting Change Factory non-static, oauth version.
+X 5. Create factory for api client.
+X. 6. ant file for xjc and trang
+X 7. write a settings properties file as well.
+8. Should we be Validating..
+X. 9. save sample xmls as well with the project.
+X 10. create dev-lib junit tranj
+X. 11. Search API, Invitation API, Messaging Between Connections
+Y 12. change oauth library???
+X 13. also make an examples directory..
+Y 14. remove out of band and see if that works.
+15. Create exception classes.
+16. Tweak XSD.
+X. 18. Throw exception in case of wrong status code. status codes are in HttpUrlConnection class.
+X. 33. Check the status code of delete and update status.
+X. 36. Implement paging for getConnection methods.
+
+17. Some more enumeration for industry codes and search parameter values.
+20. Fix Schema
+21. Implement command line examples.
+X. 22. Build parameters map and tweak url properties file.
+X. Fix author name.
+34. Fix build file and write maven scripts.
+X. 35. Implement Search Example..
+X. 36. Java Doc for main interfaces.
+X. 20. Fix Schema
+X. Write javadoc.
+X. 21. Write a builder for url.
+X. 22. Fix buildUrl bug.
+X. 23. Extract class from LinkedInJaxbClient.
+X. 24. Fix updateTypes.
+X. 25. Specify enums in schema configuration.
+X. 26. Investigate Gzip support.
+
+connection.setRequestProperty("Accept-Encoding", "gzip");
+if (("gzip").equalsIgnoreCase(connection.getContentEncoding())) {
+	// handle gzip encoded content
+	is = new BufferedInputStream(new GZIPInputStream(inputStream));
+} else {
+	is = new BufferedInputStream(inputStream);
+}
+
+27. Improve exception handling by reading the error stream.
+
+Known Issues. 
+Get Profile and Connections by URL throws bad request error.
+Remove the depecdency on signpost and commons codec.
+Invitation API not working.
+The ID in network update call is invalid.
+Get connections by email throw Forbidden.
+
+
+I am releasing a beta snapshot version of LinkedIn API java wrapper for beta testing. You can download it from http://code.google.com/p/linkedin-j/ . Please download and try out the library. Try out the examples first and then go through the javadoc (which is a bit sketchy yet) to see which methods are available. If you run into issues please post them on Google code (some known issues are already there).
+Most of the methods will require a consumer key, consumer secret, access token and access token secret. However the authentication example works with only consumer key and consumer secret (see OAuthAuthenticationExample to get access token).
+The core jar for the library is in the dist directory. The library uses JAXB for xml binding so you should have atleast Java SE 6 (you can probably run it on previous versions with jaxb libraries but I have not tried it). The library currently also has a dependency on signpost oauth library and commons codec though there are plans to remove it. The examples have an additional dependency on commons cli. All the jars (except jaxb) are included in the distribution.
+The dev-lib directory contains additional jars which are needed only if you want to build from source.
+Since the LinkedIn team have not yet released the schema for their API, the jaxb binding uses a custom generated schema and does not perform validation against it. All the beans have been automatically generated from this schema without any customization. This will be improved upon later if necessary.
+You can also checkout a readonly copy of the code from Google code. Unfortunately the build file is not working 100%. So it would be great if you build and run the project in eclipse. This will also be fixed shortly.
+
+If you have any suggestions, please post them on Google code too.
+Thanks for your help in using and testing out the library.
+
+Regards
+Nabeel Mukhtar
+
+
+profile {@see http://developer.linkedin.com/docs/DOC-1002}
+network updated {@see http://developer.linkedin.com/docs/DOC-1006}
+connections {@see http://developer.linkedin.com/docs/DOC-1004}
+search {@see http://developer.linkedin.com/docs/DOC-1005}
+post network update {@see http://developer.linkedin.com/docs/DOC-1009}
+status {@see http://developer.linkedin.com/docs/DOC-1007}
+message {@see http://developer.linkedin.com/docs/DOC-1044}
+invite {@see http://developer.linkedin.com/docs/DOC-1012}
+
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<error>
+  <status>403</status>
+  <timestamp>1260453662440</timestamp>
+  <error-code>0000</error-code>
+  <message>Access to member by email address denied</message>
+</error>
+
+ 
+Check the latest distribution (linkedin-j-0.1-SNAPSHOT-2009-12-14.zip), it also includes a DOM based client which is currently not complete. 
+To compile without jaxb, you will have to remove all the implementation source files
+from com.google.code.linkedinapi.schema.impl package and also com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient and its references.
+Additionally you will have to remove all jaxb annotations from the following enum types in the package: com.google.code.linkedinapi.schema
+NetworkUpdateContentType
+InviteConnectType
+NetworkUpdateReturnType
+You can currently use DOM on android by using com.google.code.linkedinapi.client.impl.LinkedInApiDomClient. You can make it the default by modifying ApplicationConstants.properties file. I think it should work on android without any issue. However some methods that post content to LinkedIn are not yet implemented. They will be implemented by tomorrow. If you run into any issues please let me know.
+If you want to use SAX parsing, you will have to create your own client by extending BaseLinkedInApiClient and implementing abstract methods like unmarshallObject, marshallObject. Have a look at the DOM client to see how its done.
+
+
+com.google.code.linkedinapi.client.accessTokenKey=a2e551c2-56d0-4042-918f-087b39e6f42f
+com.google.code.linkedinapi.client.accessTokenSecret=49772a11-416a-44f4-aa04-8528f574102d
+InviteConnectType
+NetworkUpdateReturnType
+
+
+com.google.code.linkedinapi.client.accessTokenKey=4edce3d0-76a8-40d0-9e4c-0af2504d51dd
+com.google.code.linkedinapi.client.accessTokenSecret=24701c95-ac5a-44dc-b4bd-b7c3cc449b6f
+com.google.code.linkedinapi.client.accessTokenKey=a2e551c2-56d0-4042-918f-087b39e6f42f
+com.google.code.linkedinapi.client.accessTokenSecret=49772a11-416a-44f4-aa04-8528f574102d
+
+
+Register at Android Market.
+
+
+-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6 -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -subject  "Test invite from command line" -message "Test invite from command line message"  -id i9hsTxwEzs -authHeader name:RTBq
+
+-consumerKey TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xxxxx -consumerSecret biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi  -token 4edce3d0-76a8-40d0-9e4c-0af2504d51dd -tokenSecret 24701c95-ac5a-44dc-b4bd-b7c3cc449b6f -subject  "Test invite from command line with email" -message "Test invite from command line message with email"  -email nmukhtar@csquareonline.com -firstName Nabeel -lastName Siddiqui
+
+These changes in the invitation API are also available in the latest version of the linkedin-j library (linkedin-j-0.1-SNAPSHOT-2010-01-12.zip). Have a look at the methods:
+LinkedInApiClient#sendInviteByEmail(String email, String firstName, String lastName, String subject, String message);
+LinkedInApiClient#sendInviteById(String recepientId, String subject, String message, String authHeader);
+
+Also have a look at the InvitationApiExample example to see how it works.
+
+Hope this helps
+
+Regards
+Nabeel Mukhtar
+
+Foursquare
+Key: WQVYWY5MVBX4NPLPWSXFLBQ3OJEEFH1LX0ORQ5FFF1HEEEV5
+Secret: JXG3ALPYVWFJ1NOSQZ4PKUHHOTUSUE1YYEYSX2QVHHF1M5ML
+
+Getting Started
+	For all APIs
+Typical OAuth Flow
+	Session Management
+Asynchronous API.
+Spring Configuration
+Android Usage
+
+API Design
+
+API Schema
+
+X replace printStackTrace with logging....
+commons http is built into android.. yuck..
+
+http://code.google.com/p/jfireeagle
