@@ -1,0 +1,28 @@
+Toast for new updates.
+Menu for Login, Profile, Connections, Updates, Search
+New activities for Login, Profile, Connections, Updates, Search
+New Tabs for Profile, Education, Experience
+Context Menu for Profile, Invite
+WebView for Login
+
+Activities Animation Fade
+Persistent State
+
+Dialogs
+
+Views / Animation / 3D transition.
+Views Push For Summary.
+Views Image Button
+
+Layout Animation - List Cascade.
+
+Layouts - Scroll View.
+
+Views - Progress Bar.
+Views Tabs
+
+Text Linkify
+
+http://droidin.net/
+
+Register at Android Market.
