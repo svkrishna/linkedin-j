@@ -88,6 +88,10 @@ public final class LinkedInApiUrls {
     public static final String LINKED_IN_OAUTH_ACCESS_TOKEN_URL =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.accessToken");
 
+    /** The Constant LINKED_IN_OAUTH_ACCESS_TOKEN_URL. */
+    public static final String LINKED_IN_OAUTH_INVALIDATE_TOKEN_URL =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.oauth.invalidateToken");
+    
     /** The Constant NETWORK_UPDATES. */
     public static final String NETWORK_UPDATES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdates");

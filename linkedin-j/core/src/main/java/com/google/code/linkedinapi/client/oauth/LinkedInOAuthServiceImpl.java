@@ -3,9 +3,15 @@
  */
 package com.google.code.linkedinapi.client.oauth;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
 
 import oauth.signpost.OAuth;
 import oauth.signpost.OAuthConsumer;
@@ -99,7 +105,14 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
         	consumer.setTokenWithSecret(requestToken.getToken(), requestToken.getTokenSecret());
             provider.retrieveAccessToken(consumer, oauthVerifier);
 
-            return new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
+            LinkedInAccessToken accessToken = new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
+            
+            SortedSet<String> responseParameters = provider.getResponseParameters().get(ApplicationConstants.EXPIRATION_PARAMETER_NAME);
+            if (responseParameters != null && !responseParameters.isEmpty()) {
+            	accessToken.setExpirationTime(Long.valueOf(responseParameters.first()));
+            }
+            
+            return accessToken;
         } catch (Exception e) {
             throw new LinkedInOAuthServiceException(e);
         }
@@ -119,6 +132,11 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
                                                         consumer.getTokenSecret());
 
             requestToken.setAuthorizationUrl(authorizationUrl);
+            
+            SortedSet<String> responseParameters = provider.getResponseParameters().get(ApplicationConstants.EXPIRATION_PARAMETER_NAME);
+            if (responseParameters != null && !responseParameters.isEmpty()) {
+            	requestToken.setExpirationTime(Long.valueOf(responseParameters.first()));
+            }
 
             return requestToken;
         } catch (Exception e) {
@@ -164,6 +182,31 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
         }
     }
     
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public void invalidateAccessToken(LinkedInAccessToken accessToken) {
+    	if (accessToken == null) {
+    		throw new IllegalArgumentException("access token cannot be null.");
+    	}
+        try {
+            URL               url     = new URL(LinkedInApiUrls.LINKED_IN_OAUTH_INVALIDATE_TOKEN_URL);
+            HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        	
+        	final OAuthConsumer consumer = getOAuthConsumer();
+            consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
+            consumer.sign(request);
+            request.connect();
+
+            if (request.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            	throw new LinkedInOAuthServiceException(convertStreamToString(request.getErrorStream()));
+            }
+        } catch (Exception e) {
+            throw new LinkedInOAuthServiceException(e);
+        }
+	}
+    
     /** 
      *
      */
@@ -189,4 +232,35 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
 		consumer.setSigningStrategy(new AuthorizationHeaderSigningStrategy());
 		return consumer;
 	}
+	
+	/**
+	 * Stolen liberally from http://www.kodejava.org/examples/266.html
+	 */
+	protected static String convertStreamToString(InputStream is) {
+        /*
+         * To convert the InputStream to String we use the BufferedReader.readLine()
+         * method. We iterate until the BufferedReader return null which means
+         * there's no more data to read. Each line will appended to a StringBuilder
+         * and returned as String.
+         */
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+ 
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+ 
+        return sb.toString();
+    }
 }

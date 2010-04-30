@@ -22,6 +22,9 @@ public abstract class LinkedInOAuthToken implements Serializable {
 
     /** Token Secret */
     private String tokenSecret;
+    
+    /** Token Secret */
+    private long expirationTime;
 
     /**
      * Constructs ...
@@ -126,5 +129,19 @@ public abstract class LinkedInOAuthToken implements Serializable {
 	 */
 	public void setTokenSecret(String tokenSecret) {
 		this.tokenSecret = tokenSecret;
+	}
+
+	/**
+	 * @return the expirationTime
+	 */
+	public long getExpirationTime() {
+		return expirationTime;
+	}
+
+	/**
+	 * @param expirationTime the expirationTime to set
+	 */
+	public void setExpirationTime(long expirationTime) {
+		this.expirationTime = expirationTime;
 	}
 }

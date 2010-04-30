@@ -44,4 +44,11 @@ public interface LinkedInOAuthService extends LinkedInCommunicationClient {
      * @param accessToken the access token
      */
     public void signRequestWithToken(HttpURLConnection request, LinkedInAccessToken accessToken);
+    
+    /**
+     * Invalidate Token.
+     * 
+     * @param accessToken the access token
+     */
+    public void invalidateAccessToken(LinkedInAccessToken accessToken);
 }
