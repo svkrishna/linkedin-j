@@ -61,6 +61,9 @@ public final class ApplicationConstants {
     /** The Constant AUTH_HEADER_NAME. */
     public static final String AUTH_HEADER_NAME = getProperty("com.google.code.linkedinapi.client.authHeaderName");
     
+    /** The Constant FORMAT_HEADER_NAME. */
+    public static final String FORMAT_HEADER_NAME = getProperty("com.google.code.linkedinapi.client.formatHeaderName");
+    
     /** The Constant AUTH_HEADER_NAME. */
     public static final String EXPIRATION_PARAMETER_NAME = getProperty("com.google.code.linkedinapi.client.expirationParameterName");
     
