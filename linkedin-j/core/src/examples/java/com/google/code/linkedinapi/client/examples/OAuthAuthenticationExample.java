@@ -79,6 +79,7 @@ public class OAuthAuthenticationExample {
 
                 System.out.println("Request token: " + requestToken.getToken());
                 System.out.println("Token secret: " + requestToken.getTokenSecret());
+                System.out.println("Expiration time: " + requestToken.getExpirationTime());
 
                 System.out.println("Now visit:\n" + authUrl
                         + "\n... and grant this app authorization");

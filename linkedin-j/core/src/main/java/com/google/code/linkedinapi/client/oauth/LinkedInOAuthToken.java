@@ -4,6 +4,7 @@
 package com.google.code.linkedinapi.client.oauth;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Class description
@@ -24,7 +25,7 @@ public abstract class LinkedInOAuthToken implements Serializable {
     private String tokenSecret;
     
     /** Token Secret */
-    private long expirationTime;
+    private Date expirationTime;
 
     /**
      * Constructs ...
@@ -134,14 +135,14 @@ public abstract class LinkedInOAuthToken implements Serializable {
 	/**
 	 * @return the expirationTime
 	 */
-	public long getExpirationTime() {
+	public Date getExpirationTime() {
 		return expirationTime;
 	}
 
 	/**
 	 * @param expirationTime the expirationTime to set
 	 */
-	public void setExpirationTime(long expirationTime) {
+	public void setExpirationTime(Date expirationTime) {
 		this.expirationTime = expirationTime;
 	}
 }

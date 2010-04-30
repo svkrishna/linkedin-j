@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedSet;
@@ -108,9 +109,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
             LinkedInAccessToken accessToken = new LinkedInAccessToken(consumer.getToken(), consumer.getTokenSecret());
             
             SortedSet<String> responseParameters = provider.getResponseParameters().get(ApplicationConstants.EXPIRATION_PARAMETER_NAME);
-            if (responseParameters != null && !responseParameters.isEmpty()) {
-            	accessToken.setExpirationTime(Long.valueOf(responseParameters.first()));
-            }
+            setTokenExpirationTime(accessToken, responseParameters);
             
             return accessToken;
         } catch (Exception e) {
@@ -134,9 +133,7 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
             requestToken.setAuthorizationUrl(authorizationUrl);
             
             SortedSet<String> responseParameters = provider.getResponseParameters().get(ApplicationConstants.EXPIRATION_PARAMETER_NAME);
-            if (responseParameters != null && !responseParameters.isEmpty()) {
-            	requestToken.setExpirationTime(Long.valueOf(responseParameters.first()));
-            }
+            setTokenExpirationTime(requestToken, responseParameters);
 
             return requestToken;
         } catch (Exception e) {
@@ -233,6 +230,20 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
 		return consumer;
 	}
 	
+	/**
+	 * @param token
+	 * @param responseParameters
+	 */
+	protected void setTokenExpirationTime(LinkedInOAuthToken token,
+			SortedSet<String> responseParameters) {
+		if (responseParameters != null && !responseParameters.isEmpty()) {
+			Calendar calendar = Calendar.getInstance();
+			int secondsToLive = Integer.valueOf(responseParameters.first());
+			calendar.add(Calendar.SECOND, secondsToLive);
+			token.setExpirationTime(calendar.getTime());
+		}
+	}
+
 	/**
 	 * Stolen liberally from http://www.kodejava.org/examples/266.html
 	 */
