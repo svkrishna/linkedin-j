@@ -437,14 +437,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ApiStandardProfileRequest }
-     * 
-     */
-    public ApiStandardProfileRequest createApiStandardProfileRequest() {
-        return new ApiStandardProfileRequestImpl();
-    }
-
-    /**
      * Create an instance of {@link PersonActivities }
      * 
      */
@@ -586,6 +578,14 @@ public class ObjectFactory {
      */
     public Authorization createAuthorization() {
         return new AuthorizationImpl();
+    }
+
+    /**
+     * Create an instance of {@link ApiStandardProfileRequest }
+     * 
+     */
+    public ApiStandardProfileRequest createApiStandardProfileRequest() {
+        return new ApiStandardProfileRequestImpl();
     }
 
     /**

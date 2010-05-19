@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema;
 
+import java.util.List;
 
 
 /**
@@ -13,7 +14,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}phone-number" minOccurs="0"/>
+ *         &lt;element ref="{}phone-number" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
@@ -31,22 +32,26 @@ public interface PhoneNumbers
     /**
      * Gets the value of the phoneNumberList property.
      * 
-     * @return
-     *     possible object is
-     *     {@link PhoneNumber }
-     *     
-     */
-    PhoneNumber getPhoneNumberList();
-
-    /**
-     * Sets the value of the phoneNumberList property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the phoneNumberList property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link PhoneNumber }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPhoneNumberList().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PhoneNumber }
+     * 
+     * 
      */
-    void setPhoneNumberList(PhoneNumber value);
+    List<PhoneNumber> getPhoneNumberList();
 
     /**
      * Gets the value of the total property.

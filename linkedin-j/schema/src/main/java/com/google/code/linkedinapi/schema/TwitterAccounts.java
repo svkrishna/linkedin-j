@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema;
 
+import java.util.List;
 
 
 /**
@@ -13,7 +14,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}twitter-account" minOccurs="0"/>
+ *         &lt;element ref="{}twitter-account" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
@@ -31,22 +32,26 @@ public interface TwitterAccounts
     /**
      * Gets the value of the twitterAccountList property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TwitterAccount }
-     *     
-     */
-    TwitterAccount getTwitterAccountList();
-
-    /**
-     * Sets the value of the twitterAccountList property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the twitterAccountList property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link TwitterAccount }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTwitterAccountList().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link TwitterAccount }
+     * 
+     * 
      */
-    void setTwitterAccountList(TwitterAccount value);
+    List<TwitterAccount> getTwitterAccountList();
 
     /**
      * Gets the value of the total property.

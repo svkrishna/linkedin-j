@@ -2,6 +2,8 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,17 +26,16 @@ public class PhoneNumbersImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "phone-number", type = PhoneNumberImpl.class)
-    protected PhoneNumberImpl phoneNumberList;
+    protected List<PhoneNumber> phoneNumberList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public PhoneNumber getPhoneNumberList() {
-        return phoneNumberList;
-    }
-
-    public void setPhoneNumberList(PhoneNumber value) {
-        this.phoneNumberList = ((PhoneNumberImpl) value);
+    public List<PhoneNumber> getPhoneNumberList() {
+        if (phoneNumberList == null) {
+            phoneNumberList = new ArrayList<PhoneNumber>();
+        }
+        return this.phoneNumberList;
     }
 
     public Long getTotal() {

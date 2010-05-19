@@ -641,7 +641,7 @@
   <xs:element name="im-accounts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="im-account"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="im-account"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -670,7 +670,7 @@
   <xs:element name="twitter-accounts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="twitter-account"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="twitter-account"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -699,7 +699,7 @@
   <xs:element name="phone-numbers">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="phone-number"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="phone-number"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>

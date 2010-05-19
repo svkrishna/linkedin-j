@@ -2,6 +2,8 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,17 +26,16 @@ public class TwitterAccountsImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(name = "twitter-account", type = TwitterAccountImpl.class)
-    protected TwitterAccountImpl twitterAccountList;
+    protected List<TwitterAccount> twitterAccountList;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public TwitterAccount getTwitterAccountList() {
-        return twitterAccountList;
-    }
-
-    public void setTwitterAccountList(TwitterAccount value) {
-        this.twitterAccountList = ((TwitterAccountImpl) value);
+    public List<TwitterAccount> getTwitterAccountList() {
+        if (twitterAccountList == null) {
+            twitterAccountList = new ArrayList<TwitterAccount>();
+        }
+        return this.twitterAccountList;
     }
 
     public Long getTotal() {
