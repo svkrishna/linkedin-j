@@ -587,6 +587,14 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
     public void updateCurrentStatus(String status);
 
     /**
+     * Update current status.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1007">http://developer.linkedin.com/docs/DOC-1007</a>
+     * 
+     * @param status the status
+     */
+    public void updateCurrentStatus(String status, boolean postToTwitter);
+    
+    /**
      * Delete current status.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1007">http://developer.linkedin.com/docs/DOC-1007</a>
      */

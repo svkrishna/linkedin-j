@@ -49,6 +49,23 @@
 			<typesafeEnumMember name="EDUCATION" value="EDU"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='im-account-type']/xs:simpleType">
+		<typesafeEnumClass name="ImAccountType">
+			<typesafeEnumMember name="AIM" value="aim"/>
+			<typesafeEnumMember name="GTALK" value="gtalk"/>
+			<typesafeEnumMember name="ICQ" value="icq"/>
+			<typesafeEnumMember name="MSN" value="msn"/>
+			<typesafeEnumMember name="SKYPE" value="skype"/>
+			<typesafeEnumMember name="YAHOO" value="yahoo"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='phone-type']/xs:simpleType">
+		<typesafeEnumClass name="PhoneType">
+			<typesafeEnumMember name="HOME" value="home"/>
+			<typesafeEnumMember name="WORK" value="work"/>
+			<typesafeEnumMember name="MOBILE" value="mobile"/>
+		</typesafeEnumClass>
+	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>
@@ -99,5 +116,14 @@
 	</bindings>
 	<bindings node="//xs:element[@name='headers']/xs:complexType/xs:sequence/xs:element[@ref='http-header']">
 		<property name="httpHeaderList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='im-accounts']/xs:complexType/xs:sequence/xs:element[@ref='im-account']">
+		<property name="imAccountList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='twitter-accounts']/xs:complexType/xs:sequence/xs:element[@ref='twitter-account']">
+		<property name="twitterAccountList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='phone-numbers']/xs:complexType/xs:sequence/xs:element[@ref='phone-number']">
+		<property name="phoneNumberList"/>
 	</bindings>
 </bindings>

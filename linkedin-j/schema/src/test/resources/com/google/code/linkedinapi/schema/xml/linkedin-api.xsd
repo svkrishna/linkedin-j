@@ -254,12 +254,19 @@
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
+        <xs:element minOccurs="0" ref="person-activities"/>
+        <xs:element minOccurs="0" ref="picture-url"/>
         <xs:choice minOccurs="0">
-          <xs:element ref="picture-url"/>
           <xs:element ref="member-groups"/>
-          <xs:element ref="person-activities"/>
           <xs:element ref="recommendations-given"/>
           <xs:element ref="recommendations-received"/>
+          <xs:sequence>
+            <xs:element ref="im-accounts"/>
+            <xs:element ref="twitter-accounts"/>
+            <xs:element ref="date-of-birth"/>
+            <xs:element ref="main-address"/>
+            <xs:element ref="phone-numbers"/>
+          </xs:sequence>
         </xs:choice>
       </xs:sequence>
       <xs:attribute name="path"/>
@@ -346,6 +353,14 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  <xs:element name="person-activities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="activity"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="member-groups">
     <xs:complexType>
       <xs:sequence>
@@ -364,14 +379,6 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="site-group-request" type="url"/>
-  <xs:element name="person-activities">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="activity"/>
-      </xs:sequence>
-      <xs:attribute name="count" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="recommendations-given">
     <xs:complexType>
       <xs:sequence>
@@ -384,6 +391,61 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="im-accounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="im-account"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="im-account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="im-account-type"/>
+        <xs:element ref="im-account-name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="im-account-type" type="xs:NCName"/>
+  <xs:element name="im-account-name" type="xs:NCName"/>
+  <xs:element name="twitter-accounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="twitter-account"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="twitter-account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="provider-account-id"/>
+        <xs:element ref="provider-account-name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="provider-account-id" type="xs:integer"/>
+  <xs:element name="provider-account-name" type="xs:NCName"/>
+  <xs:element name="date-of-birth">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="day" type="xs:integer"/>
+  <xs:element name="main-address" type="xs:string"/>
+  <xs:element name="phone-numbers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="phone-number"/>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -540,6 +602,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="recommendation">
     <xs:complexType>
       <xs:sequence>
@@ -583,7 +646,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
+  <xs:element name="year" type="xs:integer"/>
+  <xs:element name="month" type="xs:integer"/>
+  <xs:element name="phone-number">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="phone-number"/>
+        <xs:element ref="phone-type"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="phone-type" type="xs:NCName"/>
   <xs:element name="headers">
     <xs:complexType>
       <xs:sequence>
@@ -600,6 +673,4 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="year" type="xs:integer"/>
-  <xs:element name="month" type="xs:integer"/>
 </xs:schema>

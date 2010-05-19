@@ -1123,10 +1123,21 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      */
     @Override
     public void updateCurrentStatus(String statusText) {
+    	updateCurrentStatus(statusText, false);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateCurrentStatus(String statusText, boolean postToTwitter) {
         if (isNullOrEmpty(statusText)) {
             deleteCurrentStatus();
         } else {
             LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_STATUS);
+            if (postToTwitter) {
+            	builder.withParameter("twitter-post", "true");
+            }
             String                apiUrl  = builder.buildUrl();
             Object                status  = OBJECT_FACTORY.createCurrentStatus(statusText);
 

@@ -13,12 +13,15 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.ImAccounts;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
+import com.google.code.linkedinapi.schema.PhoneNumbers;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
@@ -26,6 +29,7 @@ import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
+import com.google.code.linkedinapi.schema.TwitterAccounts;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -58,7 +62,12 @@ import com.google.code.linkedinapi.schema.ThreePastPositions;
     "recommendationsGiven",
     "recommendationsReceived",
     "memberGroups",
-    "personActivities"
+    "personActivities",
+    "imAccounts",
+    "twitterAccounts",
+    "dateOfBirth",
+    "mainAddress",
+    "phoneNumbers"
 })
 @XmlRootElement(name = "person")
 public class PersonImpl
@@ -122,6 +131,16 @@ public class PersonImpl
     protected MemberGroupsImpl memberGroups;
     @XmlElement(name = "person-activities", type = PersonActivitiesImpl.class)
     protected PersonActivitiesImpl personActivities;
+    @XmlElement(name = "im-accounts", type = ImAccountsImpl.class)
+    protected ImAccountsImpl imAccounts;
+    @XmlElement(name = "twitter-accounts", type = TwitterAccountsImpl.class)
+    protected TwitterAccountsImpl twitterAccounts;
+    @XmlElement(name = "date-of-birth", type = DateOfBirthImpl.class)
+    protected DateOfBirthImpl dateOfBirth;
+    @XmlElement(name = "main-address")
+    protected String mainAddress;
+    @XmlElement(name = "phone-numbers", type = PhoneNumbersImpl.class)
+    protected PhoneNumbersImpl phoneNumbers;
     @XmlAttribute
     protected String path;
 
@@ -363,6 +382,46 @@ public class PersonImpl
 
     public void setPersonActivities(PersonActivities value) {
         this.personActivities = ((PersonActivitiesImpl) value);
+    }
+
+    public ImAccounts getImAccounts() {
+        return imAccounts;
+    }
+
+    public void setImAccounts(ImAccounts value) {
+        this.imAccounts = ((ImAccountsImpl) value);
+    }
+
+    public TwitterAccounts getTwitterAccounts() {
+        return twitterAccounts;
+    }
+
+    public void setTwitterAccounts(TwitterAccounts value) {
+        this.twitterAccounts = ((TwitterAccountsImpl) value);
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(DateOfBirth value) {
+        this.dateOfBirth = ((DateOfBirthImpl) value);
+    }
+
+    public String getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(String value) {
+        this.mainAddress = value;
+    }
+
+    public PhoneNumbers getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(PhoneNumbers value) {
+        this.phoneNumbers = ((PhoneNumbersImpl) value);
     }
 
     public String getPath() {

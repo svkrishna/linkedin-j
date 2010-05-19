@@ -55,6 +55,11 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}recommendations-received" minOccurs="0"/>
  *         &lt;element ref="{}member-groups" minOccurs="0"/>
  *         &lt;element ref="{}person-activities" minOccurs="0"/>
+ *         &lt;element ref="{}im-accounts" minOccurs="0"/>
+ *         &lt;element ref="{}twitter-accounts" minOccurs="0"/>
+ *         &lt;element ref="{}date-of-birth" minOccurs="0"/>
+ *         &lt;element ref="{}main-address" minOccurs="0"/>
+ *         &lt;element ref="{}phone-numbers" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="path" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *     &lt;/restriction>
@@ -668,6 +673,106 @@ public interface Person
      *     
      */
     void setPersonActivities(PersonActivities value);
+
+    /**
+     * Gets the value of the imAccounts property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ImAccounts }
+     *     
+     */
+    ImAccounts getImAccounts();
+
+    /**
+     * Sets the value of the imAccounts property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ImAccounts }
+     *     
+     */
+    void setImAccounts(ImAccounts value);
+
+    /**
+     * Gets the value of the twitterAccounts property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TwitterAccounts }
+     *     
+     */
+    TwitterAccounts getTwitterAccounts();
+
+    /**
+     * Sets the value of the twitterAccounts property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TwitterAccounts }
+     *     
+     */
+    void setTwitterAccounts(TwitterAccounts value);
+
+    /**
+     * Gets the value of the dateOfBirth property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DateOfBirth }
+     *     
+     */
+    DateOfBirth getDateOfBirth();
+
+    /**
+     * Sets the value of the dateOfBirth property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DateOfBirth }
+     *     
+     */
+    void setDateOfBirth(DateOfBirth value);
+
+    /**
+     * Gets the value of the mainAddress property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getMainAddress();
+
+    /**
+     * Sets the value of the mainAddress property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setMainAddress(String value);
+
+    /**
+     * Gets the value of the phoneNumbers property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PhoneNumbers }
+     *     
+     */
+    PhoneNumbers getPhoneNumbers();
+
+    /**
+     * Sets the value of the phoneNumbers property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PhoneNumbers }
+     *     
+     */
+    void setPhoneNumbers(PhoneNumbers value);
 
     /**
      * Gets the value of the path property.

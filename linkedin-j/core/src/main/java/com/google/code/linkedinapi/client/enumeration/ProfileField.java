@@ -207,7 +207,32 @@ public enum ProfileField implements FieldEnum {
     /**
      * 	A URL to the member's public profile, if enabled.
      */
-    PUBLIC_PROFILE_URL("public-profile-url", true);
+    PUBLIC_PROFILE_URL("public-profile-url", true),
+    
+    /**
+     * a collection of instant messenger accounts
+     */
+    IM_ACCOUNTS("im-accounts", true),
+
+    /**
+     * a collection of twitter accounts
+     */
+    TWITTER_ACCOUNTS("twitter-accounts", true),
+
+    /**
+     * member's birth date
+     */
+    DATE_OF_BIRTH("date-of-birth", true),
+
+    /**
+     * address
+     */
+    MAIN_ADDRESS("main-address", true),
+
+    /**
+     * a collection of phone numbers
+     */
+    PHONE_NUMBERS("phone-numbers", true);
     
     /**
      * Field Description.

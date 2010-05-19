@@ -300,6 +300,11 @@
 	    <xs:element minOccurs="0" ref="recommendations-received"/>
         <xs:element minOccurs="0" ref="member-groups"/>
         <xs:element minOccurs="0" ref="person-activities"/>
+		<xs:element minOccurs="0" ref="im-accounts"/>
+		<xs:element minOccurs="0" ref="twitter-accounts"/>
+		<xs:element minOccurs="0" ref="date-of-birth"/>
+		<xs:element minOccurs="0" ref="main-address"/>
+		<xs:element minOccurs="0" ref="phone-numbers"/>
       </xs:sequence>
       <xs:attribute name="path"/>
     </xs:complexType>
@@ -633,6 +638,89 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="im-accounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="im-account"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="im-account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="im-account-type"/>
+        <xs:element ref="im-account-name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="im-account-type">
+	<xs:simpleType>
+	  <xs:restriction base="xs:string">
+		<xs:enumeration value="aim"/>
+		<xs:enumeration value="gtalk"/>
+		<xs:enumeration value="icq"/>
+		<xs:enumeration value="msn"/>
+		<xs:enumeration value="skype"/>
+		<xs:enumeration value="yahoo"/>
+	  </xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="im-account-name" type="xs:string"/>
+  <xs:element name="twitter-accounts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="twitter-account"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="twitter-account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="provider-account-id"/>
+        <xs:element ref="provider-account-name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="provider-account-id" type="xs:integer"/>
+  <xs:element name="provider-account-name" type="xs:string"/>
+  <xs:element name="date-of-birth">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="day" type="xs:integer"/>
+  <xs:element name="main-address" type="xs:string"/>
+  <xs:element name="phone-numbers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="phone-number"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="phone-number">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="phone-number" type="xs:string"/>
+        <xs:element ref="phone-type"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
+  <xs:element name="phone-type">
+	<xs:simpleType>
+	  <xs:restriction base="xs:string">
+		<xs:enumeration value="home"/>
+		<xs:enumeration value="work"/>
+		<xs:enumeration value="mobile"/>
+	  </xs:restriction>
+	</xs:simpleType>
+  </xs:element>
 </xs:schema>
