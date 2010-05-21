@@ -6,12 +6,15 @@ import org.w3c.dom.Element;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.ImAccounts;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
+import com.google.code.linkedinapi.schema.PhoneNumbers;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
@@ -19,6 +22,7 @@ import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
+import com.google.code.linkedinapi.schema.TwitterAccounts;
 
 public class PersonImpl
     extends BaseSchemaEntity
@@ -58,6 +62,11 @@ public class PersonImpl
     protected RecommendationsReceivedImpl recommendationsReceived;
     protected MemberGroupsImpl memberGroups;
     protected PersonActivitiesImpl personActivities;
+    protected ImAccountsImpl imAccounts;
+    protected TwitterAccountsImpl twitterAccounts;
+    protected DateOfBirthImpl dateOfBirth;
+    protected String mainAddress;
+    protected PhoneNumbersImpl phoneNumbers;
     
     protected String pictureUrl;
     protected String path;
@@ -301,7 +310,47 @@ public class PersonImpl
     public void setPictureUrl(String value) {
         this.pictureUrl = value;
     }
+    
+    public ImAccounts getImAccounts() {
+        return imAccounts;
+    }
 
+    public void setImAccounts(ImAccounts value) {
+        this.imAccounts = ((ImAccountsImpl) value);
+    }
+
+    public TwitterAccounts getTwitterAccounts() {
+        return twitterAccounts;
+    }
+
+    public void setTwitterAccounts(TwitterAccounts value) {
+        this.twitterAccounts = ((TwitterAccountsImpl) value);
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(DateOfBirth value) {
+        this.dateOfBirth = ((DateOfBirthImpl) value);
+    }
+
+    public String getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(String value) {
+        this.mainAddress = value;
+    }
+
+    public PhoneNumbers getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(PhoneNumbers value) {
+        this.phoneNumbers = ((PhoneNumbersImpl) value);
+    }
+    
     public String getPath() {
         return path;
     }
@@ -329,6 +378,7 @@ public class PersonImpl
 		setAssociations(DomUtils.getElementValueFromNode(element, "associations"));
 		setHonors(DomUtils.getElementValueFromNode(element, "honors"));
 		setSpecialties(DomUtils.getElementValueFromNode(element, "specialties"));
+		setMainAddress(DomUtils.getElementValueFromNode(element, "main-address"));
 		
 		Element locationElem = (Element) DomUtils.getChildElementByName(element, "location");
 		if (locationElem != null) {
@@ -415,6 +465,30 @@ public class PersonImpl
 			activities.init(activitiesElem);
 			setPersonActivities(activities);
 		}
+		Element imAccountsElem = (Element) DomUtils.getChildElementByName(element, "im-accounts");
+		if (imAccountsElem != null) {
+			ImAccountsImpl accounts = new ImAccountsImpl();
+			accounts.init(imAccountsElem);
+			setImAccounts(accounts);
+		}
+		Element twitterAccountsElem = (Element) DomUtils.getChildElementByName(element, "twitter-accounts");
+		if (twitterAccountsElem != null) {
+			TwitterAccountsImpl accounts = new TwitterAccountsImpl();
+			accounts.init(twitterAccountsElem);
+			setTwitterAccounts(accounts);
+		}
+		Element phoneNumbersElem = (Element) DomUtils.getChildElementByName(element, "phone-numbers");
+		if (phoneNumbersElem != null) {
+			PhoneNumbersImpl activities = new PhoneNumbersImpl();
+			activities.init(phoneNumbersElem);
+			setPhoneNumbers(activities);
+		}
+		Element dateOfBirthElem = (Element) DomUtils.getChildElementByName(element, "date-of-birth");
+		if (dateOfBirthElem != null) {
+			DateOfBirthImpl activities = new DateOfBirthImpl();
+			activities.init(dateOfBirthElem);
+			setDateOfBirth(activities);
+		}
 	}
 
 	@Override
@@ -437,6 +511,7 @@ public class PersonImpl
 		DomUtils.setElementValueToNode(element, "associations", getAssociations());
 		DomUtils.setElementValueToNode(element, "honors", getHonors());
 		DomUtils.setElementValueToNode(element, "specialties", getSpecialties());
+		DomUtils.setElementValueToNode(element, "main-address", getMainAddress());
 		if (getLocation() != null) {
 			element.appendChild(((LocationImpl) getLocation()).toXml(document));
 		}
@@ -478,6 +553,18 @@ public class PersonImpl
 		}
 		if (getPersonActivities() != null) {
 			element.appendChild(((PersonActivitiesImpl) getPersonActivities()).toXml(document));
+		}
+		if (getImAccounts() != null) {
+			element.appendChild(((ImAccountsImpl) getImAccounts()).toXml(document));
+		}
+		if (getTwitterAccounts() != null) {
+			element.appendChild(((TwitterAccountsImpl) getTwitterAccounts()).toXml(document));
+		}
+		if (getDateOfBirth() != null) {
+			element.appendChild(((DateOfBirthImpl) getDateOfBirth()).toXml(document));
+		}
+		if (getPhoneNumbers() != null) {
+			element.appendChild(((PhoneNumbersImpl) getPhoneNumbers()).toXml(document));
 		}
 		
 		return element;

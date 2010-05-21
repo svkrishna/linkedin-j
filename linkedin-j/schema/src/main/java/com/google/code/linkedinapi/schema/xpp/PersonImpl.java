@@ -9,12 +9,15 @@ import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
+import com.google.code.linkedinapi.schema.ImAccounts;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
+import com.google.code.linkedinapi.schema.PhoneNumbers;
 import com.google.code.linkedinapi.schema.Positions;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
@@ -22,6 +25,7 @@ import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
+import com.google.code.linkedinapi.schema.TwitterAccounts;
 
 public class PersonImpl
     extends BaseSchemaEntity
@@ -61,6 +65,11 @@ public class PersonImpl
     protected RecommendationsReceivedImpl recommendationsReceived;
     protected MemberGroupsImpl memberGroups;
     protected PersonActivitiesImpl personActivities;
+    protected ImAccountsImpl imAccounts;
+    protected TwitterAccountsImpl twitterAccounts;
+    protected DateOfBirthImpl dateOfBirth;
+    protected String mainAddress;
+    protected PhoneNumbersImpl phoneNumbers;
     
     protected String pictureUrl;
     protected String path;
@@ -297,6 +306,46 @@ public class PersonImpl
         this.personActivities = ((PersonActivitiesImpl) value);
     }
     
+    public ImAccounts getImAccounts() {
+        return imAccounts;
+    }
+
+    public void setImAccounts(ImAccounts value) {
+        this.imAccounts = ((ImAccountsImpl) value);
+    }
+
+    public TwitterAccounts getTwitterAccounts() {
+        return twitterAccounts;
+    }
+
+    public void setTwitterAccounts(TwitterAccounts value) {
+        this.twitterAccounts = ((TwitterAccountsImpl) value);
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(DateOfBirth value) {
+        this.dateOfBirth = ((DateOfBirthImpl) value);
+    }
+
+    public String getMainAddress() {
+        return mainAddress;
+    }
+
+    public void setMainAddress(String value) {
+        this.mainAddress = value;
+    }
+
+    public PhoneNumbers getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(PhoneNumbers value) {
+        this.phoneNumbers = ((PhoneNumbersImpl) value);
+    }
+    
     public String getPictureUrl() {
         return pictureUrl;
     }
@@ -353,6 +402,8 @@ public class PersonImpl
         		setHonors(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("specialties")) { 
         		setSpecialties(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("main-address")) { 
+        		setMainAddress(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("location")) { 
     			LocationImpl location = new LocationImpl();
     			location.init(parser);
@@ -409,6 +460,22 @@ public class PersonImpl
     			PersonActivitiesImpl activities = new PersonActivitiesImpl();
     			activities.init(parser);
     			setPersonActivities(activities);
+            } else if (name.equals("im-accounts")) {
+    			ImAccountsImpl accounts = new ImAccountsImpl();
+    			accounts.init(parser);
+    			setImAccounts(accounts);
+            } else if (name.equals("twitter-accounts")) {
+    			TwitterAccountsImpl accounts = new TwitterAccountsImpl();
+    			accounts.init(parser);
+    			setTwitterAccounts(accounts);
+            } else if (name.equals("phone-numbers")) {
+    			PhoneNumbersImpl phoneNumbers = new PhoneNumbersImpl();
+    			phoneNumbers.init(parser);
+    			setPhoneNumbers(phoneNumbers);
+            } else if (name.equals("date-of-birth")) {
+    			DateOfBirthImpl dateOfBirth = new DateOfBirthImpl();
+    			dateOfBirth.init(parser);
+    			setDateOfBirth(dateOfBirth);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -437,6 +504,7 @@ public class PersonImpl
 		XppUtils.setElementValueToNode(element, "associations", getAssociations());
 		XppUtils.setElementValueToNode(element, "honors", getHonors());
 		XppUtils.setElementValueToNode(element, "specialties", getSpecialties());
+		XppUtils.setElementValueToNode(element, "main-address", getMainAddress());
 		if (getLocation() != null) {
 			((LocationImpl) getLocation()).toXml(serializer);
 		}
@@ -478,6 +546,18 @@ public class PersonImpl
 		}
 		if (getPersonActivities() != null) {
 			((PersonActivitiesImpl) getPersonActivities()).toXml(serializer);
+		}
+		if (getImAccounts() != null) {
+			((ImAccountsImpl) getImAccounts()).toXml(serializer);
+		}
+		if (getTwitterAccounts() != null) {
+			((TwitterAccountsImpl) getTwitterAccounts()).toXml(serializer);
+		}
+		if (getDateOfBirth() != null) {
+			((DateOfBirthImpl) getDateOfBirth()).toXml(serializer);
+		}
+		if (getPhoneNumbers() != null) {
+			((PhoneNumbersImpl) getPhoneNumbers()).toXml(serializer);
 		}
 		
 		serializer.endTag(null, "person");
