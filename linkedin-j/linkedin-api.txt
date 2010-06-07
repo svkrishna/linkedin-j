@@ -160,3 +160,6 @@ commons http is built into android.. yuck..
 http://code.google.com/p/jfireeagle
 
 X. Authorization changes: http://developer.linkedin.com/community/apis/blog/2010/04/29/oauth--now-for-authentication;jsessionid=6914F82B697228E6D2AA492A0F03DF3B.node0
+
+New Search API.
+Field selectors can be nested...
