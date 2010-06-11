@@ -254,12 +254,14 @@
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
-        <xs:element minOccurs="0" ref="person-activities"/>
-        <xs:element minOccurs="0" ref="picture-url"/>
         <xs:choice minOccurs="0">
           <xs:element ref="member-groups"/>
-          <xs:element ref="recommendations-given"/>
+          <xs:element ref="person-activities"/>
           <xs:element ref="recommendations-received"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="picture-url"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="recommendations-given"/>
           <xs:sequence>
             <xs:element ref="im-accounts"/>
             <xs:element ref="twitter-accounts"/>
@@ -338,7 +340,7 @@
   <xs:element name="member-url-resources">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="member-url"/>
+        <xs:element maxOccurs="unbounded" ref="member-url"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -351,14 +353,6 @@
           </xs:sequence>
         </xs:extension>
       </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="person-activities">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="activity"/>
-      </xs:sequence>
-      <xs:attribute name="count" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="member-groups">
@@ -379,7 +373,15 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="site-group-request" type="url"/>
-  <xs:element name="recommendations-given">
+  <xs:element name="person-activities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="activity"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recommendations-received">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -387,7 +389,7 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendations-received">
+  <xs:element name="recommendations-given">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -602,7 +604,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="recommendation">
     <xs:complexType>
       <xs:sequence>
@@ -646,6 +647,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
   <xs:element name="phone-number">

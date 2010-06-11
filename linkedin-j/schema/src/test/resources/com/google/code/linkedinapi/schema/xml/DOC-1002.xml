@@ -161,6 +161,10 @@
 			<url>http://gapinginfinity.blogspot.com</url>
 			<name>My Blog</name>
 		</member-url>
+		<member-url>
+			<url>http://twitter.com/gapinginfinity</url>
+			<name>Twitter</name>
+		</member-url>
 	</member-url-resources>
 	<api-standard-profile-request>
 		<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name</url>

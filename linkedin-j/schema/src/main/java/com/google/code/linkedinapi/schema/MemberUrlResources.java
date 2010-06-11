@@ -1,6 +1,7 @@
 
 package com.google.code.linkedinapi.schema;
 
+import java.util.List;
 
 
 /**
@@ -13,7 +14,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}member-url"/>
+ *         &lt;element ref="{}member-url" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,23 +29,27 @@ public interface MemberUrlResources
 
 
     /**
-     * Gets the value of the memberUrl property.
+     * Gets the value of the memberUrlList property.
      * 
-     * @return
-     *     possible object is
-     *     {@link MemberUrl }
-     *     
-     */
-    MemberUrl getMemberUrl();
-
-    /**
-     * Sets the value of the memberUrl property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the memberUrlList property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link MemberUrl }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getMemberUrlList().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link MemberUrl }
+     * 
+     * 
      */
-    void setMemberUrl(MemberUrl value);
+    List<MemberUrl> getMemberUrlList();
 
 }

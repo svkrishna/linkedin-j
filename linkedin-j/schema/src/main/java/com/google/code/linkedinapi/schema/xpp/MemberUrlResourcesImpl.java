@@ -2,6 +2,8 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -19,14 +21,13 @@ public class MemberUrlResourcesImpl
 	 * 
 	 */
 	private static final long serialVersionUID = -4293798758625787079L;
-	protected MemberUrlImpl memberUrl;
+    protected List<MemberUrl> memberUrlList;
 
-    public MemberUrl getMemberUrl() {
-        return memberUrl;
-    }
-
-    public void setMemberUrl(MemberUrl value) {
-        this.memberUrl = ((MemberUrlImpl) value);
+    public List<MemberUrl> getMemberUrlList() {
+        if (memberUrlList == null) {
+            memberUrlList = new ArrayList<MemberUrl>();
+        }
+        return this.memberUrlList;
     }
 
 	@Override
@@ -39,7 +40,7 @@ public class MemberUrlResourcesImpl
         	if (name.equals("member-url")) {
     			MemberUrlImpl memberUrlImpl = new MemberUrlImpl();
     			memberUrlImpl.init(parser);
-    			setMemberUrl(memberUrlImpl);
+    			getMemberUrlList().add(memberUrlImpl);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -51,8 +52,8 @@ public class MemberUrlResourcesImpl
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
 		XmlSerializer element = serializer.startTag(null, "member-url-resources");
-		if (getMemberUrl() != null) {
-			((MemberUrlImpl) getMemberUrl()).toXml(element);
+		for (MemberUrl memberUrl : getMemberUrlList()) {
+			((MemberUrlImpl) memberUrl).toXml(element);
 		}
 		serializer.endTag(null, "member-url-resources");
 	}

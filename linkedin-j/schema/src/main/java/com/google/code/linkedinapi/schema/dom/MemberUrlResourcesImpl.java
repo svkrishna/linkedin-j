@@ -1,6 +1,9 @@
 
 package com.google.code.linkedinapi.schema.dom;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -16,31 +19,30 @@ public class MemberUrlResourcesImpl
 	 * 
 	 */
 	private static final long serialVersionUID = -4293798758625787079L;
-	protected MemberUrlImpl memberUrl;
+    protected List<MemberUrl> memberUrlList;
 
-    public MemberUrl getMemberUrl() {
-        return memberUrl;
-    }
-
-    public void setMemberUrl(MemberUrl value) {
-        this.memberUrl = ((MemberUrlImpl) value);
+    public List<MemberUrl> getMemberUrlList() {
+        if (memberUrlList == null) {
+            memberUrlList = new ArrayList<MemberUrl>();
+        }
+        return this.memberUrlList;
     }
 
 	@Override
 	public void init(Element element) {
-		Element memberUrlElem = (Element) DomUtils.getChildElementByName(element, "member-url");
-		if (memberUrlElem != null) {
+		List<Element> memberUrlElems = DomUtils.getChildElementsByLocalName(element, "member-url");
+		for (Element memberUrlElem : memberUrlElems) {
 			MemberUrlImpl memberUrlImpl = new MemberUrlImpl();
 			memberUrlImpl.init(memberUrlElem);
-			setMemberUrl(memberUrlImpl);
+			getMemberUrlList().add(memberUrlImpl);
 		}
 	}
 
 	@Override
 	public Element toXml(Document document) {
 		Element element = document.createElement("member-url-resources");
-		if (getMemberUrl() != null) {
-			element.appendChild(((MemberUrlImpl) getMemberUrl()).toXml(document));
+		for (MemberUrl memberUrl : getMemberUrlList()) {
+			element.appendChild(((MemberUrlImpl) memberUrl).toXml(document));
 		}
 		return element;
 	}

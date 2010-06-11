@@ -126,4 +126,7 @@
 	<bindings node="//xs:element[@name='phone-numbers']/xs:complexType/xs:sequence/xs:element[@ref='phone-number']">
 		<property name="phoneNumberList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='member-url-resources']/xs:complexType/xs:sequence/xs:element[@ref='member-url']">
+		<property name="memberUrlList"/>
+	</bindings>
 </bindings>

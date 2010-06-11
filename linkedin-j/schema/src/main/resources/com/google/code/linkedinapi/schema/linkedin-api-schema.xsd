@@ -417,7 +417,7 @@
   <xs:element name="member-url-resources">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="member-url"/>
+        <xs:element maxOccurs="unbounded" ref="member-url"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
