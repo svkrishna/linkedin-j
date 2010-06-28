@@ -18,14 +18,19 @@ public enum SearchParameter implements FieldEnum {
     KEYWORDS("keywords"),
 
     /**
-     * Returns all members with a name matching the one specified in the parameter. If only one name is provided, it's assumed to be the last name (surname). Multiple words must be separated by a plus (+) sign. Boolean logic isn't supported.
+     * Members with a matching first name. Matches must be exact. Multiple words should be separated by a space.
      */
-    NAME("name"),
+    FIRST_NAME("first-name"),
+    
+    /**
+     * Members with a matching last name. Matches must be exactly. Multiple words should be separated by a space.
+     */
+    LAST_NAME("last-name"),    
 
     /**
      * Returns members who have a particular company name on their profile. company works with the current-company parameter which specifies whether the company must be a current company or whether it can be anywhere on a profile.
      */
-    COMPANY("company"),
+    COMPANY_NAME("company-name"),
 
     /**
      * Valid values are true or false.
@@ -43,15 +48,15 @@ public enum SearchParameter implements FieldEnum {
     CURRENT_TITLE("current-title"),
 
     /**
-     * Returns members within a specific industry.
+     * Members who have a matching school name on their profile.
      */
-    INDUSTRY_CODE("industry-code"),
+    SCHOOL_NAME("school-name"),
 
     /**
-     * To search within a country or postal code, use I. To do a general search either leave this parameter off or use Y.
+     * Valid values are true or false. A value of true matches members who currently attend the school specified in the school-name parameter.
      */
-    SEARCH_LOCATION_TYPE("search-location-type"),
-
+    CURRENT_SCHOOL("current-school"),
+    
     /**
      * Returns members within a specific country.
      */
@@ -63,9 +68,19 @@ public enum SearchParameter implements FieldEnum {
     POSTAL_CODE("postal-code"),
 
     /**
-     * Valid values are in or out.
+     * Matches members within a distance from a central point. This is measured in miles.
      */
-    NETWORK("network");
+    DISTANCE("distance"),
+    
+    /**
+     * Facet values to search over.
+     */
+    FACET("facet"),
+    
+    /**
+     * Facet buckets to return.
+     */
+    FACETS("facets");
     
     /**
      * Field Description.
