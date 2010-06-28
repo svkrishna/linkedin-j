@@ -12,10 +12,16 @@ import java.util.Map;
  */
 public enum SearchSortOrder implements FieldEnum {
 	
+	
+	/**
+	 * Number of connections per person, from largest to smallest.
+	 */
+	CONNECTIONS("connections"),
+	
     /**
      * Orders the returns by number of ensorsers each of the search returns has.
      */
-    NUMBER_OF_RECOMMENDERS("recommenders"),
+    RECOMMENDERS("recommenders"),
 
     /**
      * Orders the returns based on the ascending degree of separation within a member's network, with first degree connections first.
