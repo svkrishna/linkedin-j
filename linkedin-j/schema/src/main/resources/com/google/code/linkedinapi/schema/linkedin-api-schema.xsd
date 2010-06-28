@@ -723,4 +723,48 @@
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>
+	
+  <xs:element name="people-search">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="num-results"/>
+        <xs:element minOccurs="0" ref="people"/>
+        <xs:element minOccurs="0" ref="facets"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="num-results" type="xs:integer"/>
+  <xs:element name="facets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="facet"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="facet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="code"/>
+        <xs:element minOccurs="0" ref="buckets"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="buckets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="bucket"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bucket">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -168,14 +168,11 @@
   </xs:element>
   <xs:element name="question-category">
     <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="code">
-          <xs:sequence>
-            <xs:element ref="name"/>
-          </xs:sequence>
-          <xs:attribute name="key" use="required" type="xs:integer"/>
-        </xs:extension>
-      </xs:complexContent>
+      <xs:sequence>
+        <xs:element ref="code"/>
+        <xs:element ref="name"/>
+      </xs:sequence>
+      <xs:attribute name="key" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="answers">
@@ -204,14 +201,47 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="people">
+  <xs:element name="people-search">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="person"/>
+        <xs:element ref="num-results"/>
+        <xs:element ref="people"/>
+        <xs:element ref="facets"/>
       </xs:sequence>
-      <xs:attribute name="count" use="required" type="xs:integer"/>
-      <xs:attribute name="start" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="num-results" type="xs:integer"/>
+  <xs:element name="facets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="facet"/>
+      </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="facet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="code"/>
+        <xs:element ref="buckets"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="buckets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="bucket"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bucket">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="code"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="person">
@@ -254,14 +284,12 @@
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
-        <xs:choice minOccurs="0">
-          <xs:element ref="member-groups"/>
-          <xs:element ref="person-activities"/>
-          <xs:element ref="recommendations-received"/>
-        </xs:choice>
+        <xs:element minOccurs="0" ref="member-groups"/>
         <xs:element minOccurs="0" ref="picture-url"/>
         <xs:choice minOccurs="0">
+          <xs:element ref="person-activities"/>
           <xs:element ref="recommendations-given"/>
+          <xs:element ref="recommendations-received"/>
           <xs:sequence>
             <xs:element ref="im-accounts"/>
             <xs:element ref="twitter-accounts"/>
@@ -282,7 +310,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="country" type="code"/>
+  <xs:element name="country">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="num-recommenders" type="xs:integer"/>
   <xs:element name="public-profile-url" type="xs:anyURI"/>
@@ -381,7 +415,7 @@
       <xs:attribute name="count" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendations-received">
+  <xs:element name="recommendations-given">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -389,7 +423,7 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendations-given">
+  <xs:element name="recommendations-received">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -452,8 +486,19 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="body" type="xs:string"/>
+  <xs:element name="people">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="person"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="name" type="xs:string"/>
+  <xs:element name="code" type="xs:NMTOKEN"/>
+  <xs:element name="body" type="xs:string"/>
   <xs:element name="value" type="xs:NMTOKEN"/>
   <xs:element name="timestamp" type="xs:integer"/>
   <xs:element name="current-status" type="xs:string"/>
@@ -571,12 +616,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="code">
-    <xs:sequence>
-      <xs:element ref="code"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="code" type="xs:NCName"/>
   <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
@@ -604,6 +643,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="recommendation">
     <xs:complexType>
       <xs:sequence>
@@ -647,7 +687,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
   <xs:element name="phone-number">
