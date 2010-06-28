@@ -283,11 +283,11 @@ public class SearchApiExample {
 		}
 		
 		if (line.hasOption(NAME_OPTION)) {
-			searchParameters.put(SearchParameter.NAME, line.getOptionValue(NAME_OPTION));
+			searchParameters.put(SearchParameter.FIRST_NAME, line.getOptionValue(NAME_OPTION));
 		}
 		
 		if (line.hasOption(COMPANY_OPTION)) {
-			searchParameters.put(SearchParameter.COMPANY, line.getOptionValue(COMPANY_OPTION));
+			searchParameters.put(SearchParameter.COMPANY_NAME, line.getOptionValue(COMPANY_OPTION));
 		}
 		
 		if (line.hasOption(CURRENT_COMPANY_OPTION)) {
@@ -302,24 +302,12 @@ public class SearchApiExample {
 			searchParameters.put(SearchParameter.CURRENT_TITLE, line.getOptionValue(CURRENT_TITLE_OPTION));
 		}
 		
-		if (line.hasOption(INDUSTRY_CODE_OPTION)) {
-			searchParameters.put(SearchParameter.INDUSTRY_CODE, line.getOptionValue(INDUSTRY_CODE_OPTION));
-		}
-		
-		if (line.hasOption(SEARCH_LOCATION_TYPE_OPTION)) {
-			searchParameters.put(SearchParameter.SEARCH_LOCATION_TYPE, line.getOptionValue(SEARCH_LOCATION_TYPE_OPTION));
-		}
-		
 		if (line.hasOption(COUNTRY_CODE_OPTION)) {
 			searchParameters.put(SearchParameter.COUNTRY_CODE, line.getOptionValue(COUNTRY_CODE_OPTION));
 		}
 		
 		if (line.hasOption(POSTAL_CODE_OPTION)) {
 			searchParameters.put(SearchParameter.POSTAL_CODE, line.getOptionValue(POSTAL_CODE_OPTION));
-		}
-		
-		if (line.hasOption(NETWORK_OPTION)) {
-			searchParameters.put(SearchParameter.NETWORK, line.getOptionValue(NETWORK_OPTION));
 		}
 		
 		return searchParameters;
