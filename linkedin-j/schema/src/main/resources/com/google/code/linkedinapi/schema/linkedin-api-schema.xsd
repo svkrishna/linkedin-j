@@ -746,7 +746,19 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="name"/>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="location"/>
+				<xs:enumeration value="industry"/>
+				<xs:enumeration value="network"/>
+				<xs:enumeration value="language"/>
+				<xs:enumeration value="current-company"/>
+				<xs:enumeration value="past-company"/>
+				<xs:enumeration value="school"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
         <xs:element minOccurs="0" ref="buckets"/>
       </xs:sequence>
     </xs:complexType>
@@ -764,7 +776,9 @@
       <xs:sequence>
         <xs:element ref="name"/>
         <xs:element ref="code"/>
+        <xs:element ref="count"/>		  
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="count" type="xs:integer"/>	
 </xs:schema>

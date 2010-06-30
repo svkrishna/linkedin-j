@@ -11,6 +11,8 @@ import org.xmlpull.v1.XmlSerializer;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Authorization;
+import com.google.code.linkedinapi.schema.Bucket;
+import com.google.code.linkedinapi.schema.Buckets;
 import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Country;
@@ -18,6 +20,8 @@ import com.google.code.linkedinapi.schema.Education;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.EndDate;
 import com.google.code.linkedinapi.schema.Error;
+import com.google.code.linkedinapi.schema.Facet;
+import com.google.code.linkedinapi.schema.Facets;
 import com.google.code.linkedinapi.schema.Headers;
 import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.InvitationRequest;
@@ -726,5 +730,29 @@ public class XppElementFactory implements SchemaElementFactory<String> {
     	} else {
     		return null;
     	}
+	}
+
+	@Override
+	public Bucket createBucket() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Buckets createBuckets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Facet createFacet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Facets createFacets() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

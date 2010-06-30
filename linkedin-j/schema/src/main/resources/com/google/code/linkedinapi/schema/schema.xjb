@@ -66,6 +66,17 @@
 			<typesafeEnumMember name="MOBILE" value="mobile"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="FacetType">
+			<typesafeEnumMember name="LOCATION" value="location"/>
+			<typesafeEnumMember name="INDUSTRY" value="industry"/>
+			<typesafeEnumMember name="NETWORK" value="network"/>
+			<typesafeEnumMember name="LANGUAGE" value="language"/>
+			<typesafeEnumMember name="CURRENT_COMPANY" value="current-company"/>
+			<typesafeEnumMember name="PAST_COMPANY" value="past-company"/>
+			<typesafeEnumMember name="SCHOOL" value="school"/>
+		</typesafeEnumClass>
+	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>

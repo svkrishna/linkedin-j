@@ -304,14 +304,14 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 		assertNotNull("People should never be null.", people);
 	}
 
-	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int)}.
-	 */
-	@Test
-	public void testSearchPeopleIntInt() {
-		Future<People> people = client.searchPeople(1, 5);
-		assertNotNull("People should never be null.", people);
-	}
+//	/**
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int)}.
+//	 */
+//	@Test
+//	public void testSearchPeopleIntInt() {
+//		Future<People> people = client.searchPeople(1, 5);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int)}.
@@ -324,14 +324,14 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 		assertNotNull("People should never be null.", people);
 	}
 
-	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
-	 */
-	@Test
-	public void testSearchPeopleSearchSortOrder() {
-		Future<People> people = client.searchPeople(SearchSortOrder.RELEVANCE);
-		assertNotNull("People should never be null.", people);
-	}
+//	/**
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+//	 */
+//	@Test
+//	public void testSearchPeopleSearchSortOrder() {
+//		Future<People> people = client.searchPeople(SearchSortOrder.RELEVANCE);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
@@ -344,14 +344,14 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 		assertNotNull("People should never be null.", people);
 	}
 
-	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
-	 */
-	@Test
-	public void testSearchPeopleIntIntSearchSortOrder() {
-		Future<People> people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
-		assertNotNull("People should never be null.", people);
-	}
+//	/**
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+//	 */
+//	@Test
+//	public void testSearchPeopleIntIntSearchSortOrder() {
+//		Future<People> people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.

@@ -19,7 +19,10 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.google.code.linkedinapi.client.Parameter;
 import com.google.code.linkedinapi.client.enumeration.FieldEnum;
+import com.google.code.linkedinapi.client.enumeration.SearchParameter;
+import com.google.code.linkedinapi.schema.FacetType;
 
 /**
  * The Class LinkedInApiUrls.
@@ -354,7 +357,30 @@ public final class LinkedInApiUrls {
     		
     		return this;
     	}
-    	
+	    
+	    public LinkedInApiUrlBuilder withFacets(List<Parameter<FacetType, String>> facets) {
+	    	Map<FacetType, List<String>> facetsMap = new HashMap<FacetType, List<String>>();
+	    	for (Parameter<FacetType, String> facet : facets) {
+	    		List<String> lstFacets = facetsMap.get(facet.getName());
+	    		if (lstFacets == null) {
+	    			lstFacets = new ArrayList<String>();
+	    			facetsMap.put(facet.getName(), lstFacets);
+	    		}
+	    		lstFacets.add(facet.getValue());    		
+	    	}
+	    	List<String> facetParamValues = new ArrayList<String>();
+	    	for (Map.Entry<FacetType, List<String>> entry : facetsMap.entrySet()) {
+	    		StringBuilder buffer = new StringBuilder();
+	    		buffer.append(entry.getKey().value());
+	    		for (String facetValue: entry.getValue()) {
+	    			buffer.append(",");
+	    			buffer.append(facetValue);
+	    		}
+	    		facetParamValues.add(buffer.toString());
+	    	}
+			return withParameters(SearchParameter.FACET.fieldName(), facetParamValues);
+	    }
+	    
     	/**
 	     * Builds the url.
 	     * 

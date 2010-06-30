@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.Buckets;
 import com.google.code.linkedinapi.schema.Facet;
+import com.google.code.linkedinapi.schema.FacetType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -25,7 +26,7 @@ public class FacetImpl
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
-    protected String code;
+    protected FacetType code;
     @XmlElement(type = BucketsImpl.class)
     protected BucketsImpl buckets;
 
@@ -37,11 +38,11 @@ public class FacetImpl
         this.name = value;
     }
 
-    public String getCode() {
+    public FacetType getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(FacetType value) {
         this.code = value;
     }
 

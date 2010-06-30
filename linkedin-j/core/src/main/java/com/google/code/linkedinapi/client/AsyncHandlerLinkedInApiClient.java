@@ -401,17 +401,6 @@ public interface AsyncHandlerLinkedInApiClient extends LinkedInAuthenticationCli
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
-     * @param start the start
-     * @param count the count
-     * 
-     * @return the future< people>
-     */
-    public void searchPeople(int start, int count, AsyncResponseHandler<People> handler);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
      * @param searchParameters the search parameters
      * @param start the start
      * @param count the count
@@ -424,34 +413,12 @@ public interface AsyncHandlerLinkedInApiClient extends LinkedInAuthenticationCli
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
-     * @param sortOrder the sort order
-     * 
-     * @return the future< people>
-     */
-    public void searchPeople(SearchSortOrder sortOrder, AsyncResponseHandler<People> handler);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
      * @param searchParameters the search parameters
      * @param sortOrder the sort order
      * 
      * @return the future< people>
      */
     public void searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder, AsyncResponseHandler<People> handler);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
-     * @param start the start
-     * @param count the count
-     * @param sortOrder the sort order
-     * 
-     * @return the future< people>
-     */
-    public void searchPeople(int start, int count, SearchSortOrder sortOrder, AsyncResponseHandler<People> handler);
 
     /**
      * Search people.

@@ -17,6 +17,7 @@ import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -489,17 +490,6 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
-     * @param start the start
-     * @param count the count
-     * 
-     * @return the people
-     */
-    public People searchPeople(int start, int count);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
      * @param searchParameters the search parameters
      * @param start the start
      * @param count the count
@@ -507,16 +497,6 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @return the people
      */
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
-     * @param sortOrder the sort order
-     * 
-     * @return the people
-     */
-    public People searchPeople(SearchSortOrder sortOrder);
 
     /**
      * Search people.
@@ -533,13 +513,97 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
+     * @param searchParameters the search parameters
      * @param start the start
      * @param count the count
      * @param sortOrder the sort order
      * 
      * @return the people
      */
-    public People searchPeople(int start, int count, SearchSortOrder sortOrder);
+    public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
+                               SearchSortOrder sortOrder);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, int start, int count);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param sortOrder the sort order
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, SearchSortOrder sortOrder);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param start the start
+     * @param count the count
+     * @param sortOrder the sort order
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, int start, int count,
+                               SearchSortOrder sortOrder);
+    
+
+    // Faceted Search
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, List<Parameter<FacetType, String>> facets);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count, List<Parameter<FacetType, String>> facets);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param sortOrder the sort order
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets);
 
     /**
      * Search people.
@@ -553,10 +617,56 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @return the people
      */
     public People searchPeople(Map<SearchParameter, String> searchParameters, int start, int count,
-                               SearchSortOrder sortOrder);
+                               SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets);
 
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, List<Parameter<FacetType, String>> facets);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, int start, int count, List<Parameter<FacetType, String>> facets);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param sortOrder the sort order
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets);
+
+    /**
+     * Search people.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
+     * 
+     * @param searchParameters the search parameters
+     * @param start the start
+     * @param count the count
+     * @param sortOrder the sort order
+     * 
+     * @return the people
+     */
+    public People searchPeople(Map<SearchParameter, String> searchParameters, Set<ProfileField> profileFields, int start, int count,
+                               SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets);
+    
     // Post Network Update API
-
     /**
      * Post network update.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1009">http://developer.linkedin.com/docs/DOC-1009</a>

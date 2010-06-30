@@ -402,17 +402,6 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
-     * @param start the start
-     * @param count the count
-     * 
-     * @return the future< people>
-     */
-    public Future<People> searchPeople(int start, int count);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
      * @param searchParameters the search parameters
      * @param start the start
      * @param count the count
@@ -425,34 +414,12 @@ public interface AsyncLinkedInApiClient extends LinkedInAuthenticationClient {
      * Search people.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
      * 
-     * @param sortOrder the sort order
-     * 
-     * @return the future< people>
-     */
-    public Future<People> searchPeople(SearchSortOrder sortOrder);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
      * @param searchParameters the search parameters
      * @param sortOrder the sort order
      * 
      * @return the future< people>
      */
     public Future<People> searchPeople(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder);
-
-    /**
-     * Search people.
-     * For details see <a href="http://developer.linkedin.com/docs/DOC-1005">http://developer.linkedin.com/docs/DOC-1005</a>
-     * 
-     * @param start the start
-     * @param count the count
-     * @param sortOrder the sort order
-     * 
-     * @return the future< people>
-     */
-    public Future<People> searchPeople(int start, int count, SearchSortOrder sortOrder);
 
     /**
      * Search people.

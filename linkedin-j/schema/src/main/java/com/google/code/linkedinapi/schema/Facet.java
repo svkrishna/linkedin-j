@@ -14,7 +14,19 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}name"/>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="location"/>
+ *               &lt;enumeration value="industry"/>
+ *               &lt;enumeration value="network"/>
+ *               &lt;enumeration value="language"/>
+ *               &lt;enumeration value="current-company"/>
+ *               &lt;enumeration value="past-company"/>
+ *               &lt;enumeration value="school"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element ref="{}buckets" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -54,20 +66,20 @@ public interface Facet
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link FacetType }
      *     
      */
-    String getCode();
+    FacetType getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link FacetType }
      *     
      */
-    void setCode(String value);
+    void setCode(FacetType value);
 
     /**
      * Gets the value of the buckets property.

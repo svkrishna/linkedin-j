@@ -397,17 +397,6 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<People> searchPeople(final int start, final int count) {
-    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
-    	client.searchPeople(start, count, handler);
-    	
-    	return handler.getFuture();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count) {
     	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
     	client.searchPeople(searchParameters, start, count, handler);
@@ -419,31 +408,9 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
-    public Future<People> searchPeople(final SearchSortOrder sortOrder) {
-    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
-    	client.searchPeople(sortOrder, handler);
-    	
-    	return handler.getFuture();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Future<People> searchPeople(final Map<SearchParameter, String> searchParameters, final SearchSortOrder sortOrder) {
     	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
     	client.searchPeople(searchParameters, sortOrder, handler);
-    	
-    	return handler.getFuture();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Future<People> searchPeople(final int start, final int count, final SearchSortOrder sortOrder) {
-    	final NullResponseHandler<People> handler = new NullResponseHandler<People>();
-    	client.searchPeople(start, count, sortOrder, handler);
     	
     	return handler.getFuture();
     }

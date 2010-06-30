@@ -319,11 +319,11 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int)}.
 	 */
-	@Test
-	public void testSearchPeopleIntInt() {
-		People people = client.searchPeople(1, 5);
-		assertNotNull("People should never be null.", people);
-	}
+//	@Test
+//	public void testSearchPeopleIntInt() {
+//		People people = client.searchPeople(1, 5);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int)}.
@@ -339,11 +339,11 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
-	@Test
-	public void testSearchPeopleSearchSortOrder() {
-		People people = client.searchPeople(SearchSortOrder.RELEVANCE);
-		assertNotNull("People should never be null.", people);
-	}
+//	@Test
+//	public void testSearchPeopleSearchSortOrder() {
+//		People people = client.searchPeople(SearchSortOrder.RELEVANCE);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
@@ -359,11 +359,11 @@ public class LinkedInApiDomClientTest extends LinkedInApiClientTest {
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
-	@Test
-	public void testSearchPeopleIntIntSearchSortOrder() {
-		People people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
-		assertNotNull("People should never be null.", people);
-	}
+//	@Test
+//	public void testSearchPeopleIntIntSearchSortOrder() {
+//		People people = client.searchPeople(1, 5, SearchSortOrder.RELEVANCE);
+//		assertNotNull("People should never be null.", people);
+//	}
 
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.

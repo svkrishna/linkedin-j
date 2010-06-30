@@ -211,6 +211,30 @@ public interface SchemaElementFactory<T> {
 	 * 
 	 */
 	public Connections createConnections();
+	
+    /**
+     * Create an instance of {@link Facets }
+     * 
+     */
+    public Facets createFacets();
+	
+    /**
+     * Create an instance of {@link Facet }
+     * 
+     */
+    public Facet createFacet();
+
+    /**
+     * Create an instance of {@link Bucket }
+     * 
+     */
+    public Bucket createBucket();
+
+    /**
+     * Create an instance of {@link Buckets }
+     * 
+     */
+    public Buckets createBuckets();		
 
 	/**
 	 * Create an instance of {@link T }{@code <}{@link NetworkUpdateContentType }{@code >}}

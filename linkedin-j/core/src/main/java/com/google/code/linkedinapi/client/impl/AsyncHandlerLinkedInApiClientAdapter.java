@@ -487,19 +487,6 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @Override
-    public void searchPeople(final int start, final int count, final AsyncResponseHandler<People> handler) {
-        handler.setFuture(execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(start, count);
-            }
-        }));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count, final AsyncResponseHandler<People> handler) {
         handler.setFuture(execute(new Callable<People>() {
             @Override
@@ -513,37 +500,11 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @Override
-    public void searchPeople(final SearchSortOrder sortOrder, final AsyncResponseHandler<People> handler) {
-        handler.setFuture(execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(sortOrder);
-            }
-        }));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void searchPeople(final Map<SearchParameter, String> searchParameters, final SearchSortOrder sortOrder, final AsyncResponseHandler<People> handler) {
         handler.setFuture(execute(new Callable<People>() {
             @Override
             public People call() throws Exception {
                 return client.searchPeople(searchParameters, sortOrder);
-            }
-        }));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void searchPeople(final int start, final int count, final SearchSortOrder sortOrder, final AsyncResponseHandler<People> handler) {
-        handler.setFuture(execute(new Callable<People>() {
-            @Override
-            public People call() throws Exception {
-                return client.searchPeople(start, count, sortOrder);
             }
         }));
     }

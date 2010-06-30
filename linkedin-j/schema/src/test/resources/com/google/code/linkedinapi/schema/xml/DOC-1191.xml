@@ -430,14 +430,17 @@
 			<bucket>
 			  <name>United States</name>
 			  <code>us:0</code>
+			  <count>13</count>
 			</bucket>
 			<bucket>
 			  <name>San Francisco Bay Area</name>
 			  <code>us:84</code>
+			  <count>13</count>
 			</bucket>
 			<bucket>
 			  <name>France</name>
 			  <code>fr:0</code>
+			  <count>13</count>
 			</bucket>
 		  </buckets>
 		</facet>
@@ -448,10 +451,12 @@
 			<bucket>
 			  <name>English</name>
 			  <code>en</code>
+			  <count>13</count>
 			</bucket>
 			<bucket>
 			  <name>Spanish</name>
 			  <code>es</code>
+			  <count>13</count>
 			</bucket>
 		  </buckets>
 		</facet>

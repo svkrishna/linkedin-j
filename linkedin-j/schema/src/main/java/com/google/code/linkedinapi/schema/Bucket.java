@@ -15,6 +15,7 @@ package com.google.code.linkedinapi.schema;
  *       &lt;sequence>
  *         &lt;element ref="{}name"/>
  *         &lt;element ref="{}code"/>
+ *         &lt;element ref="{}count"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -67,5 +68,25 @@ public interface Bucket
      *     
      */
     void setCode(String value);
+
+    /**
+     * Gets the value of the count property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getCount();
+
+    /**
+     * Sets the value of the count property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setCount(Long value);
 
 }
