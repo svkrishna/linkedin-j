@@ -4,7 +4,10 @@
 package com.google.code.linkedinapi.client.examples;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.cli.BasicParser;
@@ -17,7 +20,12 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.Parameter;
+import com.google.code.linkedinapi.client.constant.LanguageCodes;
+import com.google.code.linkedinapi.client.constant.RelationshipCodes;
+import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
+import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 
@@ -141,7 +149,11 @@ public class SearchApiExample {
     		
     		if(!searchParameters.isEmpty()) {
     			System.out.println("Searching for users.");
-    			People people = client.searchPeople(searchParameters);
+    			List<Parameter<FacetType, String>> facets = new ArrayList<Parameter<FacetType,String>>();
+    			facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.OUT_OF_NETWORK_CONNECTIONS));
+    			facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.SECOND_DEGREE_CONNECTIONS));
+    			facets.add(new Parameter<FacetType, String>(FacetType.LANGUAGE, LanguageCodes.ENGLISH));
+    			People people = client.searchPeople(searchParameters, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.ID, ProfileField.HEADLINE), facets);
     			printResult(people);
     		} else {
     			System.out.println("Searching for users.");
