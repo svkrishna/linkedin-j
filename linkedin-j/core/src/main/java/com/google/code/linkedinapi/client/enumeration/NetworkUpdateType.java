@@ -43,6 +43,11 @@ public enum NetworkUpdateType implements FieldEnum {
     PICTURE_UPDATE("PICT"),
 
     /**
+     * A connection has updated their extended profile, personal information such as phone number, IM account, and Twitter handle.
+     */
+    EXTENDED_PROFILE_UPDATE("PRFX"),
+    
+    /**
      * A connection was recommended
      */
     RECOMMENDATION_UPDATE("RECU"),

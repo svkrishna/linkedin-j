@@ -152,6 +152,7 @@
 		<xs:enumeration value="PROF"/>
 		<xs:enumeration value="QSTN"/>
 		<xs:enumeration value="STAT"/>
+		<xs:enumeration value="PRFX"/>
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>

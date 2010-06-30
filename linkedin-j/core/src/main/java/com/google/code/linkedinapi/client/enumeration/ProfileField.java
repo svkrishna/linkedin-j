@@ -12,7 +12,7 @@ import java.util.Set;
  * @author Nabeel Mukhtar
  *
  */
-public enum ProfileField implements FieldEnum {
+public enum ProfileField implements CompositeEnum<ProfileField> {
 
     /**
      * the member token for this member
@@ -307,5 +307,10 @@ public enum ProfileField implements FieldEnum {
 			}
 		}
 		return valuesForConnections;
+	}
+
+	@Override
+	public ProfileField parent() {
+		return null;
 	}
 }

@@ -5,6 +5,5 @@ public interface FieldEnum {
 	/**
 	 * @return the name of the field
 	 */
-	public abstract String fieldName();
-
+	public String fieldName();
 }

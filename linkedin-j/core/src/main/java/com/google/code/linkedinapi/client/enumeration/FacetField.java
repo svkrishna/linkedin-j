@@ -10,42 +10,42 @@ import java.util.Map;
  * @author Nabeel Mukhtar
  *
  */
-public enum FacetField implements FieldEnum {
+public enum FacetField implements CompositeEnum<FacetField> {
 
     /**
      * A human readable name for the facet.
      */
-	NAME("name"),
+	NAME("name", null),
 
     /**
      * The machine processable value for the facet.
      */
-	CODE("code"),
+	CODE("code", null),
 
     /**
      * The facet bucket values for the facet.
      */
-	BUCKETS("buckets"),
+	BUCKETS("buckets", null),
 
     /**
      * A human readable name for the facet bucket.
      */
-	BUCKET_NAME("name"),
+	BUCKET_NAME("name", BUCKETS),
 
     /**
      * The machine processable value for the bucket.
      */
-	BUCKET_CODE("code"),
+	BUCKET_CODE("code", BUCKETS),
 
     /**
      * The number of results inside the bucket.
      */
-	BUCKET_COUNT("count"),
+	BUCKET_COUNT("count", BUCKETS),
 
 	/**
      * If this bucket's results are included in your search query.
      */
-	BUCKET_SELECTED("selected");
+	BUCKET_SELECTED("selected", BUCKETS);
     
     /**
      * Field Description.
@@ -61,14 +61,18 @@ public enum FacetField implements FieldEnum {
     /** Field description */
     private final String fieldName;
 
+    /** Field description */
+    private final FacetField parent;
+
     /**
      * Constructs ...
      *
      *
      * @param name
      */
-    FacetField(String name) {
+    FacetField(String name, FacetField parent) {
         this.fieldName = name;
+        this.parent = parent;
     }
 
     /**
@@ -95,5 +99,10 @@ public enum FacetField implements FieldEnum {
 	 */
 	public static FacetField fromString(String symbol) {
 		return stringToEnum.get(symbol);
+	}
+
+	@Override
+	public FacetField parent() {
+		return parent;
 	}
 }

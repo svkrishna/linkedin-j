@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlEnumValue;
  *     &lt;enumeration value="PROF"/>
  *     &lt;enumeration value="QSTN"/>
  *     &lt;enumeration value="STAT"/>
+ *     &lt;enumeration value="PRFX"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -59,7 +60,9 @@ public enum NetworkUpdateReturnType {
     @XmlEnumValue("QSTN")
     QUESTION_UPDATED("QSTN"),
     @XmlEnumValue("STAT")
-    STATUS_UPDATED("STAT");
+    STATUS_UPDATED("STAT"),
+    @XmlEnumValue("PRFX")
+    EXTENDED_PROFILE_UPDATED("PRFX");
     private final String value;
 
     NetworkUpdateReturnType(String v) {
