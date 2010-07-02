@@ -23,10 +23,14 @@ import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 import com.google.code.linkedinapi.client.Parameter;
 import com.google.code.linkedinapi.client.constant.LanguageCodes;
 import com.google.code.linkedinapi.client.constant.RelationshipCodes;
+import com.google.code.linkedinapi.client.enumeration.FacetField;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
+import com.google.code.linkedinapi.schema.Facet;
 import com.google.code.linkedinapi.schema.FacetType;
+import com.google.code.linkedinapi.schema.Facets;
 import com.google.code.linkedinapi.schema.People;
+import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 
 /**
@@ -153,8 +157,9 @@ public class SearchApiExample {
     			facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.OUT_OF_NETWORK_CONNECTIONS));
     			facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.SECOND_DEGREE_CONNECTIONS));
     			facets.add(new Parameter<FacetType, String>(FacetType.LANGUAGE, LanguageCodes.ENGLISH));
-    			People people = client.searchPeople(searchParameters, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.ID, ProfileField.HEADLINE), facets);
-    			printResult(people);
+    			PeopleSearch people = client.searchPeople(searchParameters, EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.ID, ProfileField.HEADLINE), EnumSet.of(FacetField.NAME, FacetField.CODE), facets);
+    			printResult(people.getPeople());
+    			printResult(people.getFacets());
     		} else {
     			System.out.println("Searching for users.");
     			People people = client.searchPeople();
@@ -283,6 +288,16 @@ public class SearchApiExample {
     		System.out.println(person.getId() + ":" + person.getFirstName() + " " + person.getLastName() + ":" + person.getHeadline());
     	}
 	}
+    
+	private static void printResult(Facets facets) {
+    	System.out.println("================================");
+    	System.out.println("Total facet result:" + facets.getTotal());
+    	for (Facet facet : facets.getFacetList()) {
+    		System.out.println(facet.getName() + ":" + facet.getCode());
+    	}
+	}
+
+    
     
     /**
      *

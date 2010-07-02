@@ -62,6 +62,14 @@ public final class LinkedInApiUrls {
     public static final String SEARCH_PEOPLE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchPeople");
 
+    /** The Constant SEARCH_PEOPLE. */
+    public static final String SEARCH_FACETS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacets");
+    
+    /** The Constant SEARCH_PEOPLE_FACETS. */
+    public static final String SEARCH_PEOPLE_FACETS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchPeopleFacets");
+    
     /** The Constant POST_UPDATE. */
     public static final String POST_UPDATE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postUpdate");
