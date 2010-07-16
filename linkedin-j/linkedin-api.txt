@@ -164,3 +164,4 @@ X. Authorization changes: http://developer.linkedin.com/community/apis/blog/2010
 New Search API.
 Field selectors can be nested...
 http://developer.linkedin.com/community/apis/blog/2010/06/24/greater-access-and-more-profile-data;jsessionid=DBA8F8B308D810CF3618A240A9867A2B.node0
+http://developer.linkedin.com/community/apis/blog/
