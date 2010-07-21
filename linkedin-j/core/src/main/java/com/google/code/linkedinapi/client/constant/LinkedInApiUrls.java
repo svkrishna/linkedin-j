@@ -1,5 +1,18 @@
-/**
- *
+/*
+ * Copyright 2010 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
 package com.google.code.linkedinapi.client.constant;
 
@@ -20,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.code.linkedinapi.client.Parameter;
+import com.google.code.linkedinapi.client.enumeration.CompositeEnum;
 import com.google.code.linkedinapi.client.enumeration.FieldEnum;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.schema.FacetType;
@@ -345,14 +359,17 @@ public final class LinkedInApiUrls {
 	     * 
 	     * @return the linked in api url builder
 	     */
-	    public LinkedInApiUrlBuilder withFieldEnumSet(String name, Set<? extends FieldEnum> enumSet) {
+	    public LinkedInApiUrlBuilder withFieldEnumSet(String name, Set<? extends CompositeEnum<?>> enumSet) {
 	    	StringBuilder builder = new StringBuilder();
 	    	if (!enumSet.isEmpty()) {
 	        	builder.append(":");
-	    		Iterator<? extends FieldEnum> iter = enumSet.iterator();
+	    		Iterator<? extends CompositeEnum<?>> iter = enumSet.iterator();
 	        	builder.append("(");
 	    		while (iter.hasNext()) {
-	    			FieldEnum fieldEnum = iter.next();
+	    			CompositeEnum<?> fieldEnum = iter.next();
+	    			if (fieldEnum.parent() != null) {
+	    				
+	    			}
 	    			builder.append(fieldEnum.fieldName());
 	    			if (iter.hasNext()) {
 	    				builder.append(",");
