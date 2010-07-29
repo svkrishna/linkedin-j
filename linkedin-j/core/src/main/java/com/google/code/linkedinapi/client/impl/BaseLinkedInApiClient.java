@@ -711,6 +711,29 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
+                                     Date endDate, boolean showHiddenMembers) {
+        assertNotNull("update types", updateTypes);
+        assertNotNull("start date", startDate);
+        assertNotNull("end date", endDate);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).withParameter("after",
+                                                String.valueOf(startDate.getTime())).withParameter("before",
+                                                    String.valueOf(endDate.getTime())).withParameterEnumSet("type",
+                                                        updateTypes).withParameter("show-hidden-members",
+                                                                String.valueOf(showHiddenMembers)).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public UpdateComments getNetworkUpdateComments(String networkUpdateId) {
         assertNotNullOrEmpty("network update id", networkUpdateId);
 

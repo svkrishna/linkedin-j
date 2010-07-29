@@ -199,6 +199,22 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
     public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
                                      Date endDate);
 
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param updateTypes the update types
+     * @param start the start
+     * @param count the count
+     * @param startDate the start date
+     * @param endDate the end date
+     * @return the network updates
+     */
+    public Network getNetworkUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
+                                     Date endDate, boolean showHiddenMembers);
+    
+
     /**
      * Gets the network update comments.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
