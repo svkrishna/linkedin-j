@@ -172,3 +172,19 @@ Update XPP classes.
 Field selectors can be nested...
 http://developer.linkedin.com/community/apis/blog/
 http://developer.linkedin.com/community/apis/blog/
+
+
+<person>
+  <recommendations-received total="1">
+    <recommendation>
+      <id>15384198</id>
+      <recommendation-type>COLLEAGUE</recommendation-type>
+      <recommendation-text>I recommend your work for testing..</recommendation-text>
+      <recommender>
+        <id>EDgfANrAzD</id>
+        <first-name>Nabeel</first-name>
+        <last-name>Siddiqui</last-name>
+      </recommender>
+    </recommendation>
+  </recommendations-received>
+</person>
