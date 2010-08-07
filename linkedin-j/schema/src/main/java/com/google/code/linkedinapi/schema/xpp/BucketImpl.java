@@ -17,6 +17,12 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
 import com.google.code.linkedinapi.schema.Bucket;
 
 public class BucketImpl
@@ -53,4 +59,33 @@ public class BucketImpl
         this.count = value;
     }
 
+	@Override
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("code")) {
+        		setCode(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("count")) {
+        		setCount(XppUtils.getElementValueAsLongFromNode(parser));
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
+	}
+
+	@Override
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "bucket");
+		XppUtils.setElementValueToNode(element, "name", getName());
+		XppUtils.setElementValueToNode(element, "code", getCode());
+		XppUtils.setElementValueToNode(element, "count", getCount());
+		serializer.endTag(null, "bucket");
+	}
 }
