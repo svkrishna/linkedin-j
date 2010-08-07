@@ -362,28 +362,67 @@ public final class LinkedInApiUrls {
 	    public LinkedInApiUrlBuilder withFieldEnumSet(String name, Set<? extends CompositeEnum<?>> enumSet) {
 	    	StringBuilder builder = new StringBuilder();
 	    	if (!enumSet.isEmpty()) {
-	        	builder.append(":");
-	    		Iterator<? extends CompositeEnum<?>> iter = enumSet.iterator();
-	        	builder.append("(");
-	    		while (iter.hasNext()) {
-	    			CompositeEnum<?> fieldEnum = iter.next();
-	    			if (fieldEnum.parent() != null) {
-	    				
-	    			}
-	    			builder.append(fieldEnum.fieldName());
-	    			if (iter.hasNext()) {
-	    				builder.append(",");
-	    			}
+	    		Map<? extends CompositeEnum<?>, Set<CompositeEnum<?>>> enumMap = convertIntoEnumMap(enumSet);
+				builder.append(":");
+				builder.append("(");
+	    		appendChildEnums(builder, enumMap.remove(null));
+	    		if (!enumMap.isEmpty()) {
+		    		builder.append(",");
+		    		Iterator<? extends CompositeEnum<?>> parentIter = enumMap.keySet().iterator();
+		    		while (parentIter.hasNext()) {
+		    			CompositeEnum<?> parent = parentIter.next();
+		    			Set<? extends CompositeEnum<?>> childEnums = enumMap.get(parent);
+		    			if (parent != null) {
+		    				builder.append(parent.fieldName());
+		    				builder.append(":");
+		    				builder.append("(");
+				        	appendChildEnums(builder, childEnums);
+							builder.append(")");
+		    			}
+			        	if (parentIter.hasNext()) {
+		    				builder.append(",");
+			        	}
+		    		}
 	    		}
-	        	builder.append(")");
+				builder.append(")");
 	    	}
     		
     		fieldsMap.put(name, builder.toString());
     		
     		return this;
     	}
+
+		/**
+		 * @param builder
+		 * @param childEnums
+		 */
+		private void appendChildEnums(StringBuilder builder,
+				Set<? extends CompositeEnum<?>> childEnums) {
+			Iterator<? extends CompositeEnum<?>> childIter = childEnums.iterator();
+			while (childIter.hasNext()) {
+				CompositeEnum<?> fieldEnum = childIter.next();
+				builder.append(fieldEnum.fieldName());
+				if (childIter.hasNext()) {
+					builder.append(",");
+				}
+			}
+		}
 	    
-	    public LinkedInApiUrlBuilder withFacets(List<Parameter<FacetType, String>> facets) {
+	    private Map<? extends CompositeEnum<?>, Set<CompositeEnum<?>>> convertIntoEnumMap(
+				Set<? extends CompositeEnum<?>> enumSet) {
+	    	Map<CompositeEnum<?>, Set<CompositeEnum<?>>> enumMap = new HashMap<CompositeEnum<?>, Set<CompositeEnum<?>>>();
+	    	for (CompositeEnum<?> e : enumSet) {
+	    		Set<CompositeEnum<?>> childEnums = enumMap.get(e.parent());
+	    		if (childEnums == null) {
+	    			childEnums = new HashSet<CompositeEnum<?>>();
+	    			enumMap.put(e.parent(), childEnums);
+	    		}
+	    		childEnums.add(e);
+	    	}
+			return enumMap;
+		}
+
+		public LinkedInApiUrlBuilder withFacets(List<Parameter<FacetType, String>> facets) {
 	    	Map<FacetType, List<String>> facetsMap = new HashMap<FacetType, List<String>>();
 	    	for (Parameter<FacetType, String> facet : facets) {
 	    		List<String> lstFacets = facetsMap.get(facet.getName());

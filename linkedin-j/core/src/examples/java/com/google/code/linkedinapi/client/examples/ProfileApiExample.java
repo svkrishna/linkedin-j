@@ -17,6 +17,7 @@
 package com.google.code.linkedinapi.client.examples;
 
 import java.text.MessageFormat;
+import java.util.EnumSet;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -28,6 +29,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.schema.Person;
 
@@ -124,7 +126,7 @@ public class ProfileApiExample {
     			printResult(profile);
     		} else {
     			System.out.println("Fetching profile for current user.");
-    			Person profile = client.getProfileForCurrentUser();
+    			Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE, ProfileField.RELATION_TO_VIEWER_DISTANCE, ProfileField.RELATION_TO_VIEWER_RELATED_CONNECTIONS));
     			printResult(profile);
     		}
         } else {
