@@ -31,7 +31,8 @@ package com.google.code.linkedinapi.schema;
  *       &lt;sequence>
  *         &lt;element ref="{}id"/>
  *         &lt;element ref="{}recommendation-type"/>
- *         &lt;element ref="{}recommendation-snippet"/>
+ *         &lt;element ref="{}recommendation-text" minOccurs="0"/>
+ *         &lt;element ref="{}recommendation-snippet" minOccurs="0"/>
  *         &lt;choice>
  *           &lt;element ref="{}recommender"/>
  *           &lt;element ref="{}recommendee"/>
@@ -89,6 +90,26 @@ public interface Recommendation
      *     
      */
     void setRecommendationType(RecommendationType value);
+
+    /**
+     * Gets the value of the recommendationText property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getRecommendationText();
+
+    /**
+     * Sets the value of the recommendationText property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setRecommendationText(String value);
 
     /**
      * Gets the value of the recommendationSnippet property.

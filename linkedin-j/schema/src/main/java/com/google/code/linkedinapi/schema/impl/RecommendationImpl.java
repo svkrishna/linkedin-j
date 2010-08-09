@@ -34,6 +34,7 @@ import com.google.code.linkedinapi.schema.Recommender;
 @XmlType(name = "", propOrder = {
     "id",
     "recommendationType",
+    "recommendationText",
     "recommendationSnippet",
     "recommender",
     "recommendee",
@@ -50,7 +51,9 @@ public class RecommendationImpl
     protected String id;
     @XmlElement(name = "recommendation-type", required = true)
     protected RecommendationType recommendationType;
-    @XmlElement(name = "recommendation-snippet", required = true)
+    @XmlElement(name = "recommendation-text")
+    protected String recommendationText;
+    @XmlElement(name = "recommendation-snippet")
     protected String recommendationSnippet;
     @XmlElement(type = RecommenderImpl.class)
     protected RecommenderImpl recommender;
@@ -73,6 +76,14 @@ public class RecommendationImpl
 
     public void setRecommendationType(RecommendationType value) {
         this.recommendationType = value;
+    }
+
+    public String getRecommendationText() {
+        return recommendationText;
+    }
+
+    public void setRecommendationText(String value) {
+        this.recommendationText = value;
     }
 
     public String getRecommendationSnippet() {

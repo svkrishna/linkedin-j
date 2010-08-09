@@ -286,20 +286,20 @@
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
+        <xs:element minOccurs="0" ref="member-groups"/>
+        <xs:element minOccurs="0" ref="picture-url"/>
         <xs:choice minOccurs="0">
-          <xs:element ref="member-groups"/>
           <xs:element ref="person-activities"/>
           <xs:element ref="recommendations-given"/>
           <xs:element ref="recommendations-received"/>
+          <xs:sequence>
+            <xs:element ref="im-accounts"/>
+            <xs:element ref="twitter-accounts"/>
+            <xs:element ref="date-of-birth"/>
+            <xs:element ref="main-address"/>
+            <xs:element ref="phone-numbers"/>
+          </xs:sequence>
         </xs:choice>
-        <xs:element minOccurs="0" ref="picture-url"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="im-accounts"/>
-          <xs:element ref="twitter-accounts"/>
-          <xs:element ref="date-of-birth"/>
-          <xs:element ref="main-address"/>
-          <xs:element ref="phone-numbers"/>
-        </xs:sequence>
       </xs:sequence>
       <xs:attribute name="path"/>
     </xs:complexType>
@@ -547,21 +547,6 @@
   <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
-  <xs:element name="title" type="xs:string"/>
-  <xs:element name="author">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="first-name"/>
-        <xs:element ref="last-name"/>
-        <xs:element ref="headline"/>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
-        <xs:element ref="api-standard-profile-request"/>
-        <xs:element ref="site-standard-profile-request"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
@@ -619,6 +604,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="url" type="xs:anyURI"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
   <xs:element name="relation-to-viewer">
@@ -645,12 +645,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="recommendation">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="id"/>
         <xs:element ref="recommendation-type"/>
         <xs:element ref="recommendation-snippet"/>
+        <xs:element minOccurs="0" ref="recommendation-text"/>
         <xs:choice>
           <xs:element ref="recommender"/>
           <xs:sequence>
@@ -663,6 +665,7 @@
   </xs:element>
   <xs:element name="recommendation-type" type="xs:NCName"/>
   <xs:element name="recommendation-snippet" type="xs:string"/>
+  <xs:element name="recommendation-text" type="xs:string"/>
   <xs:element name="recommender">
     <xs:complexType>
       <xs:sequence>
@@ -688,7 +691,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
   <xs:element name="phone-number">

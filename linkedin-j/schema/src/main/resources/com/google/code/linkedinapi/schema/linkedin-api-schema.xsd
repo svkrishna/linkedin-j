@@ -509,7 +509,8 @@
       <xs:sequence>
         <xs:element ref="id"/>
         <xs:element ref="recommendation-type"/>
-        <xs:element ref="recommendation-snippet"/>
+        <xs:element minOccurs="0" ref="recommendation-text"/>
+        <xs:element minOccurs="0" ref="recommendation-snippet"/>
         <xs:choice>
           <xs:element ref="recommender"/>
           <xs:element ref="recommendee"/>
@@ -530,6 +531,7 @@
 	</xs:simpleType>
   </xs:element>
   <xs:element name="recommendation-snippet" type="xs:string"/>
+  <xs:element name="recommendation-text" type="xs:string"/>	
   <xs:element name="recommendee">
     <xs:complexType>
       <xs:sequence>

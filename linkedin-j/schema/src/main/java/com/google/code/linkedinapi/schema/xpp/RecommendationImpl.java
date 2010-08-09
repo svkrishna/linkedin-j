@@ -37,6 +37,7 @@ public class RecommendationImpl
     protected String id;
     protected RecommendationType recommendationType;
     protected String recommendationSnippet;
+    protected String recommendationText;
     protected RecommendeeImpl recommendee;
     protected RecommenderImpl recommender;
     protected String webUrl;
@@ -63,6 +64,14 @@ public class RecommendationImpl
 
     public void setRecommendationSnippet(String value) {
         this.recommendationSnippet = value;
+    }
+    
+    public String getRecommendationText() {
+        return recommendationText;
+    }
+
+    public void setRecommendationText(String value) {
+        this.recommendationText = value;
     }
 
     public Recommendee getRecommendee() {
@@ -102,6 +111,8 @@ public class RecommendationImpl
         		setRecommendationType(RecommendationType.fromValue(XppUtils.getElementValueFromNode(parser)));
         	} else if (name.equals("recommendation-snippet")) {
         		setRecommendationSnippet(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("recommendation-text")) {
+        		setRecommendationText(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("web-url")) {
         		setWebUrl(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("recommendee")) {
@@ -126,6 +137,7 @@ public class RecommendationImpl
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "recommendation-type", getRecommendationType().value());
 		XppUtils.setElementValueToNode(element, "recommendation-snippet", getRecommendationSnippet());
+		XppUtils.setElementValueToNode(element, "recommendation-text", getRecommendationText());
 		XppUtils.setElementValueToNode(element, "web-url", getWebUrl());
 		if (getRecommendee() != null) {
 			((RecommendeeImpl) getRecommendee()).toXml(serializer);
