@@ -32,6 +32,9 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}id"/>
  *         &lt;element ref="{}school-name"/>
  *         &lt;element ref="{}degree"/>
+ *         &lt;element ref="{}notes"/>
+ *         &lt;element ref="{}activities"/>
+ *         &lt;element ref="{}field-of-study"/>
  *         &lt;element ref="{}start-date"/>
  *         &lt;element ref="{}end-date"/>
  *       &lt;/sequence>
@@ -106,6 +109,66 @@ public interface Education
      *     
      */
     void setDegree(String value);
+
+    /**
+     * Gets the value of the notes property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getNotes();
+
+    /**
+     * Sets the value of the notes property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNotes(String value);
+
+    /**
+     * Gets the value of the activities property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getActivities();
+
+    /**
+     * Sets the value of the activities property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setActivities(String value);
+
+    /**
+     * Gets the value of the fieldOfStudy property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getFieldOfStudy();
+
+    /**
+     * Sets the value of the fieldOfStudy property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setFieldOfStudy(String value);
 
     /**
      * Gets the value of the startDate property.

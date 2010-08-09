@@ -408,6 +408,9 @@
         <xs:element ref="id"/>
         <xs:element ref="school-name"/>
         <xs:element ref="degree"/>
+		<xs:element ref="notes"/>
+		<xs:element ref="activities"/>
+		<xs:element ref="field-of-study"/>
         <xs:element ref="start-date"/>
         <xs:element ref="end-date"/>
       </xs:sequence>
@@ -415,6 +418,9 @@
   </xs:element>
   <xs:element name="school-name" type="xs:string"/>
   <xs:element name="degree" type="xs:string"/>
+  <xs:element name="notes" type="xs:string"/>
+  <xs:element name="activities" type="xs:string"/>
+  <xs:element name="field-of-study" type="xs:string"/>
   <xs:element name="member-url-resources">
     <xs:complexType>
       <xs:sequence>

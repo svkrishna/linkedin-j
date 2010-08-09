@@ -34,6 +34,9 @@ import com.google.code.linkedinapi.schema.StartDate;
     "id",
     "schoolName",
     "degree",
+    "notes",
+    "activities",
+    "fieldOfStudy",
     "startDate",
     "endDate"
 })
@@ -50,6 +53,12 @@ public class EducationImpl
     protected String schoolName;
     @XmlElement(required = true)
     protected String degree;
+    @XmlElement(required = true)
+    protected String notes;
+    @XmlElement(required = true)
+    protected String activities;
+    @XmlElement(name = "field-of-study", required = true)
+    protected String fieldOfStudy;
     @XmlElement(name = "start-date", required = true, type = StartDateImpl.class)
     protected StartDateImpl startDate;
     @XmlElement(name = "end-date", required = true, type = EndDateImpl.class)
@@ -77,6 +86,30 @@ public class EducationImpl
 
     public void setDegree(String value) {
         this.degree = value;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String value) {
+        this.notes = value;
+    }
+
+    public String getActivities() {
+        return activities;
+    }
+
+    public void setActivities(String value) {
+        this.activities = value;
+    }
+
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(String value) {
+        this.fieldOfStudy = value;
     }
 
     public StartDate getStartDate() {

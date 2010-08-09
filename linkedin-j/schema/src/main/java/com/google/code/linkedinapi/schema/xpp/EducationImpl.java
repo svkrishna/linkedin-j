@@ -39,6 +39,10 @@ public class EducationImpl
 	protected String id;
     protected String schoolName;
     protected String degree;
+    protected String notes;
+    protected String activities;
+    protected String fieldOfStudy;
+    
     protected StartDateImpl startDate;
     protected EndDateImpl endDate;
 
@@ -66,6 +70,30 @@ public class EducationImpl
         this.degree = value;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String value) {
+        this.notes = value;
+    }
+
+    public String getActivities() {
+        return activities;
+    }
+
+    public void setActivities(String value) {
+        this.activities = value;
+    }
+
+    public String getFieldOfStudy() {
+        return fieldOfStudy;
+    }
+
+    public void setFieldOfStudy(String value) {
+        this.fieldOfStudy = value;
+    }
+    
     public StartDate getStartDate() {
         return startDate;
     }
@@ -93,6 +121,12 @@ public class EducationImpl
         		setId(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("school-name")) {
         		setSchoolName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("notes")) {
+        		setNotes(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("activities")) {
+        		setActivities(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("field-of-study")) {
+        		setFieldOfStudy(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("degree")) {
         		setDegree(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("start-date")) {
@@ -116,6 +150,9 @@ public class EducationImpl
 		XmlSerializer element = serializer.startTag(null, "education");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "school-name", getSchoolName());
+		XppUtils.setElementValueToNode(element, "notes", getNotes());
+		XppUtils.setElementValueToNode(element, "activities", getActivities());
+		XppUtils.setElementValueToNode(element, "field-of-study", getFieldOfStudy());
 		XppUtils.setElementValueToNode(element, "degree", getDegree());
 		if (getStartDate() != null) {
 			((StartDateImpl) getStartDate()).toXml(serializer);
