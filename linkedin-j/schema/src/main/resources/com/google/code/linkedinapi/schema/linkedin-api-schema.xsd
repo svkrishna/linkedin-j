@@ -334,7 +334,7 @@
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="num-recommenders" type="xs:integer"/>
   <xs:element name="num-connections" type="xs:integer"/>
-  <xs:element name="num-connections-capped" type="xs:integer"/>
+  <xs:element name="num-connections-capped" type="xs:boolean"/>
   <xs:element name="public-profile-url" type="xs:anyURI"/>
   <xs:element name="relation-to-viewer">
     <xs:complexType>

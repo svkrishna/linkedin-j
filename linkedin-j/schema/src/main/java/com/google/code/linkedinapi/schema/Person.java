@@ -337,20 +337,20 @@ public interface Person
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Boolean }
      *     
      */
-    Long getNumConnectionsCapped();
+    Boolean isNumConnectionsCapped();
 
     /**
      * Sets the value of the numConnectionsCapped property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Boolean }
      *     
      */
-    void setNumConnectionsCapped(Long value);
+    void setNumConnectionsCapped(Boolean value);
 
     /**
      * Gets the value of the relationToViewer property.

@@ -64,7 +64,7 @@ public class PersonImpl
     protected Long currentStatusTimestamp;
     protected Long numRecommenders;
     protected Long numConnections;
-    protected Long numConnectionsCapped;
+    protected boolean numConnectionsCapped;
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
     protected String publicProfileUrl;
@@ -188,11 +188,11 @@ public class PersonImpl
         this.numConnections = value;
     }
 
-    public Long getNumConnectionsCapped() {
+    public Boolean isNumConnectionsCapped() {
         return numConnectionsCapped;
     }
 
-    public void setNumConnectionsCapped(Long value) {
+    public void setNumConnectionsCapped(Boolean value) {
         this.numConnectionsCapped = value;
     }
     
@@ -419,7 +419,7 @@ public class PersonImpl
         	} else if (name.equals("num-connections")) {
         		setNumConnections(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("num-connections-capped")) {
-        		setNumConnectionsCapped(XppUtils.getElementValueAsLongFromNode(parser));
+        		setNumConnectionsCapped(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
         	} else if (name.equals("distance")) {
         		setDistance(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("current-status")) {
@@ -533,7 +533,7 @@ public class PersonImpl
 		XppUtils.setElementValueToNode(element, "industry", getIndustry());
 		XppUtils.setElementValueToNode(element, "num-recommenders", getNumRecommenders());
 		XppUtils.setElementValueToNode(element, "num-connections", getNumConnections());
-		XppUtils.setElementValueToNode(element, "num-connections-capped", getNumConnectionsCapped());
+		XppUtils.setElementValueToNode(element, "num-connections-capped", isNumConnectionsCapped());
 		XppUtils.setElementValueToNode(element, "distance", getDistance());
 		XppUtils.setElementValueToNode(element, "current-status", getCurrentStatus());
 		XppUtils.setElementValueToNode(element, "current-status-timestamp", getCurrentStatusTimestamp());

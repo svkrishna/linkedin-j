@@ -119,9 +119,8 @@ public class PersonImpl
     @XmlElement(name = "num-connections", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numConnections;
-    @XmlElement(name = "num-connections-capped", type = String.class)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long numConnectionsCapped;
+    @XmlElement(name = "num-connections-capped")
+    protected Boolean numConnectionsCapped;
     @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
@@ -264,11 +263,11 @@ public class PersonImpl
         this.numConnections = value;
     }
 
-    public Long getNumConnectionsCapped() {
+    public Boolean isNumConnectionsCapped() {
         return numConnectionsCapped;
     }
 
-    public void setNumConnectionsCapped(Long value) {
+    public void setNumConnectionsCapped(Boolean value) {
         this.numConnectionsCapped = value;
     }
 
