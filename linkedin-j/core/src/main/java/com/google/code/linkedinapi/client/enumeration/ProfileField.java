@@ -136,7 +136,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     
     HONORS("honors", null, false),
 
-    INTERESTS("interests", null, true),
+    INTERESTS("interests", null, false),
     
     /**
      * A collection of positions a member has had, the total indicated by a total attribute
