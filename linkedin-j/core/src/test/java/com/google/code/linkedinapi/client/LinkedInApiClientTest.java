@@ -16,6 +16,7 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,9 +31,12 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
+import com.google.code.linkedinapi.client.constant.LanguageCodes;
+import com.google.code.linkedinapi.client.constant.RelationshipCodes;
 import com.google.code.linkedinapi.client.constant.TestConstants;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
+import com.google.code.linkedinapi.schema.FacetType;
 
 /**
  * @author Nabeel Mukhtar
@@ -133,5 +137,16 @@ public abstract class LinkedInApiClientTest extends TestCase {
 	protected static void assertNotNullOrEmpty(String message, String value) {
 		assertNotNull(message, value);
 		assertFalse(message, "".equals(value));
+	}
+	
+	/**
+	 * 
+	 */
+	protected List<Parameter<FacetType, String>> getTestFacets() {
+		List<Parameter<FacetType, String>> facets = new ArrayList<Parameter<FacetType,String>>();
+		facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.OUT_OF_NETWORK_CONNECTIONS));
+		facets.add(new Parameter<FacetType, String>(FacetType.NETWORK, RelationshipCodes.SECOND_DEGREE_CONNECTIONS));
+		facets.add(new Parameter<FacetType, String>(FacetType.LANGUAGE, LanguageCodes.ENGLISH));
+		return facets;
 	}
 }

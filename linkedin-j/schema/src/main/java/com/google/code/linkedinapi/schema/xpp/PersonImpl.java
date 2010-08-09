@@ -63,6 +63,8 @@ public class PersonImpl
     protected Long distance;
     protected Long currentStatusTimestamp;
     protected Long numRecommenders;
+    protected Long numConnections;
+    protected Long numConnectionsCapped;
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
     protected String publicProfileUrl;
@@ -177,7 +179,23 @@ public class PersonImpl
     public void setNumRecommenders(Long value) {
         this.numRecommenders = value;
     }
+    
+    public Long getNumConnections() {
+        return numConnections;
+    }
 
+    public void setNumConnections(Long value) {
+        this.numConnections = value;
+    }
+
+    public Long getNumConnectionsCapped() {
+        return numConnectionsCapped;
+    }
+
+    public void setNumConnectionsCapped(Long value) {
+        this.numConnectionsCapped = value;
+    }
+    
     public RelationToViewer getRelationToViewer() {
         return relationToViewer;
     }
@@ -398,6 +416,10 @@ public class PersonImpl
         		setIndustry(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("num-recommenders")) {
         		setNumRecommenders(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("num-connections")) {
+        		setNumConnections(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("num-connections-capped")) {
+        		setNumConnectionsCapped(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("distance")) {
         		setDistance(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("current-status")) {
@@ -510,6 +532,8 @@ public class PersonImpl
 		XppUtils.setElementValueToNode(element, "headline", getHeadline());
 		XppUtils.setElementValueToNode(element, "industry", getIndustry());
 		XppUtils.setElementValueToNode(element, "num-recommenders", getNumRecommenders());
+		XppUtils.setElementValueToNode(element, "num-connections", getNumConnections());
+		XppUtils.setElementValueToNode(element, "num-connections-capped", getNumConnectionsCapped());
 		XppUtils.setElementValueToNode(element, "distance", getDistance());
 		XppUtils.setElementValueToNode(element, "current-status", getCurrentStatus());
 		XppUtils.setElementValueToNode(element, "current-status-timestamp", getCurrentStatusTimestamp());

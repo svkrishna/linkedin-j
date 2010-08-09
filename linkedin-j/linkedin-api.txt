@@ -165,11 +165,11 @@ New Search API.
 Field selectors can be nested...
 http://developer.linkedin.com/community/apis/blog/2010/06/24/greater-access-and-more-profile-data;jsessionid=DBA8F8B308D810CF3618A240A9867A2B.node0
 
-New Search API.
-New Profile Field
-New Network Update Types
-Update XPP classes.
-Field selectors can be nested...
+X. New Search API.
+X. New Profile Field
+X. New Network Update Types
+X. Update XPP classes.
+X. Field selectors can be nested...
 http://developer.linkedin.com/community/apis/blog/
 http://developer.linkedin.com/community/apis/blog/
 

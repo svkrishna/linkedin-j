@@ -62,7 +62,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * country code for the LinkedIn member
      */
-    LOCATION_COUNTRY_CODE("code", LOCATION_COUNTRY, true),
+//    LOCATION_COUNTRY_CODE("code", LOCATION_COUNTRY, true),
 
     /**
      * the industry the LinkedIn member has indicated their profile belongs to
@@ -158,7 +158,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      */
     THREE_PAST_POSITIONS("three-past-positions", null, true),
     
-    NUM_RECOMMENDERS("num-recommenders", null, true),
+    NUM_RECOMMENDERS("num-recommenders", null, false),
     
     RECOMMENDATIONS_RECEIVED("recommendations-received", null, true),
     
@@ -192,17 +192,17 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      */
     MEMBER_URL_RESOURCES("member-url-resources", null, true),
 
-    MEMBER_URL("member-url", null, true),
+//    MEMBER_URL("member-url", null, true),
     
     /**
      * The fully-qualified URL being shared
      */
-    MEMBER_URL_URL("url", MEMBER_URL, false),
+    MEMBER_URL_URL("url", MEMBER_URL_RESOURCES, false),
 
     /**
      * The label given to the URL by the member
      */
-    MEMBER_URL_NAME("name", MEMBER_URL, false),
+    MEMBER_URL_NAME("name", MEMBER_URL_RESOURCES, false),
     
     /**
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
@@ -220,16 +220,16 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
-    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request", null, true),
+//    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request", null, true),
     
-    API_PUBLIC_PROFILE_REQUEST_URL("url", API_PUBLIC_PROFILE_REQUEST, true),
+//    API_PUBLIC_PROFILE_REQUEST_URL("url", API_PUBLIC_PROFILE_REQUEST, true),
     
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
-    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request", null, true),
+//    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request", null, true),
     
-    SITE_PUBLIC_PROFILE_REQUEST_URL("url", SITE_PUBLIC_PROFILE_REQUEST, true),
+//    SITE_PUBLIC_PROFILE_REQUEST_URL("url", SITE_PUBLIC_PROFILE_REQUEST, true),
 
     /**
      * An URL representing the resource you would request for programmatic access to the member's profile

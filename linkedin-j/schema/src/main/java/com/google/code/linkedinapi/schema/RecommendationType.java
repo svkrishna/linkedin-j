@@ -18,7 +18,6 @@
 package com.google.code.linkedinapi.schema;
 
 import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 
 
 /**
@@ -29,11 +28,11 @@ import javax.xml.bind.annotation.XmlEnumValue;
  * <pre>
  * &lt;simpleType>
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="COL"/>
- *     &lt;enumeration value="BSP"/>
- *     &lt;enumeration value="SPR"/>
- *     &lt;enumeration value="STU"/>
- *     &lt;enumeration value="EDU"/>
+ *     &lt;enumeration value="COLLEAGUE"/>
+ *     &lt;enumeration value="BUSINESS_PARTNER"/>
+ *     &lt;enumeration value="SERVICE_PROVIDER"/>
+ *     &lt;enumeration value="STUDENT"/>
+ *     &lt;enumeration value="EDUCATION"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -42,33 +41,18 @@ import javax.xml.bind.annotation.XmlEnumValue;
 @XmlEnum
 public enum RecommendationType {
 
-    @XmlEnumValue("COL")
-    COLLEAGUE("COL"),
-    @XmlEnumValue("BSP")
-    BUSINESS_PARTNER("BSP"),
-    @XmlEnumValue("SPR")
-    SERVICE_PROVIDER("SPR"),
-    @XmlEnumValue("STU")
-    STUDENT("STU"),
-    @XmlEnumValue("EDU")
-    EDUCATION("EDU");
-    private final String value;
-
-    RecommendationType(String v) {
-        value = v;
-    }
+    COLLEAGUE,
+    BUSINESS_PARTNER,
+    SERVICE_PROVIDER,
+    STUDENT,
+    EDUCATION;
 
     public String value() {
-        return value;
+        return name();
     }
 
     public static RecommendationType fromValue(String v) {
-        for (RecommendationType c: RecommendationType.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v.toString());
+        return valueOf(v);
     }
 
 }

@@ -45,6 +45,8 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}distance"/>
  *           &lt;element ref="{}current-status-timestamp"/>
  *           &lt;element ref="{}num-recommenders"/>
+ *           &lt;element ref="{}num-connections"/>
+ *           &lt;element ref="{}num-connections-capped"/>
  *           &lt;element ref="{}relation-to-viewer"/>
  *         &lt;/sequence>
  *         &lt;sequence minOccurs="0">
@@ -309,6 +311,46 @@ public interface Person
      *     
      */
     void setNumRecommenders(Long value);
+
+    /**
+     * Gets the value of the numConnections property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getNumConnections();
+
+    /**
+     * Sets the value of the numConnections property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNumConnections(Long value);
+
+    /**
+     * Gets the value of the numConnectionsCapped property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getNumConnectionsCapped();
+
+    /**
+     * Sets the value of the numConnectionsCapped property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNumConnectionsCapped(Long value);
 
     /**
      * Gets the value of the relationToViewer property.

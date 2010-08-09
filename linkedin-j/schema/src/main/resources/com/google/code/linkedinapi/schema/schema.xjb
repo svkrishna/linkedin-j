@@ -43,11 +43,11 @@
 	</bindings>
 	<bindings node="//xs:element[@name='recommendation-type']/xs:simpleType">
 		<typesafeEnumClass name="RecommendationType">
-			<typesafeEnumMember name="COLLEAGUE" value="COL"/>
-			<typesafeEnumMember name="BUSINESS_PARTNER" value="BSP"/>
-			<typesafeEnumMember name="SERVICE_PROVIDER" value="SPR"/>
-			<typesafeEnumMember name="STUDENT" value="STU"/>
-			<typesafeEnumMember name="EDUCATION" value="EDU"/>
+			<typesafeEnumMember name="COLLEAGUE" value="COLLEAGUE"/>
+			<typesafeEnumMember name="BUSINESS_PARTNER" value="BUSINESS_PARTNER"/>
+			<typesafeEnumMember name="SERVICE_PROVIDER" value="SERVICE_PROVIDER"/>
+			<typesafeEnumMember name="STUDENT" value="STUDENT"/>
+			<typesafeEnumMember name="EDUCATION" value="EDUCATION"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='im-account-type']/xs:simpleType">

@@ -60,6 +60,8 @@ import com.google.code.linkedinapi.schema.TwitterAccounts;
     "distance",
     "currentStatusTimestamp",
     "numRecommenders",
+    "numConnections",
+    "numConnectionsCapped",
     "relationToViewer",
     "summary",
     "publicProfileUrl",
@@ -114,6 +116,12 @@ public class PersonImpl
     @XmlElement(name = "num-recommenders", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numRecommenders;
+    @XmlElement(name = "num-connections", type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long numConnections;
+    @XmlElement(name = "num-connections-capped", type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long numConnectionsCapped;
     @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
@@ -246,6 +254,22 @@ public class PersonImpl
 
     public void setNumRecommenders(Long value) {
         this.numRecommenders = value;
+    }
+
+    public Long getNumConnections() {
+        return numConnections;
+    }
+
+    public void setNumConnections(Long value) {
+        this.numConnections = value;
+    }
+
+    public Long getNumConnectionsCapped() {
+        return numConnectionsCapped;
+    }
+
+    public void setNumConnectionsCapped(Long value) {
+        this.numConnectionsCapped = value;
     }
 
     public RelationToViewer getRelationToViewer() {

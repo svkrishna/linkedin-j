@@ -33,6 +33,7 @@ import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
+import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.SchemaEntity;
@@ -45,6 +46,7 @@ import com.google.code.linkedinapi.schema.xpp.ErrorImpl;
 import com.google.code.linkedinapi.schema.xpp.MailboxItemImpl;
 import com.google.code.linkedinapi.schema.xpp.NetworkImpl;
 import com.google.code.linkedinapi.schema.xpp.PeopleImpl;
+import com.google.code.linkedinapi.schema.xpp.PeopleSearchImpl;
 import com.google.code.linkedinapi.schema.xpp.PersonImpl;
 import com.google.code.linkedinapi.schema.xpp.UpdateCommentImpl;
 import com.google.code.linkedinapi.schema.xpp.UpdateCommentsImpl;
@@ -72,6 +74,7 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
 		DOM_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
 		DOM_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
 		DOM_CLASSES_MAP.put(UpdateComments.class, UpdateCommentsImpl.class);
+		DOM_CLASSES_MAP.put(PeopleSearch.class, PeopleSearchImpl.class);
 	}
 	
     /**

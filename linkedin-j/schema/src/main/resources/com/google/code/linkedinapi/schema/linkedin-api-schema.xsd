@@ -275,6 +275,8 @@
           <xs:element ref="distance"/>
           <xs:element ref="current-status-timestamp"/>
           <xs:element ref="num-recommenders"/>
+		  <xs:element ref="num-connections"/>
+		  <xs:element ref="num-connections-capped"/>
           <xs:element ref="relation-to-viewer"/>
         </xs:sequence>
         <xs:sequence minOccurs="0">
@@ -331,6 +333,8 @@
   <xs:element name="code" type="xs:string"/>
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="num-recommenders" type="xs:integer"/>
+  <xs:element name="num-connections" type="xs:integer"/>
+  <xs:element name="num-connections-capped" type="xs:integer"/>
   <xs:element name="public-profile-url" type="xs:anyURI"/>
   <xs:element name="relation-to-viewer">
     <xs:complexType>
@@ -528,11 +532,11 @@
   <xs:element name="recommendation-type">
 	<xs:simpleType>
 	  <xs:restriction base="xs:string">
-	    <xs:enumeration value="COL"/>
-		<xs:enumeration value="BSP"/>
-		<xs:enumeration value="SPR"/>
-		<xs:enumeration value="STU"/>
-		<xs:enumeration value="EDU"/>
+	    <xs:enumeration value="COLLEAGUE"/>
+		<xs:enumeration value="BUSINESS_PARTNER"/>
+		<xs:enumeration value="SERVICE_PROVIDER"/>
+		<xs:enumeration value="STUDENT"/>
+		<xs:enumeration value="EDUCATION"/>
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>

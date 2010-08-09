@@ -16,12 +16,15 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.util.Date;
 import java.util.EnumSet;
+import java.util.Set;
 
 import org.junit.Test;
 
 import com.google.code.linkedinapi.client.constant.TestConstants;
 import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
+import com.google.code.linkedinapi.client.enumeration.FacetField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -30,6 +33,7 @@ import com.google.code.linkedinapi.client.impl.LinkedInApiXppClient;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
+import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.UpdateComments;
 
@@ -388,7 +392,31 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 		People people = client.searchPeople(getSearchParametersMap(searchParameters), 1, 5, SearchSortOrder.RELEVANCE);
 		assertNotNull("People should never be null.", people);
 	}
+	
+	@Test
+	public void testSearchPeopleMapOfSearchParameterStringListOfParameterOfFacetTypeString() {
+		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		People people = client.searchPeople(getSearchParametersMap(searchParameters), getTestFacets());
+		assertNotNull("People should never be null.", people);
+	}
 
+	@Test
+	public void testSearchPeopleMapOfSearchParameterStringSetOfProfileFieldSetOfFacetFieldListOfParameterOfFacetTypeString() {
+		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		PeopleSearch people = client.searchPeople(getSearchParametersMap(searchParameters), EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.ID, ProfileField.HEADLINE), EnumSet.of(FacetField.NAME, FacetField.CODE, FacetField.BUCKET_NAME, FacetField.BUCKET_CODE, FacetField.BUCKET_COUNT), getTestFacets());
+		assertNotNull("People should never be null.", people);
+	}
+
+	@Test
+	public void testSearchPeopleMapOfSearchParameterStringSetOfProfileFieldSetOfFacetFieldIntIntSearchSortOrderListOfParameterOfFacetTypeString() {
+		final String searchParameters = TestConstants.LINKED_IN_TEST_SEARCH_PARAMS;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Search Parameters"), searchParameters);
+		PeopleSearch people = client.searchPeople(getSearchParametersMap(searchParameters), EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.ID, ProfileField.HEADLINE), EnumSet.of(FacetField.NAME, FacetField.CODE, FacetField.BUCKET_NAME, FacetField.BUCKET_CODE, FacetField.BUCKET_COUNT), 1, 5, getTestFacets());
+		assertNotNull("People should never be null.", people);
+	}
+	
 	/**
 	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInviteByEmail(java.lang.String, String, String, java.lang.String, java.lang.String)}.
 	 */

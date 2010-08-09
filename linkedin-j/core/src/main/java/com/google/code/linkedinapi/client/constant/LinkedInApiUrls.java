@@ -365,9 +365,15 @@ public final class LinkedInApiUrls {
 	    		Map<? extends CompositeEnum<?>, Set<CompositeEnum<?>>> enumMap = convertIntoEnumMap(enumSet);
 				builder.append(":");
 				builder.append("(");
-	    		appendChildEnums(builder, enumMap.remove(null));
-	    		if (!enumMap.isEmpty()) {
+	    		Set<CompositeEnum<?>> orphanFields = enumMap.remove(null);
+	    		if (orphanFields != null) {
+	    			orphanFields.removeAll(enumMap.keySet());
+					appendChildEnums(builder, orphanFields);
+	    		}
+	    		if (orphanFields != null && !orphanFields.isEmpty() && !enumMap.isEmpty()) {
 		    		builder.append(",");
+	    		}
+	    		if (!enumMap.isEmpty()) {
 		    		Iterator<? extends CompositeEnum<?>> parentIter = enumMap.keySet().iterator();
 		    		while (parentIter.hasNext()) {
 		    			CompositeEnum<?> parent = parentIter.next();
