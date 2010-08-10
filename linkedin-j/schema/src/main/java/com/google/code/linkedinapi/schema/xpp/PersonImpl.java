@@ -64,7 +64,7 @@ public class PersonImpl
     protected Long currentStatusTimestamp;
     protected Long numRecommenders;
     protected Long numConnections;
-    protected boolean numConnectionsCapped;
+    protected Boolean numConnectionsCapped;
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
     protected String publicProfileUrl;
