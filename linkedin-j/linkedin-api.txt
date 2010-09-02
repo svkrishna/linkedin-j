@@ -188,3 +188,5 @@ http://developer.linkedin.com/community/apis/blog/
     </recommendation>
   </recommendations-received>
 </person>
+
+New features added. http://developer.linkedin.com/community/apis?view=documents
