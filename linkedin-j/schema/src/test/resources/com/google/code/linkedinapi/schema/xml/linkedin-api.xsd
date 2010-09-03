@@ -105,7 +105,15 @@
         <xs:element ref="update-type"/>
         <xs:element ref="update-content"/>
         <xs:element ref="is-commentable"/>
-        <xs:element minOccurs="0" ref="update-comments"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="update-comments"/>
+          <xs:sequence>
+            <xs:element ref="is-likable"/>
+            <xs:element ref="is-liked"/>
+            <xs:element ref="num-likes"/>
+            <xs:element ref="likes"/>
+          </xs:sequence>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -201,6 +209,23 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="is-likable" type="xs:boolean"/>
+  <xs:element name="num-likes" type="xs:integer"/>
+  <xs:element name="likes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="like"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="like">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="people-search">
     <xs:complexType>
       <xs:sequence>
@@ -246,6 +271,28 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="count" type="xs:integer"/>
+  <xs:element name="share">
+    <xs:complexType>
+      <xs:choice>
+        <xs:sequence>
+          <xs:element ref="comment"/>
+          <xs:element ref="attribution"/>
+          <xs:element ref="id"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element ref="content"/>
+          <xs:element ref="visibility"/>
+        </xs:sequence>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribution">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="share"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="person">
     <xs:complexType>
       <xs:sequence>
@@ -255,6 +302,7 @@
           <xs:element ref="last-name"/>
           <xs:element ref="headline"/>
         </xs:sequence>
+        <xs:element minOccurs="0" ref="current-share"/>
         <xs:sequence minOccurs="0">
           <xs:element ref="location"/>
           <xs:element ref="industry"/>
@@ -286,12 +334,14 @@
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
         </xs:sequence>
-        <xs:element minOccurs="0" ref="member-groups"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="member-groups"/>
+          <xs:element ref="person-activities"/>
+          <xs:element ref="recommendations-received"/>
+        </xs:choice>
         <xs:element minOccurs="0" ref="picture-url"/>
         <xs:choice minOccurs="0">
-          <xs:element ref="person-activities"/>
           <xs:element ref="recommendations-given"/>
-          <xs:element ref="recommendations-received"/>
           <xs:sequence>
             <xs:element ref="im-accounts"/>
             <xs:element ref="twitter-accounts"/>
@@ -302,6 +352,40 @@
         </xs:choice>
       </xs:sequence>
       <xs:attribute name="path"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="current-share">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="comment"/>
+        <xs:element ref="content"/>
+        <xs:element ref="visibility"/>
+        <xs:element ref="source"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="source">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="service-provider"/>
+        <xs:element ref="application"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="service-provider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="location">
@@ -417,7 +501,7 @@
       <xs:attribute name="count" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendations-given">
+  <xs:element name="recommendations-received">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -425,7 +509,7 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="recommendations-received">
+  <xs:element name="recommendations-given">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="recommendation"/>
@@ -520,7 +604,6 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="sequence-number" type="xs:integer"/>
-  <xs:element name="comment" type="xs:string"/>
   <xs:element name="connections">
     <xs:complexType>
       <xs:sequence>
@@ -529,6 +612,13 @@
       <xs:attribute name="count" type="xs:integer"/>
       <xs:attribute name="start" type="xs:integer"/>
       <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-liked">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="is-liked"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="activity">
@@ -547,6 +637,21 @@
   <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="app-id" type="xs:NMTOKEN"/>
   <xs:element name="id" type="xs:NMTOKEN"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
@@ -604,21 +709,30 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="url" type="xs:anyURI"/>
-  <xs:element name="title" type="xs:string"/>
-  <xs:element name="author">
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="content">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="first-name"/>
-        <xs:element ref="last-name"/>
-        <xs:element ref="headline"/>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
-        <xs:element ref="api-standard-profile-request"/>
-        <xs:element ref="site-standard-profile-request"/>
+        <xs:element minOccurs="0" ref="id"/>
+        <xs:element ref="title"/>
+        <xs:element ref="submitted-url"/>
+        <xs:element minOccurs="0" ref="shortened-url"/>
+        <xs:element ref="submitted-image-url"/>
+        <xs:element minOccurs="0" ref="thumbnail-url"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="web-url" type="xs:anyURI"/>
+  <xs:element name="submitted-url" type="xs:anyURI"/>
+  <xs:element name="shortened-url" type="xs:string"/>
+  <xs:element name="submitted-image-url" type="xs:anyURI"/>
+  <xs:element name="thumbnail-url" type="xs:anyURI"/>
+  <xs:element name="visibility">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="industry" type="xs:string"/>
   <xs:element name="distance" type="xs:integer"/>
   <xs:element name="relation-to-viewer">
@@ -645,39 +759,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="recommendation">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="id"/>
         <xs:element ref="recommendation-type"/>
         <xs:element ref="recommendation-snippet"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="recommendee"/>
+          <xs:element ref="web-url"/>
+        </xs:sequence>
         <xs:element minOccurs="0" ref="recommendation-text"/>
-        <xs:choice>
-          <xs:element ref="recommender"/>
-          <xs:sequence>
-            <xs:element ref="recommendee"/>
-            <xs:element ref="web-url"/>
-          </xs:sequence>
-        </xs:choice>
+        <xs:element minOccurs="0" ref="recommender"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="recommendation-type" type="xs:NCName"/>
   <xs:element name="recommendation-snippet" type="xs:string"/>
-  <xs:element name="recommendation-text" type="xs:string"/>
-  <xs:element name="recommender">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="first-name"/>
-        <xs:element ref="last-name"/>
-        <xs:element ref="headline"/>
-        <xs:element ref="api-standard-profile-request"/>
-        <xs:element ref="site-standard-profile-request"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="recommendee">
     <xs:complexType>
       <xs:sequence>
@@ -691,6 +789,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="recommendation-text" type="xs:string"/>
+  <xs:element name="recommender">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="api-standard-profile-request"/>
+        <xs:element ref="site-standard-profile-request"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="picture-url" type="xs:anyURI"/>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
   <xs:element name="phone-number">

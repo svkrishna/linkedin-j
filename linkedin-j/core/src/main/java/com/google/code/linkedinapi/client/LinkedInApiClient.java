@@ -215,6 +215,86 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
                                      Date endDate, boolean showHiddenMembers);
     
 
+    // Self Updates
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates();
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates(int start, int count);
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param startDate the start date
+     * @param endDate the end date
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates(Date startDate, Date endDate);
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param updateTypes the update types
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes);
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param updateTypes the update types
+     * @param start the start
+     * @param count the count
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, int start, int count);
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param updateTypes the update types
+     * @param startDate the start date
+     * @param endDate the end date
+     * 
+     * @return the network updates
+     */
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate);
+
+    /**
+     * Gets the network updates.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1006">http://developer.linkedin.com/docs/DOC-1006</a>
+     * 
+     * @param updateTypes the update types
+     * @param start the start
+     * @param count the count
+     * @param startDate the start date
+     * @param endDate the end date
+     * @return the network updates
+     */
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
+                                     Date endDate);
+    
+    
     /**
      * Gets the network update comments.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>

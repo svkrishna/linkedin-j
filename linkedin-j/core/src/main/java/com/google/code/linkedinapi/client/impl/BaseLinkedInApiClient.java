@@ -734,6 +734,118 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * {@inheritDoc}
      */
     @Override
+    public Network getUserUpdates() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(int start, int count) {
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(Date startDate, Date endDate) {
+        assertNotNull("start date", startDate);
+        assertNotNull("end date", endDate);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameter("after",
+                                            String.valueOf(startDate.getTime())).withParameter("before",
+                                                String.valueOf(endDate.getTime())).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes) {
+        assertNotNull("update types", updateTypes);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameterEnumSet("type", updateTypes).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, int start, int count) {
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+        assertNotNull("update types", updateTypes);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).withParameterEnumSet("type", updateTypes).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, Date startDate, Date endDate) {
+        assertNotNull("update types", updateTypes);
+        assertNotNull("start date", startDate);
+        assertNotNull("end date", endDate);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameter("after",
+                                            String.valueOf(startDate.getTime())).withParameter("before",
+                                                String.valueOf(endDate.getTime())).withParameterEnumSet("type",
+                                                    updateTypes).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Network getUserUpdates(Set<NetworkUpdateType> updateTypes, int start, int count, Date startDate,
+                                     Date endDate) {
+        assertNotNull("update types", updateTypes);
+        assertNotNull("start date", startDate);
+        assertNotNull("end date", endDate);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATES);
+        String                apiUrl  = builder.withParameter("scope", "self").withParameter("start", String.valueOf(start)).withParameter("count",
+                                            String.valueOf(count)).withParameter("after",
+                                                String.valueOf(startDate.getTime())).withParameter("before",
+                                                    String.valueOf(endDate.getTime())).withParameterEnumSet("type",
+                                                        updateTypes).buildUrl();
+
+        return readResponse(Network.class, callApiMethod(apiUrl));
+    }
+    
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public UpdateComments getNetworkUpdateComments(String networkUpdateId) {
         assertNotNullOrEmpty("network update id", networkUpdateId);
 

@@ -131,7 +131,11 @@
         <xs:element ref="update-type"/>
         <xs:element ref="update-content"/>
         <xs:element ref="is-commentable"/>
+		<xs:element ref="is-likable"/>
+		<xs:element ref="is-liked"/>
+		<xs:element ref="num-likes"/>
         <xs:element minOccurs="0" ref="update-comments"/>
+		<xs:element minOccurs="0" ref="likes"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -246,6 +250,23 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="is-likable" type="xs:boolean"/>
+  <xs:element name="num-likes" type="xs:integer"/>
+  <xs:element name="likes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="like"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="like">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="people">
     <xs:complexType>
       <xs:sequence>
@@ -272,6 +293,7 @@
         <xs:sequence minOccurs="0">
           <xs:element ref="connections"/>
           <xs:element ref="current-status"/>
+		  <xs:element ref="current-share"/>			
           <xs:element ref="distance"/>
           <xs:element ref="current-status-timestamp"/>
           <xs:element ref="num-recommenders"/>
@@ -315,6 +337,40 @@
   <xs:element name="first-name" type="xs:string"/>
   <xs:element name="last-name" type="xs:string"/>
   <xs:element name="headline" type="xs:string"/>
+  <xs:element name="current-share">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="comment"/>
+        <xs:element ref="content"/>
+        <xs:element ref="visibility"/>
+        <xs:element ref="source"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="source">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="service-provider"/>
+        <xs:element ref="application"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="service-provider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="location">
     <xs:complexType>
       <xs:sequence>
@@ -790,6 +846,62 @@
         <xs:element ref="name"/>
         <xs:element ref="code"/>
         <xs:element ref="count"/>		  
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="share">
+    <xs:complexType>
+		<xs:sequence>
+		  <xs:element minOccurs="0" ref="content"/>
+		  <xs:element ref="visibility"/>
+		  <xs:element ref="comment"/>
+		  <xs:element minOccurs="0" ref="attribution"/>
+		  <xs:element minOccurs="0" ref="id"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="content">
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element minOccurs="0" ref="id"/>
+        <xs:element ref="title"/>
+        <xs:element ref="submitted-url"/>
+        <xs:element minOccurs="0" ref="shortened-url"/>
+        <xs:element ref="submitted-image-url"/>
+        <xs:element minOccurs="0" ref="thumbnail-url"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="submitted-url" type="xs:anyURI"/>
+  <xs:element name="shortened-url" type="xs:string"/>
+  <xs:element name="submitted-image-url" type="xs:anyURI"/>
+  <xs:element name="thumbnail-url" type="xs:anyURI"/>
+  <xs:element name="visibility">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="anyone"/>
+				<xs:enumeration value="all-members"/>
+				<xs:enumeration value="connections-only"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribution">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="share"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-liked">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="is-liked" type="xs:boolean"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

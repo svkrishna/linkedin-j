@@ -34,7 +34,11 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}update-type"/>
  *         &lt;element ref="{}update-content"/>
  *         &lt;element ref="{}is-commentable"/>
+ *         &lt;element ref="{}is-likable"/>
+ *         &lt;element ref="{}is-liked"/>
+ *         &lt;element ref="{}num-likes"/>
  *         &lt;element ref="{}update-comments" minOccurs="0"/>
+ *         &lt;element ref="{}likes" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -141,6 +145,58 @@ public interface Update
     void setIsCommentable(boolean value);
 
     /**
+     * Gets the value of the isLikable property.
+     * 
+     */
+    boolean isIsLikable();
+
+    /**
+     * Sets the value of the isLikable property.
+     * 
+     */
+    void setIsLikable(boolean value);
+
+    /**
+     * Gets the value of the isLiked property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link IsLiked }
+     *     
+     */
+    IsLiked getIsLiked();
+
+    /**
+     * Sets the value of the isLiked property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link IsLiked }
+     *     
+     */
+    void setIsLiked(IsLiked value);
+
+    /**
+     * Gets the value of the numLikes property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getNumLikes();
+
+    /**
+     * Sets the value of the numLikes property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNumLikes(Long value);
+
+    /**
      * Gets the value of the updateComments property.
      * 
      * @return
@@ -159,5 +215,25 @@ public interface Update
      *     
      */
     void setUpdateComments(UpdateComments value);
+
+    /**
+     * Gets the value of the likes property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Likes }
+     *     
+     */
+    Likes getLikes();
+
+    /**
+     * Sets the value of the likes property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Likes }
+     *     
+     */
+    void setLikes(Likes value);
 
 }

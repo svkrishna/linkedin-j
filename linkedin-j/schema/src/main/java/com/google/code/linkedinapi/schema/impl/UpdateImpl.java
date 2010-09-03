@@ -25,6 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
+import com.google.code.linkedinapi.schema.IsLiked;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
 import com.google.code.linkedinapi.schema.UpdateComments;
@@ -37,7 +39,11 @@ import com.google.code.linkedinapi.schema.UpdateContent;
     "updateType",
     "updateContent",
     "isCommentable",
-    "updateComments"
+    "isLikable",
+    "isLiked",
+    "numLikes",
+    "updateComments",
+    "likes"
 })
 @XmlRootElement(name = "update")
 public class UpdateImpl
@@ -56,8 +62,17 @@ public class UpdateImpl
     protected UpdateContentImpl updateContent;
     @XmlElement(name = "is-commentable")
     protected boolean isCommentable;
+    @XmlElement(name = "is-likable")
+    protected boolean isLikable;
+    @XmlElement(name = "is-liked", required = true, type = IsLikedImpl.class)
+    protected IsLikedImpl isLiked;
+    @XmlElement(name = "num-likes", required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long numLikes;
     @XmlElement(name = "update-comments", type = UpdateCommentsImpl.class)
     protected UpdateCommentsImpl updateComments;
+    @XmlElement(type = LikesImpl.class)
+    protected LikesImpl likes;
 
     public Long getTimestamp() {
         return timestamp;
@@ -99,12 +114,44 @@ public class UpdateImpl
         this.isCommentable = value;
     }
 
+    public boolean isIsLikable() {
+        return isLikable;
+    }
+
+    public void setIsLikable(boolean value) {
+        this.isLikable = value;
+    }
+
+    public IsLiked getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(IsLiked value) {
+        this.isLiked = ((IsLikedImpl) value);
+    }
+
+    public Long getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(Long value) {
+        this.numLikes = value;
+    }
+
     public UpdateComments getUpdateComments() {
         return updateComments;
     }
 
     public void setUpdateComments(UpdateComments value) {
         this.updateComments = ((UpdateCommentsImpl) value);
+    }
+
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes value) {
+        this.likes = ((LikesImpl) value);
     }
 
 }

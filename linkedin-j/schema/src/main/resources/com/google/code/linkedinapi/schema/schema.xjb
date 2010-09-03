@@ -38,6 +38,7 @@
 			<typesafeEnumMember name="CONNECTION_UPDATED_PROFILE" value="PROF"/>
 			<typesafeEnumMember name="QUESTION_UPDATED" value="QSTN"/>
 			<typesafeEnumMember name="STATUS_UPDATED" value="STAT"/>
+			<typesafeEnumMember name="SHARED_ITEM" value="SHAR"/>
 			<typesafeEnumMember name="EXTENDED_PROFILE_UPDATED" value="PRFX"/>
 		</typesafeEnumClass>
 	</bindings>
@@ -67,7 +68,7 @@
 			<typesafeEnumMember name="MOBILE" value="mobile"/>
 		</typesafeEnumClass>
 	</bindings>
-	<bindings node="//xs:element[@name='code']/xs:simpleType">
+	<bindings node="//xs:element[@name='facet']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="FacetType">
 			<typesafeEnumMember name="LOCATION" value="location"/>
 			<typesafeEnumMember name="INDUSTRY" value="industry"/>
@@ -76,6 +77,13 @@
 			<typesafeEnumMember name="CURRENT_COMPANY" value="current-company"/>
 			<typesafeEnumMember name="PAST_COMPANY" value="past-company"/>
 			<typesafeEnumMember name="SCHOOL" value="school"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='visibility']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="VisibilityType">
+			<typesafeEnumMember name="ANYONE" value="anyone"/>
+			<typesafeEnumMember name="ALL_MEMBERS" value="all-members"/>
+			<typesafeEnumMember name="CONNECTIONS_ONLY" value="connections-only"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
@@ -146,5 +154,8 @@
 	</bindings>
 	<bindings node="//xs:element[@name='buckets']/xs:complexType/xs:sequence/xs:element[@ref='bucket']">
 		<property name="bucketList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='likes']/xs:complexType/xs:sequence/xs:element[@ref='like']">
+		<property name="likeList"/>
 	</bindings>
 </bindings>

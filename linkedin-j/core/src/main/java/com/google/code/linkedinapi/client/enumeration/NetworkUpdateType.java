@@ -78,7 +78,12 @@ public enum NetworkUpdateType implements FieldEnum {
     /**
      * A connection has updated their status.
      */
-    STATUS_UPDATE("STAT");
+    STATUS_UPDATE("STAT"), 
+    
+    /**
+     * A connection has shared an update or link.
+     */
+    SHARED_ITEM("SHAR");
     
     /**
      * Field Description.

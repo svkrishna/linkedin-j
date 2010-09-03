@@ -33,6 +33,56 @@
       <is-commentable>true</is-commentable>
     </update>
     <update>
+      <timestamp>1259696393892</timestamp>
+      <update-key>STAT-11713757-9-*1</update-key>
+      <update-type>SHAR</update-type>
+      <update-content>
+        <person>
+          <id>11714757</id>
+          <first-name>Monis</first-name>
+          <last-name>Iqbal</last-name>
+          <headline>Software Engineer at Creative Chaos</headline>
+          <current-share>
+			  <id>s12345678</id>
+			  <timestamp>1279577156654</timestamp>
+			  <comment>83% of employers will use social media to hire: 78% LinkedIn, 55% Facebook, 45% Twitter [SF Biz Times] http://bit.ly/cCpeOD</comment>
+			  <content>
+				 <id>123456789</id>
+				 <title>Survey: Social networks top hiring tool - San Francisco Business Times</title>
+				 <submitted-url>http://sanfrancisco.bizjournals.com/sanfrancisco/stories/2010/06/28/daily34.html</submitted-url>
+				 <shortened-url>lnkd.in/abc123</shortened-url>
+				 <submitted-image-url>http://images.bizjournals.com/travel/cityscapes/thumbs/sm_sanfrancisco.jpg</submitted-image-url>
+				 <thumbnail-url>http://media.linkedin.com/media-proxy/ext...</thumbnail-url>
+			  </content>
+			  <visibility>
+				 <code>anyone</code>
+			  </visibility>
+			  <source>
+				 <service-provider>
+				   <name>LINKEDIN</name>
+				 </service-provider>
+				 <application>
+				   <name>Your Cool App</name>
+				 </application>
+			  </source>
+		</current-share>
+          <api-standard-profile-request>
+            <url>http://api.linkedin.com/v1/people/Zu1E2R9-q8:full</url>
+            <headers total="1">
+              <http-header>
+                <name>x-li-auth-token</name>
+                <value>name:q3y9</value>
+              </http-header>
+            </headers>
+          </api-standard-profile-request>
+          <site-standard-profile-request>
+            <url>http://www.linkedin.com/profile?viewProfile=&amp;key=11714757&amp;authToken=q3y9&amp;authType=name</url>
+          </site-standard-profile-request>
+        </person>
+      </update-content>
+      <is-commentable>true</is-commentable>
+    </update>
+    <update>
       <timestamp>1259689081803</timestamp>
       <update-key>STAT-11714757-8-*1</update-key>
       <update-type>STAT</update-type>
@@ -58,6 +108,27 @@
         </person>
       </update-content>
       <is-commentable>true</is-commentable>
+	  <is-likable>true</is-likable>
+      <is-liked>true</is-liked>
+      <num-likes>1</num-likes>
+      <likes total="2">
+          <like>
+            <person>
+              <id>POfcN6JhcU</id>
+              <first-name>George</first-name>
+              <last-name>Washington</last-name>
+              <headline>President, United States of America</headline>
+            </person>
+          </like>
+          <like>
+            <person>
+              <id>ABCDEF</id>
+              <first-name>Nabeel</first-name>
+              <last-name>Mukhtar</last-name>
+              <headline>Software Developer</headline>
+            </person>
+          </like>
+      </likes> 
     </update>
     <update>
       <timestamp>1259650431103</timestamp>
