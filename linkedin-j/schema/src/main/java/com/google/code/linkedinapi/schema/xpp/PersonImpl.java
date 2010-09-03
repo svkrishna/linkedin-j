@@ -25,6 +25,7 @@ import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.CurrentShare;
 import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.ImAccounts;
@@ -60,6 +61,7 @@ public class PersonImpl
     protected String industry;
     protected ConnectionsImpl connections;
     protected String currentStatus;
+    protected CurrentShareImpl currentShare;
     protected Long distance;
     protected Long currentStatusTimestamp;
     protected Long numRecommenders;
@@ -156,6 +158,14 @@ public class PersonImpl
         this.currentStatus = value;
     }
 
+    public CurrentShare getCurrentShare() {
+        return currentShare;
+    }
+
+    public void setCurrentShare(CurrentShare value) {
+        this.currentShare = ((CurrentShareImpl) value);
+    }
+    
     public Long getDistance() {
         return distance;
     }

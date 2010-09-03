@@ -23,6 +23,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.schema.IsLiked;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
 import com.google.code.linkedinapi.schema.UpdateComments;
@@ -42,7 +44,11 @@ public class UpdateImpl
     protected NetworkUpdateReturnType updateType;
     protected UpdateContentImpl updateContent;
     protected boolean isCommentable;
+    protected boolean isLikable;
+    protected IsLikedImpl isLiked;
+    protected Long numLikes;
     protected UpdateCommentsImpl updateComments;
+    protected LikesImpl likes;
 
     public Long getTimestamp() {
         return timestamp;
@@ -84,12 +90,44 @@ public class UpdateImpl
         this.isCommentable = value;
     }
 
+    public boolean isIsLikable() {
+        return isLikable;
+    }
+
+    public void setIsLikable(boolean value) {
+        this.isLikable = value;
+    }
+
+    public IsLiked getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(IsLiked value) {
+        this.isLiked = ((IsLikedImpl) value);
+    }
+
+    public Long getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(Long value) {
+        this.numLikes = value;
+    }
+    
     public UpdateComments getUpdateComments() {
         return updateComments;
     }
 
     public void setUpdateComments(UpdateComments value) {
         this.updateComments = ((UpdateCommentsImpl) value);
+    }
+    
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes value) {
+        this.likes = ((LikesImpl) value);
     }
 
 	@Override
