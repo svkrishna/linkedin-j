@@ -190,3 +190,19 @@ http://developer.linkedin.com/community/apis/blog/
 </person>
 
 New features added. http://developer.linkedin.com/community/apis?view=documents
+
+http://developer.linkedin.com/community/apis/blog/
+Fix these files.
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/SourceImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ShareImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/UpdateImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ApplicationImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/AttributionImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/IsLikedImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/LikeImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/CurrentShareImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/PersonImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/LikesImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/VisibilityImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ContentImpl.java
+	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ServiceProviderImpl.java
