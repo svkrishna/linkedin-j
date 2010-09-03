@@ -18,48 +18,45 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Like;
-import com.google.code.linkedinapi.schema.Likes;
+import com.google.code.linkedinapi.schema.Application;
+import com.google.code.linkedinapi.schema.ServiceProvider;
+import com.google.code.linkedinapi.schema.Source;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "likeList"
+    "serviceProvider",
+    "application"
 })
-@XmlRootElement(name = "likes")
-public class LikesImpl
-    implements Serializable, Likes
+@XmlRootElement(name = "source")
+public class SourceImpl
+    implements Serializable, Source
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(name = "like", required = true, type = LikeImpl.class)
-    protected List<Like> likeList;
-    @XmlAttribute(required = true)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long total;
+    @XmlElement(name = "service-provider", required = true, type = ServiceProviderImpl.class)
+    protected ServiceProviderImpl serviceProvider;
+    @XmlElement(required = true, type = ApplicationImpl.class)
+    protected ApplicationImpl application;
 
-    public List<Like> getLikeList() {
-        if (likeList == null) {
-            likeList = new ArrayList<Like>();
-        }
-        return this.likeList;
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
     }
 
-    public Long getTotal() {
-        return total;
+    public void setServiceProvider(ServiceProvider value) {
+        this.serviceProvider = ((ServiceProviderImpl) value);
     }
 
-    public void setTotal(Long value) {
-        this.total = value;
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application value) {
+        this.application = ((ApplicationImpl) value);
     }
 
 }

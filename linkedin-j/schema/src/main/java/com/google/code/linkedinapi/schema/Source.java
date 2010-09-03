@@ -17,7 +17,6 @@
 
 package com.google.code.linkedinapi.schema;
 
-import java.util.List;
 
 
 /**
@@ -30,9 +29,9 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}like" maxOccurs="unbounded"/>
+ *         &lt;element ref="{}service-provider"/>
+ *         &lt;element ref="{}application"/>
  *       &lt;/sequence>
- *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,53 +39,49 @@ import java.util.List;
  * 
  * 
  */
-public interface Likes
+public interface Source
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the likeList property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the likeList property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getLikeList().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Like }
-     * 
-     * 
-     */
-    List<Like> getLikeList();
-
-    /**
-     * Gets the value of the total property.
+     * Gets the value of the serviceProvider property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ServiceProvider }
      *     
      */
-    Long getTotal();
+    ServiceProvider getServiceProvider();
 
     /**
-     * Sets the value of the total property.
+     * Sets the value of the serviceProvider property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ServiceProvider }
      *     
      */
-    void setTotal(Long value);
+    void setServiceProvider(ServiceProvider value);
+
+    /**
+     * Gets the value of the application property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Application }
+     *     
+     */
+    Application getApplication();
+
+    /**
+     * Sets the value of the application property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Application }
+     *     
+     */
+    void setApplication(Application value);
 
 }

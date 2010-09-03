@@ -42,6 +42,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}connections"/>
  *           &lt;element ref="{}current-status"/>
+ *           &lt;element ref="{}current-share"/>
  *           &lt;element ref="{}distance"/>
  *           &lt;element ref="{}current-status-timestamp"/>
  *           &lt;element ref="{}num-recommenders"/>
@@ -251,6 +252,26 @@ public interface Person
      *     
      */
     void setCurrentStatus(String value);
+
+    /**
+     * Gets the value of the currentShare property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CurrentShare }
+     *     
+     */
+    CurrentShare getCurrentShare();
+
+    /**
+     * Sets the value of the currentShare property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CurrentShare }
+     *     
+     */
+    void setCurrentShare(CurrentShare value);
 
     /**
      * Gets the value of the distance property.

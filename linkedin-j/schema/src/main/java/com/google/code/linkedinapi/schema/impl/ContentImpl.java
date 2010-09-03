@@ -23,13 +23,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Content;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
     "title",
     "submittedUrl",
-    "submittedImageUrl"
+    "shortenedUrl",
+    "submittedImageUrl",
+    "thumbnailUrl"
 })
 @XmlRootElement(name = "content")
 public class ContentImpl
@@ -37,12 +42,26 @@ public class ContentImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(name = "submitted-url", required = true)
     protected String submittedUrl;
+    @XmlElement(name = "shortened-url")
+    protected String shortenedUrl;
     @XmlElement(name = "submitted-image-url", required = true)
     protected String submittedImageUrl;
+    @XmlElement(name = "thumbnail-url")
+    protected String thumbnailUrl;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String value) {
+        this.id = value;
+    }
 
     public String getTitle() {
         return title;
@@ -60,12 +79,28 @@ public class ContentImpl
         this.submittedUrl = value;
     }
 
+    public String getShortenedUrl() {
+        return shortenedUrl;
+    }
+
+    public void setShortenedUrl(String value) {
+        this.shortenedUrl = value;
+    }
+
     public String getSubmittedImageUrl() {
         return submittedImageUrl;
     }
 
     public void setSubmittedImageUrl(String value) {
         this.submittedImageUrl = value;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String value) {
+        this.thumbnailUrl = value;
     }
 
 }

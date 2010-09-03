@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.CurrentShare;
 import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.ImAccounts;
@@ -57,6 +58,7 @@ import com.google.code.linkedinapi.schema.TwitterAccounts;
     "industry",
     "connections",
     "currentStatus",
+    "currentShare",
     "distance",
     "currentStatusTimestamp",
     "numRecommenders",
@@ -107,6 +109,8 @@ public class PersonImpl
     protected ConnectionsImpl connections;
     @XmlElement(name = "current-status")
     protected String currentStatus;
+    @XmlElement(name = "current-share", type = CurrentShareImpl.class)
+    protected CurrentShareImpl currentShare;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long distance;
@@ -229,6 +233,14 @@ public class PersonImpl
 
     public void setCurrentStatus(String value) {
         this.currentStatus = value;
+    }
+
+    public CurrentShare getCurrentShare() {
+        return currentShare;
+    }
+
+    public void setCurrentShare(CurrentShare value) {
+        this.currentShare = ((CurrentShareImpl) value);
     }
 
     public Long getDistance() {

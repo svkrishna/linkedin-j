@@ -29,12 +29,12 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}id" minOccurs="0"/>
- *         &lt;element ref="{}title"/>
- *         &lt;element ref="{}submitted-url"/>
- *         &lt;element ref="{}shortened-url" minOccurs="0"/>
- *         &lt;element ref="{}submitted-image-url"/>
- *         &lt;element ref="{}thumbnail-url" minOccurs="0"/>
+ *         &lt;element ref="{}id"/>
+ *         &lt;element ref="{}timestamp"/>
+ *         &lt;element ref="{}comment"/>
+ *         &lt;element ref="{}content"/>
+ *         &lt;element ref="{}visibility"/>
+ *         &lt;element ref="{}source"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +43,7 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Content
+public interface CurrentShare
     extends SchemaEntity
 {
 
@@ -69,103 +69,103 @@ public interface Content
     void setId(String value);
 
     /**
-     * Gets the value of the title property.
+     * Gets the value of the timestamp property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getTitle();
+    Long getTimestamp();
 
     /**
-     * Sets the value of the title property.
+     * Sets the value of the timestamp property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setTitle(String value);
+    void setTimestamp(Long value);
 
     /**
-     * Gets the value of the submittedUrl property.
+     * Gets the value of the comment property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getSubmittedUrl();
+    String getComment();
 
     /**
-     * Sets the value of the submittedUrl property.
+     * Sets the value of the comment property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setSubmittedUrl(String value);
+    void setComment(String value);
 
     /**
-     * Gets the value of the shortenedUrl property.
+     * Gets the value of the content property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Content }
      *     
      */
-    String getShortenedUrl();
+    Content getContent();
 
     /**
-     * Sets the value of the shortenedUrl property.
+     * Sets the value of the content property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Content }
      *     
      */
-    void setShortenedUrl(String value);
+    void setContent(Content value);
 
     /**
-     * Gets the value of the submittedImageUrl property.
+     * Gets the value of the visibility property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Visibility }
      *     
      */
-    String getSubmittedImageUrl();
+    Visibility getVisibility();
 
     /**
-     * Sets the value of the submittedImageUrl property.
+     * Sets the value of the visibility property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Visibility }
      *     
      */
-    void setSubmittedImageUrl(String value);
+    void setVisibility(Visibility value);
 
     /**
-     * Gets the value of the thumbnailUrl property.
+     * Gets the value of the source property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Source }
      *     
      */
-    String getThumbnailUrl();
+    Source getSource();
 
     /**
-     * Sets the value of the thumbnailUrl property.
+     * Sets the value of the source property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Source }
      *     
      */
-    void setThumbnailUrl(String value);
+    void setSource(Source value);
 
 }

@@ -18,48 +18,32 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Like;
-import com.google.code.linkedinapi.schema.Likes;
+import com.google.code.linkedinapi.schema.ServiceProvider;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "likeList"
+    "name"
 })
-@XmlRootElement(name = "likes")
-public class LikesImpl
-    implements Serializable, Likes
+@XmlRootElement(name = "service-provider")
+public class ServiceProviderImpl
+    implements Serializable, ServiceProvider
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(name = "like", required = true, type = LikeImpl.class)
-    protected List<Like> likeList;
-    @XmlAttribute(required = true)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long total;
+    @XmlElement(required = true)
+    protected String name;
 
-    public List<Like> getLikeList() {
-        if (likeList == null) {
-            likeList = new ArrayList<Like>();
-        }
-        return this.likeList;
+    public String getName() {
+        return name;
     }
 
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long value) {
-        this.total = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
 }
