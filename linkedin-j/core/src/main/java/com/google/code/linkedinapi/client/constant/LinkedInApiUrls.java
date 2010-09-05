@@ -125,6 +125,14 @@ public final class LinkedInApiUrls {
     public static final String NETWORK_UPDATE_COMMENTS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateComments");
     
+    /** The Constant NETWORK_UPDATE_LIKES. */
+    public static final String NETWORK_UPDATE_LIKES =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateLikes");
+    
+    /** The Constant NETWORK_UPDATE_LIKE. */
+    public static final String NETWORK_UPDATE_LIKE =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.networkUpdateLike");
+    
     /** The Constant GET_CONNECTIONS_FOR_CURRENT_USER. */
     public static final String GET_CONNECTIONS_FOR_CURRENT_USER =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getConnectionsForCurrentUser");
@@ -152,6 +160,14 @@ public final class LinkedInApiUrls {
     /** The Constant SEND_INVITE_EMAIL_PERSON_PATH. */
     public static final String SEND_INVITE_EMAIL_PERSON_PATH =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.inviteEmailPersonPath");
+    
+    /** The Constant POST_SHARE. */
+    public static final String POST_SHARE =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postShare");
+    
+    /** The Constant RE_SHARE. */
+    public static final String RE_SHARE =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.reShare");
     
     /**
      * Instantiates a new linked in api urls.

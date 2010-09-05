@@ -32,11 +32,13 @@ import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.FacetType;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.UpdateComments;
+import com.google.code.linkedinapi.schema.VisibilityType;
 
 /**
  * The Interface LinkedInApiClient. It acts as a facade for the whole LinkedIn API.
@@ -305,6 +307,16 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public UpdateComments getNetworkUpdateComments(String networkUpdateId);
 
+    /**
+     * Gets the network update likes.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
+     * 
+     * @param networkUpdateId the network update id
+     * 
+     * @return the network update likes
+     */
+    public Likes getNetworkUpdateLikes(String networkUpdateId);
+    
     // Connections API
 
     /**
@@ -894,6 +906,22 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      */
     public void postComment(String networkUpdateId, String commentText);
 
+    /**
+     * Like post.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
+     * 
+     * @param networkUpdateId the network update id
+     */
+    public void likePost(String networkUpdateId);
+    
+    /**
+     * Unlike post.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1043">http://developer.linkedin.com/docs/DOC-1043</a>
+     * 
+     * @param networkUpdateId the network update id
+     */
+    public void unlikePost(String networkUpdateId);
+    
     // Status Update API
 
     /**
@@ -972,4 +1000,26 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
      * @param message the message
      */
     public void sendInviteToPerson(Person recepient, String subject, String message);
+    
+    // Share API.
+    /**
+     * Post share.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1212">http://developer.linkedin.com/docs/DOC-1212</a>
+     * 
+     * @param commentText the comment text
+     * @param title the title
+     * @param url the url
+     * @param imageUrl the image url
+     * @param visibility the visibility
+     */
+    public void postShare(String commentText, String title, String url, String imageUrl, VisibilityType visibility);
+    
+    /**
+     * Re-share.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1212">http://developer.linkedin.com/docs/DOC-1212</a>
+     * 
+     * @param shareId the share id
+     * @param visibility the visibility
+     */
+    public void reShare(String shareId, VisibilityType visibility);
 }

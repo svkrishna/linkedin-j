@@ -62,6 +62,7 @@ import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.InviteConnectType;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
@@ -72,6 +73,7 @@ import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.UpdateComments;
+import com.google.code.linkedinapi.schema.VisibilityType;
 
 /**
  * @author Nabeel Mukhtar
@@ -1665,6 +1667,37 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
     }
 
+	@Override
+	public Likes getNetworkUpdateLikes(String networkUpdateId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void likePost(String networkUpdateId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postShare(String commentText, String title, String url,
+			String imageUrl, VisibilityType visibility) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reShare(String shareId, VisibilityType visibility) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unlikePost(String networkUpdateId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
     /**
      * Method description
      *
