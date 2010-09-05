@@ -132,7 +132,7 @@
         <xs:element ref="update-content"/>
         <xs:element ref="is-commentable"/>
 		<xs:element ref="is-likable"/>
-		<xs:element ref="is-liked"/>
+		<xs:element name="is-liked" type="xs:boolean"/>
 		<xs:element ref="num-likes"/>
         <xs:element minOccurs="0" ref="update-comments"/>
 		<xs:element minOccurs="0" ref="likes"/>

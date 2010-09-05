@@ -17,11 +17,17 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import java.io.Serializable;
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
 import com.google.code.linkedinapi.schema.Content;
 
 public class ContentImpl
-    implements Serializable, Content
+	extends BaseSchemaEntity
+    implements Content
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -80,4 +86,43 @@ public class ContentImpl
         this.thumbnailUrl = value;
     }
 
+	@Override
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("title")) {
+        		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("submitted-url")) {
+        		setSubmittedUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("shortened-url")) {
+        		setShortenedUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("submitted-image-url")) {
+        		setSubmittedImageUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("thumbnail-url")) {
+        		setThumbnailUrl(XppUtils.getElementValueFromNode(parser));
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
+	}
+
+	@Override
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "content");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "title", getTitle());
+		XppUtils.setElementValueToNode(element, "submitted-url", getSubmittedUrl());
+		XppUtils.setElementValueToNode(element, "shortened-url", getShortenedUrl());
+		XppUtils.setElementValueToNode(element, "submitted-image-url", getSubmittedImageUrl());
+		XppUtils.setElementValueToNode(element, "thumbnail-url", getThumbnailUrl());
+		serializer.endTag(null, "content");
+	}
+    
 }

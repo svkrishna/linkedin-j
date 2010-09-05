@@ -434,6 +434,10 @@ public class PersonImpl
         		setDistance(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("current-status")) {
         		setCurrentStatus(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("current-share")) { 
+    			CurrentShareImpl currentShare = new CurrentShareImpl();
+    			currentShare.init(parser);
+    			setCurrentShare(currentShare);
         	} else if (name.equals("current-status-timestamp")) {
         		setCurrentStatusTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("picture-url")) {
@@ -560,6 +564,9 @@ public class PersonImpl
 		}
 		if (getConnections() != null) {
 			((ConnectionsImpl) getConnections()).toXml(serializer);
+		}
+		if (getCurrentShare() != null) {
+			((CurrentShareImpl) getCurrentShare()).toXml(serializer);
 		}
 		if (getRelationToViewer() != null) {
 			((RelationToViewerImpl) getRelationToViewer()).toXml(serializer);

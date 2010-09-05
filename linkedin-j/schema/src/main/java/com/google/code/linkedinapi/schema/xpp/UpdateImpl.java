@@ -145,6 +145,13 @@ public class UpdateImpl
         		setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser)));
         	} else if (name.equals("is-commentable")) {
         		setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-likable")) {
+        		setIsLikable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-liked")) {
+        		// FIXME: Uncomment when schema fixed. 
+//        		setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("num-likes")) {
+        		setNumLikes(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("update-content")) {
     			UpdateContentImpl contentImpl = new UpdateContentImpl();
     			contentImpl.init(parser);
@@ -153,6 +160,10 @@ public class UpdateImpl
     			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
     			commentImpl.init(parser);
     			setUpdateComments(commentImpl);
+            } else if (name.equals("likes")) {
+    			LikesImpl likesImpl = new LikesImpl();
+    			likesImpl.init(parser);
+    			setLikes(likesImpl);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -168,12 +179,19 @@ public class UpdateImpl
 		XppUtils.setElementValueToNode(element, "update-key", getUpdateKey());
 		XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
 		XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
+		XppUtils.setElementValueToNode(element, "is-likable", String.valueOf(isIsLikable()));
+		// FIXME: Uncomment when schema fixed. 
+//		XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
+		XppUtils.setElementValueToNode(element, "num-likes", getNumLikes());
 		
 		if (getUpdateContent() != null) {
 			((UpdateContentImpl) getUpdateContent()).toXml(serializer);
 		}
 		if (getUpdateComments() != null) {
 			((UpdateCommentsImpl) getUpdateComments()).toXml(serializer);
+		}
+		if (getLikes() != null) {
+			((LikesImpl) getLikes()).toXml(serializer);
 		}
 		serializer.endTag(null, "update");
 	}

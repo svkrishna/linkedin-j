@@ -17,14 +17,20 @@
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import java.io.Serializable;
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
 import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Share;
 import com.google.code.linkedinapi.schema.Visibility;
 
 public class ShareImpl
-    implements Serializable, Share
+	extends BaseSchemaEntity
+    implements Share
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -74,4 +80,51 @@ public class ShareImpl
         this.id = value;
     }
 
+	@Override
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("comment")) {
+        		setComment(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("content")) {
+    			ContentImpl content = new ContentImpl();
+    			content.init(parser);
+    			setContent(content);
+        	} else if (name.equals("visibility")) {
+    			VisibilityImpl visibility = new VisibilityImpl();
+    			visibility.init(parser);
+    			setVisibility(visibility);
+        	} else if (name.equals("attribution")) {
+    			AttributionImpl source = new AttributionImpl();
+    			source.init(parser);
+    			setAttribution(source);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
+	}
+
+	@Override
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "share");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "comment", getComment());
+		if (getContent() != null) {
+			((ContentImpl) getContent()).toXml(serializer);
+		}
+		if (getVisibility() != null) {
+			((VisibilityImpl) getVisibility()).toXml(serializer);
+		}
+		if (getAttribution() != null) {
+			((AttributionImpl) getAttribution()).toXml(serializer);
+		}
+		serializer.endTag(null, "share");
+	}
 }
