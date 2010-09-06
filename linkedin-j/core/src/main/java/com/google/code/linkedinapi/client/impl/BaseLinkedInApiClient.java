@@ -55,8 +55,10 @@ import com.google.code.linkedinapi.client.oauth.LinkedInOAuthService;
 import com.google.code.linkedinapi.client.oauth.LinkedInOAuthServiceFactory;
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Authorization;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.HttpHeader;
@@ -71,8 +73,10 @@ import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
+import com.google.code.linkedinapi.schema.Share;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.UpdateComments;
+import com.google.code.linkedinapi.schema.Visibility;
 import com.google.code.linkedinapi.schema.VisibilityType;
 
 /**
@@ -1630,16 +1634,20 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /**
      * {@inheritDoc}
+     * @deprecated Use {@link #postShare(String, String, String, String, VisibilityType)}
      */
     @Override
+    @Deprecated
     public void updateCurrentStatus(String statusText) {
     	updateCurrentStatus(statusText, false);
     }
     
     /**
      * {@inheritDoc}
+     * @deprecated Use {@link #postShare(String, String, String, String, VisibilityType, boolean)}
      */
     @Override
+    @Deprecated
     public void updateCurrentStatus(String statusText, boolean postToTwitter) {
         if (isNullOrEmpty(statusText)) {
             deleteCurrentStatus();
@@ -1669,33 +1677,81 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
 	@Override
 	public Likes getNetworkUpdateLikes(String networkUpdateId) {
-		// TODO Auto-generated method stub
-		return null;
+        assertNotNullOrEmpty("network update id", networkUpdateId);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_LIKES);
+        String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
+
+        return readResponse(Likes.class, callApiMethod(apiUrl));
 	}
 
 	@Override
 	public void likePost(String networkUpdateId) {
-		// TODO Auto-generated method stub
-		
+        assertNotNullOrEmpty("network update id", networkUpdateId);
+        
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_LIKE);
+        String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
+        Object share = OBJECT_FACTORY.createIsLiked(true);
+
+        callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                      HttpURLConnection.HTTP_CREATED);
 	}
 
 	@Override
 	public void postShare(String commentText, String title, String url,
 			String imageUrl, VisibilityType visibility) {
-		// TODO Auto-generated method stub
-		
+		postShare(commentText, title, url, imageUrl, visibility, false);
 	}
 
 	@Override
-	public void reShare(String shareId, VisibilityType visibility) {
-		// TODO Auto-generated method stub
-		
+	public void postShare(String commentText, String title, String url,
+			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_SHARE);
+        if (postToTwitter) {
+        	builder.withParameter("post-twitter", "true");
+        }
+        String                apiUrl  = builder.buildUrl();
+        Share share = OBJECT_FACTORY.createShare();
+        share.setComment(commentText);
+        Content content = OBJECT_FACTORY.createContent();
+        content.setSubmittedUrl(url);
+        content.setSubmittedImageUrl(imageUrl);
+        Visibility visibility = OBJECT_FACTORY.createVisibility();
+        visibility.setCode(visibilityType);
+        share.setVisibility(visibility);
+
+        callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_OK);
+	}
+	
+	@Override
+	public void reShare(String shareId, String commentText, VisibilityType visibilityType) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.RE_SHARE);
+        String                apiUrl  = builder.buildUrl();
+        Share share = OBJECT_FACTORY.createShare();
+        share.setComment(commentText);
+        Attribution attribution = OBJECT_FACTORY.createAttribution();
+        Share refShare = OBJECT_FACTORY.createShare();
+        refShare.setId(shareId);
+        attribution.setShare(refShare);
+        Visibility visibility = OBJECT_FACTORY.createVisibility();
+        visibility.setCode(visibilityType);
+        share.setVisibility(visibility);
+
+        callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                      HttpURLConnection.HTTP_OK);
 	}
 
 	@Override
 	public void unlikePost(String networkUpdateId) {
-		// TODO Auto-generated method stub
-		
+        assertNotNullOrEmpty("network update id", networkUpdateId);
+        
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_LIKE);
+        String                apiUrl  = builder.withField("updateKey", networkUpdateId).buildUrl();
+        Object share = OBJECT_FACTORY.createIsLiked(false);
+
+        callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                      HttpURLConnection.HTTP_CREATED);
 	}
 	
     /**

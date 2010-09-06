@@ -77,7 +77,9 @@ public enum NetworkUpdateType implements FieldEnum {
 
     /**
      * A connection has updated their status.
+     * @deprecated Use {@link #SHARED_ITEM}
      */
+    @Deprecated
     STATUS_UPDATE("STAT"), 
     
     /**

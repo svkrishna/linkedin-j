@@ -1015,11 +1015,23 @@ public interface LinkedInApiClient extends LinkedInAuthenticationClient {
     public void postShare(String commentText, String title, String url, String imageUrl, VisibilityType visibility);
     
     /**
+     * Post share.
+     * For details see <a href="http://developer.linkedin.com/docs/DOC-1212">http://developer.linkedin.com/docs/DOC-1212</a>
+     * 
+     * @param commentText the comment text
+     * @param title the title
+     * @param url the url
+     * @param imageUrl the image url
+     * @param visibility the visibility
+     */
+    public void postShare(String commentText, String title, String url, String imageUrl, VisibilityType visibility, boolean postToTwitter);
+    
+    /**
      * Re-share.
      * For details see <a href="http://developer.linkedin.com/docs/DOC-1212">http://developer.linkedin.com/docs/DOC-1212</a>
      * 
      * @param shareId the share id
      * @param visibility the visibility
      */
-    public void reShare(String shareId, VisibilityType visibility);
+    public void reShare(String shareId, String commentText, VisibilityType visibility);
 }
