@@ -206,3 +206,25 @@ Fix these files.
 	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/VisibilityImpl.java
 	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ContentImpl.java
 	  Transmitting file data: workspace/opensource/linkedin-j/schema/src/main/java/com/google/code/linkedinapi/schema/xpp/ServiceProviderImpl.java
+
+Join these groups.
+Hadoop
+Data mining
+CMG
+Mahout
+Robin Anil
+Ali Sohani
+ACM
+IEEE CS
+Algorithms
+Neo4J
+Lucene
+cloudera
+machine learning
+http://www.linkedin.com/groupsDirectory?itemaction=mclk&anetid=57400&impid=&pgkey=anet_search_results&actpref=anetsrch_name&trk=anetsrch_name&goback=%2Egdr_1283768632610_1
+http://www.linkedin.com/groupsDirectory?itemaction=mclk&anetid=2930475&impid=&pgkey=anet_search_results&actpref=anetsrch_name&trk=anetsrch_name&goback=%2Egdr_1283768632610_1
+IBM Research
+JEE
+Design Patterns
+Software Architecture
+Cassandra
