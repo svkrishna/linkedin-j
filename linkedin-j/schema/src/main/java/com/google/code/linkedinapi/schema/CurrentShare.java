@@ -35,6 +35,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}content"/>
  *         &lt;element ref="{}visibility"/>
  *         &lt;element ref="{}source"/>
+ *         &lt;element ref="{}author"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -167,5 +168,25 @@ public interface CurrentShare
      *     
      */
     void setSource(Source value);
+
+    /**
+     * Gets the value of the author property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Author }
+     *     
+     */
+    Author getAuthor();
+
+    /**
+     * Sets the value of the author property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Author }
+     *     
+     */
+    void setAuthor(Author value);
 
 }

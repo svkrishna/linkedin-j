@@ -347,6 +347,7 @@
         <xs:element ref="content"/>
         <xs:element ref="visibility"/>
         <xs:element ref="source"/>
+		<xs:element ref="author"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

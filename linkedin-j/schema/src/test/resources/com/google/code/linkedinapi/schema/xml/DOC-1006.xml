@@ -65,6 +65,12 @@
 				   <name>Your Cool App</name>
 				 </application>
 			  </source>
+            <author>
+              <id>EDgfANrAzD</id>
+              <first-name>Nabeel</first-name>
+              <last-name>Siddiqui</last-name>
+              <headline>Software Engineer at Creative Chaos</headline>
+            </author>
 		</current-share>
           <api-standard-profile-request>
             <url>http://api.linkedin.com/v1/people/Zu1E2R9-q8:full</url>

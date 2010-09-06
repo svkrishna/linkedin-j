@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
+import com.google.code.linkedinapi.schema.Author;
 import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.CurrentShare;
 import com.google.code.linkedinapi.schema.Source;
@@ -38,7 +39,8 @@ import com.google.code.linkedinapi.schema.Visibility;
     "comment",
     "content",
     "visibility",
-    "source"
+    "source",
+    "author"
 })
 @XmlRootElement(name = "current-share")
 public class CurrentShareImpl
@@ -60,6 +62,8 @@ public class CurrentShareImpl
     protected VisibilityImpl visibility;
     @XmlElement(required = true, type = SourceImpl.class)
     protected SourceImpl source;
+    @XmlElement(required = true, type = AuthorImpl.class)
+    protected AuthorImpl author;
 
     public String getId() {
         return id;
@@ -107,6 +111,14 @@ public class CurrentShareImpl
 
     public void setSource(Source value) {
         this.source = ((SourceImpl) value);
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author value) {
+        this.author = ((AuthorImpl) value);
     }
 
 }
