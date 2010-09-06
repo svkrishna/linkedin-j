@@ -159,22 +159,14 @@ public interface Update
     /**
      * Gets the value of the isLiked property.
      * 
-     * @return
-     *     possible object is
-     *     {@link IsLiked }
-     *     
      */
-    IsLiked getIsLiked();
+    boolean isIsLiked();
 
     /**
      * Sets the value of the isLiked property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link IsLiked }
-     *     
      */
-    void setIsLiked(IsLiked value);
+    void setIsLiked(boolean value);
 
     /**
      * Gets the value of the numLikes property.

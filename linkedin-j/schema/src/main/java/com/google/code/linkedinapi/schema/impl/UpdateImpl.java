@@ -25,7 +25,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.IsLiked;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
@@ -64,8 +63,8 @@ public class UpdateImpl
     protected boolean isCommentable;
     @XmlElement(name = "is-likable")
     protected boolean isLikable;
-    @XmlElement(name = "is-liked", required = true, type = IsLikedImpl.class)
-    protected IsLikedImpl isLiked;
+    @XmlElement(name = "is-liked")
+    protected boolean isLiked;
     @XmlElement(name = "num-likes", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numLikes;
@@ -122,12 +121,12 @@ public class UpdateImpl
         this.isLikable = value;
     }
 
-    public IsLiked getIsLiked() {
+    public boolean isIsLiked() {
         return isLiked;
     }
 
-    public void setIsLiked(IsLiked value) {
-        this.isLiked = ((IsLikedImpl) value);
+    public void setIsLiked(boolean value) {
+        this.isLiked = value;
     }
 
     public Long getNumLikes() {

@@ -23,7 +23,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.IsLiked;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
@@ -45,7 +44,7 @@ public class UpdateImpl
     protected UpdateContentImpl updateContent;
     protected boolean isCommentable;
     protected boolean isLikable;
-    protected IsLikedImpl isLiked;
+    protected boolean isLiked;
     protected Long numLikes;
     protected UpdateCommentsImpl updateComments;
     protected LikesImpl likes;
@@ -98,12 +97,12 @@ public class UpdateImpl
         this.isLikable = value;
     }
 
-    public IsLiked getIsLiked() {
+    public boolean isIsLiked() {
         return isLiked;
     }
 
-    public void setIsLiked(IsLiked value) {
-        this.isLiked = ((IsLikedImpl) value);
+    public void setIsLiked(boolean value) {
+        this.isLiked = value;
     }
 
     public Long getNumLikes() {
@@ -148,8 +147,7 @@ public class UpdateImpl
         	} else if (name.equals("is-likable")) {
         		setIsLikable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
         	} else if (name.equals("is-liked")) {
-        		// FIXME: Uncomment when schema fixed. 
-//        		setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        		setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
         	} else if (name.equals("num-likes")) {
         		setNumLikes(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("update-content")) {
@@ -180,8 +178,7 @@ public class UpdateImpl
 		XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
 		XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
 		XppUtils.setElementValueToNode(element, "is-likable", String.valueOf(isIsLikable()));
-		// FIXME: Uncomment when schema fixed. 
-//		XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
+		XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
 		XppUtils.setElementValueToNode(element, "num-likes", getNumLikes());
 		
 		if (getUpdateContent() != null) {
