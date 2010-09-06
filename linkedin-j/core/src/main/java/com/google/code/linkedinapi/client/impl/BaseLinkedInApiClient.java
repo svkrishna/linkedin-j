@@ -1716,12 +1716,13 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Content content = OBJECT_FACTORY.createContent();
         content.setSubmittedUrl(url);
         content.setSubmittedImageUrl(imageUrl);
+        share.setContent(content);
         Visibility visibility = OBJECT_FACTORY.createVisibility();
         visibility.setCode(visibilityType);
         share.setVisibility(visibility);
 
         callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
-                      HttpURLConnection.HTTP_OK);
+                      HttpURLConnection.HTTP_CREATED);
 	}
 	
 	@Override
@@ -1739,7 +1740,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         share.setVisibility(visibility);
 
         callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
-                      HttpURLConnection.HTTP_OK);
+                      HttpURLConnection.HTTP_CREATED);
 	}
 
 	@Override
