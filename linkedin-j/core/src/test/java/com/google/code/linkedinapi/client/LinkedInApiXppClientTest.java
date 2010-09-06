@@ -63,7 +63,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 //	/**
-//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String)}.
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsByEmail(java.lang.String)}.
 //	 */
 //	@Test
 //	public void testGetConnectionsByEmailString() {
@@ -74,7 +74,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 //	}
 
 //	/**
-//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByEmail(java.lang.String, java.util.Set)}.
+//	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsByEmail(java.lang.String, java.util.Set)}.
 //	 */
 //	@Test
 //	public void testGetConnectionsByEmailStringSetOfProfileField() {
@@ -85,7 +85,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 //	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsById(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsById(java.lang.String)}.
 	 */
 	@Test
 	public void testGetConnectionsByIdString() {
@@ -96,7 +96,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsById(java.lang.String, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsById(java.lang.String, java.util.Set)}.
 	 */
 	@Test
 	public void testGetConnectionsByIdStringSetOfProfileField() {
@@ -107,7 +107,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByUrl(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsByUrl(java.lang.String)}.
 	 */
 	@Test
 	public void testGetConnectionsByUrlString() {
@@ -118,7 +118,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsByUrl(java.lang.String, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsByUrl(java.lang.String, java.util.Set)}.
 	 */
 	@Test
 	public void testGetConnectionsByUrlStringSetOfProfileField() {
@@ -129,7 +129,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsForCurrentUser()}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsForCurrentUser()}.
 	 */
 	@Test
 	public void testGetConnectionsForCurrentUser() {
@@ -138,7 +138,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsForCurrentUser(java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsForCurrentUser(java.util.Set)}.
 	 */
 	@Test
 	public void testGetConnectionsForCurrentUserSetOfProfileField() {
@@ -147,7 +147,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getConnectionsForCurrentUser(Set, int, int, Date, ConnectionModificationType)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getConnectionsForCurrentUser(Set, int, int, Date, ConnectionModificationType)}.
 	 */
 	@Test
 	public void testGetConnectionsForCurrentUserSetIntIntDateConnectionModificationType() {
@@ -158,7 +158,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates()}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates()}.
 	 */
 	@Test
 	public void testGetNetworkUpdates() {
@@ -167,7 +167,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(int, int)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(int, int)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntInt() {
@@ -176,7 +176,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Date, java.util.Date)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(java.util.Date, java.util.Date)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesDateDate() {
@@ -185,7 +185,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(java.util.Set)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesSetOfNetworkUpdateType() {
@@ -194,7 +194,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, int, int)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(java.util.Set, int, int)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntSetOfNetworkUpdateType() {
@@ -203,7 +203,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, java.util.Date, java.util.Date)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(java.util.Set, java.util.Date, java.util.Date)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesDateDateSetOfNetworkUpdateType() {
@@ -212,7 +212,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdates(java.util.Set, int, int, java.util.Date, java.util.Date)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdates(java.util.Set, int, int, java.util.Date, java.util.Date)}.
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntDateDateSetOfNetworkUpdateType() {
@@ -221,7 +221,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdateComments(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdateComments(java.lang.String)}.
 	 */
 	@Test
 	public void testGetNetworkUpdateCommentsString() {
@@ -232,7 +232,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdateComments(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getNetworkUpdateComments(java.lang.String)}.
 	 */
 	@Test
 	public void testGetNetworkUpdateLikesString() {
@@ -243,7 +243,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
 	 */
 	@Test
 	public void testGetProfileByIdString() {
@@ -254,7 +254,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileById(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType, java.util.Set)}.
 	 */
 	@Test
 	public void testGetProfileByIdStringSetOfProfileField() {
@@ -265,7 +265,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileByUrl(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileByUrl(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType)}.
 	 */
 	@Test
 	public void testGetProfileByUrlStringProfileType() {
@@ -276,7 +276,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileByUrl(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType, java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileByUrl(java.lang.String, com.google.code.linkedinapi.client.enumeration.ProfileType, java.util.Set)}.
 	 */
 	@Test
 	public void testGetProfileByUrlStringProfileTypeSetOfProfileField() {
@@ -287,7 +287,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileForCurrentUser()}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileForCurrentUser()}.
 	 */
 	@Test
 	public void testGetProfileForCurrentUser() {
@@ -296,7 +296,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getProfileForCurrentUser(java.util.Set)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#getProfileForCurrentUser(java.util.Set)}.
 	 */
 	@Test
 	public void testGetProfileForCurrentUserSetOfProfileField() {
@@ -305,7 +305,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#postComment(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#postComment(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testPostComment() {
@@ -317,7 +317,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#postNetworkUpdate(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#postNetworkUpdate(java.lang.String)}.
 	 */
 	@Test
 	public void testPostNetworkUpdate() {
@@ -327,7 +327,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople()}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople()}.
 	 */
 	@Test
 	public void testSearchPeople() {
@@ -336,7 +336,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(java.util.Map)}.
 	 */
 	@Test
 	public void testSearchPeopleMapOfSearchParameterString() {
@@ -347,7 +347,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(int, int)}.
 	 */
 //	@Test
 //	public void testSearchPeopleIntInt() {
@@ -356,7 +356,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 //	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(java.util.Map, int, int)}.
 	 */
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringIntInt() {
@@ -367,7 +367,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
 //	@Test
 //	public void testSearchPeopleSearchSortOrder() {
@@ -376,7 +376,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 //	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(java.util.Map, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringSearchSortOrder() {
@@ -387,7 +387,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
 //	@Test
 //	public void testSearchPeopleIntIntSearchSortOrder() {
@@ -396,7 +396,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 //	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#searchPeople(java.util.Map, int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#searchPeople(java.util.Map, int, int, com.google.code.linkedinapi.client.enumeration.SearchSortOrder)}.
 	 */
 	@Test
 	public void testSearchPeopleMapOfSearchParameterStringIntIntSearchSortOrder() {
@@ -431,7 +431,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInviteByEmail(java.lang.String, String, String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#sendInviteByEmail(java.lang.String, String, String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testSendInviteByEmailStringStringString() {
@@ -449,7 +449,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendInviteById(java.lang.String, String, String, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#sendInviteById(java.lang.String, String, String, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testSendInviteByIdStringStringString() {
@@ -465,7 +465,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#sendMessage(java.util.List, java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#sendMessage(java.util.List, java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testSendMessage() {
@@ -479,7 +479,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#updateCurrentStatus(java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#updateCurrentStatus(java.lang.String)}.
 	 */
 	@Test
 	public void testUpdateCurrentStatus() {
@@ -489,7 +489,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#deleteCurrentStatus()}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#deleteCurrentStatus()}.
 	 */
 	@Test
 	public void testDeleteCurrentStatus() {
@@ -497,7 +497,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	}
 	
 	/**
-	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#postComment(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiXppClient#postComment(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public void testLikePost() {
