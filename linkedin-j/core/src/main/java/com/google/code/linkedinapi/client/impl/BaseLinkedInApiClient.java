@@ -1737,6 +1737,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Share refShare = OBJECT_FACTORY.createShare();
         refShare.setId(shareId);
         attribution.setShare(refShare);
+        share.setAttribution(attribution);
         Visibility visibility = OBJECT_FACTORY.createVisibility();
         visibility.setCode(visibilityType);
         share.setVisibility(visibility);
