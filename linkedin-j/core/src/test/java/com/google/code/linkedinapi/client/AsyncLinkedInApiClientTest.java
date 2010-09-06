@@ -171,7 +171,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE));
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE));
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -180,7 +180,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5);
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), 1, 5);
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -189,7 +189,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesDateDateSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), getLastWeekDate(), getCurrentDate());
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -198,7 +198,7 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntDateDateSetOfNetworkUpdateType() {
-		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 5, 1, getLastWeekDate(), getCurrentDate());
+		Future<Network> network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), 5, 1, getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 	

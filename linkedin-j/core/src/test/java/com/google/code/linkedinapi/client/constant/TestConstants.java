@@ -142,6 +142,12 @@ public final class TestConstants {
     public static final String LINKED_IN_TEST_CALLBACK_URL =
         testConstants.getProperty("com.google.code.linkedinapi.client.testCallbackUrl");
 
+	public static final String LINKED_IN_TEST_SHARE_TEXT =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testShareText");
+
+	public static final String LINKED_IN_TEST_SHARE_URL =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testShareUrl");
+	
     /**
      * Constructs ...
      *

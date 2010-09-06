@@ -31,11 +31,13 @@ import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.client.impl.LinkedInApiXppClient;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.UpdateComments;
+import com.google.code.linkedinapi.schema.VisibilityType;
 
 /**
  * @author Nabeel Mukhtar
@@ -187,7 +189,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesSetOfNetworkUpdateType() {
-		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE));
+		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE));
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -196,7 +198,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntSetOfNetworkUpdateType() {
-		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 1, 5);
+		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), 1, 5);
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -205,7 +207,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesDateDateSetOfNetworkUpdateType() {
-		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), getLastWeekDate(), getCurrentDate());
+		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 
@@ -214,7 +216,7 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	 */
 	@Test
 	public void testGetNetworkUpdatesIntIntDateDateSetOfNetworkUpdateType() {
-		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.STATUS_UPDATE, NetworkUpdateType.CONNECTION_UPDATE), 5, 1, getLastWeekDate(), getCurrentDate());
+		Network network = client.getNetworkUpdates(EnumSet.of(NetworkUpdateType.SHARED_ITEM, NetworkUpdateType.CONNECTION_UPDATE), 5, 1, getLastWeekDate(), getCurrentDate());
 		assertNotNull("Network Updates should never be null.", network);
 	}
 	
@@ -227,6 +229,17 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
 		UpdateComments updateComments = client.getNetworkUpdateComments(networkUpdateId);
 		assertNotNull("Network Update Comments should never be null.", updateComments);
+	}
+	
+	/**
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#getNetworkUpdateComments(java.lang.String)}.
+	 */
+	@Test
+	public void testGetNetworkUpdateLikesString() {
+		final String networkUpdateId = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_ID;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
+		Likes likes = client.getNetworkUpdateLikes(networkUpdateId);
+		assertNotNull("Network Update Likes should never be null.", likes);
 	}
 	
 	/**
@@ -481,5 +494,24 @@ public class LinkedInApiXppClientTest extends LinkedInApiClientTest {
 	@Test
 	public void testDeleteCurrentStatus() {
 		client.deleteCurrentStatus();
+	}
+	
+	/**
+	 * Test method for {@link com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient#postComment(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testLikePost() {
+		final String networkUpdateId = TestConstants.LINKED_IN_TEST_NETWORK_UPDATE_ID;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Network Update ID"), networkUpdateId);
+		client.likePost(networkUpdateId);
+	}
+	
+	@Test
+	public void testPostShare() {
+		final String shareText = TestConstants.LINKED_IN_TEST_SHARE_TEXT;
+		final String shareUrl = TestConstants.LINKED_IN_TEST_SHARE_URL;
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Share Text"), shareText);
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Share URL"), shareUrl);
+		client.postShare(shareText, shareText, shareUrl, null, VisibilityType.CONNECTIONS_ONLY);
 	}
 }
