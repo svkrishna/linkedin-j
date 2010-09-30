@@ -1710,7 +1710,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_SHARE);
         if (postToTwitter) {
-        	builder.withParameter("post-twitter", "true");
+        	builder.withParameter("twitter-post", "true");
         }
         String                apiUrl  = builder.buildUrl();
         Share share = OBJECT_FACTORY.createShare();
