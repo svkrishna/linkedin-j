@@ -223,8 +223,17 @@ cloudera
 machine learning
 http://www.linkedin.com/groupsDirectory?itemaction=mclk&anetid=57400&impid=&pgkey=anet_search_results&actpref=anetsrch_name&trk=anetsrch_name&goback=%2Egdr_1283768632610_1
 http://www.linkedin.com/groupsDirectory?itemaction=mclk&anetid=2930475&impid=&pgkey=anet_search_results&actpref=anetsrch_name&trk=anetsrch_name&goback=%2Egdr_1283768632610_1
+http://www.linkedin.com/groupInvitation?groupID=988957&sharedKey=1897B23FD490
+http://www.linkedin.com/profile/view?id=35188612&authType=name&authToken=EOqc&goback=.anb_988957_*2
+http://www.linkedin.com/groups?gid=3265054&trk=anetsrch_name&goback=.gdr_1280870667894_3
 IBM Research
 JEE
 Design Patterns
 Software Architecture
 Cassandra
+
+Follow Google, Facebook, IBM, Microsoft, Yahoo etc.
+http://www.linkedin.com/groups?home=&gid=984207&trk=anet_ug_hm
+http://www.linkedin.com/in/peterskomoroch
+
+http://developer.linkedin.com/docs/DOC-1203
