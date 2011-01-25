@@ -29,7 +29,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}status"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element ref="{}timestamp"/>
  *         &lt;element ref="{}error-code"/>
  *         &lt;element ref="{}message"/>

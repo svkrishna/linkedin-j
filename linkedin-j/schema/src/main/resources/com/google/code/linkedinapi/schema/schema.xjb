@@ -40,6 +40,7 @@
 			<typesafeEnumMember name="STATUS_UPDATED" value="STAT"/>
 			<typesafeEnumMember name="SHARED_ITEM" value="SHAR"/>
 			<typesafeEnumMember name="EXTENDED_PROFILE_UPDATED" value="PRFX"/>
+			<typesafeEnumMember name="COMPANY_UPDATED" value="CMPY"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='recommendation-type']/xs:simpleType">
@@ -66,6 +67,19 @@
 			<typesafeEnumMember name="HOME" value="home"/>
 			<typesafeEnumMember name="WORK" value="work"/>
 			<typesafeEnumMember name="MOBILE" value="mobile"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='level']/xs:simpleType">
+		<typesafeEnumClass name="ProficiencyLevelType">
+			<typesafeEnumMember name="ELEMENTARY" value="elementary"/>
+			<typesafeEnumMember name="LIMITED_WORKING" value="limited-working"/>
+			<typesafeEnumMember name="PROFESSIONAL_WORKING" value="professional-working"/>
+			<typesafeEnumMember name="FULL_PROFESSIONAL" value="full-professional"/>
+			<typesafeEnumMember name="NATIVE_BILINGUAL" value="native-or-bilingual"/>
+			<typesafeEnumMember name="BEGINNER" value="beginner"/>
+			<typesafeEnumMember name="INTERMEDIATE" value="intermediate"/>
+			<typesafeEnumMember name="ADVANCED" value="advanced"/>
+			<typesafeEnumMember name="EXPERT" value="expert"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='facet']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
@@ -157,5 +171,20 @@
 	</bindings>
 	<bindings node="//xs:element[@name='likes']/xs:complexType/xs:sequence/xs:element[@ref='like']">
 		<property name="likeList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='certifications']/xs:complexType/xs:sequence/xs:element[@ref='certification']">
+		<property name="certificationList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='patents']/xs:complexType/xs:sequence/xs:element[@ref='patent']">
+		<property name="patentList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='publications']/xs:complexType/xs:sequence/xs:element[@ref='publication']">
+		<property name="publicationList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='skills']/xs:complexType/xs:sequence/xs:element[@ref='skill']">
+		<property name="skillList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='languages']/xs:complexType/xs:sequence/xs:element[@ref='language']">
+		<property name="languageList"/>
 	</bindings>
 </bindings>

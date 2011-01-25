@@ -142,7 +142,32 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * A collection of positions a member has had, the total indicated by a total attribute
      */
     POSITIONS("positions", null, true),
+    
+    /**
+     * A collection of publications authored by this member
+     */
+    PUBLICATIONS("publications", null, true),
 
+    /**
+     * A collection of patents or patent applications held by this member
+     */
+    PATENTS("patents", null, true),
+
+    /**
+     * A collection of languages and the level of the member's proficiency for each
+     */
+    LANGUAGES("languages", null, true),
+
+    /**
+     * A collection of skills held by this member
+     */
+    SKILLS("skills", null, true),
+
+    /**
+     * A collection of certifications earned by this member
+     */
+    CERTIFICATIONS("certifications", null, true),
+    
     /**
      * A collection of education institutions a member has attended, the total indicated by a total attribute
      */

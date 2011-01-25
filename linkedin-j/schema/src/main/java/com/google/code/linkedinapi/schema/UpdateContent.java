@@ -29,9 +29,13 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
- *         &lt;element ref="{}person"/>
- *         &lt;element ref="{}job"/>
- *         &lt;element ref="{}question"/>
+ *         &lt;element ref="{}person" minOccurs="0"/>
+ *         &lt;element ref="{}job" minOccurs="0"/>
+ *         &lt;element ref="{}question" minOccurs="0"/>
+ *         &lt;element ref="{}company" minOccurs="0"/>
+ *         &lt;element ref="{}company-job-update" minOccurs="0"/>
+ *         &lt;element ref="{}company-person-update" minOccurs="0"/>
+ *         &lt;element ref="{}company-profile-update" minOccurs="0"/>
  *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -104,5 +108,85 @@ public interface UpdateContent
      *     
      */
     void setQuestion(Question value);
+
+    /**
+     * Gets the value of the company property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Company }
+     *     
+     */
+    Company getCompany();
+
+    /**
+     * Sets the value of the company property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Company }
+     *     
+     */
+    void setCompany(Company value);
+
+    /**
+     * Gets the value of the companyJobUpdate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CompanyJobUpdate }
+     *     
+     */
+    CompanyJobUpdate getCompanyJobUpdate();
+
+    /**
+     * Sets the value of the companyJobUpdate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CompanyJobUpdate }
+     *     
+     */
+    void setCompanyJobUpdate(CompanyJobUpdate value);
+
+    /**
+     * Gets the value of the companyPersonUpdate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CompanyPersonUpdate }
+     *     
+     */
+    CompanyPersonUpdate getCompanyPersonUpdate();
+
+    /**
+     * Sets the value of the companyPersonUpdate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CompanyPersonUpdate }
+     *     
+     */
+    void setCompanyPersonUpdate(CompanyPersonUpdate value);
+
+    /**
+     * Gets the value of the companyProfileUpdate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CompanyProfileUpdate }
+     *     
+     */
+    CompanyProfileUpdate getCompanyProfileUpdate();
+
+    /**
+     * Sets the value of the companyProfileUpdate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CompanyProfileUpdate }
+     *     
+     */
+    void setCompanyProfileUpdate(CompanyProfileUpdate value);
 
 }

@@ -18,6 +18,7 @@ package com.google.code.linkedinapi.client.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -587,4 +588,9 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
 			// No-Op
 		} 
     }
+
+	@Override
+	public void addLocale(Locale locale) {
+		client.addLocale(locale);
+	}
 }

@@ -32,6 +32,8 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}type" minOccurs="0"/>
  *         &lt;element ref="{}name"/>
  *         &lt;element ref="{}industry" minOccurs="0"/>
+ *         &lt;element ref="{}size" minOccurs="0"/>
+ *         &lt;element ref="{}ticker" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -104,5 +106,45 @@ public interface Company
      *     
      */
     void setIndustry(String value);
+
+    /**
+     * Gets the value of the size property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getSize();
+
+    /**
+     * Sets the value of the size property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setSize(Long value);
+
+    /**
+     * Gets the value of the ticker property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getTicker();
+
+    /**
+     * Sets the value of the ticker property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setTicker(String value);
 
 }

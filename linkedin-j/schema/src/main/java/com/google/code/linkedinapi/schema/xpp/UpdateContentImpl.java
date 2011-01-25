@@ -23,6 +23,10 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanyJobUpdate;
+import com.google.code.linkedinapi.schema.CompanyPersonUpdate;
+import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
@@ -40,6 +44,11 @@ public class UpdateContentImpl
 	protected PersonImpl person;
     protected JobImpl job;
 	protected QuestionImpl question;
+    protected CompanyImpl company;
+    protected CompanyJobUpdateImpl companyJobUpdate;
+    protected CompanyPersonUpdateImpl companyPersonUpdate;
+    protected CompanyProfileUpdateImpl companyProfileUpdate;
+	
 
     public Person getPerson() {
         return person;
@@ -65,6 +74,38 @@ public class UpdateContentImpl
         this.job = ((JobImpl) value);
     }
     
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company value) {
+        this.company = ((CompanyImpl) value);
+    }
+
+    public CompanyJobUpdate getCompanyJobUpdate() {
+        return companyJobUpdate;
+    }
+
+    public void setCompanyJobUpdate(CompanyJobUpdate value) {
+        this.companyJobUpdate = ((CompanyJobUpdateImpl) value);
+    }
+
+    public CompanyPersonUpdate getCompanyPersonUpdate() {
+        return companyPersonUpdate;
+    }
+
+    public void setCompanyPersonUpdate(CompanyPersonUpdate value) {
+        this.companyPersonUpdate = ((CompanyPersonUpdateImpl) value);
+    }
+
+    public CompanyProfileUpdate getCompanyProfileUpdate() {
+        return companyProfileUpdate;
+    }
+
+    public void setCompanyProfileUpdate(CompanyProfileUpdate value) {
+        this.companyProfileUpdate = ((CompanyProfileUpdateImpl) value);
+    }
+    
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -84,6 +125,22 @@ public class UpdateContentImpl
     			QuestionImpl questionImpl = new QuestionImpl();
     			questionImpl.init(parser);
     			setQuestion(questionImpl);
+        	} else if (name.equals("company")) {
+        		CompanyImpl companyImpl = new CompanyImpl();
+    			companyImpl.init(parser);
+    			setCompany(companyImpl);
+        	} else if (name.equals("company-job-update")) {
+        		CompanyJobUpdateImpl companyJobUpdate = new CompanyJobUpdateImpl();
+    			companyJobUpdate.init(parser);
+    			setCompanyJobUpdate(companyJobUpdate);
+        	} else if (name.equals("company-person-update")) {
+        		CompanyPersonUpdateImpl companyPersonUpdate = new CompanyPersonUpdateImpl();
+    			companyPersonUpdate.init(parser);
+    			setCompanyPersonUpdate(companyPersonUpdate);
+        	} else if (name.equals("company-profile-update")) {
+        		CompanyProfileUpdateImpl companyProfileUpdate = new CompanyProfileUpdateImpl();
+    			companyProfileUpdate.init(parser);
+    			setCompanyProfileUpdate(companyProfileUpdate);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -103,6 +160,18 @@ public class UpdateContentImpl
 		}
 		if (getQuestion() != null) {
 			((QuestionImpl) getQuestion()).toXml(element);
+		}
+		if (getCompany() != null) {
+			((CompanyImpl) getCompany()).toXml(element);
+		}
+		if (getCompanyJobUpdate() != null) {
+			((CompanyJobUpdateImpl) getCompanyJobUpdate()).toXml(element);
+		}
+		if (getCompanyPersonUpdate() != null) {
+			((CompanyPersonUpdateImpl) getCompanyPersonUpdate()).toXml(element);
+		}
+		if (getCompanyProfileUpdate() != null) {
+			((CompanyProfileUpdateImpl) getCompanyProfileUpdate()).toXml(element);
 		}
 		serializer.endTag(null, "update-content");
 	}

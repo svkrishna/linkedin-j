@@ -37,7 +37,9 @@ public class CompanyImpl
 	protected String type;
     protected String name;
     protected String industry;
-
+    protected Long size;
+    protected String ticker;
+    
     public String getType() {
         return type;
     }
@@ -61,7 +63,23 @@ public class CompanyImpl
     public void setIndustry(String value) {
         this.industry = value;
     }
+    
+    public Long getSize() {
+        return size;
+    }
 
+    public void setSize(Long value) {
+        this.size = value;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String value) {
+        this.ticker = value;
+    }
+    
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -73,8 +91,12 @@ public class CompanyImpl
         		setName(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("type")) {
         		setType(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("type")) {
+        	} else if (name.equals("industry")) {
         		setIndustry(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("size")) {
+        		setSize(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("ticker")) {
+        		setTicker(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -89,6 +111,8 @@ public class CompanyImpl
 		XppUtils.setElementValueToNode(element, "name", getName());
 		XppUtils.setElementValueToNode(element, "type", getType());
 		XppUtils.setElementValueToNode(element, "industry", getIndustry());
+		XppUtils.setElementValueToNode(element, "size", getSize());
+		XppUtils.setElementValueToNode(element, "ticker", getTicker());
 		serializer.endTag(null, "company");
 	}
 }

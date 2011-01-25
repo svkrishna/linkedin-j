@@ -23,13 +23,17 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Company;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "type",
     "name",
-    "industry"
+    "industry",
+    "size",
+    "ticker"
 })
 @XmlRootElement(name = "company")
 public class CompanyImpl
@@ -41,6 +45,10 @@ public class CompanyImpl
     @XmlElement(required = true)
     protected String name;
     protected String industry;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long size;
+    protected String ticker;
 
     public String getType() {
         return type;
@@ -64,6 +72,22 @@ public class CompanyImpl
 
     public void setIndustry(String value) {
         this.industry = value;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long value) {
+        this.size = value;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String value) {
+        this.ticker = value;
     }
 
 }

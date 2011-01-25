@@ -23,6 +23,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanyJobUpdate;
+import com.google.code.linkedinapi.schema.CompanyPersonUpdate;
+import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
@@ -32,7 +36,11 @@ import com.google.code.linkedinapi.schema.UpdateContent;
 @XmlType(name = "", propOrder = {
     "person",
     "job",
-    "question"
+    "question",
+    "company",
+    "companyJobUpdate",
+    "companyPersonUpdate",
+    "companyProfileUpdate"
 })
 @XmlRootElement(name = "update-content")
 public class UpdateContentImpl
@@ -46,6 +54,14 @@ public class UpdateContentImpl
     protected JobImpl job;
     @XmlElement(type = QuestionImpl.class)
     protected QuestionImpl question;
+    @XmlElement(type = CompanyImpl.class)
+    protected CompanyImpl company;
+    @XmlElement(name = "company-job-update", type = CompanyJobUpdateImpl.class)
+    protected CompanyJobUpdateImpl companyJobUpdate;
+    @XmlElement(name = "company-person-update", type = CompanyPersonUpdateImpl.class)
+    protected CompanyPersonUpdateImpl companyPersonUpdate;
+    @XmlElement(name = "company-profile-update", type = CompanyProfileUpdateImpl.class)
+    protected CompanyProfileUpdateImpl companyProfileUpdate;
 
     public Person getPerson() {
         return person;
@@ -69,6 +85,38 @@ public class UpdateContentImpl
 
     public void setQuestion(Question value) {
         this.question = ((QuestionImpl) value);
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company value) {
+        this.company = ((CompanyImpl) value);
+    }
+
+    public CompanyJobUpdate getCompanyJobUpdate() {
+        return companyJobUpdate;
+    }
+
+    public void setCompanyJobUpdate(CompanyJobUpdate value) {
+        this.companyJobUpdate = ((CompanyJobUpdateImpl) value);
+    }
+
+    public CompanyPersonUpdate getCompanyPersonUpdate() {
+        return companyPersonUpdate;
+    }
+
+    public void setCompanyPersonUpdate(CompanyPersonUpdate value) {
+        this.companyPersonUpdate = ((CompanyPersonUpdateImpl) value);
+    }
+
+    public CompanyProfileUpdate getCompanyProfileUpdate() {
+        return companyProfileUpdate;
+    }
+
+    public void setCompanyProfileUpdate(CompanyProfileUpdate value) {
+        this.companyProfileUpdate = ((CompanyProfileUpdateImpl) value);
     }
 
 }

@@ -49,14 +49,17 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}num-connections"/>
  *           &lt;element ref="{}num-connections-capped"/>
  *           &lt;element ref="{}relation-to-viewer"/>
- *         &lt;/sequence>
- *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}summary"/>
  *           &lt;element ref="{}public-profile-url"/>
  *           &lt;element ref="{}interests"/>
  *           &lt;element ref="{}associations"/>
  *           &lt;element ref="{}honors"/>
  *           &lt;element ref="{}specialties"/>
+ *           &lt;element ref="{}certifications"/>
+ *           &lt;element ref="{}patents"/>
+ *           &lt;element ref="{}publications"/>
+ *           &lt;element ref="{}skills"/>
+ *           &lt;element ref="{}languages"/>
  *         &lt;/sequence>
  *         &lt;element ref="{}positions" minOccurs="0"/>
  *         &lt;element ref="{}three-current-positions" minOccurs="0"/>
@@ -512,6 +515,106 @@ public interface Person
      *     
      */
     void setSpecialties(String value);
+
+    /**
+     * Gets the value of the certifications property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Certifications }
+     *     
+     */
+    Certifications getCertifications();
+
+    /**
+     * Sets the value of the certifications property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Certifications }
+     *     
+     */
+    void setCertifications(Certifications value);
+
+    /**
+     * Gets the value of the patents property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Patents }
+     *     
+     */
+    Patents getPatents();
+
+    /**
+     * Sets the value of the patents property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Patents }
+     *     
+     */
+    void setPatents(Patents value);
+
+    /**
+     * Gets the value of the publications property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Publications }
+     *     
+     */
+    Publications getPublications();
+
+    /**
+     * Sets the value of the publications property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Publications }
+     *     
+     */
+    void setPublications(Publications value);
+
+    /**
+     * Gets the value of the skills property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Skills }
+     *     
+     */
+    Skills getSkills();
+
+    /**
+     * Sets the value of the skills property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Skills }
+     *     
+     */
+    void setSkills(Skills value);
+
+    /**
+     * Gets the value of the languages property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Languages }
+     *     
+     */
+    Languages getLanguages();
+
+    /**
+     * Sets the value of the languages property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Languages }
+     *     
+     */
+    void setLanguages(Languages value);
 
     /**
      * Gets the value of the positions property.

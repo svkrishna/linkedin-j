@@ -24,22 +24,27 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Certifications;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.CurrentShare;
 import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.ImAccounts;
+import com.google.code.linkedinapi.schema.Languages;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
+import com.google.code.linkedinapi.schema.Patents;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.PhoneNumbers;
 import com.google.code.linkedinapi.schema.Positions;
+import com.google.code.linkedinapi.schema.Publications;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Skills;
 import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
 import com.google.code.linkedinapi.schema.TwitterAccounts;
@@ -74,6 +79,11 @@ public class PersonImpl
     protected String associations;
     protected String honors;
     protected String specialties;
+    protected CertificationsImpl certifications;
+    protected PatentsImpl patents;
+    protected PublicationsImpl publications;
+    protected SkillsImpl skills;
+    protected LanguagesImpl languages;
     protected PositionsImpl positions;
     protected ThreeCurrentPositionsImpl threeCurrentPositions;
     protected ThreePastPositionsImpl threePastPositions;
@@ -262,6 +272,46 @@ public class PersonImpl
         this.specialties = value;
     }
 
+    public Certifications getCertifications() {
+        return certifications;
+    }
+
+    public void setCertifications(Certifications value) {
+        this.certifications = ((CertificationsImpl) value);
+    }
+
+    public Patents getPatents() {
+        return patents;
+    }
+
+    public void setPatents(Patents value) {
+        this.patents = ((PatentsImpl) value);
+    }
+
+    public Publications getPublications() {
+        return publications;
+    }
+
+    public void setPublications(Publications value) {
+        this.publications = ((PublicationsImpl) value);
+    }
+
+    public Skills getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Skills value) {
+        this.skills = ((SkillsImpl) value);
+    }
+
+    public Languages getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(Languages value) {
+        this.languages = ((LanguagesImpl) value);
+    }
+    
     public Positions getPositions() {
         return positions;
     }
@@ -468,6 +518,26 @@ public class PersonImpl
     			RelationToViewerImpl relation = new RelationToViewerImpl();
     			relation.init(parser);
     			setRelationToViewer(relation);
+        	} else if (name.equals("certifications")) { 
+        		CertificationsImpl certifications = new CertificationsImpl();
+    			certifications.init(parser);
+    			setCertifications(certifications);
+        	} else if (name.equals("patents")) { 
+    			PatentsImpl patents = new PatentsImpl();
+    			patents.init(parser);
+    			setPatents(patents);
+        	} else if (name.equals("publications")) { 
+    			PublicationsImpl publications = new PublicationsImpl();
+    			publications.init(parser);
+    			setPublications(publications);
+        	} else if (name.equals("skills")) { 
+    			SkillsImpl skills = new SkillsImpl();
+    			skills.init(parser);
+    			setSkills(skills);
+        	} else if (name.equals("languages")) { 
+    			LanguagesImpl languages = new LanguagesImpl();
+    			languages.init(parser);
+    			setLanguages(languages);
         	} else if (name.equals("positions")) { 
     			PositionsImpl position = new PositionsImpl();
     			position.init(parser);
@@ -570,6 +640,21 @@ public class PersonImpl
 		}
 		if (getRelationToViewer() != null) {
 			((RelationToViewerImpl) getRelationToViewer()).toXml(serializer);
+		}
+		if (getCertifications() != null) {
+			((CertificationsImpl) getCertifications()).toXml(serializer);
+		}
+		if (getPatents() != null) {
+			((PatentsImpl) getPatents()).toXml(serializer);
+		}
+		if (getPublications() != null) {
+			((PublicationsImpl) getPublications()).toXml(serializer);
+		}
+		if (getSkills() != null) {
+			((SkillsImpl) getSkills()).toXml(serializer);
+		}
+		if (getLanguages() != null) {
+			((LanguagesImpl) getLanguages()).toXml(serializer);
 		}
 		if (getPositions() != null) {
 			((PositionsImpl) getPositions()).toXml(serializer);

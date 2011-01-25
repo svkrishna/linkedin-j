@@ -85,7 +85,12 @@ public enum NetworkUpdateType implements FieldEnum {
     /**
      * A connection has shared an update or link.
      */
-    SHARED_ITEM("SHAR");
+    SHARED_ITEM("SHAR"),
+    
+    /**
+     * A change to one of the companies the member is following.
+     */
+    COMPANY_FOLLOW_UPDATE("CMPY");
     
     /**
      * Field Description.

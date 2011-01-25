@@ -727,6 +727,125 @@
 			  </person>
 		 </update-content>
 		 <is-commentable>false</is-commentable>
-	</update>	      
+	</update>
+	<update>
+		<timestamp>1284403501090</timestamp>
+		<update-type>CMPY</update-type>
+		<update-content>
+			<company>
+				<id>1337</id>
+				<name>LinkedIn</name>
+			</company>
+			<company-profile-update>
+				<editor>
+					<id>rhVUkXXZrT</id>
+					<first-name>Bill</first-name>
+					<last-name>Doe</last-name>
+					<headline>CEO of Linkedin</headline>
+					<api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/rhVUkXXZrT</url>
+						<headers total="1">
+							<http-header>
+								<name>x-li-auth-token</name>
+								<value>name:VA6y</value>
+							</http-header>
+						</headers>
+					</api-standard-profile-request>
+					<site-standard-profile-request>
+						<url>http://www.linkedin.com/profile...</url>
+					</site-standard-profile-request>
+				</editor>
+				<action>
+					<code>updated</code>
+				</action>
+				<profile-field>
+					<code>profile</code>
+				</profile-field>
+			</company-profile-update>
+		</update-content>
+		<is-commentable>false</is-commentable>
+		<is-likable>false</is-likable>
+	</update>
+	<update>
+		<timestamp>1292362572753</timestamp>
+		<update-type>CMPY</update-type>
+		<update-content>
+			<company>
+				<id>1337</id>
+				<name>LinkedIn</name>
+			</company>
+			<company-job-update>
+				<job>
+					<id>1296359</id>
+					<position>
+						<title>QA Manager</title>
+					</position>
+					<company>
+						<id>1337</id>
+						<name>LinkedIn</name>
+					</company>
+					<site-job-request>
+						<url>http://www.linkedin.com/jobs?viewJob=&amp;jobId=12345</url>
+					</site-job-request>
+					<description>LinkedIn is looking for an experienced quality assurance leader...</description>
+					<location-description>Mountain View, CA</location-description>
+				</job>
+				<action>
+					<code>created</code>
+				</action>
+			</company-job-update>
+		</update-content>
+		<is-commentable>false</is-commentable>
+		<is-likable>false</is-likable>
+	</update>
+	<update>
+		<timestamp>1292213371884</timestamp>
+		<update-type>CMPY</update-type>
+		<update-content>
+			<company>
+				<id>1337</id>
+				<name>LinkedIn</name>
+			</company>
+			<company-person-update>
+				<person>
+					<id>tlB2exGt2s</id>
+					<first-name>Bill</first-name>
+					<last-name>Jones</last-name>
+					<headline>Senior Product Manager at LinkedIn</headline>
+					<picture-url>http://media.linkedin.com/...</picture-url>
+					<api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/tlB2exGt2s</url>
+						<headers total="1">
+							<http-header>
+								<name>x-li-auth-token</name>
+								<value>name:oxG_</value>
+							</http-header>
+						</headers>
+					</api-standard-profile-request>
+					<site-standard-profile-request>
+						<url>http://www.linkedin.com/profile...</url>
+					</site-standard-profile-request>
+				</person>
+				<action>
+					<code>joined</code>
+				</action>
+				<old-position>
+					<title>CEO &amp; Founder</title>
+					<company>
+						<name>Acme Widgets</name>
+					</company>
+				</old-position>
+				<new-position>
+					<title>Senior Product Manager</title>
+					<company>
+						<id>1337</id>
+						<name>LinkedIn</name>
+					</company>
+				</new-position>
+			</company-person-update>
+		</update-content>
+		<is-commentable>false</is-commentable>
+		<is-likable>false</is-likable>
+	</update>		      
   </updates>
 </network>

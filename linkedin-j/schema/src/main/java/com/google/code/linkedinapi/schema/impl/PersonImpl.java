@@ -28,22 +28,27 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Certifications;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.CurrentShare;
 import com.google.code.linkedinapi.schema.DateOfBirth;
 import com.google.code.linkedinapi.schema.Educations;
 import com.google.code.linkedinapi.schema.ImAccounts;
+import com.google.code.linkedinapi.schema.Languages;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.MemberGroups;
 import com.google.code.linkedinapi.schema.MemberUrlResources;
+import com.google.code.linkedinapi.schema.Patents;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.PersonActivities;
 import com.google.code.linkedinapi.schema.PhoneNumbers;
 import com.google.code.linkedinapi.schema.Positions;
+import com.google.code.linkedinapi.schema.Publications;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
+import com.google.code.linkedinapi.schema.Skills;
 import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
 import com.google.code.linkedinapi.schema.TwitterAccounts;
@@ -71,6 +76,11 @@ import com.google.code.linkedinapi.schema.TwitterAccounts;
     "associations",
     "honors",
     "specialties",
+    "certifications",
+    "patents",
+    "publications",
+    "skills",
+    "languages",
     "positions",
     "threeCurrentPositions",
     "threePastPositions",
@@ -134,6 +144,16 @@ public class PersonImpl
     protected String associations;
     protected String honors;
     protected String specialties;
+    @XmlElement(type = CertificationsImpl.class)
+    protected CertificationsImpl certifications;
+    @XmlElement(type = PatentsImpl.class)
+    protected PatentsImpl patents;
+    @XmlElement(type = PublicationsImpl.class)
+    protected PublicationsImpl publications;
+    @XmlElement(type = SkillsImpl.class)
+    protected SkillsImpl skills;
+    @XmlElement(type = LanguagesImpl.class)
+    protected LanguagesImpl languages;
     @XmlElement(type = PositionsImpl.class)
     protected PositionsImpl positions;
     @XmlElement(name = "three-current-positions", type = ThreeCurrentPositionsImpl.class)
@@ -337,6 +357,46 @@ public class PersonImpl
 
     public void setSpecialties(String value) {
         this.specialties = value;
+    }
+
+    public Certifications getCertifications() {
+        return certifications;
+    }
+
+    public void setCertifications(Certifications value) {
+        this.certifications = ((CertificationsImpl) value);
+    }
+
+    public Patents getPatents() {
+        return patents;
+    }
+
+    public void setPatents(Patents value) {
+        this.patents = ((PatentsImpl) value);
+    }
+
+    public Publications getPublications() {
+        return publications;
+    }
+
+    public void setPublications(Publications value) {
+        this.publications = ((PublicationsImpl) value);
+    }
+
+    public Skills getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Skills value) {
+        this.skills = ((SkillsImpl) value);
+    }
+
+    public Languages getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(Languages value) {
+        this.languages = ((LanguagesImpl) value);
     }
 
     public Positions getPositions() {

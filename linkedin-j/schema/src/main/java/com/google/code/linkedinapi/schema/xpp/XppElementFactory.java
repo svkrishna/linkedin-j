@@ -146,7 +146,6 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	private final static String _ImAccountName_QNAME = "im-account-name";
 	private final static String _SubmittedImageUrl_QNAME = "submitted-image-url";
 	private final static String _ProviderAccountId_QNAME = "provider-account-id";
-	private final static String _Status_QNAME = "status";
 	private final static String _SubmittedUrl_QNAME = "submitted-url";
 	private final static String _Code_QNAME = "code";
 	private final static String _ShortenedUrl_QNAME = "shortened-url";
@@ -730,15 +729,6 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	public String createUpdateType(NetworkUpdateReturnType value) {
 		return createElement(_UpdateType_QNAME, NetworkUpdateReturnType.class,
 				null, value);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.google.code.linkedinapi.schema.dom.SchemaElementFactory#createStatus(java.lang.Long)
-	 */
-	public String createStatus(Long value) {
-		return createElement(_Status_QNAME, Long.class, null, value);
 	}
 
 	/*

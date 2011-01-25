@@ -16,6 +16,7 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -53,4 +54,6 @@ public interface LinkedInCommunicationClient {
      * @param headerName the header name
      */
     public void removeRequestHeader(String headerName);
+    
+    public void addLocale(Locale locale);
 }

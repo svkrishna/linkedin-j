@@ -638,12 +638,6 @@ public interface SchemaElementFactory<T> {
 	public T createProviderAccountId(Long value);
 
 	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
-	 * 
-	 */
-	public T createStatus(Long value);
-
-	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
 	 * 
 	 */

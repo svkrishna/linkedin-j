@@ -24,6 +24,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.SortedSet;
 
@@ -102,6 +103,11 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
      */
     public void removeRequestHeader(String headerName) {
         requestHeaders.remove(headerName);
+    }
+    
+    @Override
+    public void addLocale(Locale locale) {
+    	// TODO Auto-generated method stub
     }
     
     /**
