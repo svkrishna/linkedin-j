@@ -17,42 +17,59 @@
 
 package com.google.code.linkedinapi.schema;
 
-import javax.xml.bind.annotation.XmlEnum;
 
 
 /**
- * <p>Java class for null.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
+ * 
  * <pre>
- * &lt;simpleType>
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="COLLEAGUE"/>
- *     &lt;enumeration value="BUSINESS_PARTNER"/>
- *     &lt;enumeration value="SERVICE_PROVIDER"/>
- *     &lt;enumeration value="STUDENT"/>
- *     &lt;enumeration value="EDUCATION"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="business-partner"/>
+ *               &lt;enumeration value="colleague"/>
+ *               &lt;enumeration value="education"/>
+ *               &lt;enumeration value="service-provider"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
  * 
+ * 
  */
-@XmlEnum
-public enum RecommendationType {
+public interface RecommendationType
+    extends SchemaEntity
+{
 
-    COLLEAGUE,
-    BUSINESS_PARTNER,
-    SERVICE_PROVIDER,
-    STUDENT,
-    EDUCATION;
 
-    public String value() {
-        return name();
-    }
+    /**
+     * Gets the value of the code property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecommendationCode }
+     *     
+     */
+    RecommendationCode getCode();
 
-    public static RecommendationType fromValue(String v) {
-        return valueOf(v);
-    }
+    /**
+     * Sets the value of the code property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RecommendationCode }
+     *     
+     */
+    void setCode(RecommendationCode value);
 
 }

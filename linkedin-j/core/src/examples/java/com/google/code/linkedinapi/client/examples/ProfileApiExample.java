@@ -126,7 +126,7 @@ public class ProfileApiExample {
     			printResult(profile);
     		} else {
     			System.out.println("Fetching profile for current user.");
-    			Person profile = client.getProfileForCurrentUser(EnumSet.of(ProfileField.FIRST_NAME, ProfileField.LAST_NAME, ProfileField.HEADLINE, ProfileField.RELATION_TO_VIEWER_DISTANCE, ProfileField.RELATION_TO_VIEWER_RELATED_CONNECTIONS));
+    			Person profile = client.getProfileForCurrentUser(EnumSet.allOf(ProfileField.class));
     			printResult(profile);
     		}
         } else {

@@ -49,8 +49,8 @@ public class RecommendationImpl
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;
-    @XmlElement(name = "recommendation-type", required = true)
-    protected RecommendationType recommendationType;
+    @XmlElement(name = "recommendation-type", required = true, type = RecommendationTypeImpl.class)
+    protected RecommendationTypeImpl recommendationType;
     @XmlElement(name = "recommendation-text")
     protected String recommendationText;
     @XmlElement(name = "recommendation-snippet")
@@ -75,7 +75,7 @@ public class RecommendationImpl
     }
 
     public void setRecommendationType(RecommendationType value) {
-        this.recommendationType = value;
+        this.recommendationType = ((RecommendationTypeImpl) value);
     }
 
     public String getRecommendationText() {

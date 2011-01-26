@@ -859,15 +859,20 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="recommendation-type">
-	<xs:simpleType>
-	  <xs:restriction base="xs:string">
-	    <xs:enumeration value="COLLEAGUE"/>
-		<xs:enumeration value="BUSINESS_PARTNER"/>
-		<xs:enumeration value="SERVICE_PROVIDER"/>
-		<xs:enumeration value="STUDENT"/>
-		<xs:enumeration value="EDUCATION"/>
-	  </xs:restriction>
-	</xs:simpleType>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="business-partner"/>
+				<xs:enumeration value="colleague"/>
+				<xs:enumeration value="education"/>
+				<xs:enumeration value="service-provider"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
   </xs:element>
   <xs:element name="recommendation-snippet" type="xs:string"/>
   <xs:element name="recommendation-text" type="xs:string"/>	

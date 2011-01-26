@@ -84,7 +84,6 @@ import com.google.code.linkedinapi.schema.QuestionCategory;
 import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.Recipients;
 import com.google.code.linkedinapi.schema.Recommendation;
-import com.google.code.linkedinapi.schema.RecommendationType;
 import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.Recommendee;
@@ -157,7 +156,6 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	private final static String _Comment_QNAME = "comment";
 	private final static String _PictureUrl_QNAME = "picture-url";
 	private final static String _Headline_QNAME = "headline";
-	private final static String _RecommendationType_QNAME = "recommendation-type";
 	private final static String _ContentType_QNAME = "content-type";
 	private final static String _Interests_QNAME = "interests";
 	private final static String _NumResults_QNAME = "num-results";
@@ -1172,13 +1170,6 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	public String createRecommendationText(String value) {
 
 		return createElement(_RecommendationText_QNAME, String.class, null,
-				value);
-	}
-
-	@Override
-	public String createRecommendationType(RecommendationType value) {
-
-		return createElement(_RecommendationType_QNAME, String.class, null,
 				value);
 	}
 

@@ -291,7 +291,9 @@
           <recommendations-given total="2">
             <recommendation>
               <id>15384198</id>
-              <recommendation-type>COL</recommendation-type>
+				<recommendation-type>
+					<code>service-provider</code>
+				</recommendation-type>
               <recommendation-snippet>I recommend your work for testing..</recommendation-snippet>
               <recommendee>
                 <id>3LyiBVeJz0</id>
@@ -316,7 +318,9 @@
             </recommendation>
             <recommendation>
               <id>15384198</id>
-              <recommendation-type>COL</recommendation-type>
+				<recommendation-type>
+					<code>service-provider</code>
+				</recommendation-type>
               <recommendation-snippet>I recommend your work for testing again..</recommendation-snippet>
               <recommendee>
                 <id>3LyiBVeJz02</id>
@@ -678,7 +682,9 @@
 				   <recommendations-received total="2">
 						<recommendation>
 							 <id>15868533</id>
-							 <recommendation-type>EDU</recommendation-type>
+							<recommendation-type>
+								<code>service-provider</code>
+							</recommendation-type>
 							 <recommendation-snippet>I had the opportunity to work with Samantha on many projects throughout our time together at Norther...</recommendation-snippet>
 							 <recommendation-text>I recommend your work for testing..</recommendation-text>
 							 <recommender>
@@ -702,7 +708,9 @@
 						</recommendation>
 						<recommendation>
 							 <id>15868534</id>
-							 <recommendation-type>COL</recommendation-type>
+							<recommendation-type>
+								<code>service-provider</code>
+							</recommendation-type>
 							 <recommendation-snippet>I had the opportunity to work with Samantha on many projects throughout our time together at Norther...</recommendation-snippet>
 							 <recommender>
 								  <id>XMXI_2H1_4</id>

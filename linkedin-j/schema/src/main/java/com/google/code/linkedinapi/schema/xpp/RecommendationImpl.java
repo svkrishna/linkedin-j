@@ -35,7 +35,7 @@ public class RecommendationImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     protected String id;
-    protected RecommendationType recommendationType;
+    protected RecommendationTypeImpl recommendationType;
     protected String recommendationSnippet;
     protected String recommendationText;
     protected RecommendeeImpl recommendee;
@@ -55,7 +55,7 @@ public class RecommendationImpl
     }
 
     public void setRecommendationType(RecommendationType value) {
-        this.recommendationType = value;
+        this.recommendationType = ((RecommendationTypeImpl) value);
     }
 
     public String getRecommendationSnippet() {
@@ -108,7 +108,9 @@ public class RecommendationImpl
         	if (name.equals("id")) {
         		setId(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("recommendation-type")) {
-        		setRecommendationType(RecommendationType.fromValue(XppUtils.getElementValueFromNode(parser)));
+    			RecommendationTypeImpl recommendationType = new RecommendationTypeImpl();
+    			recommendationType.init(parser);
+    			setRecommendationType(recommendationType);
         	} else if (name.equals("recommendation-snippet")) {
         		setRecommendationSnippet(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("recommendation-text")) {
@@ -135,7 +137,6 @@ public class RecommendationImpl
 	public void toXml(XmlSerializer serializer) throws IOException {
 		XmlSerializer element = serializer.startTag(null, "recommendation");
 		XppUtils.setElementValueToNode(element, "id", getId());
-		XppUtils.setElementValueToNode(element, "recommendation-type", getRecommendationType().value());
 		XppUtils.setElementValueToNode(element, "recommendation-snippet", getRecommendationSnippet());
 		XppUtils.setElementValueToNode(element, "recommendation-text", getRecommendationText());
 		XppUtils.setElementValueToNode(element, "web-url", getWebUrl());
@@ -144,6 +145,9 @@ public class RecommendationImpl
 		}
 		if (getRecommender() != null) {
 			((RecommenderImpl) getRecommender()).toXml(serializer);
+		}
+		if (getRecommendationType() != null) {
+			((RecommendationTypeImpl) getRecommendationType()).toXml(serializer);
 		}
 		serializer.endTag(null, "recommendation");
 	}

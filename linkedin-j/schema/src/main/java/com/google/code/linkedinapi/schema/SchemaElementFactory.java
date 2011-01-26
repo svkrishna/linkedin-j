@@ -704,13 +704,6 @@ public interface SchemaElementFactory<T> {
 	public T createHeadline(String value);
 
 	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link RecommendationType }{@code >}}
-	 * 
-	 */
-	public T createRecommendationType(
-			RecommendationType value);
-
-	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link NetworkUpdateContentType }{@code >}}
 	 * 
 	 */
