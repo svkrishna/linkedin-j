@@ -89,16 +89,49 @@ public class EditorImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("first-name")) {
+        		setFirstName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("last-name")) {
+        		setLastName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("headline")) {
+        		setHeadline(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("api-standard-profile-request")) {
+    			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setApiStandardProfileRequest(apiRequest);
+        	} else if (name.equals("site-standard-profile-request")) {
+    			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
+    			apiRequest.init(parser);
+    			setSiteStandardProfileRequest(apiRequest);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "editor");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "first-name", getFirstName());
+		XppUtils.setElementValueToNode(element, "last-name", getLastName());
+		XppUtils.setElementValueToNode(element, "headline", getHeadline());
+		if (getApiStandardProfileRequest() != null) {
+			((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
+		}
+		if (getSiteStandardProfileRequest() != null) {
+			((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer);
+		}
+		serializer.endTag(null, "editor");
 	}
-
 }

@@ -52,16 +52,33 @@ public class NewPositionImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("title")) {
+        		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("company")) {
+        		CompanyImpl author = new CompanyImpl();
+    			author.init(parser);
+    			setCompany(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "new-position");
+		XppUtils.setElementValueToNode(element, "title", getTitle());
+		if (getCompany() != null) {
+			((CompanyImpl) getCompany()).toXml(serializer);
+		}
+		element.endTag(null, "new-position");
 	}
-
 }

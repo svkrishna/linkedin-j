@@ -61,10 +61,38 @@
 		<certification>
 			<id>1</id>
 			<name>SCEA</name>
+			<authority>
+				<name>Oracle Corp.</name>
+			</authority>
+			<number>123,456</number>
+			<start-date>
+				<year>2003</year>
+				<month>3</month>
+				<day>3</day>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>5</month>
+				<day>3</day>
+			</end-date>
 		</certification>
 		<certification>
 			<id>5</id>
 			<name>Hadoop Developer</name>
+			<authority>
+				<name>IBM Corp.</name>
+			</authority>
+			<number>123,446</number>
+			<start-date>
+				<year>2008</year>
+				<month>3</month>
+				<day>3</day>
+			</start-date>
+			<end-date>
+				<year>2002</year>
+				<month>5</month>
+				<day>3</day>
+			</end-date>
 		</certification>
 	</certifications>
 	<positions total="2">

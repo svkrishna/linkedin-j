@@ -31,6 +31,7 @@ package com.google.code.linkedinapi.schema;
  *       &lt;sequence>
  *         &lt;element ref="{}year"/>
  *         &lt;element ref="{}month" minOccurs="0"/>
+ *         &lt;element ref="{}day" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -83,5 +84,25 @@ public interface StartDate
      *     
      */
     void setMonth(Long value);
+
+    /**
+     * Gets the value of the day property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getDay();
+
+    /**
+     * Sets the value of the day property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setDay(Long value);
 
 }

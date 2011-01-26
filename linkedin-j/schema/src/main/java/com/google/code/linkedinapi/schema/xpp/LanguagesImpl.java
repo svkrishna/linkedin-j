@@ -53,16 +53,32 @@ public class LanguagesImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("language")) {
+        		LanguageImpl languageImpl = new LanguageImpl();
+    			languageImpl.init(parser);
+    			getLanguageList().add(languageImpl);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "languages");
+		XppUtils.setAttributeValueToNode(element, "total", getTotal());
+		for (Language language : getLanguageList()) {
+			((LanguageImpl) language).toXml(serializer);
+		}
+		serializer.endTag(null, "languages");
 	}
-
 }

@@ -118,16 +118,66 @@ public class PatentImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("title")) {
+        		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("url")) {
+        		setUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("summary")) {
+        		setSummary(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("number")) {
+        		setNumber(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("date")) {
+    			DateImpl author = new DateImpl();
+    			author.init(parser);
+    			setDate(author);
+        	} else if (name.equals("status")) {
+    			StatusImpl author = new StatusImpl();
+    			author.init(parser);
+    			setStatus(author);
+        	} else if (name.equals("office")) {
+    			OfficeImpl author = new OfficeImpl();
+    			author.init(parser);
+    			setOffice(author);
+        	} else if (name.equals("inventors")) {
+    			InventorsImpl author = new InventorsImpl();
+    			author.init(parser);
+    			setInventors(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "patent");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "title", getTitle());
+		XppUtils.setElementValueToNode(element, "url", getUrl());
+		XppUtils.setElementValueToNode(element, "summary", getSummary());
+		XppUtils.setElementValueToNode(element, "number", getNumber());
+		if (getDate() != null) {
+			((DateImpl) getDate()).toXml(serializer);
+		}
+		if (getStatus() != null) {
+			((StatusImpl) getStatus()).toXml(serializer);
+		}
+		if (getOffice() != null) {
+			((OfficeImpl) getOffice()).toXml(serializer);
+		}
+		if (getInventors() != null) {
+			((InventorsImpl) getInventors()).toXml(serializer);
+		}
+		element.endTag(null, "patent");
 	}
-
 }

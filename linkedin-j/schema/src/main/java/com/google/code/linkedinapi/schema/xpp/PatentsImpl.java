@@ -53,16 +53,32 @@ public class PatentsImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("patent")) {
+        		PatentImpl patentImpl = new PatentImpl();
+    			patentImpl.init(parser);
+    			getPatentList().add(patentImpl);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "patents");
+		XppUtils.setAttributeValueToNode(element, "total", getTotal());
+		for (Patent patent : getPatentList()) {
+			((PatentImpl) patent).toXml(serializer);
+		}
+		serializer.endTag(null, "patents");
 	}
-
 }

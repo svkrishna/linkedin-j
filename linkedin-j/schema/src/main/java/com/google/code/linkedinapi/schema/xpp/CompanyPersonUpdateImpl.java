@@ -73,16 +73,51 @@ public class CompanyPersonUpdateImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("person")) {
+        		PersonImpl author = new PersonImpl();
+    			author.init(parser);
+    			setPerson(author);
+        	} else if (name.equals("action")) {
+        		ActionImpl author = new ActionImpl();
+    			author.init(parser);
+    			setAction(author);
+        	} else if (name.equals("old-position")) {
+        		OldPositionImpl author = new OldPositionImpl();
+    			author.init(parser);
+    			setOldPosition(author);
+        	} else if (name.equals("new-position")) {
+        		NewPositionImpl author = new NewPositionImpl();
+    			author.init(parser);
+    			setNewPosition(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "company-person-update");
+		if (getPerson() != null) {
+			((PersonImpl) getPerson()).toXml(serializer);
+		}
+		if (getAction() != null) {
+			((ActionImpl) getAction()).toXml(serializer);
+		}
+		if (getOldPosition() != null) {
+			((OldPositionImpl) getOldPosition()).toXml(serializer);
+		}
+		if (getNewPosition() != null) {
+			((NewPositionImpl) getNewPosition()).toXml(serializer);
+		}
+		element.endTag(null, "company-person-update");;
 	}
-
 }

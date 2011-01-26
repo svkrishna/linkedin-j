@@ -36,6 +36,7 @@ public class StartDateImpl
 	private static final long serialVersionUID = 3332888832061238011L;
 	protected Long year;
     protected Long month;
+    protected Long day;
 
     public Long getYear() {
         return year;
@@ -53,6 +54,14 @@ public class StartDateImpl
         this.month = value;
     }
     
+    public Long getDay() {
+        return day;
+    }
+
+    public void setDay(Long value) {
+        this.day = value;
+    }
+    
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -64,6 +73,8 @@ public class StartDateImpl
         		setYear(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("month")) {
         		setMonth(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("day")) {
+        		setDay(XppUtils.getElementValueAsLongFromNode(parser));
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -77,6 +88,7 @@ public class StartDateImpl
 		XmlSerializer element = serializer.startTag(null, "start-date");
 		XppUtils.setElementValueToNode(element, "month", getMonth());
 		XppUtils.setElementValueToNode(element, "year", getYear());
+		XppUtils.setElementValueToNode(element, "day", getDay());
 		serializer.endTag(null, "start-date");
 	}
 }

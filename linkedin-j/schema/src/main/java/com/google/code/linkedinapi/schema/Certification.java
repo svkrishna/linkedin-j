@@ -31,6 +31,10 @@ package com.google.code.linkedinapi.schema;
  *       &lt;sequence>
  *         &lt;element ref="{}id"/>
  *         &lt;element ref="{}name"/>
+ *         &lt;element ref="{}authority"/>
+ *         &lt;element ref="{}number"/>
+ *         &lt;element ref="{}start-date"/>
+ *         &lt;element ref="{}end-date"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -83,5 +87,85 @@ public interface Certification
      *     
      */
     void setName(String value);
+
+    /**
+     * Gets the value of the authority property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Authority }
+     *     
+     */
+    Authority getAuthority();
+
+    /**
+     * Sets the value of the authority property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Authority }
+     *     
+     */
+    void setAuthority(Authority value);
+
+    /**
+     * Gets the value of the number property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getNumber();
+
+    /**
+     * Sets the value of the number property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNumber(String value);
+
+    /**
+     * Gets the value of the startDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link StartDate }
+     *     
+     */
+    StartDate getStartDate();
+
+    /**
+     * Sets the value of the startDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link StartDate }
+     *     
+     */
+    void setStartDate(StartDate value);
+
+    /**
+     * Gets the value of the endDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EndDate }
+     *     
+     */
+    EndDate getEndDate();
+
+    /**
+     * Sets the value of the endDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EndDate }
+     *     
+     */
+    void setEndDate(EndDate value);
 
 }

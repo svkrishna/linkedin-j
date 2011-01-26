@@ -29,9 +29,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}year"/>
- *         &lt;element ref="{}month" minOccurs="0"/>
- *         &lt;element ref="{}day" minOccurs="0"/>
+ *         &lt;element ref="{}name"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,69 +38,29 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface EndDate
+public interface Authority
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the year property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    Long getYear();
+    String getName();
 
     /**
-     * Sets the value of the year property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setYear(Long value);
-
-    /**
-     * Gets the value of the month property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    Long getMonth();
-
-    /**
-     * Sets the value of the month property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    void setMonth(Long value);
-
-    /**
-     * Gets the value of the day property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    Long getDay();
-
-    /**
-     * Sets the value of the day property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    void setDay(Long value);
+    void setName(String value);
 
 }

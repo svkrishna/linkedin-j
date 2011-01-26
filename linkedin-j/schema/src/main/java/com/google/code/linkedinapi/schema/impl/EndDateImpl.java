@@ -30,7 +30,8 @@ import com.google.code.linkedinapi.schema.EndDate;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "year",
-    "month"
+    "month",
+    "day"
 })
 @XmlRootElement(name = "end-date")
 public class EndDateImpl
@@ -44,6 +45,9 @@ public class EndDateImpl
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long month;
+    @XmlElement(type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long day;
 
     public Long getYear() {
         return year;
@@ -59,6 +63,14 @@ public class EndDateImpl
 
     public void setMonth(Long value) {
         this.month = value;
+    }
+
+    public Long getDay() {
+        return day;
+    }
+
+    public void setDay(Long value) {
+        this.day = value;
     }
 
 }

@@ -27,7 +27,8 @@ import com.google.code.linkedinapi.schema.Authors;
 import com.google.code.linkedinapi.schema.Person;
 
 public class AuthorsImpl
-	extends BaseSchemaEntity    implements Authors
+	extends BaseSchemaEntity    
+	implements Authors
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -60,16 +61,36 @@ public class AuthorsImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("person")) {
+    			PersonImpl person = new PersonImpl();
+    			person.init(parser);
+    			setPerson(person);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "authors");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "name", getName());
+		if (getPerson() != null) {
+			((PersonImpl) getPerson()).toXml(serializer);
+		}
+		element.endTag(null, "authors");;
 	}
-
 }

@@ -99,16 +99,56 @@ public class PublicationImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("title")) {
+        		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("url")) {
+        		setUrl(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("summary")) {
+        		setSummary(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("date")) {
+    			DateImpl author = new DateImpl();
+    			author.init(parser);
+    			setDate(author);
+        	} else if (name.equals("authors")) {
+        		AuthorsImpl author = new AuthorsImpl();
+    			author.init(parser);
+    			setAuthors(author);
+        	} else if (name.equals("publisher")) {
+        		PublisherImpl author = new PublisherImpl();
+    			author.init(parser);
+    			setPublisher(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "publication");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "title", getTitle());
+		XppUtils.setElementValueToNode(element, "url", getUrl());
+		XppUtils.setElementValueToNode(element, "summary", getSummary());
+		if (getDate() != null) {
+			((DateImpl) getDate()).toXml(serializer);
+		}
+		if (getAuthors() != null) {
+			((AuthorsImpl) getAuthors()).toXml(serializer);
+		}
+		if (getPublisher() != null) {
+			((PublisherImpl) getPublisher()).toXml(serializer);
+		}
+		element.endTag(null, "publication");
 	}
-
 }

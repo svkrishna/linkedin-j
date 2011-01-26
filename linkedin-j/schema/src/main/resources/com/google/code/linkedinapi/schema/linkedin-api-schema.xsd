@@ -419,6 +419,17 @@
       <xs:sequence>
         <xs:element ref="id"/>
         <xs:element ref="name"/>
+        <xs:element ref="authority"/>
+        <xs:element ref="number"/>
+        <xs:element ref="start-date"/>
+        <xs:element ref="end-date"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="authority">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -928,6 +939,7 @@
       <xs:sequence>
         <xs:element ref="year"/>
         <xs:element minOccurs="0" ref="month"/>
+		<xs:element minOccurs="0" ref="day"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -936,6 +948,7 @@
       <xs:sequence>
         <xs:element ref="year"/>
         <xs:element minOccurs="0" ref="month"/>
+        <xs:element minOccurs="0" ref="day"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

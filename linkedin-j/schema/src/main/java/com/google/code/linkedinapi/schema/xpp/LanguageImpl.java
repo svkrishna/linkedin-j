@@ -62,16 +62,40 @@ public class LanguageImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("language")) {
+        		NameTypeImpl author = new NameTypeImpl();
+    			author.init(parser);
+    			setLanguage(author);
+        	} else if (name.equals("proficiency")) {
+        		ProficiencyImpl author = new ProficiencyImpl();
+    			author.init(parser);
+    			setProficiency(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "language");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		if (getLanguage() != null) {
+			((NameTypeImpl) getLanguage()).toXml(serializer);
+		}
+		if (getProficiency() != null) {
+			((ProficiencyImpl) getProficiency()).toXml(serializer);
+		}
+		element.endTag(null, "language");;
 	}
-
 }

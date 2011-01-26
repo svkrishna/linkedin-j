@@ -63,16 +63,44 @@ public class CompanyProfileUpdateImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("editor")) {
+        		EditorImpl author = new EditorImpl();
+    			author.init(parser);
+    			setEditor(author);
+        	} else if (name.equals("action")) {
+        		ActionImpl author = new ActionImpl();
+    			author.init(parser);
+    			setAction(author);
+        	} else if (name.equals("profile-field")) {
+        		ProfileFieldImpl author = new ProfileFieldImpl();
+    			author.init(parser);
+    			setProfileField(author);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
-		
+		XmlSerializer element = serializer.startTag(null, "company-profile-update");
+		if (getEditor() != null) {
+			((EditorImpl) getEditor()).toXml(serializer);
+		}
+		if (getAction() != null) {
+			((ActionImpl) getAction()).toXml(serializer);
+		}
+		if (getProfileField() != null) {
+			((ProfileFieldImpl) getProfileField()).toXml(serializer);
+		}
+		element.endTag(null, "company-profile-update");;
 	}
-
 }

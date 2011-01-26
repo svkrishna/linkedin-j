@@ -25,12 +25,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Authority;
 import com.google.code.linkedinapi.schema.Certification;
+import com.google.code.linkedinapi.schema.EndDate;
+import com.google.code.linkedinapi.schema.StartDate;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "id",
-    "name"
+    "name",
+    "authority",
+    "number",
+    "startDate",
+    "endDate"
 })
 @XmlRootElement(name = "certification")
 public class CertificationImpl
@@ -43,6 +50,14 @@ public class CertificationImpl
     protected String id;
     @XmlElement(required = true)
     protected String name;
+    @XmlElement(required = true, type = AuthorityImpl.class)
+    protected AuthorityImpl authority;
+    @XmlElement(required = true)
+    protected String number;
+    @XmlElement(name = "start-date", required = true, type = StartDateImpl.class)
+    protected StartDateImpl startDate;
+    @XmlElement(name = "end-date", required = true, type = EndDateImpl.class)
+    protected EndDateImpl endDate;
 
     public String getId() {
         return id;
@@ -58,6 +73,38 @@ public class CertificationImpl
 
     public void setName(String value) {
         this.name = value;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority value) {
+        this.authority = ((AuthorityImpl) value);
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String value) {
+        this.number = value;
+    }
+
+    public StartDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(StartDate value) {
+        this.startDate = ((StartDateImpl) value);
+    }
+
+    public EndDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(EndDate value) {
+        this.endDate = ((EndDateImpl) value);
     }
 
 }
