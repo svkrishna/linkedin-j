@@ -143,35 +143,108 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      */
     POSITIONS("positions", null, true),
     
+    POSITIONS_ID("id", POSITIONS, true),
+    POSITIONS_TITLE("title", POSITIONS, true),
+    POSITIONS_SUMMARY("summary", POSITIONS, true),
+    POSITIONS_START_DATE("start-date", POSITIONS, true),
+    POSITIONS_END_DATE("end-date", POSITIONS, true),
+    POSITIONS_IS_CURRENT("is-current", POSITIONS, true),
+    POSITIONS_COMPANY("company", POSITIONS, true),
+    POSITIONS_COMPANY_NAME("name", POSITIONS_COMPANY, true),
+    POSITIONS_COMPANY_TYPE("type", POSITIONS_COMPANY, true),
+    POSITIONS_COMPANY_SIZE("size", POSITIONS_COMPANY, true),
+    POSITIONS_COMPANY_INDUSTRY("industry", POSITIONS_COMPANY, true),
+    POSITIONS_COMPANY_TICKER("ticker", POSITIONS_COMPANY, true),
+    
     /**
      * A collection of publications authored by this member
      */
     PUBLICATIONS("publications", null, true),
+    
+    PUBLICATIONS_ID("id", PUBLICATIONS, true),
+    PUBLICATIONS_TITLE("title", PUBLICATIONS, true),
+    PUBLICATIONS_PUBLISHER("publisher", PUBLICATIONS, true),
+    PUBLICATIONS_PUBLISHER_NAME("name", PUBLICATIONS_PUBLISHER, true),
+    PUBLICATIONS_AUTHORS("authors", PUBLICATIONS, true),
+    PUBLICATIONS_AUTHORS_ID("id", PUBLICATIONS_AUTHORS, true),
+    PUBLICATIONS_AUTHORS_NAME("name", PUBLICATIONS_AUTHORS, true),
+    PUBLICATIONS_AUTHORS_PERSON("person", PUBLICATIONS_AUTHORS, true),
+    PUBLICATIONS_DATE("date", PUBLICATIONS, true),
+    PUBLICATIONS_URL("url", PUBLICATIONS, true),
+    PUBLICATIONS_SUMMARY("summary", PUBLICATIONS, true),
 
     /**
      * A collection of patents or patent applications held by this member
      */
     PATENTS("patents", null, true),
+    
+    PATENTS_ID("id", PATENTS, true),
+    PATENTS_TITLE("title", PATENTS, true),
+    PATENTS_NUMBER("number", PATENTS, true),
+    PATENTS_DATE("date", PATENTS, true),
+    PATENTS_URL("url", PATENTS, true),
+    PATENTS_SUMMARY("summary", PATENTS, true),
+    PATENTS_STATUS("status", PATENTS, true),
+    PATENTS_STATUS_ID("id", PATENTS_STATUS, true),
+    PATENTS_STATUS_NAME("name", PATENTS_STATUS, true),
+    PATENTS_OFFICE("office", PATENTS, true),
+    PATENTS_OFFICE_NAME("name", PATENTS_OFFICE, true),
+    PATENTS_INVENTORS("inventors", PATENTS, true),
+    PATENTS_INVENTORS_ID("id", PATENTS_INVENTORS, true),
+    PATENTS_INVENTORS_NAME("name", PATENTS_INVENTORS, true),
+    PATENTS_INVENTORS_PERSON("person", PATENTS_INVENTORS, true),
 
     /**
      * A collection of languages and the level of the member's proficiency for each
      */
     LANGUAGES("languages", null, true),
+    
+    LANGUAGES_ID("id", LANGUAGES, true),
+    LANGUAGES_LANGUAGE("language", LANGUAGES, true),
+    LANGUAGES_LANGUAGE_NAME("name", LANGUAGES_LANGUAGE, true),
+    LANGUAGES_PROFICIENCY("proficiency", LANGUAGES, true),
+    LANGUAGES_PROFICIENCY_LEVEL("level", LANGUAGES_PROFICIENCY, true),
+    LANGUAGES_PROFICIENCY_NAME("name", LANGUAGES_PROFICIENCY, true),
 
     /**
      * A collection of skills held by this member
      */
     SKILLS("skills", null, true),
 
+    SKILLS_SKILL("skill", SKILLS, true),
+    SKILLS_SKILL_NAME("name", SKILLS_SKILL, true),
+    SKILLS_PROFICIENCY("proficiency", SKILLS, true),
+    SKILLS_PROFICIENCY_LEVEL("level", SKILLS_PROFICIENCY, true),
+    SKILLS_PROFICIENCY_NAME("name", SKILLS_PROFICIENCY, true),
+    SKILLS_YEARS("years", SKILLS, true),
+    SKILLS_YEARS_ID("id", SKILLS_YEARS, true),
+    SKILLS_YEARS_NAME("name", SKILLS_YEARS, true),
+    
     /**
      * A collection of certifications earned by this member
      */
     CERTIFICATIONS("certifications", null, true),
     
+    CERTIFICATIONS_ID("id", CERTIFICATIONS, true),
+    CERTIFICATIONS_NAME("name", CERTIFICATIONS, true),
+    CERTIFICATIONS_AUTHORITY("authority", CERTIFICATIONS, true),
+    CERTIFICATIONS_AUTHORITY_NAME("name", CERTIFICATIONS_AUTHORITY, true),
+    CERTIFICATIONS_NUMBER("number", CERTIFICATIONS, true),
+    CERTIFICATIONS_START_DATE("start-date", CERTIFICATIONS, true),
+    CERTIFICATIONS_END_DATE("end-date", CERTIFICATIONS, true),
+    
     /**
      * A collection of education institutions a member has attended, the total indicated by a total attribute
      */
     EDUCATIONS("educations", null, true),
+    EDUCATIONS_ID("id", EDUCATIONS, true),
+    EDUCATIONS_SCHOOL_NAME("school-name", EDUCATIONS, true),
+    EDUCATIONS_FIELD_OF_STUDY("field-of-study", EDUCATIONS, true),
+    EDUCATIONS_START_DATE("start-date", EDUCATIONS, true),
+    EDUCATIONS_END_DATE("end-date", EDUCATIONS, true),
+    EDUCATIONS_DEGREE("degree", EDUCATIONS, true),
+    EDUCATIONS_ACTIVITIES("activities", EDUCATIONS, true),
+    EDUCATIONS_NOTES("notes", EDUCATIONS, true),
 
     /**
      * A collection of positions a member currently holds, limited to three and indicated by a total attribute
@@ -186,6 +259,10 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     NUM_RECOMMENDERS("num-recommenders", null, false),
     
     RECOMMENDATIONS_RECEIVED("recommendations-received", null, true),
+    
+    RECOMMENDATIONS_RECEIVED_ID("id", RECOMMENDATIONS_RECEIVED, true),
+    RECOMMENDATIONS_RECEIVED_RECOMMENDATION_TYPE("recommendation-type", RECOMMENDATIONS_RECEIVED, true),
+    RECOMMENDATIONS_RECEIVED_RECOMMENDER("recommender", RECOMMENDATIONS_RECEIVED, true),
     
     /**
      * a collection of phone numbers
