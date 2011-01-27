@@ -26,7 +26,7 @@ import java.util.Set;
  *
  */
 public enum ProfileField implements CompositeEnum<ProfileField> {
-
+	
     /**
      * the member token for this member
      */
@@ -272,6 +272,11 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * 	A URL to the member's public profile, if enabled.
      */
     PUBLIC_PROFILE_URL("public-profile-url", null, true);
+    
+    
+	public enum Scope {
+		User, Connections, All;
+	}
     
     /**
      * Field Description.
