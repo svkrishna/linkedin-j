@@ -398,16 +398,16 @@ public final class LinkedInApiUrls {
 		    		while (parentIter.hasNext()) {
 		    			CompositeEnum<?> parent = parentIter.next();
 		    			Set<? extends CompositeEnum<?>> childEnums = enumMap.get(parent);
-		    			if (parent != null) {
+		    			if (!enumMap.containsKey(parent.parent())) {
 		    				builder.append(parent.fieldName());
 		    				builder.append(":");
 		    				builder.append("(");
-				        	appendChildEnums(builder, childEnums);
+				        	appendChildEnums(builder, childEnums, enumMap);
 							builder.append(")");
+				        	if (parentIter.hasNext()) {
+			    				builder.append(",");
+				        	}
 		    			}
-			        	if (parentIter.hasNext()) {
-		    				builder.append(",");
-			        	}
 		    		}
 	    		}
 				builder.append(")");
@@ -417,6 +417,25 @@ public final class LinkedInApiUrls {
     		
     		return this;
     	}
+
+		private void appendChildEnums(StringBuilder builder,
+				Set<? extends CompositeEnum<?>> childEnums,
+				Map<? extends CompositeEnum<?>, Set<CompositeEnum<?>>> enumMap) {
+			Iterator<? extends CompositeEnum<?>> childIter = childEnums.iterator();
+			while (childIter.hasNext()) {
+				CompositeEnum<?> fieldEnum = childIter.next();
+				builder.append(fieldEnum.fieldName());
+				if (enumMap.containsKey(fieldEnum)) {
+    				builder.append(":");
+    				builder.append("(");
+		        	appendChildEnums(builder, enumMap.get(fieldEnum), enumMap);
+					builder.append(")");
+				} 
+				if (childIter.hasNext()) {
+					builder.append(",");
+				}
+			}
+		}
 
 		/**
 		 * @param builder

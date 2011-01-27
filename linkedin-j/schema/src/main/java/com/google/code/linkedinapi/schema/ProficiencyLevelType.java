@@ -30,10 +30,10 @@ import javax.xml.bind.annotation.XmlEnumValue;
  * &lt;simpleType>
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="elementary"/>
- *     &lt;enumeration value="limited-working"/>
- *     &lt;enumeration value="professional-working"/>
- *     &lt;enumeration value="full-professional"/>
- *     &lt;enumeration value="native-or-bilingual"/>
+ *     &lt;enumeration value="limited_working"/>
+ *     &lt;enumeration value="professional_working"/>
+ *     &lt;enumeration value="full_professional"/>
+ *     &lt;enumeration value="native_or_bilingual"/>
  *     &lt;enumeration value="beginner"/>
  *     &lt;enumeration value="intermediate"/>
  *     &lt;enumeration value="advanced"/>
@@ -48,14 +48,14 @@ public enum ProficiencyLevelType {
 
     @XmlEnumValue("elementary")
     ELEMENTARY("elementary"),
-    @XmlEnumValue("limited-working")
-    LIMITED_WORKING("limited-working"),
-    @XmlEnumValue("professional-working")
-    PROFESSIONAL_WORKING("professional-working"),
-    @XmlEnumValue("full-professional")
-    FULL_PROFESSIONAL("full-professional"),
-    @XmlEnumValue("native-or-bilingual")
-    NATIVE_BILINGUAL("native-or-bilingual"),
+    @XmlEnumValue("limited_working")
+    LIMITED_WORKING("limited_working"),
+    @XmlEnumValue("professional_working")
+    PROFESSIONAL_WORKING("professional_working"),
+    @XmlEnumValue("full_professional")
+    FULL_PROFESSIONAL("full_professional"),
+    @XmlEnumValue("native_or_bilingual")
+    NATIVE_BILINGUAL("native_or_bilingual"),
     @XmlEnumValue("beginner")
     BEGINNER("beginner"),
     @XmlEnumValue("intermediate")

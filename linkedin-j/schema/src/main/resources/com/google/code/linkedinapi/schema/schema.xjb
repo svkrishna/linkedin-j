@@ -71,10 +71,10 @@
 	<bindings node="//xs:element[@name='level']/xs:simpleType">
 		<typesafeEnumClass name="ProficiencyLevelType">
 			<typesafeEnumMember name="ELEMENTARY" value="elementary"/>
-			<typesafeEnumMember name="LIMITED_WORKING" value="limited-working"/>
-			<typesafeEnumMember name="PROFESSIONAL_WORKING" value="professional-working"/>
-			<typesafeEnumMember name="FULL_PROFESSIONAL" value="full-professional"/>
-			<typesafeEnumMember name="NATIVE_BILINGUAL" value="native-or-bilingual"/>
+			<typesafeEnumMember name="LIMITED_WORKING" value="limited_working"/>
+			<typesafeEnumMember name="PROFESSIONAL_WORKING" value="professional_working"/>
+			<typesafeEnumMember name="FULL_PROFESSIONAL" value="full_professional"/>
+			<typesafeEnumMember name="NATIVE_BILINGUAL" value="native_or_bilingual"/>
 			<typesafeEnumMember name="BEGINNER" value="beginner"/>
 			<typesafeEnumMember name="INTERMEDIATE" value="intermediate"/>
 			<typesafeEnumMember name="ADVANCED" value="advanced"/>

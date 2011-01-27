@@ -211,6 +211,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      */
     SKILLS("skills", null, true),
 
+    SKILLS_ID("id", SKILLS, true),
     SKILLS_SKILL("skill", SKILLS, true),
     SKILLS_SKILL_NAME("name", SKILLS_SKILL, true),
     SKILLS_PROFICIENCY("proficiency", SKILLS, true),

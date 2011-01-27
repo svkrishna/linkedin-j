@@ -587,10 +587,10 @@
 	<xs:simpleType>
 	  <xs:restriction base="xs:string">
 	    <xs:enumeration value="elementary"/>
-	    <xs:enumeration value="limited-working"/>
-	    <xs:enumeration value="professional-working"/>
-	    <xs:enumeration value="full-professional"/>
-	    <xs:enumeration value="native-or-bilingual"/>
+	    <xs:enumeration value="limited_working"/>
+	    <xs:enumeration value="professional_working"/>
+	    <xs:enumeration value="full_professional"/>
+	    <xs:enumeration value="native_or_bilingual"/>
 	    <xs:enumeration value="beginner"/>
 	    <xs:enumeration value="intermediate"/>
 	    <xs:enumeration value="advanced"/>
