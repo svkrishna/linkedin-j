@@ -457,12 +457,15 @@ public final class LinkedInApiUrls {
 				Set<? extends CompositeEnum<?>> enumSet) {
 	    	Map<CompositeEnum<?>, Set<CompositeEnum<?>>> enumMap = new HashMap<CompositeEnum<?>, Set<CompositeEnum<?>>>();
 	    	for (CompositeEnum<?> e : enumSet) {
-	    		Set<CompositeEnum<?>> childEnums = enumMap.get(e.parent());
-	    		if (childEnums == null) {
-	    			childEnums = new HashSet<CompositeEnum<?>>();
-	    			enumMap.put(e.parent(), childEnums);
+	    		while (e != null) {
+		    		Set<CompositeEnum<?>> childEnums = enumMap.get(e.parent());
+		    		if (childEnums == null) {
+		    			childEnums = new HashSet<CompositeEnum<?>>();
+		    			enumMap.put(e.parent(), childEnums);
+		    		}
+		    		childEnums.add(e);
+		    		e = e.parent();
 	    		}
-	    		childEnums.add(e);
 	    	}
 			return enumMap;
 		}
