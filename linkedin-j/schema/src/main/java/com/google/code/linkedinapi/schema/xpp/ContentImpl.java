@@ -37,6 +37,9 @@ public class ContentImpl
     protected String shortenedUrl;
     protected String submittedImageUrl;
     protected String thumbnailUrl;
+    protected String resolvedUrl;
+    protected String eyebrowUrl;
+    
 
     public String getId() {
         return id;
@@ -85,7 +88,23 @@ public class ContentImpl
     public void setThumbnailUrl(String value) {
         this.thumbnailUrl = value;
     }
+    
+    public String getResolvedUrl() {
+        return resolvedUrl;
+    }
 
+    public void setResolvedUrl(String value) {
+        this.resolvedUrl = value;
+    }
+
+    public String getEyebrowUrl() {
+        return eyebrowUrl;
+    }
+
+    public void setEyebrowUrl(String value) {
+        this.eyebrowUrl = value;
+    }
+    
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -105,6 +124,10 @@ public class ContentImpl
         		setSubmittedImageUrl(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("thumbnail-url")) {
         		setThumbnailUrl(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("resolved-url")) {
+        		setResolvedUrl(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("eyebrow-url")) {
+        		setEyebrowUrl(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -122,6 +145,8 @@ public class ContentImpl
 		XppUtils.setElementValueToNode(element, "shortened-url", getShortenedUrl());
 		XppUtils.setElementValueToNode(element, "submitted-image-url", getSubmittedImageUrl());
 		XppUtils.setElementValueToNode(element, "thumbnail-url", getThumbnailUrl());
+		XppUtils.setElementValueToNode(element, "resolved-url", getResolvedUrl());
+		XppUtils.setElementValueToNode(element, "eyebrow-url", getEyebrowUrl());
 		serializer.endTag(null, "content");
 	}
     

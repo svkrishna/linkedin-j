@@ -35,6 +35,8 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}shortened-url" minOccurs="0"/>
  *         &lt;element ref="{}submitted-image-url"/>
  *         &lt;element ref="{}thumbnail-url" minOccurs="0"/>
+ *         &lt;element ref="{}resolved-url" minOccurs="0"/>
+ *         &lt;element ref="{}eyebrow-url" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -167,5 +169,45 @@ public interface Content
      *     
      */
     void setThumbnailUrl(String value);
+
+    /**
+     * Gets the value of the resolvedUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getResolvedUrl();
+
+    /**
+     * Sets the value of the resolvedUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setResolvedUrl(String value);
+
+    /**
+     * Gets the value of the eyebrowUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getEyebrowUrl();
+
+    /**
+     * Sets the value of the eyebrowUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setEyebrowUrl(String value);
 
 }

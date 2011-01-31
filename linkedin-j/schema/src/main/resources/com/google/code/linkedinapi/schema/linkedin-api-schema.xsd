@@ -1163,13 +1163,17 @@
         <xs:element minOccurs="0" ref="shortened-url"/>
         <xs:element ref="submitted-image-url"/>
         <xs:element minOccurs="0" ref="thumbnail-url"/>
+        <xs:element minOccurs="0" ref="resolved-url"/>
+        <xs:element minOccurs="0" ref="eyebrow-url"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="submitted-url" type="xs:anyURI"/>
-  <xs:element name="shortened-url" type="xs:string"/>
+  <xs:element name="shortened-url" type="xs:anyURI"/>
   <xs:element name="submitted-image-url" type="xs:anyURI"/>
   <xs:element name="thumbnail-url" type="xs:anyURI"/>
+  <xs:element name="resolved-url" type="xs:anyURI"/>
+  <xs:element name="eyebrow-url" type="xs:anyURI"/>
   <xs:element name="visibility">
     <xs:complexType>
       <xs:sequence>

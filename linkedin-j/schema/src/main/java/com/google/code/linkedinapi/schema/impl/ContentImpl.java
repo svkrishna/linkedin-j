@@ -34,7 +34,9 @@ import com.google.code.linkedinapi.schema.Content;
     "submittedUrl",
     "shortenedUrl",
     "submittedImageUrl",
-    "thumbnailUrl"
+    "thumbnailUrl",
+    "resolvedUrl",
+    "eyebrowUrl"
 })
 @XmlRootElement(name = "content")
 public class ContentImpl
@@ -54,6 +56,10 @@ public class ContentImpl
     protected String submittedImageUrl;
     @XmlElement(name = "thumbnail-url")
     protected String thumbnailUrl;
+    @XmlElement(name = "resolved-url")
+    protected String resolvedUrl;
+    @XmlElement(name = "eyebrow-url")
+    protected String eyebrowUrl;
 
     public String getId() {
         return id;
@@ -101,6 +107,22 @@ public class ContentImpl
 
     public void setThumbnailUrl(String value) {
         this.thumbnailUrl = value;
+    }
+
+    public String getResolvedUrl() {
+        return resolvedUrl;
+    }
+
+    public void setResolvedUrl(String value) {
+        this.resolvedUrl = value;
+    }
+
+    public String getEyebrowUrl() {
+        return eyebrowUrl;
+    }
+
+    public void setEyebrowUrl(String value) {
+        this.eyebrowUrl = value;
     }
 
 }
