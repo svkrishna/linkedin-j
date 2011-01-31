@@ -18,21 +18,22 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
+import com.google.code.linkedinapi.schema.Inventor;
 import com.google.code.linkedinapi.schema.Inventors;
-import com.google.code.linkedinapi.schema.Person;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id",
-    "name",
-    "person"
+    "inventorList"
 })
 @XmlRootElement(name = "inventors")
 public class InventorsImpl
@@ -40,36 +41,25 @@ public class InventorsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String id;
-    @XmlElement(required = true)
-    protected String name;
-    @XmlElement(required = true, type = PersonImpl.class)
-    protected PersonImpl person;
+    @XmlElement(name = "inventor", required = true, type = InventorImpl.class)
+    protected List<Inventor> inventorList;
+    @XmlAttribute(required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long total;
 
-    public String getId() {
-        return id;
+    public List<Inventor> getInventorList() {
+        if (inventorList == null) {
+            inventorList = new ArrayList<Inventor>();
+        }
+        return this.inventorList;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    public Long getTotal() {
+        return total;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person value) {
-        this.person = ((PersonImpl) value);
+    public void setTotal(Long value) {
+        this.total = value;
     }
 
 }

@@ -18,48 +18,58 @@
 package com.google.code.linkedinapi.schema.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Authors;
-import com.google.code.linkedinapi.schema.PublicationAuthor;
+import com.google.code.linkedinapi.schema.Inventor;
+import com.google.code.linkedinapi.schema.Person;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "authorList"
+    "id",
+    "name",
+    "person"
 })
-@XmlRootElement(name = "authors")
-public class AuthorsImpl
-    implements Serializable, Authors
+@XmlRootElement(name = "inventor")
+public class InventorImpl
+    implements Serializable, Inventor
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(name = "author", required = true, type = PublicationAuthorImpl.class)
-    protected List<PublicationAuthor> authorList;
-    @XmlAttribute(required = true)
-    @XmlJavaTypeAdapter(Adapter1 .class)
-    protected Long total;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
+    @XmlElement(required = true)
+    protected String name;
+    @XmlElement(required = true, type = PersonImpl.class)
+    protected PersonImpl person;
 
-    public List<PublicationAuthor> getAuthorList() {
-        if (authorList == null) {
-            authorList = new ArrayList<PublicationAuthor>();
-        }
-        return this.authorList;
+    public String getId() {
+        return id;
     }
 
-    public Long getTotal() {
-        return total;
+    public void setId(String value) {
+        this.id = value;
     }
 
-    public void setTotal(Long value) {
-        this.total = value;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person value) {
+        this.person = ((PersonImpl) value);
     }
 
 }

@@ -186,4 +186,10 @@
 	<bindings node="//xs:element[@name='languages']/xs:complexType/xs:sequence/xs:element[@ref='language']">
 		<property name="languageList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='inventors']/xs:complexType/xs:sequence/xs:element[@ref='inventor']">
+		<property name="inventorList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='authors']/xs:complexType/xs:sequence/xs:element[@name='author']">
+		<property name="authorList"/>
+	</bindings>
 </bindings>

@@ -190,7 +190,8 @@
 			<office>
 				<name>USPTO</name>
 			</office>
-			<inventors>
+	      <inventors total="2">
+	        <inventor>
 				<id>id1234</id>
 				<name>Nabeel Mukhtar</name>
 				<person>
@@ -218,7 +219,37 @@
 						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
 					</site-standard-profile-request>
 				</person>
-			</inventors>
+			</inventor>
+	        <inventor>
+				<id>id12345</id>
+				<name>Fazeel Mukhtar</name>
+				<person>
+					<id>EDgfANrSzD</id>
+					<first-name>Nabeel</first-name>
+					<last-name>Siddiqui</last-name>
+					<headline>Software Engineer at Creative Chaos</headline>
+					<location>
+						<name>Pakistan</name>
+						<country>
+							<code>pk</code>
+						</country>
+					</location>
+					<industry>Computer Software</industry>
+					<api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/EDgfANrAzD</url>
+						<headers total="1">
+							<http-header>
+								<name>x-li-auth-token</name>
+								<value>name:Epxm</value>
+							</http-header>
+						</headers>
+					</api-standard-profile-request>
+					<site-standard-profile-request>
+						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
+					</site-standard-profile-request>
+				</person>
+			</inventor>
+		</inventors>
 		</patent>
 		<patent>
 			<id>16</id>
@@ -238,7 +269,8 @@
 			<office>
 				<name>USPTO</name>
 			</office>
-			<inventors>
+	      <inventors total="2">
+	        <inventor>
 				<id>id1234</id>
 				<name>Nabeel Mukhtar</name>
 				<person>
@@ -266,7 +298,37 @@
 						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
 					</site-standard-profile-request>
 				</person>
-			</inventors>
+			</inventor>
+	        <inventor>
+				<id>id12345</id>
+				<name>Fazeel Mukhtar</name>
+				<person>
+					<id>EDgfANrSzD</id>
+					<first-name>Nabeel</first-name>
+					<last-name>Siddiqui</last-name>
+					<headline>Software Engineer at Creative Chaos</headline>
+					<location>
+						<name>Pakistan</name>
+						<country>
+							<code>pk</code>
+						</country>
+					</location>
+					<industry>Computer Software</industry>
+					<api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/EDgfANrAzD</url>
+						<headers total="1">
+							<http-header>
+								<name>x-li-auth-token</name>
+								<value>name:Epxm</value>
+							</http-header>
+						</headers>
+					</api-standard-profile-request>
+					<site-standard-profile-request>
+						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
+					</site-standard-profile-request>
+				</person>
+			</inventor>
+		</inventors>
 		</patent>
 	</patents>
 	<twitter-accounts total="1">
@@ -307,7 +369,8 @@
 			</publisher>>
 			<url>http://www.nab-had.com</url>
 			<summary>Hadoop Tutorial Summary</summary>
-			<authors>
+	      <authors total="2">
+	        <author>
 				<id>id1234</id>
 				<name>Nabeel Mukhtar</name>
 				<person>
@@ -335,7 +398,37 @@
 						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
 					</site-standard-profile-request>
 				</person>
-			</authors>>
+			</author>
+	        <author>
+				<id>id12345</id>
+				<name>Nabeel Mukhtar</name>
+				<person>
+					<id>EDgfANrAzD</id>
+					<first-name>Nabeel</first-name>
+					<last-name>Siddiqui</last-name>
+					<headline>Software Engineer at Creative Chaos</headline>
+					<location>
+						<name>Pakistan</name>
+						<country>
+							<code>pk</code>
+						</country>
+					</location>
+					<industry>Computer Software</industry>
+					<api-standard-profile-request>
+						<url>http://api.linkedin.com/v1/people/EDgfANrAzD</url>
+						<headers total="1">
+							<http-header>
+								<name>x-li-auth-token</name>
+								<value>name:Epxm</value>
+							</http-header>
+						</headers>
+					</api-standard-profile-request>
+					<site-standard-profile-request>
+						<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name&amp;trk=api*a101220*s101220*</url>
+					</site-standard-profile-request>
+				</person>
+			</author>
+		</authors>
 		</publication>
 		<publication>
 			<id>14</id>

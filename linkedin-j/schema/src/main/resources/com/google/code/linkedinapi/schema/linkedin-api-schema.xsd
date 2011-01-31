@@ -475,6 +475,14 @@
   <xs:element name="inventors">
     <xs:complexType>
       <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="inventor"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inventor">
+    <xs:complexType>
+      <xs:sequence>
         <xs:element ref="id"/>
         <xs:element ref="name"/>
         <xs:element ref="person"/>
@@ -505,12 +513,18 @@
   <xs:element name="authors">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="name"/>
-        <xs:element ref="person"/>
+        <xs:element maxOccurs="unbounded" name="author" type="publication-author"/>
       </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:complexType name="publication-author">
+     <xs:sequence>
+       <xs:element ref="id"/>
+       <xs:element ref="name"/>
+       <xs:element ref="person"/>
+     </xs:sequence>
+  </xs:complexType>
   <xs:element name="publisher">
     <xs:complexType>
       <xs:sequence>

@@ -17,22 +17,22 @@
 
 package com.google.code.linkedinapi.schema;
 
-import java.util.List;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for publication-author complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="publication-author">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}inventor" maxOccurs="unbounded"/>
+ *         &lt;element ref="{}id"/>
+ *         &lt;element ref="{}name"/>
+ *         &lt;element ref="{}person"/>
  *       &lt;/sequence>
- *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,53 +40,69 @@ import java.util.List;
  * 
  * 
  */
-public interface Inventors
+public interface PublicationAuthor
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the inventorList property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the inventorList property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getInventorList().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Inventor }
-     * 
-     * 
-     */
-    List<Inventor> getInventorList();
-
-    /**
-     * Gets the value of the total property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    Long getTotal();
+    String getId();
 
     /**
-     * Sets the value of the total property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setTotal(Long value);
+    void setId(String value);
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getName();
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setName(String value);
+
+    /**
+     * Gets the value of the person property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Person }
+     *     
+     */
+    Person getPerson();
+
+    /**
+     * Sets the value of the person property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Person }
+     *     
+     */
+    void setPerson(Person value);
 
 }

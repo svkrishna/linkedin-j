@@ -17,6 +17,7 @@
 
 package com.google.code.linkedinapi.schema;
 
+import java.util.List;
 
 
 /**
@@ -29,10 +30,9 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}id"/>
- *         &lt;element ref="{}name"/>
- *         &lt;element ref="{}person"/>
+ *         &lt;element name="author" type="{}publication-author" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,63 +46,47 @@ public interface Authors
 
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the authorList property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the authorList property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAuthorList().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PublicationAuthor }
+     * 
+     * 
+     */
+    List<PublicationAuthor> getAuthorList();
+
+    /**
+     * Gets the value of the total property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getId();
+    Long getTotal();
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the total property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setId(String value);
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    String getName();
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    void setName(String value);
-
-    /**
-     * Gets the value of the person property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Person }
-     *     
-     */
-    Person getPerson();
-
-    /**
-     * Sets the value of the person property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Person }
-     *     
-     */
-    void setPerson(Person value);
+    void setTotal(Long value);
 
 }

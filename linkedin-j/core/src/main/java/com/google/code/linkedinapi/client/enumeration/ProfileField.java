@@ -95,6 +95,11 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * the member's current status, if set
      */
     CURRENT_STATUS("current-status", null, true),
+    
+    /**
+     * the member's current share, if set
+     */
+    CURRENT_SHARE("current-share", null, true),
 
     /**
      * the timestamp, in milliseconds, when the member's status was last set

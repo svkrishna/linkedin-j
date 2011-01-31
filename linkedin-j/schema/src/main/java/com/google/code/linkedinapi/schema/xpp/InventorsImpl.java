@@ -18,13 +18,15 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.schema.Inventor;
 import com.google.code.linkedinapi.schema.Inventors;
-import com.google.code.linkedinapi.schema.Person;
 
 public class InventorsImpl
 	extends BaseSchemaEntity
@@ -32,49 +34,36 @@ public class InventorsImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String id;
-    protected String name;
-    protected PersonImpl person;
+    protected List<Inventor> inventorList;
+    protected Long total;
 
-    public String getId() {
-        return id;
+    public List<Inventor> getInventorList() {
+        if (inventorList == null) {
+            inventorList = new ArrayList<Inventor>();
+        }
+        return this.inventorList;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    public Long getTotal() {
+        return total;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person value) {
-        this.person = ((PersonImpl) value);
+    public void setTotal(Long value) {
+        this.total = value;
     }
 
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
+		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
         	String name = parser.getName();
         	
-        	if (name.equals("id")) {
-        		setId(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("name")) {
-        		setName(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("person")) {
-        		PersonImpl author = new PersonImpl();
-    			author.init(parser);
-    			setPerson(author);
+        	if (name.equals("inventor")) {
+        		InventorImpl inventorImpl = new InventorImpl();
+    			inventorImpl.init(parser);
+    			getInventorList().add(inventorImpl);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -86,11 +75,10 @@ public class InventorsImpl
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
 		XmlSerializer element = serializer.startTag(null, "inventors");
-		XppUtils.setElementValueToNode(element, "id", getId());
-		XppUtils.setElementValueToNode(element, "name", getName());
-		if (getPerson() != null) {
-			((PersonImpl) getPerson()).toXml(serializer);
+		XppUtils.setAttributeValueToNode(element, "total", getTotal());
+		for (Inventor inventor : getInventorList()) {
+			((InventorImpl) inventor).toXml(serializer);
 		}
-		element.endTag(null, "inventors");;
+		serializer.endTag(null, "inventors");
 	}
 }

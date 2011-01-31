@@ -18,52 +18,63 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Authors;
-import com.google.code.linkedinapi.schema.PublicationAuthor;
+import com.google.code.linkedinapi.schema.Inventor;
+import com.google.code.linkedinapi.schema.Person;
 
-public class AuthorsImpl
+public class InventorImpl
 	extends BaseSchemaEntity
-    implements Authors
+    implements Inventor
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<PublicationAuthor> authorList;
-    protected Long total;
+    protected String id;
+    protected String name;
+    protected PersonImpl person;
 
-    public List<PublicationAuthor> getAuthorList() {
-        if (authorList == null) {
-            authorList = new ArrayList<PublicationAuthor>();
-        }
-        return this.authorList;
+    public String getId() {
+        return id;
     }
 
-    public Long getTotal() {
-        return total;
+    public void setId(String value) {
+        this.id = value;
     }
 
-    public void setTotal(Long value) {
-        this.total = value;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person value) {
+        this.person = ((PersonImpl) value);
     }
 
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-		setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
         	String name = parser.getName();
         	
-        	if (name.equals("author")) {
-        		PublicationAuthorImpl authorImpl = new PublicationAuthorImpl();
-    			authorImpl.init(parser);
-    			getAuthorList().add(authorImpl);
+        	if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("name")) {
+        		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("person")) {
+        		PersonImpl author = new PersonImpl();
+    			author.init(parser);
+    			setPerson(author);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -74,11 +85,12 @@ public class AuthorsImpl
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		XmlSerializer element = serializer.startTag(null, "authors");
-		XppUtils.setAttributeValueToNode(element, "total", getTotal());
-		for (PublicationAuthor author : getAuthorList()) {
-			((PublicationAuthorImpl) author).toXml(serializer);
+		XmlSerializer element = serializer.startTag(null, "inventor");
+		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "name", getName());
+		if (getPerson() != null) {
+			((PersonImpl) getPerson()).toXml(serializer);
 		}
-		serializer.endTag(null, "authors");
+		element.endTag(null, "inventor");
 	}
 }
