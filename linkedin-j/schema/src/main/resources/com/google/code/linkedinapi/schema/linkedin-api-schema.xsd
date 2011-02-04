@@ -163,15 +163,40 @@
   </xs:element>
   <xs:element name="update-content">
     <xs:complexType>
-      <xs:choice>
+      <xs:sequence>
         <xs:element minOccurs="0" ref="person"/>
+        <xs:element minOccurs="0" ref="update-action"/>
         <xs:element minOccurs="0" ref="job"/>
         <xs:element minOccurs="0" ref="question"/>
         <xs:element minOccurs="0" ref="company"/>
         <xs:element minOccurs="0" ref="company-job-update"/>
         <xs:element minOccurs="0" ref="company-person-update"/>
         <xs:element minOccurs="0" ref="company-profile-update"/>
-      </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="update-action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="action"/>
+        <xs:element ref="original-update"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="original-update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="update-key"/>
+        <xs:element ref="update-type"/>
+        <xs:element ref="update-content"/>
+        <xs:element ref="is-commentable"/>
+        <xs:element minOccurs="0" ref="update-comments"/>
+        <xs:element ref="is-likable"/>
+        <xs:element ref="is-liked"/>
+        <xs:element ref="num-likes"/>
+        <xs:element minOccurs="0" ref="likes"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="job">

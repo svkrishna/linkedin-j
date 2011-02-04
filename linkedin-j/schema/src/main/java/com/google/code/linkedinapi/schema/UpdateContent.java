@@ -28,15 +28,16 @@ package com.google.code.linkedinapi.schema;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
+ *       &lt;sequence>
  *         &lt;element ref="{}person" minOccurs="0"/>
+ *         &lt;element ref="{}update-action" minOccurs="0"/>
  *         &lt;element ref="{}job" minOccurs="0"/>
  *         &lt;element ref="{}question" minOccurs="0"/>
  *         &lt;element ref="{}company" minOccurs="0"/>
  *         &lt;element ref="{}company-job-update" minOccurs="0"/>
  *         &lt;element ref="{}company-person-update" minOccurs="0"/>
  *         &lt;element ref="{}company-profile-update" minOccurs="0"/>
- *       &lt;/choice>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -68,6 +69,26 @@ public interface UpdateContent
      *     
      */
     void setPerson(Person value);
+
+    /**
+     * Gets the value of the updateAction property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link UpdateAction }
+     *     
+     */
+    UpdateAction getUpdateAction();
+
+    /**
+     * Sets the value of the updateAction property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link UpdateAction }
+     *     
+     */
+    void setUpdateAction(UpdateAction value);
 
     /**
      * Gets the value of the job property.

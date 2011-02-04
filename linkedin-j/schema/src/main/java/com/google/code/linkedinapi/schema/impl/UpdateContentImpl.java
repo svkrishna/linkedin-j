@@ -30,11 +30,13 @@ import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
+import com.google.code.linkedinapi.schema.UpdateAction;
 import com.google.code.linkedinapi.schema.UpdateContent;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "person",
+    "updateAction",
     "job",
     "question",
     "company",
@@ -50,6 +52,8 @@ public class UpdateContentImpl
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(type = PersonImpl.class)
     protected PersonImpl person;
+    @XmlElement(name = "update-action", type = UpdateActionImpl.class)
+    protected UpdateActionImpl updateAction;
     @XmlElement(type = JobImpl.class)
     protected JobImpl job;
     @XmlElement(type = QuestionImpl.class)
@@ -69,6 +73,14 @@ public class UpdateContentImpl
 
     public void setPerson(Person value) {
         this.person = ((PersonImpl) value);
+    }
+
+    public UpdateAction getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(UpdateAction value) {
+        this.updateAction = ((UpdateActionImpl) value);
     }
 
     public Job getJob() {

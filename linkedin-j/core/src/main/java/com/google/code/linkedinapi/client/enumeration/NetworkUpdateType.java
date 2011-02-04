@@ -88,6 +88,11 @@ public enum NetworkUpdateType implements FieldEnum {
     SHARED_ITEM("SHAR"),
     
     /**
+     * A connection has commented on or liked another update.
+     */
+    VIRAL_UPDATE("VIRL"),
+    
+    /**
      * A change to one of the companies the member is following.
      */
     COMPANY_FOLLOW_UPDATE("CMPY");

@@ -30,6 +30,7 @@ import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
+import com.google.code.linkedinapi.schema.UpdateAction;
 import com.google.code.linkedinapi.schema.UpdateContent;
 
 public class UpdateContentImpl
@@ -42,6 +43,7 @@ public class UpdateContentImpl
 	 */
 	private static final long serialVersionUID = 8557807037014197165L;
 	protected PersonImpl person;
+	protected UpdateActionImpl updateAction;
     protected JobImpl job;
 	protected QuestionImpl question;
     protected CompanyImpl company;
@@ -56,6 +58,14 @@ public class UpdateContentImpl
 
     public void setPerson(Person value) {
         this.person = ((PersonImpl) value);
+    }
+    
+    public UpdateAction getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(UpdateAction value) {
+        this.updateAction = ((UpdateActionImpl) value);
     }
     
     public Question getQuestion() {
@@ -121,6 +131,10 @@ public class UpdateContentImpl
     			JobImpl jobImpl = new JobImpl();
     			jobImpl.init(parser);
     			setJob(jobImpl);
+        	} else if (name.equals("update-action")) {
+    			UpdateActionImpl updateActionImpl = new UpdateActionImpl();
+    			updateActionImpl.init(parser);
+    			setUpdateAction(updateActionImpl);
         	} else if (name.equals("question")) {
     			QuestionImpl questionImpl = new QuestionImpl();
     			questionImpl.init(parser);
@@ -157,6 +171,9 @@ public class UpdateContentImpl
 		}
 		if (getJob() != null) {
 			((JobImpl) getJob()).toXml(element);
+		}
+		if (getUpdateAction() != null) {
+			((UpdateActionImpl) getUpdateAction()).toXml(element);
 		}
 		if (getQuestion() != null) {
 			((QuestionImpl) getQuestion()).toXml(element);
