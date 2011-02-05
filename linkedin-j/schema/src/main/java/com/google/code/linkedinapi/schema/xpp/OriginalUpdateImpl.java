@@ -127,16 +127,66 @@ public class OriginalUpdateImpl
     }
 
 	@Override
-	public void init(XmlPullParser parser) throws IOException,
-			XmlPullParserException {
-		// TODO Auto-generated method stub
-		
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+        	String name = parser.getName();
+        	
+        	if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("update-key")) {
+        		setUpdateKey(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("update-type")) {
+        		setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-commentable")) {
+        		setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-likable")) {
+        		setIsLikable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-liked")) {
+        		setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("num-likes")) {
+        		setNumLikes(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("update-content")) {
+    			UpdateContentImpl contentImpl = new UpdateContentImpl();
+    			contentImpl.init(parser);
+    			setUpdateContent(contentImpl);
+        	} else if (name.equals("update-comments")) {
+    			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
+    			commentImpl.init(parser);
+    			setUpdateComments(commentImpl);
+            } else if (name.equals("likes")) {
+    			LikesImpl likesImpl = new LikesImpl();
+    			likesImpl.init(parser);
+    			setLikes(likesImpl);
+            } else {
+                // Consume something we don't understand.
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
+            }
+        }
 	}
 
 	@Override
 	public void toXml(XmlSerializer serializer) throws IOException {
-		// TODO Auto-generated method stub
+		XmlSerializer element = serializer.startTag(null, "original-update");
+		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
+		XppUtils.setElementValueToNode(element, "update-key", getUpdateKey());
+		XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
+		XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
+		XppUtils.setElementValueToNode(element, "is-likable", String.valueOf(isIsLikable()));
+		XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
+		XppUtils.setElementValueToNode(element, "num-likes", getNumLikes());
 		
+		if (getUpdateContent() != null) {
+			((UpdateContentImpl) getUpdateContent()).toXml(serializer);
+		}
+		if (getUpdateComments() != null) {
+			((UpdateCommentsImpl) getUpdateComments()).toXml(serializer);
+		}
+		if (getLikes() != null) {
+			((LikesImpl) getLikes()).toXml(serializer);
+		}
+		serializer.endTag(null, "original-update");
 	}
-
 }
