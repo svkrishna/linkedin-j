@@ -41,6 +41,7 @@
 			<typesafeEnumMember name="SHARED_ITEM" value="SHAR"/>
 			<typesafeEnumMember name="EXTENDED_PROFILE_UPDATED" value="PRFX"/>
 			<typesafeEnumMember name="COMPANY_UPDATED" value="CMPY"/>
+			<typesafeEnumMember name="VIRAL_UPDATE" value="VIRL"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='recommendation-type']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">

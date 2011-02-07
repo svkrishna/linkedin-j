@@ -45,6 +45,7 @@ import javax.xml.bind.annotation.XmlEnumValue;
  *     &lt;enumeration value="PRFX"/>
  *     &lt;enumeration value="SHAR"/>
  *     &lt;enumeration value="CMPY"/>
+ *     &lt;enumeration value="VIRL"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -84,7 +85,9 @@ public enum NetworkUpdateReturnType {
     @XmlEnumValue("SHAR")
     SHARED_ITEM("SHAR"),
     @XmlEnumValue("CMPY")
-    COMPANY_UPDATED("CMPY");
+    COMPANY_UPDATED("CMPY"),
+    @XmlEnumValue("VIRL")
+    VIRAL_UPDATE("VIRL");
     private final String value;
 
     NetworkUpdateReturnType(String v) {
