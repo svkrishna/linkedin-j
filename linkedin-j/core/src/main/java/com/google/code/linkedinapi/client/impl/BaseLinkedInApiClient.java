@@ -1847,6 +1847,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Content content = OBJECT_FACTORY.createContent();
         content.setSubmittedUrl(url);
         content.setSubmittedImageUrl(imageUrl);
+        content.setTitle(title);
         share.setContent(content);
         Visibility visibility = OBJECT_FACTORY.createVisibility();
         visibility.setCode(visibilityType);
