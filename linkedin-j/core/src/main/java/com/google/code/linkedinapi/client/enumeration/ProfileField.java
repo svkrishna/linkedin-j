@@ -85,6 +85,9 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     RELATION_TO_VIEWER_DISTANCE("distance", RELATION_TO_VIEWER, false),
 
     RELATION_TO_VIEWER_RELATED_CONNECTIONS("related-connections", RELATION_TO_VIEWER, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_FIRST_NAME("first-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_LAST_NAME("last-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_URL("public-profile-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
     
     /**
      * a total attribute will denote the number of connections that link the fetching member to the fetched. Contains brief connection/person objects indicating the connecting first degree members.
