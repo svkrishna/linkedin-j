@@ -697,6 +697,7 @@
   <xs:element name="relation-to-viewer">
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="related-connections"/>
         <xs:element ref="distance"/>
       </xs:sequence>
     </xs:complexType>
@@ -973,6 +974,14 @@
       <xs:attribute name="total" use="required" type="xs:integer"/>
       <xs:attribute name="count" type="xs:integer"/>
       <xs:attribute name="start" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="related-connections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="person"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="id" type="xs:NMTOKEN"/>

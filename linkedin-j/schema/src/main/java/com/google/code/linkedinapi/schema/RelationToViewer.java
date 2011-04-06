@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Nabeel Mukhtar 
+ * Copyright 2010-2011 Nabeel Mukhtar 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -29,6 +29,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{}related-connections"/>
  *         &lt;element ref="{}distance"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -42,6 +43,26 @@ public interface RelationToViewer
     extends SchemaEntity
 {
 
+
+    /**
+     * Gets the value of the relatedConnections property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RelatedConnections }
+     *     
+     */
+    RelatedConnections getRelatedConnections();
+
+    /**
+     * Sets the value of the relatedConnections property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RelatedConnections }
+     *     
+     */
+    void setRelatedConnections(RelatedConnections value);
 
     /**
      * Gets the value of the distance property.
