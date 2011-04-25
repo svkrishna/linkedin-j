@@ -459,7 +459,7 @@ public class PersonImpl
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-		setPath(XppUtils.getAttributeValueFromNode(parser, path));
+		setPath(XppUtils.getAttributeValueFromNode(parser, "path"));
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
         	String name = parser.getName();
