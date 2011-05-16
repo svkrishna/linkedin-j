@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Nabeel Mukhtar 
+ * Copyright 2010-2011 Nabeel Mukhtar 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -88,6 +88,7 @@ import com.google.code.linkedinapi.schema.RecommendationsGiven;
 import com.google.code.linkedinapi.schema.RecommendationsReceived;
 import com.google.code.linkedinapi.schema.Recommendee;
 import com.google.code.linkedinapi.schema.Recommender;
+import com.google.code.linkedinapi.schema.RelatedConnections;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.ServiceProvider;
@@ -227,6 +228,9 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	 */
 	public People createPeople() {
 		return new PeopleImpl();
+	}
+	public RelatedConnections createRelatedConnections() {
+		return new RelatedConnectionsImpl();
 	}
 
 	/*
