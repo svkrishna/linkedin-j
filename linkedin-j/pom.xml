@@ -13,7 +13,13 @@
   <inceptionYear>2010</inceptionYear>
   <description>A Java wrapper for LinkedIn APIs.</description>
   <url>http://code.google.com/p/linkedin-j/</url>
-
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
   <issueManagement>
     <system>google-code</system>
     <url>http://code.google.com/p/linkedin-j/issues/list</url>
@@ -46,6 +52,19 @@
 				<target>1.6</target>
 			</configuration>
 		</plugin>
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 	</plugins>
   </build>
   <dependencies>
