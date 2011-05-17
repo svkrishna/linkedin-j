@@ -36,6 +36,7 @@ public class CompanyImpl
 	private static final long serialVersionUID = -6951793253375914262L;
 	protected String type;
     protected String name;
+    protected String id;
     protected String industry;
     protected Long size;
     protected String ticker;
@@ -54,6 +55,14 @@ public class CompanyImpl
 
     public void setName(String value) {
         this.name = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String value) {
+        this.id = value;
     }
 
     public String getIndustry() {
@@ -89,6 +98,8 @@ public class CompanyImpl
         	
         	if (name.equals("name")) {
         		setName(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("id")) {
+        		setId(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("type")) {
         		setType(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("industry")) {
@@ -109,6 +120,7 @@ public class CompanyImpl
 	public void toXml(XmlSerializer serializer) throws IOException {
 		XmlSerializer element = serializer.startTag(null, "company");
 		XppUtils.setElementValueToNode(element, "name", getName());
+		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "type", getType());
 		XppUtils.setElementValueToNode(element, "industry", getIndustry());
 		XppUtils.setElementValueToNode(element, "size", getSize());

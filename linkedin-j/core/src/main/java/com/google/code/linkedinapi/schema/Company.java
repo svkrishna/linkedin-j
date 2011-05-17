@@ -31,6 +31,7 @@ package com.google.code.linkedinapi.schema;
  *       &lt;sequence>
  *         &lt;element ref="{}type" minOccurs="0"/>
  *         &lt;element ref="{}name"/>
+ *         &lt;element ref="{}id"/>
  *         &lt;element ref="{}industry" minOccurs="0"/>
  *         &lt;element ref="{}size" minOccurs="0"/>
  *         &lt;element ref="{}ticker" minOccurs="0"/>
@@ -86,6 +87,26 @@ public interface Company
      *     
      */
     void setName(String value);
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getId();
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setId(String value);
 
     /**
      * Gets the value of the industry property.

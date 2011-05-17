@@ -34,6 +34,7 @@ import com.google.code.linkedinapi.schema.Content;
     "submittedUrl",
     "shortenedUrl",
     "submittedImageUrl",
+    "description",
     "thumbnailUrl",
     "resolvedUrl",
     "eyebrowUrl"
@@ -54,6 +55,7 @@ public class ContentImpl
     protected String shortenedUrl;
     @XmlElement(name = "submitted-image-url", required = true)
     protected String submittedImageUrl;
+    protected String description;
     @XmlElement(name = "thumbnail-url")
     protected String thumbnailUrl;
     @XmlElement(name = "resolved-url")
@@ -99,6 +101,14 @@ public class ContentImpl
 
     public void setSubmittedImageUrl(String value) {
         this.submittedImageUrl = value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String value) {
+        this.description = value;
     }
 
     public String getThumbnailUrl() {

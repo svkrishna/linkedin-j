@@ -752,6 +752,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" ref="type"/>
         <xs:element ref="name"/>
+        <xs:element ref="id"/>
         <xs:element minOccurs="0" ref="industry"/>
         <xs:element minOccurs="0" ref="size"/>
         <xs:element minOccurs="0" ref="ticker"/>
@@ -1197,12 +1198,14 @@
         <xs:element ref="submitted-url"/>
         <xs:element minOccurs="0" ref="shortened-url"/>
         <xs:element ref="submitted-image-url"/>
+        <xs:element minOccurs="0" ref="description"/>
         <xs:element minOccurs="0" ref="thumbnail-url"/>
         <xs:element minOccurs="0" ref="resolved-url"/>
         <xs:element minOccurs="0" ref="eyebrow-url"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="description" type="xs:string"/>
   <xs:element name="submitted-url" type="xs:anyURI"/>
   <xs:element name="shortened-url" type="xs:anyURI"/>
   <xs:element name="submitted-image-url" type="xs:anyURI"/>

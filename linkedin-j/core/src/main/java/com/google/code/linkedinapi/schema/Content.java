@@ -34,6 +34,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}submitted-url"/>
  *         &lt;element ref="{}shortened-url" minOccurs="0"/>
  *         &lt;element ref="{}submitted-image-url"/>
+ *         &lt;element ref="{}description" minOccurs="0"/>
  *         &lt;element ref="{}thumbnail-url" minOccurs="0"/>
  *         &lt;element ref="{}resolved-url" minOccurs="0"/>
  *         &lt;element ref="{}eyebrow-url" minOccurs="0"/>
@@ -149,6 +150,26 @@ public interface Content
      *     
      */
     void setSubmittedImageUrl(String value);
+
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getDescription();
+
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setDescription(String value);
 
     /**
      * Gets the value of the thumbnailUrl property.

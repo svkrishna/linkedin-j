@@ -1831,11 +1831,23 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	@Override
 	public void postShare(String commentText, String title, String url,
 			String imageUrl, VisibilityType visibility) {
-		postShare(commentText, title, url, imageUrl, visibility, false);
+		postShare(commentText, title, null, url, imageUrl, visibility, false);
 	}
 
 	@Override
 	public void postShare(String commentText, String title, String url,
+			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
+		postShare(commentText, title, null, url, imageUrl, visibilityType, postToTwitter);
+	}
+	
+	@Override
+	public void postShare(String commentText, String title, String description, String url,
+			String imageUrl, VisibilityType visibilityType) {
+		postShare(commentText, title, description, url, imageUrl, visibilityType, false);		
+	}
+	
+	@Override
+	public void postShare(String commentText, String title, String description, String url,
 			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_SHARE);
         if (postToTwitter) {
@@ -1848,6 +1860,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         content.setSubmittedUrl(url);
         content.setSubmittedImageUrl(imageUrl);
         content.setTitle(title);
+        content.setDescription(description);
         share.setContent(content);
         Visibility visibility = OBJECT_FACTORY.createVisibility();
         visibility.setCode(visibilityType);

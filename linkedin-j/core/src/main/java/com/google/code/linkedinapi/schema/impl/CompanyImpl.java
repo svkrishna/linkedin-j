@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Company;
@@ -31,6 +32,7 @@ import com.google.code.linkedinapi.schema.Company;
 @XmlType(name = "", propOrder = {
     "type",
     "name",
+    "id",
     "industry",
     "size",
     "ticker"
@@ -44,6 +46,9 @@ public class CompanyImpl
     protected String type;
     @XmlElement(required = true)
     protected String name;
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
     protected String industry;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
@@ -64,6 +69,14 @@ public class CompanyImpl
 
     public void setName(String value) {
         this.name = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String value) {
+        this.id = value;
     }
 
     public String getIndustry() {

@@ -33,6 +33,7 @@ public class ContentImpl
     private final static long serialVersionUID = 2461660169443089969L;
     protected String id;
     protected String title;
+    protected String description;
     protected String submittedUrl;
     protected String shortenedUrl;
     protected String submittedImageUrl;
@@ -57,6 +58,14 @@ public class ContentImpl
         this.title = value;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String value) {
+        this.description = value;
+    }
+    
     public String getSubmittedUrl() {
         return submittedUrl;
     }
@@ -116,6 +125,8 @@ public class ContentImpl
         		setId(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("title")) {
         		setTitle(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("description")) {
+        		setDescription(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("submitted-url")) {
         		setSubmittedUrl(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("shortened-url")) {
@@ -141,6 +152,7 @@ public class ContentImpl
 		XmlSerializer element = serializer.startTag(null, "content");
 		XppUtils.setElementValueToNode(element, "id", getId());
 		XppUtils.setElementValueToNode(element, "title", getTitle());
+		XppUtils.setElementValueToNode(element, "description", getDescription());
 		XppUtils.setElementValueToNode(element, "submitted-url", getSubmittedUrl());
 		XppUtils.setElementValueToNode(element, "shortened-url", getShortenedUrl());
 		XppUtils.setElementValueToNode(element, "submitted-image-url", getSubmittedImageUrl());
