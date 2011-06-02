@@ -3,8 +3,16 @@
 	<id>1511685</id>
 	<customer-job-code>DE247X</customer-job-code>
 	<active>true</active>
-	<posting-date>20110303</posting-date>
-	<expiration-date>20110303</expiration-date>
+	<posting-date>
+		<year>2011</year>
+		<month>4</month>
+		<day>14</day>
+	</posting-date>
+	<expiration-date>
+		<year>2011</year>
+		<month>4</month>
+		<day>14</day>
+	</expiration-date>
 	<posting-timestamp>1304030488000</posting-timestamp>
 	<expiration-timestamp>1304030488000</expiration-timestamp>
 	<company>

@@ -141,4 +141,9 @@ public class LinkedInApiJaxbClient extends BaseLinkedInApiClient {
 			super();
 		}
 	}
+
+	@Override
+	public JobBuilder newJobBuilder() {
+		return new JobBuilderImpl(OBJECT_FACTORY);
+	}
 }

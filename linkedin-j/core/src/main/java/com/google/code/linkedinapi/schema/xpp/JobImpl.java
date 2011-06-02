@@ -24,11 +24,13 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.ExpirationDate;
 import com.google.code.linkedinapi.schema.HowToApply;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Poster;
+import com.google.code.linkedinapi.schema.PostingDate;
 import com.google.code.linkedinapi.schema.Renew;
 import com.google.code.linkedinapi.schema.SiteJobRequest;
 
@@ -42,8 +44,8 @@ extends BaseSchemaEntity implements Job
     protected Long contractId;
     protected String customerJobCode;
     protected Boolean active;
-    protected String postingDate;
-    protected String expirationDate;
+    protected PostingDateImpl postingDate;
+    protected ExpirationDateImpl expirationDate;
     protected CompanyImpl company;
     protected String description;
     protected String descriptionSnippet;
@@ -101,20 +103,20 @@ extends BaseSchemaEntity implements Job
         this.active = value;
     }
 
-    public String getPostingDate() {
+    public PostingDate getPostingDate() {
         return postingDate;
     }
 
-    public void setPostingDate(String value) {
-        this.postingDate = value;
+    public void setPostingDate(PostingDate value) {
+        this.postingDate = (PostingDateImpl) value;
     }
 
-    public String getExpirationDate() {
+    public ExpirationDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String value) {
-        this.expirationDate = value;
+    public void setExpirationDate(ExpirationDate value) {
+        this.expirationDate = (ExpirationDateImpl) value;
     }
 
     public Company getCompany() {
@@ -261,9 +263,13 @@ extends BaseSchemaEntity implements Job
             } else if (name.equals("active")) {
                 setActive(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
             } else if (name.equals("posting-date")) {
-                setPostingDate(XppUtils.getElementValueFromNode(parser));
+            	PostingDateImpl node = new PostingDateImpl();
+            	node.init(parser);
+                setPostingDate(node);
             } else if (name.equals("expiration-date")) {
-                setExpirationDate(XppUtils.getElementValueFromNode(parser));
+            	ExpirationDateImpl node = new ExpirationDateImpl();
+            	node.init(parser);
+                setExpirationDate(node);
             } else if (name.equals("company")) {
                 CompanyImpl node = new CompanyImpl();
                 node.init(parser);
@@ -325,8 +331,12 @@ extends BaseSchemaEntity implements Job
         XppUtils.setElementValueToNode(element, "contract-id", getContractId());
         XppUtils.setElementValueToNode(element, "customer-job-code", getCustomerJobCode());
         XppUtils.setElementValueToNode(element, "active", isActive());
-        XppUtils.setElementValueToNode(element, "posting-date", getPostingDate());
-        XppUtils.setElementValueToNode(element, "expiration-date", getExpirationDate());
+        if (getPostingDate() != null) {
+            ((PostingDateImpl) getPostingDate()).toXml(serializer);
+        }
+        if (getExpirationDate() != null) {
+            ((ExpirationDateImpl) getExpirationDate()).toXml(serializer);
+        }
         if (getCompany() != null) {
             ((CompanyImpl) getCompany()).toXml(serializer);
         }

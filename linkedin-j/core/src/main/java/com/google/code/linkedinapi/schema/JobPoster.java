@@ -33,6 +33,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}first-name"/>
  *         &lt;element ref="{}last-name"/>
  *         &lt;element ref="{}headline"/>
+ *         &lt;element ref="{}relation-to-viewer" minOccurs="0"/>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}api-standard-profile-request"/>
  *           &lt;element ref="{}site-standard-profile-request"/>
@@ -129,6 +130,26 @@ public interface JobPoster
      *     
      */
     void setHeadline(String value);
+
+    /**
+     * Gets the value of the relationToViewer property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RelationToViewer }
+     *     
+     */
+    RelationToViewer getRelationToViewer();
+
+    /**
+     * Sets the value of the relationToViewer property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RelationToViewer }
+     *     
+     */
+    void setRelationToViewer(RelationToViewer value);
 
     /**
      * Gets the value of the apiStandardProfileRequest property.

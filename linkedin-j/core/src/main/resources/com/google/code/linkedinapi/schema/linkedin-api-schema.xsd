@@ -239,8 +239,24 @@
   <xs:element name="contract-id" type="xs:integer"/>
   <xs:element name="customer-job-code" type="xs:string"/>
   <xs:element name="active" type="xs:boolean"/>
-  <xs:element name="posting-date" type="xs:string"/>
-  <xs:element name="expiration-date" type="xs:string"/>
+  <xs:element name="posting-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="expiration-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="expiration-timestamp" type="xs:integer"/>
   <xs:element name="description-snippet" type="xs:string"/>
   <xs:element name="job-poster">
@@ -250,6 +266,7 @@
         <xs:element ref="first-name"/>
         <xs:element ref="last-name"/>
         <xs:element ref="headline"/>
+		<xs:element minOccurs="0" ref="relation-to-viewer"/>        
         <xs:sequence minOccurs="0">
           <xs:element ref="api-standard-profile-request"/>
           <xs:element ref="site-standard-profile-request"/>
@@ -912,6 +929,13 @@
   <xs:element name="saved-timestamp" type="xs:integer"/>
   <xs:element name="applied-timestamp" type="xs:integer"/>
   <xs:element name="job-suggestions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="jobs"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job-search">
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="jobs"/>

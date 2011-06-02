@@ -30,6 +30,10 @@ import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUr
 import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Error;
+import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.JobBookmarks;
+import com.google.code.linkedinapi.schema.JobSearch;
+import com.google.code.linkedinapi.schema.JobSuggestions;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
@@ -44,6 +48,10 @@ import com.google.code.linkedinapi.schema.xpp.ActivityImpl;
 import com.google.code.linkedinapi.schema.xpp.BaseSchemaEntity;
 import com.google.code.linkedinapi.schema.xpp.ConnectionsImpl;
 import com.google.code.linkedinapi.schema.xpp.ErrorImpl;
+import com.google.code.linkedinapi.schema.xpp.JobBookmarksImpl;
+import com.google.code.linkedinapi.schema.xpp.JobImpl;
+import com.google.code.linkedinapi.schema.xpp.JobSearchImpl;
+import com.google.code.linkedinapi.schema.xpp.JobSuggestionsImpl;
 import com.google.code.linkedinapi.schema.xpp.LikesImpl;
 import com.google.code.linkedinapi.schema.xpp.MailboxItemImpl;
 import com.google.code.linkedinapi.schema.xpp.NetworkImpl;
@@ -64,20 +72,24 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
     private static final SchemaElementFactory<String> OBJECT_FACTORY = new XppElementFactory();
     
     /** Field description */
-	private static final Map<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>> DOM_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>>();
+	private static final Map<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>> XPP_CLASSES_MAP = new HashMap<Class<? extends SchemaEntity>, Class<? extends BaseSchemaEntity>>();
 	
 	static {
-		DOM_CLASSES_MAP.put(Person.class, PersonImpl.class);
-		DOM_CLASSES_MAP.put(Network.class, NetworkImpl.class);
-		DOM_CLASSES_MAP.put(People.class, PeopleImpl.class);
-		DOM_CLASSES_MAP.put(Connections.class, ConnectionsImpl.class);
-		DOM_CLASSES_MAP.put(Error.class, ErrorImpl.class);
-		DOM_CLASSES_MAP.put(MailboxItem.class, MailboxItemImpl.class);
-		DOM_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
-		DOM_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
-		DOM_CLASSES_MAP.put(UpdateComments.class, UpdateCommentsImpl.class);
-		DOM_CLASSES_MAP.put(PeopleSearch.class, PeopleSearchImpl.class);
-		DOM_CLASSES_MAP.put(Likes.class, LikesImpl.class);
+		XPP_CLASSES_MAP.put(Person.class, PersonImpl.class);
+		XPP_CLASSES_MAP.put(Network.class, NetworkImpl.class);
+		XPP_CLASSES_MAP.put(People.class, PeopleImpl.class);
+		XPP_CLASSES_MAP.put(Connections.class, ConnectionsImpl.class);
+		XPP_CLASSES_MAP.put(Error.class, ErrorImpl.class);
+		XPP_CLASSES_MAP.put(MailboxItem.class, MailboxItemImpl.class);
+		XPP_CLASSES_MAP.put(UpdateComment.class, UpdateCommentImpl.class);
+		XPP_CLASSES_MAP.put(Activity.class, ActivityImpl.class);
+		XPP_CLASSES_MAP.put(UpdateComments.class, UpdateCommentsImpl.class);
+		XPP_CLASSES_MAP.put(PeopleSearch.class, PeopleSearchImpl.class);
+		XPP_CLASSES_MAP.put(Likes.class, LikesImpl.class);
+		XPP_CLASSES_MAP.put(Job.class, JobImpl.class);
+		XPP_CLASSES_MAP.put(JobSearch.class, JobSearchImpl.class);
+		XPP_CLASSES_MAP.put(JobBookmarks.class, JobBookmarksImpl.class);
+		XPP_CLASSES_MAP.put(JobSuggestions.class, JobSuggestionsImpl.class);
 	}
 	
     /**
@@ -173,8 +185,8 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
      *
      */
     private BaseSchemaEntity getSchemaEntityByClass(Class<?> clazz) {
-    	if (DOM_CLASSES_MAP.containsKey(clazz)) {
-    		Class<? extends BaseSchemaEntity> implClass = DOM_CLASSES_MAP.get(clazz);
+    	if (XPP_CLASSES_MAP.containsKey(clazz)) {
+    		Class<? extends BaseSchemaEntity> implClass = XPP_CLASSES_MAP.get(clazz);
     		try {
 				return implClass.newInstance();
 			} catch (Exception e) {
@@ -183,5 +195,10 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
     	} else {
     		throw new LinkedInApiClientException("Unknown class encountered in response: " + clazz.getName());
     	}
+	}
+    
+	@Override
+	public JobBuilder newJobBuilder() {
+		return new JobBuilderImpl(OBJECT_FACTORY);
 	}
 }

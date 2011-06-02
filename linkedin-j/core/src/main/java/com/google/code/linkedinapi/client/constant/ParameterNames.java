@@ -14,18 +14,12 @@
  * limitations under the License. 
  * 
  */
-package com.google.code.linkedinapi.client;
-
-import com.google.code.linkedinapi.schema.Job;
+package com.google.code.linkedinapi.client.constant;
 
 /**
- * The Interface JobsApiClient.
+ * @author nmukhtar
+ *
  */
-public interface JobsApiClient extends LinkedInAuthenticationClient {
-	public static interface JobBuilder {
-		public Job build();
-	}
+public interface ParameterNames {
 
-	public JobBuilder newJobBuilder();
-	
 }

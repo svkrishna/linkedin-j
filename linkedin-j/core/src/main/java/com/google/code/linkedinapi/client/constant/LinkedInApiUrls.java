@@ -172,6 +172,52 @@ public final class LinkedInApiUrls {
     /** The Constant RE_SHARE. */
     public static final String RE_SHARE =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.reShare");
+    public static final String GET_COMPANY_BY_ID =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyById");
+    public static final String GET_COMPANY_BY_UNIVERSAL_NAME =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyByUniversalName");
+    public static final String GET_COMPANIES_BY_EMAIL_DOMAIN =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompaniesByEmailDomain");
+    public static final String SEARCH_COMPANIES =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompanies");
+    public static final String SEARCH_FACETS_FOR_COMPANIES =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForCompanies");
+    public static final String SEARCH_COMPANIES_AND_FACETS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompaniesAndFacets");
+    public static final String GET_FOLLOWED_COMPANIES =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getFollowedCompanies");
+    public static final String GET_SUGGESTED_COMPANIES =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getSuggestedCompanies");
+    public static final String FOLLOW_COMPANY =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.followCompany");
+    public static final String UNFOLLOW_COMPANY =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unfollowCompany");
+    public static final String GET_COMPANY_PRODUCTS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyProducts");
+    public static final String GET_JOB_BY_ID =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobById");
+    public static final String SEARCH_JOBS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobs");
+    public static final String SEARCH_FACETS_FOR_JOBS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForJobs");
+    public static final String SEARCH_JOBS_AND_FACETS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobsAndFacets");
+    public static final String GET_JOB_BOOKMARKS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobBookmarks");
+    public static final String BOOKMARK_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.bookmarkJob");
+    public static final String UNBOOKMARK_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unbookmarkJob");
+    public static final String GET_JOB_SUGGESTIONS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobSuggestions");
+    public static final String POST_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postJob");
+    public static final String EDIT_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.editJob");
+    public static final String RENEW_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.renewJob");
+    public static final String CLOSE_JOB =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.closeJob");
     
     /**
      * Instantiates a new linked in api urls.

@@ -23,11 +23,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.JobSuggestions;
+import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.Jobs;
 
-public class JobSuggestionsImpl
-extends BaseSchemaEntity implements JobSuggestions
+public class JobSearchImpl
+    extends BaseSchemaEntity implements JobSearch
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -59,11 +59,11 @@ extends BaseSchemaEntity implements JobSuggestions
     }
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
-        serializer.startTag(null, "job-suggestions");
+        serializer.startTag(null, "job-search");
         if (getJobs() != null) {
             ((JobsImpl) getJobs()).toXml(serializer);
         }
         
-        serializer.endTag(null, "job-suggestions");
+        serializer.endTag(null, "job-search");
     }
 }

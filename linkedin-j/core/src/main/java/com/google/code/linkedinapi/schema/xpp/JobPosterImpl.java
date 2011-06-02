@@ -25,6 +25,7 @@ import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.JobPoster;
+import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 public class JobPosterImpl
@@ -36,6 +37,7 @@ public class JobPosterImpl
     protected String firstName;
     protected String lastName;
     protected String headline;
+    protected RelationToViewerImpl relationToViewer;
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
 
@@ -71,6 +73,14 @@ public class JobPosterImpl
         this.headline = value;
     }
 
+    public RelationToViewer getRelationToViewer() {
+        return relationToViewer;
+    }
+
+    public void setRelationToViewer(RelationToViewer value) {
+        this.relationToViewer = ((RelationToViewerImpl) value);
+    }
+
     public ApiStandardProfileRequest getApiStandardProfileRequest() {
         return apiStandardProfileRequest;
     }
@@ -104,6 +114,10 @@ public class JobPosterImpl
                 ApiStandardProfileRequestImpl node = new ApiStandardProfileRequestImpl();
                 node.init(parser);
                 setApiStandardProfileRequest(node);
+            } else if (name.equals("relation-to-viewer")) {
+            	RelationToViewerImpl node = new RelationToViewerImpl();
+                node.init(parser);
+                setRelationToViewer(node);
             } else if (name.equals("site-standard-profile-request")) {
                 SiteStandardProfileRequestImpl node = new SiteStandardProfileRequestImpl();
                 node.init(parser);
@@ -122,6 +136,9 @@ public class JobPosterImpl
         XppUtils.setElementValueToNode(element, "first-name", getFirstName());
         XppUtils.setElementValueToNode(element, "last-name", getLastName());
         XppUtils.setElementValueToNode(element, "headline", getHeadline());
+        if (getRelationToViewer() != null) {
+            ((RelationToViewerImpl) getRelationToViewer()).toXml(serializer);
+        }
         if (getApiStandardProfileRequest() != null) {
             ((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
         }

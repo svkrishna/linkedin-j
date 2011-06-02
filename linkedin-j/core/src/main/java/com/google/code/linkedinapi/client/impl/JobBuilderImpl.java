@@ -14,18 +14,30 @@
  * limitations under the License. 
  * 
  */
-package com.google.code.linkedinapi.client;
+package com.google.code.linkedinapi.client.impl;
 
+import com.google.code.linkedinapi.client.JobsApiClient.JobBuilder;
 import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.SchemaElementFactory;
 
 /**
- * The Interface JobsApiClient.
+ * @author nmukhtar
+ *
  */
-public interface JobsApiClient extends LinkedInAuthenticationClient {
-	public static interface JobBuilder {
-		public Job build();
+public class JobBuilderImpl implements JobBuilder {
+	private final SchemaElementFactory<?> factory;
+	private Job job;
+	
+	JobBuilderImpl(SchemaElementFactory<?> factory) {
+		this.factory = factory;
+		job = this.factory.createJob();
 	}
 
-	public JobBuilder newJobBuilder();
-	
+	/* (non-Javadoc)
+	 * @see com.google.code.linkedinapi.client.JobsApiClient.JobBuilder#build()
+	 */
+	@Override
+	public Job build() {
+		return job;
+	}
 }

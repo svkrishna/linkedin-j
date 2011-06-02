@@ -176,40 +176,40 @@ public interface Job
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link PostingDate }
      *     
      */
-    String getPostingDate();
+    PostingDate getPostingDate();
 
     /**
      * Sets the value of the postingDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link PostingDate }
      *     
      */
-    void setPostingDate(String value);
+    void setPostingDate(PostingDate value);
 
     /**
      * Gets the value of the expirationDate property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ExpirationDate }
      *     
      */
-    String getExpirationDate();
+    ExpirationDate getExpirationDate();
 
     /**
      * Sets the value of the expirationDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ExpirationDate }
      *     
      */
-    void setExpirationDate(String value);
+    void setExpirationDate(ExpirationDate value);
 
     /**
      * Gets the value of the company property.

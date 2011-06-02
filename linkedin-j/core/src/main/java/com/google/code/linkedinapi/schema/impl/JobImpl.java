@@ -27,11 +27,13 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.ExpirationDate;
 import com.google.code.linkedinapi.schema.HowToApply;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Poster;
+import com.google.code.linkedinapi.schema.PostingDate;
 import com.google.code.linkedinapi.schema.Renew;
 import com.google.code.linkedinapi.schema.SiteJobRequest;
 
@@ -78,10 +80,10 @@ public class JobImpl
     @XmlElement(name = "customer-job-code")
     protected String customerJobCode;
     protected Boolean active;
-    @XmlElement(name = "posting-date")
-    protected String postingDate;
-    @XmlElement(name = "expiration-date")
-    protected String expirationDate;
+    @XmlElement(name = "posting-date", type = PostingDateImpl.class)
+    protected PostingDateImpl postingDate;
+    @XmlElement(name = "expiration-date", type = ExpirationDateImpl.class)
+    protected ExpirationDateImpl expirationDate;
     @XmlElement(required = true, type = CompanyImpl.class)
     protected CompanyImpl company;
     @XmlElement(required = true)
@@ -157,20 +159,20 @@ public class JobImpl
         this.active = value;
     }
 
-    public String getPostingDate() {
+    public PostingDate getPostingDate() {
         return postingDate;
     }
 
-    public void setPostingDate(String value) {
-        this.postingDate = value;
+    public void setPostingDate(PostingDate value) {
+        this.postingDate = ((PostingDateImpl) value);
     }
 
-    public String getExpirationDate() {
+    public ExpirationDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(String value) {
-        this.expirationDate = value;
+    public void setExpirationDate(ExpirationDate value) {
+        this.expirationDate = ((ExpirationDateImpl) value);
     }
 
     public Company getCompany() {

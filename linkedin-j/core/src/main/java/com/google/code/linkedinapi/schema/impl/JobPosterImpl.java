@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.JobPoster;
+import com.google.code.linkedinapi.schema.RelationToViewer;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -35,6 +36,7 @@ import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
     "firstName",
     "lastName",
     "headline",
+    "relationToViewer",
     "apiStandardProfileRequest",
     "siteStandardProfileRequest"
 })
@@ -53,6 +55,8 @@ public class JobPosterImpl
     protected String lastName;
     @XmlElement(required = true)
     protected String headline;
+    @XmlElement(name = "relation-to-viewer", type = RelationToViewerImpl.class)
+    protected RelationToViewerImpl relationToViewer;
     @XmlElement(name = "api-standard-profile-request", type = ApiStandardProfileRequestImpl.class)
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
     @XmlElement(name = "site-standard-profile-request", type = SiteStandardProfileRequestImpl.class)
@@ -88,6 +92,14 @@ public class JobPosterImpl
 
     public void setHeadline(String value) {
         this.headline = value;
+    }
+
+    public RelationToViewer getRelationToViewer() {
+        return relationToViewer;
+    }
+
+    public void setRelationToViewer(RelationToViewer value) {
+        this.relationToViewer = ((RelationToViewerImpl) value);
     }
 
     public ApiStandardProfileRequest getApiStandardProfileRequest() {
