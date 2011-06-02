@@ -54,9 +54,9 @@ public class QuestionImpl
     protected AuthorImpl author;
     @XmlElement(name = "question-categories", required = true, type = QuestionCategoriesImpl.class)
     protected QuestionCategoriesImpl questionCategories;
-    @XmlElement(name = "web-url")
+    @XmlElement(name = "web-url", required = true)
     protected String webUrl;
-    @XmlElement(type = AnswersImpl.class)
+    @XmlElement(required = true, type = AnswersImpl.class)
     protected AnswersImpl answers;
 
     public String getId() {

@@ -53,9 +53,9 @@ public class JobPosterImpl
     protected String lastName;
     @XmlElement(required = true)
     protected String headline;
-    @XmlElement(name = "api-standard-profile-request", required = true, type = ApiStandardProfileRequestImpl.class)
+    @XmlElement(name = "api-standard-profile-request", type = ApiStandardProfileRequestImpl.class)
     protected ApiStandardProfileRequestImpl apiStandardProfileRequest;
-    @XmlElement(name = "site-standard-profile-request", required = true, type = SiteStandardProfileRequestImpl.class)
+    @XmlElement(name = "site-standard-profile-request", type = SiteStandardProfileRequestImpl.class)
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
 
     public String getId() {

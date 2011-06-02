@@ -25,19 +25,41 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.HowToApply;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.Position;
+import com.google.code.linkedinapi.schema.Poster;
+import com.google.code.linkedinapi.schema.Renew;
 import com.google.code.linkedinapi.schema.SiteJobRequest;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "id",
-    "position",
+    "partnerJobId",
+    "contractId",
+    "customerJobCode",
+    "active",
+    "postingDate",
+    "expirationDate",
     "company",
+    "description",
+    "descriptionSnippet",
+    "position",
+    "expirationTimestamp",
     "jobPoster",
-    "siteJobRequest"
+    "locationDescription",
+    "postingTimestamp",
+    "salary",
+    "siteJobRequest",
+    "siteJobUrl",
+    "referralBonus",
+    "poster",
+    "howToApply",
+    "trackingPixelUrl",
+    "renew"
 })
 @XmlRootElement(name = "job")
 public class JobImpl
@@ -48,14 +70,52 @@ public class JobImpl
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;
-    @XmlElement(required = true, type = PositionImpl.class)
-    protected PositionImpl position;
+    @XmlElement(name = "partner-job-id", required = true)
+    protected String partnerJobId;
+    @XmlElement(name = "contract-id", required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long contractId;
+    @XmlElement(name = "customer-job-code")
+    protected String customerJobCode;
+    protected Boolean active;
+    @XmlElement(name = "posting-date")
+    protected String postingDate;
+    @XmlElement(name = "expiration-date")
+    protected String expirationDate;
     @XmlElement(required = true, type = CompanyImpl.class)
     protected CompanyImpl company;
+    @XmlElement(required = true)
+    protected String description;
+    @XmlElement(name = "description-snippet", required = true)
+    protected String descriptionSnippet;
+    @XmlElement(required = true, type = PositionImpl.class)
+    protected PositionImpl position;
+    @XmlElement(name = "expiration-timestamp", required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long expirationTimestamp;
     @XmlElement(name = "job-poster", required = true, type = JobPosterImpl.class)
     protected JobPosterImpl jobPoster;
+    @XmlElement(name = "location-description", required = true)
+    protected String locationDescription;
+    @XmlElement(name = "posting-timestamp", required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long postingTimestamp;
+    @XmlElement(required = true)
+    protected String salary;
     @XmlElement(name = "site-job-request", required = true, type = SiteJobRequestImpl.class)
     protected SiteJobRequestImpl siteJobRequest;
+    @XmlElement(name = "site-job-url", required = true)
+    protected String siteJobUrl;
+    @XmlElement(name = "referral-bonus")
+    protected String referralBonus;
+    @XmlElement(type = PosterImpl.class)
+    protected PosterImpl poster;
+    @XmlElement(name = "how-to-apply", type = HowToApplyImpl.class)
+    protected HowToApplyImpl howToApply;
+    @XmlElement(name = "tracking-pixel-url")
+    protected String trackingPixelUrl;
+    @XmlElement(type = RenewImpl.class)
+    protected RenewImpl renew;
 
     public String getId() {
         return id;
@@ -65,12 +125,52 @@ public class JobImpl
         this.id = value;
     }
 
-    public Position getPosition() {
-        return position;
+    public String getPartnerJobId() {
+        return partnerJobId;
     }
 
-    public void setPosition(Position value) {
-        this.position = ((PositionImpl) value);
+    public void setPartnerJobId(String value) {
+        this.partnerJobId = value;
+    }
+
+    public Long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Long value) {
+        this.contractId = value;
+    }
+
+    public String getCustomerJobCode() {
+        return customerJobCode;
+    }
+
+    public void setCustomerJobCode(String value) {
+        this.customerJobCode = value;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean value) {
+        this.active = value;
+    }
+
+    public String getPostingDate() {
+        return postingDate;
+    }
+
+    public void setPostingDate(String value) {
+        this.postingDate = value;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String value) {
+        this.expirationDate = value;
     }
 
     public Company getCompany() {
@@ -81,6 +181,38 @@ public class JobImpl
         this.company = ((CompanyImpl) value);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    public String getDescriptionSnippet() {
+        return descriptionSnippet;
+    }
+
+    public void setDescriptionSnippet(String value) {
+        this.descriptionSnippet = value;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position value) {
+        this.position = ((PositionImpl) value);
+    }
+
+    public Long getExpirationTimestamp() {
+        return expirationTimestamp;
+    }
+
+    public void setExpirationTimestamp(Long value) {
+        this.expirationTimestamp = value;
+    }
+
     public JobPoster getJobPoster() {
         return jobPoster;
     }
@@ -89,12 +221,84 @@ public class JobImpl
         this.jobPoster = ((JobPosterImpl) value);
     }
 
+    public String getLocationDescription() {
+        return locationDescription;
+    }
+
+    public void setLocationDescription(String value) {
+        this.locationDescription = value;
+    }
+
+    public Long getPostingTimestamp() {
+        return postingTimestamp;
+    }
+
+    public void setPostingTimestamp(Long value) {
+        this.postingTimestamp = value;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String value) {
+        this.salary = value;
+    }
+
     public SiteJobRequest getSiteJobRequest() {
         return siteJobRequest;
     }
 
     public void setSiteJobRequest(SiteJobRequest value) {
         this.siteJobRequest = ((SiteJobRequestImpl) value);
+    }
+
+    public String getSiteJobUrl() {
+        return siteJobUrl;
+    }
+
+    public void setSiteJobUrl(String value) {
+        this.siteJobUrl = value;
+    }
+
+    public String getReferralBonus() {
+        return referralBonus;
+    }
+
+    public void setReferralBonus(String value) {
+        this.referralBonus = value;
+    }
+
+    public Poster getPoster() {
+        return poster;
+    }
+
+    public void setPoster(Poster value) {
+        this.poster = ((PosterImpl) value);
+    }
+
+    public HowToApply getHowToApply() {
+        return howToApply;
+    }
+
+    public void setHowToApply(HowToApply value) {
+        this.howToApply = ((HowToApplyImpl) value);
+    }
+
+    public String getTrackingPixelUrl() {
+        return trackingPixelUrl;
+    }
+
+    public void setTrackingPixelUrl(String value) {
+        this.trackingPixelUrl = value;
+    }
+
+    public Renew getRenew() {
+        return renew;
+    }
+
+    public void setRenew(Renew value) {
+        this.renew = ((RenewImpl) value);
     }
 
 }

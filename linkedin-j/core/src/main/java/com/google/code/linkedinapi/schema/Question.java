@@ -33,10 +33,8 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}title"/>
  *         &lt;element ref="{}author"/>
  *         &lt;element ref="{}question-categories"/>
- *         &lt;choice>
- *           &lt;element ref="{}web-url"/>
- *           &lt;element ref="{}answers"/>
- *         &lt;/choice>
+ *         &lt;element ref="{}web-url"/>
+ *         &lt;element ref="{}answers"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

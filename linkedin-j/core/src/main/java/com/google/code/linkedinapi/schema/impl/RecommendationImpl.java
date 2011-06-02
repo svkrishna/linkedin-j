@@ -25,6 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
+import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Recommendation;
 import com.google.code.linkedinapi.schema.RecommendationType;
 import com.google.code.linkedinapi.schema.Recommendee;
@@ -38,7 +40,12 @@ import com.google.code.linkedinapi.schema.Recommender;
     "recommendationSnippet",
     "recommender",
     "recommendee",
-    "webUrl"
+    "webUrl",
+    "productId",
+    "timestamp",
+    "text",
+    "reply",
+    "likes"
 })
 @XmlRootElement(name = "recommendation")
 public class RecommendationImpl
@@ -55,12 +62,23 @@ public class RecommendationImpl
     protected String recommendationText;
     @XmlElement(name = "recommendation-snippet")
     protected String recommendationSnippet;
-    @XmlElement(type = RecommenderImpl.class)
+    @XmlElement(required = true, type = RecommenderImpl.class)
     protected RecommenderImpl recommender;
-    @XmlElement(type = RecommendeeImpl.class)
+    @XmlElement(required = true, type = RecommendeeImpl.class)
     protected RecommendeeImpl recommendee;
     @XmlElement(name = "web-url")
     protected String webUrl;
+    @XmlElement(name = "product-id", required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long productId;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long timestamp;
+    protected String text;
+    @XmlElement(required = true)
+    protected String reply;
+    @XmlElement(required = true, type = LikesImpl.class)
+    protected LikesImpl likes;
 
     public String getId() {
         return id;
@@ -116,6 +134,46 @@ public class RecommendationImpl
 
     public void setWebUrl(String value) {
         this.webUrl = value;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long value) {
+        this.productId = value;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long value) {
+        this.timestamp = value;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String value) {
+        this.text = value;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String value) {
+        this.reply = value;
+    }
+
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes value) {
+        this.likes = ((LikesImpl) value);
     }
 
 }

@@ -33,8 +33,10 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}first-name"/>
  *         &lt;element ref="{}last-name"/>
  *         &lt;element ref="{}headline"/>
- *         &lt;element ref="{}api-standard-profile-request"/>
- *         &lt;element ref="{}site-standard-profile-request"/>
+ *         &lt;sequence minOccurs="0">
+ *           &lt;element ref="{}api-standard-profile-request"/>
+ *           &lt;element ref="{}site-standard-profile-request"/>
+ *         &lt;/sequence>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>

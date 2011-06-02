@@ -29,8 +29,6 @@ import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 
 /**
  * A factory for creating LinkedInApiClient objects.
- * 
- * @author Nabeel Mukhtar
  */
 public class LinkedInApiClientFactory {
 
@@ -57,9 +55,9 @@ public class LinkedInApiClientFactory {
     }
 	
     /**
-     * Sets the task executor to be used for asynchronous API calls. 
+     * Sets the task executor.
      * 
-     * @param taskExecutor the task executor
+     * @param taskExecutor the new task executor
      */
 	public void setTaskExecutor(ExecutorService taskExecutor) {
         this.taskExecutor = taskExecutor;
@@ -127,6 +125,7 @@ public class LinkedInApiClientFactory {
     /**
      * Creates a new LinkedInApiClient object.
      * 
+     * @param implClass the impl class
      * @param accessToken the access token
      * 
      * @return the linked in api client
@@ -173,6 +172,121 @@ public class LinkedInApiClientFactory {
     /**
      * Creates a new LinkedInApiClient object.
      * 
+     * @param accessToken the access token
+     * 
+     * @return the people api client
+     */
+    public PeopleApiClient createPeopleApiClient(LinkedInAccessToken accessToken) {
+    	return createLinkedInApiClient(accessToken);
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param token the token
+     * @param tokenSecret the token secret
+     * 
+     * @return the people api client
+     */
+    public PeopleApiClient createPeopleApiClient(String token, String tokenSecret) {
+    	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param accessToken the access token
+     * 
+     * @return the companies api client
+     */
+    public CompaniesApiClient createCompaniesApiClient(LinkedInAccessToken accessToken) {
+    	return createLinkedInApiClient(accessToken);
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param token the token
+     * @param tokenSecret the token secret
+     * 
+     * @return the companies api client
+     */
+    public CompaniesApiClient createCompaniesApiClient(String token, String tokenSecret) {
+    	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param accessToken the access token
+     * 
+     * @return the jobs api client
+     */
+    public JobsApiClient createJobsApiClient(LinkedInAccessToken accessToken) {
+    	return createLinkedInApiClient(accessToken);
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param token the token
+     * @param tokenSecret the token secret
+     * 
+     * @return the jobs api client
+     */
+    public JobsApiClient createJobsApiClient(String token, String tokenSecret) {
+    	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param accessToken the access token
+     * 
+     * @return the communications api client
+     */
+    public CommunicationsApiClient createCommunicationsApiClient(LinkedInAccessToken accessToken) {
+    	return createLinkedInApiClient(accessToken);
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param token the token
+     * @param tokenSecret the token secret
+     * 
+     * @return the communications api client
+     */
+    public CommunicationsApiClient createCommunicationsApiClient(String token, String tokenSecret) {
+    	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param accessToken the access token
+     * 
+     * @return the network updates api client
+     */
+    public NetworkUpdatesApiClient createNetworkUpdatesApiClient(LinkedInAccessToken accessToken) {
+    	return createLinkedInApiClient(accessToken);
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
+     * @param token the token
+     * @param tokenSecret the token secret
+     * 
+     * @return the network updates api client
+     */
+    public NetworkUpdatesApiClient createNetworkUpdatesApiClient(String token, String tokenSecret) {
+    	return createLinkedInApiClient(new LinkedInAccessToken(token, tokenSecret));
+    }
+    
+    /**
+     * Creates a new LinkedInApiClient object.
+     * 
      * @param token the token
      * @param tokenSecret the token secret
      * 
@@ -183,7 +297,9 @@ public class LinkedInApiClientFactory {
     }
     
     /**
+     * Validate consumer key.
      * 
+     * @param apiConsumer the api consumer
      */
 	private static void validateConsumerKey(LinkedInApiConsumer apiConsumer) {
 		if (apiConsumer == null) {
@@ -198,7 +314,9 @@ public class LinkedInApiClientFactory {
 	}
     
     /**
+     * Validate access token.
      * 
+     * @param accessToken the access token
      */
 	private void validateAccessToken(LinkedInAccessToken accessToken) {
 		if (accessToken == null) {

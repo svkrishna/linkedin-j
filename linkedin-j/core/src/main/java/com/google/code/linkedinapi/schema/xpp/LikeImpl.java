@@ -27,12 +27,20 @@ import com.google.code.linkedinapi.schema.Like;
 import com.google.code.linkedinapi.schema.Person;
 
 public class LikeImpl
-	extends BaseSchemaEntity
-    implements Like
+extends BaseSchemaEntity implements Like
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
+    protected Long timestamp;
     protected PersonImpl person;
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long value) {
+        this.timestamp = value;
+    }
 
     public Person getPerson() {
         return person;
@@ -42,32 +50,32 @@ public class LikeImpl
         this.person = ((PersonImpl) value);
     }
 
-	@Override
-	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+    @Override
+    public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-
         while (parser.nextTag() == XmlPullParser.START_TAG) {
-        	String name = parser.getName();
-        	
-        	if (name.equals("person")) {
-    			PersonImpl person = new PersonImpl();
-    			person.init(parser);
-    			setPerson(person);
+            String name = parser.getName();
+            if (name.equals("timestamp")) {
+                setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+            } else if (name.equals("person")) {
+                PersonImpl node = new PersonImpl();
+                node.init(parser);
+                setPerson(node);
             } else {
                 // Consume something we don't understand.
-            	LOG.warning("Found tag that we don't recognize: " + name);
-            	XppUtils.skipSubTree(parser);
+                LOG.warning("Found tag that we don't recognize: " + name);
+                XppUtils.skipSubTree(parser);
             }
         }
-	}
-
-	@Override
-	public void toXml(XmlSerializer serializer) throws IOException {
-		serializer.startTag(null, "like");
-		if (getPerson() != null) {
-			((PersonImpl) getPerson()).toXml(serializer);
-		}
-		serializer.endTag(null, "like");
-	}
-    
+    }
+    @Override
+    public void toXml(XmlSerializer serializer) throws IOException {
+        XmlSerializer element = serializer.startTag(null, "like");
+        XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
+        if (getPerson() != null) {
+            ((PersonImpl) getPerson()).toXml(serializer);
+        }
+        
+        serializer.endTag(null, "like");
+    }
 }

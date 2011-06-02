@@ -28,8 +28,7 @@ import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
 
 public class JobPosterImpl
-	extends BaseSchemaEntity
-    implements JobPoster
+	extends BaseSchemaEntity implements JobPoster
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
@@ -88,50 +87,49 @@ public class JobPosterImpl
         this.siteStandardProfileRequest = ((SiteStandardProfileRequestImpl) value);
     }
 
-	@Override
-	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+    @Override
+    public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-
         while (parser.nextTag() == XmlPullParser.START_TAG) {
-        	String name = parser.getName();
-        	
-        	if (name.equals("id")) {
-        		setId(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("first-name")) {
-        		setFirstName(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("last-name")) {
-        		setLastName(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("headline")) {
-        		setHeadline(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("api-standard-profile-request")) {
-    			ApiStandardProfileRequestImpl apiRequest = new ApiStandardProfileRequestImpl();
-    			apiRequest.init(parser);
-    			setApiStandardProfileRequest(apiRequest);
-        	} else if (name.equals("site-standard-profile-request")) {
-    			SiteStandardProfileRequestImpl apiRequest = new SiteStandardProfileRequestImpl();
-    			apiRequest.init(parser);
-    			setSiteStandardProfileRequest(apiRequest);
+            String name = parser.getName();
+            if (name.equals("id")) {
+                setId(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("first-name")) {
+                setFirstName(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("last-name")) {
+                setLastName(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("headline")) {
+                setHeadline(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("api-standard-profile-request")) {
+                ApiStandardProfileRequestImpl node = new ApiStandardProfileRequestImpl();
+                node.init(parser);
+                setApiStandardProfileRequest(node);
+            } else if (name.equals("site-standard-profile-request")) {
+                SiteStandardProfileRequestImpl node = new SiteStandardProfileRequestImpl();
+                node.init(parser);
+                setSiteStandardProfileRequest(node);
             } else {
                 // Consume something we don't understand.
-            	LOG.warning("Found tag that we don't recognize: " + name);
-            	XppUtils.skipSubTree(parser);
+                LOG.warning("Found tag that we don't recognize: " + name);
+                XppUtils.skipSubTree(parser);
             }
         }
-	}
-
-	@Override
-	public void toXml(XmlSerializer serializer) throws IOException {
-		XmlSerializer element = serializer.startTag(null, "job-poster");
-		XppUtils.setElementValueToNode(element, "id", getId());
-		XppUtils.setElementValueToNode(element, "first-name", getFirstName());
-		XppUtils.setElementValueToNode(element, "last-name", getLastName());
-		XppUtils.setElementValueToNode(element, "headline", getHeadline());
-		if (getApiStandardProfileRequest() != null) {
-			((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
-		}
-		if (getSiteStandardProfileRequest() != null) {
-			((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer);
-		}
-		serializer.endTag(null, "job-poster");
-	}
+    }
+    @Override
+    public void toXml(XmlSerializer serializer) throws IOException {
+        XmlSerializer element = serializer.startTag(null, "job-poster");
+        XppUtils.setElementValueToNode(element, "id", getId());
+        XppUtils.setElementValueToNode(element, "first-name", getFirstName());
+        XppUtils.setElementValueToNode(element, "last-name", getLastName());
+        XppUtils.setElementValueToNode(element, "headline", getHeadline());
+        if (getApiStandardProfileRequest() != null) {
+            ((ApiStandardProfileRequestImpl) getApiStandardProfileRequest()).toXml(serializer);
+        }
+        if (getSiteStandardProfileRequest() != null) {
+            ((SiteStandardProfileRequestImpl) getSiteStandardProfileRequest()).toXml(serializer);
+        }
+        
+        
+        serializer.endTag(null, "job-poster");
+    }
 }

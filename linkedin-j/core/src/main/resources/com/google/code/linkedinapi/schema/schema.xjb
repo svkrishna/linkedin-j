@@ -196,4 +196,25 @@
 	<bindings node="//xs:element[@name='related-connections']/xs:complexType/xs:sequence/xs:element[@ref='person']">
 		<property name="personList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='companies']/xs:complexType/xs:sequence/xs:element[@ref='company']">
+		<property name="companyList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='products']/xs:complexType/xs:sequence/xs:element[@ref='product']">
+		<property name="productList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='job-bookmarks']/xs:complexType/xs:sequence/xs:element[@ref='job-bookmark']">
+		<property name="jobBookmarkList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='jobs']/xs:complexType/xs:sequence/xs:element[@ref='job']">
+		<property name="jobList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='email-domains']/xs:complexType/xs:sequence/xs:element[@ref='email-domain']">
+		<property name="emailDomainList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='locations']/xs:complexType/xs:sequence/xs:element[@ref='location']">
+		<property name="locationList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='recommendations']/xs:complexType/xs:sequence/xs:element[@ref='recommendation']">
+		<property name="recommendationList"/>
+	</bindings>
 </bindings>

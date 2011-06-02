@@ -33,11 +33,14 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}recommendation-type"/>
  *         &lt;element ref="{}recommendation-text" minOccurs="0"/>
  *         &lt;element ref="{}recommendation-snippet" minOccurs="0"/>
- *         &lt;choice>
- *           &lt;element ref="{}recommender"/>
- *           &lt;element ref="{}recommendee"/>
- *         &lt;/choice>
+ *         &lt;element ref="{}recommender"/>
+ *         &lt;element ref="{}recommendee"/>
  *         &lt;element ref="{}web-url" minOccurs="0"/>
+ *         &lt;element ref="{}product-id"/>
+ *         &lt;element ref="{}timestamp"/>
+ *         &lt;element ref="{}text" minOccurs="0"/>
+ *         &lt;element ref="{}reply"/>
+ *         &lt;element ref="{}likes"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -190,5 +193,105 @@ public interface Recommendation
      *     
      */
     void setWebUrl(String value);
+
+    /**
+     * Gets the value of the productId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getProductId();
+
+    /**
+     * Sets the value of the productId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setProductId(Long value);
+
+    /**
+     * Gets the value of the timestamp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getTimestamp();
+
+    /**
+     * Sets the value of the timestamp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setTimestamp(Long value);
+
+    /**
+     * Gets the value of the text property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getText();
+
+    /**
+     * Sets the value of the text property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setText(String value);
+
+    /**
+     * Gets the value of the reply property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getReply();
+
+    /**
+     * Sets the value of the reply property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setReply(String value);
+
+    /**
+     * Gets the value of the likes property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Likes }
+     *     
+     */
+    Likes getLikes();
+
+    /**
+     * Sets the value of the likes property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Likes }
+     *     
+     */
+    void setLikes(Likes value);
 
 }
