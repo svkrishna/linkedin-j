@@ -44,10 +44,13 @@ import com.google.code.linkedinapi.client.Parameter;
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
+import com.google.code.linkedinapi.client.enumeration.CompanyField;
 import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.FacetField;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
+import com.google.code.linkedinapi.client.enumeration.JobField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
+import com.google.code.linkedinapi.client.enumeration.ProductField;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
@@ -60,6 +63,9 @@ import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Authorization;
+import com.google.code.linkedinapi.schema.Companies;
+import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanySearch;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Error;
@@ -67,6 +73,11 @@ import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.InviteConnectType;
+import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.JobBookmarks;
+import com.google.code.linkedinapi.schema.JobSearch;
+import com.google.code.linkedinapi.schema.JobSuggestions;
+import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Network;
@@ -74,6 +85,7 @@ import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.Products;
 import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.Share;
@@ -1899,6 +1911,1235 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         callApiMethod(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
                       HttpURLConnection.HTTP_CREATED);
+	}
+	
+	@Override
+	public void bookmarkJob(String jobId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.BOOKMARK_JOB);
+        String apiUrl = builder.buildUrl();
+        Job job = OBJECT_FACTORY.createJob();
+        job.setId(jobId);
+        callApiMethod(apiUrl, marshallObject(job), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void closeJob(String partnerJobId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CLOSE_JOB);
+        String                apiUrl  = builder.withField("id", partnerJobId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public JobBookmarks getJobBookmarks() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_BOOKMARKS);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        return readResponse(JobBookmarks.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public JobBookmarks getJobBookmarks(Set<JobField> jobFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_BOOKMARKS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).buildUrl();
+
+        return readResponse(JobBookmarks.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Job getJobById(String id) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_BY_ID);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+                                            id).buildUrl();
+
+        return readResponse(Job.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Job getJobById(String id, Set<JobField> jobFields) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_BY_ID);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withField("id",
+                                            id).buildUrl();
+
+        return readResponse(Job.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Jobs getJobSuggestions() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_SUGGESTIONS);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        JobSuggestions response = readResponse(JobSuggestions.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+	@Override
+	public Jobs getJobSuggestions(Set<JobField> jobFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_JOB_SUGGESTIONS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).buildUrl();
+
+        JobSuggestions response = readResponse(JobSuggestions.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+	@Override
+	public void postJob(Job job) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_JOB);
+        String                apiUrl  = builder.buildUrl();
+        callApiMethod(apiUrl, marshallObject(job), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void renewJob(String partnerJobId, String contractId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.RENEW_JOB);
+        String                apiUrl  = builder.withField("id", partnerJobId).buildUrl();
+        Job job = OBJECT_FACTORY.createJob();
+        job.setContractId(Long.parseLong(contractId));
+        job.setRenewal(OBJECT_FACTORY.createRenewal());
+
+        callApiMethod(apiUrl, marshallObject(job), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Jobs searchJobs() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Jobs searchJobs(Map<SearchParameter, String> searchParameters) {
+        assertNotNull("search parameters", searchParameters);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Jobs searchJobs(Map<SearchParameter, String> searchParameters, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Jobs searchJobs(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Jobs searchJobs(Map<SearchParameter, String> searchParameters, int start, int count,
+                               SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, int start, int count,
+			SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			int start, int count, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			int start, int count, SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("job fields", jobFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, int start, int count,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, SearchSortOrder sortOrder,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Jobs searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, int start, int count,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        JobSearch response = readResponse(JobSearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getJobs();
+	}
+    
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, int start, int count,
+			SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNull("facet fields", facetFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, int start, int count,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, SearchSortOrder sortOrder,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", jobFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public JobSearch searchJobs(Map<SearchParameter, String> searchParameters,
+			Set<JobField> jobFields, Set<FacetField> facetFields, int start, int count,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", jobFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        return readResponse(JobSearch.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public void unbookmarkJob(String jobId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNBOOKMARK_JOB);
+        String                apiUrl  = builder.withField("id", jobId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void updateJob(String partnerJobId, Job job) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.RENEW_JOB);
+        String                apiUrl  = builder.withField("id", partnerJobId).buildUrl();
+
+        callApiMethod(apiUrl, marshallObject(job), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void followCompany(String id) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.FOLLOW_COMPANY);
+        String apiUrl = builder.buildUrl();
+        Company company = OBJECT_FACTORY.createCompany();
+        company.setId(id);
+        callApiMethod(apiUrl, marshallObject(company), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public Companies getCompaniesByEmailDomain(String emailDomain) {
+        assertNotNullOrEmpty("email domain", emailDomain);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANIES_BY_EMAIL_DOMAIN);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("email",
+        									emailDomain).buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Companies getCompaniesByEmailDomain(String emailDomain, Set<CompanyField> companyFields) {
+        assertNotNullOrEmpty("email domain", emailDomain);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANIES_BY_EMAIL_DOMAIN);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withField("email",
+        									emailDomain).buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Company getCompanyById(String id) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_BY_ID);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+        									id).buildUrl();
+
+        return readResponse(Company.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Company getCompanyById(String id, Set<CompanyField> companyFields) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_BY_ID);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withField("id",
+        									id).buildUrl();
+
+        return readResponse(Company.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Company getCompanyByUniversalName(String universalName) {
+        assertNotNullOrEmpty("universal name", universalName);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_BY_UNIVERSAL_NAME);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("name",
+        									universalName).buildUrl();
+
+        return readResponse(Company.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Company getCompanyByUniversalName(String universalName, Set<CompanyField> companyFields) {
+        assertNotNullOrEmpty("universal name", universalName);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_BY_UNIVERSAL_NAME);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withField("name",
+        									universalName).buildUrl();
+
+        return readResponse(Company.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Products getCompanyProducts(String id) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_PRODUCTS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+        									id).buildUrl();
+
+        return readResponse(Products.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Products getCompanyProducts(String id, Set<ProductField> productFields) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_PRODUCTS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", productFields).withField("id",
+        									id).buildUrl();
+
+        return readResponse(Products.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Products getCompanyProducts(String id, int start, int count) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_PRODUCTS);
+        String                apiUrl  = builder.withEmptyField("profileFields").withField("id",
+        									id).withParameter("start",
+                                                    String.valueOf(start)).withParameter("count",
+                                                            String.valueOf(count)).buildUrl();
+
+        return readResponse(Products.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Products getCompanyProducts(String id, Set<ProductField> productFields, int start, int count) {
+        assertNotNullOrEmpty("id", id);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_COMPANY_PRODUCTS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", productFields).withField("id",
+        									id).withParameter("start",
+                                                    String.valueOf(start)).withParameter("count",
+                                                            String.valueOf(count)).buildUrl();
+
+        return readResponse(Products.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Companies getFollowedCompanies() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_FOLLOWED_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Companies getFollowedCompanies(Set<CompanyField> companyFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_FOLLOWED_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Companies getSuggestedCompanies() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_SUGGESTED_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Companies getSuggestedCompanies(Set<CompanyField> companyFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_SUGGESTED_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Companies searchCompanies() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Companies searchCompanies(Map<SearchParameter, String> searchParameters) {
+        assertNotNull("search parameters", searchParameters);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Companies searchCompanies(Map<SearchParameter, String> searchParameters, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Companies searchCompanies(Map<SearchParameter, String> searchParameters, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Companies searchCompanies(Map<SearchParameter, String> searchParameters, int start, int count,
+                               SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, int start, int count,
+			SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			int start, int count, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			int start, int count, SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withEmptyField("profileFields").withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("job fields", companyFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, int start, int count,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, SearchSortOrder sortOrder,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public Companies searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, int start, int count,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        CompanySearch response = readResponse(CompanySearch.class, callApiMethod(apiUrl));
+        return (response == null)? null : response.getCompanies();
+	}
+    
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, int start, int count) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameterEnum("sort", sortOrder).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, int start, int count,
+			SearchSortOrder sortOrder) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNull("facet fields", facetFields);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, int start, int count,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  = builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter("start",
+                                            String.valueOf(start)).withParameter("count",
+                                                String.valueOf(count)).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, SearchSortOrder sortOrder,
+			List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", companyFields);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertNotNull("sort order", sortOrder);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort", sortOrder).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public CompanySearch searchCompanies(Map<SearchParameter, String> searchParameters,
+			Set<CompanyField> companyFields, Set<FacetField> facetFields, int start, int count,
+			SearchSortOrder sortOrder, List<Parameter<FacetType, String>> facets) {
+        assertNotNull("search parameters", searchParameters);
+        assertNotNull("job fields", searchParameters);
+        assertNotNull("facet fields", facetFields);
+        assertNotNullOrEmpty("facets", facets);
+        assertPositiveNumber("start", start);
+        assertPositiveNumber("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
+        String                apiUrl  =
+            builder.withFieldEnumSet("profileFields", companyFields).withFieldEnumSet("facetFields", facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameterEnum("sort",
+                                         sortOrder).withParameter("start",
+                                             String.valueOf(start)).withParameter("count",
+                                                 String.valueOf(count)).buildUrl();
+
+        return readResponse(CompanySearch.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public void unfollowCompany(String id) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNFOLLOW_COMPANY);
+        String                apiUrl  = builder.withField("id", id).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_OK);
 	}
 	
     /**

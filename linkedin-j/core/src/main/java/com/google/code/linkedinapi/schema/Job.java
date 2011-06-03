@@ -56,7 +56,7 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}poster"/>
  *           &lt;element ref="{}how-to-apply"/>
  *           &lt;element ref="{}tracking-pixel-url"/>
- *           &lt;element ref="{}renew"/>
+ *           &lt;element ref="{}renewal"/>
  *         &lt;/sequence>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -512,23 +512,23 @@ public interface Job
     void setTrackingPixelUrl(String value);
 
     /**
-     * Gets the value of the renew property.
+     * Gets the value of the renewal property.
      * 
      * @return
      *     possible object is
-     *     {@link Renew }
+     *     {@link Renewal }
      *     
      */
-    Renew getRenew();
+    Renewal getRenewal();
 
     /**
-     * Sets the value of the renew property.
+     * Sets the value of the renewal property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Renew }
+     *     {@link Renewal }
      *     
      */
-    void setRenew(Renew value);
+    void setRenewal(Renewal value);
 
 }

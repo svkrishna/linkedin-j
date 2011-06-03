@@ -34,7 +34,7 @@ import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Poster;
 import com.google.code.linkedinapi.schema.PostingDate;
-import com.google.code.linkedinapi.schema.Renew;
+import com.google.code.linkedinapi.schema.Renewal;
 import com.google.code.linkedinapi.schema.SiteJobRequest;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -61,7 +61,7 @@ import com.google.code.linkedinapi.schema.SiteJobRequest;
     "poster",
     "howToApply",
     "trackingPixelUrl",
-    "renew"
+    "renewal"
 })
 @XmlRootElement(name = "job")
 public class JobImpl
@@ -116,8 +116,8 @@ public class JobImpl
     protected HowToApplyImpl howToApply;
     @XmlElement(name = "tracking-pixel-url")
     protected String trackingPixelUrl;
-    @XmlElement(type = RenewImpl.class)
-    protected RenewImpl renew;
+    @XmlElement(type = RenewalImpl.class)
+    protected RenewalImpl renewal;
 
     public String getId() {
         return id;
@@ -295,12 +295,12 @@ public class JobImpl
         this.trackingPixelUrl = value;
     }
 
-    public Renew getRenew() {
-        return renew;
+    public Renewal getRenewal() {
+        return renewal;
     }
 
-    public void setRenew(Renew value) {
-        this.renew = ((RenewImpl) value);
+    public void setRenewal(Renewal value) {
+        this.renewal = ((RenewalImpl) value);
     }
 
 }

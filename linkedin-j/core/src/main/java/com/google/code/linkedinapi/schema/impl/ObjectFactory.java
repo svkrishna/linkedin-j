@@ -140,7 +140,7 @@ import com.google.code.linkedinapi.schema.Recommendee;
 import com.google.code.linkedinapi.schema.Recommender;
 import com.google.code.linkedinapi.schema.RelatedConnections;
 import com.google.code.linkedinapi.schema.RelationToViewer;
-import com.google.code.linkedinapi.schema.Renew;
+import com.google.code.linkedinapi.schema.Renewal;
 import com.google.code.linkedinapi.schema.Role;
 import com.google.code.linkedinapi.schema.ServiceProvider;
 import com.google.code.linkedinapi.schema.Share;
@@ -358,11 +358,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Renew }
+     * Create an instance of {@link Renewal }
      * 
      */
-    public RenewImpl createRenew() {
-        return new RenewImpl();
+    public RenewalImpl createRenewal() {
+        return new RenewalImpl();
     }
 
     /**
@@ -779,14 +779,6 @@ public class ObjectFactory {
      */
     public ProductDealImpl createProductDeal() {
         return new ProductDealImpl();
-    }
-
-    /**
-     * Create an instance of {@link Share }
-     * 
-     */
-    public ShareImpl createShare() {
-        return new ShareImpl();
     }
 
     /**
@@ -1259,6 +1251,14 @@ public class ObjectFactory {
      */
     public SourceImpl createSource() {
         return new SourceImpl();
+    }
+
+    /**
+     * Create an instance of {@link Share }
+     * 
+     */
+    public ShareImpl createShare() {
+        return new ShareImpl();
     }
 
     /**

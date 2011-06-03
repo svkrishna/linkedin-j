@@ -16,6 +16,8 @@
  */
 package com.google.code.linkedinapi.schema;
 
+import javax.xml.bind.JAXBElement;
+
 public interface SchemaElementFactory<T> {
 
 	/**
@@ -479,7 +481,13 @@ public interface SchemaElementFactory<T> {
 	 * 
 	 */
 	public InvitationRequest createInvitationRequest();
-
+	
+    /**
+     * Create an instance of {@link Renewal }
+     * 
+     */
+    public Renewal createRenewal();
+	
 	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
 	 * 

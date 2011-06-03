@@ -31,7 +31,7 @@ import com.google.code.linkedinapi.schema.JobPoster;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Poster;
 import com.google.code.linkedinapi.schema.PostingDate;
-import com.google.code.linkedinapi.schema.Renew;
+import com.google.code.linkedinapi.schema.Renewal;
 import com.google.code.linkedinapi.schema.SiteJobRequest;
 
 public class JobImpl
@@ -61,7 +61,7 @@ extends BaseSchemaEntity implements Job
     protected PosterImpl poster;
     protected HowToApplyImpl howToApply;
     protected String trackingPixelUrl;
-    protected RenewImpl renew;
+    protected RenewalImpl renewal;
 
     public String getId() {
         return id;
@@ -239,12 +239,12 @@ extends BaseSchemaEntity implements Job
         this.trackingPixelUrl = value;
     }
 
-    public Renew getRenew() {
-        return renew;
+    public Renewal getRenewal() {
+        return renewal;
     }
 
-    public void setRenew(Renew value) {
-        this.renew = ((RenewImpl) value);
+    public void setRenewal(Renewal value) {
+        this.renewal = ((RenewalImpl) value);
     }
 
     @Override
@@ -313,9 +313,9 @@ extends BaseSchemaEntity implements Job
             } else if (name.equals("tracking-pixel-url")) {
                 setTrackingPixelUrl(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("renew")) {
-                RenewImpl node = new RenewImpl();
+            	RenewalImpl node = new RenewalImpl();
                 node.init(parser);
-                setRenew(node);
+                setRenewal(node);
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -364,8 +364,8 @@ extends BaseSchemaEntity implements Job
             ((HowToApplyImpl) getHowToApply()).toXml(serializer);
         }
         XppUtils.setElementValueToNode(element, "tracking-pixel-url", getTrackingPixelUrl());
-        if (getRenew() != null) {
-            ((RenewImpl) getRenew()).toXml(serializer);
+        if (getRenewal() != null) {
+            ((RenewalImpl) getRenewal()).toXml(serializer);
         }
         
         

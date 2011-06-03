@@ -230,7 +230,7 @@
           <xs:element ref="poster"/>
           <xs:element ref="how-to-apply"/>
           <xs:element ref="tracking-pixel-url"/>
-          <xs:element ref="renew"/>
+          <xs:element ref="renewal"/>
         </xs:sequence>
       </xs:sequence>
     </xs:complexType>
@@ -306,7 +306,7 @@
   </xs:element>
   <xs:element name="application-url" type="xs:anyURI"/>
   <xs:element name="tracking-pixel-url" type="xs:anyURI"/>
-  <xs:element name="renew">
+  <xs:element name="renewal">
     <xs:complexType/>
   </xs:element>
   <xs:element name="companies">

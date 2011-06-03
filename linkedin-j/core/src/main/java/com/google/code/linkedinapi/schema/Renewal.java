@@ -15,22 +15,29 @@
  * 
  */
 
-package com.google.code.linkedinapi.schema.impl;
+package com.google.code.linkedinapi.schema;
 
-import java.io.Serializable;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import com.google.code.linkedinapi.schema.Renew;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "renew")
-public class RenewImpl
-    implements Serializable, Renew
+
+/**
+ * <p>Java class for anonymous complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+public interface Renewal
+    extends SchemaEntity
 {
 
-    private final static long serialVersionUID = 2461660169443089969L;
 
 }

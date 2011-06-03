@@ -737,7 +737,7 @@
           <xs:element ref="poster"/>
           <xs:element ref="how-to-apply"/>
           <xs:element ref="tracking-pixel-url"/>
-          <xs:element ref="renew"/>
+          <xs:element ref="renewal"/>
         </xs:sequence>
       </xs:sequence>
     </xs:complexType>
@@ -762,12 +762,14 @@
         <xs:element minOccurs="0" ref="id"/>
         <xs:element ref="first-name"/>
         <xs:element ref="last-name"/>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
         <xs:element minOccurs="0" ref="headline"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="api-standard-profile-request"/>
-          <xs:element ref="site-standard-profile-request"/>
-        </xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="relation-to-viewer"/>
+          <xs:sequence>
+            <xs:element ref="api-standard-profile-request"/>
+            <xs:element ref="site-standard-profile-request"/>
+          </xs:sequence>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -819,7 +821,7 @@
   </xs:element>
   <xs:element name="application-url" type="xs:anyURI"/>
   <xs:element name="tracking-pixel-url" type="xs:anyURI"/>
-  <xs:element name="renew">
+  <xs:element name="renewal">
     <xs:complexType/>
   </xs:element>
   <xs:element name="companies">
@@ -837,42 +839,18 @@
   <xs:element name="update-content">
     <xs:complexType>
       <xs:sequence>
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="person"/>
-          <xs:element ref="update-action"/>
-        </xs:choice>
         <xs:element minOccurs="0" ref="company"/>
-        <xs:choice minOccurs="0">
+        <xs:choice>
           <xs:element ref="job"/>
           <xs:element ref="company-job-update"/>
           <xs:element ref="company-person-update"/>
           <xs:element ref="company-profile-update"/>
           <xs:element ref="question"/>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="person"/>
+            <xs:element ref="update-action"/>
+          </xs:choice>
         </xs:choice>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="update-action">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="action"/>
-        <xs:element ref="original-update"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="original-update">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="timestamp"/>
-        <xs:element ref="update-key"/>
-        <xs:element ref="update-type"/>
-        <xs:element ref="update-content"/>
-        <xs:element ref="is-commentable"/>
-        <xs:element minOccurs="0" ref="update-comments"/>
-        <xs:element ref="is-likable"/>
-        <xs:element ref="is-liked"/>
-        <xs:element ref="num-likes"/>
-        <xs:element minOccurs="0" ref="likes"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -986,6 +964,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="update-action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="action"/>
+        <xs:element ref="original-update"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="original-update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="update-key"/>
+        <xs:element ref="update-type"/>
+        <xs:element ref="update-content"/>
+        <xs:element ref="is-commentable"/>
+        <xs:element minOccurs="0" ref="update-comments"/>
+        <xs:element ref="is-likable"/>
+        <xs:element ref="is-liked"/>
+        <xs:element ref="num-likes"/>
+        <xs:element minOccurs="0" ref="likes"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="is-commentable" type="xs:boolean"/>
   <xs:element name="is-likable" type="xs:boolean"/>
   <xs:element name="update-comments">
@@ -1022,13 +1024,13 @@
     <xs:complexType>
       <xs:choice>
         <xs:sequence>
-          <xs:element ref="content"/>
-          <xs:element ref="visibility"/>
-        </xs:sequence>
-        <xs:sequence>
           <xs:element ref="comment"/>
           <xs:element ref="attribution"/>
           <xs:element ref="id"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element ref="content"/>
+          <xs:element ref="visibility"/>
         </xs:sequence>
       </xs:choice>
     </xs:complexType>
@@ -1171,18 +1173,20 @@
           <xs:element ref="recommender"/>
         </xs:choice>
         <xs:sequence minOccurs="0">
-          <xs:element ref="recommendee"/>
-          <xs:element ref="web-url"/>
-        </xs:sequence>
-        <xs:sequence minOccurs="0">
           <xs:element ref="product-id"/>
           <xs:element ref="timestamp"/>
         </xs:sequence>
         <xs:element minOccurs="0" ref="text"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="reply"/>
-          <xs:element ref="likes"/>
-        </xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:sequence>
+            <xs:element ref="recommendee"/>
+            <xs:element ref="web-url"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="reply"/>
+            <xs:element ref="likes"/>
+          </xs:sequence>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1209,6 +1213,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="product-id" type="xs:integer"/>
   <xs:element name="recommendee">
     <xs:complexType>
       <xs:sequence>
@@ -1222,7 +1227,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="product-id" type="xs:integer"/>
   <xs:element name="reply" type="xs:string"/>
   <xs:element name="code" type="xs:NMTOKEN"/>
   <xs:element name="website-url" type="xs:anyURI"/>
@@ -1241,6 +1245,121 @@
   </xs:element>
   <xs:element name="content-type" type="xs:NCName"/>
   <xs:element name="app-id" type="xs:NMTOKEN"/>
+  <xs:element name="start-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+        <xs:element minOccurs="0" ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="end-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+        <xs:element minOccurs="0" ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="api-standard-profile-request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element ref="headers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-standard-profile-request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element minOccurs="0" ref="headers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="relation-to-viewer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="distance"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="description"/>
+          <xs:element ref="is-headquarters"/>
+          <xs:element ref="is-active"/>
+        </xs:sequence>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element ref="address"/>
+            <xs:element ref="contact-info"/>
+          </xs:sequence>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element ref="name"/>
+            <xs:element ref="postal-code"/>
+            <xs:element ref="country"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-headquarters" type="xs:boolean"/>
+  <xs:element name="is-active" type="xs:boolean"/>
+  <xs:element name="address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="street1"/>
+        <xs:element minOccurs="0" ref="street2"/>
+        <xs:element ref="city"/>
+        <xs:element minOccurs="0" ref="state"/>
+        <xs:element ref="postal-code"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="country-code"/>
+          <xs:element ref="region-code"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="street1" type="xs:string"/>
+  <xs:element name="street2" type="xs:string"/>
+  <xs:element name="city" type="xs:string"/>
+  <xs:element name="state" type="xs:NCName"/>
+  <xs:element name="country-code" type="xs:NCName"/>
+  <xs:element name="region-code" type="xs:NCName"/>
+  <xs:element name="contact-info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="phone1"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="phone2"/>
+          <xs:element ref="fax"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="phone1" type="xs:string"/>
+  <xs:element name="phone2" type="xs:NMTOKEN"/>
+  <xs:element name="fax" type="xs:NMTOKEN"/>
+  <xs:element name="country">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="industry">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="distance" type="xs:integer"/>
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
@@ -1305,115 +1424,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="start-date">
+  <xs:element name="summary" type="xs:string"/>
+  <xs:element name="author">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element minOccurs="0" ref="month"/>
-        <xs:element minOccurs="0" ref="day"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="end-date">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element minOccurs="0" ref="month"/>
-        <xs:element minOccurs="0" ref="day"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="api-standard-profile-request">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="url"/>
-        <xs:element ref="headers"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="site-standard-profile-request">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="url"/>
-        <xs:element minOccurs="0" ref="headers"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="relation-to-viewer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="distance"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="location">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="name"/>
-          <xs:element ref="postal-code"/>
-          <xs:element ref="country"/>
+        <xs:element ref="id"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="first-name"/>
+          <xs:element ref="last-name"/>
+          <xs:element ref="headline"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:choice minOccurs="0">
+          <xs:sequence>
+            <xs:element ref="name"/>
+            <xs:element ref="person"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="api-standard-profile-request"/>
+            <xs:element ref="site-standard-profile-request"/>
+          </xs:sequence>
         </xs:choice>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="description"/>
-          <xs:element ref="is-headquarters"/>
-          <xs:element ref="is-active"/>
-        </xs:sequence>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="address"/>
-          <xs:element ref="contact-info"/>
-        </xs:sequence>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="country">
+  <xs:element name="date">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="is-headquarters" type="xs:boolean"/>
-  <xs:element name="is-active" type="xs:boolean"/>
-  <xs:element name="address">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="street1"/>
-        <xs:element minOccurs="0" ref="street2"/>
-        <xs:element ref="city"/>
-        <xs:element minOccurs="0" ref="state"/>
-        <xs:element ref="postal-code"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="country-code"/>
-          <xs:element ref="region-code"/>
-        </xs:sequence>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="street1" type="xs:string"/>
-  <xs:element name="street2" type="xs:string"/>
-  <xs:element name="city" type="xs:string"/>
-  <xs:element name="state" type="xs:NCName"/>
-  <xs:element name="country-code" type="xs:NCName"/>
-  <xs:element name="region-code" type="xs:NCName"/>
-  <xs:element name="contact-info">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="phone1"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="phone2"/>
-          <xs:element ref="fax"/>
-        </xs:sequence>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="phone1" type="xs:string"/>
-  <xs:element name="phone2" type="xs:NMTOKEN"/>
-  <xs:element name="fax" type="xs:NMTOKEN"/>
-  <xs:element name="industry">
-    <xs:complexType mixed="true">
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="code"/>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1426,7 +1466,25 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="phone-type" type="xs:NCName"/>
-  <xs:element name="summary" type="xs:string"/>
+  <xs:element name="number" type="xs:string"/>
+  <xs:element name="first-name" type="xs:string"/>
+  <xs:element name="last-name" type="xs:string"/>
+  <xs:element name="headline" type="xs:string"/>
+  <xs:element name="year" type="xs:integer"/>
+  <xs:element name="month" type="xs:integer"/>
+  <xs:element name="day" type="xs:integer"/>
+  <xs:element name="language">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="proficiency"/>
+        <xs:sequence>
+          <xs:element ref="id"/>
+          <xs:element ref="language"/>
+          <xs:element ref="name"/>
+        </xs:sequence>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="specialties">
     <xs:complexType mixed="true">
       <xs:sequence>
@@ -1436,10 +1494,13 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="specialty" type="xs:string"/>
-  <xs:element name="first-name" type="xs:string"/>
-  <xs:element name="last-name" type="xs:string"/>
-  <xs:element name="distance" type="xs:integer"/>
-  <xs:element name="headline" type="xs:string"/>
+  <xs:element name="visibility">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="comment" type="xs:string"/>
   <xs:element name="content">
     <xs:complexType>
@@ -1462,50 +1523,7 @@
   <xs:element name="submitted-image-url" type="xs:anyURI"/>
   <xs:element name="thumbnail-url" type="xs:anyURI"/>
   <xs:element name="eyebrow-url" type="xs:anyURI"/>
-  <xs:element name="visibility">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="code"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="author">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="name"/>
-          <xs:element ref="person"/>
-        </xs:sequence>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="first-name"/>
-          <xs:element ref="last-name"/>
-          <xs:element ref="headline"/>
-        </xs:sequence>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="api-standard-profile-request"/>
-          <xs:element ref="site-standard-profile-request"/>
-        </xs:sequence>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="picture-url" type="xs:anyURI"/>
-  <xs:element name="year" type="xs:integer"/>
-  <xs:element name="month" type="xs:integer"/>
-  <xs:element name="day" type="xs:integer"/>
-  <xs:element name="language">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element ref="proficiency"/>
-        <xs:sequence>
-          <xs:element ref="id"/>
-          <xs:element ref="language"/>
-          <xs:element ref="name"/>
-        </xs:sequence>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="skill">
     <xs:complexType>
       <xs:choice minOccurs="0">
@@ -1529,17 +1547,8 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="date">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element ref="month"/>
-        <xs:element ref="day"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="number" type="xs:string"/>
   <xs:element name="description-snippet" type="xs:string"/>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="action">
     <xs:complexType>
       <xs:sequence>
@@ -1547,7 +1556,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="headers">
     <xs:complexType>
       <xs:sequence>

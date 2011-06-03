@@ -90,6 +90,7 @@ import com.google.code.linkedinapi.schema.Recommendee;
 import com.google.code.linkedinapi.schema.Recommender;
 import com.google.code.linkedinapi.schema.RelatedConnections;
 import com.google.code.linkedinapi.schema.RelationToViewer;
+import com.google.code.linkedinapi.schema.Renewal;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.ServiceProvider;
 import com.google.code.linkedinapi.schema.Share;
@@ -1291,4 +1292,12 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 
 		return createElement(_WebUrl_QNAME, String.class, null, value);
 	}
+	
+    /**
+     * Create an instance of {@link Renewal }
+     * 
+     */
+    public Renewal createRenewal() {
+        return new RenewalImpl();
+    }
 }

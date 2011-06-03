@@ -182,7 +182,7 @@ public final class LinkedInApiUrls {
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompanies");
     public static final String SEARCH_FACETS_FOR_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForCompanies");
-    public static final String SEARCH_COMPANIES_AND_FACETS =
+    public static final String SEARCH_COMPANIES_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompaniesAndFacets");
     public static final String GET_FOLLOWED_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getFollowedCompanies");
@@ -200,7 +200,7 @@ public final class LinkedInApiUrls {
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobs");
     public static final String SEARCH_FACETS_FOR_JOBS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchFacetsForJobs");
-    public static final String SEARCH_JOBS_AND_FACETS =
+    public static final String SEARCH_JOBS_FACETS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchJobsAndFacets");
     public static final String GET_JOB_BOOKMARKS =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getJobBookmarks");
