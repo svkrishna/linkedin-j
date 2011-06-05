@@ -94,7 +94,7 @@ public enum ProductField implements CompositeEnum<ProductField> {
     /**
      * The machine processable value for the facet.
      */
-	RECOMMENDATIONS("recommenations", null),
+	RECOMMENDATIONS("recommendations", null),
     /**
      * The machine processable value for the facet.
      */
