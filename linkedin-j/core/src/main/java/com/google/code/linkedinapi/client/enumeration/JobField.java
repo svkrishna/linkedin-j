@@ -28,37 +28,123 @@ public enum JobField implements CompositeEnum<JobField> {
     /**
      * A human readable name for the facet.
      */
-	NAME("name", null),
+	ID("id", null),
 
     /**
      * The machine processable value for the facet.
      */
-	CODE("code", null),
+	CUSTOMER_JOB_CODE("customer-job-code", null),
 
     /**
      * The facet bucket values for the facet.
      */
-	BUCKETS("buckets", null),
+	ACTIVE("active", null),
 
     /**
-     * A human readable name for the facet bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_NAME("name", BUCKETS),
-
+	POSTING_DATE("posting-date", null),
     /**
-     * The machine processable value for the bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_CODE("code", BUCKETS),
-
+	EXPIRATION_DATE("expiration-date", null),
     /**
-     * The number of results inside the bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_COUNT("count", BUCKETS),
-
-	/**
-     * If this bucket's results are included in your search query.
+	POSTING_TIMESTAMP("posting-timestamp", null),
+    /**
+     * A human readable name for the facet.
      */
-	BUCKET_SELECTED("selected", BUCKETS);
+	EXPIRATION_TIMESTAMP("expiration-timestamp", null),
+    /**
+     * A human readable name for the facet.
+     */
+	COMPANY("company", null),
+    /**
+     * A human readable name for the facet.
+     */
+	COMPANY_ID("id", COMPANY),
+    /**
+     * A human readable name for the facet.
+     */
+	COMPANY_NAME("name", COMPANY),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION("position", null),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_TITLE("title", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_LOCATION("location", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_JOB_FUNCTIONS("job-functions", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_INDUSTRIES("industries", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_JOB_TYPE("job-type", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	POSITION_EXPERIENCE_LEVEL("experience-level", POSITION),
+    /**
+     * A human readable name for the facet.
+     */
+	SKILLS_AND_EXPERIENCE("skills-and-experience", null),
+    /**
+     * A human readable name for the facet.
+     */
+	DESCRIPTION_SNIPPET("description-snippet", null),
+    /**
+     * A human readable name for the facet.
+     */
+	DESCRIPTION("description", null),
+    /**
+     * A human readable name for the facet.
+     */
+	SALARY("salary", null),
+    /**
+     * A human readable name for the facet.
+     */
+	JOB_POSTER("job-poster", null),
+    /**
+     * A human readable name for the facet.
+     */
+	JOB_POSTER_ID("id", JOB_POSTER),
+    /**
+     * A human readable name for the facet.
+     */
+	JOB_POSTER_FIRST_NAME("first-name", JOB_POSTER),
+    /**
+     * A human readable name for the facet.
+     */
+	JOB_POSTER_LAST_NAME("last-name", JOB_POSTER),
+    /**
+     * A human readable name for the facet.
+     */
+	JOB_POSTER_HEADLINE("headline", JOB_POSTER),
+    /**
+     * A human readable name for the facet.
+     */
+	REFERRAL_BONUS("referral-bonus", null),
+    /**
+     * A human readable name for the facet.
+     */
+	SITE_JOB_URL("site-job-url", null),
+	
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATION_DESCRIPTION("location-description", null);
     
     /**
      * Field Description.

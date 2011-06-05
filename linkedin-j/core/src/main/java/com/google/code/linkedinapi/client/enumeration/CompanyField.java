@@ -28,37 +28,164 @@ public enum CompanyField implements CompositeEnum<CompanyField> {
     /**
      * A human readable name for the facet.
      */
+	ID("id", null),
+	
+    /**
+     * A human readable name for the facet.
+     */
 	NAME("name", null),
 
     /**
-     * The machine processable value for the facet.
+     * A human readable name for the facet.
      */
-	CODE("code", null),
+	UNIVERSAL_NAME("universal-name", null),
 
     /**
-     * The facet bucket values for the facet.
+     * A human readable name for the facet.
      */
-	BUCKETS("buckets", null),
+	EMAIL_DOMAINS("email-domains", null),
 
     /**
-     * A human readable name for the facet bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_NAME("name", BUCKETS),
+	COMPANY_TYPE("company-type", null),
 
     /**
-     * The machine processable value for the bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_CODE("code", BUCKETS),
+	TICKER("ticker", null),
 
     /**
-     * The number of results inside the bucket.
+     * A human readable name for the facet.
      */
-	BUCKET_COUNT("count", BUCKETS),
+	WEBSITE_URL("website-url", null),
 
-	/**
-     * If this bucket's results are included in your search query.
+    /**
+     * A human readable name for the facet.
      */
-	BUCKET_SELECTED("selected", BUCKETS);
+	INDUSTRY("industry", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	STATUS("status", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	LOGO_URL("logo-url", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	SQUARE_LOGO_URL("square-logo-url", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	BLOG_RSS_URL("blog-rss-url", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	TWITTER_ID("twitter-id", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	EMPLOYEE_COUNT_RANGE("employee-count-range", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	SPECIALTIES("specialties", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS("locations", null),
+
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_DESCRIPTION("description", LOCATIONS),
+
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_IS_HEADQUARTERS("is-headquarters", LOCATIONS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_IS_ACTIVE("is-active", LOCATIONS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS("address", LOCATIONS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_STREET1("street1", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_STREET2("street2", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_CITY("city", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_STATE("state", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_POSTAL_CODE("postal-code", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_COUNTRY_CODE("country-code", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_ADDRESS_REGION_CODE("region-code", LOCATIONS_ADDRESS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_CONTACT_INFO("contact-info", LOCATIONS),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_CONTACT_INFO_PHONE1("phone1", LOCATIONS_CONTACT_INFO),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_CONTACT_INFO_PHONE2("phone2", LOCATIONS_CONTACT_INFO),
+    /**
+     * A human readable name for the facet.
+     */
+	LOCATIONS_CONTACT_INFO_FAX("fax", LOCATIONS_CONTACT_INFO),
+    /**
+     * A human readable name for the facet.
+     */
+	DESCRIPTION("description", null),
+    /**
+     * A human readable name for the facet.
+     */
+	STOCK_EXCHANGE("stock-exchange", null),
+    /**
+     * A human readable name for the facet.
+     */
+	FOUNDED_YEAR("founded-year", null),
+    /**
+     * A human readable name for the facet.
+     */
+	END_YEAR("end-year", null),
+    /**
+     * A human readable name for the facet.
+     */
+	NUM_FOLLOWERS("num-followers", null);
     
     /**
      * Field Description.

@@ -28,37 +28,113 @@ public enum ProductField implements CompositeEnum<ProductField> {
     /**
      * A human readable name for the facet.
      */
+	ID("id", null),
+
+    /**
+     * The machine processable value for the facet.
+     */
 	NAME("name", null),
 
     /**
      * The machine processable value for the facet.
      */
-	CODE("code", null),
-
+	TYPE("type", null),
     /**
-     * The facet bucket values for the facet.
+     * The machine processable value for the facet.
      */
-	BUCKETS("buckets", null),
-
+	CREATION_TIMESTAMP("creation-timestamp", null),
     /**
-     * A human readable name for the facet bucket.
+     * The machine processable value for the facet.
      */
-	BUCKET_NAME("name", BUCKETS),
-
+	LOGO_URL("logo-url", null),
     /**
-     * The machine processable value for the bucket.
+     * The machine processable value for the facet.
      */
-	BUCKET_CODE("code", BUCKETS),
-
+	DESCRIPTION("description", null),
     /**
-     * The number of results inside the bucket.
+     * The machine processable value for the facet.
      */
-	BUCKET_COUNT("count", BUCKETS),
-
-	/**
-     * If this bucket's results are included in your search query.
+	FEATURES("features", null),
+    /**
+     * The machine processable value for the facet.
      */
-	BUCKET_SELECTED("selected", BUCKETS);
+	VIDEO("video", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	VIDEO_TITLE("title", VIDEO),
+    /**
+     * The machine processable value for the facet.
+     */
+	VIDEO_URL("url", VIDEO),
+    /**
+     * The machine processable value for the facet.
+     */
+	PRODUCT_DEAL("product-deal", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	PRODUCT_DEAL_TITLE("title", PRODUCT_DEAL),
+    /**
+     * The machine processable value for the facet.
+     */
+	PRODUCT_DEAL_URL("url", PRODUCT_DEAL),
+    /**
+     * The machine processable value for the facet.
+     */
+	PRODUCT_DEAL_TEXT("text", PRODUCT_DEAL),
+    /**
+     * The machine processable value for the facet.
+     */
+	SALES_PERSONS("sales-persons", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	NUM_RECOMMENDATIONS("num-recommendations", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS("recommenations", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_RECOMMENDER("recommender", RECOMMENDATIONS),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_ID("id", RECOMMENDATIONS),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_PRODUCT_ID("product-id", RECOMMENDATIONS),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_TIMESTAMP("timestamp", RECOMMENDATIONS),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_TEXT("text", RECOMMENDATIONS),
+    /**
+     * The machine processable value for the facet.
+     */
+	RECOMMENDATIONS_REPLY("reply", RECOMMENDATIONS),
+	
+	RECOMMENDATIONS_LIKES("likes", RECOMMENDATIONS),
+	RECOMMENDATIONS_LIKES_TIMESTAMP("timestamp", RECOMMENDATIONS_LIKES),
+	RECOMMENDATIONS_LIKES_PERSON("person", RECOMMENDATIONS_LIKES),
+    /**
+     * The machine processable value for the facet.
+     */
+	PRODUCT_CATEGORY("product-category", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	WEBSITE_URL("website-url", null),
+    /**
+     * The machine processable value for the facet.
+     */
+	DISCLAIMER("disclaimer", null);
     
     /**
      * Field Description.
