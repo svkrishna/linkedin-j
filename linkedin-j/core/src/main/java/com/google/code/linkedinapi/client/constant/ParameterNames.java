@@ -22,4 +22,24 @@ package com.google.code.linkedinapi.client.constant;
  */
 public interface ParameterNames {
 
+	String ID = "id";
+	String FIELD_SELECTORS = "profileFields";
+	String URL = "url";
+	String PROFILE_TYPE = "profileType";
+	String START = "start";
+	String COUNT = "count";
+	String MODIFICATION = "modification";
+	String MODIFIED_SINCE = "modified-since";
+	String AFTER = "after";
+	String BEFORE = "before";
+	String SCOPE = "scope";
+	String FACET_FIELDS = "facetFields";
+	String SORT = "sort";
+	String UPDATE_KEY = "updateKey";
+	String EMAIL = "email";
+	String NAME = "name";
+	String TYPE = "type";
+	String SHOW_HIDDEN_MEMBERS = "show-hidden-members";
+	String TWITTER_POST = "twitter-post";
+
 }
