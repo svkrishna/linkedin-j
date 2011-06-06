@@ -24,91 +24,8 @@ import java.util.logging.Logger;
 import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Activity;
-import com.google.code.linkedinapi.schema.Answer;
-import com.google.code.linkedinapi.schema.Answers;
-import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Application;
-import com.google.code.linkedinapi.schema.Attribution;
-import com.google.code.linkedinapi.schema.Author;
-import com.google.code.linkedinapi.schema.Authorization;
-import com.google.code.linkedinapi.schema.Bucket;
-import com.google.code.linkedinapi.schema.Buckets;
-import com.google.code.linkedinapi.schema.Company;
-import com.google.code.linkedinapi.schema.Connections;
-import com.google.code.linkedinapi.schema.Content;
-import com.google.code.linkedinapi.schema.Country;
-import com.google.code.linkedinapi.schema.CurrentShare;
-import com.google.code.linkedinapi.schema.DateOfBirth;
-import com.google.code.linkedinapi.schema.Education;
-import com.google.code.linkedinapi.schema.Educations;
-import com.google.code.linkedinapi.schema.EndDate;
+import com.google.code.linkedinapi.schema.*;
 import com.google.code.linkedinapi.schema.Error;
-import com.google.code.linkedinapi.schema.Facet;
-import com.google.code.linkedinapi.schema.Facets;
-import com.google.code.linkedinapi.schema.Headers;
-import com.google.code.linkedinapi.schema.HttpHeader;
-import com.google.code.linkedinapi.schema.ImAccount;
-import com.google.code.linkedinapi.schema.ImAccountType;
-import com.google.code.linkedinapi.schema.ImAccounts;
-import com.google.code.linkedinapi.schema.InvitationRequest;
-import com.google.code.linkedinapi.schema.InviteConnectType;
-import com.google.code.linkedinapi.schema.ItemContent;
-import com.google.code.linkedinapi.schema.Job;
-import com.google.code.linkedinapi.schema.JobPoster;
-import com.google.code.linkedinapi.schema.Like;
-import com.google.code.linkedinapi.schema.Likes;
-import com.google.code.linkedinapi.schema.Location;
-import com.google.code.linkedinapi.schema.MailboxItem;
-import com.google.code.linkedinapi.schema.MemberGroup;
-import com.google.code.linkedinapi.schema.MemberGroups;
-import com.google.code.linkedinapi.schema.MemberUrl;
-import com.google.code.linkedinapi.schema.MemberUrlResources;
-import com.google.code.linkedinapi.schema.Network;
-import com.google.code.linkedinapi.schema.NetworkStats;
-import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
-import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
-import com.google.code.linkedinapi.schema.People;
-import com.google.code.linkedinapi.schema.PeopleSearch;
-import com.google.code.linkedinapi.schema.Person;
-import com.google.code.linkedinapi.schema.PersonActivities;
-import com.google.code.linkedinapi.schema.PhoneNumber;
-import com.google.code.linkedinapi.schema.PhoneNumbers;
-import com.google.code.linkedinapi.schema.PhoneType;
-import com.google.code.linkedinapi.schema.Position;
-import com.google.code.linkedinapi.schema.Positions;
-import com.google.code.linkedinapi.schema.Property;
-import com.google.code.linkedinapi.schema.Question;
-import com.google.code.linkedinapi.schema.QuestionCategories;
-import com.google.code.linkedinapi.schema.QuestionCategory;
-import com.google.code.linkedinapi.schema.Recipient;
-import com.google.code.linkedinapi.schema.Recipients;
-import com.google.code.linkedinapi.schema.Recommendation;
-import com.google.code.linkedinapi.schema.RecommendationsGiven;
-import com.google.code.linkedinapi.schema.RecommendationsReceived;
-import com.google.code.linkedinapi.schema.Recommendee;
-import com.google.code.linkedinapi.schema.Recommender;
-import com.google.code.linkedinapi.schema.RelatedConnections;
-import com.google.code.linkedinapi.schema.RelationToViewer;
-import com.google.code.linkedinapi.schema.Renewal;
-import com.google.code.linkedinapi.schema.SchemaElementFactory;
-import com.google.code.linkedinapi.schema.ServiceProvider;
-import com.google.code.linkedinapi.schema.Share;
-import com.google.code.linkedinapi.schema.SiteGroupRequest;
-import com.google.code.linkedinapi.schema.SiteJobRequest;
-import com.google.code.linkedinapi.schema.SiteStandardProfileRequest;
-import com.google.code.linkedinapi.schema.Source;
-import com.google.code.linkedinapi.schema.StartDate;
-import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
-import com.google.code.linkedinapi.schema.ThreePastPositions;
-import com.google.code.linkedinapi.schema.TwitterAccount;
-import com.google.code.linkedinapi.schema.TwitterAccounts;
-import com.google.code.linkedinapi.schema.Update;
-import com.google.code.linkedinapi.schema.UpdateComment;
-import com.google.code.linkedinapi.schema.UpdateComments;
-import com.google.code.linkedinapi.schema.UpdateContent;
-import com.google.code.linkedinapi.schema.Updates;
-import com.google.code.linkedinapi.schema.Visibility;
 
 /**
  * A factory for creating DomElement objects.
@@ -1300,4 +1217,309 @@ public class XppElementFactory implements SchemaElementFactory<String> {
     public Renewal createRenewal() {
         return new RenewalImpl();
     }
+
+	@Override
+	public Action createAction() {
+		return new ActionImpl();
+	}
+
+	@Override
+	public Authority createAuthority() {
+		return new AuthorityImpl();
+	}
+
+	@Override
+	public Authors createAuthors() {
+		return new AuthorsImpl();
+	}
+
+	@Override
+	public Certification createCertification() {
+		return new CertificationImpl();
+	}
+
+	@Override
+	public Certifications createCertifications() {
+		return new CertificationsImpl();
+	}
+
+	@Override
+	public Companies createCompanies() {
+		return new CompaniesImpl();
+	}
+
+	@Override
+	public CompanyJobUpdate createCompanyJobUpdate() {
+		return new CompanyJobUpdateImpl();
+	}
+
+	@Override
+	public CompanyPersonUpdate createCompanyPersonUpdate() {
+		return new CompanyPersonUpdateImpl();
+	}
+
+	@Override
+	public CompanyProfileUpdate createCompanyProfileUpdate() {
+		return new CompanyProfileUpdateImpl();
+	}
+
+	@Override
+	public CompanySearch createCompanySearch() {
+		return new CompanySearchImpl();
+	}
+
+	@Override
+	public CompanyType createCompanyType() {
+		return new CompanyTypeImpl();
+	}
+
+	@Override
+	public Date createDate() {
+		return new DateImpl();
+	}
+
+	@Override
+	public Editor createEditor() {
+		return new EditorImpl();
+	}
+
+	@Override
+	public EmailDomains createEmailDomains() {
+		return new EmailDomainsImpl();
+	}
+
+	@Override
+	public EmployeeCountRange createEmployeeCountRange() {
+		return new EmployeeCountRangeImpl();
+	}
+
+	@Override
+	public ExpirationDate createExpirationDate() {
+		return new ExpirationDateImpl();
+	}
+
+	@Override
+	public HowToApply createHowToApply() {
+		return new HowToApplyImpl();
+	}
+
+	@Override
+	public Inventor createInventor() {
+		return new InventorImpl();
+	}
+
+	@Override
+	public Inventors createInventors() {
+		return new InventorsImpl();
+	}
+
+	@Override
+	public JobBookmark createJobBookmark() {
+		return new JobBookmarkImpl();
+	}
+
+	@Override
+	public JobBookmarks createJobBookmarks() {
+		return new JobBookmarksImpl();
+	}
+
+	@Override
+	public JobSearch createJobSearch() {
+		return new JobSearchImpl();
+	}
+
+	@Override
+	public JobSuggestions createJobSuggestions() {
+		return new JobSuggestionsImpl();
+	}
+
+	@Override
+	public Jobs createJobs() {
+		return new JobsImpl();
+	}
+
+	@Override
+	public Language createLanguage() {
+		return new LanguageImpl();
+	}
+
+	@Override
+	public Languages createLanguages() {
+		return new LanguagesImpl();
+	}
+
+	@Override
+	public Locations createLocations() {
+		return new LocationsImpl();
+	}
+
+	@Override
+	public NameType createNameType() {
+		return new NameTypeImpl();
+	}
+
+	@Override
+	public NewPosition createNewPosition() {
+		return new NewPositionImpl();
+	}
+
+	@Override
+	public Office createOffice() {
+		return new OfficeImpl();
+	}
+
+	@Override
+	public OldPosition createOldPosition() {
+		return new OldPositionImpl();
+	}
+
+	@Override
+	public OriginalUpdate createOriginalUpdate() {
+		return new OriginalUpdateImpl();
+	}
+
+	@Override
+	public Patent createPatent() {
+		return new PatentImpl();
+	}
+
+	@Override
+	public Patents createPatents() {
+		return new PatentsImpl();
+	}
+
+	@Override
+	public Poster createPoster() {
+		return new PosterImpl();
+	}
+
+	@Override
+	public PostingDate createPostingDate() {
+		return new PostingDateImpl();
+	}
+
+	@Override
+	public Product createProduct() {
+		return new ProductImpl();
+	}
+
+	@Override
+	public ProductCategory createProductCategory() {
+		return new ProductCategoryImpl();
+	}
+
+	@Override
+	public ProductDeal createProductDeal() {
+		return new ProductDealImpl();
+	}
+
+	@Override
+	public ProductType createProductType() {
+		return new ProductTypeImpl();
+	}
+
+	@Override
+	public Products createProducts() {
+		return new ProductsImpl();
+	}
+
+	@Override
+	public Proficiency createProficiency() {
+		return new ProficiencyImpl();
+	}
+
+	@Override
+	public ProfileField createProfileField() {
+		return new ProfileFieldImpl();
+	}
+
+	@Override
+	public Publication createPublication() {
+		return new PublicationImpl();
+	}
+
+	@Override
+	public PublicationAuthor createPublicationAuthor() {
+		return new PublicationAuthorImpl();
+	}
+
+	@Override
+	public Publications createPublications() {
+		return new PublicationsImpl();
+	}
+
+	@Override
+	public Publisher createPublisher() {
+		return new PublisherImpl();
+	}
+
+	@Override
+	public RecommendationType createRecommendationType() {
+		return new RecommendationTypeImpl();
+	}
+
+	@Override
+	public Recommendations createRecommendations() {
+		return new RecommendationsImpl();
+	}
+
+	@Override
+	public Role createRole() {
+		return new RoleImpl();
+	}
+
+	@Override
+	public Skill createSkill() {
+		return new SkillImpl();
+	}
+
+	@Override
+	public Skills createSkills() {
+		return new SkillsImpl();
+	}
+
+	@Override
+	public Status createStatus() {
+		return new StatusImpl();
+	}
+
+	@Override
+	public UpdateAction createUpdateAction() {
+		return new UpdateActionImpl();
+	}
+
+	@Override
+	public Video createVideo() {
+		return new VideoImpl();
+	}
+
+	@Override
+	public Years createYears() {
+		return new YearsImpl();
+	}
+
+	@Override
+	public ExperienceLevel createExperienceLevel() {
+		return new ExperienceLevelImpl();
+	}
+
+	@Override
+	public Industries createIndustries() {
+		return new IndustriesImpl();
+	}
+
+	@Override
+	public JobFunction createJobFunction() {
+		return new JobFunctionImpl();
+	}
+
+	@Override
+	public JobFunctions createJobFunctions() {
+		return new JobFunctionsImpl();
+	}
+
+	@Override
+	public JobType createJobType() {
+		return new JobTypeImpl();
+	}
 }

@@ -40,6 +40,29 @@ public interface JobsApiClient extends LinkedInAuthenticationClient {
 	 */
 	public static interface JobBuilder {
 		
+		public JobBuilder withPartnerJobId(String value);
+		public JobBuilder withContractId(Long value);
+		public JobBuilder withCustomerJobCode(String value);
+		public JobBuilder withCompany(String companyId, String companyName, String description);
+		public JobBuilder withTitle(String jobTitle);
+		public JobBuilder withDescription(String jobDescription);
+		public JobBuilder withCountry(String country);
+		public JobBuilder withPostalCode(String postalCode);
+		public JobBuilder withLocation(String location);
+		public JobBuilder withSkillsAndExperience(String skillsAndExperience);
+		public JobBuilder withJobFunctions(String... jobFunctions);
+		public JobBuilder withIndustries(String... industries);
+		public JobBuilder withType(String jobType);
+		public JobBuilder withExperienceLevel(String experienceLevel);
+		public JobBuilder withApplicationUrl(String applicationUrl);
+		public JobBuilder withPosterEmailAddress(String emailAddress);
+		public JobBuilder withPosterRole(String role);
+		public JobBuilder withSalary(String value);
+		public JobBuilder withReferralBonus(String value);
+		public JobBuilder withTrackingPixelUrl(String value);
+		public JobBuilder withRenewal();
+		public JobBuilder withDisplayPoster(Boolean display);
+		
 		/**
 		 * Builds the.
 		 * 

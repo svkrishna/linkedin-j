@@ -30,14 +30,20 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}id" minOccurs="0"/>
- *         &lt;element ref="{}title"/>
+ *         &lt;element ref="{}title" minOccurs="0"/>
  *         &lt;element ref="{}summary" minOccurs="0"/>
  *         &lt;element ref="{}start-date" minOccurs="0"/>
  *         &lt;element ref="{}end-date" minOccurs="0"/>
- *         &lt;sequence minOccurs="0">
- *           &lt;element ref="{}is-current"/>
- *           &lt;element ref="{}company"/>
- *         &lt;/sequence>
+ *         &lt;element ref="{}is-current"/>
+ *         &lt;element ref="{}company"/>
+ *         &lt;element ref="{}description"/>
+ *         &lt;element ref="{}description-snippet"/>
+ *         &lt;element ref="{}skills-and-experience"/>
+ *         &lt;element ref="{}location" minOccurs="0"/>
+ *         &lt;element ref="{}job-functions"/>
+ *         &lt;element ref="{}industries"/>
+ *         &lt;element ref="{}job-type"/>
+ *         &lt;element ref="{}experience-level"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -154,22 +160,14 @@ public interface Position
     /**
      * Gets the value of the isCurrent property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
      */
-    Boolean isIsCurrent();
+    boolean isIsCurrent();
 
     /**
      * Sets the value of the isCurrent property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
      */
-    void setIsCurrent(Boolean value);
+    void setIsCurrent(boolean value);
 
     /**
      * Gets the value of the company property.
@@ -190,5 +188,165 @@ public interface Position
      *     
      */
     void setCompany(Company value);
+
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getDescription();
+
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setDescription(String value);
+
+    /**
+     * Gets the value of the descriptionSnippet property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getDescriptionSnippet();
+
+    /**
+     * Sets the value of the descriptionSnippet property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setDescriptionSnippet(String value);
+
+    /**
+     * Gets the value of the skillsAndExperience property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getSkillsAndExperience();
+
+    /**
+     * Sets the value of the skillsAndExperience property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setSkillsAndExperience(String value);
+
+    /**
+     * Gets the value of the location property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Location }
+     *     
+     */
+    Location getLocation();
+
+    /**
+     * Sets the value of the location property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Location }
+     *     
+     */
+    void setLocation(Location value);
+
+    /**
+     * Gets the value of the jobFunctions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JobFunctions }
+     *     
+     */
+    JobFunctions getJobFunctions();
+
+    /**
+     * Sets the value of the jobFunctions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JobFunctions }
+     *     
+     */
+    void setJobFunctions(JobFunctions value);
+
+    /**
+     * Gets the value of the industries property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Industries }
+     *     
+     */
+    Industries getIndustries();
+
+    /**
+     * Sets the value of the industries property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Industries }
+     *     
+     */
+    void setIndustries(Industries value);
+
+    /**
+     * Gets the value of the jobType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JobType }
+     *     
+     */
+    JobType getJobType();
+
+    /**
+     * Sets the value of the jobType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JobType }
+     *     
+     */
+    void setJobType(JobType value);
+
+    /**
+     * Gets the value of the experienceLevel property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExperienceLevel }
+     *     
+     */
+    ExperienceLevel getExperienceLevel();
+
+    /**
+     * Sets the value of the experienceLevel property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExperienceLevel }
+     *     
+     */
+    void setExperienceLevel(ExperienceLevel value);
 
 }

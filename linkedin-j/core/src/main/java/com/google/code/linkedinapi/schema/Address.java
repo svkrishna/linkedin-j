@@ -29,14 +29,15 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}description"/>
- *         &lt;element ref="{}is-headquarters"/>
- *         &lt;element ref="{}is-active"/>
- *         &lt;element ref="{}address"/>
- *         &lt;element ref="{}contact-info"/>
- *         &lt;element ref="{}name"/>
+ *         &lt;element ref="{}street1"/>
+ *         &lt;element ref="{}street2" minOccurs="0"/>
+ *         &lt;element ref="{}city"/>
+ *         &lt;element ref="{}state" minOccurs="0"/>
  *         &lt;element ref="{}postal-code"/>
- *         &lt;element ref="{}country"/>
+ *         &lt;sequence minOccurs="0">
+ *           &lt;element ref="{}country-code"/>
+ *           &lt;element ref="{}region-code"/>
+ *         &lt;/sequence>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -45,114 +46,90 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface Location
+public interface Address
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the description property.
+     * Gets the value of the street1 property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getDescription();
+    String getStreet1();
 
     /**
-     * Sets the value of the description property.
+     * Sets the value of the street1 property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setDescription(String value);
+    void setStreet1(String value);
 
     /**
-     * Gets the value of the isHeadquarters property.
-     * 
-     */
-    boolean isIsHeadquarters();
-
-    /**
-     * Sets the value of the isHeadquarters property.
-     * 
-     */
-    void setIsHeadquarters(boolean value);
-
-    /**
-     * Gets the value of the isActive property.
-     * 
-     */
-    boolean isIsActive();
-
-    /**
-     * Sets the value of the isActive property.
-     * 
-     */
-    void setIsActive(boolean value);
-
-    /**
-     * Gets the value of the address property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Address }
-     *     
-     */
-    Address getAddress();
-
-    /**
-     * Sets the value of the address property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Address }
-     *     
-     */
-    void setAddress(Address value);
-
-    /**
-     * Gets the value of the contactInfo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactInfo }
-     *     
-     */
-    ContactInfo getContactInfo();
-
-    /**
-     * Sets the value of the contactInfo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactInfo }
-     *     
-     */
-    void setContactInfo(ContactInfo value);
-
-    /**
-     * Gets the value of the name property.
+     * Gets the value of the street2 property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    String getName();
+    String getStreet2();
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the street2 property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setName(String value);
+    void setStreet2(String value);
+
+    /**
+     * Gets the value of the city property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getCity();
+
+    /**
+     * Sets the value of the city property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setCity(String value);
+
+    /**
+     * Gets the value of the state property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getState();
+
+    /**
+     * Sets the value of the state property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setState(String value);
 
     /**
      * Gets the value of the postalCode property.
@@ -175,23 +152,43 @@ public interface Location
     void setPostalCode(String value);
 
     /**
-     * Gets the value of the country property.
+     * Gets the value of the countryCode property.
      * 
      * @return
      *     possible object is
-     *     {@link Country }
+     *     {@link String }
      *     
      */
-    Country getCountry();
+    String getCountryCode();
 
     /**
-     * Sets the value of the country property.
+     * Sets the value of the countryCode property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Country }
+     *     {@link String }
      *     
      */
-    void setCountry(Country value);
+    void setCountryCode(String value);
+
+    /**
+     * Gets the value of the regionCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getRegionCode();
+
+    /**
+     * Sets the value of the regionCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setRegionCode(String value);
 
 }

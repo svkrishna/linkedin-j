@@ -475,7 +475,7 @@
         </xs:sequence>
         <xs:sequence minOccurs="0">
           <xs:element ref="location"/>
-          <xs:element ref="industry"/>
+          <xs:element name="industry" type="xs:string"/>
         </xs:sequence>
         <xs:sequence minOccurs="0">
           <xs:element ref="connections"/>
@@ -771,11 +771,53 @@
   <xs:element name="location">
     <xs:complexType>
       <xs:sequence>
+        <xs:element ref="description"/>
+        <xs:element ref="is-headquarters"/>
+        <xs:element ref="is-active"/>
+        <xs:element ref="address"/>
+        <xs:element ref="contact-info"/>
         <xs:element ref="name"/>
-        <xs:element minOccurs="0" ref="country"/>
+        <xs:element ref="postal-code"/>
+        <xs:element ref="country"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="is-headquarters" type="xs:boolean"/>
+  <xs:element name="is-active" type="xs:boolean"/>
+  <xs:element name="address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="street1"/>
+        <xs:element minOccurs="0" ref="street2"/>
+        <xs:element ref="city"/>
+        <xs:element minOccurs="0" ref="state"/>
+        <xs:element ref="postal-code"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="country-code"/>
+          <xs:element ref="region-code"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="street1" type="xs:string"/>
+  <xs:element name="street2" type="xs:string"/>
+  <xs:element name="city" type="xs:string"/>
+  <xs:element name="state" type="xs:string"/>
+  <xs:element name="country-code" type="xs:string"/>
+  <xs:element name="region-code" type="xs:string"/>
+  <xs:element name="postal-code" type="xs:string"/>
+  <xs:element name="contact-info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="phone1"/>
+        <xs:element minOccurs="0" ref="phone2"/>
+        <xs:element minOccurs="0" ref="fax"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="phone1" type="xs:string"/>
+  <xs:element name="phone2" type="xs:string"/>
+  <xs:element name="fax" type="xs:string"/>
   <xs:element name="country">
     <xs:complexType>
       <xs:sequence>
@@ -829,26 +871,68 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" ref="id"/>
-        <xs:element ref="title"/>
+        <xs:element minOccurs="0" ref="title"/>
         <xs:element minOccurs="0" ref="summary"/>
         <xs:element minOccurs="0" ref="start-date"/>
         <xs:element minOccurs="0" ref="end-date"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="is-current"/>
-          <xs:element ref="company"/>
-        </xs:sequence>
+        <xs:element ref="is-current"/>
+        <xs:element ref="company"/>
+        <xs:element ref="description"/>
+        <xs:element ref="description-snippet"/>
+        <xs:element ref="skills-and-experience"/>
+        <xs:element minOccurs="0" ref="location"/>
+        <xs:element ref="job-functions"/>
+        <xs:element ref="industries"/>
+        <xs:element ref="job-type"/>
+        <xs:element ref="experience-level"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="title" type="xs:string"/>
   <xs:element name="is-current" type="xs:boolean"/>
+  <xs:element name="skills-and-experience" type="xs:string"/>
+  <xs:element name="job-functions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="job-function"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job-function">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="industries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="industry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="job-type">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="experience-level">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="company">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" ref="id"/>
         <xs:element minOccurs="0" ref="universal-name"/>
         <xs:element ref="description"/>
-        <xs:element ref="industry"/>
+        <xs:element name="industry" type="xs:string"/>
         <xs:element ref="logo-url"/>
         <xs:element ref="name"/>
         <xs:element ref="type"/>
@@ -1280,7 +1364,13 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="id" type="xs:NMTOKEN"/>
-  <xs:element name="industry" type="xs:string"/>
+  <xs:element name="industry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="distance" type="xs:integer"/>
   <xs:element name="summary" type="xs:string"/>
   <xs:element name="start-date">

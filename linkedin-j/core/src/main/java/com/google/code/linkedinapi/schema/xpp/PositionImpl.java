@@ -25,6 +25,11 @@ import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.EndDate;
+import com.google.code.linkedinapi.schema.ExperienceLevel;
+import com.google.code.linkedinapi.schema.Industries;
+import com.google.code.linkedinapi.schema.JobFunctions;
+import com.google.code.linkedinapi.schema.JobType;
+import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.StartDate;
 
@@ -37,13 +42,21 @@ public class PositionImpl
 	 * 
 	 */
 	private static final long serialVersionUID = 4485115686667474338L;
-	protected String id;
+    protected String id;
     protected String title;
     protected String summary;
     protected StartDateImpl startDate;
     protected EndDateImpl endDate;
     protected boolean isCurrent;
     protected CompanyImpl company;
+    protected String description;
+    protected String descriptionSnippet;
+    protected String skillsAndExperience;
+    protected LocationImpl location;
+    protected JobFunctionsImpl jobFunctions;
+    protected IndustriesImpl industries;
+    protected JobTypeImpl jobType;
+    protected ExperienceLevelImpl experienceLevel;
 
     public String getId() {
         return id;
@@ -85,11 +98,11 @@ public class PositionImpl
         this.endDate = ((EndDateImpl) value);
     }
 
-    public Boolean isIsCurrent() {
+    public boolean isIsCurrent() {
         return isCurrent;
     }
 
-    public void setIsCurrent(Boolean value) {
+    public void setIsCurrent(boolean value) {
         this.isCurrent = value;
     }
 
@@ -101,58 +114,164 @@ public class PositionImpl
         this.company = ((CompanyImpl) value);
     }
 
-	@Override
-	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
-        parser.require(XmlPullParser.START_TAG, null, null);
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    public String getDescriptionSnippet() {
+        return descriptionSnippet;
+    }
+
+    public void setDescriptionSnippet(String value) {
+        this.descriptionSnippet = value;
+    }
+
+    public String getSkillsAndExperience() {
+        return skillsAndExperience;
+    }
+
+    public void setSkillsAndExperience(String value) {
+        this.skillsAndExperience = value;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location value) {
+        this.location = ((LocationImpl) value);
+    }
+
+    public JobFunctions getJobFunctions() {
+        return jobFunctions;
+    }
+
+    public void setJobFunctions(JobFunctions value) {
+        this.jobFunctions = ((JobFunctionsImpl) value);
+    }
+
+    public Industries getIndustries() {
+        return industries;
+    }
+
+    public void setIndustries(Industries value) {
+        this.industries = ((IndustriesImpl) value);
+    }
+
+    public JobType getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(JobType value) {
+        this.jobType = ((JobTypeImpl) value);
+    }
+
+    public ExperienceLevel getExperienceLevel() {
+        return experienceLevel;
+    }
+
+    public void setExperienceLevel(ExperienceLevel value) {
+        this.experienceLevel = ((ExperienceLevelImpl) value);
+    }
+
+    @Override
+    public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, null, null);
         while (parser.nextTag() == XmlPullParser.START_TAG) {
-        	String name = parser.getName();
-        	
-        	if (name.equals("id")) {
-        		setId(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("title")) {
-        		setTitle(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("summary")) {
-        		setSummary(XppUtils.getElementValueFromNode(parser));
-        	} else if (name.equals("is-current")) {
-        		setIsCurrent(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
-        	} else if (name.equals("company")) {
-    			CompanyImpl companyImpl = new CompanyImpl();
-    			companyImpl.init(parser);
-    			setCompany(companyImpl);
-        	} else if (name.equals("start-date")) {
-    			StartDateImpl startDateImpl = new StartDateImpl();
-    			startDateImpl.init(parser);
-    			setStartDate(startDateImpl);
-        	} else if (name.equals("end-date")) {
-    			EndDateImpl endDate = new EndDateImpl();
-    			endDate.init(parser);
-    			setEndDate(endDate);
+            String name = parser.getName();
+            if (name.equals("id")) {
+                setId(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("title")) {
+                setTitle(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("summary")) {
+                setSummary(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("start-date")) {
+                StartDateImpl node = new StartDateImpl();
+                node.init(parser);
+                setStartDate(node);
+            } else if (name.equals("end-date")) {
+                EndDateImpl node = new EndDateImpl();
+                node.init(parser);
+                setEndDate(node);
+            } else if (name.equals("is-current")) {
+                setIsCurrent(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+            } else if (name.equals("company")) {
+                CompanyImpl node = new CompanyImpl();
+                node.init(parser);
+                setCompany(node);
+            } else if (name.equals("description")) {
+                setDescription(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("description-snippet")) {
+                setDescriptionSnippet(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("skills-and-experience")) {
+                setSkillsAndExperience(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("location")) {
+                LocationImpl node = new LocationImpl();
+                node.init(parser);
+                setLocation(node);
+            } else if (name.equals("job-functions")) {
+                JobFunctionsImpl node = new JobFunctionsImpl();
+                node.init(parser);
+                setJobFunctions(node);
+            } else if (name.equals("industries")) {
+                IndustriesImpl node = new IndustriesImpl();
+                node.init(parser);
+                setIndustries(node);
+            } else if (name.equals("job-type")) {
+                JobTypeImpl node = new JobTypeImpl();
+                node.init(parser);
+                setJobType(node);
+            } else if (name.equals("experience-level")) {
+                ExperienceLevelImpl node = new ExperienceLevelImpl();
+                node.init(parser);
+                setExperienceLevel(node);
             } else {
                 // Consume something we don't understand.
-            	LOG.warning("Found tag that we don't recognize: " + name);
-            	XppUtils.skipSubTree(parser);
+                LOG.warning("Found tag that we don't recognize: " + name);
+                XppUtils.skipSubTree(parser);
             }
         }
-	}
-
-	@Override
-	public void toXml(XmlSerializer serializer) throws IOException {
-		XmlSerializer element = serializer.startTag(null, "position");
-		XppUtils.setElementValueToNode(element, "id", getId());
-		XppUtils.setElementValueToNode(element, "title", getTitle());
-		XppUtils.setElementValueToNode(element, "summary", getSummary());
-		XppUtils.setElementValueToNode(element, "is-current", String.valueOf(isIsCurrent()));
-		
-		if (getCompany() != null) {
-			((CompanyImpl) getCompany()).toXml(serializer);
-		}
-		if (getStartDate() != null) {
-			((StartDateImpl) getStartDate()).toXml(serializer);
-		}
-		if (getEndDate() != null) {
-			((EndDateImpl) getEndDate()).toXml(serializer);
-		}
-		serializer.endTag(null, "position");
-	}
+    }
+    @Override
+    public void toXml(XmlSerializer serializer) throws IOException {
+        XmlSerializer element = serializer.startTag(null, "position");
+        XppUtils.setElementValueToNode(element, "id", getId());
+        XppUtils.setElementValueToNode(element, "title", getTitle());
+        XppUtils.setElementValueToNode(element, "summary", getSummary());
+        if (getStartDate() != null) {
+            ((StartDateImpl) getStartDate()).toXml(serializer);
+        }
+        if (getEndDate() != null) {
+            ((EndDateImpl) getEndDate()).toXml(serializer);
+        }
+        XppUtils.setElementValueToNode(element, "is-current", String.valueOf(isIsCurrent()));
+        if (getCompany() != null) {
+            ((CompanyImpl) getCompany()).toXml(serializer);
+        }
+        XppUtils.setElementValueToNode(element, "description", getDescription());
+        XppUtils.setElementValueToNode(element, "description-snippet", getDescriptionSnippet());
+        XppUtils.setElementValueToNode(element, "skills-and-experience", getSkillsAndExperience());
+        if (getLocation() != null) {
+            ((LocationImpl) getLocation()).toXml(serializer);
+        }
+        if (getJobFunctions() != null) {
+            ((JobFunctionsImpl) getJobFunctions()).toXml(serializer);
+        }
+        if (getIndustries() != null) {
+            ((IndustriesImpl) getIndustries()).toXml(serializer);
+        }
+        if (getJobType() != null) {
+            ((JobTypeImpl) getJobType()).toXml(serializer);
+        }
+        if (getExperienceLevel() != null) {
+            ((ExperienceLevelImpl) getExperienceLevel()).toXml(serializer);
+        }
+        
+        
+        serializer.endTag(null, "position");
+    }
 }
