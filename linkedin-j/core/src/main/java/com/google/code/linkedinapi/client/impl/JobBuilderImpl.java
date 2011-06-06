@@ -22,6 +22,7 @@ import com.google.code.linkedinapi.schema.Country;
 import com.google.code.linkedinapi.schema.ExperienceLevel;
 import com.google.code.linkedinapi.schema.HowToApply;
 import com.google.code.linkedinapi.schema.Industries;
+import com.google.code.linkedinapi.schema.Industry;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobFunction;
 import com.google.code.linkedinapi.schema.JobFunctions;
@@ -115,7 +116,9 @@ public class JobBuilderImpl implements JobBuilder {
 	@Override
 	public JobBuilder withIndustries(String... industries) {
 		for (int i = 0; i < industries.length; i++) {
-			getJobIndustries().getIndustryList().add(industries[i]);
+			Industry industry = factory.createIndustry();
+			industry.setCode(industries[i]);
+			getJobIndustries().getIndustryList().add(industry);
 		}
 		return this;
 	}

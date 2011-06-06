@@ -1522,4 +1522,9 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	public JobType createJobType() {
 		return new JobTypeImpl();
 	}
+
+	@Override
+	public Industry createIndustry() {
+		return new IndustryImpl();
+	}
 }

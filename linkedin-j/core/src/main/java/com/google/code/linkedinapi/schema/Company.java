@@ -32,7 +32,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}id" minOccurs="0"/>
  *         &lt;element ref="{}universal-name" minOccurs="0"/>
  *         &lt;element ref="{}description"/>
- *         &lt;element ref="{}industry"/>
+ *         &lt;element name="industry" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element ref="{}logo-url"/>
  *         &lt;element ref="{}name"/>
  *         &lt;element ref="{}type"/>

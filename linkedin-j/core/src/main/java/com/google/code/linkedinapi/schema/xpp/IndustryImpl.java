@@ -18,28 +18,26 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Industries;
 import com.google.code.linkedinapi.schema.Industry;
 
-public class IndustriesImpl
-    extends BaseSchemaEntity implements Industries
+public class IndustryImpl
+    extends BaseSchemaEntity implements Industry
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<Industry> industryList;
+    protected String code;
 
-    public List<Industry> getIndustryList() {
-        if (industryList == null) {
-            industryList = new ArrayList<Industry>();
-        }
-        return this.industryList;
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String value) {
+        this.code = value;
     }
 
     @Override
@@ -47,10 +45,8 @@ public class IndustriesImpl
         parser.require(XmlPullParser.START_TAG, null, null);
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
-            if (name.equals("industry")) {
-            	IndustryImpl node = new IndustryImpl();
-            	node.init(parser);
-                getIndustryList().add(node);
+            if (name.equals("code")) {
+                setCode(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -60,10 +56,10 @@ public class IndustriesImpl
     }
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
-        serializer.startTag(null, "industries");
-        for (Industry node : getIndustryList()) {
-        	((IndustryImpl) node).toXml(serializer);
-        }
-        serializer.endTag(null, "industries");
+        XmlSerializer element = serializer.startTag(null, "industry");
+        XppUtils.setElementValueToNode(element, "code", getCode());
+        
+        
+        serializer.endTag(null, "industry");
     }
 }

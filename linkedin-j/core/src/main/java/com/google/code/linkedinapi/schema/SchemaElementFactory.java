@@ -840,6 +840,8 @@ public interface SchemaElementFactory<T> {
 	
 	public JobType createJobType();
 	
+	public Industry createIndustry();
+	
 	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
 	 * 
@@ -972,12 +974,6 @@ public interface SchemaElementFactory<T> {
 	 * 
 	 */
 	public T createActivities(String value);
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-	 * 
-	 */
-	public T createIndustry(String value);
 
 	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}

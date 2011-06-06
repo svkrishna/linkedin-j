@@ -37,7 +37,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;/sequence>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}location"/>
- *           &lt;element ref="{}industry"/>
+ *           &lt;element name="industry" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;/sequence>
  *         &lt;sequence minOccurs="0">
  *           &lt;element ref="{}connections"/>

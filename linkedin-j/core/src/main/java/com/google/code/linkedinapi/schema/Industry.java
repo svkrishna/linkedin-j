@@ -17,7 +17,6 @@
 
 package com.google.code.linkedinapi.schema;
 
-import java.util.List;
 
 
 /**
@@ -30,7 +29,7 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}industry" maxOccurs="unbounded"/>
+ *         &lt;element ref="{}code"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,33 +38,29 @@ import java.util.List;
  * 
  * 
  */
-public interface Industries
+public interface Industry
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the industryList property.
+     * Gets the value of the code property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the industryList property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getIndustryList().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Industry }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    List<Industry> getIndustryList();
+    String getCode();
+
+    /**
+     * Sets the value of the code property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setCode(String value);
 
 }
