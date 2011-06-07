@@ -492,7 +492,7 @@
           <xs:element ref="interests"/>
           <xs:element ref="associations"/>
           <xs:element ref="honors"/>
-          <xs:element ref="specialties"/>
+          <xs:element name="specialties" type="xs:string"/>
           <xs:element ref="certifications"/>
           <xs:element ref="patents"/>
 		  <xs:element ref="publications"/>
@@ -842,7 +842,15 @@
   <xs:element name="interests" type="xs:string"/>
   <xs:element name="associations" type="xs:string"/>
   <xs:element name="honors" type="xs:string"/>
-  <xs:element name="specialties" type="xs:string"/>
+  <xs:element name="specialties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="specialty"/>
+      </xs:sequence>
+      <xs:attribute name="total" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="specialty" type="xs:string"/>
   <xs:element name="positions">
     <xs:complexType>
       <xs:sequence>
@@ -950,12 +958,18 @@
         <xs:element ref="num-followers"/>
         <xs:element ref="email-domains"/>
         <xs:element ref="website-url"/>
-        <xs:element ref="status"/>
+        <xs:element name="status" type="company-status"/>
         <xs:element ref="employee-count-range"/>
       </xs:sequence>
       <xs:attribute name="key"/>
     </xs:complexType>
   </xs:element>
+  <xs:complexType name="company-status">
+    <xs:sequence>
+      <xs:element ref="code"/>
+      <xs:element ref="name"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="universal-name" type="xs:string"/>
   <xs:element name="logo-url" type="xs:anyURI"/>
   <xs:element name="website-url" type="xs:anyURI"/>
@@ -984,7 +998,14 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="size" type="xs:NMTOKEN"/>
-  <xs:element name="stock-exchange" type="xs:string"/>
+  <xs:element name="stock-exchange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ticker" type="xs:string"/>
   <xs:element name="blog-rss-url" type="xs:anyURI"/>
   <xs:element name="twitter-id" type="xs:string"/>

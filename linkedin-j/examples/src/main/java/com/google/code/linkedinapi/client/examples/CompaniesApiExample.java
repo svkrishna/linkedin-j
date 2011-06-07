@@ -17,6 +17,7 @@
 package com.google.code.linkedinapi.client.examples;
 
 import java.text.MessageFormat;
+import java.util.EnumSet;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -28,6 +29,7 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.CompaniesApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.CompanyField;
 import com.google.code.linkedinapi.schema.Company;
 
 /**
@@ -99,11 +101,11 @@ public class CompaniesApiExample {
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
     			System.out.println("Fetching profile for company with id:" + idValue);
-    			Company company = client.getCompanyById(idValue);
+    			Company company = client.getCompanyById(idValue, EnumSet.allOf(CompanyField.class));
     			printResult(company);
     		} else {
     			System.out.println("Fetching profile for company. LinkedIn");
-    			Company company = client.getCompanyByUniversalName("linkedin");
+    			Company company = client.getCompanyByUniversalName("linkedin", EnumSet.allOf(CompanyField.class));
     			printResult(company);
     		}
         } else {

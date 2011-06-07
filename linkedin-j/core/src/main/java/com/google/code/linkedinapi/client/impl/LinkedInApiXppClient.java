@@ -28,6 +28,9 @@ import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
 import com.google.code.linkedinapi.schema.Activity;
+import com.google.code.linkedinapi.schema.Companies;
+import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanySearch;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.Job;
@@ -40,12 +43,16 @@ import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.Products;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.SchemaEntity;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.xpp.ActivityImpl;
 import com.google.code.linkedinapi.schema.xpp.BaseSchemaEntity;
+import com.google.code.linkedinapi.schema.xpp.CompaniesImpl;
+import com.google.code.linkedinapi.schema.xpp.CompanyImpl;
+import com.google.code.linkedinapi.schema.xpp.CompanySearchImpl;
 import com.google.code.linkedinapi.schema.xpp.ConnectionsImpl;
 import com.google.code.linkedinapi.schema.xpp.ErrorImpl;
 import com.google.code.linkedinapi.schema.xpp.JobBookmarksImpl;
@@ -58,6 +65,7 @@ import com.google.code.linkedinapi.schema.xpp.NetworkImpl;
 import com.google.code.linkedinapi.schema.xpp.PeopleImpl;
 import com.google.code.linkedinapi.schema.xpp.PeopleSearchImpl;
 import com.google.code.linkedinapi.schema.xpp.PersonImpl;
+import com.google.code.linkedinapi.schema.xpp.ProductsImpl;
 import com.google.code.linkedinapi.schema.xpp.UpdateCommentImpl;
 import com.google.code.linkedinapi.schema.xpp.UpdateCommentsImpl;
 import com.google.code.linkedinapi.schema.xpp.XppElementFactory;
@@ -90,6 +98,10 @@ public class LinkedInApiXppClient extends BaseLinkedInApiClient {
 		XPP_CLASSES_MAP.put(JobSearch.class, JobSearchImpl.class);
 		XPP_CLASSES_MAP.put(JobBookmarks.class, JobBookmarksImpl.class);
 		XPP_CLASSES_MAP.put(JobSuggestions.class, JobSuggestionsImpl.class);
+		XPP_CLASSES_MAP.put(Companies.class, CompaniesImpl.class);
+		XPP_CLASSES_MAP.put(Company.class, CompanyImpl.class);
+		XPP_CLASSES_MAP.put(CompanySearch.class, CompanySearchImpl.class);
+		XPP_CLASSES_MAP.put(Products.class, ProductsImpl.class);
 	}
 	
     /**

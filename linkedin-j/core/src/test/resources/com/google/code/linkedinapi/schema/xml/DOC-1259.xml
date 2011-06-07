@@ -4,7 +4,10 @@
 	<universal-name>linkedin</universal-name>
 	<name>LinkedIn</name>
 	<ticker>LNKD</ticker>
-	<stock-exchange>NMS</stock-exchange>
+	<stock-exchange>
+	    <code>NYS</code>
+	    <name>New York Stock Exchange</name>
+	</stock-exchange>	
 	<logo-url>http://media.linkedin.com/mpr/mpr/p/2/000/072/3f9/35d2127.png</logo-url>
 	<description>LinkedIn takes your professional network online, giving you access to people, jobs and opportunities like never before. Built upon trusted connections and relationships, LinkedIn has established the world's largest and most powerful professional network. Currently, more than 90 million professionals are on LinkedIn, including executives from all five hundred of the Fortune 500 companies, as well as a wide range of household names in technology, financial services, media, consumer packaged goods, entertainment, and numerous other industries. LinkedIn is backed by world-class investors including Sequoia Capital, Greylock, the European Founders Fund, Bessemer Venture Partners, Bain Capital, Goldman Sachs, SAP Ventures, and The McGraw-Hill Companies</description>
 	<company-type>

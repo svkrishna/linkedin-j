@@ -50,7 +50,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}num-followers"/>
  *         &lt;element ref="{}email-domains"/>
  *         &lt;element ref="{}website-url"/>
- *         &lt;element ref="{}status"/>
+ *         &lt;element name="status" type="{}company-status"/>
  *         &lt;element ref="{}employee-count-range"/>
  *       &lt;/sequence>
  *       &lt;attribute name="key" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
@@ -251,20 +251,20 @@ public interface Company
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link StockExchange }
      *     
      */
-    String getStockExchange();
+    StockExchange getStockExchange();
 
     /**
      * Sets the value of the stockExchange property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link StockExchange }
      *     
      */
-    void setStockExchange(String value);
+    void setStockExchange(StockExchange value);
 
     /**
      * Gets the value of the ticker property.
@@ -291,20 +291,20 @@ public interface Company
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Specialties }
      *     
      */
-    String getSpecialties();
+    Specialties getSpecialties();
 
     /**
      * Sets the value of the specialties property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Specialties }
      *     
      */
-    void setSpecialties(String value);
+    void setSpecialties(Specialties value);
 
     /**
      * Gets the value of the blogRssUrl property.
@@ -491,20 +491,20 @@ public interface Company
      * 
      * @return
      *     possible object is
-     *     {@link Status }
+     *     {@link CompanyStatus }
      *     
      */
-    Status getStatus();
+    CompanyStatus getStatus();
 
     /**
      * Sets the value of the status property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Status }
+     *     {@link CompanyStatus }
      *     
      */
-    void setStatus(Status value);
+    void setStatus(CompanyStatus value);
 
     /**
      * Gets the value of the employeeCountRange property.

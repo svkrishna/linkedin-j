@@ -54,7 +54,7 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}interests"/>
  *           &lt;element ref="{}associations"/>
  *           &lt;element ref="{}honors"/>
- *           &lt;element ref="{}specialties"/>
+ *           &lt;element name="specialties" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *           &lt;element ref="{}certifications"/>
  *           &lt;element ref="{}patents"/>
  *           &lt;element ref="{}publications"/>

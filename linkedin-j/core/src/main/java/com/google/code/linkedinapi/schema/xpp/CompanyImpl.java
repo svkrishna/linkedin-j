@@ -24,11 +24,13 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanyStatus;
 import com.google.code.linkedinapi.schema.CompanyType;
 import com.google.code.linkedinapi.schema.EmailDomains;
 import com.google.code.linkedinapi.schema.EmployeeCountRange;
 import com.google.code.linkedinapi.schema.Locations;
-import com.google.code.linkedinapi.schema.Status;
+import com.google.code.linkedinapi.schema.Specialties;
+import com.google.code.linkedinapi.schema.StockExchange;
 
 public class CompanyImpl
 	extends BaseSchemaEntity implements Company
@@ -44,9 +46,9 @@ public class CompanyImpl
     protected String type;
     protected CompanyTypeImpl companyType;
     protected String size;
-    protected String stockExchange;
+    protected StockExchangeImpl stockExchange;
     protected String ticker;
-    protected String specialties;
+    protected SpecialtiesImpl specialties;
     protected String blogRssUrl;
     protected String twitterId;
     protected String squareLogoUrl;
@@ -56,7 +58,7 @@ public class CompanyImpl
     protected Long numFollowers;
     protected EmailDomainsImpl emailDomains;
     protected String websiteUrl;
-    protected StatusImpl status;
+    protected CompanyStatusImpl status;
     protected EmployeeCountRangeImpl employeeCountRange;
     protected String key;
 
@@ -132,12 +134,12 @@ public class CompanyImpl
         this.size = value;
     }
 
-    public String getStockExchange() {
+    public StockExchange getStockExchange() {
         return stockExchange;
     }
 
-    public void setStockExchange(String value) {
-        this.stockExchange = value;
+    public void setStockExchange(StockExchange value) {
+        this.stockExchange = (StockExchangeImpl) value;
     }
 
     public String getTicker() {
@@ -148,12 +150,12 @@ public class CompanyImpl
         this.ticker = value;
     }
 
-    public String getSpecialties() {
+    public Specialties getSpecialties() {
         return specialties;
     }
 
-    public void setSpecialties(String value) {
-        this.specialties = value;
+    public void setSpecialties(Specialties value) {
+        this.specialties = (SpecialtiesImpl) value;
     }
 
     public String getBlogRssUrl() {
@@ -228,12 +230,12 @@ public class CompanyImpl
         this.websiteUrl = value;
     }
 
-    public Status getStatus() {
+    public CompanyStatusImpl getStatus() {
         return status;
     }
 
-    public void setStatus(Status value) {
-        this.status = ((StatusImpl) value);
+    public void setStatus(CompanyStatus value) {
+        this.status = ((CompanyStatusImpl) value);
     }
 
     public EmployeeCountRange getEmployeeCountRange() {
@@ -278,11 +280,15 @@ public class CompanyImpl
             } else if (name.equals("size")) {
                 setSize(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("stock-exchange")) {
-                setStockExchange(XppUtils.getElementValueFromNode(parser));
+            	StockExchangeImpl node = new StockExchangeImpl();
+            	node.init(parser);
+                setStockExchange(node);
             } else if (name.equals("ticker")) {
                 setTicker(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("specialties")) {
-                setSpecialties(XppUtils.getElementValueFromNode(parser));
+            	SpecialtiesImpl node = new SpecialtiesImpl();
+            	node.init(parser);
+                setSpecialties(node);
             } else if (name.equals("blog-rss-url")) {
                 setBlogRssUrl(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("twitter-id")) {
@@ -306,7 +312,7 @@ public class CompanyImpl
             } else if (name.equals("website-url")) {
                 setWebsiteUrl(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("status")) {
-                StatusImpl node = new StatusImpl();
+                CompanyStatusImpl node = new CompanyStatusImpl();
                 node.init(parser);
                 setStatus(node);
             } else if (name.equals("employee-count-range")) {
@@ -335,9 +341,14 @@ public class CompanyImpl
             ((CompanyTypeImpl) getCompanyType()).toXml(serializer);
         }
         XppUtils.setElementValueToNode(element, "size", getSize());
-        XppUtils.setElementValueToNode(element, "stock-exchange", getStockExchange());
+        if (getStockExchange() != null) {
+        	((StockExchangeImpl) getStockExchange()).toXml(serializer);
+        	
+        }
         XppUtils.setElementValueToNode(element, "ticker", getTicker());
-        XppUtils.setElementValueToNode(element, "specialties", getSpecialties());
+        if (getSpecialties() != null) {
+        	((SpecialtiesImpl) getSpecialties()).toXml(serializer);
+        }
         XppUtils.setElementValueToNode(element, "blog-rss-url", getBlogRssUrl());
         XppUtils.setElementValueToNode(element, "twitter-id", getTwitterId());
         XppUtils.setElementValueToNode(element, "square-logo-url", getSquareLogoUrl());
@@ -352,7 +363,7 @@ public class CompanyImpl
         }
         XppUtils.setElementValueToNode(element, "website-url", getWebsiteUrl());
         if (getStatus() != null) {
-            ((StatusImpl) getStatus()).toXml(serializer);
+            ((CompanyStatusImpl) getStatus()).toXml(serializer);
         }
         if (getEmployeeCountRange() != null) {
             ((EmployeeCountRangeImpl) getEmployeeCountRange()).toXml(serializer);

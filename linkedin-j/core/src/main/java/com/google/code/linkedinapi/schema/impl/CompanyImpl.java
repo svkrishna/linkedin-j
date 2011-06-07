@@ -28,11 +28,13 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.CompanyStatus;
 import com.google.code.linkedinapi.schema.CompanyType;
 import com.google.code.linkedinapi.schema.EmailDomains;
 import com.google.code.linkedinapi.schema.EmployeeCountRange;
 import com.google.code.linkedinapi.schema.Locations;
-import com.google.code.linkedinapi.schema.Status;
+import com.google.code.linkedinapi.schema.Specialties;
+import com.google.code.linkedinapi.schema.StockExchange;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -85,12 +87,12 @@ public class CompanyImpl
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String size;
-    @XmlElement(name = "stock-exchange", required = true)
-    protected String stockExchange;
+    @XmlElement(name = "stock-exchange", required = true, type = StockExchangeImpl.class)
+    protected StockExchangeImpl stockExchange;
     @XmlElement(required = true)
     protected String ticker;
-    @XmlElement(required = true)
-    protected String specialties;
+    @XmlElement(required = true, type = SpecialtiesImpl.class)
+    protected SpecialtiesImpl specialties;
     @XmlElement(name = "blog-rss-url", required = true)
     protected String blogRssUrl;
     @XmlElement(name = "twitter-id", required = true)
@@ -112,8 +114,8 @@ public class CompanyImpl
     protected EmailDomainsImpl emailDomains;
     @XmlElement(name = "website-url", required = true)
     protected String websiteUrl;
-    @XmlElement(required = true, type = StatusImpl.class)
-    protected StatusImpl status;
+    @XmlElement(required = true, type = CompanyStatusImpl.class)
+    protected CompanyStatusImpl status;
     @XmlElement(name = "employee-count-range", required = true, type = EmployeeCountRangeImpl.class)
     protected EmployeeCountRangeImpl employeeCountRange;
     @XmlAttribute
@@ -191,12 +193,12 @@ public class CompanyImpl
         this.size = value;
     }
 
-    public String getStockExchange() {
+    public StockExchange getStockExchange() {
         return stockExchange;
     }
 
-    public void setStockExchange(String value) {
-        this.stockExchange = value;
+    public void setStockExchange(StockExchange value) {
+        this.stockExchange = ((StockExchangeImpl) value);
     }
 
     public String getTicker() {
@@ -207,12 +209,12 @@ public class CompanyImpl
         this.ticker = value;
     }
 
-    public String getSpecialties() {
+    public Specialties getSpecialties() {
         return specialties;
     }
 
-    public void setSpecialties(String value) {
-        this.specialties = value;
+    public void setSpecialties(Specialties value) {
+        this.specialties = ((SpecialtiesImpl) value);
     }
 
     public String getBlogRssUrl() {
@@ -287,12 +289,12 @@ public class CompanyImpl
         this.websiteUrl = value;
     }
 
-    public Status getStatus() {
+    public CompanyStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status value) {
-        this.status = ((StatusImpl) value);
+    public void setStatus(CompanyStatus value) {
+        this.status = ((CompanyStatusImpl) value);
     }
 
     public EmployeeCountRange getEmployeeCountRange() {

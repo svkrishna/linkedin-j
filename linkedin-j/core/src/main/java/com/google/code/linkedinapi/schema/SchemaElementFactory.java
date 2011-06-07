@@ -943,12 +943,6 @@ public interface SchemaElementFactory<T> {
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
 	 * 
 	 */
-	public T createSpecialties(String value);
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-	 * 
-	 */
 	public T createValue(String value);
 
 	/**
