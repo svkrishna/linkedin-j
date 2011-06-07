@@ -105,10 +105,6 @@ public class JobsApiExample {
 				System.out.println(bookmark.getSavedTimestamp());
 				printResult(bookmark.getJob());
 			}
-    		Jobs suggestions = client.getJobSuggestions(EnumSet.allOf(JobField.class));
-    		for (Job job : suggestions.getJobList()) {
-				printResult(job);
-			}
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
