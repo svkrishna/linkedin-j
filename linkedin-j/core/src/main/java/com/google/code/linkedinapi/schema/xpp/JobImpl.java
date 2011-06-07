@@ -49,6 +49,7 @@ extends BaseSchemaEntity implements Job
     protected CompanyImpl company;
     protected String description;
     protected String descriptionSnippet;
+    protected String skillsAndExperience;
     protected PositionImpl position;
     protected Long expirationTimestamp;
     protected JobPosterImpl jobPoster;
@@ -141,6 +142,14 @@ extends BaseSchemaEntity implements Job
 
     public void setDescriptionSnippet(String value) {
         this.descriptionSnippet = value;
+    }
+    
+    public String getSkillsAndExperience() {
+        return skillsAndExperience;
+    }
+
+    public void setSkillsAndExperience(String value) {
+        this.skillsAndExperience = value;
     }
 
     public Position getPosition() {
@@ -276,6 +285,8 @@ extends BaseSchemaEntity implements Job
                 setCompany(node);
             } else if (name.equals("description")) {
                 setDescription(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("skills-and-experience")) {
+                setSkillsAndExperience(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("description-snippet")) {
                 setDescriptionSnippet(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("position")) {
@@ -341,6 +352,7 @@ extends BaseSchemaEntity implements Job
             ((CompanyImpl) getCompany()).toXml(serializer);
         }
         XppUtils.setElementValueToNode(element, "description", getDescription());
+        XppUtils.setElementValueToNode(element, "skills-and-experience", getSkillsAndExperience());
         XppUtils.setElementValueToNode(element, "description-snippet", getDescriptionSnippet());
         if (getPosition() != null) {
             ((PositionImpl) getPosition()).toXml(serializer);

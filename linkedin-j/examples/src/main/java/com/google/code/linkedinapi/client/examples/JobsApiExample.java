@@ -17,6 +17,7 @@
 package com.google.code.linkedinapi.client.examples;
 
 import java.text.MessageFormat;
+import java.util.EnumSet;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -28,7 +29,10 @@ import org.apache.commons.cli.ParseException;
 
 import com.google.code.linkedinapi.client.JobsApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
+import com.google.code.linkedinapi.client.enumeration.JobField;
 import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.JobBookmark;
+import com.google.code.linkedinapi.schema.JobBookmarks;
 import com.google.code.linkedinapi.schema.Jobs;
 
 /**
@@ -96,11 +100,20 @@ public class JobsApiExample {
     		
     		final LinkedInApiClientFactory factory = LinkedInApiClientFactory.newInstance(consumerKeyValue, consumerSecretValue);
     		final JobsApiClient client = factory.createLinkedInApiClient(accessTokenValue, tokenSecretValue);
+    		JobBookmarks bookmarks = client.getJobBookmarks(EnumSet.allOf(JobField.class));
+    		for (JobBookmark bookmark : bookmarks.getJobBookmarkList()) {
+				System.out.println(bookmark.getSavedTimestamp());
+				printResult(bookmark.getJob());
+			}
+    		Jobs suggestions = client.getJobSuggestions(EnumSet.allOf(JobField.class));
+    		for (Job job : suggestions.getJobList()) {
+				printResult(job);
+			}
     		
     		if(line.hasOption(ID_OPTION)) {
     			String idValue = line.getOptionValue(ID_OPTION);
     			System.out.println("Fetching profile for job with id:" + idValue);
-    			Job job = client.getJobById(idValue);
+    			Job job = client.getJobById(idValue, EnumSet.allOf(JobField.class));
     			printResult(job);
     		} else {
     			System.out.println("Fetching suggested jobs for current user.");
@@ -179,7 +192,8 @@ public class JobsApiExample {
      */
     private static void printResult(Job job) {
     	System.out.println("================================");
+    	System.out.println("ID:" + job.getId());
     	System.out.println("Description:" + job.getDescription());
-    	System.out.println("Partnet Job ID:" + job.getPartnerJobId());
+    	System.out.println("Partner Job ID:" + job.getPartnerJobId());
 	}
 }

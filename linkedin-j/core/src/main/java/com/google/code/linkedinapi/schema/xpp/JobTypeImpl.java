@@ -31,6 +31,7 @@ public class JobTypeImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     protected String code;
+    protected String name;
 
     public String getCode() {
         return code;
@@ -40,6 +41,14 @@ public class JobTypeImpl
         this.code = value;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String value) {
+        this.name = value;
+    }
+    
     @Override
     public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -47,6 +56,8 @@ public class JobTypeImpl
             String name = parser.getName();
             if (name.equals("code")) {
                 setCode(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("name")) {
+                setName(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -58,7 +69,7 @@ public class JobTypeImpl
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "job-type");
         XppUtils.setElementValueToNode(element, "code", getCode());
-        
+        XppUtils.setElementValueToNode(element, "name", getName());
         
         serializer.endTag(null, "job-type");
     }

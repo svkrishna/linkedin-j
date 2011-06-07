@@ -217,6 +217,7 @@
           <xs:element ref="description"/>
           <xs:element ref="description-snippet"/>
           <xs:element ref="position"/>
+          <xs:element ref="skills-and-experience"/>
           <xs:element ref="expiration-timestamp"/>
           <xs:element ref="job-poster"/>
           <xs:element ref="location-description"/>
@@ -910,6 +911,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="code"/>
+		<xs:element ref="name"/>        
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -924,6 +926,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="code"/>
+        <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -931,6 +934,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="code"/>
+        <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1403,7 +1407,9 @@
   <xs:element name="industry">
     <xs:complexType>
       <xs:sequence>
+      	<xs:element ref="id"/>
         <xs:element ref="code"/>
+        <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

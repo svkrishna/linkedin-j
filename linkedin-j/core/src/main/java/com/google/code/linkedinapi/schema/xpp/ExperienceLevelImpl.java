@@ -31,6 +31,7 @@ public class ExperienceLevelImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     protected String code;
+    protected String name;
 
     public String getCode() {
         return code;
@@ -40,6 +41,14 @@ public class ExperienceLevelImpl
         this.code = value;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String value) {
+        this.name = value;
+    }
+    
     @Override
     public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -47,6 +56,8 @@ public class ExperienceLevelImpl
             String name = parser.getName();
             if (name.equals("code")) {
                 setCode(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("name")) {
+                setName(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -58,6 +69,7 @@ public class ExperienceLevelImpl
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "experience-level");
         XppUtils.setElementValueToNode(element, "code", getCode());
+        XppUtils.setElementValueToNode(element, "name", getName());
         
         
         serializer.endTag(null, "experience-level");

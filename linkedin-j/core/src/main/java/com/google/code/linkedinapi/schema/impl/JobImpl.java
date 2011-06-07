@@ -50,6 +50,7 @@ import com.google.code.linkedinapi.schema.SiteJobRequest;
     "description",
     "descriptionSnippet",
     "position",
+    "skillsAndExperience",
     "expirationTimestamp",
     "jobPoster",
     "locationDescription",
@@ -92,6 +93,8 @@ public class JobImpl
     protected String descriptionSnippet;
     @XmlElement(required = true, type = PositionImpl.class)
     protected PositionImpl position;
+    @XmlElement(name = "skills-and-experience", required = true)
+    protected String skillsAndExperience;
     @XmlElement(name = "expiration-timestamp", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long expirationTimestamp;
@@ -205,6 +208,14 @@ public class JobImpl
 
     public void setPosition(Position value) {
         this.position = ((PositionImpl) value);
+    }
+
+    public String getSkillsAndExperience() {
+        return skillsAndExperience;
+    }
+
+    public void setSkillsAndExperience(String value) {
+        this.skillsAndExperience = value;
     }
 
     public Long getExpirationTimestamp() {

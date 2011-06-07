@@ -27,7 +27,8 @@ import com.google.code.linkedinapi.schema.ExperienceLevel;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "code"
+    "code",
+    "name"
 })
 @XmlRootElement(name = "experience-level")
 public class ExperienceLevelImpl
@@ -37,6 +38,8 @@ public class ExperienceLevelImpl
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
     protected String code;
+    @XmlElement(required = true)
+    protected String name;
 
     public String getCode() {
         return code;
@@ -44,6 +47,14 @@ public class ExperienceLevelImpl
 
     public void setCode(String value) {
         this.code = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String value) {
+        this.name = value;
     }
 
 }

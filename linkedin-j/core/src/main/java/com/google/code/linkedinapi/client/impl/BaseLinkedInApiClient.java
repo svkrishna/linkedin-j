@@ -75,6 +75,7 @@ import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.InviteConnectType;
 import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.JobBookmark;
 import com.google.code.linkedinapi.schema.JobBookmarks;
 import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.JobSuggestions;
@@ -1918,10 +1919,12 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	public void bookmarkJob(String jobId) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.BOOKMARK_JOB);
         String apiUrl = builder.buildUrl();
+        JobBookmark bookmark = OBJECT_FACTORY.createJobBookmark();
         Job job = OBJECT_FACTORY.createJob();
         job.setId(jobId);
-        callApiMethod(apiUrl, marshallObject(job), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
-                HttpURLConnection.HTTP_OK);
+        bookmark.setJob(job);
+        callApiMethod(apiUrl, marshallObject(bookmark), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
 	}
 
 	@Override
@@ -2490,7 +2493,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNBOOKMARK_JOB);
         String                apiUrl  = builder.withField(ParameterNames.ID, jobId).buildUrl();
 
-        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_OK);
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
 	}
 
 	@Override

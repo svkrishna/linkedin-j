@@ -43,6 +43,7 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}description"/>
  *           &lt;element ref="{}description-snippet"/>
  *           &lt;element ref="{}position"/>
+ *           &lt;element ref="{}skills-and-experience"/>
  *           &lt;element ref="{}expiration-timestamp"/>
  *           &lt;element ref="{}job-poster"/>
  *           &lt;element ref="{}location-description"/>
@@ -290,6 +291,26 @@ public interface Job
      *     
      */
     void setPosition(Position value);
+
+    /**
+     * Gets the value of the skillsAndExperience property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getSkillsAndExperience();
+
+    /**
+     * Sets the value of the skillsAndExperience property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setSkillsAndExperience(String value);
 
     /**
      * Gets the value of the expirationTimestamp property.
