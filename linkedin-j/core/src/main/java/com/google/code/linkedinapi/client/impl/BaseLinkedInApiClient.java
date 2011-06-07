@@ -2509,7 +2509,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         Company company = OBJECT_FACTORY.createCompany();
         company.setId(id);
         callApiMethod(apiUrl, marshallObject(company), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
-                HttpURLConnection.HTTP_OK);
+                HttpURLConnection.HTTP_CREATED);
 	}
 
 	@Override
@@ -3140,7 +3140,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNFOLLOW_COMPANY);
         String                apiUrl  = builder.withField(ParameterNames.ID, id).buildUrl();
 
-        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_OK);
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
 	}
 	
     /**
