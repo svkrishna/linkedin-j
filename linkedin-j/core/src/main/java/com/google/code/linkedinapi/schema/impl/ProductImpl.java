@@ -26,11 +26,13 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
+import com.google.code.linkedinapi.schema.Features;
 import com.google.code.linkedinapi.schema.Product;
 import com.google.code.linkedinapi.schema.ProductCategory;
 import com.google.code.linkedinapi.schema.ProductDeal;
 import com.google.code.linkedinapi.schema.ProductType;
 import com.google.code.linkedinapi.schema.Recommendations;
+import com.google.code.linkedinapi.schema.SalesPersons;
 import com.google.code.linkedinapi.schema.Video;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -71,15 +73,15 @@ public class ProductImpl
     @XmlElement(name = "creation-timestamp", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long creationTimestamp;
-    @XmlElement(required = true)
-    protected String features;
+    @XmlElement(required = true, type = FeaturesImpl.class)
+    protected FeaturesImpl features;
     @XmlElement(name = "num-recommendations", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numRecommendations;
     @XmlElement(name = "product-deal", required = true, type = ProductDealImpl.class)
     protected ProductDealImpl productDeal;
-    @XmlElement(name = "sales-persons", required = true)
-    protected String salesPersons;
+    @XmlElement(name = "sales-persons", required = true, type = SalesPersonsImpl.class)
+    protected SalesPersonsImpl salesPersons;
     @XmlElement(required = true, type = VideoImpl.class)
     protected VideoImpl video;
     @XmlElement(type = RecommendationsImpl.class)
@@ -138,12 +140,12 @@ public class ProductImpl
         this.creationTimestamp = value;
     }
 
-    public String getFeatures() {
+    public Features getFeatures() {
         return features;
     }
 
-    public void setFeatures(String value) {
-        this.features = value;
+    public void setFeatures(Features value) {
+        this.features = ((FeaturesImpl) value);
     }
 
     public Long getNumRecommendations() {
@@ -162,12 +164,12 @@ public class ProductImpl
         this.productDeal = ((ProductDealImpl) value);
     }
 
-    public String getSalesPersons() {
+    public SalesPersons getSalesPersons() {
         return salesPersons;
     }
 
-    public void setSalesPersons(String value) {
-        this.salesPersons = value;
+    public void setSalesPersons(SalesPersons value) {
+        this.salesPersons = ((SalesPersonsImpl) value);
     }
 
     public Video getVideo() {

@@ -11,7 +11,12 @@
 		<creation-timestamp>1306929600000</creation-timestamp>
 		<logo-url>http://www.linkedin.com/images/logo.gif</logo-url>
 		<description>A description of the product.</description>
-		<features>Features of the product....</features>
+	    <features total="4">
+	      <feature>Engaging user experience</feature>
+	      <feature>Dynamic and fresh content</feature>
+	      <feature>Ease of building and maintenance</feature>
+	      <feature>Fully targetable</feature>
+	    </features>
 		<video>
 			<title>A video to cherish</title>
 			<url>http://www.youtube.com/id?9278392</url>
@@ -21,7 +26,13 @@
 			<url>http://www.youtube.com/id?9278392</url>
 			<text>This is the deal text.</text>
 		</product-deal>
-		<sales-persons>The product sales representative.</sales-persons>
+	    <sales-persons total="1">
+	      <person>
+	        <id>EVPX7xlztj</id>
+	        <first-name>Karen</first-name>
+	        <last-name>C.</last-name>
+	      </person>
+	    </sales-persons>
 		<num-recommendations>12</num-recommendations>
 		<recommendations count="2" start="0">
 			<recommendation>

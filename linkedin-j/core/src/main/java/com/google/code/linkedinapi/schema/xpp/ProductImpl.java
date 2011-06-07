@@ -23,11 +23,13 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.schema.Features;
 import com.google.code.linkedinapi.schema.Product;
 import com.google.code.linkedinapi.schema.ProductCategory;
 import com.google.code.linkedinapi.schema.ProductDeal;
 import com.google.code.linkedinapi.schema.ProductType;
 import com.google.code.linkedinapi.schema.Recommendations;
+import com.google.code.linkedinapi.schema.SalesPersons;
 import com.google.code.linkedinapi.schema.Video;
 
 public class ProductImpl
@@ -41,10 +43,10 @@ public class ProductImpl
     protected String description;
     protected String logoUrl;
     protected Long creationTimestamp;
-    protected String features;
+    protected FeaturesImpl features;
     protected Long numRecommendations;
     protected ProductDealImpl productDeal;
-    protected String salesPersons;
+    protected SalesPersonsImpl salesPersons;
     protected VideoImpl video;
     protected RecommendationsImpl recommendations;
     protected ProductCategoryImpl productCategory;
@@ -99,12 +101,12 @@ public class ProductImpl
         this.creationTimestamp = value;
     }
 
-    public String getFeatures() {
+    public Features getFeatures() {
         return features;
     }
 
-    public void setFeatures(String value) {
-        this.features = value;
+    public void setFeatures(Features value) {
+        this.features = (FeaturesImpl) value;
     }
 
     public Long getNumRecommendations() {
@@ -123,12 +125,12 @@ public class ProductImpl
         this.productDeal = ((ProductDealImpl) value);
     }
 
-    public String getSalesPersons() {
+    public SalesPersons getSalesPersons() {
         return salesPersons;
     }
 
-    public void setSalesPersons(String value) {
-        this.salesPersons = value;
+    public void setSalesPersons(SalesPersons value) {
+        this.salesPersons = (SalesPersonsImpl) value;
     }
 
     public Video getVideo() {
@@ -191,7 +193,9 @@ public class ProductImpl
             } else if (name.equals("creation-timestamp")) {
                 setCreationTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
             } else if (name.equals("features")) {
-                setFeatures(XppUtils.getElementValueFromNode(parser));
+            	FeaturesImpl node = new FeaturesImpl();
+            	node.init(parser);
+                setFeatures(node);
             } else if (name.equals("num-recommendations")) {
                 setNumRecommendations(XppUtils.getElementValueAsLongFromNode(parser));
             } else if (name.equals("product-deal")) {
@@ -199,7 +203,9 @@ public class ProductImpl
                 node.init(parser);
                 setProductDeal(node);
             } else if (name.equals("sales-persons")) {
-                setSalesPersons(XppUtils.getElementValueFromNode(parser));
+            	SalesPersonsImpl node = new SalesPersonsImpl();
+            	node.init(parser);
+                setSalesPersons(node);
             } else if (name.equals("video")) {
                 VideoImpl node = new VideoImpl();
                 node.init(parser);
@@ -234,12 +240,16 @@ public class ProductImpl
         XppUtils.setElementValueToNode(element, "description", getDescription());
         XppUtils.setElementValueToNode(element, "logo-url", getLogoUrl());
         XppUtils.setElementValueToNode(element, "creation-timestamp", getCreationTimestamp());
-        XppUtils.setElementValueToNode(element, "features", getFeatures());
+        if (getFeatures() != null) {
+        	((FeaturesImpl) getFeatures()).toXml(serializer);
+        }
         XppUtils.setElementValueToNode(element, "num-recommendations", getNumRecommendations());
         if (getProductDeal() != null) {
             ((ProductDealImpl) getProductDeal()).toXml(serializer);
         }
-        XppUtils.setElementValueToNode(element, "sales-persons", getSalesPersons());
+        if (getSalesPersons() != null) {
+        	((SalesPersonsImpl) getSalesPersons()).toXml(serializer);
+        }
         if (getVideo() != null) {
             ((VideoImpl) getVideo()).toXml(serializer);
         }

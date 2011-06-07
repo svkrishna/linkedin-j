@@ -1089,7 +1089,15 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="creation-timestamp" type="xs:integer"/>
-  <xs:element name="features" type="xs:string"/>
+  <xs:element name="features">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="feature"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="feature" type="xs:string"/>
   <xs:element name="num-recommendations" type="xs:integer"/>
   <xs:element name="text" type="xs:string"/>
   <xs:element name="product-deal">
@@ -1101,7 +1109,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="sales-persons" type="xs:string"/>
+  <xs:element name="sales-persons">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="person" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="video">
     <xs:complexType>
       <xs:sequence>

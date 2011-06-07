@@ -30,7 +30,10 @@ import org.apache.commons.cli.ParseException;
 import com.google.code.linkedinapi.client.CompaniesApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientFactory;
 import com.google.code.linkedinapi.client.enumeration.CompanyField;
+import com.google.code.linkedinapi.client.enumeration.ProductField;
 import com.google.code.linkedinapi.schema.Company;
+import com.google.code.linkedinapi.schema.Product;
+import com.google.code.linkedinapi.schema.Products;
 
 /**
  * @author Nabeel Mukhtar
@@ -103,6 +106,10 @@ public class CompaniesApiExample {
     			System.out.println("Fetching profile for company with id:" + idValue);
     			Company company = client.getCompanyById(idValue, EnumSet.allOf(CompanyField.class));
     			printResult(company);
+    			Products companyProducts = client.getCompanyProducts(idValue, EnumSet.allOf(ProductField.class));
+    			for (Product product : companyProducts.getProductList()) {
+					printResult(product);
+				}
     		} else {
     			System.out.println("Fetching profile for company. LinkedIn");
     			Company company = client.getCompanyByUniversalName("linkedin", EnumSet.allOf(CompanyField.class));
@@ -113,6 +120,14 @@ public class CompaniesApiExample {
         }
     }
 	
+	private static void printResult(Product product) {
+		System.out.println("================================");
+		System.out.println("Name:" + product.getName());
+		System.out.println("Description:" + product.getDescription());
+		System.out.println("Features:" + product.getFeatures());
+		System.out.println("URL:" + product.getWebsiteUrl());
+	}
+
 	/**
      * Build command line options object.
      */

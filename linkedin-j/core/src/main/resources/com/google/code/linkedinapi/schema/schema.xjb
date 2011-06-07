@@ -226,4 +226,10 @@
 	<bindings node="//xs:element[@name='specialties']/xs:complexType/xs:sequence/xs:element[@ref='specialty']">
 		<property name="specialtyList"/>
 	</bindings>
+	<bindings node="//xs:element[@name='features']/xs:complexType/xs:sequence/xs:element[@ref='feature']">
+		<property name="featureList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='sales-persons']/xs:complexType/xs:sequence/xs:element[@ref='person']">
+		<property name="personList"/>
+	</bindings>
 </bindings>

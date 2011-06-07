@@ -182,20 +182,20 @@ public interface Product
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Features }
      *     
      */
-    String getFeatures();
+    Features getFeatures();
 
     /**
      * Sets the value of the features property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Features }
      *     
      */
-    void setFeatures(String value);
+    void setFeatures(Features value);
 
     /**
      * Gets the value of the numRecommendations property.
@@ -242,20 +242,20 @@ public interface Product
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link SalesPersons }
      *     
      */
-    String getSalesPersons();
+    SalesPersons getSalesPersons();
 
     /**
      * Sets the value of the salesPersons property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link SalesPersons }
      *     
      */
-    void setSalesPersons(String value);
+    void setSalesPersons(SalesPersons value);
 
     /**
      * Gets the value of the video property.
