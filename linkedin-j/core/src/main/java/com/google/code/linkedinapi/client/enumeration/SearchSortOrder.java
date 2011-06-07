@@ -16,8 +16,10 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Nabeel Mukhtar
@@ -29,22 +31,30 @@ public enum SearchSortOrder implements FieldEnum {
 	/**
 	 * Number of connections per person, from largest to smallest.
 	 */
-	CONNECTIONS("connections"),
+	CONNECTIONS("connections", EnumSet.of(Scope.PEOPLE)),
 	
     /**
      * Orders the returns by number of ensorsers each of the search returns has.
      */
-    RECOMMENDERS("recommenders"),
+    RECOMMENDERS("recommenders", EnumSet.of(Scope.PEOPLE)),
 
     /**
      * Orders the returns based on the ascending degree of separation within a member's network, with first degree connections first.
      */
-    DISTANCE("distance"),
+    DISTANCE("distance", EnumSet.of(Scope.PEOPLE)),
+    
+    RELATIONSHIP("relationship", EnumSet.of(Scope.COMPANIES)),
+    FOLLOWERS("followers", EnumSet.of(Scope.COMPANIES)),
+    COMPANY_SIZE("company-size", EnumSet.of(Scope.COMPANIES)),
 
     /**
      * Orders the returns based on relevance for the keywords provided.
      */
-    RELEVANCE("relevance");
+    RELEVANCE("relevance", EnumSet.of(Scope.PEOPLE, Scope.COMPANIES));
+    
+    public enum Scope {
+    	PEOPLE, COMPANIES, JOBS;
+    }
     
     /**
      * Field Description.
@@ -59,6 +69,7 @@ public enum SearchSortOrder implements FieldEnum {
 	
     /** Field description */
     private final String fieldName;
+    private final Set<Scope> scopes;
 
     /**
      * Constructs ...
@@ -66,8 +77,9 @@ public enum SearchSortOrder implements FieldEnum {
      *
      * @param name
      */
-    SearchSortOrder(String name) {
+    SearchSortOrder(String name, Set<Scope> scopes) {
         this.fieldName = name;
+        this.scopes = scopes;
     }
 
     /**
@@ -88,6 +100,10 @@ public enum SearchSortOrder implements FieldEnum {
         return fieldName();
     }
 
+    public boolean hasScope(Scope scope) {
+    	return scopes.contains(scope);
+    }
+    
 	/**
 	 *
 	 * @return Returns SearchSortOrder for string, or null if string is invalid
