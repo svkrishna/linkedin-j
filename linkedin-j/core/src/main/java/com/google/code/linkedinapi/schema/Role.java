@@ -29,7 +29,16 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="H"/>
+ *               &lt;enumeration value="R"/>
+ *               &lt;enumeration value="S"/>
+ *               &lt;enumeration value="W"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,19 +57,19 @@ public interface Role
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RoleCode }
      *     
      */
-    String getCode();
+    RoleCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RoleCode }
      *     
      */
-    void setCode(String value);
+    void setCode(RoleCode value);
 
 }

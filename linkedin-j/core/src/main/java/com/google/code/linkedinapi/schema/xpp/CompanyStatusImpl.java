@@ -24,20 +24,21 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.CompanyStatus;
+import com.google.code.linkedinapi.schema.CompanyStatusCode;
 
 public class CompanyStatusImpl
     extends BaseSchemaEntity implements CompanyStatus
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected CompanyStatusCode code;
     protected String name;
 
-    public String getCode() {
+    public CompanyStatusCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(CompanyStatusCode value) {
         this.code = value;
     }
 
@@ -55,7 +56,7 @@ public class CompanyStatusImpl
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(CompanyStatusCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else if (name.equals("name")) {
                 setName(XppUtils.getElementValueFromNode(parser));
             } else {
@@ -68,7 +69,9 @@ public class CompanyStatusImpl
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "status");
-        XppUtils.setElementValueToNode(element, "code", getCode());
+        if (getCode() != null) {
+            XppUtils.setElementValueToNode(element, "code", getCode().value());
+        }
         XppUtils.setElementValueToNode(element, "name", getName());
         
         

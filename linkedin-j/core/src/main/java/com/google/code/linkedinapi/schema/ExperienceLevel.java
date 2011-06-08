@@ -29,7 +29,19 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="0"/>
+ *               &lt;enumeration value="1"/>
+ *               &lt;enumeration value="2"/>
+ *               &lt;enumeration value="3"/>
+ *               &lt;enumeration value="4"/>
+ *               &lt;enumeration value="5"/>
+ *               &lt;enumeration value="6"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element ref="{}name"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,20 +61,20 @@ public interface ExperienceLevel
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ExperienceLevelCode }
      *     
      */
-    String getCode();
+    ExperienceLevelCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ExperienceLevelCode }
      *     
      */
-    void setCode(String value);
+    void setCode(ExperienceLevelCode value);
 
     /**
      * Gets the value of the name property.

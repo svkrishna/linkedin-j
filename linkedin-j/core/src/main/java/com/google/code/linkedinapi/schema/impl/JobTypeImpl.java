@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.JobType;
+import com.google.code.linkedinapi.schema.JobTypeCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -37,15 +38,15 @@ public class JobTypeImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected JobTypeCode code;
     @XmlElement(required = true)
     protected String name;
 
-    public String getCode() {
+    public JobTypeCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(JobTypeCode value) {
         this.code = value;
     }
 

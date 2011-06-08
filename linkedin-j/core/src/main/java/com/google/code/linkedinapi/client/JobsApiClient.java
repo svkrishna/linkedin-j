@@ -24,11 +24,14 @@ import com.google.code.linkedinapi.client.enumeration.FacetField;
 import com.google.code.linkedinapi.client.enumeration.JobField;
 import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
+import com.google.code.linkedinapi.schema.ExperienceLevelCode;
 import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobBookmarks;
 import com.google.code.linkedinapi.schema.JobSearch;
+import com.google.code.linkedinapi.schema.JobTypeCode;
 import com.google.code.linkedinapi.schema.Jobs;
+import com.google.code.linkedinapi.schema.RoleCode;
 
 /**
  * The Interface JobsApiClient.
@@ -52,11 +55,11 @@ public interface JobsApiClient extends LinkedInAuthenticationClient {
 		public JobBuilder withSkillsAndExperience(String skillsAndExperience);
 		public JobBuilder withJobFunctions(String... jobFunctions);
 		public JobBuilder withIndustries(String... industries);
-		public JobBuilder withType(String jobType);
-		public JobBuilder withExperienceLevel(String experienceLevel);
+		public JobBuilder withType(JobTypeCode jobType);
+		public JobBuilder withExperienceLevel(ExperienceLevelCode experienceLevel);
 		public JobBuilder withApplicationUrl(String applicationUrl);
 		public JobBuilder withPosterEmailAddress(String emailAddress);
-		public JobBuilder withPosterRole(String role);
+		public JobBuilder withPosterRole(RoleCode role);
 		public JobBuilder withSalary(String value);
 		public JobBuilder withReferralBonus(String value);
 		public JobBuilder withTrackingPixelUrl(String value);

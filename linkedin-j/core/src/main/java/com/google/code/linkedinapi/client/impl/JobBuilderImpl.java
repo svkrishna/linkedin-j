@@ -20,6 +20,7 @@ import com.google.code.linkedinapi.client.JobsApiClient.JobBuilder;
 import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.Country;
 import com.google.code.linkedinapi.schema.ExperienceLevel;
+import com.google.code.linkedinapi.schema.ExperienceLevelCode;
 import com.google.code.linkedinapi.schema.HowToApply;
 import com.google.code.linkedinapi.schema.Industries;
 import com.google.code.linkedinapi.schema.Industry;
@@ -27,10 +28,12 @@ import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobFunction;
 import com.google.code.linkedinapi.schema.JobFunctions;
 import com.google.code.linkedinapi.schema.JobType;
+import com.google.code.linkedinapi.schema.JobTypeCode;
 import com.google.code.linkedinapi.schema.Location;
 import com.google.code.linkedinapi.schema.Position;
 import com.google.code.linkedinapi.schema.Poster;
 import com.google.code.linkedinapi.schema.Role;
+import com.google.code.linkedinapi.schema.RoleCode;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
 
 /**
@@ -106,7 +109,7 @@ public class JobBuilderImpl implements JobBuilder {
 	}
 
 	@Override
-	public JobBuilder withExperienceLevel(String experienceLevel) {
+	public JobBuilder withExperienceLevel(ExperienceLevelCode experienceLevel) {
 		ExperienceLevel level = factory.createExperienceLevel();
 		level.setCode(experienceLevel);
 		getJobPosition().setExperienceLevel(level);
@@ -158,7 +161,7 @@ public class JobBuilderImpl implements JobBuilder {
 	}
 
 	@Override
-	public JobBuilder withPosterRole(String role) {
+	public JobBuilder withPosterRole(RoleCode role) {
 		Role r = factory.createRole();
 		r.setCode(role);
 		getJobPoster().setRole(r);
@@ -202,7 +205,7 @@ public class JobBuilderImpl implements JobBuilder {
 	}
 
 	@Override
-	public JobBuilder withType(String jobType) {
+	public JobBuilder withType(JobTypeCode jobType) {
 		JobType value = factory.createJobType();
 		value.setCode(jobType);
 		getJobPosition().setJobType(value);

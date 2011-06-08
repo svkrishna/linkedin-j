@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.CompanyType;
+import com.google.code.linkedinapi.schema.CompanyTypeCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -37,15 +38,15 @@ public class CompanyTypeImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected CompanyTypeCode code;
     @XmlElement(required = true)
     protected String name;
 
-    public String getCode() {
+    public CompanyTypeCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(CompanyTypeCode value) {
         this.code = value;
     }
 

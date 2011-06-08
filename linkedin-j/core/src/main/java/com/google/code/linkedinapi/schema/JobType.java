@@ -29,7 +29,17 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="F"/>
+ *               &lt;enumeration value="P"/>
+ *               &lt;enumeration value="C"/>
+ *               &lt;enumeration value="T"/>
+ *               &lt;enumeration value="O"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element ref="{}name"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,20 +59,20 @@ public interface JobType
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JobTypeCode }
      *     
      */
-    String getCode();
+    JobTypeCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JobTypeCode }
      *     
      */
-    void setCode(String value);
+    void setCode(JobTypeCode value);
 
     /**
      * Gets the value of the name property.

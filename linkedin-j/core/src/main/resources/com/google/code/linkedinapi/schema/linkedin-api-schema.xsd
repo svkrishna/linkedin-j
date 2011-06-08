@@ -293,7 +293,16 @@
   <xs:element name="role">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="H"/>
+				<xs:enumeration value="R"/>
+				<xs:enumeration value="S"/>
+				<xs:enumeration value="W"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -424,7 +433,15 @@
   <xs:element name="profile-field">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="description"/>
+				<xs:enumeration value="speciality"/>
+				<xs:enumeration value="logo"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -925,7 +942,17 @@
   <xs:element name="job-type">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="F"/>
+				<xs:enumeration value="P"/>
+				<xs:enumeration value="C"/>
+				<xs:enumeration value="T"/>
+				<xs:enumeration value="O"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
         <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
@@ -933,7 +960,19 @@
   <xs:element name="experience-level">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="0"/>
+			    <xs:enumeration value="1"/>
+			    <xs:enumeration value="2"/>
+				<xs:enumeration value="3"/>
+				<xs:enumeration value="4"/>
+				<xs:enumeration value="5"/>
+				<xs:enumeration value="6"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
         <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
@@ -970,7 +1009,17 @@
   </xs:element>
   <xs:complexType name="company-status">
     <xs:sequence>
-      <xs:element ref="code"/>
+       <xs:element name="code">
+		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="OPR"/>
+			<xs:enumeration value="OPS"/>
+			<xs:enumeration value="RRG"/>
+			<xs:enumeration value="OOB"/>
+			<xs:enumeration value="ACQ"/>
+		  </xs:restriction>
+		</xs:simpleType>
+       </xs:element>
       <xs:element ref="name"/>
     </xs:sequence>
   </xs:complexType>
@@ -996,7 +1045,20 @@
   <xs:element name="company-type">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="C"/>
+				<xs:enumeration value="D"/>
+				<xs:enumeration value="E"/>
+				<xs:enumeration value="G"/>
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="O"/>
+				<xs:enumeration value="P"/>
+				<xs:enumeration value="S"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
         <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
@@ -1005,7 +1067,19 @@
   <xs:element name="stock-exchange">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="ASE"/>
+				<xs:enumeration value="NYS"/>
+				<xs:enumeration value="NMS"/>
+				<xs:enumeration value="LSE"/>
+				<xs:enumeration value="FRA"/>
+				<xs:enumeration value="GER"/>
+				<xs:enumeration value="PAR"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
         <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
@@ -1581,6 +1655,14 @@
 				<xs:enumeration value="current-company"/>
 				<xs:enumeration value="past-company"/>
 				<xs:enumeration value="school"/>
+				<xs:enumeration value="company-size"/>
+				<xs:enumeration value="num-followers-range"/>
+				<xs:enumeration value="fortune"/>
+				<xs:enumeration value="company"/>
+				<xs:enumeration value="date-posted"/>
+				<xs:enumeration value="job-function"/>
+				<xs:enumeration value="experience-level"/>
+				<xs:enumeration value="salary"/>
 			  </xs:restriction>
 			</xs:simpleType>
 		</xs:element>

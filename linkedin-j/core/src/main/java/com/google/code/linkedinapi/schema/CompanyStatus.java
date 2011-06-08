@@ -29,7 +29,17 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="OPR"/>
+ *               &lt;enumeration value="OPS"/>
+ *               &lt;enumeration value="RRG"/>
+ *               &lt;enumeration value="OOB"/>
+ *               &lt;enumeration value="ACQ"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element ref="{}name"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,20 +59,20 @@ public interface CompanyStatus
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link CompanyStatusCode }
      *     
      */
-    String getCode();
+    CompanyStatusCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link CompanyStatusCode }
      *     
      */
-    void setCode(String value);
+    void setCode(CompanyStatusCode value);
 
     /**
      * Gets the value of the name property.

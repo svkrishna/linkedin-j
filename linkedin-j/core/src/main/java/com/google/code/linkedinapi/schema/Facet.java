@@ -40,6 +40,14 @@ package com.google.code.linkedinapi.schema;
  *               &lt;enumeration value="current-company"/>
  *               &lt;enumeration value="past-company"/>
  *               &lt;enumeration value="school"/>
+ *               &lt;enumeration value="company-size"/>
+ *               &lt;enumeration value="num-followers-range"/>
+ *               &lt;enumeration value="fortune"/>
+ *               &lt;enumeration value="company"/>
+ *               &lt;enumeration value="date-posted"/>
+ *               &lt;enumeration value="job-function"/>
+ *               &lt;enumeration value="experience-level"/>
+ *               &lt;enumeration value="salary"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>

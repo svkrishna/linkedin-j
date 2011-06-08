@@ -25,36 +25,32 @@ import java.util.Set;
  * @author Nabeel Mukhtar
  *
  */
-public enum SearchSortOrder implements FieldEnum {
+public enum SearchSortOrder implements FieldEnum, SearchEnum {
 	
 	
 	/**
 	 * Number of connections per person, from largest to smallest.
 	 */
-	CONNECTIONS("connections", EnumSet.of(Scope.PEOPLE)),
+	CONNECTIONS("connections", EnumSet.of(SearchScope.PEOPLE)),
 	
     /**
      * Orders the returns by number of ensorsers each of the search returns has.
      */
-    RECOMMENDERS("recommenders", EnumSet.of(Scope.PEOPLE)),
+    RECOMMENDERS("recommenders", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Orders the returns based on the ascending degree of separation within a member's network, with first degree connections first.
      */
-    DISTANCE("distance", EnumSet.of(Scope.PEOPLE)),
+    DISTANCE("distance", EnumSet.of(SearchScope.PEOPLE)),
     
-    RELATIONSHIP("relationship", EnumSet.of(Scope.COMPANIES)),
-    FOLLOWERS("followers", EnumSet.of(Scope.COMPANIES)),
-    COMPANY_SIZE("company-size", EnumSet.of(Scope.COMPANIES)),
+    RELATIONSHIP("relationship", EnumSet.of(SearchScope.COMPANIES)),
+    FOLLOWERS("followers", EnumSet.of(SearchScope.COMPANIES)),
+    COMPANY_SIZE("company-size", EnumSet.of(SearchScope.COMPANIES)),
 
     /**
      * Orders the returns based on relevance for the keywords provided.
      */
-    RELEVANCE("relevance", EnumSet.of(Scope.PEOPLE, Scope.COMPANIES));
-    
-    public enum Scope {
-    	PEOPLE, COMPANIES, JOBS;
-    }
+    RELEVANCE("relevance", EnumSet.of(SearchScope.PEOPLE, SearchScope.COMPANIES));
     
     /**
      * Field Description.
@@ -69,7 +65,7 @@ public enum SearchSortOrder implements FieldEnum {
 	
     /** Field description */
     private final String fieldName;
-    private final Set<Scope> scopes;
+    private final Set<SearchScope> scopes;
 
     /**
      * Constructs ...
@@ -77,7 +73,7 @@ public enum SearchSortOrder implements FieldEnum {
      *
      * @param name
      */
-    SearchSortOrder(String name, Set<Scope> scopes) {
+    SearchSortOrder(String name, Set<SearchScope> scopes) {
         this.fieldName = name;
         this.scopes = scopes;
     }
@@ -100,7 +96,7 @@ public enum SearchSortOrder implements FieldEnum {
         return fieldName();
     }
 
-    public boolean hasScope(Scope scope) {
+    public boolean hasScope(SearchScope scope) {
     	return scopes.contains(scope);
     }
     

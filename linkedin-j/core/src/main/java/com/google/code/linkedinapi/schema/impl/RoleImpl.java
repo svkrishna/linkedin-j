@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.Role;
+import com.google.code.linkedinapi.schema.RoleCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -36,13 +37,13 @@ public class RoleImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected RoleCode code;
 
-    public String getCode() {
+    public RoleCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(RoleCode value) {
         this.code = value;
     }
 

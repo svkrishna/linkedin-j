@@ -36,6 +36,14 @@ import javax.xml.bind.annotation.XmlEnumValue;
  *     &lt;enumeration value="current-company"/>
  *     &lt;enumeration value="past-company"/>
  *     &lt;enumeration value="school"/>
+ *     &lt;enumeration value="company-size"/>
+ *     &lt;enumeration value="num-followers-range"/>
+ *     &lt;enumeration value="fortune"/>
+ *     &lt;enumeration value="company"/>
+ *     &lt;enumeration value="date-posted"/>
+ *     &lt;enumeration value="job-function"/>
+ *     &lt;enumeration value="experience-level"/>
+ *     &lt;enumeration value="salary"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -57,7 +65,23 @@ public enum FacetType {
     @XmlEnumValue("past-company")
     PAST_COMPANY("past-company"),
     @XmlEnumValue("school")
-    SCHOOL("school");
+    SCHOOL("school"),
+    @XmlEnumValue("company-size")
+    COMPANY_SIZE("company-size"),
+    @XmlEnumValue("num-followers-range")
+    NUM_FOLLOWERS_RANGE("num-followers-range"),
+    @XmlEnumValue("fortune")
+    FORTUNE("fortune"),
+    @XmlEnumValue("company")
+    COMPANY("company"),
+    @XmlEnumValue("date-posted")
+    DATE_POSTED("date-posted"),
+    @XmlEnumValue("job-function")
+    JOB_FUNCTION("job-function"),
+    @XmlEnumValue("experience-level")
+    EXPERIENCE_LEVEL("experience-level"),
+    @XmlEnumValue("salary")
+    SALARY("salary");
     private final String value;
 
     FacetType(String v) {

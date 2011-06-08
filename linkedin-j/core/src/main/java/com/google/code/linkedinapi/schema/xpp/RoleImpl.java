@@ -24,19 +24,20 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Role;
+import com.google.code.linkedinapi.schema.RoleCode;
 
 public class RoleImpl
 	extends BaseSchemaEntity implements Role
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected RoleCode code;
 
-    public String getCode() {
+    public RoleCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(RoleCode value) {
         this.code = value;
     }
 
@@ -46,7 +47,7 @@ public class RoleImpl
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(RoleCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -57,8 +58,9 @@ public class RoleImpl
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "role");
-        XppUtils.setElementValueToNode(element, "code", getCode());
-        
+        if (getCode() != null) {
+            XppUtils.setElementValueToNode(element, "code", getCode().value());
+        }
         
         serializer.endTag(null, "role");
     }

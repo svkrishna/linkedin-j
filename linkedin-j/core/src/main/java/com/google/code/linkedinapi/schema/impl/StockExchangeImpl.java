@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.StockExchange;
+import com.google.code.linkedinapi.schema.StockExchangeCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -37,15 +38,15 @@ public class StockExchangeImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected StockExchangeCode code;
     @XmlElement(required = true)
     protected String name;
 
-    public String getCode() {
+    public StockExchangeCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(StockExchangeCode value) {
         this.code = value;
     }
 

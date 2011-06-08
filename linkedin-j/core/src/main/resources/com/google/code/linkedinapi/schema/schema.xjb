@@ -91,6 +91,14 @@
 			<typesafeEnumMember name="CURRENT_COMPANY" value="current-company"/>
 			<typesafeEnumMember name="PAST_COMPANY" value="past-company"/>
 			<typesafeEnumMember name="SCHOOL" value="school"/>
+			<typesafeEnumMember name="COMPANY_SIZE" value="company-size"/>
+			<typesafeEnumMember name="NUM_FOLLOWERS_RANGE" value="num-followers-range"/>
+			<typesafeEnumMember name="FORTUNE" value="fortune"/>
+			<typesafeEnumMember name="COMPANY" value="company"/>
+			<typesafeEnumMember name="DATE_POSTED" value="date-posted"/>
+			<typesafeEnumMember name="JOB_FUNCTION" value="job-function"/>
+			<typesafeEnumMember name="EXPERIENCE_LEVEL" value="experience-level"/>
+			<typesafeEnumMember name="SALARY" value="salary"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='visibility']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
@@ -98,6 +106,73 @@
 			<typesafeEnumMember name="ANYONE" value="anyone"/>
 			<typesafeEnumMember name="ALL_MEMBERS" value="all-members"/>
 			<typesafeEnumMember name="CONNECTIONS_ONLY" value="connections-only"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='role']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="RoleCode">
+			<typesafeEnumMember name="HIRING_MANAGER" value="H"/>
+			<typesafeEnumMember name="COMPANY_RECRUITER" value="R"/>
+			<typesafeEnumMember name="STAFFING_FIRM" value="S"/>
+			<typesafeEnumMember name="COMPANY_EMPLOYEE" value="W"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='profile-field']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="ProfileFieldCode">
+			<typesafeEnumMember name="DESCRIPTION" value="description"/>
+			<typesafeEnumMember name="SPECIALITY" value="speciality"/>
+			<typesafeEnumMember name="LOGO" value="logo"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='job-type']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="JobTypeCode">
+			<typesafeEnumMember name="FULL_TIME" value="F"/>
+			<typesafeEnumMember name="PART_TIME" value="P"/>
+			<typesafeEnumMember name="CONTRACT" value="C"/>
+			<typesafeEnumMember name="TEMPORARY" value="T"/>
+			<typesafeEnumMember name="OTHER" value="O"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='experience-level']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="ExperienceLevelCode">
+			<typesafeEnumMember name="NOT_APPLICABLE" value="0"/>
+			<typesafeEnumMember name="INTERNSHIP" value="1"/>
+			<typesafeEnumMember name="ENTRY_LEVEL" value="2"/>
+			<typesafeEnumMember name="ASSOCIATE" value="3"/>
+			<typesafeEnumMember name="MID_SENIOR_LEVEL" value="4"/>
+			<typesafeEnumMember name="DIRECTOR" value="5"/>
+			<typesafeEnumMember name="EXECUTIVE" value="6"/>			
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:complexType[@name='company-status']/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="CompanyStatusCode">
+			<typesafeEnumMember name="OPERATING" value="OPR"/>
+			<typesafeEnumMember name="OPERATING_SUBSIDIARY" value="OPS"/>
+			<typesafeEnumMember name="REORGANIZING" value="RRG"/>
+			<typesafeEnumMember name="OUT_OF_BUSINESS" value="OOB"/>
+			<typesafeEnumMember name="ACQUIRED" value="ACQ"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='company-type']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="CompanyTypeCode">
+			<typesafeEnumMember name="PUBLIC_COMPANY" value="C"/>
+			<typesafeEnumMember name="EDUCATIONAL" value="D"/>
+			<typesafeEnumMember name="SELF_EMPLOYED" value="E"/>
+			<typesafeEnumMember name="GOVT_AGENCY" value="G"/>
+			<typesafeEnumMember name="NON_PROFIT" value="N"/>
+			<typesafeEnumMember name="SELF_OWNED" value="O"/>
+			<typesafeEnumMember name="PRIVATELY_HELD" value="P"/>
+			<typesafeEnumMember name="PARTNERSHIP" value="S"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='stock-exchange']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="StockExchangeCode">
+			<typesafeEnumMember name="AMERICAN_STOCK_EXCHANGE" value="ASE"/>
+			<typesafeEnumMember name="NEWYORK_STOCK_EXCHANGE" value="NYS"/>
+			<typesafeEnumMember name="NASDAQ" value="NMS"/>
+			<typesafeEnumMember name="LONDON_STOCK_EXCHANGE" value="LSE"/>
+			<typesafeEnumMember name="FRANKFURT_STOCK_EXCHANGE" value="FRA"/>
+			<typesafeEnumMember name="XETRA_TRADING_PLATFORM" value="GER"/>
+			<typesafeEnumMember name="EURONEXT_PARIS" value="PAR"/>
 		</typesafeEnumClass>
 	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">

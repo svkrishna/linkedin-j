@@ -24,20 +24,21 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.JobType;
+import com.google.code.linkedinapi.schema.JobTypeCode;
 
 public class JobTypeImpl
     extends BaseSchemaEntity implements JobType
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected JobTypeCode code;
     protected String name;
 
-    public String getCode() {
+    public JobTypeCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(JobTypeCode value) {
         this.code = value;
     }
 
@@ -55,7 +56,7 @@ public class JobTypeImpl
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(JobTypeCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else if (name.equals("name")) {
                 setName(XppUtils.getElementValueFromNode(parser));
             } else {
@@ -68,7 +69,9 @@ public class JobTypeImpl
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "job-type");
-        XppUtils.setElementValueToNode(element, "code", getCode());
+        if (getCode() != null) {
+            XppUtils.setElementValueToNode(element, "code", getCode().value());
+        }
         XppUtils.setElementValueToNode(element, "name", getName());
         
         serializer.endTag(null, "job-type");

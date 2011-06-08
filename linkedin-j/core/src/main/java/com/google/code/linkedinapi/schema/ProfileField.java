@@ -29,7 +29,15 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="description"/>
+ *               &lt;enumeration value="speciality"/>
+ *               &lt;enumeration value="logo"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,19 +56,19 @@ public interface ProfileField
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ProfileFieldCode }
      *     
      */
-    String getCode();
+    ProfileFieldCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ProfileFieldCode }
      *     
      */
-    void setCode(String value);
+    void setCode(ProfileFieldCode value);
 
 }

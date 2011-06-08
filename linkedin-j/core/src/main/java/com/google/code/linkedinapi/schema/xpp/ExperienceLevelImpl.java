@@ -24,20 +24,21 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.ExperienceLevel;
+import com.google.code.linkedinapi.schema.ExperienceLevelCode;
 
 public class ExperienceLevelImpl
     extends BaseSchemaEntity implements ExperienceLevel
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected ExperienceLevelCode code;
     protected String name;
 
-    public String getCode() {
+    public ExperienceLevelCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(ExperienceLevelCode value) {
         this.code = value;
     }
 
@@ -55,7 +56,7 @@ public class ExperienceLevelImpl
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(ExperienceLevelCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else if (name.equals("name")) {
                 setName(XppUtils.getElementValueFromNode(parser));
             } else {
@@ -68,7 +69,9 @@ public class ExperienceLevelImpl
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
         XmlSerializer element = serializer.startTag(null, "experience-level");
-        XppUtils.setElementValueToNode(element, "code", getCode());
+        if (getCode() != null) {
+            XppUtils.setElementValueToNode(element, "code", getCode().value());
+        }
         XppUtils.setElementValueToNode(element, "name", getName());
         
         

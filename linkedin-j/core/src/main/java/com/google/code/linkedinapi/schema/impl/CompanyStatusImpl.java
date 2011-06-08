@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.CompanyStatus;
+import com.google.code.linkedinapi.schema.CompanyStatusCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "company-status", propOrder = {
@@ -35,15 +36,15 @@ public class CompanyStatusImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected CompanyStatusCode code;
     @XmlElement(required = true)
     protected String name;
 
-    public String getCode() {
+    public CompanyStatusCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(CompanyStatusCode value) {
         this.code = value;
     }
 

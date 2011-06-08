@@ -25,91 +25,87 @@ import java.util.Set;
  * @author Nabeel Mukhtar
  *
  */
-public enum SearchParameter implements FieldEnum {
+public enum SearchParameter implements FieldEnum, SearchEnum {
 
     /**
      * Returns members who have keywords anywhere in their profile. Multiple words should be separated by a plus (+) sign. Boolean logic isn't supported in this parameter.
      */
-    KEYWORDS("keywords", EnumSet.of(Scope.PEOPLE, Scope.COMPANIES, Scope.JOBS)),
+    KEYWORDS("keywords", EnumSet.of(SearchScope.PEOPLE, SearchScope.COMPANIES, SearchScope.JOBS)),
 
     /**
      * Members with a matching first name. Matches must be exact. Multiple words should be separated by a space.
      */
-    FIRST_NAME("first-name", EnumSet.of(Scope.PEOPLE)),
+    FIRST_NAME("first-name", EnumSet.of(SearchScope.PEOPLE)),
     
     /**
      * Members with a matching last name. Matches must be exactly. Multiple words should be separated by a space.
      */
-    LAST_NAME("last-name", EnumSet.of(Scope.PEOPLE)),    
+    LAST_NAME("last-name", EnumSet.of(SearchScope.PEOPLE)),    
 
     /**
      * Returns members who have a particular company name on their profile. company works with the current-company parameter which specifies whether the company must be a current company or whether it can be anywhere on a profile.
      */
-    COMPANY_NAME("company-name", EnumSet.of(Scope.PEOPLE, Scope.JOBS)),
+    COMPANY_NAME("company-name", EnumSet.of(SearchScope.PEOPLE, SearchScope.JOBS)),
 
     /**
      * Valid values are true or false.
      */
-    CURRENT_COMPANY("current-company", EnumSet.of(Scope.PEOPLE)),
+    CURRENT_COMPANY("current-company", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Returns members who have a particular title on their profile
      */
-    TITLE("title", EnumSet.of(Scope.PEOPLE)),
+    TITLE("title", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Valid values are true or false.
      */
-    CURRENT_TITLE("current-title", EnumSet.of(Scope.PEOPLE)),
+    CURRENT_TITLE("current-title", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Members who have a matching school name on their profile.
      */
-    SCHOOL_NAME("school-name", EnumSet.of(Scope.PEOPLE)),
+    SCHOOL_NAME("school-name", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Valid values are true or false. A value of true matches members who currently attend the school specified in the school-name parameter.
      */
-    CURRENT_SCHOOL("current-school", EnumSet.of(Scope.PEOPLE)),
+    CURRENT_SCHOOL("current-school", EnumSet.of(SearchScope.PEOPLE)),
     
     /**
      * Returns members within a specific country.
      */
-    COUNTRY_CODE("country-code", EnumSet.of(Scope.PEOPLE, Scope.JOBS)),
+    COUNTRY_CODE("country-code", EnumSet.of(SearchScope.PEOPLE, SearchScope.JOBS)),
 
     /**
      * Returns members within a specific postal code.
      */
-    POSTAL_CODE("postal-code", EnumSet.of(Scope.PEOPLE, Scope.JOBS)),
+    POSTAL_CODE("postal-code", EnumSet.of(SearchScope.PEOPLE, SearchScope.JOBS)),
 
     /**
      * Matches members within a distance from a central point. This is measured in miles.
      */
-    DISTANCE("distance", EnumSet.of(Scope.PEOPLE, Scope.JOBS)),
+    DISTANCE("distance", EnumSet.of(SearchScope.PEOPLE, SearchScope.JOBS)),
     
     /**
      * Matching companies by the headquarters location.
      */
-    HEADQUARTER("hq-only", EnumSet.of(Scope.COMPANIES)),
+    HEADQUARTER("hq-only", EnumSet.of(SearchScope.COMPANIES)),
     
     /**
      * Matches jobs with the same job title.
      */
-    JOB_TITLE("job-title", EnumSet.of(Scope.JOBS)),
+    JOB_TITLE("job-title", EnumSet.of(SearchScope.JOBS)),
     
     /**
      * Facet values to search over.
      */
-    FACET("facet", EnumSet.of(Scope.PEOPLE, Scope.COMPANIES, Scope.JOBS)),
+    FACET("facet", EnumSet.of(SearchScope.PEOPLE, SearchScope.COMPANIES, SearchScope.JOBS)),
     
     /**
      * Facet buckets to return.
      */
-    FACETS("facets", EnumSet.of(Scope.PEOPLE, Scope.COMPANIES, Scope.JOBS));
-    
-    public enum Scope {
-    	PEOPLE, COMPANIES, JOBS;
-    }
+    FACETS("facets", EnumSet.of(SearchScope.PEOPLE, SearchScope.COMPANIES, SearchScope.JOBS));
     
     /**
      * Field Description.
@@ -124,7 +120,7 @@ public enum SearchParameter implements FieldEnum {
     
     /** Field description */
     private final String fieldName;
-    private final Set<Scope> scopes;
+    private final Set<SearchScope> scopes;
 
     /**
      * Constructs ...
@@ -132,7 +128,7 @@ public enum SearchParameter implements FieldEnum {
      *
      * @param name
      */
-    SearchParameter(String name, Set<Scope> scopes) {
+    SearchParameter(String name, Set<SearchScope> scopes) {
         this.fieldName = name;
         this.scopes = scopes;
     }
@@ -155,7 +151,7 @@ public enum SearchParameter implements FieldEnum {
         return fieldName();
     }
     
-    public boolean hasScope(Scope scope) {
+    public boolean hasScope(SearchScope scope) {
     	return scopes.contains(scope);
     }
 
