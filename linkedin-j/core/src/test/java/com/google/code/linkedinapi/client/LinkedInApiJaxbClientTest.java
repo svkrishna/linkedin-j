@@ -23,19 +23,28 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.google.code.linkedinapi.client.constant.TestConstants;
+import com.google.code.linkedinapi.client.enumeration.CompanyField;
 import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.FacetField;
+import com.google.code.linkedinapi.client.enumeration.JobField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
+import com.google.code.linkedinapi.client.enumeration.ProductField;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.client.impl.LinkedInApiJaxbClient;
+import com.google.code.linkedinapi.schema.Companies;
+import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Job;
+import com.google.code.linkedinapi.schema.JobBookmarks;
+import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.Products;
 import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.VisibilityType;
 
@@ -514,4 +523,144 @@ public class LinkedInApiJaxbClientTest extends LinkedInApiClientTest {
 		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Share URL"), shareUrl);
 		client.postShare(shareText, shareText, shareUrl, null, VisibilityType.CONNECTIONS_ONLY);
 	}
+	
+	
+	@Test
+	public void testBookmarkJob() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Job ID"), TestConstants.LINKED_IN_TEST_JOB_ID);
+		client.bookmarkJob(TestConstants.LINKED_IN_TEST_JOB_ID);
+	}
+
+	@Test
+	public void testCloseJob() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetJobBookmarksSetOfJobField() {
+		JobBookmarks jobBookmarks = client.getJobBookmarks(EnumSet.allOf(JobField.class));
+		assertNotNull("Job Bookmarks should not be null.", jobBookmarks);
+	}
+
+	@Test
+	public void testGetJobByIdStringSetOfJobField() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Job ID"), TestConstants.LINKED_IN_TEST_JOB_ID);
+		Job job = client.getJobById(TestConstants.LINKED_IN_TEST_JOB_ID, EnumSet.allOf(JobField.class));
+		assertNotNull("Job should not be null.", job);
+	}
+
+	@Test
+	public void testGetJobSuggestionsSetOfJobField() {
+		Jobs jobSuggestions = client.getJobSuggestions(EnumSet.allOf(JobField.class));
+		assertNotNull("Job suggestions should not be null.", jobSuggestions);
+	}
+
+	@Test
+	public void testPostJob() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchJobsMapOfSearchParameterStringSetOfJobFieldIntIntSearchSortOrder() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchJobsMapOfSearchParameterStringSetOfJobFieldIntIntSearchSortOrderListOfParameterOfFacetTypeString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchJobsMapOfSearchParameterStringSetOfJobFieldSetOfFacetFieldIntIntSearchSortOrder() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchJobsMapOfSearchParameterStringSetOfJobFieldSetOfFacetFieldIntIntSearchSortOrderListOfParameterOfFacetTypeString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUnbookmarkJob() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Job ID"), TestConstants.LINKED_IN_TEST_JOB_ID);
+		client.unbookmarkJob(TestConstants.LINKED_IN_TEST_JOB_ID);
+	}
+
+	@Test
+	public void testUpdateJob() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFollowCompany() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company ID"), TestConstants.LINKED_IN_TEST_COMPANY_ID);
+		client.followCompany(TestConstants.LINKED_IN_TEST_COMPANY_ID);
+	}
+
+	@Test
+	public void testGetCompaniesByEmailDomainStringSetOfCompanyField() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company Email Domain"), TestConstants.LINKED_IN_TEST_COMPANY_EMAIL_DOMAIN);
+		Companies companies = client.getCompaniesByEmailDomain(TestConstants.LINKED_IN_TEST_COMPANY_EMAIL_DOMAIN, EnumSet.allOf(CompanyField.class));
+		assertNotNull("Companies should not be null or empty.", companies);
+	}
+
+	@Test
+	public void testGetCompanyByIdStringSetOfCompanyField() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company ID"), TestConstants.LINKED_IN_TEST_COMPANY_ID);
+		Company company = client.getCompanyById(TestConstants.LINKED_IN_TEST_COMPANY_ID, EnumSet.allOf(CompanyField.class));
+		assertNotNull("Company should not be null or empty.", company);
+	}
+
+	@Test
+	public void testGetCompanyByUniversalNameStringSetOfCompanyField() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company Name"), TestConstants.LINKED_IN_TEST_COMPANY_NAME);
+		Company company = client.getCompanyByUniversalName(TestConstants.LINKED_IN_TEST_COMPANY_NAME, EnumSet.allOf(CompanyField.class));
+		assertNotNull("Company should not be null or empty.", company);
+	}
+
+	@Test
+	public void testGetCompanyProductsStringSetOfProductFieldIntInt() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company ID"), TestConstants.LINKED_IN_TEST_COMPANY_ID);
+		Products products = client.getCompanyProducts(TestConstants.LINKED_IN_TEST_COMPANY_ID, EnumSet.allOf(ProductField.class), 1, 5);
+		assertNotNull("Products should not be null or empty.", products);
+	}
+
+	@Test
+	public void testGetFollowedCompaniesSetOfCompanyField() {
+		Companies companies = client.getFollowedCompanies(EnumSet.allOf(CompanyField.class));
+		assertNotNull("Companies should not be null or empty.", companies);
+	}
+
+	@Test
+	public void testGetSuggestedCompaniesSetOfCompanyField() {
+		Companies companies = client.getSuggestedCompanies(EnumSet.allOf(CompanyField.class));
+		assertNotNull("Companies should not be null or empty.", companies);
+	}
+
+	@Test
+	public void testSearchCompaniesMapOfSearchParameterStringSetOfCompanyFieldIntIntSearchSortOrder() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchCompaniesMapOfSearchParameterStringSetOfCompanyFieldIntIntSearchSortOrderListOfParameterOfFacetTypeString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchCompaniesMapOfSearchParameterStringSetOfCompanyFieldSetOfFacetFieldIntIntSearchSortOrder() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSearchCompaniesMapOfSearchParameterStringSetOfCompanyFieldSetOfFacetFieldIntIntSearchSortOrderListOfParameterOfFacetTypeString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUnfollowCompany() {
+		assertNotNullOrEmpty(String.format(RESOURCE_MISSING_MESSAGE, "Company ID"), TestConstants.LINKED_IN_TEST_COMPANY_ID);
+		client.unfollowCompany(TestConstants.LINKED_IN_TEST_COMPANY_ID);
+	}
+	
 }

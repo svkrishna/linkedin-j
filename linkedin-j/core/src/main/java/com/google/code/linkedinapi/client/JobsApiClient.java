@@ -28,6 +28,7 @@ import com.google.code.linkedinapi.schema.ExperienceLevelCode;
 import com.google.code.linkedinapi.schema.FacetType;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobBookmarks;
+import com.google.code.linkedinapi.schema.JobFunctionCode;
 import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.JobTypeCode;
 import com.google.code.linkedinapi.schema.Jobs;
@@ -53,7 +54,7 @@ public interface JobsApiClient extends LinkedInAuthenticationClient {
 		public JobBuilder withPostalCode(String postalCode);
 		public JobBuilder withLocation(String location);
 		public JobBuilder withSkillsAndExperience(String skillsAndExperience);
-		public JobBuilder withJobFunctions(String... jobFunctions);
+		public JobBuilder withJobFunctions(JobFunctionCode... jobFunctions);
 		public JobBuilder withIndustries(String... industries);
 		public JobBuilder withType(JobTypeCode jobType);
 		public JobBuilder withExperienceLevel(ExperienceLevelCode experienceLevel);

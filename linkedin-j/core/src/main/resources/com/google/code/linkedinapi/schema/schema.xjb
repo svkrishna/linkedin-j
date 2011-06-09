@@ -175,6 +175,44 @@
 			<typesafeEnumMember name="EURONEXT_PARIS" value="PAR"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='job-function']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="JobFunctionCode">
+			<typesafeEnumMember name="ACCOUNTING_AUDITING" value="acct"/>
+			<typesafeEnumMember name="ADMINISTRATIVE" value="adm"/>
+			<typesafeEnumMember name="ADVERTISING" value="advr"/>
+			<typesafeEnumMember name="ANALYST" value="anls"/>
+			<typesafeEnumMember name="ART_CREATIVE" value="art"/>
+			<typesafeEnumMember name="BUSINESS_DEVELOPMENT" value="bd"/>
+			<typesafeEnumMember name="CONSULTING" value="cnsl"/>
+			<typesafeEnumMember name="CUSTOMER_SERVICE" value="cust"/>
+			<typesafeEnumMember name="DISTRIBUTION" value="dist"/>
+			<typesafeEnumMember name="DESIGN" value="dsgn"/>
+			<typesafeEnumMember name="EDUCATION" value="edu"/>
+			<typesafeEnumMember name="ENGINEERING" value="eng"/>
+			<typesafeEnumMember name="FINANCE" value="fin"/>
+			<typesafeEnumMember name="GENERAL_BUSINESS" value="genb"/>
+			<typesafeEnumMember name="HUMAN_RESOURCES" value="hr"/>
+			<typesafeEnumMember name="INFORMATION_TECHNOLOGY" value="it"/>
+			<typesafeEnumMember name="LEGAL" value="lgl"/>
+			<typesafeEnumMember name="MANAGEMENT" value="mgmt"/>
+			<typesafeEnumMember name="MANUFACTURING" value="mnfc"/>
+			<typesafeEnumMember name="MARKETING" value="mrkt"/>
+			<typesafeEnumMember name="OTHER" value="othr"/>
+			<typesafeEnumMember name="PUBLIC_RELATIONS" value="pr"/>
+			<typesafeEnumMember name="PURCHASING" value="prch"/>
+			<typesafeEnumMember name="PRODUCT_MANAGEMENT" value="prdm"/>
+			<typesafeEnumMember name="PROJECT_MANAGEMENT" value="prjm"/>
+			<typesafeEnumMember name="PRODUCTION" value="prod"/>
+			<typesafeEnumMember name="QUALITY_ASSURANCE" value="qa"/>
+			<typesafeEnumMember name="RESEARCH" value="rsch"/>
+			<typesafeEnumMember name="SALES" value="sale"/>
+			<typesafeEnumMember name="SCIENCE" value="sci"/>
+			<typesafeEnumMember name="STRATEGY_PLANNING" value="stra"/>
+			<typesafeEnumMember name="SUPPLY_CHAIN" value="supl"/>
+			<typesafeEnumMember name="TRAINING" value="trng"/>
+			<typesafeEnumMember name="WRITING_EDITING" value="wrt"/>
+		</typesafeEnumClass>
+	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>

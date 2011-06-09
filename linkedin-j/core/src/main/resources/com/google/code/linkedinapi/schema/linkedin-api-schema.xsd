@@ -927,7 +927,46 @@
   <xs:element name="job-function">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="acct"/>
+				<xs:enumeration value="adm"/>
+				<xs:enumeration value="advr"/>
+				<xs:enumeration value="anls"/>
+				<xs:enumeration value="art"/>
+				<xs:enumeration value="bd"/>
+				<xs:enumeration value="cnsl"/>
+				<xs:enumeration value="cust"/>
+				<xs:enumeration value="dist"/>
+				<xs:enumeration value="dsgn"/>
+				<xs:enumeration value="edu"/>
+				<xs:enumeration value="eng"/>
+				<xs:enumeration value="fin"/>
+				<xs:enumeration value="genb"/>
+				<xs:enumeration value="hr"/>
+				<xs:enumeration value="it"/>
+				<xs:enumeration value="lgl"/>
+				<xs:enumeration value="mgmt"/>
+				<xs:enumeration value="mnfc"/>
+				<xs:enumeration value="mrkt"/>
+				<xs:enumeration value="othr"/>
+				<xs:enumeration value="pr"/>
+				<xs:enumeration value="prch"/>
+				<xs:enumeration value="prdm"/>
+				<xs:enumeration value="prjm"/>
+				<xs:enumeration value="prod"/>
+				<xs:enumeration value="qa"/>
+				<xs:enumeration value="rsch"/>
+				<xs:enumeration value="sale"/>
+				<xs:enumeration value="sci"/>
+				<xs:enumeration value="stra"/>
+				<xs:enumeration value="supl"/>
+				<xs:enumeration value="trng"/>
+				<xs:enumeration value="wrt"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
 		<xs:element ref="name"/>        
       </xs:sequence>
     </xs:complexType>

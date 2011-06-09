@@ -26,6 +26,7 @@ import com.google.code.linkedinapi.schema.Industries;
 import com.google.code.linkedinapi.schema.Industry;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.JobFunction;
+import com.google.code.linkedinapi.schema.JobFunctionCode;
 import com.google.code.linkedinapi.schema.JobFunctions;
 import com.google.code.linkedinapi.schema.JobType;
 import com.google.code.linkedinapi.schema.JobTypeCode;
@@ -127,8 +128,8 @@ public class JobBuilderImpl implements JobBuilder {
 	}
 
 	@Override
-	public JobBuilder withJobFunctions(String... jobFunctions) {
-		for (String jobFunction : jobFunctions) {
+	public JobBuilder withJobFunctions(JobFunctionCode... jobFunctions) {
+		for (JobFunctionCode jobFunction : jobFunctions) {
 			JobFunction function = factory.createJobFunction();
 			function.setCode(jobFunction);
 			getJobFunctions().getJobFunctionList().add(function);

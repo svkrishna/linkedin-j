@@ -16,6 +16,60 @@
  */
 package com.google.code.linkedinapi.client.enumeration;
 
-public enum SearchScope {
-	PEOPLE, COMPANIES, JOBS;
+import java.util.HashMap;
+import java.util.Map;
+
+public enum SearchScope implements FieldEnum {
+	PEOPLE("people"), COMPANIES("companies"), JOBS("jobs");
+	
+    /**
+     * Field Description.
+     */
+	private static final Map<String, SearchScope> stringToEnum = new HashMap<String, SearchScope>();
+
+	static { // Initialize map from constant name to enum constant
+		for (SearchScope op : values()) {
+			stringToEnum.put(op.fieldName(), op);
+		}
+	}
+
+    /** Field description */
+    private final String fieldName;
+
+    /**
+     * Constructs ...
+     *
+     *
+     * @param name
+     */
+    SearchScope(String name) {
+        this.fieldName = name;
+    }
+
+    /**
+     * @return the name of the field
+     */
+    public String fieldName() {
+        return this.fieldName;
+    }
+
+    /**
+     * Method description
+     *
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return fieldName();
+    }
+
+	/**
+	 *
+	 * @return Returns ProfileType for string, or null if string is invalid
+	 */
+	public static SearchScope fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
+	
 }

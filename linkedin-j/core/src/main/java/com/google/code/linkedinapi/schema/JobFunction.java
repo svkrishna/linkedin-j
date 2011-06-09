@@ -29,7 +29,46 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}code"/>
+ *         &lt;element name="code">
+ *           &lt;simpleType>
+ *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               &lt;enumeration value="acct"/>
+ *               &lt;enumeration value="adm"/>
+ *               &lt;enumeration value="advr"/>
+ *               &lt;enumeration value="anls"/>
+ *               &lt;enumeration value="art"/>
+ *               &lt;enumeration value="bd"/>
+ *               &lt;enumeration value="cnsl"/>
+ *               &lt;enumeration value="cust"/>
+ *               &lt;enumeration value="dist"/>
+ *               &lt;enumeration value="dsgn"/>
+ *               &lt;enumeration value="edu"/>
+ *               &lt;enumeration value="eng"/>
+ *               &lt;enumeration value="fin"/>
+ *               &lt;enumeration value="genb"/>
+ *               &lt;enumeration value="hr"/>
+ *               &lt;enumeration value="it"/>
+ *               &lt;enumeration value="lgl"/>
+ *               &lt;enumeration value="mgmt"/>
+ *               &lt;enumeration value="mnfc"/>
+ *               &lt;enumeration value="mrkt"/>
+ *               &lt;enumeration value="othr"/>
+ *               &lt;enumeration value="pr"/>
+ *               &lt;enumeration value="prch"/>
+ *               &lt;enumeration value="prdm"/>
+ *               &lt;enumeration value="prjm"/>
+ *               &lt;enumeration value="prod"/>
+ *               &lt;enumeration value="qa"/>
+ *               &lt;enumeration value="rsch"/>
+ *               &lt;enumeration value="sale"/>
+ *               &lt;enumeration value="sci"/>
+ *               &lt;enumeration value="stra"/>
+ *               &lt;enumeration value="supl"/>
+ *               &lt;enumeration value="trng"/>
+ *               &lt;enumeration value="wrt"/>
+ *             &lt;/restriction>
+ *           &lt;/simpleType>
+ *         &lt;/element>
  *         &lt;element ref="{}name"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,20 +88,20 @@ public interface JobFunction
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JobFunctionCode }
      *     
      */
-    String getCode();
+    JobFunctionCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JobFunctionCode }
      *     
      */
-    void setCode(String value);
+    void setCode(JobFunctionCode value);
 
     /**
      * Gets the value of the name property.

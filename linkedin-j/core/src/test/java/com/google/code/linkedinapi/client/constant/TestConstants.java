@@ -148,6 +148,14 @@ public final class TestConstants {
 	public static final String LINKED_IN_TEST_SHARE_URL =
         testConstants.getProperty("com.google.code.linkedinapi.client.testShareUrl");
 	
+	public static final String LINKED_IN_TEST_COMPANY_ID =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testCompanyId");
+	public static final String LINKED_IN_TEST_COMPANY_NAME =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testCompanyName");
+	public static final String LINKED_IN_TEST_COMPANY_EMAIL_DOMAIN =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testCompanyEmailDomain");
+	public static final String LINKED_IN_TEST_JOB_ID =
+        testConstants.getProperty("com.google.code.linkedinapi.client.testJobId");
     /**
      * Constructs ...
      *
