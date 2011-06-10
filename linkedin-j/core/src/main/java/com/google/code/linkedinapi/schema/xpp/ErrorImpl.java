@@ -38,6 +38,7 @@ public class ErrorImpl
     protected Long timestamp;
     protected String errorCode;
     protected String message;
+    protected String requestId;
 
     public Long getStatus() {
         return status;
@@ -70,6 +71,14 @@ public class ErrorImpl
     public void setMessage(String value) {
         this.message = value;
     }
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String value) {
+        this.requestId = value;
+    }
+    
 
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
@@ -86,6 +95,8 @@ public class ErrorImpl
         		setErrorCode(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("message")) {
         		setMessage(XppUtils.getElementValueFromNode(parser));
+            } else if (name.equals("request-id")) {
+        		setRequestId(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -100,6 +111,7 @@ public class ErrorImpl
 		XppUtils.setElementValueToNode(element, "status", getStatus());
 		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		XppUtils.setElementValueToNode(element, "error-code", getErrorCode());
+		XppUtils.setElementValueToNode(element, "request-id", getRequestId());
 		XppUtils.setElementValueToNode(element, "message", getMessage());
 		serializer.endTag(null, "error");
 	}

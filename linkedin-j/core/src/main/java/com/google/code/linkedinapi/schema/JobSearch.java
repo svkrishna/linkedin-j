@@ -30,6 +30,7 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}jobs"/>
+ *         &lt;element ref="{}facets"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,5 +63,25 @@ public interface JobSearch
      *     
      */
     void setJobs(Jobs value);
+
+    /**
+     * Gets the value of the facets property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Facets }
+     *     
+     */
+    Facets getFacets();
+
+    /**
+     * Sets the value of the facets property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Facets }
+     *     
+     */
+    void setFacets(Facets value);
 
 }

@@ -33,6 +33,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}timestamp"/>
  *         &lt;element ref="{}error-code"/>
  *         &lt;element ref="{}message"/>
+ *         &lt;element ref="{}request-id"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -125,5 +126,25 @@ public interface Error
      *     
      */
     void setMessage(String value);
+
+    /**
+     * Gets the value of the requestId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getRequestId();
+
+    /**
+     * Sets the value of the requestId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setRequestId(String value);
 
 }

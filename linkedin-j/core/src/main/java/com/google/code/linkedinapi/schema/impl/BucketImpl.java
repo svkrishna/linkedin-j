@@ -31,7 +31,8 @@ import com.google.code.linkedinapi.schema.Bucket;
 @XmlType(name = "", propOrder = {
     "name",
     "code",
-    "count"
+    "count",
+    "selected"
 })
 @XmlRootElement(name = "bucket")
 public class BucketImpl
@@ -46,6 +47,7 @@ public class BucketImpl
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long count;
+    protected Boolean selected;
 
     public String getName() {
         return name;
@@ -69,6 +71,14 @@ public class BucketImpl
 
     public void setCount(Long value) {
         this.count = value;
+    }
+
+    public Boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean value) {
+        this.selected = value;
     }
 
 }

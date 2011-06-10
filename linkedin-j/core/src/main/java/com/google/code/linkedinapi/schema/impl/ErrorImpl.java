@@ -32,7 +32,8 @@ import com.google.code.linkedinapi.schema.Error;
     "status",
     "timestamp",
     "errorCode",
-    "message"
+    "message",
+    "requestId"
 })
 @XmlRootElement(name = "error")
 public class ErrorImpl
@@ -50,6 +51,8 @@ public class ErrorImpl
     protected String errorCode;
     @XmlElement(required = true)
     protected String message;
+    @XmlElement(name = "request-id", required = true)
+    protected String requestId;
 
     public Long getStatus() {
         return status;
@@ -81,6 +84,14 @@ public class ErrorImpl
 
     public void setMessage(String value) {
         this.message = value;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String value) {
+        this.requestId = value;
     }
 
 }

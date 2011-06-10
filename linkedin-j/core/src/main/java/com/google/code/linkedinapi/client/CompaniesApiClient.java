@@ -16,6 +16,7 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +36,7 @@ import com.google.code.linkedinapi.schema.Products;
  * The Interface CompaniesApiClient.
  */
 public interface CompaniesApiClient extends LinkedInAuthenticationClient {
+    public static final Set<FacetType> COMPANY_FACETS = EnumSet.of(FacetType.LOCATION, FacetType.INDUSTRY, FacetType.NETWORK, FacetType.COMPANY_SIZE, FacetType.NUM_FOLLOWERS_RANGE, FacetType.FORTUNE);
 	
 	/**
 	 * Gets the company by id.

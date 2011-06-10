@@ -26,11 +26,13 @@
         <xs:element ref="timestamp"/>
         <xs:element ref="error-code"/>
         <xs:element ref="message"/>
+        <xs:element ref="request-id"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="error-code" type="xs:string"/>
   <xs:element name="message" type="xs:string"/>
+  <xs:element name="request-id" type="xs:string"/>
   <xs:element name="mailbox-item">
     <xs:complexType>
       <xs:sequence>
@@ -1161,6 +1163,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="jobs"/>
+        <xs:element ref="facets"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1722,10 +1725,12 @@
       <xs:sequence>
         <xs:element ref="name"/>
         <xs:element ref="code"/>
-        <xs:element ref="count"/>		  
+        <xs:element ref="count"/>
+		<xs:element minOccurs="0" ref="selected"/>        		  
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="selected" type="xs:boolean"/>
   <xs:element name="share">
     <xs:complexType>
 		<xs:sequence>

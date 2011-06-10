@@ -17,6 +17,7 @@
 package com.google.code.linkedinapi.client;
 
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,6 +39,10 @@ import com.google.code.linkedinapi.schema.Person;
  * The Interface PeopleApiClient.
  */
 public interface PeopleApiClient extends LinkedInAuthenticationClient {
+	
+    /** Field description */
+    public static final Set<ProfileField> CONNECTION_FIELDS = ProfileField.valuesForConnections();
+    public static final Set<FacetType> PEOPLE_FACETS = EnumSet.of(FacetType.LOCATION, FacetType.INDUSTRY, FacetType.NETWORK, FacetType.LANGUAGE, FacetType.CURRENT_COMPANY, FacetType.PAST_COMPANY, FacetType.SCHOOL);
 
     // Profile API. Return Profile bean
 

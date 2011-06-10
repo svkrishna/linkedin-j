@@ -23,6 +23,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
+import com.google.code.linkedinapi.schema.Facets;
 import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.Jobs;
 
@@ -32,6 +33,7 @@ public class JobSearchImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     protected JobsImpl jobs;
+    protected FacetsImpl facets;
 
     public Jobs getJobs() {
         return jobs;
@@ -39,6 +41,14 @@ public class JobSearchImpl
 
     public void setJobs(Jobs value) {
         this.jobs = ((JobsImpl) value);
+    }
+    
+    public Facets getFacets() {
+        return facets;
+    }
+
+    public void setFacets(Facets value) {
+        this.facets = ((FacetsImpl) value);
     }
 
     @Override
@@ -50,6 +60,10 @@ public class JobSearchImpl
                 JobsImpl node = new JobsImpl();
                 node.init(parser);
                 setJobs(node);
+            } else if (name.equals("facets")) {
+                FacetsImpl node = new FacetsImpl();
+                node.init(parser);
+                setFacets(node);
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -62,6 +76,9 @@ public class JobSearchImpl
         serializer.startTag(null, "job-search");
         if (getJobs() != null) {
             ((JobsImpl) getJobs()).toXml(serializer);
+        }
+        if (getFacets() != null) {
+            ((FacetsImpl) getFacets()).toXml(serializer);
         }
         
         serializer.endTag(null, "job-search");

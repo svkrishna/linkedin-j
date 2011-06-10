@@ -16,6 +16,7 @@
  */
 package com.google.code.linkedinapi.client;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,33 +39,211 @@ import com.google.code.linkedinapi.schema.RoleCode;
  * The Interface JobsApiClient.
  */
 public interface JobsApiClient extends LinkedInAuthenticationClient {
-	
+    
+    /** The Constant JOB_FACETS. */
+    public static final Set<FacetType> JOB_FACETS = EnumSet.of(FacetType.COMPANY, FacetType.DATE_POSTED, FacetType.LOCATION, FacetType.JOB_FUNCTION, FacetType.INDUSTRY, FacetType.EXPERIENCE_LEVEL, FacetType.SALARY);
+
 	/**
 	 * The Interface JobBuilder.
 	 */
 	public static interface JobBuilder {
 		
+		/**
+		 * With partner job id.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withPartnerJobId(String value);
+		
+		/**
+		 * With contract id.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withContractId(Long value);
+		
+		/**
+		 * With customer job code.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withCustomerJobCode(String value);
+		
+		/**
+		 * With company.
+		 * 
+		 * @param companyId the company id
+		 * @param companyName the company name
+		 * @param description the description
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withCompany(String companyId, String companyName, String description);
+		
+		/**
+		 * With title.
+		 * 
+		 * @param jobTitle the job title
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withTitle(String jobTitle);
+		
+		/**
+		 * With description.
+		 * 
+		 * @param jobDescription the job description
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withDescription(String jobDescription);
+		
+		/**
+		 * With country.
+		 * 
+		 * @param country the country
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withCountry(String country);
+		
+		/**
+		 * With postal code.
+		 * 
+		 * @param postalCode the postal code
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withPostalCode(String postalCode);
+		
+		/**
+		 * With location.
+		 * 
+		 * @param location the location
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withLocation(String location);
+		
+		/**
+		 * With skills and experience.
+		 * 
+		 * @param skillsAndExperience the skills and experience
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withSkillsAndExperience(String skillsAndExperience);
+		
+		/**
+		 * With job functions.
+		 * 
+		 * @param jobFunctions the job functions
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withJobFunctions(JobFunctionCode... jobFunctions);
+		
+		/**
+		 * With industries.
+		 * 
+		 * @param industries the industries
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withIndustries(String... industries);
+		
+		/**
+		 * With type.
+		 * 
+		 * @param jobType the job type
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withType(JobTypeCode jobType);
+		
+		/**
+		 * With experience level.
+		 * 
+		 * @param experienceLevel the experience level
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withExperienceLevel(ExperienceLevelCode experienceLevel);
+		
+		/**
+		 * With application url.
+		 * 
+		 * @param applicationUrl the application url
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withApplicationUrl(String applicationUrl);
+		
+		/**
+		 * With poster email address.
+		 * 
+		 * @param emailAddress the email address
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withPosterEmailAddress(String emailAddress);
+		
+		/**
+		 * With poster role.
+		 * 
+		 * @param role the role
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withPosterRole(RoleCode role);
+		
+		/**
+		 * With salary.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withSalary(String value);
+		
+		/**
+		 * With referral bonus.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withReferralBonus(String value);
+		
+		/**
+		 * With tracking pixel url.
+		 * 
+		 * @param value the value
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withTrackingPixelUrl(String value);
+		
+		/**
+		 * With renewal.
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withRenewal();
+		
+		/**
+		 * With display poster.
+		 * 
+		 * @param display the display
+		 * 
+		 * @return the job builder
+		 */
 		public JobBuilder withDisplayPoster(Boolean display);
 		
 		/**

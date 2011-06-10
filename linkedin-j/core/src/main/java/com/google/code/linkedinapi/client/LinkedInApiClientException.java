@@ -27,6 +27,7 @@ public class LinkedInApiClientException extends RuntimeException {
 	private int statusCode;
 	private String errorCode;
 	private Date timestamp;
+	private String requestId;
 
     /**
 	 *
@@ -79,7 +80,7 @@ public class LinkedInApiClientException extends RuntimeException {
      * @param message
      * @param cause
      */
-    public LinkedInApiClientException(String message, int statusCode , String errorCode, Date timestamp) {
+    public LinkedInApiClientException(String message, int statusCode , String errorCode, Date timestamp, String requestId) {
         super(message);
         this.statusCode = statusCode;
         this.errorCode = errorCode;
@@ -126,5 +127,19 @@ public class LinkedInApiClientException extends RuntimeException {
 	 */
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	/**
+	 * @return the requestId
+	 */
+	public String getRequestId() {
+		return requestId;
+	}
+
+	/**
+	 * @param requestId the requestId to set
+	 */
+	public void setRequestId(String requestId) {
+		this.requestId = requestId;
 	}
 }

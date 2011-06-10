@@ -32,6 +32,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}name"/>
  *         &lt;element ref="{}code"/>
  *         &lt;element ref="{}count"/>
+ *         &lt;element ref="{}selected" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -104,5 +105,25 @@ public interface Bucket
      *     
      */
     void setCount(Long value);
+
+    /**
+     * Gets the value of the selected property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    Boolean isSelected();
+
+    /**
+     * Sets the value of the selected property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    void setSelected(Boolean value);
 
 }

@@ -111,9 +111,6 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     private static final Charset UTF_8_CHAR_SET = Charset.forName(ApplicationConstants.CONTENT_ENCODING);
     
     /** Field description */
-    protected static final Set<ProfileField> CONNECTION_FIELDS = ProfileField.valuesForConnections();
-
-    /** Field description */
     private final SchemaElementFactory<?> OBJECT_FACTORY = createObjectFactory();
 
     /** The static logger. */
@@ -1333,6 +1330,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("search parameters", searchParameters);
         assertNotNullOrEmpty("facets", facets);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -1352,6 +1350,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -1372,6 +1371,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
@@ -1392,6 +1392,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
@@ -1414,6 +1415,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("profile fields", profileFields);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, profileFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -1435,6 +1437,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, profileFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -1457,6 +1460,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
@@ -1479,6 +1483,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE);
         String                apiUrl  =
@@ -1583,6 +1588,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("profile fields", profileFields);
         assertNotNull("facet fields", facetFields);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, profileFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -1604,6 +1610,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, profileFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -1626,6 +1633,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE_FACETS);
         String                apiUrl  =
@@ -1648,6 +1656,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.PEOPLE);
+        filterFacets(facets, PEOPLE_FACETS, SearchScope.PEOPLE);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_PEOPLE_FACETS);
         String                apiUrl  =
@@ -2212,6 +2221,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("search parameters", searchParameters);
         assertNotNullOrEmpty("facets", facets);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -2231,6 +2241,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -2251,6 +2262,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  =
@@ -2271,6 +2283,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  =
@@ -2293,6 +2306,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("job fields", jobFields);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, jobFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -2314,6 +2328,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, jobFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -2336,6 +2351,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  =
@@ -2358,6 +2374,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS);
         String                apiUrl  =
@@ -2462,6 +2479,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("job fields", jobFields);
         assertNotNull("facet fields", facetFields);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, jobFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -2483,6 +2501,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, jobFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -2505,6 +2524,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
         String                apiUrl  =
@@ -2527,6 +2547,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.JOBS);
+        filterFacets(facets, JOB_FACETS, SearchScope.JOBS);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_JOBS_FACETS);
         String                apiUrl  =
@@ -2886,6 +2907,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("search parameters", searchParameters);
         assertNotNullOrEmpty("facets", facets);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -2905,6 +2927,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -2925,6 +2948,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  =
@@ -2945,6 +2969,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  =
@@ -2967,6 +2992,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("company fields", companyFields);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, companyFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -2988,6 +3014,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, companyFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -3010,6 +3037,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  =
@@ -3032,6 +3060,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES);
         String                apiUrl  =
@@ -3136,6 +3165,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNull("company fields", companyFields);
         assertNotNull("facet fields", facetFields);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, companyFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).buildUrl();
@@ -3157,6 +3187,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, companyFields).withFieldEnumSet(ParameterNames.FACET_FIELDS, facetFields).withParameterEnumMap(searchParameters).withFacets(facets).withParameter(ParameterNames.START,
@@ -3179,6 +3210,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertNotNullOrEmpty("facets", facets);
         assertNotNull("sort order", sortOrder);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
         String                apiUrl  =
@@ -3201,6 +3233,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         assertPositiveNumber("start", start);
         assertPositiveNumber("count", count);
         filterSearchParameters(searchParameters, SearchScope.COMPANIES);
+        filterFacets(facets, COMPANY_FACETS, SearchScope.COMPANIES);
 
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.SEARCH_COMPANIES_FACETS);
         String                apiUrl  =
@@ -3422,6 +3455,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     protected LinkedInApiClientException createLinkedInApiClientException(Error error) {
         final String message    = error.getMessage();
         final String errorCode  = error.getErrorCode();
+        final String requestId  = error.getRequestId();
         final int    statusCode = (error.getStatus() == null)
                                   ? 0
                                   : error.getStatus().intValue();
@@ -3429,7 +3463,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                                   ? new Date()
                                   : new Date(error.getTimestamp());
 
-        return new LinkedInApiClientException(message, statusCode, errorCode, timestamp);
+        return new LinkedInApiClientException(message, statusCode, errorCode, timestamp, requestId);
     }
 
     /**
@@ -3518,6 +3552,18 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     			iter.remove();
     		}
 		}
+    }
+    
+    protected void filterFacets(List<Parameter<FacetType, String>> facets, Set<FacetType> allowedFacets, SearchScope scope) {
+    	Iterator<Parameter<FacetType, String>> iter = facets.iterator();
+    	while (iter.hasNext()) {
+    		Parameter<FacetType, String> facet = iter.next();
+    		if (!allowedFacets.contains(facet.getName())) {
+    			LOG.warning("Facet " + facet.getName() + " is not valid for scope " + scope 
+    					+ ". It will be dropped from the criteria.");
+    			iter.remove();
+    		}
+    	}
     }
     
 	/**

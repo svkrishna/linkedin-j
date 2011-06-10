@@ -34,6 +34,7 @@ public class BucketImpl
     protected String name;
     protected String code;
     protected Long count;
+    protected Boolean selected;
 
     public String getName() {
         return name;
@@ -58,6 +59,14 @@ public class BucketImpl
     public void setCount(Long value) {
         this.count = value;
     }
+    
+    public Boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean value) {
+        this.selected = value;
+    }
 
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
@@ -72,6 +81,8 @@ public class BucketImpl
         		setName(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("count")) {
         		setCount(XppUtils.getElementValueAsLongFromNode(parser));
+            } else if (name.equals("selected")) {
+        		setSelected(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -86,6 +97,7 @@ public class BucketImpl
 		XppUtils.setElementValueToNode(element, "name", getName());
 		XppUtils.setElementValueToNode(element, "code", getCode());
 		XppUtils.setElementValueToNode(element, "count", getCount());
+		XppUtils.setElementValueToNode(element, "selected", isSelected());
 		serializer.endTag(null, "bucket");
 	}
 }
