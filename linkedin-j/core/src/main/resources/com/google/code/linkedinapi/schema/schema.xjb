@@ -213,6 +213,20 @@
 			<typesafeEnumMember name="WRITING_EDITING" value="wrt"/>
 		</typesafeEnumClass>
 	</bindings>
+	
+	<bindings node="//xs:element[@name='membership-state']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="MembershipStateCode">
+			<typesafeEnumMember name="BLOCKED" value="blocked"/>
+			<typesafeEnumMember name="NON_MEMBER" value="non-member"/>
+			<typesafeEnumMember name="AWAITING_CONFIRMATION" value="awaiting-confirmation"/>
+			<typesafeEnumMember name="AWAITING_PARENT_GROUP_CONFIRMATION" value="awaiting-parent-group-confirmation"/>
+			<typesafeEnumMember name="MEMBER" value="member"/>
+			<typesafeEnumMember name="MODERATOR" value="moderator"/>
+			<typesafeEnumMember name="MANAGER" value="manager"/>
+			<typesafeEnumMember name="OWNER" value="owner"/>
+		</typesafeEnumClass>
+	</bindings>
+	
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>
@@ -344,5 +358,17 @@
 	</bindings>
 	<bindings node="//xs:element[@name='sales-persons']/xs:complexType/xs:sequence/xs:element[@ref='person']">
 		<property name="personList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='posts']/xs:complexType/xs:sequence/xs:element[@ref='post']">
+		<property name="postList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='comments']/xs:complexType/xs:sequence/xs:element[@ref='comment']">
+		<property name="commentList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='available-actions']/xs:complexType/xs:sequence/xs:element[@ref='action']">
+		<property name="actionList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='group-memberships']/xs:complexType/xs:sequence/xs:element[@ref='group-membership']">
+		<property name="groupMembershipList"/>
 	</bindings>
 </bindings>

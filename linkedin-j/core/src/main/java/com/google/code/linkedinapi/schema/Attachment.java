@@ -29,12 +29,11 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}related-connections"/>
- *         &lt;element ref="{}distance"/>
- *         &lt;element ref="{}membership-state" minOccurs="0"/>
- *         &lt;element ref="{}is-following"/>
- *         &lt;element ref="{}is-liked"/>
- *         &lt;element ref="{}available-actions" minOccurs="0"/>
+ *         &lt;element ref="{}summary"/>
+ *         &lt;element ref="{}title"/>
+ *         &lt;element ref="{}content-domain"/>
+ *         &lt;element ref="{}content-url"/>
+ *         &lt;element ref="{}image-url"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,113 +42,109 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface RelationToViewer
+public interface Attachment
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the relatedConnections property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RelatedConnections }
-     *     
-     */
-    RelatedConnections getRelatedConnections();
-
-    /**
-     * Sets the value of the relatedConnections property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelatedConnections }
-     *     
-     */
-    void setRelatedConnections(RelatedConnections value);
-
-    /**
-     * Gets the value of the distance property.
+     * Gets the value of the summary property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    Long getDistance();
+    String getSummary();
 
     /**
-     * Sets the value of the distance property.
+     * Sets the value of the summary property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setDistance(Long value);
+    void setSummary(String value);
 
     /**
-     * Gets the value of the membershipState property.
+     * Gets the value of the title property.
      * 
      * @return
      *     possible object is
-     *     {@link MembershipState }
+     *     {@link String }
      *     
      */
-    MembershipState getMembershipState();
+    String getTitle();
 
     /**
-     * Sets the value of the membershipState property.
+     * Sets the value of the title property.
      * 
      * @param value
      *     allowed object is
-     *     {@link MembershipState }
+     *     {@link String }
      *     
      */
-    void setMembershipState(MembershipState value);
+    void setTitle(String value);
 
     /**
-     * Gets the value of the isFollowing property.
-     * 
-     */
-    boolean isIsFollowing();
-
-    /**
-     * Sets the value of the isFollowing property.
-     * 
-     */
-    void setIsFollowing(boolean value);
-
-    /**
-     * Gets the value of the isLiked property.
-     * 
-     */
-    boolean isIsLiked();
-
-    /**
-     * Sets the value of the isLiked property.
-     * 
-     */
-    void setIsLiked(boolean value);
-
-    /**
-     * Gets the value of the availableActions property.
+     * Gets the value of the contentDomain property.
      * 
      * @return
      *     possible object is
-     *     {@link AvailableActions }
+     *     {@link String }
      *     
      */
-    AvailableActions getAvailableActions();
+    String getContentDomain();
 
     /**
-     * Sets the value of the availableActions property.
+     * Sets the value of the contentDomain property.
      * 
      * @param value
      *     allowed object is
-     *     {@link AvailableActions }
+     *     {@link String }
      *     
      */
-    void setAvailableActions(AvailableActions value);
+    void setContentDomain(String value);
+
+    /**
+     * Gets the value of the contentUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getContentUrl();
+
+    /**
+     * Sets the value of the contentUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setContentUrl(String value);
+
+    /**
+     * Gets the value of the imageUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getImageUrl();
+
+    /**
+     * Sets the value of the imageUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setImageUrl(String value);
 
 }

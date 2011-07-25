@@ -164,6 +164,71 @@
 	  </xs:restriction>
 	</xs:simpleType>
   </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+          <xs:element ref="short-description"/>
+          <xs:element ref="description"/>
+          <xs:element ref="relation-to-viewer"/>
+          <xs:element ref="counts-by-category"/>
+          <xs:element ref="is-open-to-non-members"/>
+          <xs:element ref="category"/>
+          <xs:element ref="site-group-url"/>
+          <xs:element ref="contact-email"/>
+          <xs:element ref="locale"/>
+          <xs:element ref="allow-member-invites"/>
+          <xs:element ref="small-logo-url"/>
+          <xs:element ref="large-logo-url"/>
+          <xs:element ref="posts"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="short-description" type="xs:string"/>
+  <xs:element name="counts-by-category">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="count-for-category"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="count-for-category">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="category"/>
+        <xs:element ref="count"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-open-to-non-members" type="xs:boolean"/>
+  <xs:element name="site-group-url" type="xs:anyURI"/>
+  <xs:element name="locale" type="xs:NCName"/>
+  <xs:element name="allow-member-invites" type="xs:boolean"/>
+  <xs:element name="small-logo-url" type="xs:anyURI"/>
+  <xs:element name="large-logo-url" type="xs:anyURI"/>
+  <xs:element name="membership-state">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="blocked"/>
+				<xs:enumeration value="non-member"/>
+				<xs:enumeration value="awaiting-confirmation"/>
+				<xs:enumeration value="awaiting-parent-group-confirmation"/>
+				<xs:enumeration value="member"/>
+				<xs:enumeration value="moderator"/>
+				<xs:enumeration value="manager"/>
+				<xs:enumeration value="owner"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contact-email" type="xs:string"/>
   <xs:element name="update-content">
     <xs:complexType>
       <xs:sequence>
@@ -202,6 +267,75 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="posts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="post"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="post">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="type"/>
+        <xs:element minOccurs="0" ref="category"/>
+        <xs:element ref="creation-timestamp"/>
+        <xs:element ref="creator"/>
+        <xs:element ref="summary"/>
+        <xs:element ref="title"/>
+        <xs:element ref="likes"/>
+        <xs:element ref="relation-to-viewer"/>
+        <xs:element ref="attachment"/>
+        <xs:element ref="comments"/>
+        <xs:element minOccurs="0" ref="site-group-post-url"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="category">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="creator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="id"/>
+        <xs:element ref="first-name"/>
+        <xs:element ref="last-name"/>
+        <xs:element ref="headline"/>
+        <xs:element ref="picture-url"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attachment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="summary"/>
+        <xs:element ref="title"/>
+        <xs:element ref="content-domain"/>
+        <xs:element ref="content-url"/>
+        <xs:element ref="image-url"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="content-domain" type="xs:NCName"/>
+  <xs:element name="content-url" type="xs:anyURI"/>
+  <xs:element name="image-url" type="xs:anyURI"/>
+  <xs:element name="comments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="comment"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="site-group-post-url" type="xs:anyURI"/>
   <xs:element name="job">
     <xs:complexType>
       <xs:sequence>
@@ -856,7 +990,20 @@
       <xs:sequence>
         <xs:element ref="related-connections"/>
         <xs:element ref="distance"/>
+        <xs:element minOccurs="0" ref="membership-state"/>
+        <xs:element ref="is-following"/>
+        <xs:element ref="is-liked"/>
+        <xs:element minOccurs="0" ref="available-actions"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="is-following" type="xs:boolean"/>
+  <xs:element name="available-actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="action"/>
+      </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="interests" type="xs:string"/>
@@ -1129,6 +1276,43 @@
   <xs:element name="blog-rss-url" type="xs:anyURI"/>
   <xs:element name="twitter-id" type="xs:string"/>
   <xs:element name="square-logo-url" type="xs:anyURI"/>
+  <xs:element name="group-memberships">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="group-membership"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group-membership">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="group"/>
+        <xs:element ref="person"/>
+        <xs:element ref="membership-state"/>
+        <xs:element ref="contact-email"/>
+        <xs:element ref="show-group-logo-in-profile"/>
+        <xs:element ref="allow-messages-from-members"/>
+        <xs:element ref="email-digest-frequency"/>
+        <xs:element ref="email-announcements-from-managers"/>
+        <xs:element ref="email-for-every-new-post"/>
+      </xs:sequence>
+      <xs:attribute name="key" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="show-group-logo-in-profile" type="xs:boolean"/>
+  <xs:element name="allow-messages-from-members" type="xs:boolean"/>
+  <xs:element name="email-digest-frequency">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="email-announcements-from-managers" type="xs:boolean"/>
+  <xs:element name="email-for-every-new-post" type="xs:boolean"/>
   <xs:element name="job-bookmarks">
     <xs:complexType>
       <xs:sequence>

@@ -29,12 +29,11 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}related-connections"/>
- *         &lt;element ref="{}distance"/>
- *         &lt;element ref="{}membership-state" minOccurs="0"/>
- *         &lt;element ref="{}is-following"/>
- *         &lt;element ref="{}is-liked"/>
- *         &lt;element ref="{}available-actions" minOccurs="0"/>
+ *         &lt;element ref="{}id" minOccurs="0"/>
+ *         &lt;element ref="{}first-name"/>
+ *         &lt;element ref="{}last-name"/>
+ *         &lt;element ref="{}headline"/>
+ *         &lt;element ref="{}picture-url"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,113 +42,109 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface RelationToViewer
+public interface Creator
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the relatedConnections property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RelatedConnections }
-     *     
-     */
-    RelatedConnections getRelatedConnections();
-
-    /**
-     * Sets the value of the relatedConnections property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RelatedConnections }
-     *     
-     */
-    void setRelatedConnections(RelatedConnections value);
-
-    /**
-     * Gets the value of the distance property.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    Long getDistance();
+    String getId();
 
     /**
-     * Sets the value of the distance property.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    void setDistance(Long value);
+    void setId(String value);
 
     /**
-     * Gets the value of the membershipState property.
+     * Gets the value of the firstName property.
      * 
      * @return
      *     possible object is
-     *     {@link MembershipState }
+     *     {@link String }
      *     
      */
-    MembershipState getMembershipState();
+    String getFirstName();
 
     /**
-     * Sets the value of the membershipState property.
+     * Sets the value of the firstName property.
      * 
      * @param value
      *     allowed object is
-     *     {@link MembershipState }
+     *     {@link String }
      *     
      */
-    void setMembershipState(MembershipState value);
+    void setFirstName(String value);
 
     /**
-     * Gets the value of the isFollowing property.
-     * 
-     */
-    boolean isIsFollowing();
-
-    /**
-     * Sets the value of the isFollowing property.
-     * 
-     */
-    void setIsFollowing(boolean value);
-
-    /**
-     * Gets the value of the isLiked property.
-     * 
-     */
-    boolean isIsLiked();
-
-    /**
-     * Sets the value of the isLiked property.
-     * 
-     */
-    void setIsLiked(boolean value);
-
-    /**
-     * Gets the value of the availableActions property.
+     * Gets the value of the lastName property.
      * 
      * @return
      *     possible object is
-     *     {@link AvailableActions }
+     *     {@link String }
      *     
      */
-    AvailableActions getAvailableActions();
+    String getLastName();
 
     /**
-     * Sets the value of the availableActions property.
+     * Sets the value of the lastName property.
      * 
      * @param value
      *     allowed object is
-     *     {@link AvailableActions }
+     *     {@link String }
      *     
      */
-    void setAvailableActions(AvailableActions value);
+    void setLastName(String value);
+
+    /**
+     * Gets the value of the headline property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getHeadline();
+
+    /**
+     * Sets the value of the headline property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setHeadline(String value);
+
+    /**
+     * Gets the value of the pictureUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getPictureUrl();
+
+    /**
+     * Sets the value of the pictureUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setPictureUrl(String value);
 
 }
