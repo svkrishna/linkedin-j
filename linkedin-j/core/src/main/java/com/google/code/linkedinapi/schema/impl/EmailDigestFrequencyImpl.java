@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.google.code.linkedinapi.schema.EmailDigestFrequency;
+import com.google.code.linkedinapi.schema.EmailDigestFrequencyCode;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -36,13 +37,13 @@ public class EmailDigestFrequencyImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
-    protected String code;
+    protected EmailDigestFrequencyCode code;
 
-    public String getCode() {
+    public EmailDigestFrequencyCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(EmailDigestFrequencyCode value) {
         this.code = value;
     }
 

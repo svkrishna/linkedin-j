@@ -24,19 +24,20 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.EmailDigestFrequency;
+import com.google.code.linkedinapi.schema.EmailDigestFrequencyCode;
 
 public class EmailDigestFrequencyImpl
 extends BaseSchemaEntity    implements EmailDigestFrequency
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected EmailDigestFrequencyCode code;
 
-    public String getCode() {
+    public EmailDigestFrequencyCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(EmailDigestFrequencyCode value) {
         this.code = value;
     }
 
@@ -46,7 +47,7 @@ extends BaseSchemaEntity    implements EmailDigestFrequency
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(EmailDigestFrequencyCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);

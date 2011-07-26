@@ -23,9 +23,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Category;
 import com.google.code.linkedinapi.schema.CountsByCategory;
 import com.google.code.linkedinapi.schema.Group;
+import com.google.code.linkedinapi.schema.GroupCategory;
 import com.google.code.linkedinapi.schema.Posts;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 
@@ -41,7 +41,7 @@ extends BaseSchemaEntity    implements Group
     protected RelationToViewerImpl relationToViewer;
     protected CountsByCategoryImpl countsByCategory;
     protected boolean isOpenToNonMembers;
-    protected CategoryImpl category;
+    protected GroupCategoryImpl category;
     protected String siteGroupUrl;
     protected String contactEmail;
     protected String locale;
@@ -106,12 +106,12 @@ extends BaseSchemaEntity    implements Group
         this.isOpenToNonMembers = value;
     }
 
-    public Category getCategory() {
+    public GroupCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category value) {
-        this.category = ((CategoryImpl) value);
+    public void setCategory(GroupCategory value) {
+        this.category = ((GroupCategoryImpl) value);
     }
 
     public String getSiteGroupUrl() {
@@ -194,7 +194,7 @@ extends BaseSchemaEntity    implements Group
             } else if (name.equals("is-open-to-non-members")) {
                 setIsOpenToNonMembers(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
             } else if (name.equals("category")) {
-                CategoryImpl node = new CategoryImpl();
+            	GroupCategoryImpl node = new GroupCategoryImpl();
                 node.init(parser);
                 setCategory(node);
             } else if (name.equals("site-group-url")) {
@@ -235,7 +235,7 @@ extends BaseSchemaEntity    implements Group
         }
         XppUtils.setElementValueToNode(element, "is-open-to-non-members", String.valueOf(isIsOpenToNonMembers()));
         if (getCategory() != null) {
-            ((CategoryImpl) getCategory()).toXml(serializer);
+            ((GroupCategoryImpl) getCategory()).toXml(serializer);
         }
         XppUtils.setElementValueToNode(element, "site-group-url", getSiteGroupUrl());
         XppUtils.setElementValueToNode(element, "contact-email", getContactEmail());

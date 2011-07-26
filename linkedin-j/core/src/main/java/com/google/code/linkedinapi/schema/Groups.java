@@ -30,22 +30,10 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="comment" maxOccurs="unbounded" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element ref="{}creation-timestamp"/>
- *                   &lt;element ref="{}creator"/>
- *                   &lt;element ref="{}id"/>
- *                   &lt;element ref="{}relation-to-viewer"/>
- *                   &lt;element ref="{}text"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
+ *         &lt;element ref="{}group" maxOccurs="unbounded"/>
  *       &lt;/sequence>
+ *       &lt;attribute name="count" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *       &lt;attribute name="start" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *       &lt;attribute name="total" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -54,34 +42,74 @@ import java.util.List;
  * 
  * 
  */
-public interface Comments
+public interface Groups
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the commentList property.
+     * Gets the value of the groupList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the commentList property.
+     * This is why there is not a <CODE>set</CODE> method for the groupList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCommentList().add(newItem);
+     *    getGroupList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Comment }
+     * {@link Group }
      * 
      * 
      */
-    List<Comment> getCommentList();
+    List<Group> getGroupList();
+
+    /**
+     * Gets the value of the count property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getCount();
+
+    /**
+     * Sets the value of the count property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setCount(Long value);
+
+    /**
+     * Gets the value of the start property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getStart();
+
+    /**
+     * Sets the value of the start property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setStart(Long value);
 
     /**
      * Gets the value of the total property.

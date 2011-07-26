@@ -174,7 +174,7 @@
           <xs:element ref="relation-to-viewer"/>
           <xs:element ref="counts-by-category"/>
           <xs:element ref="is-open-to-non-members"/>
-          <xs:element ref="category"/>
+		  <xs:element name="category" type="GroupCategory"/>
           <xs:element ref="site-group-url"/>
           <xs:element ref="contact-email"/>
           <xs:element ref="locale"/>
@@ -295,10 +295,37 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:complexType name="GroupCategory">
+      <xs:sequence>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="alumni"/>
+				<xs:enumeration value="corporate"/>
+				<xs:enumeration value="conference"/>
+				<xs:enumeration value="network"/>
+				<xs:enumeration value="philanthropic"/>
+				<xs:enumeration value="professional"/>
+				<xs:enumeration value="other"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+  </xs:complexType>
+  
   <xs:element name="category">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="discussion"/>
+				<xs:enumeration value="job"/>
+				<xs:enumeration value="promotion"/>
+				<xs:enumeration value="linkedin-job"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -330,7 +357,17 @@
   <xs:element name="comments">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="comment"/>
+		  <xs:element minOccurs="0" maxOccurs="unbounded" name="comment">
+		    <xs:complexType>
+		      <xs:sequence>
+		        <xs:element ref="creation-timestamp"/>
+		        <xs:element ref="creator"/>
+		        <xs:element ref="id"/>
+		        <xs:element ref="relation-to-viewer"/>
+		        <xs:element ref="text"/>
+		      </xs:sequence>
+		    </xs:complexType>
+		  </xs:element>
       </xs:sequence>
       <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
@@ -1307,12 +1344,30 @@
   <xs:element name="email-digest-frequency">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="none"/>
+				<xs:enumeration value="daily"/>
+				<xs:enumeration value="weekly"/>
+			  </xs:restriction>
+			</xs:simpleType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="email-announcements-from-managers" type="xs:boolean"/>
   <xs:element name="email-for-every-new-post" type="xs:boolean"/>
+  <xs:element name="groups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="group"/>
+      </xs:sequence>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="start" use="required" type="xs:integer"/>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="job-bookmarks">
     <xs:complexType>
       <xs:sequence>

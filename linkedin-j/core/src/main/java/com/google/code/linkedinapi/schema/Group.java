@@ -36,7 +36,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}relation-to-viewer"/>
  *         &lt;element ref="{}counts-by-category"/>
  *         &lt;element ref="{}is-open-to-non-members"/>
- *         &lt;element ref="{}category"/>
+ *         &lt;element name="category" type="{}GroupCategory"/>
  *         &lt;element ref="{}site-group-url"/>
  *         &lt;element ref="{}contact-email"/>
  *         &lt;element ref="{}locale"/>
@@ -194,20 +194,20 @@ public interface Group
      * 
      * @return
      *     possible object is
-     *     {@link Category }
+     *     {@link GroupCategory }
      *     
      */
-    Category getCategory();
+    GroupCategory getCategory();
 
     /**
      * Sets the value of the category property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Category }
+     *     {@link GroupCategory }
      *     
      */
-    void setCategory(Category value);
+    void setCategory(GroupCategory value);
 
     /**
      * Gets the value of the siteGroupUrl property.

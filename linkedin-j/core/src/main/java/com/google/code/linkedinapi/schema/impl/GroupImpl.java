@@ -25,9 +25,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import com.google.code.linkedinapi.schema.Category;
 import com.google.code.linkedinapi.schema.CountsByCategory;
 import com.google.code.linkedinapi.schema.Group;
+import com.google.code.linkedinapi.schema.GroupCategory;
 import com.google.code.linkedinapi.schema.Posts;
 import com.google.code.linkedinapi.schema.RelationToViewer;
 
@@ -70,8 +70,8 @@ public class GroupImpl
     protected CountsByCategoryImpl countsByCategory;
     @XmlElement(name = "is-open-to-non-members")
     protected boolean isOpenToNonMembers;
-    @XmlElement(required = true, type = CategoryImpl.class)
-    protected CategoryImpl category;
+    @XmlElement(required = true, type = GroupCategoryImpl.class)
+    protected GroupCategoryImpl category;
     @XmlElement(name = "site-group-url", required = true)
     protected String siteGroupUrl;
     @XmlElement(name = "contact-email", required = true)
@@ -144,12 +144,12 @@ public class GroupImpl
         this.isOpenToNonMembers = value;
     }
 
-    public Category getCategory() {
+    public GroupCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category value) {
-        this.category = ((CategoryImpl) value);
+    public void setCategory(GroupCategory value) {
+        this.category = ((GroupCategoryImpl) value);
     }
 
     public String getSiteGroupUrl() {

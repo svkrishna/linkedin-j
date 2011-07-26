@@ -213,7 +213,6 @@
 			<typesafeEnumMember name="WRITING_EDITING" value="wrt"/>
 		</typesafeEnumClass>
 	</bindings>
-	
 	<bindings node="//xs:element[@name='membership-state']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="MembershipStateCode">
 			<typesafeEnumMember name="BLOCKED" value="blocked"/>
@@ -226,7 +225,32 @@
 			<typesafeEnumMember name="OWNER" value="owner"/>
 		</typesafeEnumClass>
 	</bindings>
-	
+	<bindings node="//xs:element[@name='email-digest-frequency']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="EmailDigestFrequencyCode">
+			<typesafeEnumMember name="NONE" value="none"/>
+			<typesafeEnumMember name="DAILY" value="daily"/>
+			<typesafeEnumMember name="WEEKLY" value="weekly"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:element[@name='category']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="PostCategoryCode">
+			<typesafeEnumMember name="DISCUSSION" value="discussion"/>
+			<typesafeEnumMember name="JOB" value="job"/>
+			<typesafeEnumMember name="PROMOTION" value="promotion"/>
+			<typesafeEnumMember name="LINKEDIN_JOB" value="linkedin-job"/>
+		</typesafeEnumClass>
+	</bindings>
+	<bindings node="//xs:complexType[@name='GroupCategory']/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="GroupCategoryCode">
+			<typesafeEnumMember name="ALUMNI" value="alumni"/>
+			<typesafeEnumMember name="CORPORATE" value="corporate"/>
+			<typesafeEnumMember name="CONFERENCE" value="conference"/>
+			<typesafeEnumMember name="NETWORK" value="network"/>
+			<typesafeEnumMember name="PHILANTHROPIC" value="philanthropic"/>
+			<typesafeEnumMember name="PROFESSIONAL" value="professional"/>
+			<typesafeEnumMember name="OTHER" value="other"/>
+		</typesafeEnumClass>
+	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>
@@ -362,7 +386,7 @@
 	<bindings node="//xs:element[@name='posts']/xs:complexType/xs:sequence/xs:element[@ref='post']">
 		<property name="postList"/>
 	</bindings>
-	<bindings node="//xs:element[@name='comments']/xs:complexType/xs:sequence/xs:element[@ref='comment']">
+	<bindings node="//xs:element[@name='comments']/xs:complexType/xs:sequence/xs:element[@name='comment']">
 		<property name="commentList"/>
 	</bindings>
 	<bindings node="//xs:element[@name='available-actions']/xs:complexType/xs:sequence/xs:element[@ref='action']">
@@ -370,5 +394,8 @@
 	</bindings>
 	<bindings node="//xs:element[@name='group-memberships']/xs:complexType/xs:sequence/xs:element[@ref='group-membership']">
 		<property name="groupMembershipList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='groups']/xs:complexType/xs:sequence/xs:element[@ref='group']">
+		<property name="groupList"/>
 	</bindings>
 </bindings>

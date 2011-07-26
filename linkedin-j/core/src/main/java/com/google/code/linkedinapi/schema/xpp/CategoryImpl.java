@@ -24,19 +24,20 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Category;
+import com.google.code.linkedinapi.schema.PostCategoryCode;
 
 public class CategoryImpl
     extends BaseSchemaEntity implements Category
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected String code;
+    protected PostCategoryCode code;
 
-    public String getCode() {
+    public PostCategoryCode getCode() {
         return code;
     }
 
-    public void setCode(String value) {
+    public void setCode(PostCategoryCode value) {
         this.code = value;
     }
 
@@ -46,7 +47,7 @@ public class CategoryImpl
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
             if (name.equals("code")) {
-                setCode(XppUtils.getElementValueFromNode(parser));
+                setCode(PostCategoryCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);

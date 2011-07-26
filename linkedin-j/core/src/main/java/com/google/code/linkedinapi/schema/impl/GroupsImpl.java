@@ -28,30 +28,52 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
-import com.google.code.linkedinapi.schema.Comment;
-import com.google.code.linkedinapi.schema.Comments;
+import com.google.code.linkedinapi.schema.Group;
+import com.google.code.linkedinapi.schema.Groups;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "commentList"
+    "groupList"
 })
-@XmlRootElement(name = "comments")
-public class CommentsImpl
-    implements Serializable, Comments
+@XmlRootElement(name = "groups")
+public class GroupsImpl
+    implements Serializable, Groups
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(name = "comment", type = CommentImpl.class)
-    protected List<Comment> commentList;
+    @XmlElement(name = "group", required = true, type = GroupImpl.class)
+    protected List<Group> groupList;
+    @XmlAttribute(required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long count;
+    @XmlAttribute(required = true)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long start;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long total;
 
-    public List<Comment> getCommentList() {
-        if (commentList == null) {
-            commentList = new ArrayList<Comment>();
+    public List<Group> getGroupList() {
+        if (groupList == null) {
+            groupList = new ArrayList<Group>();
         }
-        return this.commentList;
+        return this.groupList;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long value) {
+        this.count = value;
+    }
+
+    public Long getStart() {
+        return start;
+    }
+
+    public void setStart(Long value) {
+        this.start = value;
     }
 
     public Long getTotal() {

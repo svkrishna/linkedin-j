@@ -20,21 +20,25 @@ package com.google.code.linkedinapi.schema;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for GroupCategory complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="GroupCategory">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="code">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;enumeration value="none"/>
- *               &lt;enumeration value="daily"/>
- *               &lt;enumeration value="weekly"/>
+ *               &lt;enumeration value="alumni"/>
+ *               &lt;enumeration value="corporate"/>
+ *               &lt;enumeration value="conference"/>
+ *               &lt;enumeration value="network"/>
+ *               &lt;enumeration value="philanthropic"/>
+ *               &lt;enumeration value="professional"/>
+ *               &lt;enumeration value="other"/>
  *             &lt;/restriction>
  *           &lt;/simpleType>
  *         &lt;/element>
@@ -46,7 +50,7 @@ package com.google.code.linkedinapi.schema;
  * 
  * 
  */
-public interface EmailDigestFrequency
+public interface GroupCategory
     extends SchemaEntity
 {
 
@@ -56,19 +60,19 @@ public interface EmailDigestFrequency
      * 
      * @return
      *     possible object is
-     *     {@link EmailDigestFrequencyCode }
+     *     {@link GroupCategoryCode }
      *     
      */
-    EmailDigestFrequencyCode getCode();
+    GroupCategoryCode getCode();
 
     /**
      * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EmailDigestFrequencyCode }
+     *     {@link GroupCategoryCode }
      *     
      */
-    void setCode(EmailDigestFrequencyCode value);
+    void setCode(GroupCategoryCode value);
 
 }

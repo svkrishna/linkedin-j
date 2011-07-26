@@ -18,49 +18,36 @@
 package com.google.code.linkedinapi.schema.xpp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Comment;
-import com.google.code.linkedinapi.schema.Comments;
+import com.google.code.linkedinapi.schema.GroupCategory;
+import com.google.code.linkedinapi.schema.GroupCategoryCode;
 
-public class CommentsImpl
-extends BaseSchemaEntity implements Comments
+public class GroupCategoryImpl
+    extends BaseSchemaEntity implements GroupCategory
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<Comment> commentList;
-    protected Long total;
+    protected GroupCategoryCode code;
 
-    public List<Comment> getCommentList() {
-        if (commentList == null) {
-            commentList = new ArrayList<Comment>();
-        }
-        return this.commentList;
+    public GroupCategoryCode getCode() {
+        return code;
     }
 
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long value) {
-        this.total = value;
+    public void setCode(GroupCategoryCode value) {
+        this.code = value;
     }
 
     @Override
     public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-        setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
-            if (name.equals("comment")) {
-                CommentImpl node = new CommentImpl();
-                node.init(parser);
-                getCommentList().add(node);
+            if (name.equals("code")) {
+                setCode(GroupCategoryCode.fromValue(XppUtils.getElementValueFromNode(parser)));
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -70,13 +57,10 @@ extends BaseSchemaEntity implements Comments
     }
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
-        XmlSerializer element = serializer.startTag(null, "comments");
-        XppUtils.setAttributeValueToNode(element, "total", getTotal());
-        for (Comment node : getCommentList()) {
-            ((CommentImpl) node).toXml(serializer);
-        }
+        XmlSerializer element = serializer.startTag(null, "category");
+        XppUtils.setElementValueToNode(element, "code", getCode());
         
         
-        serializer.endTag(null, "comments");
+        serializer.endTag(null, "category");
     }
 }

@@ -25,22 +25,40 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import com.google.code.linkedinapi.schema.Comment;
-import com.google.code.linkedinapi.schema.Comments;
+import com.google.code.linkedinapi.schema.Group;
+import com.google.code.linkedinapi.schema.Groups;
 
-public class CommentsImpl
-extends BaseSchemaEntity implements Comments
+public class GroupsImpl
+	extends BaseSchemaEntity implements Groups
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    protected List<Comment> commentList;
+    protected List<Group> groupList;
+    protected Long count;
+    protected Long start;
     protected Long total;
 
-    public List<Comment> getCommentList() {
-        if (commentList == null) {
-            commentList = new ArrayList<Comment>();
+    public List<Group> getGroupList() {
+        if (groupList == null) {
+            groupList = new ArrayList<Group>();
         }
-        return this.commentList;
+        return this.groupList;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long value) {
+        this.count = value;
+    }
+
+    public Long getStart() {
+        return start;
+    }
+
+    public void setStart(Long value) {
+        this.start = value;
     }
 
     public Long getTotal() {
@@ -54,13 +72,15 @@ extends BaseSchemaEntity implements Comments
     @Override
     public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
+        setCount(XppUtils.getAttributeValueAsLongFromNode(parser, "count"));
+        setStart(XppUtils.getAttributeValueAsLongFromNode(parser, "start"));
         setTotal(XppUtils.getAttributeValueAsLongFromNode(parser, "total"));
         while (parser.nextTag() == XmlPullParser.START_TAG) {
             String name = parser.getName();
-            if (name.equals("comment")) {
-                CommentImpl node = new CommentImpl();
+            if (name.equals("group")) {
+                GroupImpl node = new GroupImpl();
                 node.init(parser);
-                getCommentList().add(node);
+                getGroupList().add(node);
             } else {
                 // Consume something we don't understand.
                 LOG.warning("Found tag that we don't recognize: " + name);
@@ -70,13 +90,15 @@ extends BaseSchemaEntity implements Comments
     }
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
-        XmlSerializer element = serializer.startTag(null, "comments");
+        XmlSerializer element = serializer.startTag(null, "groups");
+        XppUtils.setAttributeValueToNode(element, "count", getCount());
+        XppUtils.setAttributeValueToNode(element, "start", getStart());
         XppUtils.setAttributeValueToNode(element, "total", getTotal());
-        for (Comment node : getCommentList()) {
-            ((CommentImpl) node).toXml(serializer);
+        for (Group node : getGroupList()) {
+            ((GroupImpl) node).toXml(serializer);
         }
         
         
-        serializer.endTag(null, "comments");
+        serializer.endTag(null, "groups");
     }
 }
