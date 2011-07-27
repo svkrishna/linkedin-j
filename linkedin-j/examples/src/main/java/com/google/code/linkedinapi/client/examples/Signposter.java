@@ -20,8 +20,8 @@ public class Signposter {
 
     public static void main(String[] args) throws Exception {
     	OAuthConsumer consumer = new DefaultOAuthConsumer(
-                "TdA4ZuoRgD46-vh8kFF9l0xcs5W3ODBaGdto1OdLv9ujfZiKpq4_KBfT7j-xa0d6",
-                "biSbgqH0hSzCvDMDsQyA21AOapiLzUS8Ka11QDraqVGj8kFZJEY1FrqUqYdffCwi");
+                "xx",
+                "xx");
 
 //        OAuthProvider provider = new DefaultOAuthProvider("https://api.linkedin.com/uas/oauth/requestToken",
 //                "https://api.linkedin.com/uas/oauth/accessToken",
@@ -50,7 +50,7 @@ public class Signposter {
 //        System.out.println("Access token: " + consumer.getToken());
 //        System.out.println("Token secret: " + consumer.getTokenSecret());
 
-    	consumer.setTokenWithSecret("a2e551c2-56d0-4042-918f-087b39e6f42f", "49772a11-416a-44f4-aa04-8528f574102d");
+    	consumer.setTokenWithSecret("xxxx", "xxxx");
 //        URL url = new URL("http://api.linkedin.com/v1/groups/35222:(id,name,short-description,description,relation-to-viewer:(membership-state,available-actions),counts-by-category,is-open-to-non-members,category,website-url,site-group-url,contact-email,locale,location:(country,postal-code),allow-member-invites,small-logo-url,large-logo-url,posts:(id,type,category,title,summary,creator,creation-timestamp,relation-to-viewer:(is-following,is-liked,available-actions),likes,comments,attachment,site-group-post-url))");
     	URL url = new URL("http://api.linkedin.com/v1/people/~/group-memberships:(group:(id,name),person,membership-state,contact-email,show-group-logo-in-profile,allow-messages-from-members,email-digest-frequency,email-announcements-from-managers,email-for-every-new-post)?count=5&start=0");
         HttpURLConnection request = (HttpURLConnection) url.openConnection();
