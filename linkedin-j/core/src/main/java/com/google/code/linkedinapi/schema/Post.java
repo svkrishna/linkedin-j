@@ -30,7 +30,24 @@ package com.google.code.linkedinapi.schema;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{}id"/>
- *         &lt;element ref="{}type"/>
+ *         &lt;element name="type">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="code">
+ *                     &lt;simpleType>
+ *                       &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *                         &lt;enumeration value="standard"/>
+ *                         &lt;enumeration value="news"/>
+ *                       &lt;/restriction>
+ *                     &lt;/simpleType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *         &lt;element ref="{}category" minOccurs="0"/>
  *         &lt;element ref="{}creation-timestamp"/>
  *         &lt;element ref="{}creator"/>
@@ -79,20 +96,20 @@ public interface Post
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Type }
      *     
      */
-    String getType();
+    Type getType();
 
     /**
      * Sets the value of the type property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Type }
      *     
      */
-    void setType(String value);
+    void setType(Type value);
 
     /**
      * Gets the value of the category property.

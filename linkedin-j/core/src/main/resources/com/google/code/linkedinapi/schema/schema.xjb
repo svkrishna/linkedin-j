@@ -251,6 +251,12 @@
 			<typesafeEnumMember name="OTHER" value="other"/>
 		</typesafeEnumClass>
 	</bindings>
+	<bindings node="//xs:element[@name='post']/xs:complexType/xs:sequence/xs:element[@name='type']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="PostTypeCode">
+			<typesafeEnumMember name="STANDARD" value="standard"/>
+			<typesafeEnumMember name="NEWS" value="news"/>
+		</typesafeEnumClass>
+	</bindings>
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>

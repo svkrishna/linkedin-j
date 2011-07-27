@@ -101,7 +101,7 @@ public class GroupsApiExample {
     		GroupMemberships memberships = client.getGroupMemberships();
     		for (GroupMembership membership : memberships.getGroupMembershipList()) {
     			System.out.println(membership.getGroup().getName());
-				System.out.println(membership.getContactEmail());
+				System.out.println(membership.getGroup().getId());
 				System.out.println(membership.getMembershipState().getCode());
 			}
     		

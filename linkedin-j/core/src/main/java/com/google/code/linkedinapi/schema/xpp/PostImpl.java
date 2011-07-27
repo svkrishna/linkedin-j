@@ -30,6 +30,7 @@ import com.google.code.linkedinapi.schema.Creator;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Post;
 import com.google.code.linkedinapi.schema.RelationToViewer;
+import com.google.code.linkedinapi.schema.Type;
 
 public class PostImpl
 extends BaseSchemaEntity    implements Post
@@ -37,7 +38,7 @@ extends BaseSchemaEntity    implements Post
 
     private final static long serialVersionUID = 2461660169443089969L;
     protected String id;
-    protected String type;
+    protected TypeImpl type;
     protected CategoryImpl category;
     protected Long creationTimestamp;
     protected CreatorImpl creator;
@@ -57,12 +58,12 @@ extends BaseSchemaEntity    implements Post
         this.id = value;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String value) {
-        this.type = value;
+    public void setType(Type value) {
+        this.type = (TypeImpl) value;
     }
 
     public Category getCategory() {
@@ -153,7 +154,9 @@ extends BaseSchemaEntity    implements Post
             if (name.equals("id")) {
                 setId(XppUtils.getElementValueFromNode(parser));
             } else if (name.equals("type")) {
-                setType(XppUtils.getElementValueFromNode(parser));
+            	TypeImpl node = new TypeImpl();
+            	node.init(parser);
+                setType(node);
             } else if (name.equals("category")) {
                 CategoryImpl node = new CategoryImpl();
                 node.init(parser);

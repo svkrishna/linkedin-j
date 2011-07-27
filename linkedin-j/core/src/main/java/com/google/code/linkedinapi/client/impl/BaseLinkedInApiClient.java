@@ -3333,8 +3333,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.FOLLOW_POST);
         String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
 
-        callApiMethod(apiUrl, "<is-liked>true</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                HttpURLConnection.HTTP_OK);
+        callApiMethod(apiUrl, "<is-following>true</is-following>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_NO_CONTENT);
 	}
 
 	@Override
@@ -3343,7 +3343,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
 
         callApiMethod(apiUrl, "<is-liked>true</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                HttpURLConnection.HTTP_OK);
+                HttpURLConnection.HTTP_NO_CONTENT);
 	}
 	
 	@Override
@@ -3659,8 +3659,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNFOLLOW_POST);
         String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
 
-        callApiMethod(apiUrl, "<is-liked>false</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                HttpURLConnection.HTTP_OK);
+        callApiMethod(apiUrl, "<is-following>false</is-following>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_NO_CONTENT);
 	}
 
 	@Override
@@ -3669,7 +3669,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
 
         callApiMethod(apiUrl, "<is-liked>false</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                HttpURLConnection.HTTP_OK);
+                HttpURLConnection.HTTP_NO_CONTENT);
 	}
 	
 	@Override

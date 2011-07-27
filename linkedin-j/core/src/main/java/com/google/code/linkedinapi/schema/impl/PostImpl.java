@@ -33,6 +33,7 @@ import com.google.code.linkedinapi.schema.Creator;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Post;
 import com.google.code.linkedinapi.schema.RelationToViewer;
+import com.google.code.linkedinapi.schema.Type;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -58,8 +59,8 @@ public class PostImpl
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     protected String id;
-    @XmlElement(required = true)
-    protected String type;
+    @XmlElement(required = true, type = TypeImpl.class)
+    protected TypeImpl type;
     @XmlElement(type = CategoryImpl.class)
     protected CategoryImpl category;
     @XmlElement(name = "creation-timestamp", required = true, type = String.class)
@@ -90,12 +91,12 @@ public class PostImpl
         this.id = value;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String value) {
-        this.type = value;
+    public void setType(Type value) {
+        this.type = ((TypeImpl) value);
     }
 
     public Category getCategory() {
