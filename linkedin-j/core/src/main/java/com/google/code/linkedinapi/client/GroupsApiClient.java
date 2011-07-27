@@ -168,12 +168,32 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * Gets the posts by group.
 	 * 
 	 * @param groupId the group id
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
 	 * @param start the start
 	 * @param count the count
 	 * 
 	 * @return the posts by group
 	 */
 	public Posts getPostsByGroup(String groupId, int start, int count);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count);
 	
 	/**
 	 * Gets the posts by group.
@@ -194,6 +214,18 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @param start the start
 	 * @param count the count
 	 * @param order the order
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, PostSortOrder order);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
+	 * @param order the order
 	 * @param category the category
 	 * 
 	 * @return the posts by group
@@ -206,11 +238,36 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @param groupId the group id
 	 * @param start the start
 	 * @param count the count
+	 * @param order the order
+	 * @param category the category
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, PostSortOrder order, PostCategoryCode category);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
 	 * @param modifiedSince the modified since
 	 * 
 	 * @return the posts by group
 	 */
 	public Posts getPostsByGroup(String groupId, int start, int count, Date modifiedSince);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
+	 * @param modifiedSince the modified since
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, Date modifiedSince);
 	
 	/**
 	 * Gets the posts by group.
@@ -232,12 +289,39 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @param start the start
 	 * @param count the count
 	 * @param order the order
+	 * @param modifiedSince the modified since
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, PostSortOrder order, Date modifiedSince);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
+	 * @param order the order
 	 * @param category the category
 	 * @param modifiedSince the modified since
 	 * 
 	 * @return the posts by group
 	 */
 	public Posts getPostsByGroup(String groupId, int start, int count, PostSortOrder order, PostCategoryCode category, Date modifiedSince);
+	
+	/**
+	 * Gets the posts by group.
+	 * 
+	 * @param groupId the group id
+	 * @param start the start
+	 * @param count the count
+	 * @param order the order
+	 * @param category the category
+	 * @param modifiedSince the modified since
+	 * 
+	 * @return the posts by group
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, PostSortOrder order, PostCategoryCode category, Date modifiedSince);
 	
 	/**
 	 * Gets the post.
@@ -306,21 +390,21 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @param title the title
 	 * @param summary the summary
 	 */
-	public void createPost(String title, String summary);
+	public void createPost(String groupId, String title, String summary);
 	
 	/**
 	 * Like post.
 	 * 
 	 * @param postId the post id
 	 */
-	public void likePost(String postId);
+	public void likeGroupPost(String postId);
 	
 	/**
 	 * Unlike post.
 	 * 
 	 * @param postId the post id
 	 */
-	public void unlikePost(String postId);
+	public void unlikeGroupPost(String postId);
 	
 	/**
 	 * Follow post.
@@ -371,19 +455,19 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	public Comment getPostComment(String commentId, Set<CommentField> commentFields);
 	
 	/**
-	 * Adds the comment.
+	 * Adds the post comment.
 	 * 
 	 * @param postId the post id
 	 * @param comment the comment
 	 */
-	public void addComment(String postId, String comment);
+	public void addPostComment(String postId, String comment);
 	
 	/**
-	 * Delete comment.
+	 * Delete post comment.
 	 * 
 	 * @param commentId the comment id
 	 */
-	public void deleteComment(String commentId);
+	public void deletePostComment(String commentId);
 	
 	/**
 	 * Gets the suggested groups.

@@ -842,6 +842,16 @@ public interface SchemaElementFactory<T> {
 	
 	public Industry createIndustry();
 	
+	public Comment createComment();
+	
+	public Post createPost();
+	
+	public GroupMembership createGroupMembership();
+	
+	public MembershipState createMembershipState();
+	
+	public EmailDigestFrequency createEmailDigestFrequency();
+	
 	/**
 	 * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
 	 * 

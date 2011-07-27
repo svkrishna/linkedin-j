@@ -41,5 +41,9 @@ public interface ParameterNames {
 	String TYPE = "type";
 	String SHOW_HIDDEN_MEMBERS = "show-hidden-members";
 	String TWITTER_POST = "twitter-post";
+	String PERSON_ID = "person-id";
+	String MEMBERSHIP_STATE = "membership-state";
+	String ORDER = "order";
+	String CATEGORY = "category";
 
 }

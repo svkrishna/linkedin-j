@@ -46,12 +46,17 @@ import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
 import com.google.code.linkedinapi.client.constant.ParameterNames;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
+import com.google.code.linkedinapi.client.enumeration.CommentField;
 import com.google.code.linkedinapi.client.enumeration.CompanyField;
 import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.FacetField;
+import com.google.code.linkedinapi.client.enumeration.GroupField;
+import com.google.code.linkedinapi.client.enumeration.GroupMembershipField;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.enumeration.JobField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
+import com.google.code.linkedinapi.client.enumeration.PostField;
+import com.google.code.linkedinapi.client.enumeration.PostSortOrder;
 import com.google.code.linkedinapi.client.enumeration.ProductField;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -66,13 +71,21 @@ import com.google.code.linkedinapi.schema.Activity;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Attribution;
 import com.google.code.linkedinapi.schema.Authorization;
+import com.google.code.linkedinapi.schema.Comment;
+import com.google.code.linkedinapi.schema.Comments;
 import com.google.code.linkedinapi.schema.Companies;
 import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.CompanySearch;
 import com.google.code.linkedinapi.schema.Connections;
 import com.google.code.linkedinapi.schema.Content;
+import com.google.code.linkedinapi.schema.EmailDigestFrequency;
+import com.google.code.linkedinapi.schema.EmailDigestFrequencyCode;
 import com.google.code.linkedinapi.schema.Error;
 import com.google.code.linkedinapi.schema.FacetType;
+import com.google.code.linkedinapi.schema.Group;
+import com.google.code.linkedinapi.schema.GroupMembership;
+import com.google.code.linkedinapi.schema.GroupMemberships;
+import com.google.code.linkedinapi.schema.Groups;
 import com.google.code.linkedinapi.schema.HttpHeader;
 import com.google.code.linkedinapi.schema.InvitationRequest;
 import com.google.code.linkedinapi.schema.InviteConnectType;
@@ -84,11 +97,16 @@ import com.google.code.linkedinapi.schema.JobSuggestions;
 import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.MailboxItem;
+import com.google.code.linkedinapi.schema.MembershipState;
+import com.google.code.linkedinapi.schema.MembershipStateCode;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;
 import com.google.code.linkedinapi.schema.Person;
+import com.google.code.linkedinapi.schema.Post;
+import com.google.code.linkedinapi.schema.PostCategoryCode;
+import com.google.code.linkedinapi.schema.Posts;
 import com.google.code.linkedinapi.schema.Products;
 import com.google.code.linkedinapi.schema.Recipient;
 import com.google.code.linkedinapi.schema.SchemaElementFactory;
@@ -3251,6 +3269,428 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.withField(ParameterNames.ID, id).buildUrl();
 
         callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
+	}
+	
+	@Override
+	public void addPostComment(String postId, String commentText) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.ADD_POST_COMMENT);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+        Comment         comment = OBJECT_FACTORY.createComment();
+
+        comment.setText(commentText);
+
+        callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
+	}
+
+	@Override
+	public void createPost(String groupId, String title, String summary) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CREATE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+        Post         post = OBJECT_FACTORY.createPost();
+        post.setTitle(title);
+        post.setSummary(summary);
+
+        callApiMethod(apiUrl, marshallObject(post), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
+	}
+
+	@Override
+	public void deleteGroupSuggestion(String groupId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.DELETE_GROUP_SUGGESTION);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
+	}
+
+	@Override
+	public void deletePost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.DELETE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
+	}
+
+	@Override
+	public void deletePostComment(String commentId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.DELETE_POST_COMMENT);
+        String                apiUrl  = builder.withField(ParameterNames.ID, commentId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
+	}
+
+	@Override
+	public void flagPost(String postId, PostCategoryCode code) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CREATE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, "<code>" + code.value() + "</code>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void followPost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.FOLLOW_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, "<is-liked>true</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void likeGroupPost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.LIKE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, "<is-liked>true</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+	
+	@Override
+	public Group getGroupById(String groupId) {
+        assertNotNullOrEmpty("id", groupId);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_BY_ID);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID,
+        		groupId).buildUrl();
+
+        return readResponse(Group.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Group getGroupById(String groupId, Set<GroupField> groupFields) {
+        assertNotNullOrEmpty("id", groupId);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_BY_ID);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupFields).withField(ParameterNames.ID,
+        		groupId).buildUrl();
+
+        return readResponse(Group.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMembership getGroupMembership(String groupId) {
+		// TODO-NM: Implement this method.
+		return null;
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships(
+			Set<GroupMembershipField> groupMembershipFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships(
+			Set<GroupMembershipField> groupMembershipFields, int start,
+			int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships(String personId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withParameter(ParameterNames.PERSON_ID, personId).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships(String personId,
+			Set<GroupMembershipField> groupMembershipFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).withParameter(ParameterNames.PERSON_ID, personId).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public GroupMemberships getGroupMemberships(String personId,
+			Set<GroupMembershipField> groupMembershipFields, int start,
+			int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).withParameter(ParameterNames.PERSON_ID, personId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Post getPost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, postId).buildUrl();
+
+        return readResponse(Post.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Post getPost(String postId, Set<PostField> postFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, postId).buildUrl();
+
+        return readResponse(Post.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comment getPostComment(String commentId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENT);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, commentId).buildUrl();
+
+        return readResponse(Comment.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comment getPostComment(String commentId,
+			Set<CommentField> commentFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENT);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, commentFields).withField(ParameterNames.ID, commentId).buildUrl();
+
+        return readResponse(Comment.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comments getPostComments(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENTS);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, postId).buildUrl();
+
+        return readResponse(Comments.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comments getPostComments(String postId,
+			Set<CommentField> commentFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENTS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, commentFields).withField(ParameterNames.ID, postId).buildUrl();
+
+        return readResponse(Comments.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comments getPostComments(String postId, int start, int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENTS);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, postId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(Comments.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Comments getPostComments(String postId,
+			Set<CommentField> commentFields, int start, int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POST_COMMENTS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, commentFields).withField(ParameterNames.ID, postId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(Comments.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count,
+			PostSortOrder order) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
+			PostSortOrder order) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count,
+			PostSortOrder order, PostCategoryCode category) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value()).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
+			PostSortOrder order, PostCategoryCode category) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value()).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count,
+			Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
+			Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count,
+			PostSortOrder order, Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
+			PostSortOrder order, Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, int start, int count,
+			PostSortOrder order, PostCategoryCode category, Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value()).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
+			PostSortOrder order, PostCategoryCode category, Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value()).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public Groups getSuggestedGroups() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_SUGGESTED_GROUPS);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).buildUrl();
+
+        return readResponse(Groups.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public Groups getSuggestedGroups(Set<GroupField> groupFields) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_SUGGESTED_GROUPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupFields).buildUrl();
+
+        return readResponse(Groups.class, callApiMethod(apiUrl));
+	}
+
+	@Override
+	public void joinGroup(String groupId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.JOIN_GROUP);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+        GroupMembership membership = OBJECT_FACTORY.createGroupMembership();
+        MembershipState state = OBJECT_FACTORY.createMembershipState();
+        state.setCode(MembershipStateCode.MEMBER);
+        membership.setMembershipState(state);
+
+        callApiMethod(apiUrl, marshallObject(membership), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void leaveGroup(String groupId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.LEAVE_GROUP);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+
+        callApiMethod(apiUrl, null, null, HttpMethod.DELETE, HttpURLConnection.HTTP_NO_CONTENT);
+	}
+
+	@Override
+	public void unfollowPost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNFOLLOW_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, "<is-liked>false</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+
+	@Override
+	public void unlikeGroupPost(String postId) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.UNLIKE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
+
+        callApiMethod(apiUrl, "<is-liked>false</is-liked>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
+	}
+	
+	@Override
+	public void updateGroupMembership(String groupId, String contactEmail,
+			EmailDigestFrequencyCode emailFrequency, boolean showLogoInProfile,
+			boolean emailAnnouncements, boolean allowMessagesFromMembers,
+			boolean emailForEveryPost) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.JOIN_GROUP);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+        GroupMembership membership = OBJECT_FACTORY.createGroupMembership();
+        membership.setContactEmail(contactEmail);
+        EmailDigestFrequency digestFrequency = OBJECT_FACTORY.createEmailDigestFrequency();
+        digestFrequency.setCode(emailFrequency);
+        membership.setEmailDigestFrequency(digestFrequency);
+        membership.setShowGroupLogoInProfile(showLogoInProfile);
+        membership.setEmailAnnouncementsFromManagers(emailAnnouncements);
+        membership.setAllowMessagesFromMembers(allowMessagesFromMembers);
+        membership.setEmailForEveryNewPost(emailForEveryPost);
+
+        callApiMethod(apiUrl, marshallObject(membership), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
+                HttpURLConnection.HTTP_OK);
 	}
 	
     /**

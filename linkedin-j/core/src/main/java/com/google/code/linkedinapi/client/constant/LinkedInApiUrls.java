@@ -218,7 +218,46 @@ public final class LinkedInApiUrls {
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.renewJob");
     public static final String CLOSE_JOB =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.closeJob");
-    
+    public static final String GET_GROUP_BY_ID =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getGroupById");
+    public static final String GET_GROUP_MEMBERSHIPS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getGroupMemberships");
+    public static final String UPDATE_GROUP_MEMBERSHIP =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.updateGroupMembership");
+    public static final String JOIN_GROUP =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.joinGroup");
+    public static final String LEAVE_GROUP =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.leaveGroup");
+    public static final String GET_POSTS_BY_GROUP =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostsByGroup");
+    public static final String GET_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPost");
+    public static final String GET_POST_COMMENTS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostComments");
+    public static final String CREATE_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.createPost");
+    public static final String LIKE_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.likePost");
+    public static final String UNLIKE_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unlikePost");
+    public static final String FOLLOW_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.followPost");
+    public static final String UNFOLLOW_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.unfollowPost");
+    public static final String FLAG_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.flagPost");
+    public static final String DELETE_POST =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deletePost");
+    public static final String GET_POST_COMMENT =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getPostComment");
+    public static final String ADD_POST_COMMENT =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.addPostComment");
+    public static final String DELETE_POST_COMMENT =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deletePostComment");
+    public static final String GET_SUGGESTED_GROUPS =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getSuggestedGroups");
+    public static final String DELETE_GROUP_SUGGESTION =
+        linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deleteGroupSuggestion");
     /**
      * Instantiates a new linked in api urls.
      */

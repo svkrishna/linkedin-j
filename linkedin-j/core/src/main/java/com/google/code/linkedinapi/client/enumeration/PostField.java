@@ -39,6 +39,11 @@ public enum PostField implements CompositeEnum<PostField> {
 	
 	CREATOR("creator", null),
 	
+	CREATOR_FIRST_NAME("first-name", CREATOR),
+	CREATOR_LAST_NAME("last-name", CREATOR),
+	CREATOR_HEADLINE("headline", CREATOR),
+	CREATOR_PICTURE_URL("picture-url", CREATOR),
+	
 	TITLE("title", null),
 	
 	SUMMARY("summary", null),

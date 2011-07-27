@@ -1527,4 +1527,29 @@ public class XppElementFactory implements SchemaElementFactory<String> {
 	public Industry createIndustry() {
 		return new IndustryImpl();
 	}
+
+	@Override
+	public Comment createComment() {
+		return new CommentImpl();
+	}
+
+	@Override
+	public Post createPost() {
+		return new PostImpl();
+	}
+
+	@Override
+	public GroupMembership createGroupMembership() {
+		return new GroupMembershipImpl();
+	}
+
+	@Override
+	public MembershipState createMembershipState() {
+		return new MembershipStateImpl();
+	}
+
+	@Override
+	public EmailDigestFrequency createEmailDigestFrequency() {
+		return new EmailDigestFrequencyImpl();
+	}
 }

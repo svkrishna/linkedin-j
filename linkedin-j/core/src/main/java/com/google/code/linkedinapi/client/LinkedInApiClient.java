@@ -22,6 +22,6 @@ package com.google.code.linkedinapi.client;
  * 
  * @author Nabeel Mukhtar
  */
-public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, JobsApiClient, CompaniesApiClient {
+public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, JobsApiClient, CompaniesApiClient, GroupsApiClient {
 
 }
