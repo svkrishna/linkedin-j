@@ -106,7 +106,7 @@ extends BaseSchemaEntity    implements Comment
     }
     @Override
     public void toXml(XmlSerializer serializer) throws IOException {
-        XmlSerializer element = serializer.startTag(null, "");
+        XmlSerializer element = serializer.startTag(null, "comment");
         XppUtils.setElementValueToNode(element, "creation-timestamp", getCreationTimestamp());
         if (getCreator() != null) {
             ((CreatorImpl) getCreator()).toXml(serializer);
@@ -118,6 +118,6 @@ extends BaseSchemaEntity    implements Comment
         XppUtils.setElementValueToNode(element, "text", getText());
         
         
-        serializer.endTag(null, "");
+        serializer.endTag(null, "comment");
     }
 }
