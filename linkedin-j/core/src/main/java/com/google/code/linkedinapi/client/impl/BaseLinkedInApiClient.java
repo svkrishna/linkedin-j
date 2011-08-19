@@ -3643,7 +3643,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         membership.setMembershipState(state);
 
         callApiMethod(apiUrl, marshallObject(membership), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
-                HttpURLConnection.HTTP_OK);
+                HttpURLConnection.HTTP_CREATED);
 	}
 
 	@Override

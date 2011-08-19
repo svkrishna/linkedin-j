@@ -29,6 +29,9 @@ public class Adapter1
     }
 
     public String marshal(Long value) {
+    	if (value == null) {
+    		return null;
+    	}
         return value.toString();
     }
 
