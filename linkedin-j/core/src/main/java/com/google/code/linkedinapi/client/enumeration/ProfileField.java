@@ -158,6 +158,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     POSITIONS_END_DATE("end-date", POSITIONS, true),
     POSITIONS_IS_CURRENT("is-current", POSITIONS, true),
     POSITIONS_COMPANY("company", POSITIONS, true),
+    POSITIONS_COMPANY_ID("id", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_NAME("name", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_TYPE("type", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_SIZE("size", POSITIONS_COMPANY, true),
