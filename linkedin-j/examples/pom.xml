@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.googlecode.linkedin-j</groupId>
         <artifactId>linkedin-j</artifactId>
-        <version>1.0.416</version>
+        <version>1.0.416-SNAPSHOT</version>
     </parent>
     <artifactId>linkedin-j-examples</artifactId>
     <packaging>jar</packaging>
@@ -11,7 +11,7 @@
         <dependency>
             <groupId>com.googlecode.linkedin-j</groupId>
             <artifactId>linkedin-j-core</artifactId>
-            <version>1.0.416</version>
+            <version>1.0.416-SNAPSHOT</version>
         </dependency>
 	  	<dependency>
 	  		<groupId>oauth.signpost</groupId>
