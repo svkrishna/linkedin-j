@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.googlecode.linkedin-j</groupId>
     <artifactId>linkedin-j</artifactId>
-    <version>1.0.416</version>
+    <version>1.0.417-SNAPSHOT</version>
   </parent>
   <artifactId>linkedin-j-core</artifactId>
   <packaging>jar</packaging>
