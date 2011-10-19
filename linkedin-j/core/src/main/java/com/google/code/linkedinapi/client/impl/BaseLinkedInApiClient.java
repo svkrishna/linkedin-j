@@ -3321,7 +3321,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
 	@Override
 	public void flagPost(String postId, PostCategoryCode code) {
-        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CREATE_POST);
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.FLAG_POST);
         String                apiUrl  = builder.withField(ParameterNames.ID, postId).buildUrl();
 
         callApiMethod(apiUrl, "<code>" + code.value() + "</code>", ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.PUT,
