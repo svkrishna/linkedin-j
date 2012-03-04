@@ -855,6 +855,43 @@
 		<is-commentable>false</is-commentable>
 		<is-likable>false</is-likable>
 	</update>
+	<update>
+		<timestamp>1292362572753</timestamp>
+		<update-type>CMPY</update-type>
+		<update-content>
+			<company>
+				<id>1337</id>
+				<name>LinkedIn</name>
+			</company>
+		      <company-status-update>
+		         <share>
+		            <id>s570040063</id>
+		            <timestamp>1315343580250</timestamp>
+		            <visibility>
+		               <code>anyone</code>
+		            </visibility>
+		            <comment>Check out today's Fortune Magazine piece, &quot;Data scientist: The hot new gig in tech,&quot; where LinkedIn's senior VP of products and user experience, Deep Nishar, is quoted.</comment>
+		            <content>
+		               <submitted-url>http://tech.fortune.cnn.com/2011/09/06/data-scientist-the-­hot-new-gig-in-tech/?source=yahoo_quote</submitted-url>
+		               <shortened-url>http://lnkd.in/UUZUGT</shortened-url>
+		               <title>Data scientist: The hot new gig in tech</title>
+		               <description>Companies that want to make sense of all their bits and bytes are hiring so-called data scientists -- if they can find any.
+		FORTUNE -- The unemployment rate in the U.S. continues to be abysmal (9.1% in July), but the tech world...</description>
+		               <submitted-image-url>http://fortunebrainstormtech.files.wordpress.com/2011/09/data_scientists.jpg?w=340&amp;h=255</submitted-image-url>
+		               <thumbnail-url>http://media.linkedin.com/media-­proxy/ext?w=80&amp;h=100&amp;hash=uYI7q6AkPhuioNYMcnxYI57rro0%3D&amp;url=http%3A%2F%2Ffortunebrainstormtech.files.wordpress.com%2F2011%2F09%2Fdata_scientists.jpg%3Fw%3D340%26h%3D255</thumbnail-url>
+		               <eyebrow-url>http://www.linkedin.com/share?viewLink=&amp;sid=s570040063&amp;url=http%3A%2F%2Flnkd%2Ein%2FUUZUGT&amp;urlhash=WhKu&amp;uid=5516950840016904192</eyebrow-url>
+		            </content>
+		            <source>
+		               <service-provider>
+		                  <name>LINKEDIN</name>
+		               </service-provider>
+		            </source>
+		         </share>
+		      </company-status-update>
+     </update-content>
+		<is-commentable>false</is-commentable>
+		<is-likable>false</is-likable>
+	</update>
     <update>
       <timestamp>1296541705587</timestamp>
       <update-type>VIRL</update-type>
