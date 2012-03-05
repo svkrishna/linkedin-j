@@ -404,28 +404,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="source">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="service-provider"/>
-        <xs:element minOccurs="0" ref="application"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="service-provider">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="name"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="application">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="name"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="current-status-timestamp" type="xs:integer"/>
   <xs:element name="date-of-birth">
     <xs:complexType>
@@ -1011,19 +989,20 @@
   <xs:element name="update-content">
     <xs:complexType>
       <xs:sequence>
-        <xs:choice>
+        <xs:choice minOccurs="0">
           <xs:element ref="job"/>
           <xs:element ref="question"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="company"/>
+        <xs:choice>
+          <xs:element ref="company-job-update"/>
+          <xs:element ref="company-person-update"/>
+          <xs:element ref="company-profile-update"/>
+          <xs:element ref="company-status-update"/>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element ref="person"/>
             <xs:element ref="update-action"/>
           </xs:choice>
-        </xs:choice>
-        <xs:element minOccurs="0" ref="company"/>
-        <xs:choice minOccurs="0">
-          <xs:element ref="company-job-update"/>
-          <xs:element ref="company-person-update"/>
-          <xs:element ref="company-profile-update"/>
         </xs:choice>
       </xs:sequence>
     </xs:complexType>
@@ -1073,30 +1052,6 @@
         <xs:element ref="id"/>
         <xs:element ref="web-url"/>
         <xs:element ref="author"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="update-action">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="action"/>
-        <xs:element ref="original-update"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="original-update">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="timestamp"/>
-        <xs:element ref="update-key"/>
-        <xs:element ref="update-type"/>
-        <xs:element ref="update-content"/>
-        <xs:element ref="is-commentable"/>
-        <xs:element minOccurs="0" ref="update-comments"/>
-        <xs:element ref="is-likable"/>
-        <xs:element ref="is-liked"/>
-        <xs:element ref="num-likes"/>
-        <xs:element minOccurs="0" ref="likes"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1162,6 +1117,37 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="company-status-update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="share"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="update-action">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="action"/>
+        <xs:element ref="original-update"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="original-update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="update-key"/>
+        <xs:element ref="update-type"/>
+        <xs:element ref="update-content"/>
+        <xs:element ref="is-commentable"/>
+        <xs:element minOccurs="0" ref="update-comments"/>
+        <xs:element ref="is-likable"/>
+        <xs:element ref="is-liked"/>
+        <xs:element ref="num-likes"/>
+        <xs:element minOccurs="0" ref="likes"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="is-commentable" type="xs:boolean"/>
   <xs:element name="is-likable" type="xs:boolean"/>
   <xs:element name="update-comments">
@@ -1196,17 +1182,17 @@
   </xs:element>
   <xs:element name="share">
     <xs:complexType>
-      <xs:choice>
-        <xs:sequence>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
           <xs:element ref="comment"/>
-          <xs:element ref="attribution"/>
-          <xs:element ref="id"/>
-        </xs:sequence>
-        <xs:sequence>
           <xs:element ref="content"/>
+          <xs:element ref="id"/>
+          <xs:element ref="timestamp"/>
           <xs:element ref="visibility"/>
-        </xs:sequence>
-      </xs:choice>
+          <xs:element ref="attribution"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="source"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="attribution">
@@ -1355,18 +1341,20 @@
           <xs:element ref="recommender"/>
         </xs:choice>
         <xs:sequence minOccurs="0">
-          <xs:element ref="recommendee"/>
-          <xs:element ref="web-url"/>
-        </xs:sequence>
-        <xs:sequence minOccurs="0">
           <xs:element ref="product-id"/>
           <xs:element ref="timestamp"/>
         </xs:sequence>
         <xs:element minOccurs="0" ref="text"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="reply"/>
-          <xs:element ref="likes"/>
-        </xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:sequence>
+            <xs:element ref="recommendee"/>
+            <xs:element ref="web-url"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="reply"/>
+            <xs:element ref="likes"/>
+          </xs:sequence>
+        </xs:choice>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1393,6 +1381,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="product-id" type="xs:integer"/>
   <xs:element name="recommendee">
     <xs:complexType>
       <xs:sequence>
@@ -1406,7 +1395,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="product-id" type="xs:integer"/>
   <xs:element name="reply" type="xs:string"/>
   <xs:element name="website-url" type="xs:anyURI"/>
   <xs:element name="activity">
@@ -1434,21 +1422,37 @@
   </xs:element>
   <xs:element name="phone-type" type="xs:NCName"/>
   <xs:element name="summary" type="xs:string"/>
-  <xs:element name="distance" type="xs:integer"/>
+  <xs:element name="number" type="xs:string"/>
+  <xs:element name="start-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+        <xs:element minOccurs="0" ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="end-date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="year"/>
+        <xs:element minOccurs="0" ref="month"/>
+        <xs:element minOccurs="0" ref="day"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="position">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" ref="id"/>
         <xs:element minOccurs="0" ref="title"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="description"/>
+          <xs:element ref="description-snippet"/>
+          <xs:element ref="skills-and-experience"/>
+        </xs:sequence>
         <xs:element minOccurs="0" ref="summary"/>
-        <xs:choice minOccurs="0">
-          <xs:element ref="start-date"/>
-          <xs:sequence>
-            <xs:element ref="description"/>
-            <xs:element ref="description-snippet"/>
-            <xs:element ref="skills-and-experience"/>
-          </xs:sequence>
-        </xs:choice>
+        <xs:element minOccurs="0" ref="start-date"/>
         <xs:element minOccurs="0" ref="end-date"/>
         <xs:sequence minOccurs="0">
           <xs:element ref="is-current"/>
@@ -1501,24 +1505,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="start-date">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element minOccurs="0" ref="month"/>
-        <xs:element minOccurs="0" ref="day"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="end-date">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element minOccurs="0" ref="month"/>
-        <xs:element minOccurs="0" ref="day"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="api-standard-profile-request">
     <xs:complexType>
       <xs:sequence>
@@ -1535,30 +1521,49 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="relation-to-viewer">
+  <xs:element name="picture-url" type="xs:anyURI"/>
+  <xs:element name="specialties">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="specialty"/>
+      </xs:sequence>
+      <xs:attribute name="total" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="specialty" type="xs:string"/>
+  <xs:element name="author">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="distance"/>
-        <xs:choice minOccurs="0">
-          <xs:element ref="membership-state"/>
-          <xs:sequence>
-            <xs:element ref="is-following"/>
-            <xs:element ref="is-liked"/>
-          </xs:sequence>
-        </xs:choice>
-        <xs:element minOccurs="0" ref="available-actions"/>
+        <xs:element ref="id"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="name"/>
+          <xs:element ref="person"/>
+        </xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="first-name"/>
+          <xs:element ref="last-name"/>
+          <xs:element ref="headline"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="relation-to-viewer"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="api-standard-profile-request"/>
+          <xs:element ref="site-standard-profile-request"/>
+        </xs:sequence>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="is-following" type="xs:boolean"/>
-  <xs:element name="available-actions">
+  <xs:element name="date">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="action"/>
+        <xs:element ref="year"/>
+        <xs:element ref="month"/>
+        <xs:element ref="day"/>
       </xs:sequence>
-      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="first-name" type="xs:string"/>
+  <xs:element name="last-name" type="xs:string"/>
+  <xs:element name="headline" type="xs:string"/>
   <xs:element name="location">
     <xs:complexType>
       <xs:sequence>
@@ -1632,37 +1637,29 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="first-name" type="xs:string"/>
-  <xs:element name="skill">
-    <xs:complexType>
-      <xs:choice minOccurs="0">
-        <xs:sequence>
-          <xs:element ref="id"/>
-          <xs:element ref="skill"/>
-          <xs:element ref="name"/>
-        </xs:sequence>
-        <xs:sequence>
-          <xs:element ref="proficiency"/>
-          <xs:element ref="years"/>
-        </xs:sequence>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="years">
+  <xs:element name="distance" type="xs:integer"/>
+  <xs:element name="relation-to-viewer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="name"/>
+        <xs:element minOccurs="0" ref="distance"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="membership-state"/>
+          <xs:sequence>
+            <xs:element ref="is-following"/>
+            <xs:element ref="is-liked"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="available-actions"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="last-name" type="xs:string"/>
-  <xs:element name="headline" type="xs:string"/>
-  <xs:element name="visibility">
+  <xs:element name="is-following" type="xs:boolean"/>
+  <xs:element name="available-actions">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="code"/>
+        <xs:element maxOccurs="unbounded" ref="action"/>
       </xs:sequence>
+      <xs:attribute name="total" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="comment">
@@ -1697,39 +1694,35 @@
   <xs:element name="submitted-image-url" type="xs:anyURI"/>
   <xs:element name="thumbnail-url" type="xs:anyURI"/>
   <xs:element name="eyebrow-url" type="xs:anyURI"/>
-  <xs:element name="author">
+  <xs:element name="visibility">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="first-name"/>
-          <xs:element ref="last-name"/>
-          <xs:element ref="headline"/>
-        </xs:sequence>
-        <xs:element minOccurs="0" ref="relation-to-viewer"/>
-        <xs:choice minOccurs="0">
-          <xs:sequence>
-            <xs:element ref="name"/>
-            <xs:element ref="person"/>
-          </xs:sequence>
-          <xs:sequence>
-            <xs:element ref="api-standard-profile-request"/>
-            <xs:element ref="site-standard-profile-request"/>
-          </xs:sequence>
-        </xs:choice>
+        <xs:element ref="code"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="picture-url" type="xs:anyURI"/>
-  <xs:element name="specialties">
-    <xs:complexType mixed="true">
+  <xs:element name="source">
+    <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="specialty"/>
+        <xs:element ref="service-provider"/>
+        <xs:element minOccurs="0" ref="application"/>
       </xs:sequence>
-      <xs:attribute name="total" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
-  <xs:element name="specialty" type="xs:string"/>
+  <xs:element name="service-provider">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="year" type="xs:integer"/>
   <xs:element name="month" type="xs:integer"/>
   <xs:element name="day" type="xs:integer"/>
@@ -1745,16 +1738,29 @@
       </xs:choice>
     </xs:complexType>
   </xs:element>
-  <xs:element name="date">
+  <xs:element name="skill">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:sequence>
+          <xs:element ref="proficiency"/>
+          <xs:element ref="years"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element ref="id"/>
+          <xs:element ref="skill"/>
+          <xs:element ref="name"/>
+        </xs:sequence>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="years">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="year"/>
-        <xs:element ref="month"/>
-        <xs:element ref="day"/>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="number" type="xs:string"/>
   <xs:element name="count" type="xs:integer"/>
   <xs:element name="category">
     <xs:complexType>
@@ -1777,6 +1783,7 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="description-snippet" type="xs:string"/>
+  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="action">
     <xs:complexType>
       <xs:sequence>
@@ -1784,7 +1791,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="web-url" type="xs:anyURI"/>
   <xs:element name="headers">
     <xs:complexType>
       <xs:sequence>

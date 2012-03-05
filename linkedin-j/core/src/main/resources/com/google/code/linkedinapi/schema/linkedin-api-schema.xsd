@@ -238,6 +238,7 @@
         <xs:element minOccurs="0" ref="question"/>
         <xs:element minOccurs="0" ref="company"/>
         <xs:element minOccurs="0" ref="company-job-update"/>
+        <xs:element minOccurs="0" ref="company-status-update"/>
         <xs:element minOccurs="0" ref="company-person-update"/>
         <xs:element minOccurs="0" ref="company-profile-update"/>
       </xs:sequence>
@@ -566,6 +567,13 @@
       <xs:sequence>
         <xs:element ref="job"/>
         <xs:element ref="action"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="company-status-update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="share"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -1985,13 +1993,16 @@
   <xs:element name="selected" type="xs:boolean"/>
   <xs:element name="share">
     <xs:complexType>
-		<xs:sequence>
-		  <xs:element minOccurs="0" ref="content"/>
-		  <xs:element ref="visibility"/>
-		  <xs:element ref="comment"/>
-		  <xs:element minOccurs="0" ref="attribution"/>
-		  <xs:element minOccurs="0" ref="id"/>
-		</xs:sequence>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="timestamp"/>
+        <xs:element ref="comment"/>
+        <xs:element ref="content"/>
+        <xs:element ref="visibility"/>
+        <xs:element ref="source"/>
+		<xs:element ref="author"/>
+	    <xs:element minOccurs="0" ref="attribution"/>
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="content">

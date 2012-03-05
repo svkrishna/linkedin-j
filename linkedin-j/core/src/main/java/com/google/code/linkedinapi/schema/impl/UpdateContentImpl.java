@@ -27,6 +27,7 @@ import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.CompanyJobUpdate;
 import com.google.code.linkedinapi.schema.CompanyPersonUpdate;
 import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
+import com.google.code.linkedinapi.schema.CompanyStatusUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
@@ -41,6 +42,7 @@ import com.google.code.linkedinapi.schema.UpdateContent;
     "question",
     "company",
     "companyJobUpdate",
+    "companyStatusUpdate",
     "companyPersonUpdate",
     "companyProfileUpdate"
 })
@@ -62,6 +64,8 @@ public class UpdateContentImpl
     protected CompanyImpl company;
     @XmlElement(name = "company-job-update", type = CompanyJobUpdateImpl.class)
     protected CompanyJobUpdateImpl companyJobUpdate;
+    @XmlElement(name = "company-status-update", type = CompanyStatusUpdateImpl.class)
+    protected CompanyStatusUpdateImpl companyStatusUpdate;
     @XmlElement(name = "company-person-update", type = CompanyPersonUpdateImpl.class)
     protected CompanyPersonUpdateImpl companyPersonUpdate;
     @XmlElement(name = "company-profile-update", type = CompanyProfileUpdateImpl.class)
@@ -113,6 +117,14 @@ public class UpdateContentImpl
 
     public void setCompanyJobUpdate(CompanyJobUpdate value) {
         this.companyJobUpdate = ((CompanyJobUpdateImpl) value);
+    }
+
+    public CompanyStatusUpdate getCompanyStatusUpdate() {
+        return companyStatusUpdate;
+    }
+
+    public void setCompanyStatusUpdate(CompanyStatusUpdate value) {
+        this.companyStatusUpdate = ((CompanyStatusUpdateImpl) value);
     }
 
     public CompanyPersonUpdate getCompanyPersonUpdate() {

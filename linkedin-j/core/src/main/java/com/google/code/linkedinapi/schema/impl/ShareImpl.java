@@ -25,18 +25,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.Attribution;
+import com.google.code.linkedinapi.schema.Author;
 import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Share;
+import com.google.code.linkedinapi.schema.Source;
 import com.google.code.linkedinapi.schema.Visibility;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
+    "timestamp",
+    "comment",
     "content",
     "visibility",
-    "comment",
-    "attribution",
-    "id"
+    "source",
+    "author",
+    "attribution"
 })
 @XmlRootElement(name = "share")
 public class ShareImpl
@@ -44,16 +50,48 @@ public class ShareImpl
 {
 
     private final static long serialVersionUID = 2461660169443089969L;
-    @XmlElement(type = ContentImpl.class)
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    protected Long timestamp;
+    @XmlElement(required = true)
+    protected String comment;
+    @XmlElement(required = true, type = ContentImpl.class)
     protected ContentImpl content;
     @XmlElement(required = true, type = VisibilityImpl.class)
     protected VisibilityImpl visibility;
-    @XmlElement(required = true)
-    protected String comment;
+    @XmlElement(required = true, type = SourceImpl.class)
+    protected SourceImpl source;
+    @XmlElement(required = true, type = AuthorImpl.class)
+    protected AuthorImpl author;
     @XmlElement(type = AttributionImpl.class)
     protected AttributionImpl attribution;
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String value) {
+        this.id = value;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long value) {
+        this.timestamp = value;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String value) {
+        this.comment = value;
+    }
 
     public Content getContent() {
         return content;
@@ -71,12 +109,20 @@ public class ShareImpl
         this.visibility = ((VisibilityImpl) value);
     }
 
-    public String getComment() {
-        return comment;
+    public Source getSource() {
+        return source;
     }
 
-    public void setComment(String value) {
-        this.comment = value;
+    public void setSource(Source value) {
+        this.source = ((SourceImpl) value);
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author value) {
+        this.author = ((AuthorImpl) value);
     }
 
     public Attribution getAttribution() {
@@ -85,14 +131,6 @@ public class ShareImpl
 
     public void setAttribution(Attribution value) {
         this.attribution = ((AttributionImpl) value);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String value) {
-        this.id = value;
     }
 
 }

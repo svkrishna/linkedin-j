@@ -27,6 +27,7 @@ import com.google.code.linkedinapi.schema.Company;
 import com.google.code.linkedinapi.schema.CompanyJobUpdate;
 import com.google.code.linkedinapi.schema.CompanyPersonUpdate;
 import com.google.code.linkedinapi.schema.CompanyProfileUpdate;
+import com.google.code.linkedinapi.schema.CompanyStatusUpdate;
 import com.google.code.linkedinapi.schema.Job;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.Question;
@@ -50,6 +51,7 @@ public class UpdateContentImpl
     protected CompanyJobUpdateImpl companyJobUpdate;
     protected CompanyPersonUpdateImpl companyPersonUpdate;
     protected CompanyProfileUpdateImpl companyProfileUpdate;
+    protected CompanyStatusUpdateImpl companyStatusUpdate;
 	
 
     public Person getPerson() {
@@ -116,6 +118,14 @@ public class UpdateContentImpl
         this.companyProfileUpdate = ((CompanyProfileUpdateImpl) value);
     }
     
+    public CompanyStatusUpdate getCompanyStatusUpdate() {
+        return companyStatusUpdate;
+    }
+
+    public void setCompanyStatusUpdate(CompanyStatusUpdate value) {
+        this.companyStatusUpdate = ((CompanyStatusUpdateImpl) value);
+    }
+    
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -155,6 +165,10 @@ public class UpdateContentImpl
         		CompanyProfileUpdateImpl companyProfileUpdate = new CompanyProfileUpdateImpl();
     			companyProfileUpdate.init(parser);
     			setCompanyProfileUpdate(companyProfileUpdate);
+            } else if (name.equals("company-status-update")) {
+        		CompanyStatusUpdateImpl companyStatusUpdate = new CompanyStatusUpdateImpl();
+    			companyStatusUpdate.init(parser);
+    			setCompanyStatusUpdate(companyStatusUpdate);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -189,6 +203,9 @@ public class UpdateContentImpl
 		}
 		if (getCompanyProfileUpdate() != null) {
 			((CompanyProfileUpdateImpl) getCompanyProfileUpdate()).toXml(element);
+		}
+		if (getCompanyStatusUpdate() != null) {
+			((CompanyStatusUpdateImpl) getCompanyStatusUpdate()).toXml(element);
 		}
 		serializer.endTag(null, "update-content");
 	}

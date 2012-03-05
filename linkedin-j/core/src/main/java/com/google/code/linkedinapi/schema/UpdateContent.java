@@ -35,6 +35,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}question" minOccurs="0"/>
  *         &lt;element ref="{}company" minOccurs="0"/>
  *         &lt;element ref="{}company-job-update" minOccurs="0"/>
+ *         &lt;element ref="{}company-status-update" minOccurs="0"/>
  *         &lt;element ref="{}company-person-update" minOccurs="0"/>
  *         &lt;element ref="{}company-profile-update" minOccurs="0"/>
  *       &lt;/sequence>
@@ -169,6 +170,26 @@ public interface UpdateContent
      *     
      */
     void setCompanyJobUpdate(CompanyJobUpdate value);
+
+    /**
+     * Gets the value of the companyStatusUpdate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CompanyStatusUpdate }
+     *     
+     */
+    CompanyStatusUpdate getCompanyStatusUpdate();
+
+    /**
+     * Sets the value of the companyStatusUpdate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CompanyStatusUpdate }
+     *     
+     */
+    void setCompanyStatusUpdate(CompanyStatusUpdate value);
 
     /**
      * Gets the value of the companyPersonUpdate property.

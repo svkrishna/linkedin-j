@@ -24,8 +24,10 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Attribution;
+import com.google.code.linkedinapi.schema.Author;
 import com.google.code.linkedinapi.schema.Content;
 import com.google.code.linkedinapi.schema.Share;
+import com.google.code.linkedinapi.schema.Source;
 import com.google.code.linkedinapi.schema.Visibility;
 
 public class ShareImpl
@@ -39,6 +41,9 @@ public class ShareImpl
     protected String comment;
     protected AttributionImpl attribution;
     protected String id;
+    protected Long timestamp;
+    protected SourceImpl source;
+    protected AuthorImpl author;
 
     public Content getContent() {
         return content;
@@ -79,6 +84,30 @@ public class ShareImpl
     public void setId(String value) {
         this.id = value;
     }
+    
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long value) {
+        this.timestamp = value;
+    }
+    
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source value) {
+        this.source = ((SourceImpl) value);
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author value) {
+        this.author = ((AuthorImpl) value);
+    }
 
 	@Override
 	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
@@ -89,6 +118,8 @@ public class ShareImpl
         	
         	if (name.equals("id")) {
         		setId(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
         	} else if (name.equals("comment")) {
         		setComment(XppUtils.getElementValueFromNode(parser));
         	} else if (name.equals("content")) {
@@ -103,6 +134,14 @@ public class ShareImpl
     			AttributionImpl source = new AttributionImpl();
     			source.init(parser);
     			setAttribution(source);
+            } else if (name.equals("source")) {
+    			SourceImpl source = new SourceImpl();
+    			source.init(parser);
+    			setSource(source);
+            } else if (name.equals("author")) {
+    			AuthorImpl source = new AuthorImpl();
+    			source.init(parser);
+    			setAuthor(source);
             } else {
                 // Consume something we don't understand.
             	LOG.warning("Found tag that we don't recognize: " + name);
@@ -115,6 +154,7 @@ public class ShareImpl
 	public void toXml(XmlSerializer serializer) throws IOException {
 		XmlSerializer element = serializer.startTag(null, "share");
 		XppUtils.setElementValueToNode(element, "id", getId());
+		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
 		XppUtils.setElementValueToNode(element, "comment", getComment());
 		if (getContent() != null) {
 			((ContentImpl) getContent()).toXml(serializer);
@@ -124,6 +164,12 @@ public class ShareImpl
 		}
 		if (getAttribution() != null) {
 			((AttributionImpl) getAttribution()).toXml(serializer);
+		}
+		if (getSource() != null) {
+			((SourceImpl) getSource()).toXml(serializer);
+		}
+		if (getAuthor() != null) {
+			((AuthorImpl) getAuthor()).toXml(serializer);
 		}
 		serializer.endTag(null, "share");
 	}

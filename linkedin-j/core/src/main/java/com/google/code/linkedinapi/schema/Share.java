@@ -29,11 +29,14 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}content" minOccurs="0"/>
- *         &lt;element ref="{}visibility"/>
+ *         &lt;element ref="{}id"/>
+ *         &lt;element ref="{}timestamp"/>
  *         &lt;element ref="{}comment"/>
+ *         &lt;element ref="{}content"/>
+ *         &lt;element ref="{}visibility"/>
+ *         &lt;element ref="{}source"/>
+ *         &lt;element ref="{}author"/>
  *         &lt;element ref="{}attribution" minOccurs="0"/>
- *         &lt;element ref="{}id" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,6 +49,66 @@ public interface Share
     extends SchemaEntity
 {
 
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getId();
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setId(String value);
+
+    /**
+     * Gets the value of the timestamp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getTimestamp();
+
+    /**
+     * Sets the value of the timestamp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setTimestamp(Long value);
+
+    /**
+     * Gets the value of the comment property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getComment();
+
+    /**
+     * Sets the value of the comment property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setComment(String value);
 
     /**
      * Gets the value of the content property.
@@ -88,24 +151,44 @@ public interface Share
     void setVisibility(Visibility value);
 
     /**
-     * Gets the value of the comment property.
+     * Gets the value of the source property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Source }
      *     
      */
-    String getComment();
+    Source getSource();
 
     /**
-     * Sets the value of the comment property.
+     * Sets the value of the source property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Source }
      *     
      */
-    void setComment(String value);
+    void setSource(Source value);
+
+    /**
+     * Gets the value of the author property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Author }
+     *     
+     */
+    Author getAuthor();
+
+    /**
+     * Sets the value of the author property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Author }
+     *     
+     */
+    void setAuthor(Author value);
 
     /**
      * Gets the value of the attribution property.
@@ -126,25 +209,5 @@ public interface Share
      *     
      */
     void setAttribution(Attribution value);
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    String getId();
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    void setId(String value);
 
 }
